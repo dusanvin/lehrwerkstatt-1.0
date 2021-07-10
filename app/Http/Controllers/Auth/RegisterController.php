@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
@@ -29,7 +30,11 @@ class RegisterController extends Controller
     		'nachname' => 'required|max:255',
     		//'email' => 'required|email|max:255',
     		'email' => 'required|unique:users,email|max:255',
-    		'password' => 'required|confirmed',
+    		'password' => ['required', 'confirmed', Password::min(8)
+				->numbers()
+				->mixedCase()
+				->letters(),
+			],
     	]);
 
     	User::create([

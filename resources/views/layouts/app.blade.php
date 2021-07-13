@@ -9,7 +9,7 @@
 
     </head>
 
-    <body class="" style="background-image: linear-gradient(rgba(76, 29, 149, 0.5), rgba(17, 24, 39, 0.9)), url('');background-position: top;">
+    <body class="" style="">
 
     	@include('layouts.header')
 

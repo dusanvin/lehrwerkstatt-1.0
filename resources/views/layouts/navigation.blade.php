@@ -30,15 +30,9 @@
 
 			</svg>
 
-			<p class="pt-2 font-medium text-sm">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</p>
+			<a href="{{ route('user') }}" class="pt-2 font-medium text-sm">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</a>
 
-			<p class="text-xs text-gray-400">{{ Auth::user()->email }}</p>
-
-			<div class="mt-5">
-
-				<a href="{{ route('user') }}" class="flex border items-center justify-center rounded-full py-2 mx-0 md:mx-5 text-xs font-semibold text-gray-200 hover:bg-gray-200 hover:text-gray-900">Account bearbeiten</a>
-
-			</div>
+			<p class="text-xs text-gray-400">{{ Auth::user()->role }}</p>
 
 		</div>
 

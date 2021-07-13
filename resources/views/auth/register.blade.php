@@ -19,8 +19,8 @@
 					<!-- Start: Col Hintergrundbild-->
 
 					<div
-						class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg shadow border-b border-gray-200"
-						style="background-image: url('https://digidev.zlbib.uni-augsburg.de/laravel/img/start.jpg')"
+						class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg shadow"
+						style="background-image: url('https://images.pexels.com/photos/6801652/pexels-photo-6801652.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); background-position-x:center;"
 					></div>
 
 					<!-- Ende: Col Hintergrundbild -->
@@ -170,7 +170,38 @@
 
 								<!-- Ende: Passwort (Bestätigung) -->
 
+
 							</div>
+
+
+							<!-- Start: Rolle Registrierung -->
+
+							<div class="mb-4 md:mr-2 md:mb-0">
+
+								<label class="block mb-2 text-sm font-normal text-gray-800" for="role">
+
+									Rolle
+
+								</label>
+
+								<select name="role" id="role" class="text-gray-500 text-sm py-2 px-3 rounded-sm border-2 border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent @error('role') border-red-500 @enderror">
+                                    <option>HelferIn</option>
+                                    <option>LehrerIn</option>
+                                </select>
+
+                                @error('role')
+
+                                    <div class="text-red-500 mt-2 text-sm">
+                                        
+                                        {{ 'Bitte legen Sie fest, mit welcher Rolle Sie sich registrieren möchten.' }}
+
+                                    </div>
+
+                                @enderror
+
+							</div>
+
+							<!-- Ende: Rolle Registrierung -->
 
 							<!-- Start: Button Registrierung -->
 

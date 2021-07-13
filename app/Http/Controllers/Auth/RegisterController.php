@@ -31,8 +31,7 @@ class RegisterController extends Controller
     		//'email' => 'required|email|max:255',
     		'email' => 'required|unique:users,email|max:255',
             'role' => 'required|max:40',
-    		'password' => 'required|confirmed',
-
+    		//'password' => 'required|confirmed',
     		'password' => ['required', 'confirmed', Password::min(8)
 				->numbers()
 				->mixedCase()

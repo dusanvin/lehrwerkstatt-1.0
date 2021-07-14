@@ -122,7 +122,7 @@
 
 							<!-- Ende: Email -->
 
-							<div class="mb-4 md:flex md:justify-between">
+							<div class="mb-0 md:flex md:justify-between">
 
 								<!-- Start: Passwort -->
 

@@ -140,56 +140,6 @@
 
                             <!-- Test -->
 
-                            <!-- Fachsemester -->
-
-                            <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
-
-                                <p class="font-medium text-gray-800 leading-none">Fachsemester</p>
-
-                                <p class="text-xs text-gray-500 mt-1 mb-3">Wählen Sie Ihr Fachsemester aus.</p>
-
-                                <div>
-
-                                    <label for="fachsemester" class="sr-only flex items-center">fachsemester</label>
-
-                                    <select name="fachsemester" id="fachsemester" class="text-gray-500 text-xs py-1 px-1 rounded-sm border-2 border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent @error('fachsemester') border-red-500 @enderror">
-                                        <option>0</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
-                                        <option>7</option>
-                                        <option>8</option>
-                                        <option>9</option>
-                                        <option>10</option>
-                                        <option>11</option>
-                                        <option>12</option>
-                                        <option>13</option>
-                                        <option>14</option>
-                                        <option>15</option>
-                                        <option>16</option>
-                                        <option>17</option>
-                                        <option>18</option>
-                                    </select>
-
-                                    @error('fachsemester')
-
-                                        <div class="text-red-500 mt-2 text-sm">
-                                            
-                                            {{ 'Bitte wählen Sie Ihr Fachsemester aus.' }}
-
-                                        </div>
-
-                                    @enderror
-
-                                </div>
-
-                            </div>
-
-                            <!-- Fachsemester -->
-
                             <!-- Studiengang -->
 
                             <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
@@ -276,6 +226,56 @@
                             </div>
 
                             <!-- Datum -->
+
+                            <!-- Fachsemester -->
+
+                            <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
+
+                                <p class="font-medium text-gray-800 leading-none">Fachsemester</p>
+
+                                <p class="text-xs text-gray-500 mt-1 mb-3">Wählen Sie Ihr Fachsemester aus.</p>
+
+                                <div>
+
+                                    <label for="fachsemester" class="sr-only flex items-center">fachsemester</label>
+
+                                    <select name="fachsemester" id="fachsemester" class="text-gray-500 text-xs py-1 px-1 rounded-sm border-2 border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent @error('fachsemester') border-red-500 @enderror">
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                    </select>
+
+                                    @error('fachsemester')
+
+                                        <div class="text-red-500 mt-2 text-sm">
+
+                                            {{ 'Bitte wählen Sie Ihr Fachsemester aus.' }}
+
+                                        </div>
+
+                                    @enderror
+
+                                </div>
+
+                            </div>
+
+                            <!-- Fachsemester -->
                         
                         </div>                        
 

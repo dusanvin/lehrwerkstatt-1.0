@@ -179,6 +179,54 @@
 
                             <!-- Studiengang -->
 
+                            <!-- Datum -->
+
+                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+                            <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+                            
+                            <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+                            
+                            <script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>                            
+                            
+                            <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
+                            
+                                <p class="font-medium text-gray-800 leading-none">Betreuungszeitraum</p>
+                            
+                                <p class="text-xs text-gray-500 mt-1 mb-3">Geben Sie Ihren Betreuungszeitraum an.</p>
+                            
+                                <label for="datum" class="sr-only flex items-center">Datum</label>
+                            
+                                <input class="date form-control text-gray-500 text-xs py-1 px-1 rounded-sm border-2 border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent @error('sprachkenntnisse') border-red-500 @enderror"  type="text" id="datum" name="datum">
+                            
+                                @error('datum')
+                            
+                                    <div class="text-red-500 mt-2 text-sm">
+                                        
+                                        {{ 'Bitte wählen Sie ein Datum aus.' }}
+                            
+                                    </div>
+                            
+                                @enderror
+                            
+                                <script type="text/javascript">
+                            
+                                    flatpickr("#datum", {
+                                        altInput: true,
+                                        altFormat: "j F, Y",
+                                        dateFormat: "Y-m-d",
+                                        theme: "dark",
+                                        minDate: "today",
+                                        mode: "range",
+                                        "locale": "de",
+                                    });
+                                
+                                </script>
+                            
+                            </div>
+                                
+                            <!-- Datum -->
+
                             <!-- Fachsemester -->
 
                             <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">

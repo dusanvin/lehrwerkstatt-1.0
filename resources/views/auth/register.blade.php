@@ -145,7 +145,7 @@
 									@error('password')
 
 										<div class="text-red-500 mt-2 text-sm">
-											{{ $message }}
+											Das Passwort muss mindestens 6 Zeichen lang sein und Kleinbuchstaben, Großbuchstaben und Ziffern enthalten.
 										</div>
 
 									@enderror

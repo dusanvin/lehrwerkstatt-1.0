@@ -176,7 +176,7 @@
 							@error('password')
 
 								<div class="text-red-500 mt-0 mb-2 text-sm">
-									Das Passwort muss mindestens 6 Zeichen lang sein und Kleinbuchstaben, Großbuchstaben und Ziffern enthalten.
+									Das Passwort muss mindestens 10 Zeichen lang sein und Kleinbuchstaben, Großbuchstaben, Symbole und Ziffern enthalten.
 								</div>
 
 							@enderror

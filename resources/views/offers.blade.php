@@ -213,8 +213,8 @@
 
                                     flatpickr("#datum", {
                                         altInput: true,
-                                        altFormat: "j F, Y",
-                                        dateFormat: "Y-m-d",
+                                        altFormat: "F Y", // was "j F, Y"
+                                        dateFormat: "Y-F", // was "Y-m-d"
                                         theme: "dark",
                                         minDate: "today",
                                         mode: "range",

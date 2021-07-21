@@ -19,8 +19,9 @@ class NeedsController extends Controller
     {
         /*dd(auth()->user());*/
         $needs = Need::with([
-            'user'
-        ])->latest()->simplePaginate(5);
+            'user',
+            'likes'
+        ])->latest()->simplePaginate(10);
 
         //return view('needs');
         return view('needs',[
@@ -30,12 +31,20 @@ class NeedsController extends Controller
 
     public function store(Request $request)
     {
+        $dates = explode('bis', $request->datum);
+        $startDate = trim($dates[0]);
+        if (1 == preg_match('/bis/', $request->datum)) {
+            $endDate = trim($dates[1]);
+        }
+        else $endDate = $startDate;
+
         $this->validate($request, [
             'body' => 'required',
             'rahmen' => 'required',
             'sprachkenntnisse' => 'required',
             'studiengang' => 'required',
-            'fachsemester' => 'required'
+            'fachsemester' => 'required',
+            'datum' => 'required'
         ]);
 
         $request->user()->needs()->create([
@@ -43,7 +52,9 @@ class NeedsController extends Controller
             'rahmen' => $request->rahmen,
             'sprachkenntnisse' => $request->sprachkenntnisse,
             'studiengang' => $request->studiengang,
-            'fachsemester' => $request->fachsemester
+            'fachsemester' => $request->fachsemester,
+            'datum_start' => $startDate,
+            'datum_end' => $endDate,
         ]);
 
         return back();
@@ -51,6 +62,9 @@ class NeedsController extends Controller
 
     public function destroy(Need $need)
     {
+        if(!$need->ownedBy(auth()->user())) {
+            return back();
+        }
 
         $need->delete();
 

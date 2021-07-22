@@ -27,6 +27,10 @@
 
 	use Illuminate\Support\Facades\Route;
 
+	/* Verification */
+	use Illuminate\Foundation\Auth\EmailVerificationRequest;
+	use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -151,4 +155,27 @@
 
 /*--------------------------------------------------------------------------*/
 
+
 Route::get('/datepicker', [DateController::class,'index']);
+
+
+// verfication notice
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+
+// verfication link was clicked 
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+
+// resend verfication link
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');

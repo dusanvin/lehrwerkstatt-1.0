@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
+use Illuminate\Auth\Events\Registered;
+
 class RegisterController extends Controller
 {
 
@@ -40,7 +42,7 @@ class RegisterController extends Controller
 			],
     	]);
 
-    	User::create([
+    	$user = User::create([
     		'vorname' => $request->vorname,
     		'nachname' => $request->nachname,
     		'email' => $request->email,
@@ -48,9 +50,12 @@ class RegisterController extends Controller
     		'password' => Hash::make($request->password),
     	]);
 
-    	auth()->attempt($request->only('email','password'));
+		event(new Registered($user));
 
-    	return redirect()->route('dashboard'); 
+    	//auth()->attempt($request->only('email','password'));
+
+    	//return redirect()->route('dashboard'); 
+		return redirect()->route('verification.notice'); 
     	// view('auth.register');
 
     }

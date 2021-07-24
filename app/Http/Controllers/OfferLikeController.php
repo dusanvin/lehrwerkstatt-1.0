@@ -8,10 +8,10 @@ use App\Models\Like;
 
 class OfferLikeController extends Controller
 {
-    public function __construct () 
-    {
-    	$this->middleware(['auth']);
-    }
+    // public function __construct () 
+    // {
+    // 	$this->middleware(['auth']);
+    // }
 
     public function store(Offer $offer, Request $request)
     {

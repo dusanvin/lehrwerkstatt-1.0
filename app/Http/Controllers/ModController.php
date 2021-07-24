@@ -9,10 +9,10 @@ class ModController extends Controller
 
 	/* Nur erreichbar, wenn eingeloggt */
 
-    public function __construct()
-    {
-    	$this->middleware(['auth']);
-    }
+    // public function __construct()
+    // {
+    // 	$this->middleware(['auth']);
+    // }
 	
     public function index()
     {

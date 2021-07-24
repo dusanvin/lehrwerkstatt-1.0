@@ -84,8 +84,9 @@
 /*--------------------------------------------------------------------------*/
 
 /* User */
+Route::middleware(['auth', 'verified'])->group(function() {
 
-	/* Functionality */
+		/* Functionality */
 		/* Ausloggen */
 		Route::post('/logout', [LogoutController::class,'store'])
 			->name('logout');
@@ -153,6 +154,10 @@
 		Route::get('/user', [UserEditController::class,'index'])
 			->name('user');
 
+});
+
+
+
 /*--------------------------------------------------------------------------*/
 
 
@@ -171,7 +176,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
     return redirect()->route('dashboard');
 })->middleware(['auth', 'signed'])->name('verification.verify');
-//
+
 
 // resend verfication link
 Route::post('/email/verification-notification', function (Request $request) {

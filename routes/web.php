@@ -162,14 +162,14 @@ Route::get('/datepicker', [DateController::class,'index']);
 // verfication notice
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
-})->name('verification.notice');
+})->middleware('auth')->name('verification.notice');
 
 
 // verfication link was clicked 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 
-    return redirect->route('dashboard');
+    return redirect()->route('dashboard');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 //
 

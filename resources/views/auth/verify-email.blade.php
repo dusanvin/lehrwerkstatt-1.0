@@ -4,3 +4,5 @@ Bitte verifizieren Sie sich!
     @csrf
     <button type="submit">Email erneut senden!</button>
 </form>
+
+// Ausgestalten

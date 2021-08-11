@@ -2,6 +2,15 @@
 
 @section('content')
 
+<?php 
+
+    $date = auth()->user()->created_at;
+    $time = $date;
+    $time = date("H:i");
+    $date = date("d.m.y"); 
+
+?>
+
 <body style="background-color: white;">
 
     <div class="flex flex-row h-full ml-20 mr-20 mt-10 mb-10">
@@ -51,53 +60,79 @@
     <tr>
 
         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                                #</th>
+
+        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                                 Name</th>
 
         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                E-Mail</th>
+                                                Rolle</th>
+
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                                Registrierung</th>
 
         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                Rolle</th>
+                                                </th>
 
     </tr>
 
     @foreach ($data as $key => $user)
 
-    <tr>
+        <tr>
 
-        <td>{{ $user->vorname }} {{ $user->nachname }}</td>
+            <td class="pl-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ ++$i }}</td>
 
-        <td>{{ $user->email }}</td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
 
-        <td>
+                    <div class="text-sm leading-5 font-medium text-gray-900">{{ $user->vorname }} {{ $user->nachname }}</div>
 
-            @if(!empty($user->getRoleNames()))
+                    <div class="text-sm leading-5 text-gray-500">{{ $user->email }}</div>
 
-                @foreach($user->getRoleNames() as $v)
+            </td>
 
-                   <label class="badge badge-success">{{ $v }}</label>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
 
-                @endforeach
+                @if(!empty($user->getRoleNames()))
 
-            @endif
+                    @foreach($user->getRoleNames() as $v)
 
-        </td>
+                       <label class="badge badge-success">{{ $v }}</label>
 
-        <td>
+                    @endforeach
 
-            <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Anzeigen</a>
+                @endif
 
-            <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Bearbeiten</a>
+            </td>
 
-            {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
 
-            {!! Form::submit('Löschen', ['class' => 'btn btn-danger']) !!}
+                    <div class="text-sm leading-5 font-normal text-gray-900">{{  $user->created_at->diffForHumans() }}</div>
 
-            {!! Form::close() !!}
+            </td>
 
-        </td>
+            <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
 
-    </tr>
+                <a class="bg-transparent hover:bg-purple-600 text-purple-600 font-normal hover:text-white py-2 px-4 rounded" href="{{ route('users.show',$user->id) }}">
+
+                    Anzeigen
+
+                </a>
+
+                <a class="bg-transparent hover:bg-purple-600 text-purple-600 font-normal hover:text-white py-2 px-4 rounded" href="{{ route('users.edit',$user->id) }}">
+
+                    Bearbeiten
+
+                </a>
+
+                {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
+
+                {!! Form::submit('Löschen', ['class' => 'bg-transparent hover:bg-red-500 text-red-500 font-normal hover:text-white py-2 px-4 rounded']) !!}
+
+                {!! Form::close() !!}
+
+            </td>
+
+        </tr>
 
     @endforeach
 

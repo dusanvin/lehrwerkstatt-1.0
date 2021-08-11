@@ -30,7 +30,21 @@
 
 			</svg>
 
-			<a href="{{ route('user') }}" class="pt-2 font-medium text-sm">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</a>
+			<a href="{{ route('user') }}" class="pt-2 font-medium text-sm inline-block hover:text-gray-400">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}
+
+				<!-- Bearbeiten Stift -->
+
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 pb-1 inline-block" viewBox="0 0 20 20" fill="currentColor">
+
+					<path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+
+				  	<path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+
+				</svg>
+
+				<!-- Bearbeiten Stift -->
+
+			</a>
 
 			<p class="text-xs text-gray-400">{{ Auth::user()->role }}</p>
 
@@ -75,9 +89,10 @@
 			</li>
 
 			<!-- Mein Bereich -->
+        	
+        	<p class="mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Administration</p>
 
-
-			<!-- Statistiken -->
+        	<!-- Statistiken -->
 
 			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
@@ -108,14 +123,12 @@
 			</li>
 
 			<!-- Statistiken -->
-        	
-        	<p class="mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Personen</p>
 
-			<!-- Helfende -->
+			<!-- Personen -->
 
 			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-				<a href="{{ route('help') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md @if (Request::is('help')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+				<a href="{{ route('users.index') }}"class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md @if (Request::is('help')) { text-gray-900 bg-black bg-opacity-60 } @endif">
 
 		            <div class="text-gray-100">
 
@@ -129,9 +142,9 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none">Helfende</p>
+		              <p class="text-sm font-medium text-gray-100 leading-none">Personen</p>
 
-		              <p class="text-xs text-gray-400">Details zu Helfenden</p>
+		              <p class="text-xs text-gray-400">Details zu Nutzenden</p>
 
 		            </div>
 
@@ -139,9 +152,9 @@
 
 			</li>
 
-			<!-- Helfende -->
+			<!-- Personen -->
 
-			<!-- Lehrkräfte -->
+			<!-- Lehrkräfte 
 
 			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
@@ -169,9 +182,9 @@
 
 			</li>
 
-			<!-- Lehrkräfte -->
+			 Lehrkräfte -->
 
-			<!-- Moderierende -->
+			<!-- Moderierende 
 
 			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
@@ -199,7 +212,7 @@
 
 			</li>
 
-			<!-- Moderierende -->
+			Moderierende -->
 
 			<p class="mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Paare</p>
 
@@ -267,7 +280,7 @@
 
 			<!-- Zuweisungen -->
 
-			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+			<!-- <li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
 				<a href="{{ route('matching') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md @if (Request::is('matching')) { text-gray-900 bg-black bg-opacity-60 } @endif">
 
@@ -290,7 +303,7 @@
 
 		        </a>
 
-			</li>
+			</li> -->
 
 			<!-- Zuweisungen --> 
 

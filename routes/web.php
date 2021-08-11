@@ -22,6 +22,8 @@
 	use App\Http\Controllers\MatchingController;
 
 	use App\HTTP\Controllers\User\UserEditController;
+	use App\Http\Controllers\UserController;
+	use App\Http\Controllers\RoleController;
 
 	/* Allgemein */
 
@@ -153,6 +155,9 @@ Route::middleware(['auth', 'verified'])->group(function() {
 		/* Account bearbeiten */
 		Route::get('/user', [UserEditController::class,'index'])
 			->name('user');
+
+		Route::resource('roles', RoleController::class);
+		Route::resource('users', UserController::class);
 
 });
 

@@ -1,35 +1,32 @@
 <?php
 
+    
+
 namespace App\Http\Controllers;
+
+    
 
 use Illuminate\Http\Request;
 
-
 use App\Http\Controllers\Controller;
+
 use App\Models\User;
+
 use Spatie\Permission\Models\Role;
+
 use DB;
+
 use Hash;
+
 use Illuminate\Support\Arr;
 
-class HelpController extends Controller
+    
+
+class UserController extends Controller
+
 {
 
-	/* Nur erreichbar, wenn eingeloggt */
-
-    // public function __construct()
-    // {
-    // 	$this->middleware(['auth']);
-    // }
-
-     //   public function index()
-   // {
-    	/*dd(auth()->user());*/
-    //	return view('help');
-   // }
-
-
-        /**
+    /**
 
      * Display a listing of the resource.
 
@@ -268,4 +265,5 @@ class HelpController extends Controller
                         ->with('success','User deleted successfully');
 
     }
+
 }

@@ -40,7 +40,7 @@ class UserController extends Controller
 
     {
 
-        $data = User::orderBy('id','DESC')->simplePaginate(5);
+        $data = User::orderBy('id','DESC')->simplePaginate(10);
 
         return view('users.index',compact('data'))
 
@@ -194,15 +194,19 @@ class UserController extends Controller
 
     {
 
+        // Nach Klick auf "Änderungen übernehmen"
+
         $this->validate($request, [
 
-            'name' => 'required',
+            'vorname' => 'required',
+
+            'nachname' => 'required',
 
             'email' => 'required|email|unique:users,email,'.$id,
 
             'password' => 'same:confirm-password',
 
-            'roles' => 'required'
+            //'roles' => 'required'
 
         ]);
 
@@ -236,7 +240,7 @@ class UserController extends Controller
 
         return redirect()->route('users.index')
 
-                        ->with('success','User updated successfully');
+                        ->with('success','Informationen erfolgreich aktualisiert.<');
 
     }
 

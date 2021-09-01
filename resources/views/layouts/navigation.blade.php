@@ -78,7 +78,7 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none">Mein Bereich</p>
+		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Mein Bereich</p>
 
 		              <p class="text-xs text-gray-400">Persönliche Informationen</p>
 
@@ -112,7 +112,7 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none">Statistiken</p>
+		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Statistiken</p>
 
 		              <p class="text-xs text-gray-400">Nutzung des Portals</p>
 
@@ -142,7 +142,7 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none">Personen</p>
+		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Personen</p>
 
 		              <p class="text-xs text-gray-400">Details zu Nutzenden</p>
 
@@ -224,11 +224,9 @@
 
 		            <div class="text-gray-100">
 
-						<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-							<path fill-rule="evenodd" d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z" clip-rule="evenodd" />
-
-							<path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z" />
+							<path fill-rule="evenodd" d="M9 3a1 1 0 012 0v5.5a.5.5 0 001 0V4a1 1 0 112 0v4.5a.5.5 0 001 0V6a1 1 0 112 0v5a7 7 0 11-14 0V9a1 1 0 012 0v2.5a.5.5 0 001 0V4a1 1 0 012 0v4.5a.5.5 0 001 0V3z" clip-rule="evenodd" />
 
 						</svg>
 
@@ -236,9 +234,9 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none">Angebote</p>
+		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Angebote</p>
 
-		              <p class="text-xs text-gray-400">Übersicht und Erstellung</p>
+		              <p class="text-xs text-gray-400">Hilfsangebot anbieten</p>
 
 		            </div>
 
@@ -266,9 +264,9 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none">Bedarfe</p>
+		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Bedarfe</p>
 
-		              <p class="text-xs text-gray-400">Übersicht und Erstellung</p>
+		              <p class="text-xs text-gray-400">Hilfsangebot ersuchen</p>
 
 		            </div>
 

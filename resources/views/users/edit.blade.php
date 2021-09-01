@@ -3,123 +3,338 @@
 
 @section('content')
 
-<div class="row">
 
-    <div class="col-lg-12 margin-tb">
+<body style="background-color: white;">
 
-        <div class="pull-left">
+    <div class="flex flex-row h-full mx-5 mt-10 mb-10">
 
-            <h2>Edit New User</h2>
+      <!-- Nav -->
 
-        </div>
+        @include('layouts.navigation')
 
-        <div class="pull-right">
+        <div class="px-8 py-8 text-gray-700 w-screen bg-white rounded-r-lg shadow-b border-b border-gray-200" style="background-color: #EDF2F7;">
 
-            <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+            <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
+
+                <div class="px-4 py-5 sm:px-6">
+
+                    <h2 class="text-lg leading-6 font-medium text-gray-900">
+
+                        Personen - Informationen bearbeiten
+
+                    </h2>
+
+                    <p class="mt-1 text-sm text-gray-500">
+
+                        Bearbeiten Sie die Informationen einer Personen. Die Daten sind für Moderierende und Administrierende einseh- und bearbeitbar.
+
+                    </p>
+
+                </div>
+
+                <div class="min-width-full block">
+
+                    @if ($message = Session::get('success'))
+
+                    <div class="alert alert-success">
+
+                        <p>{{ $message }}</p>
+
+                    </div>
+
+                    @endif
+
+                    <div class="px-4">
+
+                        <!-- Fehlerbehandlung -->
+
+                        @if (count($errors) > 0)
+
+                          <div class="alert alert-danger">
+
+                            <ul>
+
+                               @foreach ($errors->all() as $error)
+
+                                <li class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-400">
+
+                                <span class="text-xl inline-block mr-2 align-middle">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                                      <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+
+                                    </svg>
+
+                                </span>
+
+                                <span class="inline-block align-middle">
+
+                                    {{ $error }}
+
+                                    <!-- 53:33 -->
+
+                                </span>
+
+                                <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+
+                                <span>×</span>
+
+                                </button>
+
+                            </li>
+
+                               @endforeach
+
+                            </ul>
+
+                          </div>
+
+                        @endif
+
+                        <!-- Fehlerbehandlung -->
+
+                        <!-- Informationsanzeige sowie -bearbeitung -->
+
+                        {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
+
+                        <div>
+
+                            <dl>
+
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+
+                                    <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                      Bearbeiten Sie den <strong>Vornamen</strong> der Person
+
+                                    </dt>
+
+                                    <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                          <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                        </svg>
+
+                                        {!! Form::text('vorname', null, array('placeholder' => 'Vorname','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!} 
+
+                                    </dd>
+
+                                </div>
+
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+
+                                    <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                      Bearbeiten Sie den <strong>Nachnamen</strong> der Person
+
+                                    </dt>
+
+                                    <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                          <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                        </svg>
+
+                                        {!! Form::text('nachname', null, array('placeholder' => 'Nachname','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!} 
+
+                                    </dd>
+
+                                </div>
+
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+
+                                    <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                      Bearbeiten Sie die <strong>E-Mail-Adresse</strong> der Person
+
+                                    </dt>
+
+                                    <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                          <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                        </svg>
+
+                                        {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!}
+
+                                    </dd>
+
+                                </div>
+
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+
+                                    <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                      Bearbeiten Sie das <strong>Passwort</strong> der Person
+
+                                    </dt>
+
+                                    <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                          <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                        </svg>
+
+                                        {!! Form::password('password', array('placeholder' => 'Passwort','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!}
+
+                                    </dd>
+
+                                </div>
+
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+
+                                    <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                      <strong>Bestätigen</strong> Sie das <strong>neue Passwort</strong> der Person
+
+                                    </dt>
+
+                                    <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                          <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                        </svg>
+
+                                        {!! Form::password('confirm-password', array('placeholder' => 'Passwort bestätigen','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!}
+
+                                    </dd>
+
+                                </div>
+
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+
+                                    <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                      <strong>Verändern</strong> Sie die <strong>Rolle/n</strong> der Person
+
+                                    </dt>
+
+                                    <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                          <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                        </svg>
+
+                                        {!! Form::select('roles[]', $roles,$userRole, array('class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500','multiple')) !!}
+
+                                    </dd>
+
+                                </div>
+
+                            </dl>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Informationsanzeige sowie -bearbeitung -->
+
+                    <!-- Zurück oder Bestätigen -->
+
+                    <div class="block">
+
+                        <div class="mb-4 mt-4 mx-4 float-left">
+
+                            <a href="{{ route('users.index') }}" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 px-4 border border-purple-600 hover:border-transparent rounded flex items-center transition ease-in-out duration-150">
+
+                                <div class="">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" /></svg>
+
+                                </div>
+
+                                <div class="pl-3">
+
+                                    <p class="">Zurück zur Personenübersicht</p>
+
+                                </div>
+
+                            </a>
+
+                        </div>
+
+                        <div class="mb-4 mt-4 mx-4 float-right">
+
+                            <button type="submit" class="bg-transparent hover:bg-green-600 text-green-600 font-semibold text-sm hover:text-white py-2 px-4 border border-green-600 hover:border-transparent rounded flex items-center transition ease-in-out duration-150">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+                                        
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+
+                                </svg>Änderungen bestätigen
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Zurück oder Bestätigen -->
+
+                    {!! Form::close() !!}
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
+</body>
 
 
-@if (count($errors) > 0)
-
-  <div class="alert alert-danger">
-
-    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-
-    <ul>
-
-       @foreach ($errors->all() as $error)
-
-         <li>{{ $error }}</li>
-
-       @endforeach
-
-    </ul>
-
-  </div>
-
-@endif
 
 
-{!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
-
-<div class="row">
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group">
-
-            <strong>Name:</strong>
-
-            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group">
-
-            <strong>Email:</strong>
-
-            {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group">
-
-            <strong>Password:</strong>
-
-            {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group">
-
-            <strong>Confirm Password:</strong>
-
-            {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group">
-
-            <strong>Role:</strong>
-
-            {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-
-    </div>
-
-</div>
-
-{!! Form::close() !!}
 
 
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @endsection

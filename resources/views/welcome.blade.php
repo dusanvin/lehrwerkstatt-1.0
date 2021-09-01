@@ -88,7 +88,7 @@
 
                     <li class="space-y-3 row-span-2 px-4">
 
-                        <h2 class="text-xs font-semibold tracking-wide text-gray-100 uppercase">
+                        <h2 class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
 
                             Informationen
 
@@ -128,7 +128,7 @@
 
                     <li class="space-y-3 row-span-2 px-4">
 
-                        <h2 class="text-xs font-semibold tracking-wide text-gray-100 uppercase">
+                        <h2 class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
 
                             Organisation
                         </h2>

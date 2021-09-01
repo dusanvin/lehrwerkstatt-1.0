@@ -14,7 +14,7 @@
 
             <li class="space-y-3 row-span-2 px-4">
 
-                <h2 class="text-xs font-semibold tracking-wide text-gray-100 uppercase">
+                <h2 class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
 
                     Informationen
 
@@ -24,19 +24,19 @@
 
                     <li>
 
-                        <p class="text-gray-300 transition-colors duration-200 font-normal">
+                        <p class="text-gray-500 transition-colors duration-200 font-normal">
 
                             BETA-Version 0.1: 05/2021
 
                         </p>
 
-                        <p class="text-gray-300 transition-colors duration-200 font-normal mt-2">
+                        <p class="text-gray-500 transition-colors duration-200 font-normal mt-2">
 
                             Das <em>digi:match</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Helfer*innen im Rahmen des Projekts <em>Augsburger DaZ-Buddys</em> zu finden.
 
                         </p>
 
-                        <p class="text-gray-300 transition-colors duration-200 font-normal mt-2 mr-2">
+                        <p class="text-gray-500 transition-colors duration-200 font-normal mt-2 mr-2">
 
                             <em>digi:match</em> von <strong>Vincent Dusanek</strong> für <strong>DigiLLab</strong>, 2020. MIT-Lizenz.
 
@@ -54,7 +54,7 @@
 
             <li class="space-y-3 row-span-2 px-4">
 
-                <h2 class="text-xs font-semibold tracking-wide text-gray-100 uppercase">
+                <h2 class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
 
                     Organisation
                 </h2>
@@ -63,7 +63,7 @@
 
                     <li>
 
-                        <a class="text-gray-300 hover:text-gray-100 transition-colors duration-200 font-normal" href="https://digillab.zlbib.uni-augsburg.de">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://digillab.zlbib.uni-augsburg.de">
 
                             DigiLLab
 
@@ -73,7 +73,7 @@
 
                     <li>
 
-                        <a class="text-gray-300 hover:text-gray-100 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/">
 
                             ZLbiB
 
@@ -91,7 +91,7 @@
 
             <li class="space-y-3 row-span-2 px-4">
 
-                <h2 class="text-xs font-semibold tracking-wide text-gray-100 uppercase">
+                <h2 class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
 
                     Über
 
@@ -101,7 +101,7 @@
 
                     <li>
 
-                        <a class="text-gray-300 hover:text-gray-100 transition-colors duration-200 font-normal" href="https://digillab.zlbib.uni-augsburg.de/impressum/">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://digillab.zlbib.uni-augsburg.de/impressum/">
 
                             Impressum
 
@@ -111,7 +111,7 @@
 
                     <li>
 
-                        <a class="text-gray-300 hover:text-gray-100 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/impressum/datenschutz/">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/impressum/datenschutz/">
 
                             Datenschutz
                         </a>
@@ -128,7 +128,7 @@
 
             <li class="space-y-3 row-span-2 px-4">
 
-                <h2 class="text-xs font-semibold tracking-wide text-gray-100 uppercase">
+                <h2 class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
 
                     Allgemein
 
@@ -138,7 +138,7 @@
 
                     <li>
 
-                        <a class="text-gray-300 hover:text-gray-100 transition-colors duration-200 font-normal" href="/about">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="/about">
 
                             Näheres zum <em>digi:match</em>
 
@@ -148,7 +148,7 @@
 
                     <li>
 
-                        <a class="text-gray-300 hover:text-gray-100 transition-colors duration-200 font-bold" href="/faq">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-bold" href="/faq">
 
                             FAQ
 
@@ -158,7 +158,7 @@
 
                     <li>
 
-                        <a class="text-gray-300 hover:text-gray-100 transition-colors duration-200 font-normal" href="{{ $mail_to_digillab }}">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="{{ $mail_to_digillab }}">
 
                             Kontakt
 
@@ -168,7 +168,7 @@
 
                     <li>
 
-                        <a class="text-gray-300 hover:text-gray-100 transition-colors duration-200 font-normal" href="/log">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="/log">
 
                             Log
 

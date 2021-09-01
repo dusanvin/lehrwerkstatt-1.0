@@ -78,7 +78,7 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none">Mein Bereich</p>
+		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Mein Bereich</p>
 
 		              <p class="text-xs text-gray-400">Persönliche Informationen</p>
 
@@ -112,7 +112,7 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none">Statistiken</p>
+		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Statistiken</p>
 
 		              <p class="text-xs text-gray-400">Nutzung des Portals</p>
 
@@ -142,7 +142,7 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none">Personen</p>
+		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Personen</p>
 
 		              <p class="text-xs text-gray-400">Details zu Nutzenden</p>
 
@@ -234,9 +234,9 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none">Angebote</p>
+		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Angebote</p>
 
-		              <p class="text-xs text-gray-400">Übersicht und Erstellung</p>
+		              <p class="text-xs text-gray-400">Hilfsangebot anbieten</p>
 
 		            </div>
 
@@ -264,9 +264,9 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none">Bedarfe</p>
+		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Bedarfe</p>
 
-		              <p class="text-xs text-gray-400">Übersicht und Erstellung</p>
+		              <p class="text-xs text-gray-400">Hilfsangebot ersuchen</p>
 
 		            </div>
 

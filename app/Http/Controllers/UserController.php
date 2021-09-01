@@ -40,7 +40,7 @@ class UserController extends Controller
 
     {
 
-        $data = User::orderBy('id','DESC')->paginate(20);
+        $data = User::orderBy('id','DESC')->simplePaginate(5);
 
         return view('users.index',compact('data'))
 

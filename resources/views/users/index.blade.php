@@ -14,7 +14,7 @@
 
         <div class="px-8 py-8 text-gray-700 w-screen bg-white rounded-r-lg shadow-b border-b border-gray-200" style="background-color: #EDF2F7;">
 
-            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+            <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
 
                 <div class="px-4 py-5 sm:px-6">
 
@@ -52,19 +52,18 @@
 
                 </div>
 
+                @if ($message = Session::get('success'))
 
-@if ($message = Session::get('success'))
+                <div class="alert alert-success">
 
-<div class="alert alert-success">
+                    <p>{{ $message }}</p>
 
-  <p>{{ $message }}</p>
+                </div>
 
-</div>
-
-@endif
+                @endif
 
 
-<table class="min-w-full mt-4">
+<table class="min-w-full my-4">
 
     <tr>
 
@@ -148,7 +147,9 @@
 </table>
 
 
-{!! $data->render() !!}
+<div class="pb-4 px-4">
+    {{ $data->links() }}
+</div>
 
 </div>
 </div>

@@ -76,7 +76,7 @@
                                                                     Rolle</th>
 
                                     <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    Registrierung</th>
+                                                                    Letzter Login</th>
 
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
                                                                     </th>
@@ -113,7 +113,17 @@
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-t border-gray-200">
 
-                                        <div class="text-sm leading-5 font-normal text-gray-900">{{  $user->created_at->diffForHumans() }}</div>
+                                        <div class="text-sm leading-5 font-normal text-gray-900">
+
+                                            @if($user->last_login_at === NULL)
+                                                -
+                                            @else
+
+                                            {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}
+
+                                            @endif
+
+                                        </div>
 
                                 </td>
 

@@ -40,4 +40,11 @@ class LoginController extends Controller
     	return redirect()->route('dashboard');
 
     }
+
+    public function authenticated(Request $request, $user)
+    {
+        $user->timestamps = false;
+        $user->last_login_at = now();
+        $user->save();
+    }
 }

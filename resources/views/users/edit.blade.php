@@ -180,7 +180,7 @@
                                           <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        {!! Form::password('password', array('placeholder' => 'Password','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!}
+                                        {!! Form::password('password', array('placeholder' => 'Passwort','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!}
 
                                     </dd>
 

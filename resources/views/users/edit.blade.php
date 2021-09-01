@@ -32,12 +32,6 @@
 
                 </div>
 
-                
-
-
-
-                
-
                 <div class="min-width-full block">
 
                     @if ($message = Session::get('success'))
@@ -100,164 +94,149 @@
 
                         <!-- Fehlerbehandlung -->
 
+                        <!-- Informationsanzeige sowie -bearbeitung -->
+
                         {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
 
                         <div>
 
-                        <dl>
+                            <dl>
 
-                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 
-                                <dt class="text-sm font-medium text-gray-500 py-2">
+                                    <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                  Bearbeiten Sie den <strong>Vornamen</strong> der Person
+                                      Bearbeiten Sie den <strong>Vornamen</strong> der Person
 
-                                </dt>
+                                    </dt>
 
-                                <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
+                                    <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                      <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                      <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
-                                    </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                          <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                        </svg>
 
-                                    {!! Form::text('vorname', null, array('placeholder' => 'Vorname','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!} 
+                                        {!! Form::text('vorname', null, array('placeholder' => 'Vorname','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!} 
 
-                                </dd>
+                                    </dd>
 
-                            </div>
+                                </div>
 
-                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 
-                                <dt class="text-sm font-medium text-gray-500 py-2">
+                                    <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                  Bearbeiten Sie den <strong>Nachnamen</strong> der Person
+                                      Bearbeiten Sie den <strong>Nachnamen</strong> der Person
 
-                                </dt>
+                                    </dt>
 
-                                <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
+                                    <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                      <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                      <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
-                                    </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                          <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                        </svg>
 
-                                    {!! Form::text('nachname', null, array('placeholder' => 'Nachname','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!} 
+                                        {!! Form::text('nachname', null, array('placeholder' => 'Nachname','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!} 
 
-                                </dd>
+                                    </dd>
 
-                            </div>
+                                </div>
 
-                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 
-                                <dt class="text-sm font-medium text-gray-500 py-2">
+                                    <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                  Bearbeiten Sie die <strong>E-Mail-Adresse</strong> der Person
+                                      Bearbeiten Sie die <strong>E-Mail-Adresse</strong> der Person
 
-                                </dt>
+                                    </dt>
 
-                                <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
+                                    <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                      <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                      <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
-                                    </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                          <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                        </svg>
 
-                                    {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!}
+                                        {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!}
 
-                                </dd>
+                                    </dd>
 
-                            </div>
+                                </div>
 
-                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 
-                                <dt class="text-sm font-medium text-gray-500 py-2">
+                                    <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                  Bearbeiten Sie das <strong>Passwort</strong> der Person
+                                      Bearbeiten Sie das <strong>Passwort</strong> der Person
 
-                                </dt>
+                                    </dt>
 
-                                <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
+                                    <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                      <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                      <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
-                                    </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                          <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                        </svg>
 
-                                    {!! Form::password('password', array('placeholder' => 'Password','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!}
+                                        {!! Form::password('password', array('placeholder' => 'Password','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!}
 
-                                </dd>
+                                    </dd>
 
-                            </div>
+                                </div>
 
-                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 
-                                <dt class="text-sm font-medium text-gray-500 py-2">
+                                    <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                  <strong>Bestätigen</strong> Sie das <strong>neue Passwort</strong> der Person
+                                      <strong>Bestätigen</strong> Sie das <strong>neue Passwort</strong> der Person
 
-                                </dt>
+                                    </dt>
 
-                                <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
+                                    <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                      <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                      <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
-                                    </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                          <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                        </svg>
 
-                                    {!! Form::password('confirm-password', array('placeholder' => 'Passwort bestätigen','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!}
+                                        {!! Form::password('confirm-password', array('placeholder' => 'Passwort bestätigen','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500')) !!}
 
-                                </dd>
+                                    </dd>
 
-                            </div>
+                                </div>
 
-                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 
-                                <dt class="text-sm font-medium text-gray-500 py-2">
+                                    <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                  <strong>Verändern</strong> Sie die <strong>Rolle/n</strong> der Person
+                                      <strong>Verändern</strong> Sie die <strong>Rolle/n</strong> der Person
 
-                                </dt>
+                                    </dt>
 
-                                <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
+                                    <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center">
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                      <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                      <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
-                                    </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                          <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                        </svg>
 
-                                    {!! Form::select('roles[]', $roles,$userRole, array('class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500','multiple')) !!}
+                                        {!! Form::select('roles[]', $roles,$userRole, array('class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 focus:border-gray-900 transition ease-in-out duration-500','multiple')) !!}
 
-                                </dd>
+                                    </dd>
 
-                            </div>
+                                </div>
 
-                        </dl>
+                            </dl>
+
+                        </div>
 
                     </div>
 
-                </div>
+                    <!-- Informationsanzeige sowie -bearbeitung -->
 
-                        
-
-
-
-
-
-
-
-
-                    
-
-                    <!-- Inhalt -->
-
-                    
-
-                    
-
-                    
-
-                    <!-- Inhalt -->
+                    <!-- Zurück oder Bestätigen -->
 
                     <div class="block">
 
@@ -283,20 +262,22 @@
 
                         <div class="mb-4 mt-4 mx-4 float-right">
 
-                            <button type="submit" class="bg-transparent hover:bg-green-600 text-green-600 font-semibold text-sm hover:text-white py-2 px-4 border border-green-600 hover:border-transparent rounded flex items-center transition ease-in-out duration-150"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
-                                    
+                            <button type="submit" class="bg-transparent hover:bg-green-600 text-green-600 font-semibold text-sm hover:text-white py-2 px-4 border border-green-600 hover:border-transparent rounded flex items-center transition ease-in-out duration-150">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+                                        
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
 
-                                </svg>Änderungen bestätigen</button>
+                                </svg>Änderungen bestätigen
+
+                            </button>
 
                         </div>
 
                     </div>
 
+                    <!-- Zurück oder Bestätigen -->
+
                     {!! Form::close() !!}
-
-
-
 
                 </div>
 

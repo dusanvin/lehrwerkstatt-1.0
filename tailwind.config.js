@@ -1,16 +1,25 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
-  theme: {
-    extend: {
-    	backgroundImage: theme => ({
-         'nav-background': "url('https://digidev.zlbib.uni-augsburg.de/laravel/img/nav-background.jpg')",
-         'footer-texture': "url('/img/footer-texture.png')",
-        })
+    purge: [
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+    ],
+
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+            },
+        },
     },
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
-}
+
+    variants: {
+        extend: {
+            opacity: ['disabled'],
+        },
+    },
+
+    plugins: [require('@tailwindcss/forms')],
+};

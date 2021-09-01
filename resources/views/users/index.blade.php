@@ -2,14 +2,7 @@
 
 @section('content')
 
-<?php 
 
-    $date = auth()->user()->created_at;
-    $time = $date;
-    $time = date("H:i");
-    $date = date("d.m.y"); 
-
-?>
 
 <body style="background-color: white;">
 
@@ -19,29 +12,45 @@
 
         @include('layouts.navigation')
 
-                    <div class="px-8 py-8 text-gray-700 w-screen bg-white rounded-r-lg shadow-b border-b border-gray-200" style="background-color: #EDF2F7;">
+        <div class="px-8 py-8 text-gray-700 w-screen bg-white rounded-r-lg shadow-b border-b border-gray-200" style="background-color: #EDF2F7;">
 
-                <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
 
-<div class="row">
+                <div class="px-4 py-5 sm:px-6">
 
-    <div class="col-lg-12 margin-tb">
+                    <h2 class="text-lg leading-6 font-medium text-gray-900">
 
-        <div class="pull-left">
+                        Statistiken
 
-            <h2>Users Management</h2>
+                    </h2>
 
-        </div>
+                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
 
-        <div class="pull-right">
+                        Nutzungsstatistiken des Portals.
 
-            <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
+                    </p>
 
-        </div>
+                </div>
 
-    </div>
+                <div class="float-right mb-8 mt-4 mr-8">
 
-</div>
+                    <a href="{{ route('users.create') }}" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 px-4 border border-purple-600 hover:border-transparent rounded flex items-center">
+
+                        <div class="">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" /></svg>
+
+                        </div>
+
+                        <div class="pl-3">
+
+                            <p class="">Nutzende hinzufügen</p>
+
+                        </div>
+
+                    </a>
+
+                </div>
 
 
 @if ($message = Session::get('success'))
@@ -55,7 +64,7 @@
 @endif
 
 
-<table class="min-w-full">
+<table class="min-w-full mt-4">
 
     <tr>
 

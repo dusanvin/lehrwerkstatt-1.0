@@ -6,7 +6,7 @@
 
 <body style="background-color: white;">
 
-    <div class="flex flex-row h-full ml-20 mr-20 mt-10 mb-10">
+    <div class="flex flex-row h-full mx-5 mt-10 mb-10">
 
       <!-- Nav -->
 
@@ -20,19 +20,19 @@
 
                     <h2 class="text-lg leading-6 font-medium text-gray-900">
 
-                        Statistiken
+                        Personen
 
                     </h2>
 
-                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                    <p class="mt-1 text-sm text-gray-500">
 
-                        Nutzungsstatistiken des Portals.
+                        Informationen und Anmerkungen zu Personen. Die Daten sind für Moderierende und Administrierende einsehbar.
 
                     </p>
 
                 </div>
 
-                <div class="float-right mb-8 mt-4 mr-8">
+                <div class="float-right mb-4 mt-4 mr-4">
 
                     <a href="{{ route('users.create') }}" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 px-4 border border-purple-600 hover:border-transparent rounded flex items-center">
 
@@ -62,12 +62,12 @@
 
                 @endif
 
-
-<table class="min-w-full my-4">
+<div class="px-4">
+<table class="min-w-full my-4 mr-4 shadow-sm rounded-lg">
 
     <tr>
 
-        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tl-md">
                                                 #</th>
 
         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -79,7 +79,7 @@
                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                                 Registrierung</th>
 
-        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
                                                 </th>
 
     </tr>
@@ -146,9 +146,11 @@
 
 </table>
 
+</div>
+
 
 <div class="pb-4 px-4">
-    {{ $data->links() }}
+    {!! $data->render() !!}
 </div>
 
 </div>

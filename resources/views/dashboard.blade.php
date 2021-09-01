@@ -54,7 +54,7 @@
 
     <body style="background-color: white;">
 
-		<div class="flex flex-row h-full ml-20 mr-20 mt-10 mb-10">
+		<div class="flex flex-row h-full mx-5 mt-10 mb-10">
 
 			<!-- Nav -->
 

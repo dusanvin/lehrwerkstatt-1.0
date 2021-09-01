@@ -64,7 +64,7 @@
 
 			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-				<a href="{{ route('dashboard') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md @if (Request::is('dashboard')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+				<a href="{{ route('dashboard') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md  transition ease-in-out duration-150 @if (Request::is('dashboard')) { text-gray-900 bg-black bg-opacity-60 } @endif">
 
 		            <div class="text-gray-100">
 
@@ -96,7 +96,7 @@
 
 			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-				<a href="{{ route('stats') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md @if (Request::is('stats')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+				<a href="{{ route('stats') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('stats')) { text-gray-900 bg-black bg-opacity-60 } @endif">
 
 		            <div class="text-gray-100">
 
@@ -128,7 +128,7 @@
 
 			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-				<a href="{{ route('users.index') }}"class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md @if (Request::is('help')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+				<a href="{{ route('users.index') }}"class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('help')) { text-gray-900 bg-black bg-opacity-60 } @endif">
 
 		            <div class="text-gray-100">
 
@@ -220,7 +220,7 @@
 
 			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-				<a href="{{ route('offers') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md @if (Request::is('offers')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+				<a href="{{ route('offers') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('offers')) { text-gray-900 bg-black bg-opacity-60 } @endif">
 
 		            <div class="text-gray-100">
 
@@ -252,7 +252,7 @@
 
 			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-				<a href="{{ route('needs') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md @if (Request::is('needs')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+				<a href="{{ route('needs') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('needs')) { text-gray-900 bg-black bg-opacity-60 } @endif">
 
 		            <div class="text-gray-100">
 
@@ -319,7 +319,7 @@
 
 		@csrf
 
-		<button class="flex text-xs items-center p-1 md:p-3 text-gray-300 hover:text-red-500 focus:border-transparent focus:outline-none" type="submit">
+		<button class="flex text-xs items-center p-1 md:p-3 text-gray-300 hover:text-red-500 focus:border-transparent focus:outline-none transition ease-in-out duration-150" type="submit">
 
 			<svg
 			class="fill-current h-5 w-5 mx-auto mr-1"

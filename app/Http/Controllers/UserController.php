@@ -194,15 +194,19 @@ class UserController extends Controller
 
     {
 
+        // Nach Klick auf "Änderungen übernehmen"
+
         $this->validate($request, [
 
-            'name' => 'required',
+            'vorname' => 'required',
+
+            'nachname' => 'required',
 
             'email' => 'required|email|unique:users,email,'.$id,
 
             'password' => 'same:confirm-password',
 
-            'roles' => 'required'
+            //'roles' => 'required'
 
         ]);
 

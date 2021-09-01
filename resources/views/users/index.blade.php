@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 <body style="background-color: white;">
 
     <div class="flex flex-row h-full mx-5 mt-10 mb-10">
@@ -34,7 +32,7 @@
 
                 <div class="float-right mb-4 mt-4 mr-4">
 
-                    <a href="{{ route('users.create') }}" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 px-4 border border-purple-600 hover:border-transparent rounded flex items-center">
+                    <a href="{{ route('users.create') }}" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 px-4 border border-purple-600 hover:border-transparent rounded flex items-center transition ease-in-out duration-150">
 
                         <div class="">
 
@@ -62,100 +60,105 @@
 
                 @endif
 
-<div class="px-4">
-<table class="min-w-full my-4 mr-4 shadow-sm rounded-lg">
+                <div class="px-4">
 
-    <tr>
+                    <table class="min-w-full my-4 mr-4 shadow-sm rounded-lg">
 
-        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tl-md">
-                                                #</th>
+                        <tr>
 
-        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                Name</th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tl-md">
+                                                                    #</th>
 
-        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                Rolle</th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                                                    Name</th>
 
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                Registrierung</th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                                                    Rolle</th>
 
-        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
-                                                </th>
+                                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                                                    Registrierung</th>
 
-    </tr>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
+                                                                    </th>
 
-    @foreach ($data as $key => $user)
+                        </tr>
 
-        <tr>
+                        @foreach ($data as $key => $user)
 
-            <td class="pl-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ ++$i }}</td>
+                            <tr>
 
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <td class="pl-6 py-4 whitespace-no-wrap border-t border-gray-200">{{ ++$i }}</td>
 
-                    <div class="text-sm leading-5 font-medium text-gray-900">{{ $user->vorname }} {{ $user->nachname }}</div>
+                                <td class="px-6 py-4 whitespace-no-wrap border-t border-gray-200">
 
-                    <div class="text-sm leading-5 text-gray-500">{{ $user->email }}</div>
+                                        <div class="text-sm leading-5 font-medium text-gray-900">{{ $user->vorname }} {{ $user->nachname }}</div>
 
-            </td>
+                                        <div class="text-sm leading-5 text-gray-500">{{ $user->email }}</div>
 
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                </td>
 
-                @if(!empty($user->getRoleNames()))
+                                <td class="px-6 py-4 whitespace-no-wrap border-t border-gray-200">
 
-                    @foreach($user->getRoleNames() as $v)
+                                    @if(!empty($user->getRoleNames()))
 
-                       <label class="badge badge-success">{{ $v }}</label>
+                                        @foreach($user->getRoleNames() as $v)
 
-                    @endforeach
+                                           <label class="badge badge-success">{{ $v }}</label>
 
-                @endif
+                                        @endforeach
 
-            </td>
+                                    @endif
 
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                </td>
 
-                    <div class="text-sm leading-5 font-normal text-gray-900">{{  $user->created_at->diffForHumans() }}</div>
+                                <td class="px-6 py-4 whitespace-no-wrap border-t border-gray-200">
 
-            </td>
+                                        <div class="text-sm leading-5 font-normal text-gray-900">{{  $user->created_at->diffForHumans() }}</div>
 
-            <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                                </td>
 
-                <a class="bg-transparent hover:bg-purple-600 text-purple-600 font-normal hover:text-white py-2 px-4 rounded" href="{{ route('users.show',$user->id) }}">
+                                <td class="px-6 py-4 whitespace-no-wrap text-right border-t border-gray-200 text-sm leading-5 font-medium">
 
-                    Anzeigen
+                                    <a class="bg-transparent hover:bg-purple-600 text-purple-600 font-normal hover:text-white py-2 px-4 rounded transition ease-in-out duration-150" href="{{ route('users.show',$user->id) }}">
 
-                </a>
+                                        Anzeigen
 
-                <a class="bg-transparent hover:bg-purple-600 text-purple-600 font-normal hover:text-white py-2 px-4 rounded" href="{{ route('users.edit',$user->id) }}">
+                                    </a>
 
-                    Bearbeiten
+                                    <a class="bg-transparent hover:bg-purple-600 text-purple-600 font-normal hover:text-white py-2 px-4 rounded transition ease-in-out duration-150" href="{{ route('users.edit',$user->id) }}">
 
-                </a>
+                                        Bearbeiten
 
-                {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
+                                    </a>
 
-                {!! Form::submit('Löschen', ['class' => 'bg-transparent hover:bg-red-500 text-red-500 font-normal hover:text-white py-2 px-4 rounded']) !!}
+                                    {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
 
-                {!! Form::close() !!}
+                                    {!! Form::submit('Löschen', ['class' => 'bg-transparent hover:bg-red-500 text-red-500 font-normal hover:text-white py-2 px-4 rounded transition ease-in-out duration-150']) !!}
 
-            </td>
+                                    {!! Form::close() !!}
 
-        </tr>
+                                </td>
 
-    @endforeach
+                            </tr>
 
-</table>
+                        @endforeach
 
-</div>
+                    </table>
 
+                </div>
 
-<div class="pb-4 px-4">
-    {!! $data->render() !!}
-</div>
+                <div class="pb-4 px-4">
 
-</div>
-</div>
-</div>
+                    {!! $data->render() !!}
+
+                </div>
+
+            </div>
+
+        </div>
+        
+    </div>
+
 </body>
 
 @endsection

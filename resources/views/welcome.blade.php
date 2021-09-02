@@ -40,315 +40,131 @@
     <!-- https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/css/pagination/with-numbers -->
     <!-- Tooltips: https://codepen.io/t7team/pen/XWdyVyB -->
 
-    <body class="antialiased bg-white mt-2">
+    <body class="antialiased bg-white">
 
         <!-- Reduziertes Nav 48:15 -->
 
-        @include('layouts.header')
+        <nav class="p-3 bg-white flex justify-between max-w-7xl mx-auto">
+
+            <ul class="flex items-center">
+
+                <li class="p-3">
+
+                    <!-- Logo -->
+
+                    <a href="\">
+
+                        <div class="flex items-center"><svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 16" class="h-7 w-7 -mt-2 flex-shrink-0"><path fill-rule="evenodd" clip-rule="evenodd" d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.057-3.382 12.758-10.145-2.551 3.382-5.528 4.65-8.93 3.804-1.942-.482-3.33-1.882-4.865-3.431C34.736 2.92 31.841 0 25.517 0zM12.758 15.218C5.954 15.218 1.701 18.6 0 25.364c2.552-3.382 5.529-4.65 8.93-3.805 1.942.482 3.33 1.882 4.865 3.432 2.502 2.524 5.397 5.445 11.722 5.445 6.804 0 11.057-3.381 12.758-10.145-2.552 3.382-5.529 4.65-8.931 3.805-1.941-.483-3.329-1.883-4.864-3.432-2.502-2.524-5.398-5.446-11.722-5.446z" fill="#7C3AED"></path></svg> <p class="text-xl ml-2">digi:<strong>match</strong></p></div>
+
+                    </a>
+
+                    <!-- Logo -->
+
+                </li>
+
+            </ul>
+
+        </nav>
 
         <!-- Reduziertes Nav -->
 
-<!-- Hero -->
+        <!-- Hero -->
 
-<div class="relative bg-white overflow-hidden mt-2">
+        <div class="relative bg-white overflow-hidden mt-0">
 
-    <div class="max-w-7xl mx-auto">
+            <div class="max-w-7xl mx-auto">
 
-        <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+                <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
 
-            <!-- White Triangle -->
+                    <!-- White Triangle -->
 
-            <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
 
-                <polygon points="50,0 100,0 50,100 0,100" />
+                        <polygon points="50,0 100,0 50,100 0,100" />
 
-            </svg>
+                    </svg>
 
-            <!-- White Triangle -->
+                    <!-- White Triangle -->
 
-            <!-- Ausrichtung Hero-Image -->
+                    <!-- Ausrichtung Hero-Image -->
 
-            <div>
+                    <div>
 
-                <div class="relative pt-6 px-4 sm:px-6 lg:px-8"></div>
+                        <div class="relative pt-6 px-4 sm:px-6 lg:px-8"></div>
 
-                <div class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden hidden"></div>
-
-            </div>
-
-          <!-- Ausrichtung Hero-Image -->
-
-            <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-
-                <div class="text-center md:text-left lg:text-left xl:text-left 2xl:text-left">
-
-                    <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-
-                        <span class="block xl:inline">Finden Sie Ihr*e</span>
-
-                        <span class="block text-purple-600 xl:inline">Helfer*in</span>
-
-                    </h1>
-
-                    <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-
-                        Das <em>digi:match</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Helfer*innen zu finden. Für Studierende und Schulen. <strong>Kostenfrei und DSGVO-konform.</strong>
-
-                    </p>
-
-                    <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-
-                        <div class="rounded-md shadow">
-
-                            <a href="{{ route('register') }}" class="transition duration-300 ease-in-out w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 md:py-4 md:text-lg md:px-10">
-
-                                Registrieren
-
-                            </a>
-
-                        </div>
-
-                        <div class="mt-3 sm:mt-0 sm:ml-3">
-                  
-                            <a href="{{ route('login') }}" class="transition duration-300 ease-in-out w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-purple-700 bg-purple-100 hover:bg-purple-200 md:py-4 md:text-lg md:px-10">
-
-                                Anmelden
-
-                            </a>
-
-                        </div>
+                        <div class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden hidden"></div>
 
                     </div>
 
+                  <!-- Ausrichtung Hero-Image -->
+
+                    <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+
+                        <div class="text-center md:text-left lg:text-left xl:text-left 2xl:text-left">
+
+                            <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+
+                                <span class="block xl:inline">Finden Sie Ihr*e</span>
+
+                                <span class="block text-purple-600 xl:inline">Helfer*in</span>
+
+                            </h1>
+
+                            <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+
+                                Das <em>digi:match</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Helfer*innen zu finden. Für Studierende und Schulen. <strong>Kostenfrei und DSGVO-konform.</strong>
+
+                            </p>
+
+                            <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+
+                                <div class="rounded-md shadow">
+
+                                    <a href="{{ route('register') }}" class="transition duration-300 ease-in-out w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 md:py-4 md:text-lg md:px-10">
+
+                                        Registrieren
+
+                                    </a>
+
+                                </div>
+
+                                <div class="mt-3 sm:mt-0 sm:ml-3">
+
+                                    <a href="{{ route('login') }}" class="transition duration-300 ease-in-out w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-purple-700 bg-purple-100 hover:bg-purple-200 md:py-4 md:text-lg md:px-10">
+
+                                        Anmelden
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </main>
+
                 </div>
-
-            </main>
-        
-        </div>
-      
-    </div>
-          
-    <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-
-        <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://images.pexels.com/photos/5212320/pexels-photo-5212320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
-
-    </div>
-        
-</div>
-
-<!-- Hero -->
-
-        <footer class="footer relative pt-10 max-w-7xl mx-auto">
-
-            <!-- Container Grid -->
-
-            <div class="max-w-screen-lg xl:max-w-screen-xl mx-auto divide-y divide-gray-200 px-4 sm:px-6 md:px-8 mt-8">
-
-                <!-- Grid -->
-
-                <ul class="text-center Footer_nav__2rFid text-sm font-medium pb-14 sm:pb-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10">
-
-                    <!-- Informationen -->
-
-                    <li class="space-y-3 row-span-2 px-4">
-
-                        <h2 class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-
-                            Informationen
-
-                        </h2>
-
-                        <ul class="space-y-1">
-
-                            <li>
-
-                                <p class="text-gray-500 transition-colors duration-200 font-normal">
-
-                                    BETA-Version 0.1: 05/2021
-
-                                </p>
-
-                                <p class="text-gray-500 transition-colors duration-200 font-normal mt-2">
-
-                                    Das <em>digi:match</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Helfer*innen im Rahmen des Projekts <em>Augsburger DaZ-Buddys</em> zu finden.
-
-                                </p>
-
-                                <p class="text-gray-500 transition-colors duration-200 font-normal mt-2 mr-2">
-
-                                    <em>digi:match</em> von <strong>Vincent Dusanek</strong> für <strong>DigiLLab</strong>, 2020. MIT-Lizenz.
-
-                                </p>
-
-                            </li>
-
-                        </ul>
-
-                    </li>
-
-                    <!-- Informationen -->
-
-                    <!-- Organisation -->
-
-                    <li class="space-y-3 row-span-2 px-4">
-
-                        <h2 class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-
-                            Organisation
-                        </h2>
-
-                        <ul class="space-y-1">
-
-                            <li>
-
-                                <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://digillab.zlbib.uni-augsburg.de">
-
-                                    DigiLLab
-
-                                </a>
-
-                            </li>
-
-                            <li>
-
-                                <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/">
-
-                                    ZLbiB
-
-                                </a>
-
-                            </li>
-
-                        </ul>
-
-                    </li>
-
-                    <!-- Organisation -->
-
-                    <!-- Über -->
-
-                    <li class="space-y-3 row-span-2 px-4">
-
-                        <h2 class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-
-                            Über
-
-                        </h2>
-
-                        <ul class="space-y-1">
-
-                            <li>
-
-                                <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://digillab.zlbib.uni-augsburg.de/impressum/">
-
-                                    Impressum
-
-                                </a>
-
-                            </li>
-
-                            <li>
-
-                                <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/impressum/datenschutz/">
-
-                                    Datenschutz
-                                </a>
-
-                            </li>
-
-                        </ul>
-
-                    </li>
-
-                    <!-- Über -->
-
-                    <!-- Allgemein -->
-
-                    <li class="space-y-3 row-span-2 px-4">
-
-                        <h2 class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
-
-                            Allgemein
-
-                        </h2>
-
-                        <ul class="space-y-1">
-
-                            <li>
-
-                                <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="/about">
-
-                                    Näheres zum <em>digi:match</em>
-
-                                </a>
-
-                            </li>
-
-                            <li>
-
-                                <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-bold" href="/faq">
-
-                                    FAQ
-
-                                </a>
-
-                            </li>
-
-                            <li>
-
-                                <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="{{ $mail_to_digillab }}">
-
-                                    Kontakt
-
-                                </a>
-
-                            </li>
-
-                            <li>
-
-                                <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="/log">
-
-                                    Log
-
-                                </a>
-
-                            </li>
-
-                        </ul>
-
-                    </li>
-
-                    <!-- Allgemein -->
-
-                </ul>
-
-                <!-- Grid -->
 
             </div>
 
-            <!-- Container Grid -->
+            <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
 
-        </footer>
+                <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://images.pexels.com/photos/5212320/pexels-photo-5212320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
 
-        <!-- Footer -->
+            </div>
 
-<!-- Styles -->
+        </div>
 
-<style type="text/css">
-    #user {
-        background-color: transparent !important;
-    }
-</style>
-
-<!-- Styles -->
+        <!-- Hero -->
 
 
-
-        <!-- Hero und Footer -->
+        @include('layouts.footer')
     
+
         <!-- JS -->
 
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.min.js" defer=""></script>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.min.js" defer=""></script
 
         <!-- JS -->
 

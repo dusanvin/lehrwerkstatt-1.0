@@ -88,15 +88,15 @@
 
 			<!-- Auth anzeigen -->
 
-			<li class="p-3 text-xs text-gray-700 hover:bg-gray-500 hover:bg-opacity-10 rounded-md">
+			<li class="mr-2 mb-1">
 
-				<a href="{{ route('login') }}">Anmelden</a>
+				<a class="px-3 py-2 text-xs text-gray-700 hover:bg-gray-500 hover:bg-opacity-10 rounded-full" href="{{ route('login') }}">Anmelden</a>
 
 			</li>
 
-			<li class="p-3 text-xs text-gray-700 hover:bg-gray-500 hover:bg-opacity-10 rounded-md">
+			<li class=" mb-1">
 
-				<a href="{{ route('register') }}">Registrieren</a>
+				<a class="px-3 py-2 text-xs text-white bg-gray-800 hover:bg-gray-700 rounded-full" href="{{ route('register') }}">Registrieren</a>
 
 			</li>
 

@@ -7,7 +7,15 @@
 	    height: 100vh;
 	    width: 100%;
 	}
-}
+	body span,label,a,button,div,p {
+        font-family: 'Segoe UI' !important;
+    }
+    
+	button {
+    	letter-spacing: 0em !important;
+	}
+	
+
 </style>
 
 @include('layouts.header')

@@ -38,7 +38,7 @@
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal mt-2 mr-2">
 
-                            <em>digi:match</em> von <strong>Vincent Dusanek</strong> für <strong>DigiLLab</strong>, 2020. MIT-Lizenz.
+                            <em>digi:match</em> von <strong>Vincent Dusanek</strong> und <strong>Norman Szabo</strong> für <strong>DigiLLab</strong>, 2021. MIT-Lizenz.
 
                         </p>
 

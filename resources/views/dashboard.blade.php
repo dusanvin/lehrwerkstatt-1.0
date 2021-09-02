@@ -8,7 +8,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>digi:match</title>
+        <title>{{ config('app.name', 'digi:match') }}</title>
         <style type="text/css">
 
             .tox-tinymce {

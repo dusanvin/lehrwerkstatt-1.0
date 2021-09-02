@@ -24,7 +24,7 @@
 
                     <p class="mt-1 text-sm text-gray-500">
 
-                        Informationen und Anmerkungen zu Personen. Die Daten sind für Moderierende und Administrierende einsehbar.
+                        Informationen und Anmerkungen zu Personen. Die Daten sind für <strong>Moderierende</strong> und <strong>Administrierende</strong> einsehbar.
 
                     </p>
 
@@ -32,7 +32,7 @@
 
                 <div class="float-right mb-4 mt-4 mr-4">
 
-                    <a href="{{ route('users.create') }}" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 px-4 border border-purple-600 hover:border-transparent rounded flex items-center transition ease-in-out duration-150">
+                    <a href="{{ route('users.create') }}" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 px-4 border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150">
 
                         <div class="">
 
@@ -52,11 +52,34 @@
 
                 @if ($message = Session::get('success'))
 
-                <div class="alert alert-success">
+                    <!--<p>{{ $message }}</p>-->
+                    <div class="text-white px-6 py-4 mx-4 border-0 rounded relative mb-4 bg-green-600">
 
-                    <p>{{ $message }}</p>
+                        <span class="text-xl inline-block mr-2 align-middle">
 
-                </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                              <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+
+                            </svg>
+
+                        </span>
+
+                        <span class="inline-block align-middle">
+
+                            <b>Aktion erfolgreich ausgeführt.</b>
+
+                            <!-- 53:33 -->
+
+                        </span>
+
+                        <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+
+                        <span>×</span>
+
+                        </button>
+
+                    </div>
 
                 @endif
 
@@ -129,13 +152,13 @@
 
                                 <td class="px-6 py-4 whitespace-no-wrap text-right border-t border-gray-200 text-sm leading-5 font-medium">
 
-                                    <a class="bg-transparent hover:bg-purple-600 text-purple-600 font-normal hover:text-white py-2 px-4 rounded transition ease-in-out duration-150" href="{{ route('users.show',$user->id) }}">
+                                    <a class="bg-transparent hover:bg-purple-600 text-purple-600 font-normal hover:text-white focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 py-2 px-4 rounded transition ease-in-out duration-150" href="{{ route('users.show',$user->id) }}">
 
                                         Anzeigen
 
                                     </a>
 
-                                    <a class="bg-transparent hover:bg-purple-600 text-purple-600 font-normal hover:text-white py-2 px-4 rounded transition ease-in-out duration-150" href="{{ route('users.edit',$user->id) }}">
+                                    <a class="bg-transparent hover:bg-purple-600 focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 text-purple-600 font-normal hover:text-white py-2 px-4 rounded transition ease-in-out duration-150" href="{{ route('users.edit',$user->id) }}">
 
                                         Bearbeiten
 
@@ -143,7 +166,7 @@
 
                                     {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
 
-                                    {!! Form::submit('Löschen', ['class' => 'bg-transparent hover:bg-red-500 text-red-500 font-normal hover:text-white py-2 px-4 rounded transition ease-in-out duration-150']) !!}
+                                    {!! Form::submit('Löschen', ['class' => 'bg-transparent hover:bg-red-500 text-red-500 font-normal hover:text-white py-2 px-4 rounded transition ease-in-out duration-150 focus:outline-none focus:ring ring-red-300 focus:border-red-300']) !!}
 
                                     {!! Form::close() !!}
 

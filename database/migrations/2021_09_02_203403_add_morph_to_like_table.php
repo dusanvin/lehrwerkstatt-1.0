@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLoginFieldsToUsersTable extends Migration
+class AddMorphToLikeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class AddLoginFieldsToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->datetime('last_login_at')->nullable();
-
+        Schema::table('likes', function (Blueprint $table) {
+            $table->morphs('likeable');
         });
     }
 
@@ -27,8 +25,8 @@ class AddLoginFieldsToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('last_login_at');
+        Schema::table('likes', function (Blueprint $table) {
+            $table->dropMorphs('likeable');
         });
     }
 }

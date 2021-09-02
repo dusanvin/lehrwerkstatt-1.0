@@ -17,7 +17,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>digi:match</title>
         <style type="text/css">
         	li:hover {
 				background-color: #EDF2F7 !important;
@@ -27,7 +27,7 @@
 
     <body style="background-color: white;">
 
-		<div class="flex flex-row h-full ml-20 mr-20 mt-10 mb-10">
+		<div class="flex flex-row h-full mx-5 mt-10 mb-10">
 
 			<!-- Nav -->
 
@@ -142,8 +142,6 @@
 
                         </dd>
 
-                      </div>
-                          
                       </div>
 
                       <!-- <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

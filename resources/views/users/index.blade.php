@@ -132,11 +132,19 @@
 
                                             @if ($v == 'Admin')
 
-                                                <p class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">{{ $v }}</p>
+                                                <p class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">Administration</p>
 
-                                            @elseif ($v == 'User')
+                                            @elseif ($v == 'Moderierende')
 
-                                                <p class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-medium leading-none text-white bg-green-600 rounded-full">{{ $v }}</p>
+                                                <p class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-green-600 rounded-full">Moderation</p>
+
+                                            @elseif ($v == 'Helfende')
+
+                                                <p class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-purple-600 rounded-full">Hilfe</p>
+
+                                            @elseif ($v == 'Lehrende')
+
+                                                <p class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-yellow-600 rounded-full">Suche</p>
 
                                             @endif
 
@@ -197,6 +205,56 @@
                     {!! $data->render() !!}
 
                 </div>
+
+                <!-- Hinweis -->
+
+                <div class="px-4 py-5 sm:px-6">
+
+                    <div class="flex items-center">
+
+                        <div class="text-gray-900">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14" viewBox="0 0 20 20" fill="currentColor">
+
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+
+                            </svg>
+
+                        </div>
+
+                        <div class="pl-5">
+
+                            <p class="mt-1 text-xs text-gray-900">
+
+                                <strong>Administration:</strong> Alle Rechte.
+
+                            </p>
+
+                            <p class="mt-1 text-xs text-gray-900">
+
+                                <strong>Moderation:</strong> Darf Nutzende anlegen, bearbeiten und löschen. Hat Zugriff auf alle relevanten Seiten.
+
+                            </p>
+
+                            <p class="mt-1 text-xs text-gray-900">
+
+                                <strong>Hilfe:</strong> Hat Zugriff auf die Bereiche <em>Angebote</em>, <em>Bedarfe</em> und alle nutzerrelevanten Seiten. Darf Angebote erstellen und auf Bedarfe eingehen.
+
+                            </p>
+
+                            <p class="mt-1 text-xs text-gray-900">
+
+                                <strong>Suche:</strong> Hat Zugriff auf die Bereiche <em>Angebote</em>, <em>Bedarfe</em> und alle nutzerrelevanten Seiten. Darf Bedarfe erstellen und auf Angebote eingehen.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Hinweis -->
 
             </div>
 

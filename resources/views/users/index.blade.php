@@ -112,11 +112,11 @@
 
                         @foreach ($data as $key => $user)
 
-                            <tr>
+                            <tr class="border-t border-gray-200">
 
-                                <td class="pl-6 py-4 whitespace-no-wrap border-t border-gray-200">{{ ++$i }}</td>
+                                <td class="pl-6 py-4 whitespace-no-wrap ">{{ ++$i }}</td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap border-t border-gray-200">
+                                <td class="px-6 py-4 whitespace-no-wrap">
 
                                         <div class="text-sm leading-5 font-medium text-gray-900">{{ $user->vorname }} {{ $user->nachname }}</div>
 
@@ -124,7 +124,7 @@
 
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap border-t border-gray-200">
+                                <td class="px-6 py-4 whitespace-no-wrap">
 
                                     @if(!empty($user->getRoleNames()))
 
@@ -154,7 +154,7 @@
 
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap border-t border-gray-200">
+                                <td class="px-6 py-4 whitespace-no-wrap">
 
                                         <div class="text-sm leading-5 font-normal text-gray-900">
 
@@ -170,7 +170,7 @@
 
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap text-right border-t border-gray-200 text-sm leading-5 font-medium">
+                                <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
 
                                     <a class="bg-transparent hover:bg-purple-600 text-purple-600 font-normal hover:text-white focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 py-2 px-4 rounded transition ease-in-out duration-150" href="{{ route('users.show',$user->id) }}">
 
@@ -178,7 +178,7 @@
 
                                     </a>
 
-                                    <a class="bg-transparent hover:bg-purple-600 focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 text-purple-600 font-normal hover:text-white py-2 px-4 rounded transition ease-in-out duration-150" href="{{ route('users.edit',$user->id) }}">
+                                    <a class="bg-transparent hover:bg-purple-600 text-purple-600 font-normal hover:text-white focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 py-2 px-4 rounded transition ease-in-out duration-150" href="{{ route('users.edit',$user->id) }}">
 
                                         Bearbeiten
 
@@ -186,7 +186,7 @@
 
                                     {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
 
-                                    {!! Form::submit('Löschen', ['class' => 'bg-transparent hover:bg-red-500 text-red-500 font-normal hover:text-white py-2 px-4 rounded transition ease-in-out duration-150 focus:outline-none focus:ring ring-red-300 focus:border-red-300']) !!}
+                                    {!! Form::submit('Löschen', ['class' => 'bg-transparent hover:bg-red-500 text-red-500 font-normal hover:text-white py-2 px-4 ml-6 rounded transition ease-in-out duration-150 focus:outline-none focus:ring ring-red-300 focus:border-red-300']) !!}
 
                                     {!! Form::close() !!}
 

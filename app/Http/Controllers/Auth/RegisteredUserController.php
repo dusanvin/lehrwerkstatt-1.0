@@ -64,6 +64,12 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        // Integration last_login_at 
+        $user = Auth::user();
+        $user->timestamps = false;
+        $user->last_login_at = now();
+        $user->save();
+
         return redirect(RouteServiceProvider::HOME);
     }
 }

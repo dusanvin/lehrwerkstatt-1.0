@@ -7,7 +7,7 @@
 	    height: 100vh;
 	    width: 100%;
 	}
-	body span,label,a,button,div,p,input {
+	body span,label,a,button,div,p,input,label {
         font-family: 'Segoe UI' !important;
     }
     

@@ -30,6 +30,8 @@
 
                 </div>
 
+                @can('add_users')
+
                 <div class="float-right mb-4 mt-4 mr-4">
 
                     <a href="{{ route('users.create') }}" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 px-4 border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150">
@@ -49,6 +51,8 @@
                     </a>
 
                 </div>
+
+                @endcan
 
                 @if ($message = Session::get('success'))
 
@@ -126,7 +130,15 @@
 
                                         @foreach($user->getRoleNames() as $v)
 
-                                           <label class="badge badge-success">{{ $v }}</label>
+                                            @if ($v == 'Admin')
+
+                                                <p class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">{{ $v }}</p>
+
+                                            @elseif ($v == 'User')
+
+                                                <p class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-medium leading-none text-white bg-green-600 rounded-full">{{ $v }}</p>
+
+                                            @endif
 
                                         @endforeach
 

@@ -26,7 +26,7 @@ class OfferLikeController extends Controller
 
     public function destroy(Offer $offer, Request $request)
     {
-    	$request->user()->likes()->where('offer_id', $offer->id)->delete(); // where offer_id is offer_id
+    	$offer->likes()->where('user_id', $request->user()->id)->delete();
 
     	return back();
     }

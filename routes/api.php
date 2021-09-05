@@ -13,6 +13,7 @@ use App\Http\Controllers\ModController;
 use App\Http\Controllers\OffersController;
 use App\Http\Controllers\OfferLikeController;
 use App\Http\Controllers\NeedsController;
+use App\Http\Controllers\NeedLikeController;
 use App\Http\Controllers\MatchingController;
 use App\HTTP\Controllers\User\UserEditController;
 use App\Http\Controllers\UserController;
@@ -88,13 +89,13 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::delete('/offers/{offer}', [OffersController::class,'destroy'])
         ->name('offers.destroy');
 
-        /* Angebote Likes Hinzufügen */
-        Route::post('/offers/{offer}/likes', [OfferLikeController::class,'store'])
-            ->name('offers.likes');
+    /* Angebote Likes Hinzufügen */
+    Route::post('/offers/{offer}/likes', [OfferLikeController::class,'store'])
+        ->name('offers.likes');
 
-        /* Angebote Likes Löschen */
-        Route::delete('/offers/{offer}/likes', [OfferLikeController::class,'destroy'])
-            ->name('offers.likes');
+    /* Angebote Likes Löschen */
+    Route::delete('/offers/{offer}/likes', [OfferLikeController::class,'destroy'])
+        ->name('offers.likes');
 
 
 
@@ -108,6 +109,14 @@ Route::middleware(['auth', 'verified'])->group(function() {
     /* Bedarf: Löschen */
     Route::delete('/needs/{need}', [NeedsController::class,'destroy'])
         ->name('needs.destroy');
+
+    /* Needs Likes Hinzufügen */
+    Route::post('/needs/{need}/likes', [NeedLikeController::class,'store'])
+        ->name('needs.likes');
+
+    /* Needs Likes Löschen */
+    Route::delete('/needs/{need}/likes', [NeedLikeController::class,'destroy'])
+        ->name('needs.likes');
 
 
     /* Zuweisungen */

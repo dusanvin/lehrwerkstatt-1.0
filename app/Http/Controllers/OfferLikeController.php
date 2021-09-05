@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Offer;
-use App\Models\Like;
 
 class OfferLikeController extends Controller
 {

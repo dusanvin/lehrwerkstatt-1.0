@@ -36,7 +36,7 @@ class Need extends Model
 
     public function likes()
     {
-        return this->morphMany(Like::class, 'likeable');
+        return $this->morphMany(Like::class, 'likeable');
     }
     
 }

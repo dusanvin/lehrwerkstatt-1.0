@@ -141,12 +141,18 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/matching', [MatchingController::class,'index'])
         ->name('matching');
 
+    
+});
+
+Route::group(['middleware' => ['role:Admin|Moderierende','auth', 'verified']], function () {
+    //
     /* Account bearbeiten */
     Route::get('/user', [UserEditController::class,'index'])
         ->name('user');
 
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+    Route::resource('products', ProductController::class);
 
 });
 

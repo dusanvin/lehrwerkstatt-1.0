@@ -132,19 +132,19 @@
 
                                             @if ($v == 'Admin')
 
-                                                <p class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">Administration</p>
+                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">Administration</label>
 
                                             @elseif ($v == 'Moderierende')
 
-                                                <p class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-green-600 rounded-full">Moderation</p>
+                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-pink-600 rounded-full">Moderation</label>
 
                                             @elseif ($v == 'Helfende')
 
-                                                <p class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-purple-600 rounded-full">Hilfe</p>
+                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-indigo-600 rounded-full">Hilfe</label>
 
                                             @elseif ($v == 'Lehrende')
 
-                                                <p class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-yellow-600 rounded-full">Suche</p>
+                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-yellow-600 rounded-full">Suche</label>
 
                                             @endif
 
@@ -159,7 +159,7 @@
                                         <div class="text-sm leading-5 font-normal text-gray-900">
 
                                             @if($user->last_login_at === NULL)
-                                                -
+                                                Ausstehend
                                             @else
 
                                             {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}
@@ -224,29 +224,38 @@
 
                         <div class="pl-5">
 
-                            <p class="mt-1 text-xs text-gray-900">
+                            <p class="mt-1 text-xs text-gray-500">
 
                                 <strong>Administration:</strong> Alle Rechte.
 
                             </p>
 
-                            <p class="mt-1 text-xs text-gray-900">
+                            <p class="mt-1 text-xs text-gray-500">
 
                                 <strong>Moderation:</strong> Darf Nutzende anlegen, bearbeiten und löschen. Hat Zugriff auf alle relevanten Seiten.
 
                             </p>
 
-                            <p class="mt-1 text-xs text-gray-900">
+                            <p class="mt-1 text-xs text-gray-500">
 
                                 <strong>Hilfe:</strong> Hat Zugriff auf die Bereiche <em>Angebote</em>, <em>Bedarfe</em> und alle nutzerrelevanten Seiten. Darf Angebote erstellen und auf Bedarfe eingehen.
 
                             </p>
 
-                            <p class="mt-1 text-xs text-gray-900">
+                            <p class="mt-1 text-xs text-gray-500">
 
                                 <strong>Suche:</strong> Hat Zugriff auf die Bereiche <em>Angebote</em>, <em>Bedarfe</em> und alle nutzerrelevanten Seiten. Darf Bedarfe erstellen und auf Angebote eingehen.
 
                             </p>
+
+                            <ul>
+                                
+                                <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
+
+                                <li><a class="nav-link" href="{{ route('products.index') }}">Manage Product</a></li>
+                                
+                            </ul>
+
 
                         </div>
 

@@ -223,7 +223,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                      <strong>Verändern</strong> Sie die <strong>Rolle/n</strong> der Person
+                                      <strong>Wählen</strong> Sie die <strong>Rolle</strong> der Person aus
 
                                     </dt>
 

@@ -97,6 +97,14 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::delete('/offers/{offer}/likes', [OfferLikeController::class,'destroy'])
         ->name('offers.likes');
 
+    /* Angebote Requests Hinzufügen */
+    Route::post('/offers/{offer}/requests', [OfferRequestController::class,'store'])
+    ->name('offers.requests');
+
+    /* Angebote Requests Löschen */
+    Route::delete('/offers/{offer}/requests', [OfferRequestController::class,'destroy'])
+        ->name('offers.requests');
+
 
 
     /* Bedarfe */
@@ -117,6 +125,14 @@ Route::middleware(['auth', 'verified'])->group(function() {
     /* Needs Likes Löschen */
     Route::delete('/needs/{need}/likes', [NeedLikeController::class,'destroy'])
         ->name('needs.likes');
+
+    /* Needs Anfrage Hinzufügen */
+    Route::post('/needs/{need}/requests', [NeedRequestController::class,'store'])
+    ->name('needs.requests');
+
+    /* Needs Anfrage Löschen */
+    Route::delete('/needs/{need}/requests', [NeedRequestController::class,'destroy'])
+        ->name('needs.requests');
 
 
     /* Zuweisungen */

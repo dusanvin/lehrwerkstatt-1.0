@@ -38,5 +38,10 @@ class Need extends Model
     {
         return $this->morphMany(Like::class, 'likeable');
     }
+
+    public function requests()
+    {
+        return $this->morphMany(Request::class, 'requestable');
+    }
     
 }

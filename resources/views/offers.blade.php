@@ -185,7 +185,7 @@
 
                             <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
 
-                            <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+                            <script src="https://npmcdn.com/flatpickr/dist/flatpickr.js"></script>
 
                             <script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>                            
 

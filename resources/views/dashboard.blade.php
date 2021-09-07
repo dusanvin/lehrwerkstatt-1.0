@@ -92,7 +92,7 @@
 
                             <!-- Beschreibung: Editor -->
 
-                            <div class="grid grid-cols-1 mt-5 mx-7 text-sm">
+                            <div class="grid grid-cols-1 my-5 mx-7 text-sm">
 
                                 <p class="font-medium text-gray-800 leading-none">Beschreibung</p>
 
@@ -104,35 +104,8 @@
 
                             <!-- Beschreibung: Editor -->
 
-                            <div class="grid grid-cols-1 mt-5 mx-7 text-sm">
-
-                                  <label class="text-gray-500 text-light">
-
-                                    <p class="font-medium text-gray-800 leading-none">Bild hochladen</p>
-
-                                    <p class="text-xs text-gray-500 mt-1 mb-2">Hinzufügen einer Fotografie</p>
-
-                                </label>
-                                <div class='flex items-center justify-center w-full'>
-                                    <label class='flex flex-col border-4 border-dashed w-full h-32 hover:bg-gray-100 hover:border-purple-300 group'>
-                                        <div class='flex flex-col items-center justify-center pt-7'>
-                                          <svg class="w-10 h-10 text-purple-400 group-hover:text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                          <p class='uppercase text-sm text-gray-400 group-hover:text-purple-600 pt-1 tracking-wider'>Foto auswählen</p>
-                                        </div>
-                                      <input type='file' class="hidden" />
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class='flex items-center justify-center md:gap-8 gap-4 pt-5 pb-5 rounded-md shadow text-sm'>
-
-                              <button class='border border-transparent w-auto text-purple-700 bg-purple-100 hover:bg-purple-200 rounded-lg font-medium text-white px-4 py-2 shadow'>Abbrechen</button>
-
-                              <button class='border border-transparent w-auto bg-purple-600 hover:bg-purple-700 rounded-lg font-medium text-white px-4 py-2 shadow'>Speichern</button>
-
-                            </div>
-
                         </div>
+
                     </div>
 
                 <!-- Content -->     

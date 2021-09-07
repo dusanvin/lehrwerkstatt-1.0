@@ -379,6 +379,17 @@
 
                                         </form>
 
+                                        @else
+
+                                        @auth
+                                        <form action="{{ route('needs.requests', $need) }}" method="post" >
+
+                                            @csrf
+                                            <button type="submit">Anfragen</button>
+
+                                        </form>
+                                        @endauth
+
                                         @endif
 
                                         <!-- Löschen -->

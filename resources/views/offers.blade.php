@@ -78,7 +78,7 @@
 
                                     <label for="rahmen" class="sr-only flex items-center">rahmen</label>
 
-                                    <select name="rahmen" id="rahmen" class="text-gray-500 text-xs py-1 px-1 rounded-sm border-2 border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent @error('rahmen') border-red-500 @enderror">
+                                    <select name="rahmen" id="rahmen" class="text-gray-500 text-xs py-1 rounded-sm border-2 border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent @error('rahmen') border-red-500 @enderror">
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -239,7 +239,7 @@
 
                                     <label for="fachsemester" class="sr-only flex items-center">fachsemester</label>
 
-                                    <select name="fachsemester" id="fachsemester" class="text-gray-500 text-xs py-1 px-1 rounded-sm border-2 border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent @error('fachsemester') border-red-500 @enderror">
+                                    <select name="fachsemester" id="fachsemester" class="text-gray-500 text-xs py-1 rounded-sm border-2 border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent @error('fachsemester') border-red-500 @enderror">
                                         <option>0</option>
                                         <option>1</option>
                                         <option>2</option>

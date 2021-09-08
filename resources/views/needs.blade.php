@@ -222,7 +222,7 @@
                                               dateFormat: "F Y", //defaults to "F Y"
                                               altFormat: "F Y", //defaults to "F Y"
                                               theme: "dark", // defaults to "light"
-                                              "locale": "de",
+                                              //"locale": "de",
                                             })
                                         ],
                                         // altInput: true,
@@ -231,7 +231,7 @@
                                         // theme: "dark",
                                         //minDate: "today",
                                         // mode: "range",
-                                        // "locale": "de",
+                                        "locale": "de",
                                     });
                                 
                                 </script>

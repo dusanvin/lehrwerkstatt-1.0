@@ -132,7 +132,7 @@
 
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap">
+                                <td class="px-6 py-4 whitespace-no-wrap select-none">
 
                                     @if(!empty($user->getRoleNames()))
 
@@ -164,7 +164,7 @@
 
                                 <td class="px-6 py-4 whitespace-no-wrap">
 
-                                        <div class="text-sm leading-5 font-normal text-gray-900">
+                                        <div class="text-sm leading-5 font-normal text-gray-900 select-none">
 
                                             @if($user->last_login_at === NULL)
                                                 Ausstehend

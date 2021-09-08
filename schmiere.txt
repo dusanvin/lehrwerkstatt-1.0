@@ -1,0 +1,30 @@
+schmiere
+
+@if(!empty($rolePermissions))
+
+                                        <?php
+                                            $numItems = count($rolePermissions);
+                                            $i = 0;
+                                        ?>
+
+                                        @foreach($rolePermissions as $v)
+
+                                            @if ($v->name == 'view_users')
+
+                                                Profilanzeige von Nutzenden
+
+                                            @endif
+
+                                            @if (++$i === $numItems)
+
+                                                
+
+                                            @else
+
+                                                | 
+
+                                            @endif
+
+                                        @endforeach
+
+                                    @endif

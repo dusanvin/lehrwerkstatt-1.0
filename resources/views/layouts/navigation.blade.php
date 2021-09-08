@@ -1,10 +1,46 @@
-<nav class="bg-top w-80 justify-between flex flex-col rounded-l-lg shadow-b" style="background-image: linear-gradient(rgba(31, 41, 55, 0.7), rgba(17, 24, 39, 0.9));">
+<nav class="bg-top w-80 justify-between flex flex-col rounded-l-lg shadow-b transition ease-in-out duration-150" id="navigation-digillab" style="background-image: linear-gradient(rgba(31, 41, 55, 0.7), rgba(17, 24, 39, 0.9)); max-width: fit-content;">
 
     <div class="mt-10 mb-10">
 
     	<!-- Toggle-Menu -->
 
-      	<a href="#" class="text-white">
+    	<script type="text/javascript">
+
+    		function menufunction () {  
+
+				  if (document.getElementById("navigation-digillab").style.maxWidth != "67px") {
+
+				  	document.getElementById("navigation-digillab").style.maxWidth = "67px";
+
+			  	  	var elements = document.getElementsByClassName('navigation-element'), i, len;
+  
+						for (i = 0, len = elements.length; i < len; i++) {
+
+					    	elements[i].style.display = 'none';
+
+						}
+
+				    return;
+				  }
+				  else if (document.getElementById("navigation-digillab").style.maxWidth == "67px") {
+
+				    document.getElementById("navigation-digillab").style.maxWidth = "fit-content";
+
+				    var elements = document.getElementsByClassName('navigation-element'), i, len;
+  
+						for (i = 0, len = elements.length; i < len; i++) {
+
+					    	elements[i].style.display = 'inherit';
+
+						}
+				    
+				    return;
+				  }
+		}
+
+    	</script>
+
+      	<button onclick="menufunction()" class="float-right text-white focus:outline-none hover:text-gray-400" id="testcolor">
 
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 float-right mr-5" viewBox="0 0 20 20" fill="currentColor">
 
@@ -12,7 +48,7 @@
 
 			</svg>
 
-		</a>
+		</button>
 
       	<!-- Toggle-Menu -->
 
@@ -20,21 +56,22 @@
 
         @if (auth()->user())
 
-		<div class="text-center p-6 text-gray-200 mt-10">
+		<div class="text-center pt-3 text-gray-200 mt-10">
 
 			<!-- <img class="h-24 w-24 rounded-full mx-auto" src="https://randomuser.me/api/portraits/men/24.jpg" alt="Randy Robertson"> -->
 
-			<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 rounded-full mx-auto" viewBox="0 0 20 20" fill="currentColor">
+
+			<a href="{{ route('user') }}" class="pt-2 font-medium text-sm inline-block hover:text-gray-400">
+
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 rounded-full mx-auto mb-1" viewBox="0 0 20 20" fill="currentColor">
 
 			  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
 
-			</svg>
-
-			<a href="{{ route('user') }}" class="pt-2 font-medium text-sm inline-block hover:text-gray-400">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}
+			</svg><span class="navigation-element">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</span>
 
 				<!-- Bearbeiten Stift -->
 
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 pb-1 inline-block" viewBox="0 0 20 20" fill="currentColor">
+				<svg xmlns="http://www.w3.org/2000/svg" class="navigation-element h-5 w-5 pb-1 inline-block" viewBox="0 0 20 20" fill="currentColor">
 
 					<path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
 
@@ -60,7 +97,7 @@
 
 			<!-- Mein Bereich -->
 
-			<p class="mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Allgemeines</p>
+			<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Allgemeines</p>
 
 			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
@@ -78,9 +115,9 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Mein Bereich</p>
+		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Mein Bereich</p>
 
-		              <p class="text-xs text-gray-400">Persönliche Informationen</p>
+		              <p class="navigation-element text-xs text-gray-400">Persönliche Informationen</p>
 
 		            </div>
 
@@ -90,7 +127,7 @@
 
 			<!-- Mein Bereich -->
         	
-        	<p class="mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Administration</p>
+        	<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Administration</p>
 
         	<!-- Statistiken -->
 
@@ -112,9 +149,9 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Statistiken</p>
+		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Statistiken</p>
 
-		              <p class="text-xs text-gray-400">Nutzung des Portals</p>
+		              <p class="navigation-element text-xs text-gray-400">Nutzung des Portals</p>
 
 		            </div>
 
@@ -142,9 +179,9 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Verwaltung</p>
+		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Verwaltung</p>
 
-		              <p class="text-xs text-gray-400">Details zum Portal</p>
+		              <p class="navigation-element text-xs text-gray-400">Details zum Portal</p>
 
 		            </div>
 
@@ -214,7 +251,7 @@
 
 			Moderierende -->
 
-			<p class="mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Paare</p>
+			<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Paare</p>
 
 			<!-- Angebote -->
 
@@ -234,9 +271,9 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Angebote</p>
+		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Angebote</p>
 
-		              <p class="text-xs text-gray-400">Hilfsangebot anbieten</p>
+		              <p class="navigation-element text-xs text-gray-400">Hilfsangebot anbieten</p>
 
 		            </div>
 
@@ -264,9 +301,9 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Bedarfe</p>
+		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Bedarfe</p>
 
-		              <p class="text-xs text-gray-400">Hilfsangebot ersuchen</p>
+		              <p class="navigation-element text-xs text-gray-400">Hilfsangebot ersuchen</p>
 
 		            </div>
 
@@ -320,7 +357,7 @@
 		<button class="flex text-xs items-center p-1 md:p-3 text-gray-300 hover:text-red-500 focus:border-transparent focus:outline-none transition ease-in-out duration-150" type="submit">
 
 			<svg
-			class="fill-current h-5 w-5 mx-auto mr-1"
+			class="fill-current h-5 w-5 mx-auto ml-1"
 			viewBox="0 0 24 24"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
@@ -336,7 +373,7 @@
 				  fill="currentColor"
 				/>
 
-			</svg> Ausloggen
+			</svg><span class="navigation-element ml-1">Ausloggen</span>
 
 		</button>
 

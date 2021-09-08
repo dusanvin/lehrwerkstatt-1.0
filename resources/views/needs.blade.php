@@ -352,12 +352,13 @@
 
                                     <!-- Body -->
 
-                                    <!-- Like / Unlike -->
-
+                                    <!-- Buttons -->
 
                                     <div class="flex justify-end">
 
                                         @auth
+
+                                            <!-- Like / Unlike -->
 
                                             @if (!$need->likedBy(auth()->user()))
 
@@ -411,49 +412,53 @@
 
                                             @endif
 
-                                        <!-- Löschen -->
+                                            <!-- Like / Unlike -->
 
-                                        @if(!$need->ownedBy(auth()->user()))
+                                            <!-- Anfragen -->
 
-                                        
+                                            @if(!$need->ownedBy(auth()->user()))
 
-                                            <form action="{{ route('needs.requests', $need) }}" method="post" >
+                                                <!-- Anfragen -->
 
-                                                @csrf
+                                                <form action="{{ route('needs.requests', $need) }}" method="post" >
 
-                                                @method('DELETE')
+                                                    @csrf
 
-                                                <button type="submit" class="py-2 text-purple-300 hover:text-purple-500 text-xs flex focus:outline-none ml-8">
+                                                    @method('DELETE')
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd" />
-                                                    </svg><span class="mx-1 mt-1">Anfragen</span>
+                                                    <button type="submit" class="py-2 text-purple-300 hover:text-purple-500 text-xs flex focus:outline-none ml-8">
 
-                                                </button>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd" />
+                                                        </svg><span class="mx-1 mt-1">Anfragen</span>
 
-                                            </form>
+                                                    </button>
 
-                                        
+                                                </form>
 
-                                        @else
+                                                <!-- Anfragen -->
 
-                                            <form action="{{ route('needs.destroy', $need) }}" method="post" >
+                                            @else
 
-                                                @csrf
+                                                <!-- Löschen -->  
 
-                                                @method('DELETE')
+                                                <form action="{{ route('needs.destroy', $need) }}" method="post" >
 
-                                                <button type="submit" class="py-2 px-2 rounded-md text-white bg-purple-600 hover:bg-purple-700 text-xs flex focus:outline-none ml-8">
+                                                    @csrf
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                                    </svg><span class="mx-1 mt-1">Zurückziehen</span>
+                                                    @method('DELETE')
 
-                                                </button>
+                                                    <button type="submit" class="py-2 px-2 rounded-md text-white bg-purple-600 hover:bg-purple-700 text-xs flex focus:outline-none ml-8">
 
-                                            </form>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                                        </svg><span class="mx-1 mt-1">Zurückziehen</span>
 
-                                            <!-- Löschen -->                                       
+                                                    </button>
+
+                                                </form>
+
+                                                <!-- Löschen -->                                       
 
                                             @endif
 
@@ -461,7 +466,7 @@
 
                                     </div>
 
-                                    <!-- Like / Unlike -->
+                                    <!-- Buttons -->
 
                                 </div>
 

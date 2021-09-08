@@ -186,6 +186,10 @@
                             <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
                             
                             <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+
+                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/plugins/monthSelect/style.css">
+                            
+                            <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/plugins/monthSelect/index.js"></script>
                             
                             <script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>                            
                             
@@ -212,13 +216,22 @@
                                 <script type="text/javascript">
                             
                                     flatpickr("#datum", {
-                                        altInput: true,
-                                        altFormat: "F Y", // was "j F, Y"
-                                        dateFormat: "Y-m-d", // was "Y-F"
-                                        theme: "dark",
-                                        minDate: "today",
-                                        mode: "range",
-                                        "locale": "de",
+                                        plugins: [
+                                            new monthSelectPlugin({
+                                              shorthand: true, //defaults to false
+                                              dateFormat: "F Y", //defaults to "F Y"
+                                              altFormat: "F Y", //defaults to "F Y"
+                                              theme: "dark", // defaults to "light"
+                                              "locale": "de",
+                                            })
+                                        ],
+                                        // altInput: true,
+                                        // altFormat: "F Y", // was "j F, Y"
+                                        // dateFormat: "Y-m-d", // was "Y-F"
+                                        // theme: "dark",
+                                        //minDate: "today",
+                                        // mode: "range",
+                                        // "locale": "de",
                                     });
                                 
                                 </script>

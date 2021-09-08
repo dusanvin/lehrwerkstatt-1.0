@@ -6,13 +6,21 @@
 
     <div class="flex flex-row h-full mx-5 mt-10 mb-10">
 
-      <!-- Nav -->
+        <!-- Nav -->
 
         @include('layouts.navigation')
+
+        <!-- Nav -->
 
         <div class="px-8 py-8 text-gray-700 w-screen bg-white rounded-r-lg shadow-b border-b border-gray-200" style="background-color: #EDF2F7;">
 
             <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
+
+                <!-- Navbar für Admin -->
+
+                @include('layouts.admin_navigation_users')
+
+                <!-- Navbar für Admin -->
 
                 <div class="px-4 py-5 sm:px-6">
 
@@ -247,15 +255,6 @@
                                 <strong>Suche:</strong> Hat Zugriff auf die Bereiche <em>Angebote</em>, <em>Bedarfe</em> und alle nutzerrelevanten Seiten. Darf Bedarfe erstellen und auf Angebote eingehen.
 
                             </p>
-
-                            <ul>
-                                
-                                <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
-
-                                <li><a class="nav-link" href="{{ route('products.index') }}">Manage Product</a></li>
-                                
-                            </ul>
-
 
                         </div>
 

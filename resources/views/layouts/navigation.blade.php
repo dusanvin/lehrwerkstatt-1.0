@@ -142,9 +142,9 @@
 
 		            <div class="pl-3">
 
-		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Personen</p>
+		              <p class="text-sm font-medium text-gray-100 leading-none mb-1">Verwaltung</p>
 
-		              <p class="text-xs text-gray-400">Details zu Nutzenden</p>
+		              <p class="text-xs text-gray-400">Details zum Portal</p>
 
 		            </div>
 

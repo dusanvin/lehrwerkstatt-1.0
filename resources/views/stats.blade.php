@@ -52,7 +52,7 @@
 
                     <!-- Diagramme -->
 
-                    <div class="flex flex-wrap px-4 pt-4 pb-1 mx-auto mt-6 mb-1 bg-white rounded-md">
+                    <div class="flex flex-wrap px-4 pt-4 pb-1 mx-auto mt-6 bg-white rounded-md">
 
                         <!-- Alle Nutzenden -->
 
@@ -60,9 +60,7 @@
 
                             <div class="grid justify-items-center">
 
-                                <div class="py-4 px-4 grid justify-items-center rounded-md">
-
-                                    
+                                <div class="py-4 px-4 grid justify-items-center rounded-md">                                    
 
                                     <h3 class="text-3xl leading-6 font-medium">
 
@@ -201,7 +199,7 @@
 
                     <!-- Kreisdiagramme -->
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 pt-8" style="background-color: #EDF2F7;">
+                    <div class="grid grid-cols-1 md:grid-cols-4 pt-8" style="background-color: #EDF2F7;">
 
                         <!-- Nutzende im relativen Vergleich -->
 
@@ -209,7 +207,7 @@
 
                             <div class="rounded-md p-6 ">
 
-                                <div class="mb-2 pb-2 text-center">
+                                <div class="text-center">
 
                                     <h3 class="font-semibold text-lg text-gray-600">Nutzende</h3>
 
@@ -233,17 +231,17 @@
 
                         <!-- Nutzende im relativen Vergleich -->
 
-                        <!-- Nutzende im relativen Vergleich -->
+                        <!-- Rollen im relativen Vergleich -->
 
                         <div class="mx-1 my-1 bg-white rounded-md ">
 
                             <div class="rounded-md p-6">
 
-                                <div class="mb-2 pb-2 text-center">
+                                <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-600">Vergleich</h3>
+                                    <h3 class="font-semibold text-lg text-gray-600">Rollen</h3>
 
-                                    <p class="text-sm text-gray-500">Helfende und Lernende im relativen Vergleich</p>
+                                    <p class="text-sm text-gray-500">Rollen im relativen Vergleich</p>
 
                                 </div>
 
@@ -257,7 +255,59 @@
 
                         </div>
 
-                        <!-- Nutzende im relativen Vergleich -->
+                        <!-- Rollen im relativen Vergleich -->
+
+                        <!-- Angebote im relativen Vergleich -->
+
+                        <div class="mx-1 my-1 bg-white rounded-md ">
+
+                            <div class="rounded-md p-6">
+
+                                <div class="text-center">
+
+                                    <h3 class="font-semibold text-lg text-gray-600">Angebote</h3>
+
+                                    <p class="text-sm text-gray-500">Angebote im relativen Vergleich</p>
+
+                                </div>
+
+                                <div class="px-0 py-0 sm:px-8 sm:py-8">
+
+                                    <canvas id="myChart7"></canvas>
+
+                                </div>
+                                
+                            </div>
+
+                        </div>
+
+                        <!-- Angebote im relativen Vergleich -->
+
+                        <!-- Bedarfe im relativen Vergleich -->
+
+                        <div class="mx-1 my-1 bg-white rounded-md ">
+
+                            <div class="rounded-md p-6">
+
+                                <div class="text-center">
+
+                                    <h3 class="font-semibold text-lg text-gray-600">Bedarfe</h3>
+
+                                    <p class="text-sm text-gray-500">Bedarfe im relativen Vergleich</p>
+
+                                </div>
+
+                                <div class="px-0 py-0 sm:px-8 sm:py-8">
+
+                                    <canvas id="myChart8"></canvas>
+
+                                </div>
+                                
+                            </div>
+
+                        </div>
+
+                        <!-- Bedarfe im relativen Vergleich -->
 
                     </div>
 
@@ -279,7 +329,76 @@
 
         <script type="text/javascript">
 
-              //mychart3
+            //myChart7
+
+            DATA_COUNT = 5;
+            NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
+
+            datapie = {
+              labels: ['Angenommen', 'Offen'],
+              datasets: [
+                {
+                  label: 'Dataset 1',
+                  data: [5, 3],
+                  backgroundColor: ['rgba(5, 150, 105, 0.6)', 'rgba(220, 38, 38, 0.6)']
+                }
+              ]
+            };
+
+            config = {
+              type: 'pie',
+              data: datapie,
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: 'top',
+                  }
+                }
+              },
+            };
+
+            var myChart = new Chart(
+                document.getElementById('myChart7'),
+                config
+            );
+
+            //myChart8
+
+            DATA_COUNT = 5;
+            NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
+
+            datapie = {
+              labels: ['Angenommen', 'Offen'],
+              datasets: [
+                {
+                  label: 'Dataset 1',
+                  data: [5, 3],
+                  backgroundColor: ['rgba(5, 150, 105, 0.6)', 'rgba(220, 38, 38, 0.6)']
+                }
+              ]
+            };
+
+            config = {
+              type: 'pie',
+              data: datapie,
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: 'top',
+                  }
+                }
+              },
+            };
+
+            var myChart = new Chart(
+                document.getElementById('myChart8'),
+                config
+            );
+
+
+            //mychart3
 
             // Setup
             DATA_COUNT = 5;
@@ -345,7 +464,7 @@
 
             // Config
             config = {
-              type: 'doughnut',
+              type: 'pie',
               data: data,
               options: {
                 responsive: true,

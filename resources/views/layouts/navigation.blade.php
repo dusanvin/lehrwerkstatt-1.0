@@ -151,7 +151,7 @@
 
 		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Statistiken</p>
 
-		              <p class="navigation-element text-xs text-gray-400">Nutzung des Portals</p>
+		              <p class="navigation-element text-xs text-gray-400">Details zum Portal</p>
 
 		            </div>
 
@@ -181,7 +181,7 @@
 
 		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Verwaltung</p>
 
-		              <p class="navigation-element text-xs text-gray-400">Details zum Portal</p>
+		              <p class="navigation-element text-xs text-gray-400">Nutzende und Rollen</p>
 
 		            </div>
 

@@ -44,7 +44,7 @@
 
                         <p class="mt-1 text-sm text-gray-500">
 
-                            Erhalten Sie Einblicke in die Nutzungsstatistiken des Portals. Momentane Statistiken sind hinsichtlich der Registrierungen, Abmeldungen, Nutzenden, Zuweisungen, Studiengänge und des Betreuungsverhältnisses einsehbar. Kontaktieren Sie bei technischen Anregungen und Anliegen das <a href="mailto:digillab@zlbib.uni-augsburg.de" class="text-purple-500 hover:text-purple-700">DigiLLab</a>.
+                            Erhalten Sie Einblicke in die Nutzungsstatistiken des Portals. Momentane Statistiken sind hinsichtlich der Registrierungen, Abmeldungen, Nutzenden, Zuweisungen, Studiengänge und des Betreuungsverhältnisses einsehbar.  Die Daten sind für <strong>Moderierende</strong> und <strong>Administrierende</strong> einsehbar. Kontaktieren Sie bei technischen Anregungen und Anliegen das <a href="mailto:digillab@zlbib.uni-augsburg.de" class="text-purple-500 hover:text-purple-700">DigiLLab</a>.
 
                         </p>
 
@@ -219,7 +219,7 @@
 
                                     <div class="px-0 py-0 sm:px-8 sm:py-8">
 
-                                        <canvas id="myChart3"></canvas>
+                                        <canvas id="nutzende"></canvas>
 
                                     </div>
 
@@ -313,6 +313,96 @@
 
                     <!-- Kreisdiagramme -->
 
+                    <!-- Balkendiagramme -->
+
+                    <div class="grid grid-cols-1 md:grid-cols-3" style="background-color: #EDF2F7;">
+
+                        <!-- Nutzende im relativen Vergleich -->
+
+                        <div class="mx-1 my-1 bg-white rounded-md ">
+
+                            <div class="rounded-md p-6 ">
+
+                                <div class="text-center">
+
+                                    <h3 class="font-semibold text-lg text-gray-600">Lernende</h3>
+
+                                    <p class="text-sm text-gray-500">Betreute Lernende</p>
+
+                                </div>
+
+                                <div>                                    
+
+                                    <div class="px-0 py-0 sm:py-8">
+
+                                        <canvas id="lernende"></canvas>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Nutzende im relativen Vergleich -->
+
+                        <!-- Rollen im relativen Vergleich -->
+
+                        <div class="mx-1 my-1 bg-white rounded-md ">
+
+                            <div class="rounded-md p-6">
+
+                                <div class="text-center">
+
+                                    <h3 class="font-semibold text-lg text-gray-600">Registrierungen</h3>
+
+                                    <p class="text-sm text-gray-500">Neue Nutzende</p>
+
+                                </div>
+
+                                <div class="px-0 py-0 sm:py-8">
+
+                                    <canvas id="myChart"></canvas>
+
+                                </div>
+                                
+                            </div>
+
+                        </div>
+
+                        <!-- Rollen im relativen Vergleich -->
+
+                        <!-- Angebote im relativen Vergleich -->
+
+                        <div class="mx-1 my-1 bg-white rounded-md ">
+
+                            <div class="rounded-md p-6">
+
+                                <div class="text-center">
+
+                                    <h3 class="font-semibold text-lg text-gray-600">Angebote</h3>
+
+                                    <p class="text-sm text-gray-500">Angebote im relativen Vergleich</p>
+
+                                </div>
+
+                                <div class="px-0 py-0 sm:py-8">
+
+                                    <canvas id="mix"></canvas>
+
+                                </div>
+                                
+                            </div>
+
+                        </div>
+
+                        <!-- Angebote im relativen Vergleich -->
+
+                    </div>
+
+                    <!-- Balkendiagramme -->
+
                 </div>
 
             </div>
@@ -373,7 +463,7 @@
               datasets: [
                 {
                   label: 'Dataset 1',
-                  data: [5, 3],
+                  data: [8, 2],
                   backgroundColor: ['rgba(5, 150, 105, 0.6)', 'rgba(220, 38, 38, 0.6)']
                 }
               ]
@@ -398,7 +488,7 @@
             );
 
 
-            //mychart3
+            //nutzende
 
             // Setup
             DATA_COUNT = 5;
@@ -438,7 +528,7 @@
 
             // Aufruf
             var myChart = new Chart(
-                document.getElementById('myChart3'),
+                document.getElementById('nutzende'),
                 config
               );
 
@@ -480,6 +570,169 @@
             // Aufruf
             var myChart = new Chart(
                 document.getElementById('myChart4'),
+                config
+              );
+
+
+            //Lernende
+
+            // Setup
+            labels = [
+              'September',
+              'Oktober',
+              'November',
+              'Dezember',
+              'Januar',
+              'Februar',
+              'März',
+              'April',
+              'Mai',
+              'Juni',
+              'Juli',
+              'August',
+            ];
+            data = {
+              labels: labels,
+              datasets: [{
+                label: 'Betreute Lernende',
+                backgroundColor: 'rgba(5, 150, 105, 0.6)',
+                borderColor: 'rgba(5, 150, 105, 0.6)',
+                data: [4, 0, 0, 0, 0, 0, 0],
+              }]
+            };
+
+            // Config
+            config = {
+              type: 'line',
+              data,
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: {
+                        display: true,
+                  }
+
+                }
+              }
+            };
+
+            // Aufruf
+            var myChart = new Chart(
+                document.getElementById('lernende'),
+                config
+              );
+
+
+            // mychart
+
+            labels: [
+                'DaZ/DaF (HF)',
+            ];
+
+            data = {
+                labels: labels,
+                datasets: [{
+                    label: 'DaZ/DaF (B.A.)',
+                    data: [4, 0, 0, 0, 0, 0],
+                    backgroundColor: [
+                        'rgba(79, 70, 229, 0.6)'
+                    ]
+                }]
+            };
+
+            config = {
+                type: 'bar',
+                data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                      legend: {
+                        display: true,
+                      }
+                    }
+                }
+            };
+
+            // Aufruf
+            var myChart = new Chart(
+                document.getElementById('myChart'),
+                config
+              );
+
+            //mix: Helfende, Lehrende und Lernende pro Monat als Stacked Bar Chart with Groups
+
+            DATA_COUNT = 7;
+            NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
+
+            labels = [
+              'September',
+              'Oktober',
+              'November',
+              'Dezember',
+              'Januar',
+              'Februar',
+              'März',
+              'April',
+              'Mai',
+              'Juni',
+              'Juli',
+              'August',
+            ];
+            data = {
+              labels: labels,
+              datasets: [
+                {
+                  label: 'Helfende',
+                  data: [4],
+                  backgroundColor: 'rgba(79, 70, 229, 0.6)',
+                  stack: 'Stack 0',
+                },
+                {
+                  label: 'Lehrende',
+                  data: [4],
+                  backgroundColor: 'rgba(245, 158, 11, 0.6)',
+                  stack: 'Stack 0',
+                },
+                {
+                  label: 'Lernende',
+                  data: [2],
+                  backgroundColor: 'rgba(5, 150, 105, 0.6)',
+                  stack: 'Stack 1',
+                },
+              ]
+            };
+
+            config = {
+              type: 'bar',
+              data: data,
+              options: {
+                plugins: {
+                  title: {
+                    display: false
+                  },
+                },
+                responsive: true,
+                interaction: {
+                  intersect: false,
+                },
+                scales: {
+                  x: {
+                    stacked: true,
+                  },
+                  y: {
+                    stacked: true
+                  }
+                }
+              }
+            };
+
+            // Aufruf
+            var myChart = new Chart(
+                document.getElementById('mix'),
                 config
               );
 

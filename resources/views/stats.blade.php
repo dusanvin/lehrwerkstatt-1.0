@@ -30,9 +30,9 @@
             
             <!-- Content --> <!-- Del:  h-screen  Old colour: EDF2F7-->
 
-            <div class="px-8 py-8 text-gray-700 w-screen bg-white rounded-r-lg shadow-b border-b border-gray-200" style="background-color: #EDF2F7;">
+            <div class="px-8 py-8 text-gray-700 w-screen bg-white rounded-r-lg" style="background-color: #EDF2F7;">
 
-                <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                <div class="overflow-hidden sm:rounded-lg">
 
                     <div class="px-4 py-5 sm:px-6">
 
@@ -42,9 +42,9 @@
 
                         </h2>
 
-                        <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                        <p class="mt-1 text-sm text-gray-500">
 
-                            Nutzungsstatistiken des Portals.
+                            Erhalten Sie Einblicke in die Nutzungsstatistiken des Portals. Momentane Statistiken sind hinsichtlich der Registrierungen, Abmeldungen, Nutzenden, Zuweisungen, Studiengänge und des Betreuungsverhältnisses einsehbar. Kontaktieren Sie bei technischen Anregungen und Anliegen das <a href="mailto:digillab@zlbib.uni-augsburg.de" class="text-purple-500 hover:text-purple-700">DigiLLab</a>.
 
                         </p>
 
@@ -52,162 +52,206 @@
 
                     <!-- Diagramme -->
 
-                    <div class="container px-4 py-4 mx-auto my-6">
+                    <div class="flex flex-wrap px-4 pt-4 pb-1 mx-auto mt-6 mb-1 bg-white rounded-md">
 
-                        <!-- Flex -->
+                        <!-- Alle Nutzenden -->
 
-                        <div class="flex my-6">
-                            
-                            <!-- Platz -->
+                        <div class="flex-1 my-2 mx-4">
 
-                            <div class="w-1/2 mx-auto">
+                            <div class="grid justify-items-center">
 
-                                <div class="rounded-md p-6 bg-white">
+                                <div class="py-4 px-4 grid justify-items-center rounded-md">
 
-                                    <div class="mb-2 pb-2 text-left">
+                                    <h3 class="text-3xl leading-6 font-medium">
 
-                                        <h3 class="font-semibold text-lg text-gray-600">Informationen</h3>
+                                        {{$users}}
 
-                                        <p class="text-sm text-gray-500 mt-1">
-                                          Erhalten Sie Einblicke in die Nutzungsstatistiken des Portals. Momentane Statistiken sind hinsichtlich der Registrierungen, Abmeldungen, Nutzenden,
-                                            Zuweisungen, Studiengänge und des Betreuungsverhältnisses einsehbar.
-                                        </p>
+                                    </h3>
 
-                                        <p class="text-sm text-gray-500 mt-1">
-                                          Kontaktieren Sie bei technischen Anregungen und Anliegen das <a href="mailto:digillab@zlbib.uni-augsburg.de" class="text-purple-500 hover:text-purple-700">DigiLLab</a>.
-                                        </p>
+                                    <div class="mt-4 text-sm text-gray-500">
+
+                                        Nutzende
 
                                     </div>
 
                                 </div>
 
                             </div>
-
-                            <!-- Platz -->
-
-                            <!-- Platz -->
-
-                            <div class="w-1/4 mx-auto">
-
-                                <div class="rounded-md p-6 bg-white">
-
-                                    <div class="mb-2 pb-2 text-center">
-
-                                        <h3 class="font-semibold text-lg text-gray-600">Nutzende</h3>
-
-                                        <p class="text-sm text-gray-500">Nutzende im relativen Vergleich</p>
-
-                                    </div>
-
-                                    <div>
-
-                                        <canvas id="myChart3"></canvas>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Platz -->
-
-                            <!-- Platz -->
-
-                            <div class="w-1/4 mx-auto">
-
-                                <div class="rounded-md p-6 bg-white">
-
-                                    <div class="mb-2 pb-2 text-center">
-
-                                        <h3 class="font-semibold text-lg text-gray-600">Betreuungsverhältnis</h3>
-
-                                        <p class="text-sm text-gray-500">Helfende und Lernende im relativen Vergleich</p>
-
-                                    </div>
-
-                                    <canvas id="myChart4"></canvas>
-                                    
-                                </div>
-
-                            </div>
-
-                            <!-- Platz -->      
 
                         </div>
 
-                        <!-- Flex -->
 
-                        <!-- Flex -->
+                        <!-- Alle Nutzenden -->
 
-                        <div class="flex my-6">
+                        <!-- Administrierende -->
 
-                            <div class="sm:w-1 lg:w-1/3 mx-auto">
+                        <div class="flex-1 my-2 mx-4">
 
-                                <div class="rounded-md p-6 bg-white">
+                            <div class="grid justify-items-center">
 
-                                    <div class="text-center mb-2 pb-2">
+                                <div class="py-4 px-4 grid justify-items-center rounded-md">
 
-                                        <h3 class="font-semibold text-lg text-gray-600">Studiengänge</h3>
+                                    <h3 class="text-3xl leading-6 font-medium">
 
-                                        <p class="text-sm text-gray-500">Teilnehmende der Studiengänge im relativen Vergleich</p>
+                                        {{ $adminsCount }}
 
-                                    </div>
+                                    </h3>
 
-                                    <canvas id="myChart"></canvas>
-                                    
-                                </div>
+                                    <div class="mt-4 text-sm text-gray-500">
 
-                            </div>
-
-                            <!-- Platz -->
-
-                            <!-- Platz -->
-
-                            <div class="sm:w-1 lg:w-1/3 mx-auto">
-
-                                <div class="rounded-md p-6 bg-white">
-
-                                    <div class="text-center mb-2 pb-2">
-
-                                        <h3 class="font-semibold text-lg text-gray-600">Zuweisungen</h3>
-
-                                        <p class="text-sm text-gray-500">Entwicklung der Zuweisungen</p>
+                                        Administrierende
 
                                     </div>
 
-                                    <canvas id="myChart2"></canvas>
-                                    
                                 </div>
 
                             </div>
-
-                            <!-- Platz -->
-
-                            <div class="sm:w-1 lg:w-1/3 mx-auto">
-
-                                <div class="rounded-md p-6 bg-white">
-
-                                    <div class="text-center mb-2 pb-2">
-
-                                        <h3 class="font-semibold text-lg text-gray-600">Registrierungen und Abmeldungen</h3>
-
-                                        <p class="text-sm text-gray-500">Entwicklung der Helfenden und Lernenden</p>
-
-                                    </div>
-
-                                    <canvas id="myChart5"></canvas>
-                                    
-                                </div>
-
-                            </div>
-
-                            <!-- Platz -->
 
                         </div>
 
-                        <!-- Flex -->
+                        <!-- Administrierende -->
+
+                        <!-- Moderierende -->
+
+                        <div class="flex-1 my-2 mx-4">
+
+                            <div class="grid justify-items-center">
+
+                                <div class="py-4 px-4 grid justify-items-center rounded-md">
+
+                                    <h3 class="text-3xl leading-6 font-medium">
+
+                                    {{ $modsCount }}
+
+                                </h3>
+
+                                <div class="mt-4 text-sm text-gray-500">
+
+                                    Moderierende 
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Moderierende -->
+
+                        <!-- Helfende -->
+
+                        <div class="flex-1 my-2 mx-4">
+
+                            <div class="grid justify-items-center">
+
+                                <div class="py-4 px-4 grid justify-items-center rounded-md">
+
+                                    <h3 class="text-3xl leading-6 font-medium">
+
+                                    {{ $helfendeCount }}
+
+                                </h3>
+
+                                <div class="mt-4 text-sm text-gray-500">
+
+                                    Helfende
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Helfende -->
+
+                        <!-- Lehrende -->
+
+                        <div class="flex-1 my-2 mx-4">
+
+                            <div class="grid justify-items-center">
+
+                                <div class="py-4 px-4 grid justify-items-center rounded-md">
+
+                                    <h3 class="text-3xl leading-6 font-medium">
+
+                                    {{ $lehrendeCount }}
+
+                                </h3>
+
+                                <div class="mt-4 text-sm text-gray-500">
+
+                                    Lehrende 
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Lehrende -->
 
                     </div>
+
+                    <!-- Kreisdiagramme -->
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 pt-8" style="background-color: #EDF2F7;">
+
+                        <!-- Nutzende im relativen Vergleich -->
+
+                        <div class="mx-1 my-1 bg-white rounded-md ">
+
+                            <div class="rounded-md p-6 ">
+
+                                <div class="mb-2 pb-2 text-center">
+
+                                    <h3 class="font-semibold text-lg text-gray-600">Nutzende</h3>
+
+                                    <p class="text-sm text-gray-500">Nutzende im relativen Vergleich</p>
+
+                                </div>
+
+                                <div>
+
+                                    <canvas id="myChart3"></canvas>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Nutzende im relativen Vergleich -->
+
+                        <!-- Nutzende im relativen Vergleich -->
+
+                        <div class="mx-1 my-1 bg-white rounded-md ">
+
+                            <div class="rounded-md p-6">
+
+                                <div class="mb-2 pb-2 text-center">
+
+                                    <h3 class="font-semibold text-lg text-gray-600">Vergleich</h3>
+
+                                    <p class="text-sm text-gray-500">Helfende und Lernende im relativen Vergleich</p>
+
+                                </div>
+
+                                <canvas id="myChart4"></canvas>
+                                
+                            </div>
+
+                        </div>
+
+                        <!-- Nutzende im relativen Vergleich -->
+
+                    </div>
+
+                    <!-- Kreisdiagramme -->
 
                 </div>
 
@@ -219,108 +263,13 @@
 
         <!-- Resources -->
 
+        <!-- Resources -->
+
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <script>
+        <script type="text/javascript">
 
-            // mychart
-
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: [
-                        'DaZ/DaF (HF)',
-                        'DaZ/DaF (NF)',
-                        'Grundschule',
-                        'Mittelschule',
-                        'Realschule',
-                        'Gymnasium',
-                        'Sonstiges'],
-                    datasets: [{
-                        label: 'DaZ/DaF (B.A.)',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: [
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(54, 162, 235, 0.9)',
-                    'rgba(255, 206, 86, 0.9)',
-                    'rgba(75, 192, 192, 0.9)',
-                    'rgba(153, 102, 255, 0.9)',
-                    'rgba(255, 159, 64, 0.9)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    },
-                    plugins: {
-                      legend: {
-                        display: false,
-                      }
-                    }
-                }
-            });
-
-            //mychart2
-
-
-            // Setup
-            labels = [
-              'January',
-              'February',
-              'March',
-              'April',
-              'May',
-              'June',
-            ];
-            data = {
-              labels: labels,
-              datasets: [{
-                label: 'My First dataset',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-              }]
-            };
-
-            // Config
-            config = {
-              type: 'line',
-              data,
-              options: {
-                responsive: true,
-                plugins: {
-                  legend: {
-
-                        display: false,
-
-                  }
-
-                }
-              }
-            };
-
-            // Aufruf
-            var myChart = new Chart(
-                document.getElementById('myChart2'),
-                config
-              );
-
-
-
-            //mychart3
+              //mychart3
 
             // Setup
             DATA_COUNT = 5;
@@ -332,12 +281,12 @@
               datasets: [
                 {
                   label: 'Dataset 1',
-                  data: [5, 19, 60, 30],
+                  data: [{{ $adminsCount }}, {{ $modsCount }}, {{ $helfendeCount }}, {{ $lehrendeCount }}],
                   backgroundColor: [
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(153, 102, 255, 0.6)',
-                    'rgba(255, 159, 64, 0.6)'
+                    'rgba(220, 38, 38, 0.6)',
+                    'rgba(5, 150, 105, 0.6)',
+                    'rgba(79, 70, 229, 0.6)',
+                    'rgba(245, 158, 11, 0.6)'
                   ]
                 }
               ]
@@ -364,8 +313,6 @@
                 config
               );
 
-
-
             // mychart4
 
             // Setup
@@ -377,10 +324,10 @@
               datasets: [
                 {
                   label: 'Dataset 1',
-                  data: [12, 9],
+                  data: [{{ $lehrendeCount }}, {{ $helfendeCount }}],
                   backgroundColor: [
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(54, 162, 235, 0.9)'
+                    'rgba(245, 158, 11, 0.6)',
+                    'rgba(79, 70, 229, 0.6)'
                 ],
                 }
               ]
@@ -404,64 +351,6 @@
             // Aufruf
             var myChart = new Chart(
                 document.getElementById('myChart4'),
-                config
-              );
-
-
-
-            // mychart5
-
-            // Setup
-            DATA_COUNT = 7;
-            NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
-
-            labels = [
-              'January',
-              'February',
-              'March',
-              'April',
-              'May',
-              'June',
-            ];
-            data = {
-              labels: labels,
-              datasets: [
-                {
-                  label: 'Lernende',
-                  data: [0, 10, 5, 2, 20, 30, 45,-10,-45,-20],
-                  borderColor: 'rgba(255, 99, 132, 1)',
-                  backgroundColor: 'rgb(255, 99, 132)',
-                },
-                {
-                  label: 'Helfende',
-                  data: [10, 30, 85, 42, 27, -30, -45,10,-15,20],
-                  borderColor: 'rgba(54, 162, 235, 1)',
-                  backgroundColor: 'rgb(54, 162, 235)',
-                }
-              ]
-            };
-
-            // Config
-            config = {
-              type: 'bar',
-              data: data,
-              options: {
-                indexAxis: 'y',
-                // Elements options apply to all of the options unless overridden in a dataset
-                // In this case, we are setting the border of each horizontal bar to be 2px wide
-                elements: {
-                  bar: {
-                    borderWidth: 2,
-                  }
-                },
-                responsive: true,
-              },
-            };
-
-
-            // Aufruf
-            var myChart = new Chart(
-                document.getElementById('myChart5'),
                 config
               );
 

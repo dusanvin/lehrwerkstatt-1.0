@@ -18,7 +18,6 @@
 
                 <x-input id="firstname" class="block mt-2 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus />
             </div>
-
             
             <!-- Nachname -->
             <div class="mt-4">
@@ -26,6 +25,40 @@
 
                 <x-input id="lastname" class="block mt-2 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus />
             </div>
+
+            <!-- Rolle -->
+            <script>
+                // var formData = new FormData();
+
+                var defaultbackgroundColor = null;
+                function student() 
+                {
+                    console.log("student");
+                    // formData.set('role', 'student');
+                    var defaultbackgroundColor = document.getElementById('btn-student').style.backgroundColor;
+                    document.getElementById('btn-teacher').style.backgroundColor = defaultbackgroundColor;
+                    document.getElementById('btn-student').style.backgroundColor = 'blue';
+                    document.getElementById('role').value = "student";
+                }
+
+                function teacher()
+                {
+                    console.log("teacher");
+                    // formData.set('role', 'teacher')
+                    var defaultbackgroundColor = document.getElementById('btn-teacher').style.backgroundColor;
+                    document.getElementById('btn-student').style.backgroundColor = defaultbackgroundColor;
+                    document.getElementById('btn-teacher').style.backgroundColor = 'blue';
+                    document.getElementById('role').value = "teacher";
+                }
+            </script>
+            <div class="mt-4">
+                <x-label for="role" :value="__('Wählen sie Ihre Rolle')" />
+                <input id="role" type="hidden" name="role"></input>
+
+                <x-button id="btn-student" type="button" class="block mt-2" onclick=student()>Schüler:in</x-button>
+                <x-button id="btn-teacher" type="button" class="block mt-2" onclick=teacher()>Helfer:in</x-button>
+            </div>
+
 
             <!-- Email Address -->
             <div class="mt-4">

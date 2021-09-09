@@ -13,6 +13,7 @@ use Illuminate\Validation\Rules;
 
 use Illuminate\Validation\Rules\Password;
 
+use Illuminate\Support\Facades\DB;
 
 
 class RegisteredUserController extends Controller
@@ -41,7 +42,7 @@ class RegisteredUserController extends Controller
     		'firstname' => 'required|max:255',
     		'lastname' => 'required|max:255',
     		'email' => 'required|unique:users,email|max:255',
-            //'role' => 'required|max:40',
+            'role' => 'required|max:40',
     		'password' => ['required', 'confirmed', Password::min(10)
 				->numbers()
 				->symbols()
@@ -50,15 +51,37 @@ class RegisteredUserController extends Controller
 			],
         ]);
 
-        $request->request->add(['role' => 'Lehrer']);
+        //$request->request->add(['role' => 'Lehrer']);
 
         $user = User::create([
     		'vorname' => $request->firstname,
     		'nachname' => $request->lastname,
     		'email' => $request->email,
-            'role' => $request->role,
+            //'role' => $request->role,
     		'password' => Hash::make($request->password),
         ]);
+
+        // Helfende 4, Lehrende 5
+        $role = $request->input('role');
+        
+        $role_id = 0;
+        if ($role == 'student') {
+            $role_id = 4;
+        }
+            
+
+        if ($role == 'teacher') {
+            $role_id = 5;
+        }
+            
+
+        DB::insert('insert into model_has_roles (role_id, model_type, model_id) values (?, ?, ?)', [$role_id, 'App\Models\User', $user->id]);
+        
+        // create([
+        //     'role_id' => $role_id,
+        //     'model_type' => 'App\Models\User',
+        //     'model_id' => $user->id
+        // ]);
 
         event(new Registered($user));
 

@@ -38,7 +38,7 @@
 
                         <p class="font-medium text-gray-800 leading-none">Bedarfserstellung</p>
 
-                        <p class="text-xs text-gray-500 mt-1 mb-3">Erstellen Sie einen Bedarf, um Hilfe anzufordern. Beschreiben Sie den Zeitraum sowie die wöchentliche Stundenzahl, die Art, das Fach und die konkreten Anforderungen.</p>
+                        <p class="text-xs text-gray-500 mt-1 mb-3">Erstellen Sie einen Bedarf, um Hilfe anzufordern. Beschreiben Sie den Zeitraum sowie die wöchentliche Stundenzahl, die Art, das Fach und die konkreten Anforderungen. Bitte gehen Sie auch auf die technische Ausstattung ein, mit der gearbeitet wird.</p>
 
                     </div>
 

@@ -38,7 +38,7 @@
 
                         <p class="font-medium text-gray-800 leading-none">Angebotserstellung</p>
 
-                        <p class="text-xs text-gray-500 mt-1 mb-3">Erstellen Sie ein Angebot, um Ihre Hilfe anzubieten.</p>
+                        <p class="text-xs text-gray-500 mt-1 mb-3">Erstellen Sie ein Angebot, um Ihre Hilfe anzubieten. Beschreiben Sie - falls möglich - den Zeitraum sowie die wöchentliche Stundenzahl, die Art, das Fach und die konkreten Anforderungen. Bitte gehen Sie auch auf die technische Ausstattung ein, mit der Sie arbeiten können.</p>
 
                     </div>
 

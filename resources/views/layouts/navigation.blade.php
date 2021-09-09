@@ -1,4 +1,4 @@
-<nav class="bg-top w-80 justify-between flex flex-col rounded-l-lg shadow-b transition ease-in-out duration-150" id="navigation-digillab" style="background-image: linear-gradient(rgba(31, 41, 55, 0.7), rgba(17, 24, 39, 0.9)); max-width: fit-content;">
+<nav class="bg-top w-80 justify-between flex flex-col sm:rounded-l-lg shadow-b transition ease-in-out duration-150" id="navigation-digillab" style="background-image: linear-gradient(rgba(31, 41, 55, 0.7), rgba(17, 24, 39, 0.9)); max-width: fit-content;">
 
     <div class="mt-10 mb-10">
 

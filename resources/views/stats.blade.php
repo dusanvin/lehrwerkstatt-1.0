@@ -20,7 +20,7 @@
 
     <body style="background-color: white;">
 
-        <div class="flex flex-row h-full mx-5 mt-10 mb-10">
+        <div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
 
             <!-- Nav -->
 
@@ -30,7 +30,7 @@
             
             <!-- Content --> <!-- Del:  h-screen  Old colour: EDF2F7-->
 
-            <div class="px-8 py-8 text-gray-700 w-screen bg-white rounded-r-lg" style="background-color: #EDF2F7;">
+            <div class="px-8 py-8 text-gray-700 w-screen bg-white sm:rounded-r-lg" style="background-color: #EDF2F7;">
 
                 <div class="overflow-hidden sm:rounded-lg">
 
@@ -62,6 +62,8 @@
 
                                 <div class="py-4 px-4 grid justify-items-center rounded-md">
 
+                                    
+
                                     <h3 class="text-3xl leading-6 font-medium">
 
                                         {{$users}}
@@ -70,7 +72,7 @@
 
                                     <div class="mt-4 text-sm text-gray-500">
 
-                                        Nutzende
+                                        Nutzende 
 
                                     </div>
 
@@ -215,9 +217,13 @@
 
                                 </div>
 
-                                <div>
+                                <div>                                    
 
-                                    <canvas id="myChart3"></canvas>
+                                    <div class="px-0 py-0 sm:px-8 sm:py-8">
+
+                                        <canvas id="myChart3"></canvas>
+
+                                    </div>
 
                                 </div>
 
@@ -241,7 +247,11 @@
 
                                 </div>
 
-                                <canvas id="myChart4"></canvas>
+                                <div class="px-0 py-0 sm:px-8 sm:py-8">
+
+                                    <canvas id="myChart4"></canvas>
+
+                                </div>
                                 
                             </div>
 
@@ -275,7 +285,7 @@
             DATA_COUNT = 5;
             NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 400};
 
-            labels2 = ['Admins', 'Moderierende', 'Helfende', 'Lehrkräfte'];
+            labels2 = ['Admins', 'Moderierende', 'Helfende', 'Lehrende'];
             data = {
               labels: labels2,
               datasets: [
@@ -320,7 +330,7 @@
             NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
 
             data = {
-              labels: [ 'Lernende', 'Helfende'],
+              labels: [ 'Lehrende', 'Helfende'],
               datasets: [
                 {
                   label: 'Dataset 1',

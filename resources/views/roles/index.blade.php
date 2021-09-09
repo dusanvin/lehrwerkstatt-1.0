@@ -148,6 +148,10 @@
 
                                     @endcan
 
+                                    <!-- Rolle löschen -->
+
+                                    <!-- 
+
                                     @can('role-delete')
 
                                         {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
@@ -157,6 +161,10 @@
                                         {!! Form::close() !!}
 
                                     @endcan
+
+                                    -->
+
+                                    <!-- Rolle löschen -->
 
                                 </td>
 

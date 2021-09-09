@@ -30,7 +30,7 @@
 
                     <p class="mt-1 text-sm text-gray-500">
 
-                        Betrachten Sie die Rechte, die der Rolle <strong>{{ $role->name }}</strong> zugehörig sind. Die Daten sind für <strong>Moderierende</strong> und <strong>Administrierende</strong> einsehbar.
+                        Betrachten Sie die Rechte, die der Rolle <strong>{{ $role->name }}</strong> zugehörig sind. Die Daten sind nur für <strong>Moderierende</strong> und <strong>Administrierende</strong> einsehbar.
 
                     </p>
 

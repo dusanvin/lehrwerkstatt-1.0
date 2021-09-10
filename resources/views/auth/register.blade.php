@@ -30,33 +30,49 @@
             <script>
                 // var formData = new FormData();
 
-                var defaultbackgroundColor = null;
-                function student() 
-                {
-                    console.log("student");
-                    // formData.set('role', 'student');
-                    var defaultbackgroundColor = document.getElementById('btn-student').style.backgroundColor;
-                    document.getElementById('btn-teacher').style.backgroundColor = defaultbackgroundColor;
-                    document.getElementById('btn-student').style.backgroundColor = 'blue';
-                    document.getElementById('role').value = "student";
+                // var defaultbackgroundColor = null;
+                // function student() 
+                // {
+                //     console.log("student");
+                //     // formData.set('role', 'student');
+                //     var defaultbackgroundColor = document.getElementById('btn-student').style.backgroundColor;
+                //     document.getElementById('btn-teacher').style.backgroundColor = defaultbackgroundColor;
+                //     document.getElementById('btn-student').style.backgroundColor = 'blue';
+                //     document.getElementById('role').value = "student";
+                // }
+
+                // function teacher()
+                // {
+                //     console.log("teacher");
+                //     // formData.set('role', 'teacher')
+                //     var defaultbackgroundColor = document.getElementById('btn-teacher').style.backgroundColor;
+                //     document.getElementById('btn-student').style.backgroundColor = defaultbackgroundColor;
+                //     document.getElementById('btn-teacher').style.backgroundColor = 'blue';
+                //     document.getElementById('role').value = "teacher";
+                // }
+
+                var selected = null;
+
+                role_button_ids = [
+                    "btn-student",
+                    "btn-teacher"
+                ];
+
+                function setRole(id) {
+                    selected = id;
+                    console.log(selected);
+                    role_button_ids.forEach(role_button_id => document.getElementById(role_button_id).style.backgroundColor = null);
+                    document.getElementById(id).style.backgroundColor = 'blue';
+                    document.getElementById('role').value = id;
                 }
 
-                function teacher()
-                {
-                    console.log("teacher");
-                    // formData.set('role', 'teacher')
-                    var defaultbackgroundColor = document.getElementById('btn-teacher').style.backgroundColor;
-                    document.getElementById('btn-student').style.backgroundColor = defaultbackgroundColor;
-                    document.getElementById('btn-teacher').style.backgroundColor = 'blue';
-                    document.getElementById('role').value = "teacher";
-                }
             </script>
             <div class="mt-4">
                 <x-label for="role" :value="__('Wählen sie Ihre Rolle')" />
                 <input id="role" type="hidden" name="role"></input>
 
-                <x-button id="btn-student" type="button" class="block mt-2" onclick=student()>Schüler:in</x-button>
-                <x-button id="btn-teacher" type="button" class="block mt-2" onclick=teacher()>Helfer:in</x-button>
+                <x-button id="btn-student" type="button" class="block mt-2" onclick=setRole(this.id)>Schüler:in</x-button>
+                <x-button id="btn-teacher" type="button" class="block mt-2" onclick=setRole(this.id)>Helfer:in</x-button>
             </div>
 
 

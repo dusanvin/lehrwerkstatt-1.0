@@ -102,6 +102,20 @@
                                 name="password_confirmation" required />
             </div>
 
+            <div class="mt-4">
+                <div class="block font-medium text-sm text-gray-700">
+                    <input id="user_agreement" type="checkbox" name="user_agreement">
+                    Ich habe die <a href="#" style="color: blue; text-decoration: underline;">Nutzungsbedingungen</a> gelesen und erkläre mich damit einverstanden.
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <div class="block font-medium text-sm text-gray-700">
+                    <input id="privacy_statement" type="checkbox" name="privacy_statement">
+                    Ich habe die <a href="#" style="color: blue; text-decoration: underline;">Datenschutzerklärung</a> gelesen.
+                </div>
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <a class="hover:underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Bereits registriert?') }}

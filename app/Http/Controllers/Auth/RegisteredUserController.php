@@ -51,6 +51,8 @@ class RegisteredUserController extends Controller
 				->mixedCase()
 				->letters(),
 			],
+            'user_agreement' => 'accepted',
+            'privacy_statement' => 'accepted'
         ]);
 
         //$request->request->add(['role' => 'Lehrer']);

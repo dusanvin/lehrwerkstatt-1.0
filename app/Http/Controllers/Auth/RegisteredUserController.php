@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
     		'firstname' => 'required|max:255',
     		'lastname' => 'required|max:255',
     		'email' => 'required|unique:users,email|max:255',
-            'role' => ['required', Rule::in(['btn-student', 'btn-teacher'])],
+            'role' => ['required', Rule::in(['btn-helfende', 'btn-lehrende'])],
     		'password' => ['required', 'confirmed', Password::min(10)
 				->numbers()
 				->symbols()

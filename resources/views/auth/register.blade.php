@@ -54,8 +54,8 @@
                 var selected = null;
 
                 role_button_ids = [
-                    "btn-student",
-                    "btn-teacher"
+                    "btn-helfende",
+                    "btn-lehrende"
                 ];
 
                 function setRole(id) {
@@ -71,8 +71,8 @@
                 <x-label for="role" :value="__('Wählen sie Ihre Rolle')" />
                 <input id="role" type="hidden" name="role"></input>
 
-                <x-button id="btn-student" type="button" class="block mt-2" onclick=setRole(this.id)>Schüler:in</x-button>
-                <x-button id="btn-teacher" type="button" class="block mt-2" onclick=setRole(this.id)>Helfer:in</x-button>
+                <x-button id="btn-helfende" type="button" class="block mt-2" onclick=setRole(this.id)>Helfende</x-button>
+                <x-button id="btn-lehrende" type="button" class="block mt-2" onclick=setRole(this.id)>Lehrende</x-button>
             </div>
 
 

@@ -15,6 +15,8 @@ use Illuminate\Validation\Rules\Password;
 
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Validation\Rule;
+
 
 class RegisteredUserController extends Controller
 {
@@ -42,7 +44,7 @@ class RegisteredUserController extends Controller
     		'firstname' => 'required|max:255',
     		'lastname' => 'required|max:255',
     		'email' => 'required|unique:users,email|max:255',
-            'role' => 'required|max:40',
+            'role' => ['required', Rule::in(['btn-student', 'btn-teacher'])],
     		'password' => ['required', 'confirmed', Password::min(10)
 				->numbers()
 				->symbols()

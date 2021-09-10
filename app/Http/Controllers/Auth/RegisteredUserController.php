@@ -67,12 +67,12 @@ class RegisteredUserController extends Controller
         $role = $request->input('role');
         
         $role_id = 0;
-        if ($role == 'btn-student') {
+        if ($role == 'btn-helfende') {
             $role_id = 4;
         }
             
 
-        if ($role == 'btn-teacher') {
+        if ($role == 'btn-lehrende') {
             $role_id = 5;
         }
             

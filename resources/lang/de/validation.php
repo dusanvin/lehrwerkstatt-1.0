@@ -61,8 +61,8 @@ return [
     'min'                  => [
         'numeric' => ':attribute muss mindestens :min sein.',
         'file'    => ':attribute muss mindestens :min Kilobytes groß sein.',
-        'string'  => ':attribute muss mindestens :min Zeichen lang sein.',
-        'array'   => ':attribute muss mindestens :min Einträge haben..',
+        'string'  => ':attribute muss mindestens :min Zeichen lang sein, sowie Groß-/Kleinbuchstaben und Sonderzeichen enthalten.',
+        'array'   => ':attribute muss mindestens :min Einträge haben.',
     ],
     'not_in'               => 'Ausgewählte(s) :attribute ist inkorrekt.',
     'numeric'              => ':attribute muss eine Zahl sein.',
@@ -104,6 +104,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'user_agreement' => [
+            'accepted' => ':attribute müssen akzeptiert werden.',
+        ],
+        'privacy_statement' => [
+            'accepted' => ':attribute muss gelesen und zur Kenntnis genommen worden sein.',
+        ],
     ],
 
     /*
@@ -123,6 +129,9 @@ return [
         'password_confirmation' => 'Passwort-Bestätigung',
         'remember' => 'Zugangsdaten merken',
         'name' => 'Name',
+        'role' => 'Rolle',
+        'user_agreement' => 'Nutzungsbedingungen',
+        'privacy_statement' => 'Datenschutzerklärung',
     ],
 
 ];

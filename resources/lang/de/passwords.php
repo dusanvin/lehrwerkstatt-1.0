@@ -13,7 +13,7 @@ return [
     |
     */
     
-    'password' => 'Passwörter müssen mindestens sechs Zeichen lang sein und mit der Passwort-Bestätigung übereinstimmen.',
+    'password' => 'Passwörter müssen mindestens 10 Zeichen lang sein und mit der Passwort-Bestätigung übereinstimmen.',
     'reset' => 'Ihr Passwort wurde zurückgesetzt.',
     'sent' => 'Wir haben Ihnen einen Link zum zurücksetzen Ihres Passwortes geschickt.',
     'token' => 'Dieser Link ist ungültig.',

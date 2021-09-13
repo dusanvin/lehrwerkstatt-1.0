@@ -1,4 +1,27 @@
 <x-guest-layout>
+
+    <style>
+
+        #btn-helfende, #btn-lehrende {
+            background-color: rgb(31, 41, 55) !important;
+        }
+        #btn-helfende:active, #btn-lehrende:active {
+            background-color: rgb(107, 114, 128) !important;
+        }
+        #btn-helfende:focus, #btn-lehrende:focus {
+            background-color: rgb(107, 114, 128) !important;
+        }
+        #btn-helfende:hover, #btn-lehrende:hover {
+            background-color: rgb(107, 114, 128) !important;
+        }
+        #privacy_statement:checked, #user_agreement:checked {
+            background-color: rgb(124, 58, 237) !important;
+        }
+        #privacy_statement:focus, #user_agreement:focus {
+            background-color: rgb(124, 58, 237) !important;
+            --tw-ring-color: rgb(124, 58, 237) !important;
+        }
+    </style>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -14,14 +37,14 @@
 
             <!-- Vorname -->
             <div>
-                <x-label for="firstname" :value="__('Vorname')" />
+                <x-label for="firstname" :value="__('Vorname*')" />
 
                 <x-input id="firstname" class="block mt-2 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus />
             </div>
             
             <!-- Nachname -->
             <div class="mt-4">
-                <x-label for="lastname" :value="__('Nachname')" />
+                <x-label for="lastname" :value="__('Nachname*')" />
 
                 <x-input id="lastname" class="block mt-2 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus />
             </div>
@@ -68,24 +91,24 @@
 
             </script>
             <div class="mt-4">
-                <x-label for="role" :value="__('Wählen sie Ihre Rolle')" />
+                <x-label for="role" :value="__('Rolle*')" />
                 <input id="role" type="hidden" name="role"></input>
 
-                <x-button id="btn-helfende" type="button" class="block mt-2" onclick=setRole(this.id)>Helfende</x-button>
-                <x-button id="btn-lehrende" type="button" class="block mt-2" onclick=setRole(this.id)>Lehrende</x-button>
+                <x-button id="btn-helfende" type="button" class="mt-2" onclick=setRole(this.id)>Helfende</x-button>
+                <x-button id="btn-lehrende" type="button" class="mt-2" onclick=setRole(this.id)>Lehrende</x-button>
             </div>
 
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-label for="email" :value="__('Email-Adresse')" />
+                <x-label for="email" :value="__('Email-Adresse*')" />
 
                 <x-input id="email" class="block mt-2 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Passwort')" />
+                <x-label for="password" :value="__('Passwort*')" />
 
                 <x-input id="password" class="block mt-2 w-full"
                                 type="password"
@@ -95,7 +118,7 @@
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Passwort bestätigen')" />
+                <x-label for="password_confirmation" :value="__('Passwort bestätigen*')" />
 
                 <x-input id="password_confirmation" class="block mt-2 w-full"
                                 type="password"
@@ -103,16 +126,22 @@
             </div>
 
             <div class="mt-4">
-                <div class="block font-medium text-sm text-gray-700">
+                <div class="block text-sm text-gray-700">
                     <input id="user_agreement" type="checkbox" name="user_agreement">
-                    Ich habe die <a href="#" style="color: blue; text-decoration: underline;">Nutzungsbedingungen</a> gelesen und erkläre mich damit einverstanden.
+                    Ich habe die <a href="#" style="color: rgb(124, 58, 237); text-decoration: underline;">Nutzungsbedingungen</a> gelesen und erkläre mich damit einverstanden.*
                 </div>
             </div>
 
             <div class="mt-4">
-                <div class="block font-medium text-sm text-gray-700">
+                <div class="block text-sm text-gray-700">
                     <input id="privacy_statement" type="checkbox" name="privacy_statement">
-                    Ich habe die <a href="#" style="color: blue; text-decoration: underline;">Datenschutzerklärung</a> gelesen.
+                    Ich habe die <a href="#" style="color: rgb(124, 58, 237); text-decoration: underline;">Datenschutzerklärung</a> gelesen.*
+                </div>
+            </div>
+
+            <div class="mt-8 mb-8">
+                <div class="block font-medium text-xs text-gray-700">
+                    <p>* Alle Angaben sind zwingend für die Registrierung erfolderlich.</p>
                 </div>
             </div>
 

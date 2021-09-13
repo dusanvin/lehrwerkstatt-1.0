@@ -128,14 +128,14 @@
             <div class="mt-4">
                 <div class="block text-sm text-gray-700">
                     <input id="user_agreement" type="checkbox" name="user_agreement">
-                    Ich habe die <a href="#" style="color: rgb(124, 58, 237); text-decoration: underline;">Nutzungsbedingungen</a> gelesen und erkläre mich damit einverstanden.*
+                    Ich habe die <a href="#" style="color: rgb(124, 58, 237);" class="hover:underline">Nutzungsbedingungen</a> gelesen und erkläre mich damit einverstanden.*
                 </div>
             </div>
 
             <div class="mt-4">
                 <div class="block text-sm text-gray-700">
                     <input id="privacy_statement" type="checkbox" name="privacy_statement">
-                    Ich habe die <a href="#" style="color: rgb(124, 58, 237); text-decoration: underline;">Datenschutzerklärung</a> gelesen.*
+                    Ich habe die <a href="#" style="color: rgb(124, 58, 237);" class="hover:underline">Datenschutzerklärung</a> gelesen.*
                 </div>
             </div>
 

@@ -141,7 +141,7 @@
 
             <div class="mt-8 mb-8">
                 <div class="block font-medium text-xs text-gray-700">
-                    <p>* Alle Angaben sind zwingend für die Registrierung erfolderlich.</p>
+                    <p>* Alle Angaben sind zwingend für die Registrierung erforderlich.</p>
                 </div>
             </div>
 

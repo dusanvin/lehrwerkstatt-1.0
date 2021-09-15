@@ -4,7 +4,7 @@
 
 	<body style="">
 
-	    <div class="flex flex-row h-full mx-5 mt-10 mb-10">
+	    <div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
 
 	        <!-- Nav -->
 
@@ -14,7 +14,7 @@
 
 	        <!-- Inhalt -->
 
-			<div class="px-8 py-8 text-gray-700 w-screen bg-white sm:rounded-r-lg" style="background-color: #EDF2F7;">
+			<div class="px-2 sm:px-8 py-8 text-gray-700 w-screen bg-white sm:rounded-r-lg" style="background-color: #EDF2F7;">
 
                 <div class="overflow-hidden sm:rounded-lg">
 
@@ -36,13 +36,13 @@
 
                     <!-- Fehlermeldung -->
 
-                    <div class="py-4 mx-auto mt-6">
+                    <div class="py-4 mx-auto mt-6 rounded-md">
 
                     	<div class="grid justify-items-end">
 
-					        <div class="float-right mb-4 mt-4 mr-4">
+					        <div class="float-right mb-4 mt-4">
 
-			                    <a href="/messages/create" class="bg-transparent bg-white hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 px-4 border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150">
+			                    <a href="/messages/create" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white font-semibold text-sm py-2 px-4 border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150">
 
 			                        <div class="">
 

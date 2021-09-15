@@ -1,0 +1,1 @@
+<p><strong>Keine</strong> Nachrichten vorhanden.</p>

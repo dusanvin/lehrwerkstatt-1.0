@@ -8,11 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Auth\Events\Registered;
+use Cmgmyr\Messenger\Traits\Messagable;
 
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable, HasRoles;
+    use Messagable, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.

@@ -95,9 +95,10 @@
 
         <ul>
 
-			<!-- Mein Bereich -->
 
 			<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Allgemeines</p>
+
+			<!-- Mein Bereich -->
 
 			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
@@ -126,6 +127,38 @@
 			</li>
 
 			<!-- Mein Bereich -->
+
+			<!-- Nachrichten -->
+
+			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+
+				<a href="{{ route('messages') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md  transition ease-in-out duration-150 @if (Request::is('messages')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+
+		            <div class="text-gray-100">
+
+		              	<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-100" viewBox="0 0 20 20" fill="currentColor">
+							
+							<path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+							
+							<path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
+						
+						</svg>
+
+		            </div>
+
+		            <div class="pl-3">
+
+		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Nachrichten</p>
+
+		              <p class="navigation-element text-xs text-gray-400">Gespräche und Kontakte</p>
+
+		            </div>
+
+		        </a>
+
+			</li>
+
+			<!-- Nachrichten -->
         	
         	<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Administration</p>
 
@@ -188,68 +221,6 @@
 		        </a>
 
 			</li>
-
-			<!-- Personen -->
-
-			<!-- Lehrkräfte 
-
-			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
-
-				<a href="{{ route('learn') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md @if (Request::is('learn')) { text-gray-900 bg-black bg-opacity-60 } @endif">
-
-		            <div class="text-gray-100">
-
-						<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-						
-							<path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
-						
-						</svg>
-
-		            </div>
-
-		            <div class="pl-3">
-
-		              <p class="text-sm font-medium text-gray-100 leading-none">Lehrkräfte</p>
-
-		              <p class="text-xs text-gray-400">Details zu Lehrkräften</p>
-
-		            </div>
-
-		        </a>
-
-			</li>
-
-			 Lehrkräfte -->
-
-			<!-- Moderierende 
-
-			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
-
-				<a href="{{ route('mod') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md @if (Request::is('mod')) { text-gray-900 bg-black bg-opacity-60 } @endif">
-
-		            <div class="text-gray-100">
-
-						<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-							<path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-
-						</svg>
-
-		            </div>
-
-		            <div class="pl-3">
-
-		              <p class="text-sm font-medium text-gray-100 leading-none">Moderierende</p>
-
-		              <p class="text-xs text-gray-400">Details zu Moderierenden</p>
-
-		            </div>
-
-		        </a>
-
-			</li>
-
-			Moderierende -->
 
 			<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Paare</p>
 

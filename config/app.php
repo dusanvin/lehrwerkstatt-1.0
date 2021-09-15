@@ -179,6 +179,8 @@ return [
 
         Spatie\Permission\PermissionServiceProvider::class,
 
+        Cmgmyr\Messenger\MessengerServiceProvider::class,
+
     ],
 
     /*

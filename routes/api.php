@@ -20,6 +20,7 @@ use App\Http\Controllers\MatchingController;
 use App\HTTP\Controllers\User\UserEditController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\MessagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -144,6 +145,17 @@ Route::middleware(['auth', 'verified'])->group(function() {
     
 });
 
+/* Nachrichten */
+Route::group(['prefix' => 'messages'], function () {
+    Route::get('/', ['as' => 'messages', 'uses' => 'App\Http\Controllers\MessagesController@index']);
+
+    Route::get('create', ['as' => 'messages.create', 'uses' => 'App\Http\Controllers\MessagesController@create']);
+    Route::post('/', ['as' => 'messages.store', 'uses' => 'App\Http\Controllers\MessagesController@store']);
+    Route::get('{id}', ['as' => 'messages.show', 'uses' => 'App\Http\Controllers\MessagesController@show']);
+    Route::put('{id}', ['as' => 'messages.update', 'uses' => 'App\Http\Controllers\MessagesController@update']);
+});
+
+/* Rollen und Zugriffsrechte */
 Route::group(['middleware' => ['role:Admin|Moderierende','auth', 'verified']], function () {
     //
     /* Account bearbeiten */

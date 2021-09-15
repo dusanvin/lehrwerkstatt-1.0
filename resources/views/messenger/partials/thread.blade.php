@@ -8,29 +8,29 @@
 
             <div class="flex">
 
-                <div class="flex-auto">
+                <p class="flex-auto">
                     
-                    <strong>{{ $thread->participantsString(Auth::id(),['vorname']) }}  {{ $thread->participantsString(Auth::id(),['nachname']) }}</strong>
+                    <strong>{{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }} </strong>
 
-                </div>
+                </p>
 
-                <div class="flex-initial">
+                <p class="flex-initial">
                     
                     @if ( $thread->userUnreadMessagesCount(Auth::id())  != '0')
 
-                        <span class="bg-purple-600 text-white text-xs inline-block py-1 px-2 rounded-full text-pink-white uppercase last:mr-0 mr-1">{{ $thread->userUnreadMessagesCount(Auth::id()) }}</span>
+                        <span class="bg-green-600 text-white text-xs inline-block py-1 px-3 rounded-full text-white uppercase last:mr-0 mr-1">{{ $thread->userUnreadMessagesCount(Auth::id()) }}</span>
 
                     @endif
 
-                </div>
+                </p>
 
             </div>
 
-            <div>    
+            <p>    
 
                 <span class="text-xs text-gray-400">{{ $thread->latestMessage->body }}</span>
             
-            </div>
+            </p>
             
             <!-- <a href="{{ route('messages.show', $thread->id) }}" class="text-xs">{{ $thread->subject }}</a> -->
 

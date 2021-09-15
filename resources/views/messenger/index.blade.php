@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<body style="background-color: white;">
+	<body style="">
 
 	    <div class="flex flex-row h-full mx-5 mt-10 mb-10">
 
@@ -36,13 +36,13 @@
 
                     <!-- Fehlermeldung -->
 
-                    <div class="px-4 py-4 pb mx-auto mt-6 bg-white rounded-md">
+                    <div class="py-4 mx-auto mt-6">
 
                     	<div class="grid justify-items-end">
 
 					        <div class="float-right mb-4 mt-4 mr-4">
 
-			                    <a href="/messages/create" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 px-4 border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150">
+			                    <a href="/messages/create" class="bg-transparent bg-white hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 px-4 border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150">
 
 			                        <div class="">
 

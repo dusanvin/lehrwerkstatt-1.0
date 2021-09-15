@@ -101,7 +101,7 @@
 
                                             <input type="radio" class="form-radio" name="recipients[]" value="{{ $user->id }}">
 
-                                                <span class="ml-2">{{ $user->vorname }} {{ $user->nachname }}</span>
+                                                <span class="ml-2">{{ $user->vorname }} {{ $user->nachname }} ({{ $user->email }})</span>
 
                                         </label>
 

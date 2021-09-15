@@ -4,7 +4,7 @@
 	    background-position: center center;
 	    background-repeat: no-repeat;
 	    background-size: cover;
-	    min-height: 100vh;
+	    min-height: 120vh;
 	    width: 100%;
 	}
 	body span,label,a,button,div,p,input,label {

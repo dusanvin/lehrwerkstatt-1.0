@@ -18,7 +18,7 @@
 
                 <div class="overflow-hidden sm:rounded-lg">
 
-                    <div class="">
+                    <div class="grid justify-items-center sm:justify-items-start">
 
                         <h2 class="text-lg leading-6 font-medium text-gray-900">
 
@@ -26,7 +26,7 @@
 
                         </h2>
 
-                        <p class="mt-1 text-sm text-gray-500">
+                        <p class="mt-1 text-sm text-gray-500 grid text-center sm:text-left">
 
                             Gespräche zum Informationsaustausch. Schreiben Sie einer Person, wenn Ihnen ein Angebot oder ein Bedarf zusagt.
 
@@ -42,7 +42,7 @@
 
 					        <div class="float-right mb-4 mt-4">
 
-			                    <a href="/messages/create" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white font-semibold text-sm py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
+			                    <a href="/messages/create" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
 
 			                        <div class="">
 

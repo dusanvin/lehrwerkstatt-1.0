@@ -1,6 +1,6 @@
 <?php $class = $thread->isUnread(Auth::id()) ? 'alert-info' : ''; ?>
 
-<div class="media alert {{ $class }} mb-2 bg-white rounded-md px-4 py-4">
+<div class="media alert {{ $class }} mb-2 bg-white rounded-md px-2 py-2 sm:px-4 sm:py-4">
 
     <a href="{{ route('messages.show', $thread->id) }}" class="">
 
@@ -8,7 +8,7 @@
 
             <div class="flex">
 
-                <p class="flex-auto font-medium leading-5 md:leading-normal mb-1">
+                <p class="flex-auto font-medium leading-5 md:leading-normal mb-1 text-xs sm:text-sm">
                     
                     {{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}
 
@@ -26,7 +26,7 @@
 
             </div>
 
-            <p class="text-xs text-gray-400">    
+            <p class="text-xs text-gray-400 mb-1">    
 
                 {{ $thread->latestMessage->body }}
             

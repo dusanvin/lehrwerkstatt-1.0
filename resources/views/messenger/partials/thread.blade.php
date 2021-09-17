@@ -1,8 +1,8 @@
 <?php $class = $thread->isUnread(Auth::id()) ? 'alert-info' : ''; ?>
 
-<div class="media alert {{ $class }} mb-2 bg-white rounded-md px-2 py-2 sm:px-4 sm:py-4">
+<div class="media alert {{ $class }} mb-2 bg-white rounded-md px-2 py-2 sm:px-4 sm:py-4" href="{{ route('messages.show', $thread->id) }}" >
 
-    <a href="{{ route('messages.show', $thread->id) }}" class="">
+    <a href="{{ route('messages.show', $thread->id) }}">
 
         <div>
 
@@ -26,9 +26,11 @@
 
             </div>
 
-            <p class="text-xs text-gray-400 mb-1">    
+            <p class="text-xs mb-1 text-gray-400">    
 
                 {{ $thread->latestMessage->body }}
+
+
             
             </p>
             
@@ -36,12 +38,9 @@
 
         </div>
 
-
-            
     </a>
 
-
-        </div>
+</div>
 
 
 

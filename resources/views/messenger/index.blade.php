@@ -18,7 +18,7 @@
 
                 <div class="overflow-hidden sm:rounded-lg">
 
-                    <div class="grid justify-items-center sm:justify-items-start">
+                    <div class="grid justify-items-center sm:justify-items-start select-none">
 
                         <h2 class="text-lg leading-6 font-medium text-gray-900">
 
@@ -40,7 +40,7 @@
 
                     	<div class="grid justify-items-center md:justify-items-end">
 
-					        <div class="float-right mb-4 mt-4">
+					        <div class="float-right mb-8 mt-4">
 
 			                    <a href="/messages/create" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
 
@@ -65,6 +65,12 @@
 		                @include('messenger.partials.flash')
 
 		                <!-- Zeige alle Threads als Schleife oder Keinen Thread -->
+
+		                @if ($threads_counter > 1)
+
+							<p class="uppercase text-gray-400 mb-2 select-none text-sm text-center sm:text-left">{{ $threads_counter }} Unterhaltungen</p>
+
+						@endif
 
 		           		@each('messenger.partials.thread', $threads, 'thread', 'messenger.partials.no-threads')
 

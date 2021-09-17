@@ -1,6 +1,6 @@
 <?php $class = $thread->isUnread(Auth::id()) ? 'alert-info' : ''; ?>
 
-<div class="media alert {{ $class }} mb-2 rounded-md px-2 py-2 sm:px-4 sm:py-4" href="{{ route('messages.show', $thread->id) }}" >
+<div class="media alert {{ $class }} mt-2 rounded-md px-2 py-2 sm:px-4 sm:py-4" href="{{ route('messages.show', $thread->id) }}" >
 
     <a href="{{ route('messages.show', $thread->id) }}">
 

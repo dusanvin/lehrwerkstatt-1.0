@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 @extends('layouts.master')
 
 @section('content')
@@ -24,7 +15,7 @@
 
         	<!-- Inhalt -->
 
-            <div class="px-3 sm:px-8 py-8 text-gray-700 w-screen sm:rounded-r-lg" style="background-color: #EDF2F7;">
+            <div class="px-3 sm:px-8 py-3 sm:py-8 text-gray-700 w-screen sm:rounded-r-lg" style="background-color: #EDF2F7;">
 
             	<!-- Header -->
 
@@ -50,29 +41,21 @@
 
                 <!-- Main -->
 
-                <div class="px-4 py-4 pb mx-auto mt-6 rounded-md">
+                <div class="px-1 py-2 pb mx-auto mt-6 rounded-md">
 
                     <!-- Nachrichten -->
-
-                    
 
                     @foreach ($thread->messages as $message)
 
                     	<div class="mb-4 block">
-                    		
-                    	
 
-                    	<!--Creator: {{ Auth::id() }}<br>
-
-                    	Vorname: {{ $message->user_id }}<br> -->
-
-                    	
+                    		<!-- Wenn Nutzer == Creator der Nachricht --> 
 
 	                    	@if( Auth::id() == $message->user_id )
 
 	                    		<div class="flex flex-row-reverse">
 	                    			
-		                    		<div class="px-4 py-4 flex rounded-tl-2xl rounded-bl-2xl rounded-br-2xl bg-white text-gray-800 text-sm">
+		                    		<div class="ml-0 sm:ml-2 md:ml-4 lg:ml-8 px-4 py-4 flex rounded-tl-2xl rounded-bl-2xl rounded-br-2xl text-gray-200 text-sm" style="background-color: #3A4049;">
 		                    			
 		                    			@include('messenger.partials.messages', $message)
 
@@ -80,12 +63,15 @@
 
 	                    		</div>
 
+	                    	<!-- Wenn Nutzer == Creator der Nachricht --> 
+
+	                    	<!-- Wenn Nutzer != Creator der Nachricht --> 
 
 	                    	@elseif ( Auth::id() != $message->user_id )
 
 	                    		<div class="flex">
 	                    		
-		                    		<div class="px-4 py-4 flex rounded-bl-2xl rounded-br-2xl rounded-tr-2xl text-gray-200 text-sm" style="background-color: #3A4049;">
+		                    		<div class="mr-0 sm:mr-2 md:mr-4 lg:mr-8 px-4 py-4 flex rounded-bl-2xl rounded-br-2xl rounded-tr-2xl text-gray-600 text-sm bg-white">
 		                    			
 		                    			@include('messenger.partials.messages', $message)
 
@@ -93,9 +79,11 @@
 
 		                    	</div>
 
+	                    	<!-- Wenn Nutzer != Creator der Nachricht --> 
+	                    	
 	                    	@endif
 
-	                    	</div>
+                    	</div>
 
                     @endforeach
 

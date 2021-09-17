@@ -58,7 +58,7 @@
 
                     @foreach ($thread->messages as $message)
 
-                    	<div class="mb-2 grid grid-cols-3 gap-4">
+                    	<div class="mb-4 block">
                     		
                     	
 
@@ -70,19 +70,28 @@
 
 	                    	@if( Auth::id() == $message->user_id )
 
-	                    		<div class="px-4 py-4 col-start-2 col-end-4 rounded-tl-2xl rounded-bl-2xl rounded-br-2xl bg-white">
+	                    		<div class="flex flex-row-reverse">
 	                    			
-	                    			@include('messenger.partials.messages', $message)
+		                    		<div class="px-4 py-4 flex rounded-tl-2xl rounded-bl-2xl rounded-br-2xl bg-white text-gray-800 text-sm">
+		                    			
+		                    			@include('messenger.partials.messages', $message)
+
+		                    		</div>
 
 	                    		</div>
+
 
 	                    	@elseif ( Auth::id() != $message->user_id )
-	                    		
-	                    		<div class="px-4 py-4 col-start-1 col-end-3 rounded-tr-2xl rounded-bl-2xl rounded-br-2xl text-white" style="background-color: #3A4049;">
-	                    			
-	                    			@include('messenger.partials.messages', $message)
 
-	                    		</div>
+	                    		<div class="flex">
+	                    		
+		                    		<div class="px-4 py-4 flex rounded-bl-2xl rounded-br-2xl rounded-tr-2xl text-gray-200 text-sm" style="background-color: #3A4049;">
+		                    			
+		                    			@include('messenger.partials.messages', $message)
+
+		                    		</div>
+
+		                    	</div>
 
 	                    	@endif
 

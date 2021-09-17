@@ -66,13 +66,17 @@
 
 		                <!-- Zeige alle Threads als Schleife oder Keinen Thread -->
 
-		                <div class="bg-white rounded-md">
+		                <div>
 		                	
 			                @if ($threads_counter > 1)
 
-								<p class="uppercase text-gray-400 pl-4 pt-4 select-none text-sm text-center sm:text-left">{{ $threads_counter }} Unterhaltungen</p>
+								<p class="uppercase text-gray-400 pl-4 py-4 select-none text-sm text-center sm:text-left">{{ $threads_counter }} Unterhaltungen</p>
 
 							@endif
+
+						</div>
+
+						<div class="bg-white rounded-md">
 
 			           		@each('messenger.partials.thread', $threads, 'thread', 'messenger.partials.no-threads')
 

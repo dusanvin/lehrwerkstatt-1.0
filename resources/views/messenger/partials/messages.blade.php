@@ -9,7 +9,7 @@
 
         <p class="">{{ $message->body }}</p>
 
-        <div class="text-muted text-sm grid justify-items-center md:justify-items-end">
+        <div class="text-muted text-sm grid justify-items-center md:justify-items-end text-gray-400 leading-none">
 
             <small>{{ $message->created_at->diffForHumans() }}</small>
 

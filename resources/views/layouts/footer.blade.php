@@ -1,6 +1,6 @@
 <!-- Footer -->
 
-<footer class="footer relative pt-10 max-w-7xl mx-auto">
+<footer class="footer relative pt-1 sm:pt-5 md:pt-10 max-w-7xl mx-auto">
 
     <!-- Container Grid -->
 
@@ -8,17 +8,17 @@
 
         <!-- Grid -->
 
-        <ul class="text-center Footer_nav__2rFid text-sm font-medium pb-14 sm:pb-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10">
+        <ul class="text-center Footer_nav__2rFid text-xs md:text-sm font-medium pb-6 sm:pb-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-6 sm:gap-y-10">
 
             <!-- Informationen -->
 
-            <li class="space-y-3 row-span-2 px-4">
+            <li class="space-y-2 sm:space-y-3 row-span-2 px-4">
 
-                <h2 class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                <p class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
 
                     Informationen
 
-                </h2>
+                </p>
 
                 <ul class="space-y-1">
 
@@ -52,12 +52,12 @@
 
             <!-- Organisation -->
 
-            <li class="space-y-3 row-span-2 px-4">
+            <li class="space-y-2 sm:space-y-3 row-span-2 px-4">
 
-                <h2 class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                <p class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
 
                     Organisation
-                </h2>
+                </p>
 
                 <ul class="space-y-1">
 
@@ -89,13 +89,13 @@
 
             <!-- Über -->
 
-            <li class="space-y-3 row-span-2 px-4">
+            <li class="space-y-2 sm:space-y-3 row-span-2 px-4">
 
-                <h2 class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                <p class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
 
                     Über
 
-                </h2>
+                </p>
 
                 <ul class="space-y-1">
 
@@ -126,13 +126,13 @@
 
             <!-- Allgemein -->
 
-            <li class="space-y-3 row-span-2 px-4">
+            <li class="space-y-2 sm:space-y-3 row-span-2 px-4">
 
-                <h2 class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
+                <p class="text-xs font-semibold tracking-wide text-gray-800 uppercase">
 
                     Allgemein
 
-                </h2>
+                </p>
 
                 <ul class="space-y-1">
 

@@ -42,7 +42,7 @@
 
 					        <div class="float-right mb-4 mt-4">
 
-			                    <a href="/messages/create" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white font-semibold text-sm py-2 px-4 border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150">
+			                    <a href="/messages/create" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white font-semibold text-sm py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
 
 			                        <div class="">
 
@@ -52,7 +52,7 @@
 
 			                        <div class="pl-3">
 
-			                            <p class="text-xs md:text-sm">Neue Nachricht</p>
+			                            <span class="text-xs">Neue Nachricht</span>
 
 			                        </div>
 

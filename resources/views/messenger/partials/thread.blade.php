@@ -1,6 +1,6 @@
 <?php $class = $thread->isUnread(Auth::id()) ? 'alert-info' : ''; ?>
 
-<div class="media alert {{ $class }} mb-2 bg-white rounded-md px-2 py-2 sm:px-4 sm:py-4" href="{{ route('messages.show', $thread->id) }}" >
+<div class="media alert {{ $class }} mb-2 rounded-md px-2 py-2 sm:px-4 sm:py-4" href="{{ route('messages.show', $thread->id) }}" >
 
     <a href="{{ route('messages.show', $thread->id) }}">
 
@@ -14,6 +14,26 @@
 
                 </p>
 
+                <p class="flex-initial text-sm text-gray-400">
+                    
+                    <small>{{ $thread->latestMessage->created_at->diffForHumans() }}</small>
+
+                </p>
+
+            </div>
+
+            <div class="flex">
+
+                <div class="flex-auto font-normal leading-5 md:leading-normal mb-1 text-xs sm:text-sm">
+                    
+                    <p class="text-xs mb-1 text-gray-400">    
+
+                        {{ $thread->latestMessage->body }}
+                    
+                    </p>
+
+                </div>
+
                 <p class="flex-initial">
                     
                     @if ( $thread->userUnreadMessagesCount(Auth::id())  != '0')
@@ -26,13 +46,7 @@
 
             </div>
 
-            <p class="text-xs mb-1 text-gray-400">    
 
-                {{ $thread->latestMessage->body }}
-
-
-            
-            </p>
             
             <!-- <a href="{{ route('messages.show', $thread->id) }}" class="text-xs">{{ $thread->subject }}</a> -->
 

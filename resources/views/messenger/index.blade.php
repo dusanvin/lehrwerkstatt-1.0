@@ -14,7 +14,7 @@
 
 	        <!-- Inhalt -->
 
-			<div class="px-3 sm:px-8 py-8 text-gray-700 w-screen bg-white sm:rounded-r-lg" style="background-color: #EDF2F7;">
+			<div class="px-3 sm:px-8 py-8 text-gray-700 w-screen sm:rounded-r-lg" style="background-color: #EDF2F7;">
 
                 <div class="overflow-hidden sm:rounded-lg">
 
@@ -66,13 +66,18 @@
 
 		                <!-- Zeige alle Threads als Schleife oder Keinen Thread -->
 
-		                @if ($threads_counter > 1)
+		                <div class="bg-white rounded-md">
+		                	
+			                @if ($threads_counter > 1)
 
-							<p class="uppercase text-gray-400 mb-2 select-none text-sm text-center sm:text-left">{{ $threads_counter }} Unterhaltungen</p>
+								<p class="uppercase text-gray-400 pl-4 pt-4 select-none text-sm text-center sm:text-left">{{ $threads_counter }} Unterhaltungen</p>
 
-						@endif
+							@endif
 
-		           		@each('messenger.partials.thread', $threads, 'thread', 'messenger.partials.no-threads')
+			           		@each('messenger.partials.thread', $threads, 'thread', 'messenger.partials.no-threads')
+
+		                </div>
+
 
 	           		</div>
 

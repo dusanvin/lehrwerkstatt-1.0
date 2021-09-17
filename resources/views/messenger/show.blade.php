@@ -34,7 +34,7 @@
 
                         <h2 class="text-lg leading-6 font-medium text-gray-900">
 
-                        Gesprächsverlauf
+                        Gesprächsverlauf mit {{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}
 
                     </h2>
 

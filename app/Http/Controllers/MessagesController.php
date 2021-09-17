@@ -52,13 +52,14 @@ class MessagesController extends Controller
         return view('messenger.show', compact('thread', 'users'));
     }
 
+    //public $vince = 'Vince';
 
     public function create()
     {
         $users = User::where('id', '!=', Auth::id())->get();
 
         // Suche mit Argument 'Vince' eingrenzen
-        //$users = User::Where('vorname', 'LIKE', '%'. 'Vince'. '%')->get();
+        //$users = User::Where('vorname', 'LIKE', '%'. $this->vince . '%')->get();
 
         return view('messenger.create', compact('users'));
     }

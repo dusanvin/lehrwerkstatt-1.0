@@ -8,9 +8,9 @@
 
             <div class="flex">
 
-                <p class="flex-auto">
+                <p class="flex-auto font-medium">
                     
-                    <strong>{{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }} </strong>
+                    {{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}
 
                 </p>
 

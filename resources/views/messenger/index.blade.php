@@ -28,7 +28,7 @@
 
                         <p class="mt-1 text-sm text-gray-500">
 
-                            Gespräche zum Informationsaustausch mit Personen.
+                            Gespräche zum Informationsaustausch. Schreiben Sie einer Person, wenn Ihnen ein Angebot oder ein Bedarf zusagt.
 
                         </p>
 

@@ -15,13 +15,13 @@
 
         <!-- Inhalt -->
 
-        <div class="px-8 py-8 text-gray-700 w-screen bg-white sm:rounded-r-lg" style="background-color: #EDF2F7;">
+            <div class="px-2 sm:px-8 py-8 text-gray-700 w-screen bg-white sm:rounded-r-lg" style="background-color: #EDF2F7;">
 
-            <div class="overflow-hidden sm:rounded-lg">
+                <div class="overflow-hidden sm:rounded-lg">
 
-                <div class="px-4 py-5 sm:px-6">
+                    <div class="">
 
-                    <h2 class="text-lg leading-6 font-medium text-gray-900">
+                        <h2 class="text-lg leading-6 font-medium text-gray-900">
 
                         Nachrichten
 
@@ -43,7 +43,7 @@
 
                         <div class="float-right mb-4 mt-4 mr-4">
 
-                            <a href="/messages/create" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 px-4 border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150">
+                            <a href="/messages/create" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white font-semibold text-sm py-2 px-4 border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150">
 
                                 <div class="">
 
@@ -73,21 +73,23 @@
 
                             <!-- Subject Form Input -->
 
+                            <div class="mt-1">
 
-                            <label class="block">
+                                <label class="block sr-only">Ihr Betreff.</label>
 
-                                <span class="text-gray-700">Betreff</span>
+                                <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="{{ old('subject') }}" name="subject">
 
-                                <input class="form-input mt-1 block w-full" placeholder="Schreiben Sie einen Betreff" value="{{ old('subject') }}" name="subject">
-
-                            </label>
+                            </div>
 
                             <!-- Message Form Input -->
-                            <div class="form-group">
 
-                                <label class="control-label">Message</label>
+                            <div class="mt-1">
+                            
+                                <label class="block sr-only">Ihre Nachricht.</label>
 
-                                <textarea name="message" class="form-control">{{ old('message') }}</textarea>
+                                <textarea name="message" cols="30" rows="8" class="py-2 px-3 bg-gray-100 border-1 border-gray-100 w-full rounded-sm form-control focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent" placeholder="Ihre Nachricht.">{{ old('message') }}</textarea>
+
+                                
 
                             </div>
 
@@ -119,7 +121,7 @@
 
                                     <div class="float-right mb-4 mt-4 mr-4">
 
-                                        <button type="submit" class="bg-transparent hover:bg-green-600 text-green-600 font-semibold text-sm hover:text-white py-2 px-4 border border-green-600 hover:border-transparent rounded focus:outline-none focus:ring ring-green-300 focus:border-green-300 flex items-center transition ease-in-out duration-150">
+                                        <button type="submit" class="bg-transparent hover:bg-green-800 text-white font-semibold text-sm py-2 px-4 border border-green-600 bg-green-600 hover:border-transparent rounded focus:outline-none focus:ring ring-green-300 focus:border-green-300 flex items-center transition ease-in-out duration-150">
 
                                             <div class="">
 

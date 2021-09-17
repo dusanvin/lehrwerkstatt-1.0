@@ -14,7 +14,7 @@
 
         <div class="px-8 py-8 text-gray-700 w-screen bg-white rounded-r-lg shadow-b border-b border-gray-200" style="background-color: #EDF2F7;">
 
-            <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
+            <div class="bg-white overflow-hidden sm:rounded-lg mb-4">
 
                 <!-- Navbar für Admin -->
 

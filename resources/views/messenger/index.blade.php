@@ -14,7 +14,7 @@
 
 	        <!-- Inhalt -->
 
-			<div class="px-2 sm:px-8 py-8 text-gray-700 w-screen bg-white sm:rounded-r-lg" style="background-color: #EDF2F7;">
+			<div class="px-4 sm:px-8 py-8 text-gray-700 w-screen bg-white sm:rounded-r-lg" style="background-color: #EDF2F7;">
 
                 <div class="overflow-hidden sm:rounded-lg">
 
@@ -36,9 +36,9 @@
 
                     <!-- Fehlermeldung -->
 
-                    <div class="py-4 mx-auto mt-6 rounded-md">
+                    <div class="py-4 mx-auto mt-0 md:mt-6 rounded-md">
 
-                    	<div class="grid justify-items-end">
+                    	<div class="grid justify-items-center md:justify-items-end">
 
 					        <div class="float-right mb-4 mt-4">
 
@@ -52,7 +52,7 @@
 
 			                        <div class="pl-3">
 
-			                            <p class="">Neue Nachricht schreiben</p>
+			                            <p class="text-xs md:text-sm">Neue Nachricht</p>
 
 			                        </div>
 

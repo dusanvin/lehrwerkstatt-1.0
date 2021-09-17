@@ -5,7 +5,7 @@
 
 <body style="background-color: white;">
 
-    <div class="flex flex-row h-full mx-5 mt-10 mb-10">
+    <div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
 
         <!-- Nav -->
 
@@ -15,7 +15,7 @@
 
         <!-- Inhalt -->
 
-            <div class="px-2 sm:px-8 py-8 text-gray-700 w-screen bg-white sm:rounded-r-lg" style="background-color: #EDF2F7;">
+            <div class="px-4 sm:px-8 py-8 text-gray-700 w-screen bg-white sm:rounded-r-lg" style="background-color: #EDF2F7;">
 
                 <div class="overflow-hidden sm:rounded-lg">
 
@@ -39,7 +39,7 @@
 
                 <div class="px-4 py-4 pb mx-auto mt-6 bg-white rounded-md">
 
-                    <div class="grid justify-items-end">
+                    <div class="grid justify-items-center md:justify-items-end">
 
                         <div class="float-right mb-4 mt-4 mr-4">
 
@@ -53,7 +53,7 @@
 
                                 <div class="pl-3">
 
-                                    <p class="">Neue Nachricht schreiben</p>
+                                    <p class="text-xs md:text-sm">Neue Nachricht</p>
 
                                 </div>
 

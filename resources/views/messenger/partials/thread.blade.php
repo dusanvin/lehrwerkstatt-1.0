@@ -8,7 +8,7 @@
 
             <div class="flex">
 
-                <p class="flex-auto font-medium">
+                <p class="flex-auto font-medium leading-5 md:leading-normal mb-1">
                     
                     {{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}
 
@@ -26,9 +26,9 @@
 
             </div>
 
-            <p>    
+            <p class="text-xs text-gray-400">    
 
-                <span class="text-xs text-gray-400">{{ $thread->latestMessage->body }}</span>
+                {{ $thread->latestMessage->body }}
             
             </p>
             

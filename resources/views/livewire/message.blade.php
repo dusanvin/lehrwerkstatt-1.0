@@ -5,7 +5,7 @@
     <ul class="list-group">
         @if($users && $users->count() > 0)
         @foreach($users as $user)
-        <li class="list-group-item">{{$user->email}}</li>
+        <li class="list-group-item">{{$user->full_name_with_email}}</li>
         @endforeach
         @else
         Keine Nutzer gefunden.

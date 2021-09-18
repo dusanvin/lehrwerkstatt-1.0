@@ -63,4 +63,9 @@ class User extends Authenticatable implements MustVerifyEmail
     //     return $this->hasMany(Like::class);
     // }
 
+    public function getFullNameWithEmailAttribute()
+    {
+        return "{$this->vorname} {$this->nachname} {$this->email}";
+    }
+
 }

@@ -2,8 +2,13 @@
 
 @section('content')
 
+<head>
+    @livewireStyles 
+</head>
+
 
 <body style="background-color: white;">
+    @livewireScripts
 
     <div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
 
@@ -12,6 +17,8 @@
         @include('layouts.navigation')
 
         <!-- Nav -->
+
+        <livewire:message />
 
         <!-- Inhalt -->
 

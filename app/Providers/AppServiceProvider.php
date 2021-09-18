@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -31,7 +32,8 @@ class AppServiceProvider extends ServiceProvider
         $mail_to_digillab = 'mailto:digillab@zlbib.uni-augsburg.de';
         View::share('mail_to_digillab', $mail_to_digillab);
 
-        
 
+
+        
     }
 }

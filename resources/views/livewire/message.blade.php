@@ -1,16 +1,3 @@
-<div>
-    <form>
-        <input wire:model="search" type="text" placeholder="Suche nach Nutzer...">
-    </form>
-    <ul class="list-group">
-        @if($users && $users->count() > 0)
-        @foreach($users as $user)
-        <li class="list-group-item">{{$user->email}}</li>
-        @endforeach
-        @else
-        Keine Nutzer gefunden.
-        @endif
-    </ul>
     <div class="px-3 sm:px-8 py-8 text-gray-700 w-screen bg-white sm:rounded-r-lg" style="background-color: #EDF2F7;">
 
         <div class="overflow-hidden sm:rounded-lg">
@@ -87,29 +74,53 @@
 
                             <textarea name="message" cols="30" rows="8" class="py-2 px-3 bg-gray-100 border-1 border-gray-100 w-full rounded-sm form-control focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent" placeholder="Ihre Nachricht.">{{ old('message') }}</textarea>
 
-
-
                         </div>
 
-                        @if($users->count() > 0)
+                        <div class="mt-1 pb-6">
+                            
 
-                        <div class="checkbox">
+                            <form>
 
-                            @foreach($users as $user)
+                                <input wire:model="search" type="text" placeholder="Suche nach Nutzer..." class="border border-gray-100 bg-gray-100 w-full rounded form-control form-input">
 
-                            <label title="{{ $user->vorname }} {{ $user->nachname }}" class="block items-center">
+                            </form>
 
-                                <input type="radio" class="form-radio" name="recipients[]" value="{{ $user->id }}">
+                                @if($users && $users->count() > 0)
+                            <ul class="py-2 px-3 bg-gray-100 list-group absolute bg-white rounded">
 
-                                <span class="ml-2">{{ $user->vorname }} {{ $user->nachname }} ({{ $user->email }})</span>
 
-                            </label>
+                                    @foreach($users as $user)
+                                    <!--<li class="list-group-item px-2 py-2 hover:bg-gray-100">{{$user->email}}</li>-->
 
-                            @endforeach
+                                    <li class="px-2 py-2">
 
+                                        <input type="radio" class="form-radio" name="recipients[]" value="{{ $user->id }}">
+
+                                        <span class="ml-2">{{ $user->vorname }} {{ $user->nachname }} ({{ $user->id }})</span>
+
+                                    </li>
+                                    
+                                    @endforeach
+
+                                    <!-- 
+
+                                    <div class="inline-block relative w-64">
+  <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+    <option>Really long option that will likely overlap the chevron</option>
+    <option>Option 2</option>
+    <option>Option 3</option>
+  </select>
+  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+  </div>
+</div>
+
+                                    -->
+
+                                @endif
+
+                            </ul>
                         </div>
-
-                        @endif
 
                         <!-- Zurück -->
 
@@ -170,4 +181,3 @@
         </div>
 
     </div>
-</div>

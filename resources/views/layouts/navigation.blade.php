@@ -8,9 +8,9 @@
 
     		function menufunction () {  
 
-				  if (document.getElementById("navigation-digillab").style.maxWidth != "67px") {
+				  if (document.getElementById("navigation-digillab").style.width != "67px") {
 
-				  	document.getElementById("navigation-digillab").style.maxWidth = "67px";
+				  	document.getElementById("navigation-digillab").style.width = "67px";
 
 			  	  	var elements = document.getElementsByClassName('navigation-element'), i, len;
   
@@ -22,9 +22,9 @@
 
 				    return;
 				  }
-				  else if (document.getElementById("navigation-digillab").style.maxWidth == "67px") {
+				  else if (document.getElementById("navigation-digillab").style.width == "67px") {
 
-				    document.getElementById("navigation-digillab").style.maxWidth = "fit-content";
+				    document.getElementById("navigation-digillab").style.width = "322px";
 
 				    var elements = document.getElementsByClassName('navigation-element'), i, len;
   

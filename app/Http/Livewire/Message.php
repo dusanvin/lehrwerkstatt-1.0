@@ -13,6 +13,7 @@ class Message extends Component
     public $users;
 
     public $receivers = 'HALLO';
+    public $receiverids;
 
 
     public function render()

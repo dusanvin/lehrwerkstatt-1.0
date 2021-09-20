@@ -92,14 +92,15 @@
                             <script>
                                 function setReceiver(id) {
                                     console.log(id);
-                                    document.getElementById('receiver').value = id;
+                                    // document.getElementById('receiver').value = id;
                                     // document.getElementById('receiver-list').innerHTML = document.getElementById(id).innerHTML;
                                     @this.receivers = document.getElementById(id).innerHTML;
+                                    @this.receiverids = id;
                                     @this.search = '';
                                 }
                             </script>
 
-                            <input id="receiver" type="hidden" name="receiver"></input>
+                            <input id="receiver" type="hidden" name="recipients[]" value="{{ $receiverids }}"></input>
 
                                 @if($users && $users->count() > 0)
                             <ul class="py-2 px-3 bg-gray-100 list-group absolute bg-white rounded">

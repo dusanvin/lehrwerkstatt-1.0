@@ -12,6 +12,8 @@ class Message extends Component
     public $search = '';
     public $users;
 
+    public $receivers = 'HALLO';
+
 
     public function render()
     {

@@ -45,8 +45,6 @@
                 </p>
 
             </div>
-
-
             
             <!-- <a href="{{ route('messages.show', $thread->id) }}" class="text-xs">{{ $thread->subject }}</a> -->
 

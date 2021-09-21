@@ -87,7 +87,18 @@
 
 	            </div>
 
+	            <!-- Seitenanzeige -->
+
+	            <div class="mt-5">
+
+	                {{ $threads->links() }}
+
+	            </div>
+	            
+	            <!-- Seitenanzeige -->
+
 	        </div>
+
 
 	        <!-- Inhalt -->
 	        

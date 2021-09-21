@@ -9,7 +9,7 @@
 
         <p class="">{{ $message->body }}</p>
 
-        <div class="text-muted text-sm grid justify-items-end text-gray-400 leading-none">
+        <div class="mt-1 text-muted text-sm grid justify-items-end text-gray-400 leading-none">
 
             <small>{{ $message->created_at->diffForHumans() }}</small>
 
@@ -17,18 +17,18 @@
 
             @if ($message->user_id == Auth::id())
 
-                <a class="btn btn-warning btn-sm float-right mt-1 text-xs hover:text-gray-200" title="Remove" href='{{ url('messages/'.$message->id) }}/delete'>
+                <small><a class="btn btn-warning btn-sm float-right mt-1 text-xs hover:text-gray-200" title="Remove" href='{{ url('messages/'.$message->id) }}/delete'>
 
                 Löschen
 
-                </a>
+                </a></small>
 
             @endif
 
             <!-- Löschen der eigenen Nachricht -->
 
-            
-
         </div>
+
     </div>
+    
 </div>

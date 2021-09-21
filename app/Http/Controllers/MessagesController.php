@@ -137,7 +137,7 @@ class MessagesController extends Controller
         try {
            $message = Message::findOrFail($id);
         } catch (ModelNotFoundException $e) {
-            Session::flash('error_message', 'The message with ID: ' . $id . ' was not found.');
+            Session::flash('error_message', 'Die Nachricht #: ' . $id . ' wurde nicht gefunden.');
             return redirect('messages');
         }
 
@@ -146,7 +146,7 @@ class MessagesController extends Controller
             // then we have to delete the thread as well!!!
             $thread_id = $message->thread_id;
             $message->delete();
-            Session::flash('error_message', 'Message deleted.');
+            Session::flash('error_message', 'Aktion erfolgreich ausgeführt.');
             $msgs = Message::where('thread_id', $thread_id)->get();
             if (count($msgs)==0) {
                 $thread = Thread::find($thread_id)->delete();
@@ -154,7 +154,7 @@ class MessagesController extends Controller
             }
         } 
         else {
-            Session::flash('error_message', 'You can only delete your own messages.');
+            Session::flash('error_message', 'Sie können nur Ihre eigenen Nachrichten löschen.');
             return redirect('messages');
         }
         

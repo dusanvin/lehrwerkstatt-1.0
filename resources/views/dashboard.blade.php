@@ -9,46 +9,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{{ config('app.name', 'digi:match') }}</title>
-        <style type="text/css">
 
-            .tox-tinymce {
-                border-radius: 8px;
+
+        <!-- Trumbowyg -->
+        <link rel="stylesheet" href="trumbowyg/dist/ui/trumbowyg.min.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+        <script src="trumbowyg/dist/trumbowyg.min.js"></script>
+        <script type="text/javascript" src="trumbowyg/dist/langs/de.js"></script>
+
+        <!-- Trumbowyg -->
+
+        <style type="text/css">
+            .trumbowyg-editor a {
+                color: rgb(124, 58, 237);
+                text-decoration: underline;
             }
         </style>
-
-        <!-- TinyMCE -->
-
-        <script src="https://cdn.tiny.cloud/1/yglw8k1k9swezrnu7oo8rn67dk5kdpbfx8t40xmq239tng93/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-
-        <script>
-
-            tinymce.init({
-
-                selector: '#mytextarea',
-
-                height: 300,
-
-                language: 'de',
-
-                menubar: false,
-
-                branding: false,
-
-                plugins: [
-                    'advlist autolink lists link image charmap print preview anchor',
-                    'searchreplace visualblocks code fullscreen',
-                    'insertdatetime media table paste code help wordcount'
-                ],
-
-                toolbar: 'undo redo | formatselect | ' + 'bold italic | bullist numlist | ' + 'removeformat | help',
-
-                content_style: 'body { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; font-size:14px }'
-
-            });
-
-        </script>
-
-        <!-- TinyMCE -->
 
     </head>
 
@@ -98,9 +75,16 @@
 
                                 <p class="text-xs text-gray-500 mt-1 mb-2">Näheres zur Person (Interessen / persönliche Motivation)</p>
 
-                                <textarea class="form-control" id="mytextarea" name="Beschreibung zur Person"></textarea>
+                                <form>
+
+                                    <textarea id="editor" name="Beschreibung zur Person" class="rounded" placeholder="Beschreiben Sie sich näher."></textarea>
+
+                                    <button type="submit">Submit</button>
+
+                                </form>
 
                             </div>
+
 
                             <!-- Beschreibung: Editor -->
 
@@ -115,6 +99,32 @@
             </div>         
 
       	</div>
+
+        <script type="text/javascript">
+            // aqui el el nombre de la Variable donde quiero el editor Ejemplo Descripcion
+            $('#editor').trumbowyg({
+                lang: 'de',
+                btns: [
+                    //['viewHTML'],
+                    ['undo', 'redo'], // Only supported in Blink browsers
+                    ['h2','h3','h4','p'],
+                    ['strong', 'em', 'del'],
+                    ['link'],
+                    //['insertImage'],
+                    //['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                    ['unorderedList', 'orderedList'],
+                    //['horizontalRule'],
+                    ['removeformat'],
+                    ['fullscreen']
+                ],
+                tagClasses: {
+                    h2: 'text-3xl',
+                    h3: 'text-2xl',
+                    h4: 'text-xl',
+                }
+                            //resetCss: true,
+            });
+        </script>
 
     </body>
 

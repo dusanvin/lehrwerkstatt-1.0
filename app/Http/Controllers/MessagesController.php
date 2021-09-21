@@ -132,5 +132,34 @@ class MessagesController extends Controller
         return redirect()->route('messages.show', $id);
     }
 
+     public function delete($id)
+    {
+        try {
+           $message = Message::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            Session::flash('error_message', 'The message with ID: ' . $id . ' was not found.');
+            return redirect('messages');
+        }
+
+        if ( Auth::user()->id == $message->user_id   || Auth::user()->isAdmin() ) {
+            // get thread ID and check if this was the last remaining message in the thread!
+            // then we have to delete the thread as well!!!
+            $thread_id = $message->thread_id;
+            $message->delete();
+            Session::flash('error_message', 'Message deleted.');
+            $msgs = Message::where('thread_id', $thread_id)->get();
+            if (count($msgs)==0) {
+                $thread = Thread::find($thread_id)->delete();
+                return redirect('messages');
+            }
+        } 
+        else {
+            Session::flash('error_message', 'You can only delete your own messages.');
+            return redirect('messages');
+        }
+        
+        return redirect()->back();
+    }
+
 
 }

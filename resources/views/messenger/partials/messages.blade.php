@@ -13,6 +13,22 @@
 
             <small>{{ $message->created_at->diffForHumans() }}</small>
 
+            <!-- Löschen der eigenen Nachricht -->
+
+            @if ($message->user_id == Auth::id())
+
+                <a class="btn btn-warning btn-sm float-right mt-1 text-xs hover:text-gray-200" title="Remove" href='{{ url('messages/'.$message->id) }}/delete'>
+
+                Löschen
+
+                </a>
+
+            @endif
+
+            <!-- Löschen der eigenen Nachricht -->
+
+            
+
         </div>
     </div>
 </div>

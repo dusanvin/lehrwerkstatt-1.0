@@ -25,27 +25,30 @@
                 color: rgb(124, 58, 237);
                 text-decoration: underline;
             }
+            .trumbowyg-button-pane .trumbowyg-button-group::after {
+                display: none !important;
+            }
         </style>
 
     </head>
 
-    <body style="background-color: white;">
+    <body>
 
-		<div class="flex flex-row h-full mx-5 mt-10 mb-10">
+		<div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
 
-			<!-- Nav -->
+            <!-- Nav -->
 
-		    @include('layouts.navigation')
+            @include('layouts.navigation')
 
-		    <!-- Nav -->
-		    
-		    <!-- Content -->
+            <!-- Nav -->
 
-            <div class="px-8 py-8 text-gray-700 w-screen bg-white rounded-r-lg shadow-b border-b border-gray-200" style="background-color: #EDF2F7;">
+            <!-- Inhalt -->
 
-                <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+            <div class="px-3 sm:px-8 py-8 text-gray-700 w-screen sm:rounded-r-lg" style="background-color: #EDF2F7;">
 
-                    <div class="px-4 py-5 sm:px-6">
+                <div class="overflow-hidden sm:rounded-lg">
+
+                    <div class="grid justify-items-center sm:justify-items-start select-none">
 
                         <h2 class="text-lg leading-6 font-medium text-gray-900">
 
@@ -53,7 +56,7 @@
 
                         </h2>
 
-                        <p class="mt-1 text-sm text-gray-500">
+                        <p class="mt-1 text-sm text-gray-500 grid text-center sm:text-left">
 
                           Detaillierte Informationen und Anmerkungen zur Person. Ihre Eingaben sind für Lehrkräfte einsehbar und helfen dabei, eine passende Auswahl zu treffen.
 
@@ -63,17 +66,17 @@
 
                     <!-- Content -->
             
-                    <div class="block items-center justify-center">
+                    <div class="block items-center justify-center py-4 mx-auto mt-0 md:mt-6 rounded-md">
 
                         <div class="grid bg-white rounded-lg">
 
                             <!-- Beschreibung: Editor -->
 
-                            <div class="grid grid-cols-1 my-5 mx-7 text-sm">
+                            <div class="grid grid-cols-1 my-5 px-2 sm:px-4 text-sm bg-white text-center sm:text-left">
 
                                 <p class="font-medium text-gray-800 leading-none">Beschreibung</p>
 
-                                <p class="text-xs text-gray-500 mt-1 mb-2">Näheres zur Person (Interessen / persönliche Motivation)</p>
+                                <p class="text-xs text-gray-500 mt-1 mb-4">Näheres zur Person (Interessen / persönliche Motivation)</p>
 
                                 <form>
 
@@ -107,20 +110,20 @@
                 btns: [
                     //['viewHTML'],
                     ['undo', 'redo'], // Only supported in Blink browsers
-                    ['h2','h3','h4','p'],
-                    ['strong', 'em', 'del'],
+                    ['h2','h3','p'],
+                    ['strong', 'em'],
                     ['link'],
                     //['insertImage'],
                     //['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-                    ['unorderedList', 'orderedList'],
+                    ['unorderedList'],
                     //['horizontalRule'],
-                    ['removeformat'],
+                    //['removeformat'],
                     ['fullscreen']
                 ],
                 tagClasses: {
                     h2: 'text-3xl',
                     h3: 'text-2xl',
-                    h4: 'text-xl',
+                    //h4: 'text-xl',
                 }
                             //resetCss: true,
             });

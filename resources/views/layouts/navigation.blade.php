@@ -95,7 +95,6 @@
 
         <ul>
 
-
 			<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Allgemeines</p>
 
 			<!-- Mein Bereich -->

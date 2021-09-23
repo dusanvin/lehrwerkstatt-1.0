@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<body style="">
+	<body>
 
 	    <div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
 
@@ -70,7 +70,7 @@
 		                	
 			                @if ($threads_counter > 1)
 
-								<p class="uppercase text-gray-400 pl-4 py-4 select-none text-sm text-center sm:text-left">{{ $threads_counter }} Unterhaltungen</p>
+								<p class="uppercase text-gray-400 pl-4 py-0 sm:py-4 select-none text-sm text-center sm:text-left">{{ $threads_counter }} Unterhaltungen</p>
 
 							@endif
 

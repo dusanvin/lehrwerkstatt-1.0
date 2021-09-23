@@ -18,7 +18,7 @@
 
     </head>
 
-    <body style="background-color: white;">
+    <body>
 
         <div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
 
@@ -27,14 +27,14 @@
             @include('layouts.navigation')
 
             <!-- Nav -->
-            
-            <!-- Content --> <!-- Del:  h-screen  Old colour: EDF2F7-->
 
-            <div class="px-8 py-8 text-gray-700 w-screen bg-white sm:rounded-r-lg" style="background-color: #EDF2F7;">
+            <!-- Inhalt -->
+
+            <div class="px-3 sm:px-8 py-8 text-gray-700 w-screen sm:rounded-r-lg" style="background-color: #EDF2F7;">
 
                 <div class="overflow-hidden sm:rounded-lg">
 
-                    <div class="px-4 py-5 sm:px-6">
+                    <div class="grid justify-items-center sm:justify-items-start select-none">
 
                         <h2 class="text-lg leading-6 font-medium text-gray-900">
 
@@ -42,9 +42,9 @@
 
                         </h2>
 
-                        <p class="mt-1 text-sm text-gray-500">
+                        <p class="mt-1 text-sm text-gray-500 grid text-center sm:text-left">
 
-                            Erhalten Sie Einblicke in die Nutzungsstatistiken des Portals. Momentane Statistiken sind hinsichtlich der Registrierungen, Abmeldungen, Nutzenden, Zuweisungen, Studiengänge und des Betreuungsverhältnisses einsehbar.  Die Daten sind für <strong>Moderierende</strong> und <strong>Administrierende</strong> einsehbar. Kontaktieren Sie bei technischen Anregungen und Anliegen das <a href="mailto:digillab@zlbib.uni-augsburg.de" class="text-purple-500 hover:text-purple-700">DigiLLab</a>.
+                            Erhalten Sie Einblicke in die Nutzungsstatistiken des Portals. Momentane Statistiken sind hinsichtlich der Registrierungen, Abmeldungen, Nutzenden, Zuweisungen, Studiengänge und des Betreuungsverhältnisses einsehbar. Kontaktieren Sie bei technischen Anregungen und Anliegen das <a href="mailto:digillab@zlbib.uni-augsburg.de" class="text-purple-500 hover:text-purple-700">DigiLLab</a>.
 
                         </p>
 
@@ -52,7 +52,7 @@
 
                     <!-- Diagramme -->
 
-                    <div class="flex flex-wrap px-4 pt-4 pb-1 mx-auto mt-6 bg-white rounded-md">
+                    <div class="flex flex-wrap px-4 pt-4 pb-1 mx-1 mt-0 sm:mt-6 bg-white rounded-md">
 
                         <!-- Alle Nutzenden -->
 
@@ -199,7 +199,7 @@
 
                     <!-- Kreisdiagramme -->
 
-                    <div class="grid grid-cols-1 md:grid-cols-4 pt-8" style="background-color: #EDF2F7;">
+                    <div class="grid grid-cols-1 md:grid-cols-4 pt-1 sm:pt-8" style="background-color: #EDF2F7;">
 
                         <!-- Nutzende im relativen Vergleich -->
 

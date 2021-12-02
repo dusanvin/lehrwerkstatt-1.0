@@ -55,14 +55,15 @@ class RegisteredUserController extends Controller
             'privacy_statement' => 'accepted'
         ]);
 
-        //$request->request->add(['role' => 'Lehrer']);
+        $request->request->add(['username' => 'Keine Angabe.']);
 
         $user = User::create([
     		'vorname' => $request->firstname,
     		'nachname' => $request->lastname,
     		'email' => $request->email,
-            //'role' => $request->role,
+            'role' => $request->role,
     		'password' => Hash::make($request->password),
+            'username' => $request->username,
         ]);
 
         // Helfende 4, Lehrende 5

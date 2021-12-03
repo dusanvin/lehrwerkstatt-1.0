@@ -214,26 +214,17 @@
                                 @enderror
                             
                                 <script type="text/javascript">
-                            
+
                                     flatpickr("#datum", {
-                                        plugins: [
-                                            new monthSelectPlugin({
-                                              shorthand: true, //defaults to false
-                                              dateFormat: "F Y", //defaults to "F Y"
-                                              altFormat: "F Y", //defaults to "F Y"
-                                              theme: "dark", // defaults to "light"
-                                              //"locale": "de",
-                                            })
-                                        ],
-                                        // altInput: true,
-                                        // altFormat: "F Y", // was "j F, Y"
-                                        // dateFormat: "Y-m-d", // was "Y-F"
-                                        // theme: "dark",
-                                        //minDate: "today",
-                                        // mode: "range",
+                                        altInput: true,
+                                        altFormat: "F Y", // was "j F, Y"
+                                        dateFormat: "Y-m-d", // was "Y-F"
+                                        theme: "dark",
+                                        minDate: "today",
+                                        mode: "range",
                                         "locale": "de",
                                     });
-                                
+
                                 </script>
                             
                             </div>

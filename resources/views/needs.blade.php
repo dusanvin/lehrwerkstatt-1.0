@@ -381,7 +381,7 @@
 
                                             @if(!$need->ownedBy(auth()->user()))
 
-                                                <!-- Anfragen -->
+                                                <!-- Anfragen 
 
                                                 <form action="{{ route('needs.requests', $need) }}" method="post" >
 
@@ -391,15 +391,33 @@
 
                                                     <button type="submit" class="py-2 text-purple-300 hover:text-purple-500 text-xs flex focus:outline-none ml-4">
 
-                                                        <!--<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                            <path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd" />
-                                                        </svg></span>--><span class="">Anfragen
+                                                        <span class="">Anfragen
 
                                                     </button>
 
                                                 </form>
 
-                                                <!-- Anfragen -->
+                                                
+
+                                                Anfragen --> 
+
+                                                <a href="/messages/createwithuser" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
+
+                                                    <div class="">
+
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" /></svg>
+
+                                                    </div>
+
+                                                    <div class="pl-3">
+
+                                                        <span class="text-xs">Neue Nachricht</span>
+
+                                                    </div>
+
+                                                </a>
+
+                                                
 
                                                 <!-- Anmailen -->
 

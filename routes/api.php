@@ -110,7 +110,11 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
 
 
-    /* Bedarfe */
+    /* Bedarfe 
+    Route::group(['prefix' => 'needs'], function () {
+        Route::get('{id}', ['as' => 'needs.show', 'uses' => 'App\Http\Controllers\MessagesController@show']);
+    });*/
+
     Route::get('/needs', [NeedsController::class,'index'])
         ->name('needs');
 
@@ -146,6 +150,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::group(['prefix' => 'messages'], function () {
         Route::get('/', ['as' => 'messages', 'uses' => 'App\Http\Controllers\MessagesController@index']);
         Route::get('create', ['as' => 'messages.create', 'uses' => 'App\Http\Controllers\MessagesController@create']);
+        Route::get('createwithuser', ['as' => 'messages.createwithuser', 'uses' => 'App\Http\Controllers\MessagesController@createwithuser']);
         Route::post('/', ['as' => 'messages.store', 'uses' => 'App\Http\Controllers\MessagesController@store']);
         Route::get('{id}', ['as' => 'messages.show', 'uses' => 'App\Http\Controllers\MessagesController@show']);
         Route::put('{id}', ['as' => 'messages.update', 'uses' => 'App\Http\Controllers\MessagesController@update']);

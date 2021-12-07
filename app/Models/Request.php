@@ -15,6 +15,6 @@ class Request extends Model
 
     public function requestable()
     {
-        return this->morphTo();
+        return $this->morphTo();
     }
 }

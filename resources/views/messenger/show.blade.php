@@ -22,13 +22,13 @@
 
                     <div class="">
 
-                        <h2 class="text-lg leading-6 font-medium text-gray-900">
+                        <h2 class="text-lg leading-6 font-medium text-gray-900" style="user-select:none;">
 
                             Gesprächsverlauf mit {{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}
 
                         </h2>
 
-                        <p class="mt-1 text-sm text-gray-500">
+                        <p class="mt-1 text-sm text-gray-500" style="user-select:none;">
 
                             {{ $thread->subject }}
 

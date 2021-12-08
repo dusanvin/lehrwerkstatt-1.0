@@ -132,6 +132,8 @@
 
                                             <li id={{ $user->id }} onclick=setReceiver(this.id)>{{ $user->vorname }} {{ $user->nachname }} ({{ $user->id }})</li>
 
+                                            <!-- $need->ownedBy(auth()->user()) -->
+
                                         @endforeach
                                     </div>
                                 </div>        

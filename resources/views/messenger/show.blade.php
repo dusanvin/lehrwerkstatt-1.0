@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <body>
 
     <div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
@@ -25,17 +24,17 @@
 
                         <h2 class="text-lg leading-6 font-medium text-gray-900">
 
-                        Gesprächsverlauf mit {{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}
+                            Gesprächsverlauf mit {{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}
 
-                    </h2>
+                        </h2>
 
-                    <p class="mt-1 text-sm text-gray-500">
+                        <p class="mt-1 text-sm text-gray-500">
 
-                        {{ $thread->subject }}
+                            {{ $thread->subject }}
 
-                    </p>
+                        </p>
 
-                </div>
+                    </div>
 
                 <!-- Header -->
 

@@ -130,7 +130,7 @@
 
                                         @foreach($users as $user)
 
-                                        <li id={{ $user->id }} onclick=setReceiver(this.id)>{{ $user->vorname }} {{ $user->nachname }} ({{ $user->id }})</li>
+                                            <li id={{ $user->id }} onclick=setReceiver(this.id)>{{ $user->vorname }} {{ $user->nachname }} ({{ $user->id }})</li>
 
                                         @endforeach
                                     </div>

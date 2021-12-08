@@ -26,6 +26,7 @@ class MessagesController extends Controller
             ->latest('updated_at')
             ->simplePaginate(5);
 
+
         // All threads that user is participating in, with new messages
         //$threads = Thread::forUserWithNewMessages(Auth::id())->latest('updated_at')->get();
         
@@ -75,17 +76,6 @@ class MessagesController extends Controller
 
         return view('messenger.create', compact('users'));
     }
-
-    public function createwithuser()
-    {
-        $users = User::where('id', '!=', Auth::id())->get();
-
-        // Suche mit Argument 'Vince' eingrenzen
-        //$users = User::Where('vorname', 'LIKE', '%'. $this->vince . '%')->get();
-
-        return view('messenger.createwithuser', compact('users'));
-    }
-
 
     public function store()
     {

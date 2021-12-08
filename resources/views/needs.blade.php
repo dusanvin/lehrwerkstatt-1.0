@@ -379,45 +379,34 @@
 
                                             <!-- Anfragen -->
 
-                                            @if(!$need->ownedBy(auth()->user()))
+                                            @if(!$need->ownedBy(auth()->user()))                                               
 
-                                                <!-- Anfragen 
+                                                <!-- Anfragen --> 
 
-                                                <form action="{{ route('needs.requests', $need) }}" method="post" >
+                                                <form action="{{ route('messages.store') }}" method="post">
 
-                                                    @csrf
+                                                    {{ csrf_field() }}
 
-                                                    @method('DELETE')
+                                                    <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="{{ $need->id }}" name="subject" type="hidden">
 
-                                                    <button type="submit" class="py-2 text-purple-300 hover:text-purple-500 text-xs flex focus:outline-none ml-4">
+                                                    <textarea name="message" cols="30" rows="8" class="py-2 px-3 bg-gray-100 border-1 border-gray-100 w-full rounded-sm form-control focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent" placeholder="Ihre Nachricht." style="display:none;">{{ $need->body }}</textarea>
+                                                    
+                                                        <div class="checkbox">
+                                                                
+                                                            <input name="recipients[]" value="{{  $need->user->id }}" type="hidden">
+                                                                
+                                                        </div>
 
-                                                        <span class="">Anfragen
+                                                   
+                                                        <div class="form-group">
 
-                                                    </button>
+                                                            <button type="submit" class="btn btn-primary form-control">Anfragen</button>
+
+                                                        </div>
 
                                                 </form>
 
-                                                
-
-                                                Anfragen --> 
-
-                                                <a href="/messages/createwithuser" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
-
-                                                    <div class="">
-
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" /></svg>
-
-                                                    </div>
-
-                                                    <div class="pl-3">
-
-                                                        <span class="text-xs">Neue Nachricht</span>
-
-                                                    </div>
-
-                                                </a>
-
-                                                
+                                                <!-- Anfragen --> 
 
                                                 <!-- Anmailen -->
 

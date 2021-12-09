@@ -142,7 +142,11 @@
 
                                     </div>
 
+<<<<<<< Updated upstream
                                
+=======
+                                
+>>>>>>> Stashed changes
 
                             @else
 

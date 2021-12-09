@@ -61,6 +61,16 @@ class NeedsController extends Controller
         return back();
     }
 
+    public function setinactive(Need $need) {
+        if(!$need->ownedBy(auth()->user())) {
+            return back();
+        }
+        $need->active = 0;
+        $need->save();
+
+        return back();
+    }
+
     public function destroy(Need $need)
     {
         if(!$need->ownedBy(auth()->user())) {

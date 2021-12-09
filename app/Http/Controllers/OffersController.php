@@ -61,6 +61,16 @@ class OffersController extends Controller
         return back();
     }
 
+    public function setinactive(Offer $offer) {
+        if(!$offer->ownedBy(auth()->user())) {
+            return back();
+        }
+        $offer->active = 0;
+        $offer->save();
+
+        return back();
+    }
+
     public function destroy(Offer $offer)
     {
         if(!$offer->ownedBy(auth()->user())) {

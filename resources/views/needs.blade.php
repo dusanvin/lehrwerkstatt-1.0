@@ -299,8 +299,13 @@
                                             </div>
 
                                             <div class="flex justify-end">
+                                            
+                                            <form action="{{ route('needs.setinactive', $need) }}" method="post" >
 
-                                                Angebot deaktivieren
+                                                @csrf
+                                                <button type="submit">Angebot deaktivieren</button>
+
+                                            </form>
                                                 
                                                 <!-- Löschen -->  
 

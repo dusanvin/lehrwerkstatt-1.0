@@ -369,6 +369,13 @@
 
                                     <div class="flex justify-end">
 
+                                    <form action="{{ route('offers.setinactive', $offer) }}" method="post" >
+
+                                        @csrf
+                                        <button type="submit">Angebot deaktivieren</button>
+
+                                    </form>
+
                                         <!-- Löschen -->
 
                                         @if($offer->ownedBy(auth()->user()))

@@ -299,6 +299,8 @@
 
                         @foreach($offers as $offer)
 
+                        @if ($offer->active)
+
                             <div class="my-2 bg-white rounded-md">
 
                                 <div class="px-4 sm:px-6 py-5">
@@ -455,6 +457,8 @@
 
 
                             </div>
+
+                        @endif
 
                         @endforeach
 

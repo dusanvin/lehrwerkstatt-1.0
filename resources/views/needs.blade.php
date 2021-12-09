@@ -64,6 +64,7 @@
 
                         @foreach($needs as $need)
 
+<<<<<<< HEAD
                              @if($need->ownedBy(auth()->user()))
 
                                 
@@ -73,6 +74,15 @@
                                         <p class="flex">
 
                                             <a x-on:click.prevent="show=!show" class="bg-gray-800 hover:bg-gray-900 px-4 py-3 cursor-pointer focus:outline-none text-sm text-gray-200 w-full">
+=======
+                            @if(!$need->ownedBy(auth()->user()))
+
+                                <div class="my-2 bg-white rounded-md">
+
+                            @else
+
+                                <div class="my-2 bg-gray-800 rounded-md">
+>>>>>>> parent of 5fd919d (needs/offers use active)
 
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2 mb-1" viewBox="0 0 20 20" fill="currentColor">
                                                 
@@ -84,6 +94,7 @@
 
                                             </a>
 
+<<<<<<< HEAD
                                         </p> 
 
                                         <div x-show="show" class="px-4 py-3 bg-gray-800 text-gray-400 text-sm transition-all duration-500 ease-in-out">
@@ -116,9 +127,50 @@
                                                     @csrf
 
                                                     @method('DELETE')
+=======
+                                <div class="px-4 sm:px-6 py-5 shadow-lg">
+
+                                    <!-- Informationen -->
+
+                                    <div class="flex items-center justify-between">
+
+                                        <a href="" class="flex">
+
+                                            @if($need->ownedBy(auth()->user()))
+
+                                                <span class="text-gray-300">Ihr Bedarf</span>
+
+                                                <div x-data={show:false}>
+                                                    <p class="flex">
+                                                        <a x-on:click.prevent="show=!show" class="bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-3 cursor-pointer focus:outline-none mr-2">
+                                                        <span class="text-gray-300">Ihr Bedarf</span>
+                                                        </a>
+                                                    </p> 
+                                                    <div x-show="show" class="border px-4 py-3 my-2 text-gray-700">
+                                                        This is an example of tailwind css collapse with alpine js and tailwindcss. This collapse is toggle by either the above button or a href anochor tags.
+                                                    </div>
+                                                </div>
+
+                                            @else
+
+                                                {{ $need->user->vorname }} {{ $need->user->nachname }}
+
+                                            @endif
+                                            
+                                        </a>
+
+                                        <div>
+
+                                            <!-- <a href="mailto:{{ $need->user->email }}" class="text-purple-500 hover:text-purple-700 text-sm mr-5">{{ $need->user->email }}</a>-->
+
+                                            <span class="text-gray-400 text-xs"><strong>Bedarf #{{ $need->id }}</strong> erstellt {{ $need->created_at->diffForHumans() }}</span>
+
+                                        </div>
+>>>>>>> parent of 5fd919d (needs/offers use active)
 
                                                     <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-black text-sm flex focus:outline-none ml-4">
 
+<<<<<<< HEAD
                                                         <div class="grid justify-items-center">
 
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -237,6 +289,115 @@
                                                 <!-- Anfragen --> 
 
                                             @else                                       
+=======
+                                    <!-- Informationen -->
+
+                                    <div class="flex flex-wrap content-start">
+                                        
+                                        <p class="text-gray-400 text-sm mr-5">Betreuungsrahmen: <span class="font-medium">{{ $need->rahmen }} Person/en</span></p>
+
+                                        <p class="text-gray-400 text-sm mr-5">Fremdsprachkenntnisse: <span class="font-medium">{{ $need->sprachkenntnisse }}</span></p>
+
+                                        <p class="text-gray-400 text-sm mr-5">Studiengang: <span class="font-medium">{{ $need->studiengang }}</span></p>
+
+                                        <p class="text-gray-400 text-sm mr-5">Fachsemester: <span class="font-medium">{{ $need->fachsemester }}</span></p>
+
+                                    </div>
+
+                                    <!-- Informationen -->
+
+                                    <!-- Body -->
+
+                                    @if($need->ownedBy(auth()->user()))
+
+                                        <p class="text-gray-400 text-sm my-3">{{ $need->body }}</p>
+
+                                    @else
+
+                                        <p class="text-gray-600 text-sm my-3">{{ $need->body }}</p>
+
+                                    @endif
+
+                                    <!-- Body -->
+
+                                    <!-- Buttons -->
+
+                                    <div class="flex justify-end">
+
+                                        @auth
+
+                                            @if(!$need->ownedBy(auth()->user()))                                               
+
+                                                <!-- Anfragen --> 
+
+                                                <form action="{{ route('messages.store') }}" method="post">
+
+                                                    {{ csrf_field() }}
+
+                                                    <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="Anfrage zu Bedarf #{{ $need->id }}" name="subject" type="hidden">
+
+                                                    <textarea name="message" placeholder="Ihre Nachricht." style="display:none;">Ich möchte auf Ihren Bedarf #{{ $need->id }} reagieren. Sie suchen {{ $need->rahmen }} Person/en, wobei folgende Spezifika mit angegeben wurden: Sprachkenntnisse: {{ $need->sprachkenntnisse }}, Studiengang {{ $need->studiengang }} und Fachsemester: {{ $need->fachsemester }}. Der Betreuungszeitraum geht vom {{ date('d.m.Y', strtotime($need->datum_start)) }} bis zum {{ date('d.m.Y', strtotime($need->datum_end)) }}. Die Beschreibung Ihres Angebots lautet: {{ $need->body }} - Hätten Sie Interesse an meinem Angebot?</textarea>
+                                                    
+                                                        <div class="checkbox">
+                                                                
+                                                            <input name="recipients[]" value="{{  $need->user->id }}" type="hidden">
+                                                                
+                                                        </div>
+
+                                                        <div class="form-group">
+
+                                                            <button type="submit" class="ml-4 py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none">
+
+                                                                <div class="grid justify-items-center">
+                                                                
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                                                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+
+                                                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+
+                                                                    </svg>
+
+                                                                    <!-- <span class="mt-1 mx-3">Anfragen</span> -->
+
+                                                                </div>
+
+                                                            </button>
+
+                                                        </div>
+
+                                                </form>
+
+                                                <!-- Anfragen --> 
+
+                                            @else
+
+                                                <!-- Löschen -->  
+
+                                                <form action="{{ route('needs.destroy', $need) }}" method="post" >
+
+                                                    @csrf
+
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-black text-sm flex focus:outline-none ml-4">
+
+                                                        <div class="grid justify-items-center">
+
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                                            </svg>
+
+                                                            <!-- <span class="mx-3 mt-1">Zurückziehen</span> -->
+
+                                                        </div>
+
+                                                    </button>
+
+                                                </form>
+
+                                                <!-- Löschen -->                                       
+>>>>>>> parent of 5fd919d (needs/offers use active)
 
                                             @endif
 
@@ -304,8 +465,11 @@
 
                             </div>
 
+<<<<<<< HEAD
                             @endif
 
+=======
+>>>>>>> parent of 5fd919d (needs/offers use active)
                         @endforeach
 
                         <div class="mt-5">
@@ -319,9 +483,15 @@
                         <p>Keine Einträge vorhanden.</p>
 
                     @endif
+<<<<<<< HEAD
 
                     <!-- Zeige alle needs -->
 
+=======
+
+                    <!-- Zeige alle needs -->
+
+>>>>>>> parent of 5fd919d (needs/offers use active)
                 </div>
 
                 <!-- Alle Bedarfe -->
@@ -358,7 +528,11 @@
                               
                                 <div class="mt-1">
                                     
+<<<<<<< HEAD
                                     <label for="body" class="sr-only">Body</label><textarea name="body" id="body" cols="30" rows="4" class="py-2 px-3 bg-gray-100 border-2 border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent w-full rounded-lg @error('body') border-red-500 @enderror" placeholder="Beschreiben Sie Ihren Bedarf."></textarea>
+=======
+                                    <label for="body" class="sr-only">Body</label><textarea name="body" id="body" cols="30" rows="4" class="py-2 px-3 bg-gray-100 border-1 border-purple-900 w-full rounded-lg @error('body') border-red-500 @enderror" placeholder="Beschreiben Sie Ihren Bedarf."></textarea>
+>>>>>>> parent of 5fd919d (needs/offers use active)
 
                                     @error('body')
 
@@ -540,6 +714,7 @@
                                     <!-- Datum -->
 
                                     <!-- Fachsemester -->
+<<<<<<< HEAD
 
                                     <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
 
@@ -573,6 +748,41 @@
                                                 <option>18</option>
                                             </select>
 
+=======
+
+                                    <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
+
+                                        <p class="font-medium text-gray-800 leading-none">Fachsemester</p>
+
+                                        <p class="text-xs text-gray-500 mt-1 mb-3">Wählen Sie aus, welches Fachsemester Ihr*e Helfer*in mindestens erreicht haben sollte.</p>
+
+                                        <div>
+
+                                            <label for="fachsemester" class="sr-only flex items-center">fachsemester</label>
+
+                                            <select name="fachsemester" id="fachsemester" class="text-gray-500 text-xs py-1 rounded-sm border-2 border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent @error('fachsemester') border-red-500 @enderror">
+                                                <option>0</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                                <option>7</option>
+                                                <option>8</option>
+                                                <option>9</option>
+                                                <option>10</option>
+                                                <option>11</option>
+                                                <option>12</option>
+                                                <option>13</option>
+                                                <option>14</option>
+                                                <option>15</option>
+                                                <option>16</option>
+                                                <option>17</option>
+                                                <option>18</option>
+                                            </select>
+
+>>>>>>> parent of 5fd919d (needs/offers use active)
                                             @error('fachsemester')
 
                                                 <div class="text-red-500 mt-2 text-sm">
@@ -624,6 +834,7 @@
             </div>
 
             <!-- Tab Contents -->
+<<<<<<< HEAD
 
           </div>
 
@@ -634,6 +845,18 @@
                     let tabTogglers = tabsContainer.querySelectorAll("a");
                     console.log(tabTogglers);
 
+=======
+
+          </div>
+
+                <script>
+
+                    let tabsContainer = document.querySelector("#tabs");
+
+                    let tabTogglers = tabsContainer.querySelectorAll("a");
+                    console.log(tabTogglers);
+
+>>>>>>> parent of 5fd919d (needs/offers use active)
                     tabTogglers.forEach(function(toggler) {
                       toggler.addEventListener("click", function(e) {
                         e.preventDefault();

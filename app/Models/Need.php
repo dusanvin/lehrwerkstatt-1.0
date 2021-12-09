@@ -16,7 +16,8 @@ class Need extends Model
         'studiengang',
         'datum_start',
         'datum_end',
-        'fachsemester'
+        'fachsemester',
+        'active'
     ];
 
     public function likedBy (User $user)

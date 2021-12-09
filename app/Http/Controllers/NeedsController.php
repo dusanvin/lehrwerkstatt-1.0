@@ -55,6 +55,7 @@ class NeedsController extends Controller
             'fachsemester' => $request->fachsemester,
             'datum_start' => $startDate,
             'datum_end' => $endDate,
+            'active' => 1,
         ]);
 
         return back();

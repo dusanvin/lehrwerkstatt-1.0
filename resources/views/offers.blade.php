@@ -369,12 +369,26 @@
 
                                     <div class="flex justify-end">
 
+                                    @if ($offer->active == 1)
+
                                     <form action="{{ route('offers.setinactive', $offer) }}" method="post" >
 
                                         @csrf
                                         <button type="submit">Angebot deaktivieren</button>
 
                                     </form>
+
+                                    @else 
+
+                                    <form action="{{ route('offers.setactive', $offer) }}" method="post" >
+
+                                        @csrf
+                                        <button type="submit">Angebot aktivieren</button>
+
+                                    </form>
+
+                                    @endif
+                                
 
                                         <!-- Löschen -->
 

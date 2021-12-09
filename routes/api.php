@@ -97,8 +97,12 @@ Route::middleware(['auth', 'verified'])->group(function() {
         ->name('offers.likes');
 
     /* Angebote: inaktiv setzen */
-    Route::post('/offers/{offer}', [OffersController::class,'setinactive'])
+    Route::post('/offers/{offer}/setinactive', [OffersController::class,'setinactive'])
         ->name('offers.setinactive');
+
+    /* Angebote: aktiv setzen */
+    Route::post('/offers/{offer}/setactive', [OffersController::class,'setactive'])
+        ->name('offers.setactive');
 
     /* Angebote Likes Löschen */
     Route::delete('/offers/{offer}/likes', [OfferLikeController::class,'destroy'])
@@ -126,8 +130,12 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::post('/needs', [NeedsController::class,'store']);
 
     /* Bedarf: inaktiv setzen */
-    Route::post('/needs/{need}', [NeedsController::class,'setinactive'])
+    Route::post('/needs/{need}/setinactive', [NeedsController::class,'setinactive'])
         ->name('needs.setinactive');
+
+    /* Bedarf: aktiv setzen */
+    Route::post('/needs/{need}/setactive', [NeedsController::class,'setactive'])
+        ->name('needs.setactive');
 
     /* Bedarf: Löschen */
     Route::delete('/needs/{need}', [NeedsController::class,'destroy'])

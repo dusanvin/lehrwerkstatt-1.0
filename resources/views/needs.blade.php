@@ -300,12 +300,25 @@
 
                                             <div class="flex justify-end">
                                             
+                                            @if ($need->active)
+
                                             <form action="{{ route('needs.setinactive', $need) }}" method="post" >
 
                                                 @csrf
-                                                <button type="submit">Angebot deaktivieren</button>
+                                                <button type="submit">Bedarf deaktivieren</button>
 
                                             </form>
+
+                                            @else 
+
+                                            <form action="{{ route('needs.setactive', $need) }}" method="post" >
+
+                                                @csrf
+                                                <button type="submit">Bedarf aktivieren</button>
+
+                                            </form>
+                                            
+                                            @endif
                                                 
                                                 <!-- Löschen -->  
 

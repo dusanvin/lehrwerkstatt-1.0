@@ -257,6 +257,8 @@
 
                         @foreach($needs as $need)
 
+                        @if ($need->active)
+
                             @if($need->ownedBy(auth()->user()))
 
                                     <div x-data={show:false} class="mb-2 shadow-lg">
@@ -336,6 +338,8 @@
                             @else
 
                             @endif
+
+                        @endif
 
                         @endforeach
 

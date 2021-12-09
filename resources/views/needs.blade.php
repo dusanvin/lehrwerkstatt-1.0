@@ -62,182 +62,182 @@
 
                         @foreach($needs as $need)
 
-                            @if(!$need->ownedBy(auth()->user()))
+                            @if(!$need->ownedBy(auth()->user()) && ($need->active == 1))
 
+                                    <div class="my-2 bg-white rounded-md">
 
-                                <div class="my-2 bg-white rounded-md">
+                                        <div class="px-4 sm:px-6 py-5 shadow-lg">
 
-                                    <div class="px-4 sm:px-6 py-5 shadow-lg">
+                                            <!-- Informationen -->
 
-                                        <!-- Informationen -->
+                                            <div class="flex items-center justify-between">
 
-                                        <div class="flex items-center justify-between">
+                                                {{ $need->user->vorname }} {{ $need->user->nachname }}                                        
 
-                                            {{ $need->user->vorname }} {{ $need->user->nachname }}                                        
+                                                <div>
 
-                                            <div>
+                                                    <!-- <a href="mailto:{{ $need->user->email }}" class="text-purple-500 hover:text-purple-700 text-sm mr-5">{{ $need->user->email }}</a>-->
 
-                                                <!-- <a href="mailto:{{ $need->user->email }}" class="text-purple-500 hover:text-purple-700 text-sm mr-5">{{ $need->user->email }}</a>-->
+                                                    <span class="text-gray-400 text-xs"><strong>Bedarf #{{ $need->id }}</strong> erstellt {{ $need->created_at->diffForHumans() }}</span>
 
-                                                <span class="text-gray-400 text-xs"><strong>Bedarf #{{ $need->id }}</strong> erstellt {{ $need->created_at->diffForHumans() }}</span>
+                                                </div>
 
                                             </div>
 
-                                        </div>
+                                            <!-- Informationen -->
 
-                                        <!-- Informationen -->
+                                            <div class="flex flex-wrap content-start">
+                                                
+                                                <p class="text-gray-400 text-sm mr-5">Betreuungsrahmen: <span class="font-medium">{{ $need->rahmen }} Person/en</span></p>
 
-                                        <div class="flex flex-wrap content-start">
+                                                <p class="text-gray-400 text-sm mr-5">Fremdsprachkenntnisse: <span class="font-medium">{{ $need->sprachkenntnisse }}</span></p>
+
+                                                <p class="text-gray-400 text-sm mr-5">Studiengang: <span class="font-medium">{{ $need->studiengang }}</span></p>
+
+                                                <p class="text-gray-400 text-sm mr-5">Fachsemester: <span class="font-medium">{{ $need->fachsemester }}</span></p>
+
+                                            </div>
+
+                                            <!-- Informationen -->
+
+                                            <!-- Body -->
                                             
-                                            <p class="text-gray-400 text-sm mr-5">Betreuungsrahmen: <span class="font-medium">{{ $need->rahmen }} Person/en</span></p>
+                                            <p class="text-gray-600 text-sm my-3">{{ $need->body }}</p>
 
-                                            <p class="text-gray-400 text-sm mr-5">Fremdsprachkenntnisse: <span class="font-medium">{{ $need->sprachkenntnisse }}</span></p>
+                                            <!-- Body -->
 
-                                            <p class="text-gray-400 text-sm mr-5">Studiengang: <span class="font-medium">{{ $need->studiengang }}</span></p>
+                                            <!-- Buttons -->
 
-                                            <p class="text-gray-400 text-sm mr-5">Fachsemester: <span class="font-medium">{{ $need->fachsemester }}</span></p>
+                                            <div class="flex justify-end">
 
-                                        </div>
+                                                @auth
 
-                                        <!-- Informationen -->
+                                                    @if(!$need->ownedBy(auth()->user()))                                               
 
-                                        <!-- Body -->
-                                        
-                                        <p class="text-gray-600 text-sm my-3">{{ $need->body }}</p>
+                                                        <!-- Anfragen --> 
 
-                                        <!-- Body -->
+                                                        <form action="{{ route('messages.store') }}" method="post">
 
-                                        <!-- Buttons -->
+                                                            {{ csrf_field() }}
 
-                                        <div class="flex justify-end">
+                                                            <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="Anfrage zu Bedarf #{{ $need->id }}" name="subject" type="hidden">
 
-                                            @auth
+                                                            <textarea name="message" placeholder="Ihre Nachricht." style="display:none;">Ich möchte auf Ihren Bedarf #{{ $need->id }} reagieren. Sie suchen {{ $need->rahmen }} Person/en, wobei folgende Spezifika mit angegeben wurden: Sprachkenntnisse: {{ $need->sprachkenntnisse }}, Studiengang {{ $need->studiengang }} und Fachsemester: {{ $need->fachsemester }}. Der Betreuungszeitraum geht vom {{ date('d.m.Y', strtotime($need->datum_start)) }} bis zum {{ date('d.m.Y', strtotime($need->datum_end)) }}. Die Beschreibung Ihres Angebots lautet: {{ $need->body }} - Hätten Sie Interesse an meinem Angebot?</textarea>
+                                                            
+                                                                <div class="checkbox">
+                                                                        
+                                                                    <input name="recipients[]" value="{{  $need->user->id }}" type="hidden">
+                                                                        
+                                                                </div>
 
-                                                @if(!$need->ownedBy(auth()->user()))                                               
+                                                                <div class="form-group">
 
-                                                    <!-- Anfragen --> 
+                                                                    <button type="submit" class="ml-4 py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none">
 
-                                                    <form action="{{ route('messages.store') }}" method="post">
+                                                                        <div class="grid justify-items-center">
+                                                                        
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                                        {{ csrf_field() }}
+                                                                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
 
-                                                        <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="Anfrage zu Bedarf #{{ $need->id }}" name="subject" type="hidden">
+                                                                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
 
-                                                        <textarea name="message" placeholder="Ihre Nachricht." style="display:none;">Ich möchte auf Ihren Bedarf #{{ $need->id }} reagieren. Sie suchen {{ $need->rahmen }} Person/en, wobei folgende Spezifika mit angegeben wurden: Sprachkenntnisse: {{ $need->sprachkenntnisse }}, Studiengang {{ $need->studiengang }} und Fachsemester: {{ $need->fachsemester }}. Der Betreuungszeitraum geht vom {{ date('d.m.Y', strtotime($need->datum_start)) }} bis zum {{ date('d.m.Y', strtotime($need->datum_end)) }}. Die Beschreibung Ihres Angebots lautet: {{ $need->body }} - Hätten Sie Interesse an meinem Angebot?</textarea>
-                                                        
-                                                            <div class="checkbox">
-                                                                    
-                                                                <input name="recipients[]" value="{{  $need->user->id }}" type="hidden">
-                                                                    
-                                                            </div>
+                                                                            </svg>
 
-                                                            <div class="form-group">
+                                                                            <!-- <span class="mt-1 mx-3">Anfragen</span> -->
 
-                                                                <button type="submit" class="ml-4 py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none">
+                                                                        </div>
 
-                                                                    <div class="grid justify-items-center">
-                                                                    
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                    </button>
 
-                                                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                                                </div>
 
-                                                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                                                        </form>
 
-                                                                        </svg>
+                                                        <!-- Anfragen --> 
 
-                                                                        <!-- <span class="mt-1 mx-3">Anfragen</span> -->
+                                                    @else                                       
 
-                                                                    </div>
+                                                    @endif
 
-                                                                </button>
+                                                    <!-- Like / Unlike -->
 
-                                                            </div>
+                                                    <div class="grid justify-items-center ml-2">
 
-                                                    </form>
+                                                    @if (!$need->likedBy(auth()->user()))
 
-                                                    <!-- Anfragen --> 
+                                                        <form action="{{ route('needs.likes', $need) }}" method="post" >
 
-                                                @else                                       
+                                                            @csrf
 
-                                                @endif
+                                                            <!-- Like -->
 
-                                                <!-- Like / Unlike -->
+                                                            <button type="submit" class="pt-2 pb-1 text-gray-400 hover:text-gray-700 text-xs flex focus:outline-none">
 
-                                                <div class="grid justify-items-center ml-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                  <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                                                                </svg><span class="mx-1 mt-1">{{ $need->likes->count() }}</span>
 
-                                                @if (!$need->likedBy(auth()->user()))
+                                                            </button>
 
-                                                    <form action="{{ route('needs.likes', $need) }}" method="post" >
+                                                             <!-- Like -->
 
-                                                        @csrf
+                                                        </form>
 
-                                                        <!-- Like -->
+                                                    @else
 
-                                                        <button type="submit" class="pt-2 pb-1 text-gray-400 hover:text-gray-700 text-xs flex focus:outline-none">
+                                                        <form action="{{ route('needs.likes', $need) }}" method="post" >
 
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                              <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                                                            </svg><span class="mx-1 mt-1">{{ $need->likes->count() }}</span>
+                                                            @csrf
 
-                                                        </button>
+                                                            @method('DELETE')
 
-                                                         <!-- Like -->
+                                                             <!-- Unlike -->
 
-                                                    </form>
+                                                            <button type="submit" class="pt-2 text-gray-400 hover:text-gray-700 text-xs flex focus:outline-none">
 
-                                                @else
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                  <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                                                                </svg><span class="mx-1 mt-1">{{ $need->likes->count() }}</span>
 
-                                                    <form action="{{ route('needs.likes', $need) }}" method="post" >
+                                                            </button>
 
-                                                        @csrf
+                                                             <!-- Unlike -->
 
-                                                        @method('DELETE')
+                                                        </form>
 
-                                                         <!-- Unlike -->
+                                                    @endif
 
-                                                        <button type="submit" class="pt-2 text-gray-400 hover:text-gray-700 text-xs flex focus:outline-none">
+                                                    <!-- Like / Unlike -->
 
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                              <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                                                            </svg><span class="mx-1 mt-1">{{ $need->likes->count() }}</span>
+                                                    <!-- <div class="text-xs grid justify-center text-purple-300">Gefällt mir</div> -->
 
-                                                        </button>
+                                                </div>
 
-                                                         <!-- Unlike -->
-
-                                                    </form>
-
-                                                @endif
-
-                                                <!-- Like / Unlike -->
-
-                                                <!-- <div class="text-xs grid justify-center text-purple-300">Gefällt mir</div> -->
+                                                @endauth
 
                                             </div>
 
-                                            @endauth
+                                            <!-- Buttons -->
 
                                         </div>
-
-                                        <!-- Buttons -->
 
                                     </div>
 
-                                </div>
+                                    <div class="mt-5">
 
-                                <div class="mt-5">
+                                        {{ $needs->links() }}
 
-                                    {{ $needs->links() }}
+                                    </div>
 
-                                </div>
-
-                            @else
 
                             @endif
 
                         @endforeach
 
                     @else
+
+                    <!-- <p>Keine aktiven Bedarfe momentan vorhanden.</p> -->
 
                     @endif
 
@@ -299,6 +299,8 @@
                                             </div>
 
                                             <div class="flex justify-end">
+
+                                                Angebot deaktivieren
                                                 
                                                 <!-- Löschen -->  
 

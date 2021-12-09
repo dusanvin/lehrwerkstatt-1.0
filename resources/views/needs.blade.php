@@ -142,12 +142,6 @@
 
                                     </div>
 
-<<<<<<< Updated upstream
-                               
-=======
-                                
->>>>>>> Stashed changes
-
                             @else
 
                             <div class="my-2 bg-white rounded-md">

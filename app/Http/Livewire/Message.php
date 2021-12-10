@@ -12,7 +12,8 @@ class Message extends Component
     public $search = '';
     public $users;
 
-    public $receivers = 'Fügen Sie Hier Ihre Empfänger hinzu.';
+    // Fügen Sie hier ihre Empfänger hinzu
+    public $receivers = '';
     public $receiverids;
 
 

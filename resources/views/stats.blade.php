@@ -42,11 +42,11 @@
 
                         </h2>
 
-                        <p class="mt-1 text-sm text-gray-500 grid text-center sm:text-left">
+                        <div class="mt-1 text-sm text-gray-500 grid text-center sm:text-left flex">
 
-                            Erhalten Sie Einblicke in die Nutzungsstatistiken des Portals. Momentane Statistiken sind hinsichtlich der Registrierungen, Abmeldungen, Nutzenden, Zuweisungen, Studiengänge und des Betreuungsverhältnisses einsehbar. Kontaktieren Sie bei technischen Anregungen und Anliegen das <a href="mailto:digillab@zlbib.uni-augsburg.de" class="text-purple-500 hover:text-purple-700">DigiLLab</a>.
+                            Erhalten Sie Einblicke in die Nutzungsstatistiken des Portals. Momentane Statistiken sind hinsichtlich der Registrierungen, Abmeldungen, Nutzenden, Zuweisungen, Studiengänge und des Betreuungsverhältnisses einsehbar. Kontaktieren Sie bei technischen Anregungen und Anliegen das DigiLLab der Universität Augsburg.
 
-                        </p>
+                        </div>
 
                     </div>
 

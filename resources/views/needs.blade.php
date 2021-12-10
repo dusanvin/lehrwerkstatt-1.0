@@ -16,24 +16,6 @@
 
         <div class="px-8 py-8 text-gray-700 w-screen rounded-r-lg" style="background-color: #EDF2F7;">
 
-            <!-- <div class="overflow-hidden px-4 py-5 sm:px-6">
-
-                <h2 class="text-lg leading-6 font-medium text-gray-900">
-
-                    Bedarfe
-
-                </h2>
-
-                <p class="mt-1 max-w-2xl text-sm text-gray-500">
-
-                    Übersicht und Erstellung von Bedarfen
-
-                </p>
-
-            </div>
-
-            Test -->
-
             <div class="mx-auto rounded">
 
             <!-- Tabs -->
@@ -78,7 +60,7 @@
 
                             @foreach($needs as $need)
 
-                                @if(!$need->ownedBy(auth()->user()) && ($need->active == 1))
+                                @if($need->active == 1)
 
                                         <div class="bg-white rounded-md pb-4">
 
@@ -102,7 +84,11 @@
 
                                                 <div class="flex flex-wrap content-start">
                                                     
+                                                    <p class="text-gray-400 text-sm mr-5">Betreuungszeitraum: <span class="font-medium">{{ date('m/Y', strtotime($need->datum_start)) }} bis {{ date('m/Y', strtotime($need->datum_end)) }}</span></p>
+
                                                     <p class="text-gray-400 text-sm mr-5">Betreuungsrahmen: <span class="font-medium">{{ $need->rahmen }} Person/en</span></p>
+
+                                                    
 
                                                     <p class="text-gray-400 text-sm mr-5">Fremdsprachkenntnisse: <span class="font-medium">{{ $need->sprachkenntnisse }}</span></p>
 
@@ -243,13 +229,13 @@
 
                             @endforeach
 
+                        </div>
+
                             <div class="mt-5">
 
                                 {{ $needs->links() }}
 
                             </div>
-
-                        </div>
 
                     @else
 
@@ -375,6 +361,11 @@
                                                                 <h3 class="text-sm">Datum</h3>
                                                                 <p class="leading-5 text-gray-500 mb-2 text-xs">
                                                                     {{ $need->created_at->diffForHumans() }}
+                                                                </p>
+
+                                                                <h3 class="text-sm">Betreuungszeitraum</h3>
+                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                                    <span class="font-medium">{{ date('m/Y', strtotime($need->datum_start)) }} bis {{ date('m/Y', strtotime($need->datum_end)) }}</span>
                                                                 </p>
 
                                                                 <h3 class="text-sm">Betreuungsrahmen</h3>
@@ -538,7 +529,7 @@
 
                                 <p class="font-medium text-gray-800 leading-none text-lg leading-6">Bedarfserstellung</p>
 
-                                <p class="text-sm text-gray-500 mt-1 mb-3 mt-2">Erstellen Sie einen Bedarf, um Hilfe anzufordern. Beschreiben Sie den Zeitraum sowie die wöchentliche Stundenzahl, die Art, das Fach und die konkreten Anforderungen. Bitte gehen Sie auch auf die technische Ausstattung ein, mit der gearbeitet wird.</p>
+                                <p class="text-sm text-gray-500 mt-1 mb-3 mt-2">Erstellen Sie einen Bedarf, um Hilfe anzufordern. Beschreiben Sie den Zeitraum sowie die wöchentliche Stundenzahl, die Art, das Fach und die konkreten Anforderungen. Bitte gehen Sie auch auf die technische Ausstattung des Klassenraums ein.</p>
 
                             </div>
 
@@ -848,28 +839,6 @@
                     document.getElementById("default-tab").click();
 
                 </script>
-
-            <!-- Test -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-
-            
 
         </div>
 

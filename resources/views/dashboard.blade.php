@@ -78,14 +78,6 @@
 
                                 <p class="text-xs text-gray-500 mt-1 mb-4">Näheres zur Person (Interessen / persönliche Motivation)</p>
 
-                                <form>
-
-                                    <textarea id="editor" name="Beschreibung zur Person" class="rounded" placeholder="Beschreiben Sie sich näher."></textarea>
-
-                                    <button type="submit">Submit</button>
-
-                                </form>
-
                             </div>
 
 

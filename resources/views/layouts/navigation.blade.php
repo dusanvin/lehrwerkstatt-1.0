@@ -71,8 +71,8 @@
 
 			<!-- <img class="h-24 w-24 rounded-full mx-auto" src="https://randomuser.me/api/portraits/men/24.jpg" alt="Randy Robertson"> -->
 
-
-			<a href="{{ route('user') }}" class="pt-2 font-medium text-sm inline-block hover:text-gray-400">
+<!-- {{ route('user') }} -->
+			<a href="#" class="pt-2 font-medium text-sm inline-block hover:text-gray-400">
 
 				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 rounded-full mx-auto mb-1" viewBox="0 0 20 20" fill="currentColor">
 

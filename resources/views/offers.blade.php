@@ -786,7 +786,7 @@
 
                                     <div class="pl-3">
 
-                                        <p>Bedarf erstellen</p>
+                                        <p>Angebot erstellen</p>
 
                                     </div>
 

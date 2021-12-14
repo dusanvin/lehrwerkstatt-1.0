@@ -86,6 +86,12 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/offers', [OffersController::class,'index'])
         ->name('offers');
 
+    Route::get('/offers/myoffers', [OffersController::class,'myoffers'])
+        ->name('myoffers');
+
+    Route::get('/offers/makeoffer', [OffersController::class,'makeoffer'])
+        ->name('makeoffer');
+
     Route::post('/offers', [OffersController::class,'store']);
 
     /* Angebot: Löschen */

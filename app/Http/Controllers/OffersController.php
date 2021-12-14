@@ -29,6 +29,51 @@ class OffersController extends Controller
         ]);
     }
 
+    // public function alloffers()
+    // {
+    // 	/*dd(auth()->user());*/
+    //     $offers = Offer::with([
+    //         'user',
+    //         'likes'
+    //     ])->latest()->simplePaginate(10);
+
+    // 	//return view('offers');
+    //     return view('offers',[
+    //         'offers' => $offers
+    //     ]);
+    // }
+
+    public function myoffers()
+    {
+    	/*dd(auth()->user());*/
+        $offers = Offer::with([
+            'user',
+            'likes'
+        ])->latest()->simplePaginate(2);
+
+    	//return view('offers');
+        return view('myoffers',[
+            'offers' => $offers
+        ]);
+    }
+
+    public function makeoffer()
+    {
+            	/*dd(auth()->user());*/
+                $offers = Offer::with([
+                    'user',
+                    'likes'
+                ])->latest()->simplePaginate(2);
+        
+                //return view('offers');
+                return view('makeoffer',[
+                    'offers' => $offers
+                ]);
+    }
+
+
+
+
     public function store(Request $request)
     {
         $dates = explode('bis', $request->datum);

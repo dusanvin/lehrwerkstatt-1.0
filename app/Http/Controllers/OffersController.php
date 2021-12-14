@@ -59,16 +59,7 @@ class OffersController extends Controller
 
     public function makeoffer()
     {
-            	/*dd(auth()->user());*/
-                $offers = Offer::with([
-                    'user',
-                    'likes'
-                ])->latest()->simplePaginate(2);
-        
-                //return view('offers');
-                return view('makeoffer',[
-                    'offers' => $offers
-                ]);
+        return view('makeoffer');
     }
 
 

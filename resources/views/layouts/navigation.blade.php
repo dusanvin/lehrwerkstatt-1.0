@@ -228,7 +228,7 @@
 
 			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-				<a href="{{ route('offers') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('offers')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+				<a href="{{ route('offers.all') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('offers')) { text-gray-900 bg-black bg-opacity-60 } @endif">
 
 		            <div class="text-gray-100">
 

@@ -116,6 +116,12 @@
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
                                                                     </th>
 
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
+                                                                    </th>
+
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
+                                                                    </th>
+
                         </tr>
 
                         @foreach ($data as $key => $user)
@@ -178,25 +184,95 @@
 
                                 </td>
 
+                                <td class="py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+
+                                    <!-- Person anzeigen -->
+
+                                    <form action="{{ route('users.show',$user->id) }}" method="get" >
+
+                                        @csrf
+
+                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm focus:outline-none ml-4 transition ease-in-out duration-150 justify-items-end">
+
+                                            <div class="grid justify-items-center">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                
+                                                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                    
+                                                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+
+                                                </svg>
+
+                                                <!-- <span class="mx-3 mt-1">Person anzeigen</span> -->
+
+                                            </div>
+
+                                        </button>
+
+                                    </form>
+
+                                    <!-- Person anzeigen -->
+
+                                </td>
+
+                                <td class="py-4 whitespace-no-wrap text-left text-sm leading-5 font-medium">
+
+                                     <!-- Person bearbeiten -->
+
+                                    <form action="{{ route('users.edit',$user->id) }}" method="get" >
+
+                                        @csrf
+
+                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm focus:outline-none ml-4 transition ease-in-out duration-150">
+
+                                            <div class="grid justify-items-center">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                
+                                                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                                
+                                                </svg>
+
+                                                <!-- <span class="mx-3 mt-1">Person bearbeiten</span> -->
+
+                                            </div>
+
+                                        </button>
+
+                                    </form>
+
+                                    <!-- Person bearbeiten -->
+
+                                </td>
+
                                 <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
 
-                                    <a class="bg-transparent hover:bg-purple-600 text-purple-600 font-normal hover:text-white focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 py-2 px-4 rounded transition ease-in-out duration-150" href="{{ route('users.show',$user->id) }}">
+                                    <!-- Löschen -->  
 
-                                        Anzeigen
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="post" >
 
-                                    </a>
+                                        @csrf
 
-                                    <a class="bg-transparent hover:bg-purple-600 text-purple-600 font-normal hover:text-white focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 py-2 px-4 rounded transition ease-in-out duration-150" href="{{ route('users.edit',$user->id) }}">
+                                        @method('DELETE')
 
-                                        Bearbeiten
+                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
 
-                                    </a>
+                                            <div class="grid justify-items-center">
 
-                                    {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                                </svg>
 
-                                    {!! Form::submit('Löschen', ['class' => 'bg-transparent hover:bg-red-500 text-red-500 font-normal hover:text-white py-2 px-4 ml-6 rounded transition ease-in-out duration-150 focus:outline-none focus:ring ring-red-300 focus:border-red-300']) !!}
+                                                <!-- <span class="mx-3 mt-1">Zurückziehen</span> -->
 
-                                    {!! Form::close() !!}
+                                            </div>
+
+                                        </button>
+
+                                    </form>
+
+                                    <!-- Löschen -->
 
                                 </td>
 

@@ -8,25 +8,36 @@ use App\Models\Need;
 class NeedsController extends Controller
 {
 
-	/* Nur erreichbar, wenn eingeloggt */
-
-    // public function __construct()
-    // {
-    // 	$this->middleware(['auth']);
-    // }
 	
-    public function index()
+    public function all()
     {
-        /*dd(auth()->user());*/
         $needs = Need::with([
             'user',
             'likes'
         ])->latest()->simplePaginate(10);
 
-        //return view('needs');
-        return view('needs',[
+        return view('needs.all',[
             'needs' => $needs
         ]);
+    }
+
+
+    public function user()
+    {
+        $needs = Need::with([
+            'user',
+            'likes'
+        ])->latest()->simplePaginate(10);
+
+        return view('needs.user',[
+            'needs' => $needs
+        ]);
+    }
+
+
+    public function make()
+    {
+        return view('needs.make');
     }
 
     public function store(Request $request)

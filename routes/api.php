@@ -130,11 +130,18 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('{id}', ['as' => 'needs.show', 'uses' => 'App\Http\Controllers\MessagesController@show']);
     });*/
 
-    Route::get('/needs', [NeedsController::class,'index'])
-        ->name('needs');
+    Route::get('/needs/all', [NeedsController::class,'all'])
+        ->name('needs.all');
+
+    Route::get('/needs/myneeds', [NeedsController::class,'user'])
+        ->name('needs.user');
+
+    Route::get('/needs/make', [NeedsController::class,'make'])
+        ->name('needs.make');
 
     /* Bedarf: Hinzufügen */
-    Route::post('/needs', [NeedsController::class,'store']);
+    Route::post('/needs', [NeedsController::class,'store'])
+        ->name('needs');
 
     /* Bedarf: inaktiv setzen */
     Route::post('/needs/{need}/setinactive', [NeedsController::class,'setinactive'])

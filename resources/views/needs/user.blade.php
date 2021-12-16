@@ -22,11 +22,11 @@
 
             <ul id="tabs" class="inline-flex w-full">
 
-                <li class="px-4 py-2 font-medium text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('offers.all') }}">Alle Angebote</a></li>
+                <li class="px-4 py-2 font-medium text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('needs.all') }}">Alle Bedarfe</a></li>
 
-                <li class="px-4 py-2 -mb-px font-medium text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100"><a href="{{ route('offers.user') }}">Meine Angebote</a></li>
+                <li class="px-4 py-2 -mb-px font-medium text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100"><a href="{{ route('needs.user') }}">Meine Bedarfe</a></li>
 
-                <li class="px-4 py-2 font-medium text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('offers.make') }}">Angebot erstellen</a></li>
+                <li class="px-4 py-2 font-medium text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('needs.make') }}">Bedarf erstellen</a></li>
 
             </ul>
 
@@ -36,15 +36,15 @@
 
             <div id="tab-contents">
 
-                <!-- Meine Angebote -->
+                <!-- Meine Bedarfe -->
 
                 <div id="second" class="hidden py-4 px-2 bg-white">
 
                     <div class="grid grid-cols-1 text-sm text-gray-500 text-light py-1 px-2 my-2">
 
-                        <p class="font-medium text-gray-800 leading-none text-lg leading-6">Angebotsübersicht</p>
+                        <p class="font-medium text-gray-800 leading-none text-lg leading-6">Bedarfsübersicht</p>
 
-                        <p class="text-sm text-gray-500 mt-2 mb-3">Erhalten Sie eine Übersicht über Ihre Angebote. Sehen Sie sich Ihr Angebot genauer an, setzen Sie dieses auf aktiv/inaktiv oder löschen Sie dieses permanent.</p>
+                        <p class="text-sm text-gray-500 mt-2 mb-3">Erhalten Sie eine Übersicht über Ihre Bedarfe. Sehen Sie sich Ihren Bedarf genauer an, setzen Sie diesen auf aktiv/inaktiv oder löschen Sie diesen permanent.</p>
 
                     </div>
 
@@ -71,29 +71,29 @@
 
                             </tr>
 
-                            @if ($offers->count())
+                            @if ($needs->count())
 
-                            @foreach($offers as $offer)
+                            @foreach($needs as $need)
 
-                            @if($offer->ownedBy(auth()->user()))
+                            @if($need->ownedBy(auth()->user()))
 
                             <tr class="border-t border-gray-200">
 
-                                <!-- ID des Angebots -->
+                                <!-- ID des Bedarfs -->
 
                                 <td class="pl-6 py-4 whitespace-no-wrap ">
 
-                                    {{ $offer->id }}
+                                    {{ $need->id }}
 
                                 </td>
 
-                                <!-- ID des Angebots -->
+                                <!-- ID des Bedarfs -->
 
-                                <!-- Status des Angebots -->
+                                <!-- Status des Bedarfs -->
 
                                 <td class="px-6 py-4 whitespace-no-wrap">
 
-                                    @if ($offer->active == 1)
+                                    @if ($need->active == 1)
 
                                     <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-green-600 rounded-full">Aktiv</label>
 
@@ -105,17 +105,17 @@
 
                                 </td>
 
-                                <!-- Status des Angebots -->
+                                <!-- Status des Bedarfs -->
 
-                                <!-- Erstellungsdatum des Angebots -->
+                                <!-- Erstellungsdatum des Bedarfs -->
 
                                 <td class="px-6 py-4 whitespace-no-wrap select-none text-sm">
 
-                                    {{ $offer->created_at->diffForHumans() }}
+                                    {{ $need->created_at->diffForHumans() }}
 
                                 </td>
 
-                                <!-- Erstellungsdatum des Angebots -->
+                                <!-- Erstellungsdatum des Bedarfs -->
 
                                 <td class="pl-6 pr-0 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium flex">
 
@@ -141,43 +141,43 @@
                                             <div class="h-auto p-4 mx-10 text-left bg-white rounded shadow-xl max-w-screen-sm" @click.away="open = false">
                                                 <div class="mt-3 text-center sm:text-left">
                                                     <h2 class="text-lg font-medium leading-6 text-gray-900">
-                                                        Nähere Informationen zu Angebot #{{$offer->id}}
+                                                        Nähere Informationen zu Bedarf #{{$need->id}}
                                                     </h2>
 
                                                     <div class="mt-2">
                                                         <h3 class="text-sm">Datum</h3>
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            {{ $offer->created_at->diffForHumans() }}
+                                                            {{ $need->created_at->diffForHumans() }}
                                                         </p>
 
                                                         <h3 class="text-sm">Betreuungszeitraum</h3>
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            <span class="font-medium">{{ date('m/Y', strtotime($offer->datum_start)) }} bis {{ date('m/Y', strtotime($offer->datum_end)) }}</span>
+                                                            <span class="font-medium">{{ date('m/Y', strtotime($need->datum_start)) }} bis {{ date('m/Y', strtotime($need->datum_end)) }}</span>
                                                         </p>
 
                                                         <h3 class="text-sm">Betreuungsrahmen</h3>
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            <span class="font-medium">{{ $offer->rahmen }} Person/en</span>
+                                                            <span class="font-medium">{{ $need->rahmen }} Person/en</span>
                                                         </p>
 
                                                         <h3 class="text-sm">Fremdsprachkenntnisse</h3>
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            <span class="font-medium">{{ $offer->sprachkenntnisse }}</span>
+                                                            <span class="font-medium">{{ $need->sprachkenntnisse }}</span>
                                                         </p>
 
                                                         <h3 class="text-sm">Studiengang</h3>
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            <span class="font-medium">{{ $offer->studiengang }}
+                                                            <span class="font-medium">{{ $need->studiengang }}
                                                         </p>
 
                                                         <h3 class="text-sm">Fachsemester</h3>
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            <span class="font-medium">{{ $offer->fachsemester }}
+                                                            <span class="font-medium">{{ $need->fachsemester }}
                                                         </p>
 
                                                         <h3 class="text-sm">Beschreibung</h3>
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            <span class="font-medium">{{ $offer->body }}
+                                                            <span class="font-medium">{{ $need->body }}
                                                         </p>
 
                                                     </div>
@@ -198,11 +198,11 @@
 
                                     <!-- Anzeigen -->
 
-                                    @if ($offer->active)
+                                    @if ($need->active)
 
-                                    <!-- Angebot aktivieren -->
+                                    <!-- Bedarf aktivieren -->
 
-                                    <form action="{{ route('offers.setinactive', $offer) }}" method="post">
+                                    <form action="{{ route('needs.setinactive', $need) }}" method="post">
 
                                         @csrf
 
@@ -216,7 +216,7 @@
 
                                                 </svg>
 
-                                                <!-- <span class="mx-3 mt-1">Angebot aktivieren</span> -->
+                                                <!-- <span class="mx-3 mt-1">Bedarf aktivieren</span> -->
 
                                             </div>
 
@@ -224,13 +224,13 @@
 
                                     </form>
 
-                                    <!-- Angebot aktivieren -->
+                                    <!-- Bedarf aktivieren -->
 
                                     @else
 
-                                    <!-- Angebot deaktivieren -->
+                                    <!-- Bedarf deaktivieren -->
 
-                                    <form action="{{ route('offers.setactive', $offer) }}" method="post">
+                                    <form action="{{ route('needs.setactive', $need) }}" method="post">
 
                                         @csrf
 
@@ -244,7 +244,7 @@
 
                                                 </svg>
 
-                                                <!-- <span class="mx-3 mt-1">Angebot deaktivieren</span> -->
+                                                <!-- <span class="mx-3 mt-1">Bedarf deaktivieren</span> -->
 
                                             </div>
 
@@ -252,7 +252,7 @@
 
                                     </form>
 
-                                    <!-- Angebot deaktivieren -->
+                                    <!-- Bedarf deaktivieren -->
 
                                     @endif
 
@@ -262,7 +262,7 @@
 
                                     <!-- Löschen -->
 
-                                    <form action="{{ route('offers.destroy', $offer) }}" method="post">
+                                    <form action="{{ route('needs.destroy', $need) }}" method="post">
 
                                         @csrf
 
@@ -298,64 +298,64 @@
 
                         </table>
 
-                        <div class="mt-5">
+                    </div>
 
-                            {{ $offers->links() }}
+                    <div class="mt-5">
 
-                        </div>
+                        {{ $needs->links() }}
 
                     </div>
 
                 </div>
 
-                <!-- Meine Angebote -->
+                <!-- Meine Bedarfe -->
 
             </div>
 
             <!-- Tab Contents -->
 
+            <script>
+                document.getElementById("second").classList.remove("hidden");
+            </script>
+
+            <!-- </div>
+
+                <script>
+
+                    let tabsContainer = document.querySelector("#tabs");
+
+                    let tabTogglers = tabsContainer.querySelectorAll("a");
+                    console.log(tabTogglers);
+
+                    tabTogglers.forEach(function(toggler) {
+                      toggler.addEventListener("click", function(e) {
+                        e.preventDefault();
+
+                        let tabName = this.getAttribute("href");
+
+                        let tabContents = document.querySelector("#tab-contents");
+
+                        for (let i = 0; i < tabContents.children.length; i++) {
+
+                          tabTogglers[i].parentElement.classList.remove("border-gray-700", "border-b",  "-mb-px", "opacity-100");  tabContents.children[i].classList.remove("hidden");
+                          if ("#" + tabContents.children[i].id === tabName) {
+                            continue;
+                          }
+                          tabContents.children[i].classList.add("hidden");
+
+                        }
+                        e.target.parentElement.classList.add("border-gray-700", "border-b-4", "-mb-px", "opacity-100");
+                      });
+                    });
+
+                    document.getElementById("default-tab").click();
+
+                </script>
+
+        </div> -->
+
+            <!-- Content -->
+
         </div>
 
-        <script>
-            document.getElementById("second").classList.remove("hidden");
-        </script>
-
-        <!-- <script>
-            let tabsContainer = document.querySelector("#tabs");
-
-            let tabTogglers = tabsContainer.querySelectorAll("a");
-            console.log(tabTogglers);
-
-            tabTogglers.forEach(function(toggler) {
-                toggler.addEventListener("click", function(e) {
-                    e.preventDefault();
-
-                    let tabName = this.getAttribute("href");
-
-                    let tabContents = document.querySelector("#tab-contents");
-
-                    for (let i = 0; i < tabContents.children.length; i++) {
-
-                        tabTogglers[i].parentElement.classList.remove("border-gray-700", "border-b", "-mb-px", "opacity-100");
-                        tabContents.children[i].classList.remove("hidden");
-                        if ("#" + tabContents.children[i].id === tabName) {
-                            continue;
-                        }
-                        tabContents.children[i].classList.add("hidden");
-
-                    }
-                    e.target.parentElement.classList.add("border-gray-700", "border-b-4", "-mb-px", "opacity-100");
-                });
-            });
-
-            document.getElementById("default-tab").click();
-        </script> -->
-
-    </div>
-
-</div>
-
-<!-- Content -->
-
-
-@endsection
+        @endsection

@@ -8,7 +8,7 @@ use App\Models\Offer;
 class OffersController extends Controller
 {
 
-
+    
     public function all()
     {
         $offers = Offer::with([
@@ -16,7 +16,6 @@ class OffersController extends Controller
             'likes'
         ])->latest()->simplePaginate(10);
 
-    	//return view('offers');
         return view('offers.all',[
             'offers' => $offers
         ]);
@@ -28,7 +27,7 @@ class OffersController extends Controller
         $offers = Offer::with([
             'user',
             'likes'
-        ])->latest()->simplePaginate(2);
+        ])->latest()->simplePaginate(10);
 
         return view('offers.user',[
             'offers' => $offers

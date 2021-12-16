@@ -92,7 +92,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/offers/make', [OffersController::class,'make'])
         ->name('offers.make');
 
-    Route::post('/offers', [OffersController::class,'store']);
+    Route::post('/offers', [OffersController::class,'store'])
+        ->name('offers');
 
     /* Angebot: Löschen */
     Route::delete('/offers/{offer}', [OffersController::class,'destroy'])

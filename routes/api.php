@@ -83,13 +83,13 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
 
     /* Angebote */
-    Route::get('/offers/all', [OffersController::class,'index'])
+    Route::get('/offers/all', [OffersController::class,'all'])
         ->name('offers.all');
 
-    Route::get('/offers/myoffers', [OffersController::class,'myoffers'])
+    Route::get('/offers/myoffers', [OffersController::class,'user'])
         ->name('offers.user');
 
-    Route::get('/offers/makeoffer', [OffersController::class,'makeoffer'])
+    Route::get('/offers/make', [OffersController::class,'make'])
         ->name('offers.make');
 
     Route::post('/offers', [OffersController::class,'store']);

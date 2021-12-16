@@ -8,61 +8,38 @@ use App\Models\Offer;
 class OffersController extends Controller
 {
 
-	/* Nur erreichbar, wenn eingeloggt */
 
-    // public function __construct()
-    // {
-    // 	$this->middleware(['auth']);
-    // }
-
-    public function index()
+    public function all()
     {
-    	/*dd(auth()->user());*/
         $offers = Offer::with([
             'user',
             'likes'
         ])->latest()->simplePaginate(10);
 
     	//return view('offers');
-        return view('offers',[
+        return view('offers.all',[
             'offers' => $offers
         ]);
     }
 
-    // public function alloffers()
-    // {
-    // 	/*dd(auth()->user());*/
-    //     $offers = Offer::with([
-    //         'user',
-    //         'likes'
-    //     ])->latest()->simplePaginate(10);
 
-    // 	//return view('offers');
-    //     return view('offers',[
-    //         'offers' => $offers
-    //     ]);
-    // }
-
-    public function myoffers()
+    public function user()
     {
-    	/*dd(auth()->user());*/
         $offers = Offer::with([
             'user',
             'likes'
         ])->latest()->simplePaginate(2);
 
-    	//return view('offers');
-        return view('myoffers',[
+        return view('offers.user',[
             'offers' => $offers
         ]);
     }
 
-    public function makeoffer()
+
+    public function make()
     {
-        return view('makeoffer');
+        return view('offers.make');
     }
-
-
 
 
     public function store(Request $request)
@@ -97,6 +74,7 @@ class OffersController extends Controller
         return back();
     }
 
+
     public function setinactive(Offer $offer) {
         if(!$offer->ownedBy(auth()->user())) {
             return back();
@@ -107,6 +85,7 @@ class OffersController extends Controller
         return back();
     }
 
+
     public function setactive(Offer $offer) {
         if(!$offer->ownedBy(auth()->user())) {
             return back();
@@ -116,6 +95,7 @@ class OffersController extends Controller
 
         return back();
     }
+
 
     public function destroy(Offer $offer)
     {

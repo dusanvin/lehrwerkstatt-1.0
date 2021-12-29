@@ -10,6 +10,8 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Auth\Events\Registered;
 use Cmgmyr\Messenger\Traits\Messagable;
 
+use App\Notifications\CustomVerifyEmail;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -26,8 +28,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'last_login_at',
-        'role',
-        'username'
+        //'role',
+        //'username'
     ];
 
     /**
@@ -57,6 +59,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function needs() 
     {
         return $this->hasMany(Need::class);
+    }
+
+    public function SendEmailVerificationNotification() 
+    {
+        $this->notify(new CustomVerifyEmail);
     }
 
 }

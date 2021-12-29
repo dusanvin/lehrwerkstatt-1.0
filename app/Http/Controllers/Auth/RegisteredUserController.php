@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
         $request->validate([
     		'firstname' => 'required|max:255',
     		'lastname' => 'required|max:255',
-    		'email' => 'required|unique:users,email|max:255',
+    		'email' => 'required|max:255', //'required|unique:users,email|max:255',
             'role' => ['required', Rule::in(['btn-helfende', 'btn-lehrende'])],
     		'password' => ['required', 'confirmed', Password::min(10)
 				->numbers()
@@ -55,15 +55,15 @@ class RegisteredUserController extends Controller
             'privacy_statement' => 'accepted'
         ]);
 
-        $request->request->add(['username' => 'Keine Angabe.']);
+        //$request->request->add(['username' => 'Keine Angabe.']);
 
         $user = User::create([
     		'vorname' => $request->firstname,
     		'nachname' => $request->lastname,
     		'email' => $request->email,
-            'role' => $request->role,
+            //'role' => $request->role,
     		'password' => Hash::make($request->password),
-            'username' => $request->username,
+            //'username' => $request->username,
         ]);
 
         // Helfende 4, Lehrende 5
@@ -79,9 +79,6 @@ class RegisteredUserController extends Controller
             $role_id = 5;
         }
             
-
-        DB::insert('insert into model_has_roles (role_id, model_type, model_id) values (?, ?, ?)', [$role_id, 'App\Models\User', $user->id]);
-        
         // create([
         //     'role_id' => $role_id,
         //     'model_type' => 'App\Models\User',
@@ -97,6 +94,9 @@ class RegisteredUserController extends Controller
         $user->timestamps = false;
         $user->last_login_at = now();
         $user->save();
+
+
+        DB::insert('insert into model_has_roles (role_id, model_type, model_id) values (?, ?, ?)', [$role_id, 'App\Models\User', $user->id]);
 
         return redirect(RouteServiceProvider::HOME);
     }

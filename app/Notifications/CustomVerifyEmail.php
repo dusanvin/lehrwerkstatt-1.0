@@ -16,7 +16,7 @@ class CustomVerifyEmail extends VerifyEmail
 
     protected function buildMailMessage($url)
     {
-        return (new CustomMailMessage)
+        return (new MailMessage)
         ->subject(Lang::get('Verifizieren Sie Ihre E-Mail-Adresse'))
         ->line(Lang::get('Bitte bestätigen Sie Ihre E-Mail-Adresse'))
         ->action(Lang::get('E-Mail-Adresse verifizieren'), $url)

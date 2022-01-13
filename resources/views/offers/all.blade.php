@@ -89,7 +89,7 @@
 
                                     <p class="text-gray-400 text-sm mr-5">Betreuungsrahmen: <span class="font-medium">{{ $offer->rahmen }} Person/en</span></p>
 
-
+                                    <p class="text-gray-400 text-sm mr-5">Schulart: <span class="font-medium">{{ $offer->schulart }}</span></p>
 
                                     <p class="text-gray-400 text-sm mr-5">Fremdsprachkenntnisse: <span class="font-medium">{{ $offer->sprachkenntnisse }}</span></p>
 

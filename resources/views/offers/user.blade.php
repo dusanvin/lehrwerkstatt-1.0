@@ -175,6 +175,11 @@
                                                             <span class="font-medium">{{ $offer->fachsemester }}
                                                         </p>
 
+                                                        <h3 class="text-sm">Schulart</h3>
+                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                            <span class="font-medium">{{ $offer->schulart }}
+                                                        </p>
+
                                                         <h3 class="text-sm">Beschreibung</h3>
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
                                                             <span class="font-medium">{{ $offer->body }}

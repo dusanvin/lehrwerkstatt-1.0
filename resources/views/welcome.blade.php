@@ -104,9 +104,9 @@
 
                             <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
 
-                                <span class="block xl:inline">Finden Sie Ihr*e</span>
+                                <span class="block xl:inline">Finden Sie Ihre*n</span>
 
-                                <span class="block text-purple-600 xl:inline">Helfer*in</span>
+                                <span class="block text-purple-600 xl:inline">DaZ-Buddy</span>
 
                             </h1>
 

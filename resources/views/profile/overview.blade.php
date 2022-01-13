@@ -150,7 +150,7 @@
 
                                     <!-- Person anzeigen -->
 
-                                    <form action="{{ route('profile.details',auth()->user()->id) }}" method="get" >
+                                    <form action="{{ route('profile.details',1) }}" method="get" >
 
                                         @csrf
 
@@ -182,7 +182,7 @@
 
                                      <!-- Person bearbeiten -->
 
-                                    <form action="{{ route('profile.edit',auth()->user()->id) }}" method="get" >
+                                    <form action="{{ route('profile.edit',1) }}" method="get" >
 
                                         @csrf
 

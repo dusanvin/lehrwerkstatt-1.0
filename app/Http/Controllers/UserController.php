@@ -79,11 +79,11 @@ class UserController extends Controller
 
     }
 
-    public function details($id)
+    public function details()
 
     {
 
-        $user = User::find($id);
+        $user = User::find(auth()->id());
         return view('profile.details',compact('user'));
 
     }
@@ -102,11 +102,11 @@ class UserController extends Controller
 
     }
 
-    public function uedit($id)
+    public function uedit()
 
     {
 
-        $user = User::find($id);
+        $user = User::find(auth()->id());
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
 

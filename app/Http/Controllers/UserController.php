@@ -152,6 +152,39 @@ class UserController extends Controller
 
     }
 
+    public function change(Request $request, $id)
+
+    {
+
+        // Nach Klick auf "Änderungen übernehmen"
+
+        $this->validate($request, [
+            'vorname' => 'required',
+            'nachname' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'password' => 'same:confirm-password',
+        ]);
+
+    
+
+        $input = $request->all();
+
+        if(!empty($input['password'])){ 
+            $input['password'] = Hash::make($input['password']);
+        }else{
+            $input = Arr::except($input,array('password'));    
+        }
+
+    
+
+        $user = User::find($id);
+        $user->update($input);
+
+        return redirect()->route('profile.edit')
+                        ->with('success','Informationen erfolgreich aktualisiert.');
+
+    }
+
     public function destroy($id)
 
     {

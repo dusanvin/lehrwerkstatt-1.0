@@ -186,11 +186,11 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('{id}/delete', 'App\Http\Controllers\MessagesController@delete')->name('messages.delete');
     });
 
-    Route::get('/profile', [NeedsController::class,'overview'])
+    Route::get('/profile', [UserController::class,'overview'])
     ->name('profile.overview');
-    Route::get('/profile/details', [NeedsController::class,'details'])
+    Route::get('/profile/details', [UserController::class,'details'])
     ->name('profile.details');
-    Route::get('/profile/edit', [NeedsController::class,'edit'])
+    Route::get('/profile/edit', [UserController::class,'uedit'])
     ->name('profile.edit');
 
 

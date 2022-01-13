@@ -26,6 +26,16 @@ class UserController extends Controller
 
     }
 
+    public function overview(Request $request)
+
+    {
+
+        // $data = User::where('id', $request->id)->get();
+
+        return view('profile.overview');
+
+    }
+
     public function create()
 
     {
@@ -69,7 +79,30 @@ class UserController extends Controller
 
     }
 
+    public function details($id)
+
+    {
+
+        $user = User::find($id);
+        return view('profile.details',compact('user'));
+
+    }
+
     public function edit($id)
+
+    {
+
+        $user = User::find($id);
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name','name')->all();
+
+    
+
+        return view('users.edit',compact('user','roles','userRole'));
+
+    }
+
+    public function uedit($id)
 
     {
 

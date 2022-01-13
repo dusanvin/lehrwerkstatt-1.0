@@ -90,23 +90,21 @@
 
                         </tr>
 
-                            <!-- @if($need->ownedBy(auth()->user())) -->
-
                             <tr class="border-t border-gray-200">
 
                                 <td class="px-6 py-4 whitespace-no-wrap">
 
-                                        <div class="text-sm leading-5 font-medium text-gray-900">{{ $user->vorname }} {{ $user->nachname }}</div>
+                                        <div class="text-sm leading-5 font-medium text-gray-900">{{ auth()->user()->vorname }} {{ auth()->user()->nachname }}</div>
 
-                                        <div class="text-sm leading-5 text-gray-500">{{ $user->email }}</div>
+                                        <div class="text-sm leading-5 text-gray-500">{{ auth()->user()->email }}</div>
 
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap select-none">
 
-                                    @if(!empty($user->getRoleNames()))
+                                    @if(!empty(auth()->user()->getRoleNames()))
 
-                                        @foreach($user->getRoleNames() as $v)
+                                        @foreach(auth()->user()->getRoleNames() as $v)
 
                                             @if ($v == 'Admin')
 
@@ -136,11 +134,11 @@
 
                                         <div class="text-sm leading-5 font-normal text-gray-900 select-none">
 
-                                            @if($user->last_login_at === NULL)
+                                            @if(auth()->user()->last_login_at === NULL)
                                                 Ausstehend
                                             @else
 
-                                            {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}
+                                            {{ \Carbon\Carbon::parse(auth()->user()->last_login_at)->diffForHumans() }}
 
                                             @endif
 
@@ -152,7 +150,7 @@
 
                                     <!-- Person anzeigen -->
 
-                                    <form action="{{ route('profile.details',$user->id) }}" method="get" >
+                                    <form action="{{ route('profile.details',auth()->user()->id) }}" method="get" >
 
                                         @csrf
 
@@ -184,7 +182,7 @@
 
                                      <!-- Person bearbeiten -->
 
-                                    <form action="{{ route('profile.edit',$user->id) }}" method="get" >
+                                    <form action="{{ route('profile.edit',auth()->user()->id) }}" method="get" >
 
                                         @csrf
 
@@ -216,11 +214,6 @@
 
                 </div>
 
-                <div class="pb-4 px-4">
-
-                    {!! $data->render() !!}
-
-                </div>
 
                 <!-- Hinweis -->
 

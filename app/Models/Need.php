@@ -17,6 +17,7 @@ class Need extends Model
         'datum_start',
         'datum_end',
         'fachsemester',
+        'schulart',
         'active'
     ];
 

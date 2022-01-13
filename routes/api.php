@@ -185,6 +185,15 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::put('{id}', ['as' => 'messages.update', 'uses' => 'App\Http\Controllers\MessagesController@update']);
         Route::get('{id}/delete', 'App\Http\Controllers\MessagesController@delete')->name('messages.delete');
     });
+
+    Route::get('/profile', [NeedsController::class,'overview'])
+    ->name('profile.overview');
+    Route::get('/profile/details', [NeedsController::class,'details'])
+    ->name('profile.details');
+    Route::get('/profile/edit', [NeedsController::class,'edit'])
+    ->name('profile.edit');
+
+
     
 });
 

@@ -112,7 +112,7 @@ class UserController extends Controller
 
     
 
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('profile.edit',compact('user','roles','userRole'));
 
     }
 

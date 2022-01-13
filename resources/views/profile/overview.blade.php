@@ -150,7 +150,7 @@
 
                                     <!-- Person anzeigen -->
 
-                                    <form action="{{ route('profile.details',1) }}" method="get" >
+                                    <form action="{{ route('profile.details') }}" method="get" >
 
                                         @csrf
 
@@ -182,7 +182,7 @@
 
                                      <!-- Person bearbeiten -->
 
-                                    <form action="{{ route('profile.edit',1) }}" method="get" >
+                                    <form action="{{ route('profile.edit') }}" method="get" >
 
                                         @csrf
 

@@ -78,7 +78,19 @@
 
 				  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
 
-				</svg><span class="navigation-element">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</span>
+				</svg><span class="navigation-element font-semibold"> {{ Auth::user()->vorname }} {{ Auth::user()->nachname }}
+				<!-- 
+
+				$firstName = (Auth::user()->vorname)[0];
+				$lastName = (Auth::user()->nachname)[0];
+
+				$iniName = $firstName . $lastName;
+
+				echo $iniName;
+
+				-->
+
+				</span>
 
 			</a>
 
@@ -115,7 +127,7 @@
 
 		            <div class="pl-3">
 
-		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Mein Bereich</p>
+		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1 font-semibold">Mein Bereich</p>
 
 		              <p class="navigation-element text-xs text-gray-400">Persönliche Informationen</p>
 
@@ -148,7 +160,7 @@
 
 		            <div class="pl-3">
 
-		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Nachrichten</p>
+		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1 font-semibold">Nachrichten</p>
 
 		              <p class="navigation-element text-xs text-gray-400">Gespräche und Kontakte</p>
 
@@ -184,7 +196,7 @@
 
 			            <div class="pl-3">
 
-			              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Statistiken</p>
+			              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1 font-semibold">Statistiken</p>
 
 			              <p class="navigation-element text-xs text-gray-400">Details zum Portal</p>
 
@@ -214,7 +226,7 @@
 
 			            <div class="pl-3">
 
-			              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Verwaltung</p>
+			              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1 font-semibold">Verwaltung</p>
 
 			              <p class="navigation-element text-xs text-gray-400">Nutzende und Rollen</p>
 
@@ -248,7 +260,7 @@
 
 		            <div class="pl-3">
 
-		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Angebote</p>
+		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1 font-semibold">Angebote</p>
 
 		              <p class="navigation-element text-xs text-gray-400">Hilfsangebot anbieten</p>
 
@@ -278,7 +290,7 @@
 
 		            <div class="pl-3">
 
-		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Bedarfe</p>
+		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1 font-semibold">Bedarfe</p>
 
 		              <p class="navigation-element text-xs text-gray-400">Hilfsangebot ersuchen</p>
 
@@ -331,7 +343,7 @@
 
 		@csrf
 
-		<button class="flex text-xs items-center p-1 md:p-3 text-gray-300 hover:text-red-500 focus:border-transparent focus:outline-none transition ease-in-out duration-150" type="submit">
+		<button class="flex text-xs items-center p-1 md:p-3 text-gray-300 hover:text-yellow-400 focus:border-transparent focus:outline-none transition ease-in-out duration-150" type="submit">
 
 			<svg
 			class="fill-current h-5 w-5 mx-auto ml-1"

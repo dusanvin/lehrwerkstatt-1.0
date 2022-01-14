@@ -19,8 +19,10 @@ use App\Http\Controllers\NeedRequestController;
 use App\Http\Controllers\MatchingController;
 use App\HTTP\Controllers\User\UserEditController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\MessagesController;
+
 
 /*
 |--------------------------------------------------------------------------

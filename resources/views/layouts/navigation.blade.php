@@ -1,4 +1,4 @@
-<nav class="bg-top w-80 justify-between flex flex-col sm:rounded-l-lg shadow-b transition ease-in-out duration-150 bg-gray-800" id="navigation-digillab" style="max-width: fit-content;">
+<nav class="bg-top w-80 justify-between flex flex-col sm:rounded-l-lg shadow-b transition ease-in-out duration-150" id="navigation-digillab" style="max-width: fit-content; background-color: #344955;">
 
     <div class="mt-10 mb-10">
 
@@ -159,68 +159,74 @@
 			</li>
 
 			<!-- Nachrichten -->
-        	
-        	<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Administration</p>
 
-        	<!-- Statistiken -->
+			@role('Admin|Moderierende')
 
-			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+	        	<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Administration</p>
 
-				<a href="{{ route('stats') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('stats')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+	        	<!-- Statistiken -->
 
-		            <div class="text-gray-100">
+				<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-						<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+					<a href="{{ route('stats') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('stats')) { text-gray-900 bg-black bg-opacity-60 } @endif">
 
-							<path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+			            <div class="text-gray-100">
 
-							<path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
+							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-						</svg>
+								<path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
 
-		            </div>
+								<path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
 
-		            <div class="pl-3">
+							</svg>
 
-		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Statistiken</p>
+			            </div>
 
-		              <p class="navigation-element text-xs text-gray-400">Details zum Portal</p>
+			            <div class="pl-3">
 
-		            </div>
+			              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Statistiken</p>
 
-		        </a>
+			              <p class="navigation-element text-xs text-gray-400">Details zum Portal</p>
 
-			</li>
+			            </div>
 
-			<!-- Statistiken -->
+			        </a>
 
-			<!-- Personen -->
+				</li>
 
-			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+				<!-- Statistiken -->
 
-				<a href="{{ route('users.index') }}"class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('help')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+				<!-- Personen -->
 
-		            <div class="text-gray-100">
+				<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-						<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+					<a href="{{ route('users.index') }}"class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('help')) { text-gray-900 bg-black bg-opacity-60 } @endif">
 
-							<path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+			            <div class="text-gray-100">
 
-						</svg>
+							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-		            </div>
+								<path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
 
-		            <div class="pl-3">
+							</svg>
 
-		              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Verwaltung</p>
+			            </div>
 
-		              <p class="navigation-element text-xs text-gray-400">Nutzende und Rollen</p>
+			            <div class="pl-3">
 
-		            </div>
+			              <p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1">Verwaltung</p>
 
-		        </a>
+			              <p class="navigation-element text-xs text-gray-400">Nutzende und Rollen</p>
 
-			</li>
+			            </div>
+
+			        </a>
+
+				</li>
+
+			@else
+  
+			@endrole
 
 			<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Paare</p>
 

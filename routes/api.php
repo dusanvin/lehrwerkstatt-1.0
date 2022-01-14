@@ -64,10 +64,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 /* User */
 Route::middleware(['auth', 'verified'])->group(function() {
 
-    /* Statistiken */
-    Route::get('/stats', [StatsController::class,'index'])
-        ->name('stats');
-
     /* Helfende */
     Route::get('/help', [HelpController::class,'index'])
         ->name('help');
@@ -207,12 +203,16 @@ Route::group(['middleware' => ['role:Admin|Moderierende','auth', 'verified']], f
     Route::get('/user', [UserEditController::class,'index'])
         ->name('user');
 
+    /* Statistiken */
+    Route::get('/stats', [StatsController::class,'index'])
+        ->name('stats');
+
+
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
 
 });
-
 
 
 /*--------------------------------------------------------------------------*/

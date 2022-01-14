@@ -235,7 +235,7 @@
                                           <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        {!! Form::text('motivation', null, array('placeholder' => 'Motivation','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!} 
+                                        {!! Form::text('motivation', null, array('placeholder' => 'Hier können Sie Ihre Motivationsgründe erläutern.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!} 
 
                                     </dd>
 
@@ -256,7 +256,7 @@
                                           <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        {!! Form::text('studiengang', null, array('placeholder' => 'Studiengang','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!} 
+                                        {!! Form::text('studiengang', null, array('placeholder' => 'Wählen Sie hier Ihren Studiengang aus.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!} 
 
                                     </dd>
 
@@ -277,7 +277,7 @@
                                           <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        {!! Form::text('fachsemester', null, array('placeholder' => 'Fachsemester','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!} 
+                                        {!! Form::text('fachsemester', null, array('placeholder' => 'Geben Sie hier ein Fachsemester an.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!} 
 
                                     </dd>
 
@@ -298,7 +298,7 @@
                                           <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        {!! Form::text('interessen', null, array('placeholder' => 'Interessen','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!} 
+                                        {!! Form::text('interessen', null, array('placeholder' => 'Geben Sie Interessen an.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!} 
 
                                     </dd>
 
@@ -319,7 +319,7 @@
                                           <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        {!! Form::text('erfahrungen', null, array('placeholder' => 'Erfahrungen','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!} 
+                                        {!! Form::text('erfahrungen', null, array('placeholder' => 'Geben Sie Erfahrungen an, die relevant sein könnten.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!} 
 
                                     </dd>
 
@@ -340,7 +340,7 @@
                                           <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        {!! Form::text('treffen', null, array('placeholder' => 'Treffen','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!} 
+                                        {!! Form::text('treffen', null, array('placeholder' => 'Geben Sie an unter welchen Bedingungen ein Treffen möglich wäre.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!} 
 
                                     </dd>
 
@@ -361,7 +361,7 @@
                                           <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        {!! Form::text('gruesse', null, array('placeholder' => 'Grüße','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!} 
+                                        {!! Form::text('gruesse', null, array('placeholder' => 'Hier können Sie einen freundlichen Gruß für Ihre Profilbesucher hinterlegen.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!} 
 
                                     </dd>
 

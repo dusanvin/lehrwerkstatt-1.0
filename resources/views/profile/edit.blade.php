@@ -265,6 +265,7 @@
 
                                         <!-- {!! Form::text('studiengang', null, array('placeholder' => 'Wählen Sie hier Ihren Studiengang aus.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}  -->
                                         {!! Form::select('studiengang', array(
+                                        'Keine Angabe.' => 'Wählen Sie hier Ihren Studiengang aus.',
                                         'Hauptfach Deutsch als Zweit- und Fremdsprache (B.A.)' => 'Hauptfach Deutsch als Zweit- und Fremdsprache (B.A.)',
                                         'Nebenfach Deutsch als Zweit- und Fremdsprache (B.A.)' => 'Nebenfach Deutsch als Zweit- und Fremdsprache (B.A.)',
                                         'Grundschule (LA)' => 'Grundschule (LA)',
@@ -273,7 +274,7 @@
                                         'Gymnasium (LA)' => 'Gymnasium (LA)',
                                         'Sonstiges' => 'Sonstiges'
                                         ),
-                                        null, array('placeholder' => 'Wählen Sie hier Ihren Studiengang aus.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500'))
+                                        null, array('class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500'))
                                         !!}
 
                                     </dd>

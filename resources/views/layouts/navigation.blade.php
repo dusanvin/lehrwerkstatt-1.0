@@ -72,7 +72,7 @@
 			<!-- <img class="h-24 w-24 rounded-full mx-auto" src="https://randomuser.me/api/portraits/men/24.jpg" alt="Randy Robertson"> -->
 
 <!-- {{ route('user') }} -->
-			<a href="{{ route('profile.overview') }}" class="pt-2 font-medium text-sm inline-block hover:text-gray-400">
+			<a href="{{ route('profile.details') }}" class="pt-2 font-medium text-sm inline-block hover:text-gray-400">
 
 				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 rounded-full mx-auto mb-1" viewBox="0 0 20 20" fill="currentColor">
 
@@ -113,7 +113,7 @@
 
 			<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-				<a href="{{ route('profile.overview') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md  transition ease-in-out duration-150 @if (Request::is('dashboard')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+				<a href="{{ route('profile.edit') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md  transition ease-in-out duration-150 @if (Request::is('dashboard')) { text-gray-900 bg-black bg-opacity-60 } @endif">
 
 		            <div class="text-gray-100">
 

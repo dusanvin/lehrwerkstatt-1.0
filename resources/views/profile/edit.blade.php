@@ -109,7 +109,7 @@
 
                         <!-- Informationsanzeige sowie -bearbeitung -->
 
-                        {!! Form::model($user, ['method' => 'PATCH','route' => ['profile.change', $user->id]]) !!}
+                        {!! Form::model($user, ['method' => 'PATCH','route' => ['profiles.update', $user->id]]) !!}
 
                         <div>
 

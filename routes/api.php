@@ -187,8 +187,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('profile.details');
         Route::get('/profile/edit', [UserController::class, 'uedit'])
             ->name('profile.edit');
-        Route::put('/profile/change', [UserController::class, 'change'])
-            ->name('profile.change');
+        Route::resource('profiles', ProfileController::class);
     });
 });
 

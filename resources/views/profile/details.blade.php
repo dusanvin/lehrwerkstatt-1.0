@@ -7,7 +7,7 @@
 
     <div class="flex flex-row h-full mx-5 mt-10 mb-10">
 
-      <!-- Nav -->
+        <!-- Nav -->
 
         @include('layouts.navigation')
 
@@ -42,7 +42,7 @@
 
                             <dt class="text-sm font-medium text-gray-500 py-2">
 
-                              <strong>Vorname</strong> der Person
+                                <strong>Vorname</strong> der Person
 
                             </dt>
 
@@ -58,7 +58,7 @@
 
                             <dt class="text-sm font-medium text-gray-500 py-2">
 
-                              <strong>Nachname</strong> der Person
+                                <strong>Nachname</strong> der Person
 
                             </dt>
 
@@ -74,7 +74,7 @@
 
                             <dt class="text-sm font-medium text-gray-500 py-2">
 
-                              <strong>E-Mail-Adresse</strong> der Person
+                                <strong>E-Mail-Adresse</strong> der Person
 
                             </dt>
 
@@ -90,7 +90,7 @@
 
                             <dt class="text-sm font-medium text-gray-500 py-2">
 
-                              <strong>Rolle/n</strong> der Person
+                                <strong>Rolle/n</strong> der Person
 
                             </dt>
 
@@ -100,11 +100,11 @@
 
                                     @if(!empty($user->getRoleNames()))
 
-                                        @foreach($user->getRoleNames() as $v)
+                                    @foreach($user->getRoleNames() as $v)
 
-                                            <label class="badge badge-success">{{ $v }}</label>
+                                    <label class="badge badge-success">{{ $v }}</label>
 
-                                        @endforeach
+                                    @endforeach
 
                                     @endif
 
@@ -118,7 +118,7 @@
 
                             <dt class="text-sm font-medium text-gray-500 py-2">
 
-                              <strong>Registrierungsdatum</strong> der Person
+                                <strong>Registrierungsdatum</strong> der Person
 
                             </dt>
 
@@ -134,19 +134,131 @@
 
                             <dt class="text-sm font-medium text-gray-500 py-2">
 
-                              <strong>Letzter Login</strong> der Person
+                                <strong>Letzter Login</strong> der Person
 
                             </dt>
 
                             <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
 
                                 @if($user->last_login_at === NULL)
-                                    -
+                                -
                                 @else
 
                                 {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}
 
                                 @endif
+
+                            </dd>
+
+                        </div>
+
+                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+
+                            <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                <strong>Motivation</strong>
+
+                            </dt>
+
+                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
+
+                                {{ $user->motivation }}
+
+                            </dd>
+
+                        </div>
+
+                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+
+                            <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                <strong>Studiengang</strong>
+
+                            </dt>
+
+                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
+
+                                {{ $user->studiengang }}
+
+                            </dd>
+
+                        </div>
+
+                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+
+                            <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                <strong>Fachsemester</strong>
+
+                            </dt>
+
+                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
+
+                                {{ $user->fachsemester }}
+
+                            </dd>
+
+                        </div>
+
+                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+
+                            <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                <strong>Interessen</strong>
+
+                            </dt>
+
+                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
+
+                                {{ $user->interessen }}
+
+                            </dd>
+
+                        </div>
+
+                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+
+                            <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                <strong>Erfahrungen</strong>
+
+                            </dt>
+
+                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
+
+                                {{ $user->erfahrungen }}
+
+                            </dd>
+
+                        </div>
+
+                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+
+                            <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                <strong>Treffen</strong>
+
+                            </dt>
+
+                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
+
+                                {{ $user->treffen }}
+
+                            </dd>
+
+                        </div>
+
+                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+
+                            <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                <strong>Grüße</strong>
+
+                            </dt>
+
+                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
+
+                                {{ $user->gruesse }}
 
                             </dd>
 
@@ -173,7 +285,7 @@
                                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
 
                             </svg>
-                            
+
                             <div class="pl-3">Kontaktieren</div>
 
                         </a>

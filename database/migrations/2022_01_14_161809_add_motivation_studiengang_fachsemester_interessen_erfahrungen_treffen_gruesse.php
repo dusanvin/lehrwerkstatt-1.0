@@ -15,8 +15,8 @@ class AddMotivationStudiengangFachsemesterInteressenErfahrungenTreffenGruesse ex
     {
         Schema::table('users', function (Blueprint $table) {
             $table->text('motivation');
-            $table->text('studiengang');
-            $table->text('fachsemester');
+            $table->string('studiengang');
+            $table->integer('fachsemester');
             $table->text('interessen');
             $table->text('erfahrungen');
             $table->text('treffen');

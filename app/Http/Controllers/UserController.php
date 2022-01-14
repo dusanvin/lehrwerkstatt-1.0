@@ -99,7 +99,7 @@ class UserController extends Controller
         return view('profile.edit', compact('user', 'roles', 'userRole'));
     }
 
-    public function update(Request $request, $id, $val)
+    public function update(Request $request, $id)
 
     {
 
@@ -127,52 +127,47 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update($input);
 
-        if ($val == 0) {
-            return redirect()->route('profile.edit')
-                ->with('success', 'Informationen erfolgreich aktualisiert.');
-        } else {
-            DB::table('model_has_roles')->where('model_id', $id)->delete();
 
-            $user->assignRole($request->input('roles'));
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
 
-            return redirect()->route('users.index')
-                ->with('success', 'Informationen erfolgreich aktualisiert.');
-        }
+        $user->assignRole($request->input('roles'));
+
+        return redirect()->route('users.index')
+            ->with('success', 'Informationen erfolgreich aktualisiert.');
     }
 
-    // public function change(Request $request)
+    public function change(Request $request, $id)
 
-    // {
-    //     $id = auth()->id();
+    {
+        $id = auth()->id();
 
-    //     // Nach Klick auf "Änderungen übernehmen"
+        // Nach Klick auf "Änderungen übernehmen"
 
-    //     $this->validate($request, [
-    //         'vorname' => 'required',
-    //         'nachname' => 'required',
-    //         'email' => 'required|email|unique:users,email,'.$id,
-    //         'password' => 'same:confirm-password',
-    //     ]);
-
-
-
-    //     $input = $request->all();
-
-    //     if(!empty($input['password'])){ 
-    //         $input['password'] = Hash::make($input['password']);
-    //     }else{
-    //         $input = Arr::except($input,array('password'));    
-    //     }
+        $this->validate($request, [
+            'vorname' => 'required',
+            'nachname' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'same:confirm-password',
+        ]);
 
 
 
-    //     $user = User::find($id);
-    //     $user->update($input);
+        $input = $request->all();
 
-    //     return redirect()->route('profile.edit')
-    //                     ->with('success','Informationen erfolgreich aktualisiert.');
+        if (!empty($input['password'])) {
+            $input['password'] = Hash::make($input['password']);
+        } else {
+            $input = Arr::except($input, array('password'));
+        }
 
-    // }
+
+
+        $user = User::find($id);
+        $user->update($input);
+
+        return redirect()->route('profile.edit')
+            ->with('success', 'Informationen erfolgreich aktualisiert.');
+    }
 
     public function destroy($id)
 

@@ -10,7 +10,7 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
-    
+
 class UserController extends Controller
 
 {
@@ -19,20 +19,18 @@ class UserController extends Controller
 
     {
 
-        $data = User::orderBy('id','DESC')->simplePaginate(50);
+        $data = User::orderBy('id', 'DESC')->simplePaginate(50);
 
-        return view('users.index',compact('data')) 
+        return view('users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
-
     }
 
     public function create()
 
     {
 
-        $roles = Role::pluck('name','name')->all();
-        return view('users.create',compact('roles'));
-
+        $roles = Role::pluck('name', 'name')->all();
+        return view('users.create', compact('roles'));
     }
 
     public function store(Request $request)
@@ -46,18 +44,17 @@ class UserController extends Controller
             'password' => 'required|same:confirm-password'
         ]);
 
-    
+
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
 
-    
+
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
-                        ->with('success','Person erfolgreich erstellt.');
-
+            ->with('success', 'Person erfolgreich erstellt.');
     }
 
     public function show($id)
@@ -65,8 +62,7 @@ class UserController extends Controller
     {
 
         $user = User::find($id);
-        return view('users.show',compact('user'));
-
+        return view('users.show', compact('user'));
     }
 
     public function details()
@@ -74,8 +70,7 @@ class UserController extends Controller
     {
 
         $user = User::find(auth()->id());
-        return view('profile.details',compact('user'));
-
+        return view('profile.details', compact('user'));
     }
 
     public function edit($id)
@@ -83,13 +78,12 @@ class UserController extends Controller
     {
 
         $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
 
-    
 
-        return view('users.edit',compact('user','roles','userRole'));
 
+        return view('users.edit', compact('user', 'roles', 'userRole'));
     }
 
     public function uedit()
@@ -97,16 +91,15 @@ class UserController extends Controller
     {
 
         $user = User::find(auth()->id());
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
 
-    
 
-        return view('profile.edit',compact('user','roles','userRole'));
 
+        return view('profile.edit', compact('user', 'roles', 'userRole'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $val)
 
     {
 
@@ -115,66 +108,71 @@ class UserController extends Controller
         $this->validate($request, [
             'vorname' => 'required',
             'nachname' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
         ]);
 
-    
+
 
         $input = $request->all();
 
-        if(!empty($input['password'])){ 
+        if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
-        }else{
-            $input = Arr::except($input,array('password'));    
+        } else {
+            $input = Arr::except($input, array('password'));
         }
 
-    
 
-        $user = User::find($id);
-        $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();    
-
-        $user->assignRole($request->input('roles'));
-
-        return redirect()->route('users.index')
-                        ->with('success','Informationen erfolgreich aktualisiert.');
-
-    }
-
-    public function change(Request $request)
-
-    {
-        $id = auth()->id();
-
-        // Nach Klick auf "Änderungen übernehmen"
-
-        $this->validate($request, [
-            'vorname' => 'required',
-            'nachname' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
-        ]);
-
-    
-
-        $input = $request->all();
-
-        if(!empty($input['password'])){ 
-            $input['password'] = Hash::make($input['password']);
-        }else{
-            $input = Arr::except($input,array('password'));    
-        }
-
-    
 
         $user = User::find($id);
         $user->update($input);
 
-        return redirect()->route('profile.edit')
-                        ->with('success','Informationen erfolgreich aktualisiert.');
+        if ($val == 0) {
+            return redirect()->route('profile.edit')
+                ->with('success', 'Informationen erfolgreich aktualisiert.');
+        } else {
+            DB::table('model_has_roles')->where('model_id', $id)->delete();
 
+            $user->assignRole($request->input('roles'));
+
+            return redirect()->route('users.index')
+                ->with('success', 'Informationen erfolgreich aktualisiert.');
+        }
     }
+
+    // public function change(Request $request)
+
+    // {
+    //     $id = auth()->id();
+
+    //     // Nach Klick auf "Änderungen übernehmen"
+
+    //     $this->validate($request, [
+    //         'vorname' => 'required',
+    //         'nachname' => 'required',
+    //         'email' => 'required|email|unique:users,email,'.$id,
+    //         'password' => 'same:confirm-password',
+    //     ]);
+
+
+
+    //     $input = $request->all();
+
+    //     if(!empty($input['password'])){ 
+    //         $input['password'] = Hash::make($input['password']);
+    //     }else{
+    //         $input = Arr::except($input,array('password'));    
+    //     }
+
+
+
+    //     $user = User::find($id);
+    //     $user->update($input);
+
+    //     return redirect()->route('profile.edit')
+    //                     ->with('success','Informationen erfolgreich aktualisiert.');
+
+    // }
 
     public function destroy($id)
 
@@ -184,8 +182,6 @@ class UserController extends Controller
 
         return redirect()->route('users.index')
 
-                        ->with('success','Person erfolgreich gelöscht.');
-
+            ->with('success', 'Person erfolgreich gelöscht.');
     }
-
 }

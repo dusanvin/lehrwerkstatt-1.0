@@ -39,84 +39,84 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 /* Sites */
 
-		// /* Landing Page */
-		// Route::get('/', function () {
-		//     return view('layouts.hero');
-		// })->name('home');
+// /* Landing Page */
+// Route::get('/', function () {
+//     return view('layouts.hero');
+// })->name('home');
 
-		/* Log */
-		Route::get('/log', function () {
-		    return view('layouts.content');
-		});
+/* Log */
+Route::get('/log', function () {
+    return view('layouts.content');
+});
 
-		/* FAQ */
-		Route::get('/faq', function () {
-		    return view('faq');
-		});
+/* FAQ */
+Route::get('/faq', function () {
+    return view('faq');
+});
 
-		/* Näheres zum digi:match */
-		Route::get('/about', function () {
-		    return view('about');
-		});
+/* Näheres zum digi:match */
+Route::get('/about', function () {
+    return view('about');
+});
 
 /*--------------------------------------------------------------------------*/
 
 /* User */
-Route::middleware(['auth', 'verified'])->group(function() {
+Route::middleware(['auth', 'verified'])->group(function () {
 
     /* Helfende */
-    Route::get('/help', [HelpController::class,'index'])
+    Route::get('/help', [HelpController::class, 'index'])
         ->name('help');
 
     /* Lernende */
-    Route::get('/learn', [LearnController::class,'index'])
+    Route::get('/learn', [LearnController::class, 'index'])
         ->name('learn');
 
     /* Moderierende/Beauftragte */
-    Route::get('/mod', [ModController::class,'index'])
+    Route::get('/mod', [ModController::class, 'index'])
         ->name('mod');
 
 
 
     /* Angebote */
-    Route::get('/offers/all', [OffersController::class,'all'])
+    Route::get('/offers/all', [OffersController::class, 'all'])
         ->name('offers.all');
 
-    Route::get('/offers/myoffers', [OffersController::class,'user'])
+    Route::get('/offers/myoffers', [OffersController::class, 'user'])
         ->name('offers.user');
 
-    Route::get('/offers/make', [OffersController::class,'make'])
+    Route::get('/offers/make', [OffersController::class, 'make'])
         ->name('offers.make');
 
-    Route::post('/offers', [OffersController::class,'store'])
+    Route::post('/offers', [OffersController::class, 'store'])
         ->name('offers');
 
     /* Angebot: Löschen */
-    Route::delete('/offers/{offer}', [OffersController::class,'destroy'])
+    Route::delete('/offers/{offer}', [OffersController::class, 'destroy'])
         ->name('offers.destroy');
 
     /* Angebote Likes Hinzufügen */
-    Route::post('/offers/{offer}/likes', [OfferLikeController::class,'store'])
+    Route::post('/offers/{offer}/likes', [OfferLikeController::class, 'store'])
         ->name('offers.likes');
 
     /* Angebote: inaktiv setzen */
-    Route::post('/offers/{offer}/setinactive', [OffersController::class,'setinactive'])
+    Route::post('/offers/{offer}/setinactive', [OffersController::class, 'setinactive'])
         ->name('offers.setinactive');
 
     /* Angebote: aktiv setzen */
-    Route::post('/offers/{offer}/setactive', [OffersController::class,'setactive'])
+    Route::post('/offers/{offer}/setactive', [OffersController::class, 'setactive'])
         ->name('offers.setactive');
 
     /* Angebote Likes Löschen */
-    Route::delete('/offers/{offer}/likes', [OfferLikeController::class,'destroy'])
+    Route::delete('/offers/{offer}/likes', [OfferLikeController::class, 'destroy'])
         ->name('offers.likes');
 
     /* Angebote Requests Hinzufügen */
-    Route::post('/offers/{offer}/requests', [OfferRequestController::class,'store'])
-    ->name('offers.requests');
+    Route::post('/offers/{offer}/requests', [OfferRequestController::class, 'store'])
+        ->name('offers.requests');
 
     /* Angebote Requests Löschen */
-    Route::delete('/offers/{offer}/requests', [OfferRequestController::class,'destroy'])
+    Route::delete('/offers/{offer}/requests', [OfferRequestController::class, 'destroy'])
         ->name('offers.requests');
 
 
@@ -126,50 +126,50 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('{id}', ['as' => 'needs.show', 'uses' => 'App\Http\Controllers\MessagesController@show']);
     });*/
 
-    Route::get('/needs/all', [NeedsController::class,'all'])
+    Route::get('/needs/all', [NeedsController::class, 'all'])
         ->name('needs.all');
 
-    Route::get('/needs/myneeds', [NeedsController::class,'user'])
+    Route::get('/needs/myneeds', [NeedsController::class, 'user'])
         ->name('needs.user');
 
-    Route::get('/needs/make', [NeedsController::class,'make'])
+    Route::get('/needs/make', [NeedsController::class, 'make'])
         ->name('needs.make');
 
     /* Bedarf: Hinzufügen */
-    Route::post('/needs', [NeedsController::class,'store'])
+    Route::post('/needs', [NeedsController::class, 'store'])
         ->name('needs');
 
     /* Bedarf: inaktiv setzen */
-    Route::post('/needs/{need}/setinactive', [NeedsController::class,'setinactive'])
+    Route::post('/needs/{need}/setinactive', [NeedsController::class, 'setinactive'])
         ->name('needs.setinactive');
 
     /* Bedarf: aktiv setzen */
-    Route::post('/needs/{need}/setactive', [NeedsController::class,'setactive'])
+    Route::post('/needs/{need}/setactive', [NeedsController::class, 'setactive'])
         ->name('needs.setactive');
 
     /* Bedarf: Löschen */
-    Route::delete('/needs/{need}', [NeedsController::class,'destroy'])
+    Route::delete('/needs/{need}', [NeedsController::class, 'destroy'])
         ->name('needs.destroy');
 
     /* Needs Likes Hinzufügen */
-    Route::post('/needs/{need}/likes', [NeedLikeController::class,'store'])
+    Route::post('/needs/{need}/likes', [NeedLikeController::class, 'store'])
         ->name('needs.likes');
 
     /* Needs Likes Löschen */
-    Route::delete('/needs/{need}/likes', [NeedLikeController::class,'destroy'])
+    Route::delete('/needs/{need}/likes', [NeedLikeController::class, 'destroy'])
         ->name('needs.likes');
 
     /* Needs Anfrage Hinzufügen */
-    Route::post('/needs/{need}/requests', [NeedRequestController::class,'store'])
-    ->name('needs.requests');
+    Route::post('/needs/{need}/requests', [NeedRequestController::class, 'store'])
+        ->name('needs.requests');
 
     /* Needs Anfrage Löschen */
-    Route::delete('/needs/{need}/requests', [NeedRequestController::class,'destroy'])
+    Route::delete('/needs/{need}/requests', [NeedRequestController::class, 'destroy'])
         ->name('needs.requests');
 
 
     /* Zuweisungen */
-    Route::get('/matching', [MatchingController::class,'index'])
+    Route::get('/matching', [MatchingController::class, 'index'])
         ->name('matching');
 
     /* Nachrichten */
@@ -182,38 +182,34 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('{id}/delete', 'App\Http\Controllers\MessagesController@delete')->name('messages.delete');
     });
 
-
-    Route::get('/profile/details', [UserController::class,'details'])
-    ->name('profile.details');
-    Route::get('/profile/edit', [UserController::class,'uedit'])
-    ->name('profile.edit');
-    Route::get('/profile/change', [UserController::class,'change'])
-    ->name('profile.change');
-
-
+    Route::group(['middleware' => ['role:Moderierende|Lehrende|Helfende', 'auth', 'verified']], function () {
+        Route::get('/profile/details', [UserController::class, 'details'])
+            ->name('profile.details');
+        Route::get('/profile/edit', [UserController::class, 'uedit'])
+            ->name('profile.edit');
+    });
 });
 
 
 /* Rollen und Zugriffsrechte */
-Route::group(['middleware' => ['role:Admin|Moderierende','auth', 'verified']], function () {
+Route::group(['middleware' => ['role:Admin|Moderierende', 'auth', 'verified']], function () {
     //
     /* Account bearbeiten */
-    Route::get('/user', [UserEditController::class,'index'])
+    Route::get('/user', [UserEditController::class, 'index'])
         ->name('user');
 
     /* Statistiken */
-    Route::get('/stats', [StatsController::class,'index'])
+    Route::get('/stats', [StatsController::class, 'index'])
         ->name('stats');
 
 
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
-
 });
 
 
 /*--------------------------------------------------------------------------*/
 
 
-Route::get('/datepicker', [DateController::class,'index']);
+Route::get('/datepicker', [DateController::class, 'index']);

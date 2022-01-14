@@ -56,6 +56,55 @@
 
                 <div class="col-md-6">
 
+
+                    <!-- Search User -->
+
+                    <div class="mt-1">
+
+                        <script>
+                            function setReceiver(id) {
+                                console.log(id);
+                                // document.getElementById('receiver').value = id;
+                                // document.getElementById('receiver-list').innerHTML = document.getElementById(id).innerHTML;
+                                @this.receivers = document.getElementById(id).innerHTML;
+                                @this.receiverids = id;
+                                @this.search = '';
+                            }
+                        </script>
+
+                        <label class="border border-gray-100 bg-gray-100 rounded">An:{{ $receivers }}</label>
+                        <form>
+
+                            <input id="search" wire:model="search" type="text" placeholder="Suche nach Nutzer..." class="border border-gray-100 bg-gray-100 w-full rounded form-control form-input">
+
+                        </form>
+
+                        @if($users && $users->count() > 0)
+                        <ul class="py-2 px-3 bg-gray-100 list-group absolute bg-white rounded">
+
+                            <div class="block relative w-full mt-1">
+                                <div class="select-group block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+
+                                    @foreach($users as $user)
+
+                                    <li id={{ $user->id }} onclick=setReceiver(this.id)>{{ $user->vorname }} {{ $user->nachname }} ({{ $user->id }})</li>
+
+                                    @endforeach
+                                </div>
+                            </div>
+
+
+                            @endif
+
+                        </ul>
+
+                    </div>
+
+                    <br>
+
+                    <!-- Search User -->
+
+
                     <!-- Subject Form Input -->
 
                     <div class="mt-1">
@@ -77,71 +126,9 @@
                     </div>
 
                     <div class="mt-1 pb-6">
-                        
 
-                        <form>
-
-                            <input id="search" wire:model="search" type="text" placeholder="Suche nach Nutzer..." class="border border-gray-100 bg-gray-100 w-full rounded form-control form-input">
-
-                        </form>
-
-
-                            {{ $receivers }}
-
-
-                        <script>
-                            function setReceiver(id) {
-                                console.log(id);
-                                // document.getElementById('receiver').value = id;
-                                // document.getElementById('receiver-list').innerHTML = document.getElementById(id).innerHTML;
-                                @this.receivers = document.getElementById(id).innerHTML;
-                                @this.receiverids = id;
-                                @this.search = '';
-                            }
-                        </script>
 
                         <input id="receiver" type="hidden" name="recipients[]" value="{{ $receiverids }}"></input>
-
-                            @if($users && $users->count() > 0)
-                        <ul class="py-2 px-3 bg-gray-100 list-group absolute bg-white rounded">
-
-
-                                <!-- @foreach($users as $user) -->
-                                <!--<li class="list-group-item px-2 py-2 hover:bg-gray-100">{{$user->email}}</li>-->
-
-                                <!-- <li class="px-2 py-2">
-
-                                    <input type="radio" class="form-radio" name="recipients[]" value="{{ $user->id }}">
-
-                                    <span class="ml-2">{{ $user->vorname }} {{ $user->nachname }} ({{ $user->id }})</span>
-
-                                </li> -->
-                                
-                                <!-- @endforeach -->
-
-                                <!-- <script>
-                                    function setReceiver(id) {
-                                        console.log(id);
-                                    }
-                                </script> -->
-
-                                <div class="block relative w-full mt-1">
-                                    <div class="select-group block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-
-                                        @foreach($users as $user)
-
-                                            <li id={{ $user->id }} onclick=setReceiver(this.id)>{{ $user->vorname }} {{ $user->nachname }} ({{ $user->id }})</li>
-
-                                            <!-- $need->ownedBy(auth()->user()) -->
-
-                                        @endforeach
-                                    </div>
-                                </div>        
-
-
-                            @endif
-
-                        </ul>
 
                     </div>
 

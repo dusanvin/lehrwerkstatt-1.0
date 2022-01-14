@@ -14,13 +14,13 @@ class AddMotivationStudiengangFachsemesterInteressenErfahrungenTreffenGruesse ex
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('motivation');
-            $table->string('studiengang');
-            $table->integer('fachsemester');
-            $table->text('interessen');
-            $table->text('erfahrungen');
-            $table->text('treffen');
-            $table->text('gruesse');
+            $table->text('motivation')->nullable();
+            $table->string('studiengang')->nullable();
+            $table->integer('fachsemester')->nullable();
+            $table->text('interessen')->nullable();
+            $table->text('erfahrungen')->nullable();
+            $table->text('treffen')->nullable();
+            $table->text('gruesse')->nullable();
         });
     }
 

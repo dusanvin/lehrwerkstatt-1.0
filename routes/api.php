@@ -182,7 +182,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('{id}/delete', 'App\Http\Controllers\MessagesController@delete')->name('messages.delete');
     });
 
-    Route::group(['middleware' => ['role:Moderierende|Lehrende|Helfende', 'auth', 'verified']], function () {
+    Route::group(['middleware' => ['role:Admin|Moderierende|Lehrende|Helfende', 'auth', 'verified']], function () {
         Route::get('/profile/details', [UserController::class, 'details'])
             ->name('profile.details');
         Route::get('/profile/edit', [UserController::class, 'uedit'])

@@ -26,16 +26,6 @@ class UserController extends Controller
 
     }
 
-    public function overview(Request $request)
-
-    {
-
-        // $data = User::where('id', $request->id)->get();
-
-        return view('profile.overview');
-
-    }
-
     public function create()
 
     {
@@ -152,9 +142,10 @@ class UserController extends Controller
 
     }
 
-    public function change(Request $request, $id)
+    public function change(Request $request)
 
     {
+        $id = auth()->id();
 
         // Nach Klick auf "Änderungen übernehmen"
 

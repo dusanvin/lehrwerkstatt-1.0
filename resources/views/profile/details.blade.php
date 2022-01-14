@@ -20,15 +20,15 @@
 
                     <h2 class="text-lg leading-6 font-medium text-gray-900">
 
-                        Meine Daten
+                        Öffentliches Profil
 
                     </h2>
 
-                    <p class="mt-1 text-sm text-gray-500">
+                    <!-- <p class="mt-1 text-sm text-gray-500">
 
                         Betrachten Sie die Informationen zu Ihrer Person. Die Daten sind öffentlich einsehbar.
 
-                    </p>
+                    </p> -->
 
                 </div>
 
@@ -162,7 +162,7 @@
 
                 <div class="block px-2">
 
-                    <div class="mb-4 mt-4 mx-4 float-left">
+                    <!-- <div class="mb-4 mt-4 mx-4 float-left">
 
                         <a href="{{ route('profile.overview') }}" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 py-2 pr-4 pl-4 border border-purple-600 hover:border-transparent rounded flex items-center transition ease-in-out duration-150">
 
@@ -174,7 +174,7 @@
 
                         </a>
 
-                    </div>
+                    </div> -->
 
                     <div class="mb-4 mt-4 mx-4 float-right">
 

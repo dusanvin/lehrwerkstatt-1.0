@@ -26,19 +26,19 @@
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal">
 
-                            BETA-Version 0.1: 05/2021
+                            BETA-Version 0.2: 01/2021
 
                         </p>
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal mt-2">
 
-                            Das <em>digi:match</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Helfer*innen im Rahmen des Projekts <em>Augsburger DaZ-Buddys</em> zu finden.
+                            Das <em>digi:match</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Unterstützende im Rahmen des Projekts <em>Augsburger DaZ-Buddys</em> zu finden.
 
                         </p>
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal mt-2 mr-2">
 
-                            <em>digi:match</em> von <strong>Vincent Dusanek</strong> und <strong>Norman Szabo</strong> für <strong>DigiLLab</strong>, 2021. MIT-Lizenz.
+                            <em>digi:match</em> von <strong>Vincent Dusanek</strong> und <strong>Norman Szabo</strong> für <strong>DigiLLab</strong>, 2022. MIT-Lizenz.
 
                         </p>
 
@@ -73,9 +73,9 @@
 
                     <li>
 
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/fakultaet/philhist/professuren/germanistik/deutsch-als-zweit-fremdsprache-und-seine-didaktik/fort-und-weiterbildung/outreach/daz-buddies/">
 
-                            ZLbiB
+                            DaZ-Buddies
 
                         </a>
 

@@ -26,7 +26,7 @@
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal">
 
-                            BETA-Version 0.2: 01/2021
+                            BETA-Version 0.2: 01/2022
 
                         </p>
 

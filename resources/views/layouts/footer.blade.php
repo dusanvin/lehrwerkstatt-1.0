@@ -32,7 +32,7 @@
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal mt-2">
 
-                            Das <em>digi:match</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Paare im Rahmen des Projekts <em>Augsburger DaZ-Buddys</em> zu bilden.
+                            Das <em>digi:match</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Paare im Rahmen des Projekts <em>Augsburger DaZ-Buddies</em> zu bilden.
 
                         </p>
 

@@ -42,21 +42,21 @@
 
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Näheres zum <em>digi<strong>:match</strong></em></h1>
 
-                    <p class="mx-auto leading-relaxed text-base">Studierende der Fächer <strong>DaZ/DaF</strong> engagieren sich als Helfer*innen und Zuhörer*innen in digitalen 1-zu-1-Lernkontakten mit Kindern und Jugendlichen im DaZ-Erwerb. Sie (video)telefonieren, chatten oder mailen mit Schüler*innen im DaZ-Erwerb und gehen dabei bedürfnisorientiert auf die Kinder und Jugendlichen ein, sei es in Form von Hausaufgabenhilfe, Sprachspielen oder sie lassen sich einfach „ein Ohr abkauen“.</p>
-
-                    <p class="leading-relaxed text-base mt-2"><strong>Sie sind:
+                    <p class="leading-relaxed mt-2 text-xl">Sind Sie...
 
                         <ul>
                             
-                            <li>…Lehrkraft an einer Schule bzw. einer Klasse von Lernenden mit Deutsch als Zweitsprache, welche Hilfe/Unterstützung benötigen?</li>
+                            <li class="list-disc">Lehrkraft an einer Schule bzw. einer Klasse von Lernenden mit Deutsch als Zweitsprache, welche Hilfe/Unterstützung benötigt?</li>
 
-                            <li>…Studierender mit den Fächern DaZ|DaF und haben Interesse, Lernenden mit Deutsch als Zweitsprache große Ohren Unterstützung zu bieten?</li>
+                            <li class="list-disc">Studierender mit den Fächern DaZ/DaF und haben Interesse, Lernenden mit Deutsch als Zweitsprache Unterstützung zu bieten?</li>
 
                         </ul>
 
-                        </strong><br>Dann helfen Sie mit! Melden Sie sich an und nehmen am DaZ-Buddy-Projekt teil!
-
                     </p>
+
+                    <p class="mx-auto leading-relaxed text-base mt-2">Studierende der Fächer <strong>DaZ/DaF</strong> engagieren sich als Helfer*innen und Zuhörer*innen in digitalen 1-zu-1-Lernkontakten mit Kindern und Jugendlichen im DaZ-Erwerb. Sie (video)telefonieren, chatten oder mailen mit Schüler*innen im DaZ-Erwerb und gehen dabei bedürfnisorientiert auf die Kinder und Jugendlichen ein, sei es in Form von Hausaufgabenhilfe, Sprachspielen oder sie lassen sich einfach „ein Ohr abkauen“. Das Portal <em>digi:match</em> erleichtert Ihnen die Suche eines passenden Gegenübers. </p>
+
+                    <span class="mt-2 text-xl">Dann helfen Sie mit! Melden Sie sich an und nehmen am Projekt DaZ-Buddies teil!</span>
 
                 </div>    
 
@@ -126,7 +126,7 @@
 
                                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">ZUTEILUNG</h2>
 
-                                <p class="leading-relaxed">Praktikumssuchene und -beauftrage erstellen Bedarfe.</p>
+                                <p class="leading-relaxed">Praktikumssuchene und -beauftrage erstellen Bedarfe und Angebote, um ein Praktikum zu finden.</p>
 
                             </div>
 
@@ -156,7 +156,7 @@
 
                                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">CHAT</h2>
 
-                                <p class="leading-relaxed">Praktikumsbeauftrage schreiben -suchene an, um ein Praktikum zu offerieren. Suchende erstellen Bedarfe, um ein Praktikum zu finden.</p>
+                                <p class="leading-relaxed">Praktikumsbeauftrage schreiben -suchene an, um ein Praktikum zu offerieren.</p>
 
                             </div>
 

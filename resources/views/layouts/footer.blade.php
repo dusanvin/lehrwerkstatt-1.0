@@ -63,7 +63,7 @@
 
                     <li>
 
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://digillab.zlbib.uni-augsburg.de">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://digillab.zlbib.uni-augsburg.de" target="_blank">
 
                             DigiLLab
 
@@ -73,7 +73,7 @@
 
                     <li>
 
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/fakultaet/philhist/professuren/germanistik/deutsch-als-zweit-fremdsprache-und-seine-didaktik/fort-und-weiterbildung/outreach/daz-buddies/">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/fakultaet/philhist/professuren/germanistik/deutsch-als-zweit-fremdsprache-und-seine-didaktik/fort-und-weiterbildung/outreach/daz-buddies/" target="_blank">
 
                             DaZ-Buddies
 
@@ -101,7 +101,7 @@
 
                     <li>
 
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://digillab.zlbib.uni-augsburg.de/impressum/">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://digillab.zlbib.uni-augsburg.de/impressum/" target="_blank">
 
                             Impressum
 
@@ -111,7 +111,7 @@
 
                     <li>
 
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/impressum/datenschutz/">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/impressum/datenschutz/" target="_blank">
 
                             Datenschutz
                         </a>
@@ -138,7 +138,7 @@
 
                     <li>
 
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="/about">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="/about" target="_blank">
 
                             Näheres zum <em>digi:match</em>
 
@@ -148,7 +148,7 @@
 
                     <li>
 
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-bold" href="/faq">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-bold" href="/faq" target="_blank">
 
                             FAQ
 
@@ -168,7 +168,7 @@
 
                     <li>
 
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="/log">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="/log" target="_blank">
 
                             Log
 

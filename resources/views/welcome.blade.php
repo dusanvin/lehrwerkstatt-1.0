@@ -112,7 +112,11 @@
 
                             <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
 
-                                Das <em>digi:match</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Helfer*innen zu finden. Für Studierende und Schulen. <strong>Kostenfrei und DSGVO-konform.</strong>
+                                Das <em>digi:match</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Paare im Rahmen der 
+
+                                    <a class="text-purple-600 font-bold" href="https://www.uni-augsburg.de/de/fakultaet/philhist/professuren/germanistik/deutsch-als-zweit-fremdsprache-und-seine-didaktik/fort-und-weiterbildung/outreach/daz-buddies/" target="_blank">Augsburger DaZ-Buddys</a> 
+
+                                zu finden. <br><strong>Für Studierende und LehererInnen.</strong>
 
                             </p>
 

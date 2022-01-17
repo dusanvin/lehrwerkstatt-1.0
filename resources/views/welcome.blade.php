@@ -114,7 +114,7 @@
 
                                 Das <em>digi:match</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Paare im Rahmen der 
 
-                                    <a class="text-purple-600 font-bold" href="https://www.uni-augsburg.de/de/fakultaet/philhist/professuren/germanistik/deutsch-als-zweit-fremdsprache-und-seine-didaktik/fort-und-weiterbildung/outreach/daz-buddies/" target="_blank">Augsburger DaZ-Buddys</a> 
+                                    <a class="text-purple-600 font-bold" href="https://www.uni-augsburg.de/de/fakultaet/philhist/professuren/germanistik/deutsch-als-zweit-fremdsprache-und-seine-didaktik/fort-und-weiterbildung/outreach/daz-buddies/" target="_blank">Augsburger DaZ-Buddies</a> 
 
                                 zu bilden. <br><strong>Für Studierende und LehrerInnen.</strong>
 

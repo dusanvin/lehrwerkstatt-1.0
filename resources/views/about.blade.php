@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Tables</title>
+        <title>Näheres zum digi:match</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 
         <style type="text/css">
@@ -15,10 +15,6 @@
                 
             }
         </style>
-
-                <!-- Styles -->
-
-
 
     </head>
 
@@ -40,13 +36,27 @@
 
                 <!-- Ankündigung -->
 
-                <div class="flex flex-col text-center w-full mb-20">
+                <div class="flex flex-col text-left w-full mb-20">
 
                     <h2 class="text-xs text-purple-500 tracking-widest font-medium title-font mb-1">Über</h2>
 
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Näheres zum <em>digi<strong>:match</strong></em></h1>
 
-                    <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Das <em>digi<strong>:match</strong></em> ist mittels des PHP-Frameworks <a href="https://laravel.com/" class="text-purple-500">Laravel</a> und des CSS-Frameworks <a href="https://tailwindcss.com/" class="text-purple-500">TailwindCSS</a> programmiert worden. Das Projekt steht unter einer MIT-Lizenz. Zum <a href="https://github.com/dusanvin/digimatch" class="text-purple-500">GitHub-Projekt</a>.</p>
+                    <p class="mx-auto leading-relaxed text-base">Studierende der Fächer <strong>DaZ/DaF</strong> engagieren sich als Helfer*innen und Zuhörer*innen in digitalen 1-zu-1-Lernkontakten mit Kindern und Jugendlichen im DaZ-Erwerb. Sie (video)telefonieren, chatten oder mailen mit Schüler*innen im DaZ-Erwerb und gehen dabei bedürfnisorientiert auf die Kinder und Jugendlichen ein, sei es in Form von Hausaufgabenhilfe, Sprachspielen oder sie lassen sich einfach „ein Ohr abkauen“.</p>
+
+                    <p class="leading-relaxed text-base mt-2"><strong>Sie sind:
+
+                        <ul>
+                            
+                            <li>…Lehrkraft an einer Schule bzw. einer Klasse von Lernenden mit Deutsch als Zweitsprache, welche Hilfe/Unterstützung benötigen?</li>
+
+                            <li>…Studierender mit den Fächern DaZ|DaF und haben Interesse, Lernenden mit Deutsch als Zweitsprache große Ohren Unterstützung zu bieten?</li>
+
+                        </ul>
+
+                        </strong><br>Dann helfen Sie mit! Melden Sie sich an und nehmen am DaZ-Buddy-Projekt teil!
+
+                    </p>
 
                 </div>    
 
@@ -116,7 +126,7 @@
 
                                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">ZUTEILUNG</h2>
 
-                                <p class="leading-relaxed">Praktikumssuchene und -beauftrage erstellen Bedarfe. Ein Algorithmus weist auf mögliche Praktika hin.</p>
+                                <p class="leading-relaxed">Praktikumssuchene und -beauftrage erstellen Bedarfe.</p>
 
                             </div>
 
@@ -144,9 +154,9 @@
 
                             <div class="flex-grow pl-4">
 
-                                <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">MAILSYSTEM</h2>
+                                <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">CHAT</h2>
 
-                                <p class="leading-relaxed">Praktikumsbeauftrage schreiben -suchene an, um ein passgerechtes Praktikum zu offerieren.</p>
+                                <p class="leading-relaxed">Praktikumsbeauftrage schreiben -suchene an, um ein Praktikum zu offerieren. Suchende erstellen Bedarfe, um ein Praktikum zu finden.</p>
 
                             </div>
 
@@ -204,7 +214,6 @@
 
                     </div>
 
-                    <!--<img class="lg:w-3/5 md:w-1/2 object-cover object-center rounded-lg md:mt-0 mt-12" src="https://dummyimage.com/1200x500" alt="step">-->
                     <img class="lg:w-3/5 md:w-1/2 object-cover object-center rounded-lg md:mt-0 mt-12" src="https://images.pexels.com/photos/3771107/pexels-photo-3771107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="step">
 
                 </div>
@@ -216,6 +225,8 @@
             <!-- Log Inner Div -->
 
         </div>
+
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Das <em>digi<strong>:match</strong></em> ist mittels des PHP-Frameworks <a href="https://laravel.com/" class="text-purple-500">Laravel</a> und des CSS-Frameworks <a href="https://tailwindcss.com/" class="text-purple-500">TailwindCSS</a> programmiert worden. Das Projekt steht unter einer MIT-Lizenz. Zum <a href="https://github.com/dusanvin/digimatch" class="text-purple-500">GitHub-Projekt</a>.</p>
 
         <!-- About -->
 

@@ -116,7 +116,7 @@
 
                                     <a class="text-purple-600 font-bold" href="https://www.uni-augsburg.de/de/fakultaet/philhist/professuren/germanistik/deutsch-als-zweit-fremdsprache-und-seine-didaktik/fort-und-weiterbildung/outreach/daz-buddies/" target="_blank">Augsburger DaZ-Buddys</a> 
 
-                                zu finden. <br><strong>Für Studierende und LehererInnen.</strong>
+                                zu bilden. <br><strong>Für Studierende und LehererInnen.</strong>
 
                             </p>
 

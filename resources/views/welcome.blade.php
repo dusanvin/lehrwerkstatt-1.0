@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+
         <meta charset="utf-8">
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>digi:match - Finden Sie Ihren DaZ-Buddy</title>
-
-        <!-- Fonts 
-
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-         Fonts -->
 
         <!-- Styles -->
 
@@ -22,25 +18,15 @@
 
         </style>
 
-        <!-- Styles
-
-        
+        <!--CSS        
 
         <link rel="stylesheet" href="https://tailwindui.com/css/components-v2.css?id=f3889d577d4cc5a215ba"> -->
 
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 
-         <!--CSS
-
-        <link rel="stylesheet" href="http://hosted-024-216.rz.uni-augsburg.de/img/components-v2.css">
-
-        CSS -->
+        <!--CSS -->
 
     </head>
-
-    <!-- https://tailwindui.com/components/marketing/sections/heroes -->
-    <!-- https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/css/pagination/with-numbers -->
-    <!-- Tooltips: https://codepen.io/t7team/pen/XWdyVyB -->
 
     <body class="antialiased bg-white">
 
@@ -100,7 +86,7 @@
 
                   <!-- Ausrichtung Hero-Image -->
 
-                    <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+                    <main class="mt-0 mb-10 sm:mb-0 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
 
                         <div class="text-base text-center md:text-left lg:text-left xl:text-left 2xl:text-left sm:max-w-xl sm:mx-auto lg:mx-0">
 
@@ -155,12 +141,6 @@
             </div>
 
             <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-                <!-- Old image https://images.pexels.com/photos/5212320/pexels-photo-5212320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 -->
-
-                <!-- <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://images.pexels.com/photos/8423367/pexels-photo-8423367.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt=""> 
-                /usr/share/nginx/html/resources/img/welcome.jpg
-
-                -->
 
                 <video class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" autoplay muted loop>
 
@@ -180,7 +160,7 @@
 
         <!-- JS -->
 
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.min.js" defer=""></script
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.min.js" defer=""></script>
 
         <!-- JS -->
 

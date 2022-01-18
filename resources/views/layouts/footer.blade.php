@@ -8,7 +8,7 @@
 
         <!-- Grid -->
 
-        <ul class="text-center Footer_nav__2rFid text-xs md:text-sm font-medium pb-6 sm:pb-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-6 sm:gap-y-10">
+        <ul class="text-center Footer_nav__2rFid text-xs md:text-sm font-medium pb-6 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-6 sm:gap-y-10">
 
             <!-- Informationen -->
 

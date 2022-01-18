@@ -1,6 +1,6 @@
 <style type="text/css">
 	.main-img {
-	    background-image: url('https://images.pexels.com/photos/5212320/pexels-photo-5212320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+	    background-image: url('http://hosted-024-216.rz.uni-augsburg.de/img/welcome.jpg');
 	    background-position: center center;
 	    background-repeat: no-repeat;
 	    background-size: cover;

@@ -6,11 +6,11 @@
 
         <title>digi:match - Finden Sie Ihren DaZ-Buddy</title>
 
-        <!-- Fonts -->
+        <!-- Fonts 
 
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-        <!-- Fonts -->
+         Fonts -->
 
         <!-- Styles -->
 
@@ -22,13 +22,19 @@
 
         </style>
 
-        <!-- Styles -->
+        <!-- Styles
 
-        <!-- CSS -->
+        
 
-        <link rel="stylesheet" href="https://tailwindui.com/css/components-v2.css?id=f3889d577d4cc5a215ba">
+        <link rel="stylesheet" href="https://tailwindui.com/css/components-v2.css?id=f3889d577d4cc5a215ba"> -->
 
-        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+
+         <!--CSS
+
+        <link rel="stylesheet" href="http://hosted-024-216.rz.uni-augsburg.de/img/components-v2.css">
+
+        CSS -->
 
     </head>
 
@@ -156,7 +162,7 @@
 
                 -->
 
-                <video class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" autoplay muted loop poster="http://hosted-024-216.rz.uni-augsburg.de/img/welcome.jpg">
+                <video class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" autoplay muted loop>
 
                     <source type="video/mp4" src="http://hosted-024-216.rz.uni-augsburg.de/img/welcome_start.mp4">
 

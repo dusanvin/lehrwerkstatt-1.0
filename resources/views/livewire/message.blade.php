@@ -1,4 +1,4 @@
-<div class="px-3 sm:px-8 py-8 text-gray-700 w-screen bg-white sm:rounded-r-lg" style="background-color: #EDF2F7;">
+<div class="px-1 md:px-8 py-1 md:py-8 text-gray-700 w-screen rounded-r-lg" style="background-color: #EDF2F7;">
 
     <div class="overflow-hidden sm:rounded-lg">
 

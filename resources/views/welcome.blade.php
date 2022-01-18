@@ -96,7 +96,7 @@
 
                     <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
 
-                        <div class="text-center md:text-left lg:text-left xl:text-left 2xl:text-left">
+                        <div class="text-base text-center md:text-left lg:text-left xl:text-left 2xl:text-left sm:max-w-xl sm:mx-auto lg:mx-0">
 
                             <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
 
@@ -156,7 +156,7 @@
 
                 -->
 
-                <video class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" autoplay muted loop>
+                <video class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" autoplay muted loop poster="http://hosted-024-216.rz.uni-augsburg.de/img/welcome.jpg">
 
                     <source type="video/mp4" src="http://hosted-024-216.rz.uni-augsburg.de/img/welcome.mp4">
 

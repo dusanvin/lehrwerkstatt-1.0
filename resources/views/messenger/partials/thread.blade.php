@@ -26,7 +26,14 @@
 
                 <div class="flex-auto font-normal leading-5 md:leading-normal mb-1 text-xs sm:text-sm">
                     
-                    <p class="text-xs mb-1 text-gray-400">    
+                    <p class="text-xs mb-1 text-gray-400" style="
+
+                        overflow: hidden;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 1;
+
+                    ">    
 
                         {{ $thread->latestMessage->body }}
                     

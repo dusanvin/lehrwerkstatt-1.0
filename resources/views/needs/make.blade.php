@@ -14,7 +14,7 @@
 
     <!-- Content -->
 
-    <div class="px-8 py-8 text-gray-700 w-screen rounded-r-lg" style="background-color: #EDF2F7;">
+    <div class="px-1 md:px-8 py-1 md:py-8 text-gray-700 w-screen rounded-r-lg" style="background-color: #EDF2F7;">
 
         <div class="mx-auto rounded">
 
@@ -74,7 +74,7 @@
 
                                 <!-- Test -->
 
-                                <div class="grid grid-cols-4 gap-4">
+                                <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
 
                                     <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
 
@@ -112,35 +112,31 @@
 
                                     <!-- Schulart -->
 
-                                    <div class="grid grid-cols-4 gap-4">
+                                    <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
 
-                                        <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
+                                        <p class="font-medium text-gray-800 leading-none">Schulart</p>
 
-                                            <p class="font-medium text-gray-800 leading-none">Schulart</p>
+                                        <p class="text-xs text-gray-500 mt-1 mb-3">Legen Sie fest, welche Schule Sie bevorzugen.</p>
 
-                                            <p class="text-xs text-gray-500 mt-1 mb-3">Legen Sie fest, welche Schule Sie bevorzugen.</p>
+                                        <div>
 
-                                            <div>
+                                            <label for="rahmen" class="sr-only flex items-center">schulart</label>
 
-                                                <label for="rahmen" class="sr-only flex items-center">schulart</label>
+                                            <select name="schulart" id="schulart" class="text-gray-500 text-xs py-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('schulart') border-red-500 @enderror">
+                                                <option>Keine</option>
+                                                <option>Grundschule</option>
+                                                <option>Weitere</option>
+                                            </select>
 
-                                                <select name="schulart" id="schulart" class="text-gray-500 text-xs py-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('schulart') border-red-500 @enderror">
-                                                    <option>Keine</option>
-                                                    <option>Grundschule</option>
-                                                    <option>Weitere</option>
-                                                </select>
+                                            @error('schulart')
 
-                                                @error('schulart')
+                                            <div class="text-red-500 mt-2 text-sm">
 
-                                                <div class="text-red-500 mt-2 text-sm">
-
-                                                    {{ 'Bitte legen Sie fest, welche Schule Sie bevorzugen.' }}
-
-                                                </div>
-
-                                                @enderror
+                                                {{ 'Bitte legen Sie fest, welche Schule Sie bevorzugen.' }}
 
                                             </div>
+
+                                            @enderror
 
                                         </div>
 
@@ -192,7 +188,7 @@
 
                                         <p class="font-medium text-gray-800 leading-none">Studiengang</p>
 
-                                        <p class="text-xs text-gray-500 mt-1 mb-3">Ergänzen Sie, welchen Studiengang Sie präferieren. Sollten Sie keine Präferenz haben, wählen Sie "-" aus.</p>
+                                        <p class="text-xs text-gray-500 mt-1 mb-3">Ergänzen Sie, welchen Studiengang Sie präferieren.</p>
 
                                         <div>
 

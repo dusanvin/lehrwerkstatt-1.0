@@ -14,7 +14,7 @@
 
     <!-- Content -->
 
-    <div class="px-8 py-8 text-gray-700 w-screen rounded-r-lg" style="background-color: #EDF2F7;">
+    <div class="px-1 md:px-8 py-1 md:py-8 text-gray-700 w-screen rounded-r-lg" style="background-color: #EDF2F7;">
 
         <div class="mx-auto rounded">
 
@@ -303,11 +303,11 @@
 
                         </table>
 
-                    </div>
+                        <div class="mt-5">
 
-                    <div class="mt-5">
+                            {{ $needs->links() }}
 
-                        {{ $needs->links() }}
+                        </div>
 
                     </div>
 
@@ -319,48 +319,16 @@
 
             <!-- Tab Contents -->
 
-            <script>
-                document.getElementById("second").classList.remove("hidden");
-            </script>
-
-            <!-- </div>
-
-                <script>
-
-                    let tabsContainer = document.querySelector("#tabs");
-
-                    let tabTogglers = tabsContainer.querySelectorAll("a");
-                    console.log(tabTogglers);
-
-                    tabTogglers.forEach(function(toggler) {
-                      toggler.addEventListener("click", function(e) {
-                        e.preventDefault();
-
-                        let tabName = this.getAttribute("href");
-
-                        let tabContents = document.querySelector("#tab-contents");
-
-                        for (let i = 0; i < tabContents.children.length; i++) {
-
-                          tabTogglers[i].parentElement.classList.remove("border-gray-700", "border-b",  "-mb-px", "opacity-100");  tabContents.children[i].classList.remove("hidden");
-                          if ("#" + tabContents.children[i].id === tabName) {
-                            continue;
-                          }
-                          tabContents.children[i].classList.add("hidden");
-
-                        }
-                        e.target.parentElement.classList.add("border-gray-700", "border-b-4", "-mb-px", "opacity-100");
-                      });
-                    });
-
-                    document.getElementById("default-tab").click();
-
-                </script>
-
-        </div> -->
-
-            <!-- Content -->
-
         </div>
 
-        @endsection
+        <script>
+            document.getElementById("second").classList.remove("hidden");
+        </script>    
+
+    </div> 
+
+</div>
+            
+<!-- Content -->
+
+@endsection

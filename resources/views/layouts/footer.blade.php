@@ -193,14 +193,3 @@
 </footer>
 
 <!-- Footer -->
-
-<!-- Styles -->
-
-<style type="text/css">
-    #user {
-        background-color: transparent !important;
-    }
-</style>
-
-<!-- Styles -->
-

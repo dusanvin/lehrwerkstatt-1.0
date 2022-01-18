@@ -55,6 +55,7 @@ class NeedsController extends Controller
             'sprachkenntnisse' => 'required',
             'studiengang' => 'required',
             'fachsemester' => 'required',
+            'schulart' => 'required',
             'datum' => 'required'
         ]);
 
@@ -66,6 +67,7 @@ class NeedsController extends Controller
             'fachsemester' => $request->fachsemester,
             'datum_start' => $startDate,
             'datum_end' => $endDate,
+            'schulart' => $request->schulart,
             'active' => 1,
         ]);
 

@@ -50,7 +50,7 @@
 
 			                        </div>
 
-			                        <div class="pl-3">
+			                        <div class="pl-3 sm:inline-block hidden">
 
 			                            <span class="text-xs">Neue Nachricht</span>
 

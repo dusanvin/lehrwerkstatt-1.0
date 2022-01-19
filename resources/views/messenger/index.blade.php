@@ -36,11 +36,11 @@
 
                     <!-- Fehlermeldung -->
 
-                    <div class="py-4 mx-auto mt-0 md:mt-6 rounded-md">
+                    <div class="py-2 mx-auto rounded-md">
 
                     	<div class="grid justify-items-center md:justify-items-end">
 
-					        <div class="float-right mb-8 mt-4">
+					        <div class="float-right mb-2">
 
 			                    <a href="/messages/create" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
 
@@ -70,7 +70,7 @@
 		                	
 			                @if ($threads_counter > 1)
 
-								<p class="uppercase text-gray-400 pl-4 py-0 sm:py-4 select-none text-sm text-center sm:text-left">{{ $threads_counter }} Unterhaltungen</p>
+								<p class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">{{ $threads_counter }} Unterhaltungen</p>
 
 							@endif
 

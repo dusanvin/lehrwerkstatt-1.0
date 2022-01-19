@@ -1,7 +1,7 @@
 <style type="text/css">
 
     .user-ring {
-        background-color: #344955;
+        /*background-color: #344955;*/
         width: 55px;
         line-height: 55px;
         border-radius: 50%;
@@ -21,7 +21,7 @@
 
 <div class="media alert {{ $class }} pb-2 px-1 sm:px-4">
 
-    <div class="mb-1 px-2 pb-4 border-b">
+    <div class="mb-1 pb-4 border-b">
 
         <!-- Eine Nachricht -->
 
@@ -33,7 +33,7 @@
 
                 <!-- Initialen -->
 
-                <div class="font-semibold flex-none mr-4 text-white user-ring">
+                <a class="font-semibold flex-none mr-4 text-white user-ring bg-gray-700 hover:bg-gray-900 transition-all" href="#">
 
                     @php
 
@@ -51,7 +51,7 @@
 
                     @endphp
                     
-                </div>
+                </a>
 
                 <!-- Initialen -->
 
@@ -59,7 +59,7 @@
 
                 <div>
                     
-                    <a href="{{ route('messages.show', $thread->id) }}">
+                    <a href="{{ route('messages.show', $thread->id) }}" class="text-gray-500 hover:text-black transition-all">
 
                         <div class="">
 
@@ -67,7 +67,7 @@
 
                             <div class="flex">
 
-                                <p class="flex-auto font-medium leading-5 md:leading-normal mb-1 text-xs sm:text-sm line-clamp break-all">
+                                <p class="flex-auto font-semibold leading-5 md:leading-normal mb-1 text-xs sm:text-sm line-clamp break-all">
                                     
                                     {{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}
 
@@ -79,7 +79,7 @@
 
                                 <div class="flex-auto font-normal leading-5 md:leading-normal mb-1 text-xs sm:text-sm">
                                     
-                                    <p class="line-clamp mb-1 text-gray-400 text-xs break-all">    
+                                    <p class="line-clamp mb-1 text-xs break-all">    
 
                                         {{ $thread->latestMessage->body }}
                                     
@@ -105,21 +105,7 @@
 
             <div>
 
-                <div>
-
-                    <!-- Chatdatum -->
-                    
-                    <div class="hidden sm:flex ">
-                        
-                        <p class="flex-initial text-xs sm:text-sm text-gray-400 font-medium leading-5 md:leading-normal mb-1">
-                                    
-                            <small>{{ $thread->latestMessage->created_at->diffForHumans() }}</small>
-
-                        </p>
-
-                    </div>
-
-                    <!-- Chatdatum -->
+                
 
                     <!-- Nachrichtenzähler -->
 
@@ -135,7 +121,7 @@
 
                     <!-- Nachrichtenzähler -->
 
-                </div>
+                
 
             </div>
 

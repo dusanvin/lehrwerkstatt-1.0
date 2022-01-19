@@ -149,7 +149,7 @@
                                     -
                                 @else
 
-                                {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}
+                                    {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}
 
                                 @endif
 

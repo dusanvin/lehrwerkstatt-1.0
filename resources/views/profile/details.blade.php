@@ -3,7 +3,7 @@
 
 @section('content')
 
-<body style="background-color: white;">
+<body style="">
 
     <div class="flex flex-row h-full mx-5 mt-10 mb-10">
 
@@ -13,7 +13,7 @@
 
         <div class="px-8 py-8 text-gray-700 w-screen bg-white rounded-r-lg shadow-b border-b border-gray-200" style="background-color: #EDF2F7;">
 
-            <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
+            <div class="overflow-hidden sm:rounded-lg mb-4">
 
 
                 <div class="px-4 py-5 sm:px-6">
@@ -34,123 +34,184 @@
 
                 <!-- Informationsanzeige -->
 
+                <!-- Inof neu -->
+
+                <div class="container px-2 sm:px-4">
+
+                    <div class="md:flex no-wrap md:-mx-2 ">
+
+                        <!-- Left Side -->
+
+                        <div class="w-full md:w-3/12 md:mx-2">
+
+                            <!-- Profile Card -->
+
+                            <div class="p-3 select-none">
+
+                                <!-- <div class="image overflow-hidden">
+
+                                    <img class="h-auto w-full mx-auto" src="http://hosted-024-216.rz.uni-augsburg.de/img/avatar.jpg" alt="">
+
+                                </div>
+
+                                -->
+
+                                <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->vorname }} {{ $user->nachname }}</h2>
+
+                                <p class="text-gray-600 font-lg text-semibold text-xs">
+
+                                        @if(!empty($user->getRoleNames()))
+
+                                        @foreach($user->getRoleNames() as $v)
+
+                                            <label class="badge badge-success">{{ $v }}</label>
+
+                                        @endforeach
+
+                                    @endif
+
+                                </p>
+
+                                <p class="text-sm text-gray-500 mt-2 select-none">
+
+                                    @if($user->motivation === NULL)
+                                        
+                                        Es sind keine näheren Angaben zu Motivationsgründen vorhanden.
+
+                                    @else
+
+                                        {{ $user->motivation }}
+
+                                    @endif
+
+                                </p>
+
+                                <ul class="bg-white text-gray-600 py-2 px-3 mt-3 divide-y rounded text-sm">
+
+                                    <li class="flex items-center py-3">
+
+                                        <span>Status</span>
+
+                                        <span class="ml-auto">
+
+                                            <span class="bg-green-500 py-1 px-2 rounded text-white text-sm">Aktiv</span>
+
+                                        </span>
+
+                                    </li>
+
+                                    <li class="flex items-center py-3">
+                                        <span>Letzte Anmeldung</span>
+                                        <span class="ml-auto">
+                                            @if($user->last_login_at === NULL)
+                                                -
+                                            @else
+
+                                                {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}
+
+                                            @endif
+                                        </span>
+                                    </li>
+                                    
+                                    <li class="flex items-center py-3">
+                                        <span>Registrierung</span>
+                                        <span class="ml-auto">{{ $user->created_at->DiffForHumans() }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End of profile card -->
+                            <div class="my-4"></div>
+                            
+                        </div>
+                        <!-- Right Side -->
+                        <div class="w-full md:w-9/12 mx-2">
+                            <!-- Profile tab -->
+                            <!-- Experience and education -->
+                            <div class="bg-white rounded rounded-sm px-3 py-2">
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2">
+                                    <div>
+                                        <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 my-3 mr-2">
+                                            <span>
+                                                <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                                </svg>
+                                            </span>
+                                            <span class="tracking-wide">Generelles</span>
+                                        </div>
+                                        <ul class="list-inside space-y-2">
+                                            <li>
+                                                <div class="text-teal-600">Vorname</div>
+                                                <div class="text-gray-500 text-xs">{{ $user->vorname }}</div>
+                                            </li>
+                                            <li>
+                                                <div class="text-teal-600">Nachname</div>
+                                                <div class="text-gray-500 text-xs">{{ $user->nachname }}</div>
+                                            </li>
+                                            <li>
+                                                <div class="text-teal-600">E-Mail</div>
+                                                <div class="text-gray-500 text-xs">{{ $user->email }}</div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 my-3">
+                                            <span clas="text-green-500">
+                                                <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
+                                                    <path fill="#fff"
+                                                        d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                                                </svg>
+                                            </span>
+                                            <span class="tracking-wide">Bildung</span>
+                                        </div>
+                                        <ul class="list-inside space-y-2">
+                                            <li>
+                                                <div class="text-teal-600">Studiengang</div>
+                                                <div class="text-gray-500 text-xs">{{ $user->studiengang }}</div>
+                                            </li>
+                                            <li>
+                                                <div class="text-teal-600">Fachsemester</div>
+                                                <div class="text-gray-500 text-xs">{{ $user->fachsemester }}</div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- End of Experience and education grid -->
+                            <div class="my-4"></div>
+
+                            
+                            </div>
+                            <!-- End of profile tab -->
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Inof neu -->
+
                 <div>
 
                     <dl>
 
-                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        
 
-                            <dt class="text-sm font-medium text-gray-500 py-2">
+                        
 
-                                <strong>Vorname</strong> der Person
+                        
 
-                            </dt>
+                        
 
-                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
+                        
 
-                                {{ $user->vorname }}
-
-                            </dd>
-
-                        </div>
-
-                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-
-                            <dt class="text-sm font-medium text-gray-500 py-2">
-
-                                <strong>Nachname</strong> der Person
-
-                            </dt>
-
-                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
-
-                                {{ $user->nachname }}
-
-                            </dd>
-
-                        </div>
-
-                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-
-                            <dt class="text-sm font-medium text-gray-500 py-2">
-
-                                <strong>E-Mail-Adresse</strong> der Person
-
-                            </dt>
-
-                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
-
-                                {{ $user->email }}
-
-                            </dd>
-
-                        </div>
-
-                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-
-                            <dt class="text-sm font-medium text-gray-500 py-2">
-
-                                <strong>Rolle/n</strong> der Person
-
-                            </dt>
-
-                            <dd class="mt-1 text-sm text-gray-500 text-white hover:text-gray-900 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center border-b-2">
-
-                                <div class="form-group">
-
-                                    @if(!empty($user->getRoleNames()))
-
-                                    @foreach($user->getRoleNames() as $v)
-
-                                    <label class="badge badge-success">{{ $v }}</label>
-
-                                    @endforeach
-
-                                    @endif
-
-                                </div>
-
-                            </dd>
-
-                        </div>
-
-                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-
-                            <dt class="text-sm font-medium text-gray-500 py-2">
-
-                                <strong>Registrierungsdatum</strong> der Person
-
-                            </dt>
-
-                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
-
-                                {{ $user->created_at->DiffForHumans() }}
-
-                            </dd>
-
-                        </div>
-
-                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-
-                            <dt class="text-sm font-medium text-gray-500 py-2">
-
-                                <strong>Letzter Login</strong> der Person
-
-                            </dt>
-
-                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
-
-                                @if($user->last_login_at === NULL)
-                                -
-                                @else
-
-                                {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}
-
-                                @endif
-
-                            </dd>
-
-                        </div>
+                        
 
                         <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 
@@ -168,37 +229,9 @@
 
                         </div>
 
-                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        
 
-                            <dt class="text-sm font-medium text-gray-500 py-2">
-
-                                <strong>Studiengang</strong>
-
-                            </dt>
-
-                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
-
-                                {{ $user->studiengang }}
-
-                            </dd>
-
-                        </div>
-
-                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-
-                            <dt class="text-sm font-medium text-gray-500 py-2">
-
-                                <strong>Fachsemester</strong>
-
-                            </dt>
-
-                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
-
-                                {{ $user->fachsemester }}
-
-                            </dd>
-
-                        </div>
+                        
 
                         <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 

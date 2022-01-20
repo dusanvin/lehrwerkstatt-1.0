@@ -55,12 +55,7 @@
 
                         if(!empty($thread->participantsString(Auth::id(),['vorname']))) {
 
-                            $firstName = ($thread->participantsString(Auth::id(),['vorname']))[0];
-                            $lastName = ($thread->participantsString(Auth::id(),['nachname']))[0];
-
-                            $iniName = $firstName . $lastName;
-
-                            echo $iniName;
+                            echo $thread->participantsString(Auth::id(),['vorname'])[0] . $thread->participantsString(Auth::id(),['nachname'])[0];
                         }
 
                         else echo '-';

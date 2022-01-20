@@ -24,14 +24,25 @@
 
                         <h2 class="text-lg leading-6 font-medium text-gray-900" style="user-select:none;">
 
-                        @php
-                        $userId = auth()->user()->id;
-                        $users = $thread->participantsUserIds($userId);
-                        $id = $users[1];
-                        @endphp
+                            <!-- Verlinkung zu Profil des Gegenübers -->
 
+                            @php
 
-                            Gesprächsverlauf mit <a href="{{ route('profile.details', ['id' => $id]) }}" style="color:blue;">{{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}</a>
+                                foreach ($thread->participantsUserIds(Auth::id()) as $user) {
+                                    
+                                    if($user != Auth::id()) {
+
+                                        $id = $user;
+                                        break;
+                                    }
+
+                                }
+
+                            @endphp
+
+                            <!-- Verlinkung zu Profil des Gegenübers -->
+
+                            Gesprächsverlauf mit <a href="{{ route('profile.details', ['id' => $id]) }}" class="text-purple-600 hover:text-purple-800">{{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}</a>
 
                         </h2>
 

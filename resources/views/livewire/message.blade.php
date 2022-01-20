@@ -22,32 +22,6 @@
 
         <div class="px-4 py-4 pb mx-auto mt-6 bg-white rounded-md">
 
-            <div class="grid justify-items-center md:justify-items-end">
-
-                <div class="float-right mb-4 mt-4">
-
-                    <a href="/messages/create" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
-
-                        <div class="">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                            </svg>
-
-                        </div>
-
-                        <div class="pl-3">
-
-                            <span class="text-xs">Neue Nachricht</span>
-
-                        </div>
-
-                    </a>
-
-                </div>
-
-            </div>
-
             <!-- Inhalt 2 -->
 
             <form action="{{ route('messages.store') }}" method="post">
@@ -59,51 +33,47 @@
 
                     <!-- Search User -->
 
-                    <div class="mt-1">
+                    <div>
 
                         <script>
                             function setReceiver(id) {
-                                console.log(id);
-                                // document.getElementById('receiver').value = id;
-                                // document.getElementById('receiver-list').innerHTML = document.getElementById(id).innerHTML;
                                 @this.receivers = document.getElementById(id).innerHTML;
                                 @this.receiverids = id;
                                 @this.search = '';
                             }
                         </script>
 
-                        <label class="border border-gray-100 bg-gray-100 rounded">An:{{ $receivers }}</label>
                         <form>
 
-                            <input id="search" wire:model="search" type="text" placeholder="Suche nach Nutzer..." class="border border-gray-100 bg-gray-100 w-full rounded form-control form-input">
+                            <input id="search" wire:model="search" type="text" placeholder="Ihre EmpfängerIn: {{ $receivers }}" class="border border-gray-100 bg-gray-100 w-full rounded form-control form-input focus:ring-2 focus:ring-gray-900 focus:border-transparent">
 
                         </form>
 
                         @if($users && $users->count() > 0)
-                        <ul class="py-2 px-3 bg-gray-100 list-group absolute bg-white rounded">
 
-                            <div class="block relative w-full mt-1">
-                                <div class="select-group block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                            <ul class="px-3 list-group absolute rounded">
 
-                                    @foreach($users as $user)
+                                <div class="block relative w-full mt-1">
 
-                                    <li id={{ $user->id }} onclick=setReceiver(this.id)>{{ $user->vorname }} {{ $user->nachname }} ({{ $user->id }})</li>
+                                    <div class="select-group block appearance-none w-full bg-white px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
 
-                                    @endforeach
+                                        @foreach($users as $user)
+                                            
+                                            <li id={{ $user->id }} onclick=setReceiver(this.id)  style="cursor:pointer;" class="hover:bg-gray-100 px-4 py-2">{{ $user->vorname }} {{ $user->nachname }}</li>
+                                            
+                                        @endforeach
+
+                                    </div>
+
                                 </div>
-                            </div>
 
+                            </ul>
 
-                            @endif
-
-                        </ul>
+                        @endif
 
                     </div>
 
-                    <br>
-
                     <!-- Search User -->
-
 
                     <!-- Subject Form Input -->
 

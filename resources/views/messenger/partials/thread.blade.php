@@ -31,40 +31,39 @@
 
                 <!-- Initialen -->
 
+                <!-- Verlinkung zu Profil des Gegenübers -->
+
                 @php
 
-                $userId = auth()->user()->id;
-
-                $users = $thread->participantsUserIds($userId);
-
-                foreach ($users as $user) {
-                    
-                    if($user != Auth::id()) {
-
-                        $id = $user;
+                    foreach ($thread->participantsUserIds(Auth::id()) as $user) {
                         
-                        break;
+                        if($user != Auth::id()) {
+
+                            $id = $user;
+                            break;
+                        }
+
                     }
 
-                }
-
                 @endphp
+
+                <!-- Verlinkung zu Profil des Gegenübers -->
 
                 <a class="font-semibold flex-none mr-4 text-white user-ring bg-gray-700 hover:bg-gray-900 transition-all" href="{{ route('profile.details', ['id' => $id]) }}">
 
                     @php
 
-                    if(!empty($thread->participantsString(Auth::id(),['vorname']))) {
+                        if(!empty($thread->participantsString(Auth::id(),['vorname']))) {
 
-                    $firstName = ($thread->participantsString(Auth::id(),['vorname']))[0];
-                    $lastName = ($thread->participantsString(Auth::id(),['nachname']))[0];
+                            $firstName = ($thread->participantsString(Auth::id(),['vorname']))[0];
+                            $lastName = ($thread->participantsString(Auth::id(),['nachname']))[0];
 
-                    $iniName = $firstName . $lastName;
+                            $iniName = $firstName . $lastName;
 
-                    echo $iniName;
-                    }
+                            echo $iniName;
+                        }
 
-                    else echo '-';
+                        else echo '-';
 
                     @endphp
 

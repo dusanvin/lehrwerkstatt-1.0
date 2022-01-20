@@ -55,6 +55,7 @@
                                 </div>
 
                                 -->
+                                
 
                                 <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->vorname }} {{ $user->nachname }}</h2>
 

@@ -51,7 +51,8 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('profile.details', compact('user'));
     }
 
     /**
@@ -60,9 +61,13 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        $user = auth()->user();
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
+
+        return view('profile.edit', compact('user', 'roles', 'userRole'));
     }
 
     /**

@@ -1,5 +1,4 @@
 <style type="text/css">
-
     .user-ring {
         /*background-color: #344955;*/
         width: 55px;
@@ -14,7 +13,6 @@
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
     }
-
 </style>
 
 <?php $class = $thread->isUnread(Auth::id()) ? 'alert-info' : ''; ?>
@@ -33,24 +31,30 @@
 
                 <!-- Initialen -->
 
-                <a class="font-semibold flex-none mr-4 text-white user-ring bg-gray-700 hover:bg-gray-900 transition-all" href="#">
+                @php
+                $userId = auth()->user()->id;
+                $users = $thread->participantsUserIds($userId);
+                $id = $users[1];
+                @endphp
+
+                <a class="font-semibold flex-none mr-4 text-white user-ring bg-gray-700 hover:bg-gray-900 transition-all" href="{{ route('profile.details', ['id' => $id]) }}">
 
                     @php
 
-                        if(!empty($thread->participantsString(Auth::id(),['vorname']))) {
+                    if(!empty($thread->participantsString(Auth::id(),['vorname']))) {
 
-                            $firstName = ($thread->participantsString(Auth::id(),['vorname']))[0];
-                            $lastName = ($thread->participantsString(Auth::id(),['nachname']))[0];
+                    $firstName = ($thread->participantsString(Auth::id(),['vorname']))[0];
+                    $lastName = ($thread->participantsString(Auth::id(),['nachname']))[0];
 
-                            $iniName = $firstName . $lastName;
+                    $iniName = $firstName . $lastName;
 
-                            echo $iniName;
-                        }
+                    echo $iniName;
+                    }
 
-                        else echo '-';
+                    else echo '-';
 
                     @endphp
-                    
+
                 </a>
 
                 <!-- Initialen -->
@@ -58,17 +62,17 @@
                 <!-- Nachrichtenkorpus -->
 
                 <div>
-                    
+
                     <a href="{{ route('messages.show', $thread->id) }}" class="text-gray-500 hover:text-black transition-all">
 
                         <div class="">
 
-                        <!-- Abkürzung -->
+                            <!-- Abkürzung -->
 
                             <div class="flex">
 
                                 <p class="flex-auto font-semibold leading-5 md:leading-normal mb-1 text-xs sm:text-sm line-clamp break-all">
-                                    
+
                                     {{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}
 
                                 </p>
@@ -78,11 +82,11 @@
                             <div class="flex">
 
                                 <div class="flex-auto font-normal leading-5 md:leading-normal mb-1 text-xs sm:text-sm">
-                                    
-                                    <p class="line-clamp mb-1 text-xs break-all">    
+
+                                    <p class="line-clamp mb-1 text-xs break-all">
 
                                         {{ $thread->latestMessage->body }}
-                                    
+
                                     </p>
 
                                 </div>
@@ -96,32 +100,32 @@
                 </div>
 
                 <!-- Nachrichtenkorpus -->
-                
+
             </div>
 
-            <!-- Name + Nachricht -->            
+            <!-- Name + Nachricht -->
 
             <!-- Chatdatum + Nachrichtenzähler -->
 
             <div>
 
-                
 
-                    <!-- Nachrichtenzähler -->
 
-                    <div class="flex justify-around">
+                <!-- Nachrichtenzähler -->
 
-                        @if ( $thread->userUnreadMessagesCount(Auth::id())  != '0')
+                <div class="flex justify-around">
 
-                            <span class="bg-green-600 text-white text-xs inline-block py-1 px-3 rounded-full text-white uppercase last:mr-0 mr-1">{{ $thread->userUnreadMessagesCount(Auth::id()) }}</span>
+                    @if ( $thread->userUnreadMessagesCount(Auth::id()) != '0')
 
-                        @endif
-                        
-                    </div>
+                    <span class="bg-green-600 text-white text-xs inline-block py-1 px-3 rounded-full text-white uppercase last:mr-0 mr-1">{{ $thread->userUnreadMessagesCount(Auth::id()) }}</span>
 
-                    <!-- Nachrichtenzähler -->
+                    @endif
 
-                
+                </div>
+
+                <!-- Nachrichtenzähler -->
+
+
 
             </div>
 
@@ -129,8 +133,8 @@
 
         </div>
 
-        <!-- Eine Nachricht -->    
-        
+        <!-- Eine Nachricht -->
+
         <!-- <a href="{{ route('messages.show', $thread->id) }}" class="text-xs">{{ $thread->subject }}</a> -->
 
     </div>

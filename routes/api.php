@@ -185,9 +185,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::group(['middleware' => ['role:Admin|Moderierende|Lehrende|Helfende', 'auth', 'verified']], function () {
-        Route::get('/profile/details', [UserController::class, 'details'])
-            ->name('profile.details');
-        Route::get('/profile/edit', [UserController::class, 'uedit'])
+        Route::get('/profile/details/{id}', [ProfileController::class, 'show'])
+            ->name('profile.details');            
+        Route::get('/profile/edit', [ProfileController::class, 'edit'])
             ->name('profile.edit');
         Route::resource('profiles', ProfileController::class);
     });

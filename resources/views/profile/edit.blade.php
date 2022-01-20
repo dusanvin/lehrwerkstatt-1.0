@@ -46,7 +46,7 @@
 
                     <p class="mt-1 text-sm text-gray-500">
 
-                        Bearbeiten Sie die Informationen zu Ihrer Person. Die Daten sind <a href="{{ route('profile.details') }}" style="color:blue;">hier</a> öffentlich einsehbar.
+                        Bearbeiten Sie die Informationen zu Ihrer Person. Die Daten sind <a href="{{ route('profile.details', ['id' => $user->id]) }}" style="color:blue;">hier</a> öffentlich einsehbar.
 
                     </p>
 

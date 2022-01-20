@@ -64,13 +64,6 @@ class UserController extends Controller
         return view('users.show', compact('user'));
     }
 
-    public function details()
-
-    {
-
-        $user = User::find(auth()->id());
-        return view('profile.details', compact('user'));
-    }
 
     public function edit($id)
 
@@ -85,18 +78,6 @@ class UserController extends Controller
         return view('users.edit', compact('user', 'roles', 'userRole'));
     }
 
-    public function uedit()
-
-    {
-
-        $user = User::find(auth()->id());
-        $roles = Role::pluck('name', 'name')->all();
-        $userRole = $user->roles->pluck('name', 'name')->all();
-
-
-
-        return view('profile.edit', compact('user', 'roles', 'userRole'));
-    }
 
     public function update(Request $request, $id)
 

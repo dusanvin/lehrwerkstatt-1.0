@@ -58,6 +58,7 @@
                                 
 
                                 <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->vorname }} {{ $user->nachname }}</h2>
+                                <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->id }}</h2>
 
                                 <p class="text-gray-600 font-lg text-semibold text-xs">
 

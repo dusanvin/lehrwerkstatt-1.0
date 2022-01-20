@@ -32,9 +32,22 @@
                 <!-- Initialen -->
 
                 @php
+
                 $userId = auth()->user()->id;
+
                 $users = $thread->participantsUserIds($userId);
-                $id = $users[1];
+
+                foreach ($users as $user) {
+                    
+                    if($user != Auth::id()) {
+
+                        $id = $user;
+                        
+                        break;
+                    }
+
+                }
+
                 @endphp
 
                 <a class="font-semibold flex-none mr-4 text-white user-ring bg-gray-700 hover:bg-gray-900 transition-all" href="{{ route('profile.details', ['id' => $id]) }}">

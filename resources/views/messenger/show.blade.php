@@ -24,7 +24,14 @@
 
                         <h2 class="text-lg leading-6 font-medium text-gray-900" style="user-select:none;">
 
-                            Gesprächsverlauf mit {{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}
+                        @php
+                        $userId = auth()->user()->id;
+                        $users = $thread->participantsUserIds($userId);
+                        $id = $users[1];
+                        @endphp
+
+
+                            Gesprächsverlauf mit <a href="{{ route('profile.details', ['id' => $id]) }}" style="color:blue;">{{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}</a>
 
                         </h2>
 

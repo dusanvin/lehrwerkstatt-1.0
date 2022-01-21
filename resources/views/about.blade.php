@@ -226,7 +226,7 @@
 
         </div>
 
-        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Das <em>digi<strong>:match</strong></em> ist mittels des PHP-Frameworks <a href="https://laravel.com/" class="text-purple-500">Laravel</a> und des CSS-Frameworks <a href="https://tailwindcss.com/" class="text-purple-500">TailwindCSS</a> programmiert worden. Das Projekt steht unter einer MIT-Lizenz. Zum <a href="https://github.com/dusanvin/digimatch" class="text-purple-500">GitHub-Projekt</a>.</p>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Das <em>digi<strong>:match</strong></em> ist mittels des PHP-Frameworks <a href="https://laravel.com/" class="text-purple-500">Laravel</a> und des CSS-Frameworks <a href="https://tailwindcss.com/" class="text-purple-500">TailwindCSS</a> programmiert worden. Das Projekt steht unter einer MIT-Lizenz. Zum <a href="https://github.com/dusanvin/digimatch-laravel" class="text-purple-500">GitHub-Projekt</a>.</p>
 
         <!-- About -->
 

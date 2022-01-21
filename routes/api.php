@@ -35,16 +35,13 @@ use App\Http\Controllers\MessagesController;
 |
 */
 
+/*--------------------------------------------------------------------------*/
+
+/* Generell erreichbar */
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-/* Sites */
-
-// /* Landing Page */
-// Route::get('/', function () {
-//     return view('layouts.hero');
-// })->name('home');
 
 /* Log */
 Route::get('/log', function () {
@@ -63,156 +60,197 @@ Route::get('/about', function () {
 
 /*--------------------------------------------------------------------------*/
 
-/* User */
+/* Nach Verifizierung */
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    /* Helfende */
-    Route::get('/help', [HelpController::class, 'index'])
-        ->name('help');
+    /* Allgemein */
+    /* Datum auswählen bei Angebot/Bedarf */
+    Route::get('/datepicker', [DateController::class, 'index']);
 
-    /* Lernende */
-    Route::get('/learn', [LearnController::class, 'index'])
-        ->name('learn');
+    /*--------------------------------------------------------------------------*/
 
-    /* Moderierende/Beauftragte */
-    Route::get('/mod', [ModController::class, 'index'])
-        ->name('mod');
+    /* Profilbereich */
+    Route::group(['middleware' => ['role:Admin|Moderierende|Lehrende|Helfende']], function () {
 
+        Route::get('/profile/details/{id}', [ProfileController::class, 'show'])
+            ->name('profile.details');  
 
+        Route::get('/profile/edit', [ProfileController::class, 'edit'])
+            ->name('profile.edit');
+
+        Route::resource('profiles', ProfileController::class);
+
+    });
+
+    /*--------------------------------------------------------------------------*/
+
+    /* Nachrichten */
+    Route::group(['prefix' => 'messages'], function () {
+
+        Route::get('/', ['as' => 'messages', 'uses' => 'App\Http\Controllers\MessagesController@index']);
+
+        Route::get('create', ['as' => 'messages.create', 'uses' => 'App\Http\Controllers\MessagesController@create']);
+
+        Route::post('/', ['as' => 'messages.store', 'uses' => 'App\Http\Controllers\MessagesController@store']);
+
+        Route::get('{id}', ['as' => 'messages.show', 'uses' => 'App\Http\Controllers\MessagesController@show']);
+
+        Route::put('{id}', ['as' => 'messages.update', 'uses' => 'App\Http\Controllers\MessagesController@update']);
+
+        Route::get('{id}/delete', 'App\Http\Controllers\MessagesController@delete')->name('messages.delete');
+    });
+
+    /*--------------------------------------------------------------------------*/
+
+    /* Zugriffsrechte Moderierende + Admin*/
+    Route::group(['middleware' => ['role:Admin|Moderierende']], function () {
+        
+        /* Account bearbeiten */
+        Route::get('/user', [UserEditController::class, 'index'])
+            ->name('user');
+
+        /* Statistiken */
+        Route::get('/stats', [StatsController::class, 'index'])
+            ->name('stats');
+
+        /* Nutzende */
+        Route::resource('users', UserController::class);
+
+        /* Produkte - Test */
+        Route::resource('products', ProductController::class);
+    });
+
+    /* Zugriffsrechte Admin */
+    Route::group(['middleware' => ['role:Admin']], function () {
+
+        /* Rollen */
+        Route::resource('roles', RoleController::class);
+
+    });
+
+    /*--------------------------------------------------------------------------*/
 
     /* Angebote */
-    Route::get('/offers/all', [OffersController::class, 'all'])
-        ->name('offers.all');
 
-    Route::get('/offers/myoffers', [OffersController::class, 'user'])
-        ->name('offers.user');
+    /* Zugriffsrechte Alle */
+    Route::group(['middleware' => ['role:Admin|Moderierende|Lehrende|Helfende']], function () {
 
-    Route::get('/offers/make', [OffersController::class, 'make'])
-        ->name('offers.make');
+        /* Alle Angebote anzeigen*/
+        Route::get('/offers/all', [OffersController::class, 'all'])
+            ->name('offers.all');
 
-    Route::post('/offers', [OffersController::class, 'store'])
-        ->name('offers');
+        /* Angebote Likes Hinzufügen */
+        Route::post('/offers/{offer}/likes', [OfferLikeController::class, 'store'])
+            ->name('offers.likes');
 
-    /* Angebot: Löschen */
-    Route::delete('/offers/{offer}', [OffersController::class, 'destroy'])
-        ->name('offers.destroy');
+        /* Angebote Likes Löschen */
+        Route::delete('/offers/{offer}/likes', [OfferLikeController::class, 'destroy'])
+            ->name('offers.likes');
 
-    /* Angebote Likes Hinzufügen */
-    Route::post('/offers/{offer}/likes', [OfferLikeController::class, 'store'])
-        ->name('offers.likes');
+        /* Angebote Requests Hinzufügen */
+        Route::post('/offers/{offer}/requests', [OfferRequestController::class, 'store'])
+            ->name('offers.requests');
 
-    /* Angebote: inaktiv setzen */
-    Route::post('/offers/{offer}/setinactive', [OffersController::class, 'setinactive'])
-        ->name('offers.setinactive');
+        /* Angebote Requests Löschen */
+        Route::delete('/offers/{offer}/requests', [OfferRequestController::class, 'destroy'])
+            ->name('offers.requests');
+    });
 
-    /* Angebote: aktiv setzen */
-    Route::post('/offers/{offer}/setactive', [OffersController::class, 'setactive'])
-        ->name('offers.setactive');
+    /* Zugriffsrechte Helfende im Speziellen */
+    Route::group(['middleware' => ['role:Admin|Moderierende|Helfende']], function () {
 
-    /* Angebote Likes Löschen */
-    Route::delete('/offers/{offer}/likes', [OfferLikeController::class, 'destroy'])
-        ->name('offers.likes');
+        /* Meine Angebote anzeigen*/
+        Route::get('/offers/myoffers', [OffersController::class, 'user'])
+            ->name('offers.user');
 
-    /* Angebote Requests Hinzufügen */
-    Route::post('/offers/{offer}/requests', [OfferRequestController::class, 'store'])
-        ->name('offers.requests');
+        /* Angebote erstellen*/
+        Route::get('/offers/make', [OffersController::class, 'make'])
+            ->name('offers.make');
 
-    /* Angebote Requests Löschen */
-    Route::delete('/offers/{offer}/requests', [OfferRequestController::class, 'destroy'])
-        ->name('offers.requests');
+        /* Angebot: Posten */
+        Route::post('/offers', [OffersController::class, 'store'])
+            ->name('offers');
 
+        /* Angebot: Löschen */
+        Route::delete('/offers/{offer}', [OffersController::class, 'destroy'])
+            ->name('offers.destroy');
 
+        /* Angebote: inaktiv setzen */
+        Route::post('/offers/{offer}/setinactive', [OffersController::class, 'setinactive'])
+            ->name('offers.setinactive');
 
-    /* Bedarfe 
-    Route::group(['prefix' => 'needs'], function () {
-        Route::get('{id}', ['as' => 'needs.show', 'uses' => 'App\Http\Controllers\MessagesController@show']);
-    });*/
+        /* Angebote: aktiv setzen */
+        Route::post('/offers/{offer}/setactive', [OffersController::class, 'setactive'])
+            ->name('offers.setactive');
 
-    Route::get('/needs/all', [NeedsController::class, 'all'])
-        ->name('needs.all');
+    });
 
-    Route::get('/needs/myneeds', [NeedsController::class, 'user'])
-        ->name('needs.user');
+    /*--------------------------------------------------------------------------*/
 
-    Route::get('/needs/make', [NeedsController::class, 'make'])
-        ->name('needs.make');
+    /* Bedarfe */
 
-    /* Bedarf: Hinzufügen */
-    Route::post('/needs', [NeedsController::class, 'store'])
-        ->name('needs');
+    /* Zugriffsrechte Alle */
+    Route::group(['middleware' => ['role:Admin|Moderierende|Lehrende|Helfende']], function () {
 
-    /* Bedarf: inaktiv setzen */
-    Route::post('/needs/{need}/setinactive', [NeedsController::class, 'setinactive'])
-        ->name('needs.setinactive');
+        /* Alle Bedarfe anzeigen*/
+        Route::get('/needs/all', [NeedsController::class, 'all'])
+            ->name('needs.all');
 
-    /* Bedarf: aktiv setzen */
-    Route::post('/needs/{need}/setactive', [NeedsController::class, 'setactive'])
-        ->name('needs.setactive');
+        /* Needs Likes Hinzufügen */
+        Route::post('/needs/{need}/likes', [NeedLikeController::class, 'store'])
+            ->name('needs.likes');
 
-    /* Bedarf: Löschen */
-    Route::delete('/needs/{need}', [NeedsController::class, 'destroy'])
-        ->name('needs.destroy');
+        /* Needs Likes Löschen */
+        Route::delete('/needs/{need}/likes', [NeedLikeController::class, 'destroy'])
+            ->name('needs.likes');
 
-    /* Needs Likes Hinzufügen */
-    Route::post('/needs/{need}/likes', [NeedLikeController::class, 'store'])
-        ->name('needs.likes');
+        /* Needs Anfrage Hinzufügen */
+        Route::post('/needs/{need}/requests', [NeedRequestController::class, 'store'])
+            ->name('needs.requests');
 
-    /* Needs Likes Löschen */
-    Route::delete('/needs/{need}/likes', [NeedLikeController::class, 'destroy'])
-        ->name('needs.likes');
+        /* Needs Anfrage Löschen */
+        Route::delete('/needs/{need}/requests', [NeedRequestController::class, 'destroy'])
+            ->name('needs.requests');
 
-    /* Needs Anfrage Hinzufügen */
-    Route::post('/needs/{need}/requests', [NeedRequestController::class, 'store'])
-        ->name('needs.requests');
+    });
 
-    /* Needs Anfrage Löschen */
-    Route::delete('/needs/{need}/requests', [NeedRequestController::class, 'destroy'])
-        ->name('needs.requests');
+    /* Zugriffsrechte Lehrende im Speziellen */
 
+    Route::group(['middleware' => ['role:Admin|Moderierende|Lehrende']], function () {
+
+        /* Meine Bedarfe anzeigen*/
+        Route::get('/needs/myneeds', [NeedsController::class, 'user'])
+            ->name('needs.user');
+
+        /* Bedarfe erstellen*/
+        Route::get('/needs/make', [NeedsController::class, 'make'])
+            ->name('needs.make');
+
+        /* Bedarf: Hinzufügen */
+        Route::post('/needs', [NeedsController::class, 'store'])
+            ->name('needs');
+
+        /* Bedarf: Löschen */
+        Route::delete('/needs/{need}', [NeedsController::class, 'destroy'])
+            ->name('needs.destroy');
+
+        /* Bedarf: inaktiv setzen */
+        Route::post('/needs/{need}/setinactive', [NeedsController::class, 'setinactive'])
+            ->name('needs.setinactive');
+
+        /* Bedarf: aktiv setzen */
+        Route::post('/needs/{need}/setactive', [NeedsController::class, 'setactive'])
+            ->name('needs.setactive');
+
+    });
+
+    /*--------------------------------------------------------------------------*/
+
+    /* Matching */
 
     /* Zuweisungen */
     Route::get('/matching', [MatchingController::class, 'index'])
         ->name('matching');
 
-    /* Nachrichten */
-    Route::group(['prefix' => 'messages'], function () {
-        Route::get('/', ['as' => 'messages', 'uses' => 'App\Http\Controllers\MessagesController@index']);
-        Route::get('create', ['as' => 'messages.create', 'uses' => 'App\Http\Controllers\MessagesController@create']);
-        Route::post('/', ['as' => 'messages.store', 'uses' => 'App\Http\Controllers\MessagesController@store']);
-        Route::get('{id}', ['as' => 'messages.show', 'uses' => 'App\Http\Controllers\MessagesController@show']);
-        Route::put('{id}', ['as' => 'messages.update', 'uses' => 'App\Http\Controllers\MessagesController@update']);
-        Route::get('{id}/delete', 'App\Http\Controllers\MessagesController@delete')->name('messages.delete');
-    });
-
-    Route::group(['middleware' => ['role:Admin|Moderierende|Lehrende|Helfende', 'auth', 'verified']], function () {
-        Route::get('/profile/details/{id}', [ProfileController::class, 'show'])
-            ->name('profile.details');            
-        Route::get('/profile/edit', [ProfileController::class, 'edit'])
-            ->name('profile.edit');
-        Route::resource('profiles', ProfileController::class);
-    });
 });
-
-
-/* Rollen und Zugriffsrechte */
-Route::group(['middleware' => ['role:Admin|Moderierende', 'auth', 'verified']], function () {
-    //
-    /* Account bearbeiten */
-    Route::get('/user', [UserEditController::class, 'index'])
-        ->name('user');
-
-    /* Statistiken */
-    Route::get('/stats', [StatsController::class, 'index'])
-        ->name('stats');
-
-
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
-    Route::resource('products', ProductController::class);
-});
-
-
-/*--------------------------------------------------------------------------*/
-
-
-Route::get('/datepicker', [DateController::class, 'index']);

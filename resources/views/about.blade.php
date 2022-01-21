@@ -126,7 +126,7 @@
 
                                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">ZUTEILUNG</h2>
 
-                                <p class="leading-relaxed">Praktikumssuchene und -beauftrage erstellen Bedarfe und Angebote, um ein Praktikum zu finden.</p>
+                                <p class="leading-relaxed">Praktikumssuchene und -beauftragte erstellen Bedarfe und Angebote, um ein Praktikum zu finden.</p>
 
                             </div>
 

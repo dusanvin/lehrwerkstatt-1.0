@@ -8,7 +8,7 @@ use App\Models\Need;
 class NeedsController extends Controller
 {
 
-	
+
     public function all()
     {
         $needs = Need::with([
@@ -16,7 +16,7 @@ class NeedsController extends Controller
             'likes'
         ])->latest()->simplePaginate(10);
 
-        return view('needs.all',[
+        return view('needs.all', [
             'needs' => $needs
         ]);
     }
@@ -29,7 +29,7 @@ class NeedsController extends Controller
             'likes'
         ])->latest()->simplePaginate(10);
 
-        return view('needs.user',[
+        return view('needs.user', [
             'needs' => $needs
         ]);
     }
@@ -37,6 +37,7 @@ class NeedsController extends Controller
 
     public function make()
     {
+        
         return view('needs.make');
     }
 
@@ -46,8 +47,7 @@ class NeedsController extends Controller
         $startDate = trim($dates[0]);
         if (1 == preg_match('/bis/', $request->datum)) {
             $endDate = trim($dates[1]);
-        }
-        else $endDate = $startDate;
+        } else $endDate = $startDate;
 
         $this->validate($request, [
             'body' => 'required',
@@ -71,11 +71,14 @@ class NeedsController extends Controller
             'active' => 1,
         ]);
 
+        session()->flash('success', 'true');
+
         return back();
     }
 
-    public function setinactive(Need $need) {
-        if(!$need->ownedBy(auth()->user())) {
+    public function setinactive(Need $need)
+    {
+        if (!$need->ownedBy(auth()->user())) {
             return back();
         }
         $need->active = 0;
@@ -84,8 +87,9 @@ class NeedsController extends Controller
         return back();
     }
 
-    public function setactive(Need $need) {
-        if(!$need->ownedBy(auth()->user())) {
+    public function setactive(Need $need)
+    {
+        if (!$need->ownedBy(auth()->user())) {
             return back();
         }
         $need->active = 1;
@@ -96,14 +100,12 @@ class NeedsController extends Controller
 
     public function destroy(Need $need)
     {
-        if(!$need->ownedBy(auth()->user())) {
+        if (!$need->ownedBy(auth()->user())) {
             return back();
         }
 
         $need->delete();
 
         return back();
-        
     }
-
 }

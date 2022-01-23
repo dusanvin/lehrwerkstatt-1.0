@@ -46,7 +46,9 @@
 
                         <div class="">
 
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                            </svg>
 
                         </div>
 
@@ -62,38 +64,45 @@
 
                 @endcan
 
+                <!-- Success Message -->
+
+                <script>
+                    function removemessage() {
+                        document.getElementById('success_message').remove();
+                    }
+                </script>
+
                 @if ($message = Session::get('success'))
 
-                    <!--<p>{{ $message }}</p>-->
-                    <div class="text-white px-6 py-4 mx-4 border-0 rounded relative mb-4 bg-green-600">
+                <div class="text-white px-6 py-4 mx-4 border-0 rounded relative mb-4 bg-green-600" id="success_message">
 
-                        <span class="text-xl inline-block mr-2 align-middle">
+                    <span class="text-xl inline-block mr-2 align-middle">
 
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                              <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
 
-                            </svg>
+                        </svg>
 
-                        </span>
+                    </span>
 
-                        <span class="inline-block align-middle">
+                    <span class="inline-block align-middle">
 
-                            <b>Aktion erfolgreich ausgeführt.</b>
+                        <b>Aktion erfolgreich ausgeführt.</b>
 
-                            <!-- 53:33 -->
+                    </span>
 
-                        </span>
-
-                        <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+                    <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onclick="removemessage()">
 
                         <span>×</span>
 
-                        </button>
+                    </button>
 
-                    </div>
+                </div>
 
                 @endif
+
+                <!-- Success Message -->
 
                 <div class="px-4">
 
@@ -102,181 +111,181 @@
                         <tr>
 
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tl-md">
-                                                                    #</th>
+                                #</th>
 
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    Name</th>
+                                Name</th>
 
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    Rolle</th>
+                                Rolle</th>
 
-                                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                                    Letzter Login</th>
-
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
-                                                                    </th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                Letzter Login</th>
 
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
-                                                                    </th>
+                            </th>
 
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
-                                                                    </th>
+                            </th>
+
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
+                            </th>
 
                         </tr>
 
                         @foreach ($data as $key => $user)
 
-                            <tr class="border-t border-gray-200">
+                        <tr class="border-t border-gray-200">
 
-                                <td class="pl-6 py-4 whitespace-no-wrap ">{{ ++$i }}</td>
+                            <td class="pl-6 py-4 whitespace-no-wrap ">{{ ++$i }}</td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap">
+                            <td class="px-6 py-4 whitespace-no-wrap">
 
-                                        <div class="text-sm leading-5 font-medium text-gray-900">{{ $user->vorname }} {{ $user->nachname }}</div>
+                                <div class="text-sm leading-5 font-medium text-gray-900">{{ $user->vorname }} {{ $user->nachname }}</div>
 
-                                        <div class="text-sm leading-5 text-gray-500">{{ $user->email }}</div>
+                                <div class="text-sm leading-5 text-gray-500">{{ $user->email }}</div>
 
-                                </td>
+                            </td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap select-none">
+                            <td class="px-6 py-4 whitespace-no-wrap select-none">
 
-                                    @if(!empty($user->getRoleNames()))
+                                @if(!empty($user->getRoleNames()))
 
-                                        @foreach($user->getRoleNames() as $v)
+                                @foreach($user->getRoleNames() as $v)
 
-                                            @if ($v == 'Admin')
+                                @if ($v == 'Admin')
 
-                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">Administration</label>
+                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">Administration</label>
 
-                                            @elseif ($v == 'Moderierende')
+                                @elseif ($v == 'Moderierende')
 
-                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-pink-600 rounded-full">Moderation</label>
+                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-pink-600 rounded-full">Moderation</label>
 
-                                            @elseif ($v == 'Helfende')
+                                @elseif ($v == 'Helfende')
 
-                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-indigo-600 rounded-full">Hilfe</label>
+                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-indigo-600 rounded-full">Hilfe</label>
 
-                                            @elseif ($v == 'Lehrende')
+                                @elseif ($v == 'Lehrende')
 
-                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-yellow-600 rounded-full">Suche</label>
+                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-yellow-600 rounded-full">Suche</label>
 
-                                            @endif
+                                @endif
 
-                                        @endforeach
+                                @endforeach
+
+                                @endif
+
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-no-wrap">
+
+                                <div class="text-sm leading-5 font-normal text-gray-900 select-none">
+
+                                    @if($user->last_login_at === NULL)
+                                    Ausstehend
+                                    @else
+
+                                    {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}
 
                                     @endif
 
-                                </td>
+                                </div>
 
-                                <td class="px-6 py-4 whitespace-no-wrap">
+                            </td>
 
-                                        <div class="text-sm leading-5 font-normal text-gray-900 select-none">
+                            <td class="py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
 
-                                            @if($user->last_login_at === NULL)
-                                                Ausstehend
-                                            @else
+                                <!-- Person anzeigen -->
 
-                                            {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}
+                                <form action="{{ route('users.show',$user->id) }}" method="get">
 
-                                            @endif
+                                    @csrf
+
+                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm focus:outline-none ml-4 transition ease-in-out duration-150 justify-items-end">
+
+                                        <div class="grid justify-items-center">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+
+                                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+
+                                            </svg>
+
+                                            <!-- <span class="mx-3 mt-1">Person anzeigen</span> -->
 
                                         </div>
 
-                                </td>
+                                    </button>
 
-                                <td class="py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                </form>
 
-                                    <!-- Person anzeigen -->
+                                <!-- Person anzeigen -->
 
-                                    <form action="{{ route('users.show',$user->id) }}" method="get" >
+                            </td>
 
-                                        @csrf
+                            <td class="py-4 whitespace-no-wrap text-left text-sm leading-5 font-medium">
 
-                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm focus:outline-none ml-4 transition ease-in-out duration-150 justify-items-end">
+                                <!-- Person bearbeiten -->
 
-                                            <div class="grid justify-items-center">
+                                <form action="{{ route('users.edit',$user->id) }}" method="get">
 
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                
-                                                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                    
-                                                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                                    @csrf
 
-                                                </svg>
+                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm focus:outline-none ml-4 transition ease-in-out duration-150">
 
-                                                <!-- <span class="mx-3 mt-1">Person anzeigen</span> -->
+                                        <div class="grid justify-items-center">
 
-                                            </div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                        </button>
+                                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
 
-                                    </form>
+                                            </svg>
 
-                                    <!-- Person anzeigen -->
+                                            <!-- <span class="mx-3 mt-1">Person bearbeiten</span> -->
 
-                                </td>
+                                        </div>
 
-                                <td class="py-4 whitespace-no-wrap text-left text-sm leading-5 font-medium">
+                                    </button>
 
-                                     <!-- Person bearbeiten -->
+                                </form>
 
-                                    <form action="{{ route('users.edit',$user->id) }}" method="get" >
+                                <!-- Person bearbeiten -->
 
-                                        @csrf
+                            </td>
 
-                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm focus:outline-none ml-4 transition ease-in-out duration-150">
+                            <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
 
-                                            <div class="grid justify-items-center">
+                                <!-- Löschen -->
 
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                
-                                                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                                                
-                                                </svg>
+                                <form action="{{ route('users.destroy', $user->id) }}" method="post">
 
-                                                <!-- <span class="mx-3 mt-1">Person bearbeiten</span> -->
+                                    @csrf
 
-                                            </div>
+                                    @method('DELETE')
 
-                                        </button>
+                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
 
-                                    </form>
+                                        <div class="grid justify-items-center">
 
-                                    <!-- Person bearbeiten -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                            </svg>
 
-                                </td>
+                                            <!-- <span class="mx-3 mt-1">Zurückziehen</span> -->
 
-                                <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                        </div>
 
-                                    <!-- Löschen -->  
+                                    </button>
 
-                                    <form action="{{ route('users.destroy', $user->id) }}" method="post" >
+                                </form>
 
-                                        @csrf
+                                <!-- Löschen -->
 
-                                        @method('DELETE')
+                            </td>
 
-                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
-
-                                            <div class="grid justify-items-center">
-
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                                </svg>
-
-                                                <!-- <span class="mx-3 mt-1">Zurückziehen</span> -->
-
-                                            </div>
-
-                                        </button>
-
-                                    </form>
-
-                                    <!-- Löschen -->
-
-                                </td>
-
-                            </tr>
+                        </tr>
 
                         @endforeach
 
@@ -343,7 +352,7 @@
             </div>
 
         </div>
-        
+
     </div>
 
 </body>

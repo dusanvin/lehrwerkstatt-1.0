@@ -8,7 +8,7 @@ use App\Models\Offer;
 class OffersController extends Controller
 {
 
-    
+
     public function all()
     {
         $offers = Offer::with([
@@ -16,7 +16,7 @@ class OffersController extends Controller
             'likes'
         ])->latest()->simplePaginate(10);
 
-        return view('offers.all',[
+        return view('offers.all', [
             'offers' => $offers
         ]);
     }
@@ -29,7 +29,7 @@ class OffersController extends Controller
             'likes'
         ])->latest()->simplePaginate(10);
 
-        return view('offers.user',[
+        return view('offers.user', [
             'offers' => $offers
         ]);
     }
@@ -47,8 +47,7 @@ class OffersController extends Controller
         $startDate = trim($dates[0]);
         if (1 == preg_match('/bis/', $request->datum)) {
             $endDate = trim($dates[1]);
-        }
-        else $endDate = $startDate;
+        } else $endDate = $startDate;
 
         $this->validate($request, [
             'body' => 'required',
@@ -72,12 +71,15 @@ class OffersController extends Controller
             'active' => 1,
         ]);
 
+        session()->flash('success', 'true');
+
         return back();
     }
 
 
-    public function setinactive(Offer $offer) {
-        if(!$offer->ownedBy(auth()->user())) {
+    public function setinactive(Offer $offer)
+    {
+        if (!$offer->ownedBy(auth()->user())) {
             return back();
         }
         $offer->active = 0;
@@ -87,8 +89,9 @@ class OffersController extends Controller
     }
 
 
-    public function setactive(Offer $offer) {
-        if(!$offer->ownedBy(auth()->user())) {
+    public function setactive(Offer $offer)
+    {
+        if (!$offer->ownedBy(auth()->user())) {
             return back();
         }
         $offer->active = 1;
@@ -100,13 +103,12 @@ class OffersController extends Controller
 
     public function destroy(Offer $offer)
     {
-        if(!$offer->ownedBy(auth()->user())) {
+        if (!$offer->ownedBy(auth()->user())) {
             return back();
         }
 
         $offer->delete();
 
         return back();
-        
     }
 }

@@ -104,7 +104,7 @@ class MessagesController extends Controller
             $thread->addParticipant($input['recipients']);
         }
 
-        return redirect()->route('messages');
+        return redirect()->route('messages.show', $thread->id);
     }
 
 

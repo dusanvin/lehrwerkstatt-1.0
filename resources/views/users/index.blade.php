@@ -4,7 +4,7 @@
 
 <body style="background-color: white;">
 
-    <div class="flex flex-row h-full mx-5 mt-10 mb-10">
+    <div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
 
         <!-- Nav -->
 
@@ -12,7 +12,7 @@
 
         <!-- Nav -->
 
-        <div class="px-8 py-8 text-gray-700 w-screen bg-white rounded-r-lg shadow-b border-b border-gray-200" style="background-color: #EDF2F7;">
+        <div class="px-1 md:px-8 py-8 md:py-8 text-gray-700 w-screen sm:rounded-r-lg" style="background-color: #EDF2F7;">
 
             <div class="bg-white overflow-hidden sm:rounded-lg mb-4">
 
@@ -110,25 +110,25 @@
 
                         <tr>
 
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tl-md">
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tl-md">
                                 #</th>
 
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Name</th>
 
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Rolle</th>
 
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Letzter Login</th>
 
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
                             </th>
 
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
                             </th>
 
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tr-md">
                             </th>
 
                         </tr>
@@ -137,17 +137,17 @@
 
                         <tr class="border-t border-gray-200">
 
-                            <td class="pl-6 py-4 whitespace-no-wrap ">{{ ++$i }}</td>
+                            <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap ">{{ ++$i }}</td>
 
                             <td class="px-6 py-4 whitespace-no-wrap">
 
-                                <div class="text-sm leading-5 font-medium text-gray-900">{{ $user->vorname }} {{ $user->nachname }}</div>
+                                <div class="text-xs sm:text-sm leading-5 font-medium text-gray-900">{{ $user->vorname }} {{ $user->nachname }}</div>
 
-                                <div class="text-sm leading-5 text-gray-500">{{ $user->email }}</div>
+                                <div class="text-xs sm:text-sm leading-5 text-gray-500">{{ $user->email }}</div>
 
                             </td>
 
-                            <td class="px-6 py-4 whitespace-no-wrap select-none">
+                            <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap select-none">
 
                                 @if(!empty($user->getRoleNames()))
 
@@ -177,7 +177,7 @@
 
                             </td>
 
-                            <td class="px-6 py-4 whitespace-no-wrap">
+                            <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap">
 
                                 <div class="text-sm leading-5 font-normal text-gray-900 select-none">
 
@@ -193,7 +193,7 @@
 
                             </td>
 
-                            <td class="py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                            <td class="hidden sm:table-cell py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
 
                                 <!-- Person anzeigen -->
 
@@ -225,7 +225,7 @@
 
                             </td>
 
-                            <td class="py-4 whitespace-no-wrap text-left text-sm leading-5 font-medium">
+                            <td class="hidden sm:table-cell py-4 whitespace-no-wrap text-left text-sm leading-5 font-medium">
 
                                 <!-- Person bearbeiten -->
 
@@ -255,7 +255,7 @@
 
                             </td>
 
-                            <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                            <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
 
                                 <!-- Löschen -->
 
@@ -303,7 +303,7 @@
 
                 <div class="px-4 py-5 sm:px-6">
 
-                    <div class="flex items-center">
+                    <div class="hidden sm:flex items-center">
 
                         <div class="text-gray-900">
 

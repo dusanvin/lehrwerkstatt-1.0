@@ -38,7 +38,7 @@
 
                 <!-- Meine Bedarfe -->
 
-                <div id="second" class="hidden py-4 px-2 bg-white">
+                <div id="second" class="py-4 px-2 bg-white">
 
                     <div class="grid grid-cols-1 text-sm text-gray-500 text-light py-1 px-2 my-2">
 
@@ -299,6 +299,10 @@
 
                             @endforeach
 
+                            @else
+
+                            Keine Bedarfe vorhanden.
+
                             @endif
 
                         </table>
@@ -319,11 +323,7 @@
 
             <!-- Tab Contents -->
 
-        </div>
-
-        <script>
-            document.getElementById("second").classList.remove("hidden");
-        </script>    
+        </div> 
 
     </div> 
 

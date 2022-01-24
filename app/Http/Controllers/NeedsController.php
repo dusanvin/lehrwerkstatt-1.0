@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Need;
+use Auth;
 
 class NeedsController extends Controller
 {
@@ -27,7 +28,9 @@ class NeedsController extends Controller
         $needs = Need::with([
             'user',
             'likes'
-        ])->latest()->simplePaginate(10);
+        ]);
+
+        $needs = Need::where('user_id', auth()->user()->id)->latest()->simplePaginate(10);
 
         return view('needs.user', [
             'needs' => $needs

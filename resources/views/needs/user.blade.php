@@ -4,7 +4,7 @@
 
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
-<div class="flex flex-row h-full mx-5 mt-10 mb-10">
+<div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
 
     <!-- Nav -->
 
@@ -14,7 +14,7 @@
 
     <!-- Content -->
 
-    <div class="px-1 md:px-8 py-1 md:py-8 text-gray-700 w-screen rounded-r-lg" style="background-color: #EDF2F7;">
+    <div class="px-1 md:px-8 py-1 md:py-8 text-gray-700 w-screen sm:rounded-r-lg" style="background-color: #EDF2F7;">
 
         <div class="mx-auto rounded">
 

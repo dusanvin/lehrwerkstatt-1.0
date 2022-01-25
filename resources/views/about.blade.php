@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Näheres zum digi:match</title>
+        <title>digi:match - Finden Sie Ihren DaZ-Buddy</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 
         <style type="text/css">

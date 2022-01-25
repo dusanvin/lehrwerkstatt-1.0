@@ -8,7 +8,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'digi:match') }}</title>
+        <title>digi:match - Finden Sie Ihren DaZ-Buddy</title>
         <style type="text/css">
         	li:hover {
 				/*background-color: #EDF2F7 !important;*/

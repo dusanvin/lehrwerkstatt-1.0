@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
 
     <!-- Nav -->
@@ -38,7 +37,7 @@
 
                 <!-- Alle Angebote -->
 
-                <div id="first" class="p-4 bg-white">
+                <div id="first" class="p-1 sm:p-4 bg-white">
 
                     <div class="grid grid-cols-1 text-sm text-gray-500 text-light py-1 my-2">
 
@@ -48,7 +47,7 @@
 
                     </div>
 
-                    <div class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tl-md">
+                    <div class="px-2 sm:px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tl-md">
 
                         Angebote
 
@@ -64,17 +63,17 @@
 
                         <div class="bg-white rounded-md pb-4">
 
-                            <div class="px-4 sm:px-6 border-t border-gray-200">
+                            <div class="px-1 sm:px-4 sm:px-6 border-t border-gray-200">
 
                                 <!-- Informationen -->
 
-                                <div class="flex items-center justify-between pt-4">
+                                <div class="flex items-center justify-between pt-4 leading-5 sm:leading-6 mb-4 text-xs sm:text-lg font-medium">
 
                                     {{ $offer->user->vorname }} {{ $offer->user->nachname }}
 
                                     <div>
 
-                                        <span class="text-gray-400 text-xs"><strong>Angebot #{{ $offer->id }}</strong> erstellt {{ $offer->created_at->diffForHumans() }}</span>
+                                        <span class="text-gray-400 text-xs"><strong><span class="hidden sm:inline-block">Angebot </span>#{{ $offer->id }}</strong> <span class="hidden sm:inline-block">erstellt </span>{{ $offer->created_at->diffForHumans() }}</span>
 
                                     </div>
 
@@ -82,19 +81,19 @@
 
                                 <!-- Informationen -->
 
-                                <div class="flex flex-wrap content-start">
+                                <div class="block sm:flex sm:flex-wrap content-start">
 
-                                    <p class="text-gray-400 text-sm mr-5">Betreuungszeitraum: <span class="font-medium">{{ date('m/Y', strtotime($offer->datum_start)) }} bis {{ date('m/Y', strtotime($offer->datum_end)) }}</span></p>
+                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Betreuungszeitraum: <span class="font-medium">{{ date('m/Y', strtotime($offer->datum_start)) }} bis {{ date('m/Y', strtotime($offer->datum_end)) }}</span></p>
 
-                                    <p class="text-gray-400 text-sm mr-5">Betreuungsrahmen: <span class="font-medium">{{ $offer->rahmen }} Person/en</span></p>
+                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Betreuungsrahmen: <span class="font-medium">{{ $offer->rahmen }} Person/en</span></p>
 
-                                    <p class="text-gray-400 text-sm mr-5">Schulart: <span class="font-medium">{{ $offer->schulart }}</span></p>
+                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Schulart: <span class="font-medium">{{ $offer->schulart }}</span></p>
 
-                                    <p class="text-gray-400 text-sm mr-5">Fremdsprachkenntnisse: <span class="font-medium">{{ $offer->sprachkenntnisse }}</span></p>
+                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Fremdsprachkenntnisse: <span class="font-medium">{{ $offer->sprachkenntnisse }}</span></p>
 
-                                    <p class="text-gray-400 text-sm mr-5">Studiengang: <span class="font-medium">{{ $offer->studiengang }}</span></p>
+                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Studiengang: <span class="font-medium">{{ $offer->studiengang }}</span></p>
 
-                                    <p class="text-gray-400 text-sm mr-5">Fachsemester: <span class="font-medium">{{ $offer->fachsemester }}</span></p>
+                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Fachsemester: <span class="font-medium">{{ $offer->fachsemester }}</span></p>
 
                                 </div>
 
@@ -102,7 +101,7 @@
 
                                 <!-- Body -->
 
-                                <p class="text-gray-600 text-sm my-3">{{ $offer->body }}</p>
+                                <p class="text-gray-600 text-sm mt-2 mb-4">{{ $offer->body }}</p>
 
                                 <!-- Body -->
 

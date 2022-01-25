@@ -26,7 +26,7 @@
 
             @if ($message = Session::get('success'))
 
-            <div class="text-white px-6 py-4 mx-4 border-0 rounded relative mb-4 bg-green-600" id="success_make_offer">
+            <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-600" id="success_make_offer">
 
                 <span class="text-xl inline-block mr-2 align-middle">
 

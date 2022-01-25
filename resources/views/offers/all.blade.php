@@ -20,16 +20,15 @@
 
             <ul id="tabs" class="inline-flex w-full">
 
-                <li class="px-4 py-2 -mb-px font-medium text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100"><a href="{{ route('offers.all') }}">Alle Angebote</a></li>
+                <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100"><a href="{{ route('offers.all') }}">Alle Angebote</a></li>
 
-                <li class="px-4 py-2 font-medium text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('offers.user') }}">Meine Angebote</a></li>
+                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('offers.user') }}">Meine Angebote</a></li>
 
-                <li class="px-4 py-2 font-medium text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('offers.make') }}">Angebot erstellen</a></li>
+                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('offers.make') }}">Angebot erstellen</a></li>
 
             </ul>
 
             <!-- Tabs -->
-
 
             <!-- Tab Contents -->
 
@@ -57,210 +56,226 @@
 
                         @if ($offers->count())
 
-                        @foreach($offers as $offer)
+                            @foreach($offers as $offer)
 
-                        @if($offer->active == 1)
+                                @if($offer->active == 1)
 
-                        <div class="bg-white rounded-md pb-4">
+                                <div class="bg-white rounded-md pb-4">
 
-                            <div class="px-1 sm:px-4 sm:px-6 border-t border-gray-200">
+                                    <div class="px-1 sm:px-4 sm:px-6 border-t border-gray-200">
 
-                                <!-- Informationen -->
+                                        <!-- Informationen -->
 
-                                <div class="flex items-center justify-between pt-4 leading-5 sm:leading-6 mb-4 text-xs sm:text-lg font-medium">
+                                        <div class="flex items-center justify-between pt-4 leading-5 sm:leading-6 mb-4 text-xs sm:text-lg font-medium">
 
-                                    {{ $offer->user->vorname }} {{ $offer->user->nachname }}
+                                            <a class="flex hover:underline" href="{{ route('profile.details', ['id' => $offer->user->id]) }}">
 
-                                    <div>
+                                                {{ $offer->user->vorname }} {{ $offer->user->nachname }}
 
-                                        <span class="text-gray-400 text-xs"><strong><span class="hidden sm:inline-block">Angebot </span>#{{ $offer->id }}</strong> <span class="hidden sm:inline-block">erstellt </span>{{ $offer->created_at->diffForHumans() }}</span>
-
-                                    </div>
-
-                                </div>
-
-                                <!-- Informationen -->
-
-                                <div class="block sm:flex sm:flex-wrap content-start">
-
-                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Betreuungszeitraum: <span class="font-medium">{{ date('m/Y', strtotime($offer->datum_start)) }} bis {{ date('m/Y', strtotime($offer->datum_end)) }}</span></p>
-
-                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Betreuungsrahmen: <span class="font-medium">{{ $offer->rahmen }} Person/en</span></p>
-
-                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Schulart: <span class="font-medium">{{ $offer->schulart }}</span></p>
-
-                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Fremdsprachkenntnisse: <span class="font-medium">{{ $offer->sprachkenntnisse }}</span></p>
-
-                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Studiengang: <span class="font-medium">{{ $offer->studiengang }}</span></p>
-
-                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Fachsemester: <span class="font-medium">{{ $offer->fachsemester }}</span></p>
-
-                                </div>
-
-                                <!-- Informationen -->
-
-                                <!-- Body -->
-
-                                <p class="text-gray-600 text-sm mt-2 mb-4">{{ $offer->body }}</p>
-
-                                <!-- Body -->
-
-                                <!-- Buttons -->
-
-                                <div class="flex justify-end">
-
-                                    @auth
-
-                                    @if(!$offer->ownedBy(auth()->user()))
-
-                                    <!-- Anfragen -->
-
-                                    <form action="{{ route('messages.store') }}" method="post">
-
-                                        {{ csrf_field() }}
-
-                                        <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="Anfrage zu Angebot #{{ $offer->id }}" name="subject" type="hidden">
-
-                                        <textarea name="message" placeholder="Ihre Nachricht." style="display:none;">Ich möchte auf Ihr Angebot #{{ $offer->id }} reagieren. Sie suchen {{ $offer->rahmen }} Person/en, wobei folgende Spezifika mit angegeben wurden: Sprachkenntnisse: {{ $offer->sprachkenntnisse }}, Studiengang {{ $offer->studiengang }} und Fachsemester: {{ $offer->fachsemester }}. Der Betreuungszeitraum geht vom {{ date('d.m.Y', strtotime($offer->datum_start)) }} bis zum {{ date('d.m.Y', strtotime($offer->datum_end)) }}. Die Beschreibung Ihres Angebots lautet: {{ $offer->body }} - Hätten Sie Interesse an meiner Unterstützung?</textarea>
-
-                                        <div class="checkbox">
-
-                                            <input name="recipients[]" value="{{  $offer->user->id }}" type="hidden">
-
-                                        </div>
-
-                                        <div class="form-group">
-
-                                            <button type="submit" class="ml-4 py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none">
-
-                                                <div class="grid justify-items-center">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-                                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-
-                                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-
-                                                    </svg>
-
-                                                    <!-- <span class="mt-1 mx-3">Anfragen</span> -->
-
-                                                </div>
-
-                                            </button>
-
-                                        </div>
-
-                                    </form>
-
-                                    <!-- Anfragen -->
-
-                                    @else
-
-                                    <!-- Löschen -->
-
-                                    <form action="{{ route('offers.destroy', $offer) }}" method="post">
-
-                                        @csrf
-
-                                        @method('DELETE')
-
-                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
-
-                                            <div class="grid justify-items-center">
-
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 pt-1" viewBox="0 0 20 20" fill="currentColor">
+                                                  <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                                                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
                                                 </svg>
+
+                                            </a>
+
+                                            <div>
+
+                                                <span class="text-gray-400 text-xs"><strong><span class="hidden sm:inline-block">Angebot </span>#{{ $offer->id }}</strong> <span class="hidden sm:inline-block">erstellt </span> {{ $offer->created_at->diffForHumans() }}</span>
 
                                             </div>
 
-                                        </button>
+                                        </div>
 
-                                    </form>
+                                        <!-- Informationen -->
 
-                                    <!-- Löschen -->
+                                        <div class="block sm:flex sm:flex-wrap content-start">
 
-                                    @endif
+                                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Betreuungszeitraum: <span class="font-medium">{{ date('m/Y', strtotime($offer->datum_start)) }} bis {{ date('m/Y', strtotime($offer->datum_end)) }}</span></p>
 
-                                    <!-- Like / Unlike -->
+                                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Betreuungsrahmen: <span class="font-medium">{{ $offer->rahmen }} Person/en</span></p>
 
-                                    <div class="grid justify-items-center ml-2">
+                                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Schulart: <span class="font-medium">{{ $offer->schulart }}</span></p>
 
-                                        @if (!$offer->likedBy(auth()->user()))
+                                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Fremdsprachkenntnisse: <span class="font-medium">{{ $offer->sprachkenntnisse }}</span></p>
 
-                                        <form action="{{ route('offers.likes', $offer) }}" method="post">
+                                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Studiengang: <span class="font-medium">{{ $offer->studiengang }}</span></p>
 
-                                            @csrf
+                                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Fachsemester: <span class="font-medium">{{ $offer->fachsemester }}</span></p>
 
-                                            <!-- Like -->
+                                        </div>
 
-                                            <button type="submit" class="pt-2 pb-1 text-gray-400 hover:text-gray-700 text-xs flex focus:outline-none">
+                                        <!-- Informationen -->
 
+                                        <!-- Body -->
+
+                                        <p class="text-gray-600 text-sm mt-2 mb-4">{{ $offer->body }}</p>
+
+                                        <!-- Body -->
+
+                                        <!-- Buttons -->
+
+                                        <div class="flex justify-end">
+
+                                            @auth
+
+                                            @if(!$offer->ownedBy(auth()->user()))
+
+                                            <!-- Anfragen -->
+
+                                            <form action="{{ route('messages.store') }}" method="post">
+
+                                                {{ csrf_field() }}
+
+                                                <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="Anfrage zu Angebot #{{ $offer->id }}" name="subject" type="hidden">
+
+                                                <textarea name="message" placeholder="Ihre Nachricht." style="display:none;">Ich möchte auf Ihr Angebot #{{ $offer->id }} reagieren. Sie suchen {{ $offer->rahmen }} Person/en, wobei folgende Spezifika mit angegeben wurden: Sprachkenntnisse: {{ $offer->sprachkenntnisse }}, Studiengang {{ $offer->studiengang }} und Fachsemester: {{ $offer->fachsemester }}. Der Betreuungszeitraum geht vom {{ date('d.m.Y', strtotime($offer->datum_start)) }} bis zum {{ date('d.m.Y', strtotime($offer->datum_end)) }}. Die Beschreibung Ihres Angebots lautet: {{ $offer->body }} - Hätten Sie Interesse an meiner Unterstützung?</textarea>
+
+                                                <div class="checkbox">
+
+                                                    <input name="recipients[]" value="{{  $offer->user->id }}" type="hidden">
+
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <button type="submit" class="ml-4 py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none">
+
+                                                        <div class="grid justify-items-center">
+
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                              <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                                                              <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
+                                                            </svg>
+
+                                                            <!-- <span class="mt-1 mx-3">Anfragen</span> -->
+
+                                                        </div>
+
+                                                    </button>
+
+                                                </div>
+
+                                            </form>
+
+                                            <!-- Anfragen -->
+
+                                            <a href="mailto:{{  $offer->user->email }}" class="ml-4 py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none">
+
+                                                <div class="grid justify-items-center">
+                                                    
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                                                </svg><span class="mx-1 mt-1">{{ $offer->likes->count() }}</span>
+                                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                                                </svg>
 
-                                            </button>
+                                                </div>
 
-                                            <!-- Like -->
+                                            </a>
 
-                                        </form>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                        @else
 
-                                        <form action="{{ route('offers.likes', $offer) }}" method="post">
+                                            @else
 
-                                            @csrf
+                                            <!-- Löschen -->
 
-                                            @method('DELETE')
+                                            <form action="{{ route('offers.destroy', $offer) }}" method="post">
 
-                                            <!-- Unlike -->
+                                                @csrf
 
-                                            <button type="submit" class="pt-2 text-gray-400 hover:text-gray-700 text-xs flex focus:outline-none">
+                                                @method('DELETE')
 
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                                                </svg><span class="mx-1 mt-1">{{ $offer->likes->count() }}</span>
+                                                <button type="submit" class="py-2 px-2 rounded-full bg-white text-red-700 hover:bg-red-200 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
 
-                                            </button>
+                                                    <div class="grid justify-items-center">
 
-                                            <!-- Unlike -->
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                                        </svg>
 
-                                        </form>
+                                                    </div>
 
-                                        @endif
+                                                </button>
 
-                                        <!-- Like / Unlike -->
+                                            </form>
 
-                                        <!-- <div class="text-xs grid justify-center text-purple-300">Gefällt mir</div> -->
+                                            <!-- Löschen -->
+
+                                            @endif
+
+                                            <!-- Like / Unlike -->
+
+                                            <div class="grid justify-items-center ml-2">
+
+                                                @if (!$offer->likedBy(auth()->user()))
+
+                                                <form action="{{ route('offers.likes', $offer) }}" method="post">
+
+                                                    @csrf
+
+                                                    <!-- Like -->
+
+                                                    <button type="submit" class="pt-2 pb-1 text-gray-400 hover:text-gray-700 text-xs flex focus:outline-none">
+
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                                                        </svg><span class="mx-1 mt-1">{{ $offer->likes->count() }}</span>
+
+                                                    </button>
+
+                                                    <!-- Like -->
+
+                                                </form>
+
+                                                @else
+
+                                                <form action="{{ route('offers.likes', $offer) }}" method="post">
+
+                                                    @csrf
+
+                                                    @method('DELETE')
+
+                                                    <!-- Unlike -->
+
+                                                    <button type="submit" class="pt-2 text-gray-400 hover:text-gray-700 text-xs flex focus:outline-none">
+
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                                                        </svg><span class="mx-1 mt-1">{{ $offer->likes->count() }}</span>
+
+                                                    </button>
+
+                                                    <!-- Unlike -->
+
+                                                </form>
+
+                                                @endif
+
+                                                <!-- Like / Unlike -->
+
+                                                <!-- <div class="text-xs grid justify-center text-purple-300">Gefällt mir</div> -->
+
+                                            </div>
+
+                                            @endauth
+
+                                        </div>
+
+                                        <!-- Buttons -->
 
                                     </div>
 
-                                    @endauth
 
                                 </div>
 
-                                <!-- Buttons -->
+                                @endif
 
-                            </div>
-
-
-                        </div>
-
-                        @endif
-
-                        @endforeach
-
-                        <div class="mt-5">
-
-                            {{ $offers->links() }}
-
-                        </div>
+                            @endforeach
 
                         @else
 
-                        <p>Keine Einträge vorhanden.</p>
+                            <p>Keine Einträge vorhanden.</p>
 
                         @endif
 
@@ -268,12 +283,20 @@
 
                     </div>
 
+                        <div class="mt-5">
+
+                            {{ $offers->links() }}
+
+                        </div>
+
+                    </div>
+
+                    <!-- Alle Angebote -->
+
+                    </div>
+
                 </div>
-
-                <!-- Alle Angebote -->
-
-            </div>
-
+            
             <!-- Tab Contents -->
 
         </div>
@@ -283,6 +306,5 @@
 </div>
 
 <!-- Content -->
-
 
 @endsection

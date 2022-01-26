@@ -18,7 +18,7 @@
 
             <!-- Success Message -->
 
-            <script>
+            <!-- <script>
                 function removemessage() {
                     document.getElementById('success_make_offer').remove();
                 }
@@ -52,7 +52,7 @@
 
             </div>
 
-            @endif
+            @endif -->
 
             <!-- Success Message -->
 

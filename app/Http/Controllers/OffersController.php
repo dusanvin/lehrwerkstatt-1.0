@@ -75,7 +75,16 @@ class OffersController extends Controller
 
         session()->flash('success', 'true');
 
-        return back();
+        $offers = Offer::with([
+            'user',
+            'likes'
+        ])->latest()->simplePaginate(10);
+
+        $offers = Offer::where('user_id', auth()->user()->id)->latest()->simplePaginate(10);
+
+        return view('offers.user', [
+            'offers' => $offers
+        ]);
     }
 
 

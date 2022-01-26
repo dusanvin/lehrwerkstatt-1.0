@@ -76,7 +76,16 @@ class NeedsController extends Controller
 
         session()->flash('success', 'true');
 
-        return back();
+        $needs = Need::with([
+            'user',
+            'likes'
+        ]);
+
+        $needs = Need::where('user_id', auth()->user()->id)->latest()->simplePaginate(10);
+
+        return view('needs.user', [
+            'needs' => $needs
+        ]);
     }
 
     public function setinactive(Need $need)

@@ -91,7 +91,7 @@ class ProfileController extends Controller
             'vorname' => 'required|max:255',
             'nachname' => 'required|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'same:confirm-password',
+            'password' => 'same:confirm-password', //confirm-password
         ]);
 
 
@@ -117,8 +117,10 @@ class ProfileController extends Controller
         $user = User::find($id);
         $user->update($input);
 
-        return redirect()->route('profile.edit')
-            ->with('success', 'Informationen erfolgreich aktualisiert.');
+        session()->flash('success', 'true');
+
+        return redirect()->route('profile.edit');
+            //->with('success', 'Informationen erfolgreich aktualisiert.');
     }
 
     /**

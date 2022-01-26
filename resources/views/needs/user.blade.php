@@ -4,6 +4,10 @@
 
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
+<style>
+        [x-cloak] { display: none !important; }
+</style>
+
 <div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
 
     <!-- Nav -->
@@ -175,7 +179,7 @@
                                         </button>
 
                                         <!-- Dialog (full screen) -->
-                                        <div class="absolute top-0 left-0 flex items-center justify-center h-full w-full" style="background-color: rgba(0,0,0,.5);" x-show="open">
+                                        <div class="absolute top-0 left-0 flex items-center justify-center h-full w-full" style="background-color: rgba(0,0,0,.5);" x-cloak x-show="open">
 
                                             <!-- A basic modal dialog with title, body and one button to close -->
                                             <div class="h-auto p-4 mx-10 text-left bg-white rounded shadow-xl max-w-screen-sm" @click.away="open = false">

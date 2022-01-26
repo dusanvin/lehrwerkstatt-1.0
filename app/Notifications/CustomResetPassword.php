@@ -2,60 +2,25 @@
 
 namespace App\Notifications;
 
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CustomResetPassword extends Notification
+use Illuminate\Support\Facades\Lang;
+
+class CustomResetPassword extends ResetPassword
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function via($notifiable)
-    {
-        return ['mail'];
-    }
-
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
+    protected function buildMailMessage($url)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
+            ->subject(Lang::get('Passwort zurücksetzen'))
+            ->line(Lang::get('Sie erhalten diese Nachricht, weil wir eine Anfrage erhalten haben, das Passwort für diesen Account zurückzusetzen.'))
+            ->action(Lang::get('Passwort zurücksetzen'), $url)
+            ->line(Lang::get('Der Link zum Zurücksetzen ist :count Minuten gültig.', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
+            ->line(Lang::get('Falls Sie keine solche Anfrage gestellt haben, müssen Sie nichts weiter tun.'));
     }
 }

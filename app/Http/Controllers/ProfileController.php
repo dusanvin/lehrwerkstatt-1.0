@@ -10,6 +10,10 @@ use DB;
 use Hash;
 use Illuminate\Support\Arr;
 
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Rule;
+
+
 class ProfileController extends Controller
 {
     /**
@@ -84,8 +88,8 @@ class ProfileController extends Controller
         // Nach Klick auf "Änderungen übernehmen"
 
         $this->validate($request, [
-            'vorname' => 'required',
-            'nachname' => 'required',
+            'vorname' => 'required|max:255',
+            'nachname' => 'required|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
         ]);
@@ -95,6 +99,14 @@ class ProfileController extends Controller
         $input = $request->all();
 
         if (!empty($input['password'])) {
+            $this->validate($request, [
+                'password' => [Password::min(10)
+				->numbers()
+				->symbols()
+				->mixedCase()
+				->letters(),
+			    ]
+            ]);
             $input['password'] = Hash::make($input['password']);
         } else {
             $input = Arr::except($input, array('password'));

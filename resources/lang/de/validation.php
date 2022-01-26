@@ -76,7 +76,7 @@ return [
     'required_with_all'    => ':attribute field wird benötigt wenn :values vorhanden ist.',
     'required_without'     => ':attribute field wird benötigt wenn :values nicht vorhanden ist.',
     'required_without_all' => ':attribute field wird bentigt wenn keine der Werte :values vorhanden ist.',
-    'same'                 => ':attribute und :other müssen gleich sein.',
+    'same'                 => ':attribute und Passwortbestätigung müssen gleich sein.', //:other
     'size'                 => [
         'numeric' => ':attribute muss :size groß sein.',
         'file'    => ':attribute muss :size Kilobytes groß sein.',

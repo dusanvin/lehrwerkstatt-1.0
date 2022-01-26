@@ -76,7 +76,7 @@ return [
     'required_with_all'    => ':attribute field wird benötigt wenn :values vorhanden ist.',
     'required_without'     => ':attribute field wird benötigt wenn :values nicht vorhanden ist.',
     'required_without_all' => ':attribute field wird bentigt wenn keine der Werte :values vorhanden ist.',
-    'same'                 => ':attribute und Passwortbestätigung müssen gleich sein.', //:other
+    'same'                 => ':attribute und :other müssen gleich sein.', //:other
     'size'                 => [
         'numeric' => ':attribute muss :size groß sein.',
         'file'    => ':attribute muss :size Kilobytes groß sein.',
@@ -132,6 +132,9 @@ return [
         'role' => 'Rolle',
         'user_agreement' => 'Nutzungsbedingungen',
         'privacy_statement' => 'Datenschutzerklärung',
+        'confirm-password' => 'Passwortbestätigung',
+        'vorname' => 'Vorname',
+        'nachname' => 'Nachname'
     ],
 
 ];

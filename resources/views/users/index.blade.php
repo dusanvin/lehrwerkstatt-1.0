@@ -201,7 +201,7 @@
 
                                     @csrf
 
-                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm focus:outline-none ml-4 transition ease-in-out duration-150 justify-items-end has-tooltip">
+                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300 text-sm focus:outline-none mx-1 transition ease-in-out duration-150 justify-items-end has-tooltip">
 
                                         <div class="grid justify-items-center">
 
@@ -233,7 +233,7 @@
 
                                     @csrf
 
-                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm focus:outline-none ml-4 transition ease-in-out duration-150  has-tooltip">
+                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300 text-sm focus:outline-none mx-1 transition ease-in-out duration-150  has-tooltip">
 
                                         <div class="grid justify-items-center">
 
@@ -265,7 +265,7 @@
 
                                     @method('DELETE')
 
-                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip">
+                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300 text-sm flex focus:outline-none mx-1 transition ease-in-out duration-150 has-tooltip">
 
                                         <div class="grid justify-items-center">
 

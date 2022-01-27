@@ -119,278 +119,298 @@
 
                             @if ($offers->count())
 
-                            @foreach($offers as $offer)
+                                @foreach($offers as $offer)
 
-                            @if($offer->ownedBy(auth()->user()))
+                                    @if($offer->ownedBy(auth()->user()))
 
-                            <tr class="border-t border-gray-200">
+                                    <tr class="border-t border-gray-200">
 
-                                <!-- ID des Angebots -->
+                                        <!-- ID des Angebots -->
 
-                                <td class="pl-6 py-4 whitespace-no-wrap ">
+                                        <td class="pl-6 py-4 whitespace-no-wrap ">
 
-                                    {{ $offer->id }}
+                                            {{ $offer->id }}
 
-                                </td>
+                                        </td>
 
-                                <!-- ID des Angebots -->
+                                        <!-- ID des Angebots -->
 
-                                <!-- Status des Angebots -->
+                                        <!-- Status des Angebots -->
 
-                                <td class="px-6 py-4 whitespace-no-wrap">
+                                        <td class="px-6 py-4 whitespace-no-wrap">
 
-                                    @if ($offer->active == 1)
+                                            @if ($offer->active == 1)
 
-                                    <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-green-600 rounded-full">Aktiv</label>
+                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-green-600 rounded-full">Aktiv</label>
 
-                                    @else
+                                            @else
 
-                                    <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">Inaktiv</label>
+                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">Inaktiv</label>
 
-                                    @endif
+                                            @endif
 
-                                </td>
+                                        </td>
 
-                                <!-- Status des Angebots -->
+                                        <!-- Status des Angebots -->
 
-                                <!-- Erstellungsdatum des Angebots -->
+                                        <!-- Erstellungsdatum des Angebots -->
 
-                                <td class="px-6 py-4 whitespace-no-wrap select-none text-sm">
+                                        <td class="px-6 py-4 whitespace-no-wrap select-none text-sm">
 
-                                    {{ $offer->created_at->diffForHumans() }}
+                                            {{ $offer->created_at->diffForHumans() }}
 
-                                </td>
+                                        </td>
 
-                                <!-- Erstellungsdatum des Angebots -->
+                                        <!-- Erstellungsdatum des Angebots -->
 
-                                <td class="pl-6 pr-0 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium flex">
+                                        <td class="pl-6 pr-0 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium flex">
 
-                                    <!-- Anzeigen -->
+                                            <!-- Anzeigen -->
 
-                                    <div class="" x-data="{ open: false }">
+                                            <div class="" x-data="{ open: false }">
 
-                                        <button class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150" @click="open=true">
+                                                <button class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150" @click="open=true">
 
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                                                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                        <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
 
-                                            </svg>
+                                                    </svg>
 
-                                        </button>
+                                                </button>
 
+                                                <!-- Dialog (full screen) -->
 
-                                        <!-- Dialog (full screen) -->
-                                        <div class="absolute top-0 left-0 flex items-center justify-center h-full w-full" style="background-color: rgba(0,0,0,.5);" x-cloak x-show="open">
+                                                <div class="absolute top-0 left-0 flex items-center justify-center h-full w-full" style="background-color: rgba(0,0,0,.5);" x-cloak x-show="open">
 
-                                            <!-- A basic modal dialog with title, body and one button to close -->
-                                            <div class="h-auto p-4 mx-10 text-left bg-white rounded shadow-xl max-w-screen-sm" @click.away="open = false">
-                                                <div class="mt-3 text-center sm:text-left">
-                                                    <h2 class="text-lg font-medium leading-6 text-gray-900">
-                                                        Nähere Informationen zu Angebot #{{$offer->id}}
-                                                    </h2>
+                                                    <!-- A basic modal dialog with title, body and one button to close -->
 
-                                                    <div class="mt-2">
-                                                        <h3 class="text-sm">Datum</h3>
-                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            {{ $offer->created_at->diffForHumans() }}
-                                                        </p>
+                                                    <div class="h-auto p-4 mx-10 text-left bg-white rounded shadow-xl max-w-screen-sm" @click.away="open = false">
 
-                                                        <h3 class="text-sm">Betreuungszeitraum</h3>
-                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            <span class="font-medium">{{ date('m/Y', strtotime($offer->datum_start)) }} bis {{ date('m/Y', strtotime($offer->datum_end)) }}</span>
-                                                        </p>
+                                                        <div class="mt-3 text-center sm:text-left">
 
-                                                        <h3 class="text-sm">Betreuungsrahmen</h3>
-                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            <span class="font-medium">{{ $offer->rahmen }} Person/en</span>
-                                                        </p>
+                                                            <h2 class="text-lg font-medium leading-6 text-gray-900">
+                                                                Nähere Informationen zu Angebot #{{$offer->id}}
+                                                            </h2>
 
-                                                        <h3 class="text-sm">Fremdsprachkenntnisse</h3>
-                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            <span class="font-medium">{{ $offer->sprachkenntnisse }}</span>
-                                                        </p>
+                                                            <div class="mt-2">
 
-                                                        <h3 class="text-sm">Studiengang</h3>
-                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            <span class="font-medium">{{ $offer->studiengang }}
-                                                        </p>
+                                                                <h3 class="text-sm">Datum</h3>
 
-                                                        <h3 class="text-sm">Fachsemester</h3>
-                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            <span class="font-medium">{{ $offer->fachsemester }}
-                                                        </p>
+                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                                    {{ $offer->created_at->diffForHumans() }}
+                                                                </p>
 
-                                                        <h3 class="text-sm">Schulart</h3>
-                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            <span class="font-medium">{{ $offer->schulart }}
-                                                        </p>
+                                                                <h3 class="text-sm">Betreuungszeitraum</h3>
 
-                                                        <h3 class="text-sm">Beschreibung</h3>
-                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                            <span class="font-medium">{{ $offer->body }}
-                                                        </p>
+                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                                    <span class="font-medium">{{ date('m/Y', strtotime($offer->datum_start)) }} bis {{ date('m/Y', strtotime($offer->datum_end)) }}</span>
+                                                                </p>
+
+                                                                <h3 class="text-sm">Betreuungsrahmen</h3>
+
+                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                                    <span class="font-medium">{{ $offer->rahmen }} Person/en</span>
+                                                                </p>
+
+                                                                <h3 class="text-sm">Fremdsprachkenntnisse</h3>
+
+                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                                    <span class="font-medium">{{ $offer->sprachkenntnisse }}</span>
+                                                                </p>
+
+                                                                <h3 class="text-sm">Studiengang</h3>
+
+                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                                    <span class="font-medium">{{ $offer->studiengang }}
+                                                                </p>
+
+                                                                <h3 class="text-sm">Fachsemester</h3>
+
+                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                                    <span class="font-medium">{{ $offer->fachsemester }}
+                                                                </p>
+
+                                                                <h3 class="text-sm">Schulart</h3>
+
+                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                                    <span class="font-medium">{{ $offer->schulart }}
+                                                                </p>
+
+                                                                <h3 class="text-sm">Beschreibung</h3>
+
+                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                                    <span class="font-medium">{{ $offer->body }}
+                                                                </p>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <!-- One big close button.  --->
+
+                                                        <div class="mt-5 sm:mt-6">
+
+                                                            <span class="flex w-full rounded-md shadow-sm">
+
+                                                                <button @click="open = false" class="inline-flex justify-center w-full px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-900">
+                                                                    Schließen
+                                                                </button>
+
+                                                            </span>
+
+                                                        </div>
 
                                                     </div>
+
                                                 </div>
-
-                                                <!-- One big close button.  --->
-                                                <div class="mt-5 sm:mt-6">
-                                                    <span class="flex w-full rounded-md shadow-sm">
-                                                        <button @click="open = false" class="inline-flex justify-center w-full px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-900">
-                                                            Schließen
-                                                        </button>
-                                                    </span>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Anzeigen -->
-
-                                    @if ($offer->active)
-
-                                    <!-- Angebot aktivieren -->
-
-                                    <form action="{{ route('offers.setinactive', $offer) }}" method="post">
-
-                                        @csrf
-
-                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
-
-                                            <div class="grid justify-items-center">
-
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-                                                    <path d="M3.707 2.293a1 1 0 00-1.414 1.414l6.921 6.922c.05.062.105.118.168.167l6.91 6.911a1 1 0 001.415-1.414l-.675-.675a9.001 9.001 0 00-.668-11.982A1 1 0 1014.95 5.05a7.002 7.002 0 01.657 9.143l-1.435-1.435a5.002 5.002 0 00-.636-6.294A1 1 0 0012.12 7.88c.924.923 1.12 2.3.587 3.415l-1.992-1.992a.922.922 0 00-.018-.018l-6.99-6.991zM3.238 8.187a1 1 0 00-1.933-.516c-.8 3-.025 6.336 2.331 8.693a1 1 0 001.414-1.415 6.997 6.997 0 01-1.812-6.762zM7.4 11.5a1 1 0 10-1.73 1c.214.371.48.72.795 1.035a1 1 0 001.414-1.414c-.191-.191-.35-.4-.478-.622z" />
-
-                                                </svg>
-
-                                                <!-- <span class="mx-3 mt-1">Angebot aktivieren</span> -->
-
+                                                
                                             </div>
 
-                                        </button>
+                                            <!-- Anzeigen -->
 
-                                    </form>
+                                            <!-- Ändern -->
 
-                                    <!-- Angebot aktivieren -->
+                                            <form action="{{ route('offers.edit', $offer) }}" method="post">
 
-                                    @else
+                                                @csrf
 
-                                    <!-- Angebot deaktivieren -->
+                                                @method('POST')
 
-                                    <form action="{{ route('offers.setactive', $offer) }}" method="post">
+                                                <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
 
-                                        @csrf
+                                                    <div class="grid justify-items-center">
 
-                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                          
+                                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
 
-                                            <div class="grid justify-items-center">
+                                                        </svg>
 
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                    </div>
 
-                                                    <path fill-rule="evenodd" d="M5.05 3.636a1 1 0 010 1.414 7 7 0 000 9.9 1 1 0 11-1.414 1.414 9 9 0 010-12.728 1 1 0 011.414 0zm9.9 0a1 1 0 011.414 0 9 9 0 010 12.728 1 1 0 11-1.414-1.414 7 7 0 000-9.9 1 1 0 010-1.414zM7.879 6.464a1 1 0 010 1.414 3 3 0 000 4.243 1 1 0 11-1.415 1.414 5 5 0 010-7.07 1 1 0 011.415 0zm4.242 0a1 1 0 011.415 0 5 5 0 010 7.072 1 1 0 01-1.415-1.415 3 3 0 000-4.242 1 1 0 010-1.415zM10 9a1 1 0 011 1v.01a1 1 0 11-2 0V10a1 1 0 011-1z" clip-rule="evenodd" />
+                                                </button>
 
-                                                </svg>
+                                            </form>
 
-                                                <!-- <span class="mx-3 mt-1">Angebot deaktivieren</span> -->
+                                            <!-- Ändern -->
 
-                                            </div>
+                                            @if ($offer->active)
 
-                                        </button>
+                                                <!-- Angebot aktivieren -->
 
-                                    </form>
+                                                <form action="{{ route('offers.setinactive', $offer) }}" method="post">
 
-                                    <!-- Angebot deaktivieren -->
+                                                    @csrf
 
-                                    @endif
+                                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
 
-                                </td>
+                                                        <div class="grid justify-items-center">
 
-                                <td class="px-6 py-4 whitespace-no-wrap">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                    <!-- Ändern -->
+                                                                <path d="M3.707 2.293a1 1 0 00-1.414 1.414l6.921 6.922c.05.062.105.118.168.167l6.91 6.911a1 1 0 001.415-1.414l-.675-.675a9.001 9.001 0 00-.668-11.982A1 1 0 1014.95 5.05a7.002 7.002 0 01.657 9.143l-1.435-1.435a5.002 5.002 0 00-.636-6.294A1 1 0 0012.12 7.88c.924.923 1.12 2.3.587 3.415l-1.992-1.992a.922.922 0 00-.018-.018l-6.99-6.991zM3.238 8.187a1 1 0 00-1.933-.516c-.8 3-.025 6.336 2.331 8.693a1 1 0 001.414-1.415 6.997 6.997 0 01-1.812-6.762zM7.4 11.5a1 1 0 10-1.73 1c.214.371.48.72.795 1.035a1 1 0 001.414-1.414c-.191-.191-.35-.4-.478-.622z" />
 
-                                    <form action="{{ route('offers.edit', $offer) }}" method="post">
+                                                            </svg>
 
-                                        @csrf
+                                                            <!-- <span class="mx-3 mt-1">Angebot aktivieren</span> -->
 
-                                        @method('POST')
+                                                        </div>
 
-                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
+                                                    </button>
 
-                                            <div class="grid justify-items-center">
+                                                </form>
 
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                                </svg>
+                                                <!-- Angebot aktivieren -->
 
-                                            </div>
+                                            @else
 
-                                        </button>
+                                                <!-- Angebot deaktivieren -->
 
-                                    </form>
+                                                <form action="{{ route('offers.setactive', $offer) }}" method="post">
 
-                                    <!-- Ändern -->
+                                                    @csrf
 
-                                </td>
+                                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
 
-                                <td class="px-6 py-4 whitespace-no-wrap">
+                                                        <div class="grid justify-items-center">
 
-                                    <!-- Löschen -->
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                    <form action="{{ route('offers.destroy', $offer) }}" method="post">
+                                                                <path fill-rule="evenodd" d="M5.05 3.636a1 1 0 010 1.414 7 7 0 000 9.9 1 1 0 11-1.414 1.414 9 9 0 010-12.728 1 1 0 011.414 0zm9.9 0a1 1 0 011.414 0 9 9 0 010 12.728 1 1 0 11-1.414-1.414 7 7 0 000-9.9 1 1 0 010-1.414zM7.879 6.464a1 1 0 010 1.414 3 3 0 000 4.243 1 1 0 11-1.415 1.414 5 5 0 010-7.07 1 1 0 011.415 0zm4.242 0a1 1 0 011.415 0 5 5 0 010 7.072 1 1 0 01-1.415-1.415 3 3 0 000-4.242 1 1 0 010-1.415zM10 9a1 1 0 011 1v.01a1 1 0 11-2 0V10a1 1 0 011-1z" clip-rule="evenodd" />
 
-                                        @csrf
+                                                            </svg>
 
-                                        @method('DELETE')
+                                                            <!-- <span class="mx-3 mt-1">Angebot deaktivieren</span> -->
 
-                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
+                                                        </div>
 
-                                            <div class="grid justify-items-center">
+                                                    </button>
 
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                                </svg>
+                                                </form>
 
-                                                <!-- <span class="mx-3 mt-1">Zurückziehen</span> -->
+                                                <!-- Angebot deaktivieren -->
 
-                                            </div>
+                                            @endif
 
-                                        </button>
+                                        </td>
 
-                                    </form>
+                                        <!-- Löschen -->
 
-                                    <!-- Löschen -->
+                                        <td class="px-6 py-4 whitespace-no-wrap">
 
-                                </td>
 
-                            </tr>
+                                            <form action="{{ route('offers.destroy', $offer) }}" method="post">
 
-                            @endif
+                                                @csrf
+
+                                                @method('DELETE')
+
+                                                <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
+
+                                                    <div class="grid justify-items-center">
+
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                                        </svg>
+
+                                                        <!-- <span class="mx-3 mt-1">Zurückziehen</span> -->
+
+                                                    </div>
+
+                                                </button>
+
+                                            </form>
+
+
+                                        </td>
+                                        
+                                        <!-- Löschen -->
+
+                                    </tr>
+
+                                @endif
 
                             @endforeach
 
-                            @endif
+                        @endif
 
-                        </table>
+                    </table>
 
-                        <div class="mt-5">
+                    <div class="mt-5">
 
-                            {{ $offers->links() }}
-
-                        </div>
+                        {{ $offers->links() }}
 
                     </div>
 
                 </div>
 
-                <!-- Meine Angebote -->
-
             </div>
+
+            <!-- Meine Angebote -->
+
+        </div>
 
             <!-- Tab Contents -->
 

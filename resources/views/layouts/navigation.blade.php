@@ -70,10 +70,10 @@
 
 					<div class="">
 
-<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                  <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
-                                                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
-                                                </svg>
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                         	<path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                          	<path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                        </svg>
 
 					</div>
 
@@ -132,7 +132,7 @@
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-					<a href="{{ route('messages') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('messages')) { text-yellow-400 } @endif">
+					<a href="{{ route('messages') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('messages')) { text-yellow-400 } @endif @if (Request::is('messages/*')) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -170,11 +170,11 @@
 
 				<!-- Statistiken -->
 
-				<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-					<a href="{{ route('stats') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('stats')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+					<a href="{{ route('stats') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150  @if (Request::is('stats')) { text-yellow-400 } @endif">
 
-						<div class="text-gray-100">
+						<div>
 
 							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
@@ -188,9 +188,9 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1 font-semibold">Statistiken</p>
+							<p class="navigation-element text-sm font-medium leading-none mb-1 font-semibold">Statistiken</p>
 
-							<p class="navigation-element text-xs text-gray-400">Details zum Portal</p>
+							<p class="navigation-element text-xs">Details zum Portal</p>
 
 						</div>
 
@@ -202,11 +202,11 @@
 
 				<!-- Personen -->
 
-				<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-					<a href="{{ route('users.index') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('help')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+					<a href="{{ route('users.index') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('users')) { text-yellow-400 } @endif @if (Request::is('roles')) { text-yellow-400 } @endif @if (Request::is('users/*')) { text-yellow-400 } @endif @if (Request::is('roles/*')) { text-yellow-400 } @endif">
 
-						<div class="text-gray-100">
+						<div>
 
 							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
@@ -218,9 +218,9 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1 font-semibold">Verwaltung</p>
+							<p class="navigation-element text-sm font-mediumleading-none mb-1 font-semibold">Verwaltung</p>
 
-							<p class="navigation-element text-xs text-gray-400">Nutzende und Rollen</p>
+							<p class="navigation-element text-xs">Nutzende und Rollen</p>
 
 						</div>
 
@@ -238,11 +238,11 @@
 
 			<ul>
 
-				<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-					<a href="{{ route('offers.all') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('offers')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+					<a href="{{ route('offers.all') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('offers/*')) { text-yellow-400 } @endif">
 
-						<div class="text-gray-100">
+						<div>
 
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
@@ -254,9 +254,9 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1 font-semibold">Angebote</p>
+							<p class="navigation-element text-sm font-mediumleading-none mb-1 font-semibold">Angebote</p>
 
-							<p class="navigation-element text-xs text-gray-400">Hilfsangebot anbieten</p>
+							<p class="navigation-element text-xs">Hilfsangebot anbieten</p>
 
 						</div>
 
@@ -268,11 +268,11 @@
 
 				<!-- Bedarfe Praktika -->
 
-				<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-					<a href="{{ route('needs.all') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('needs')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+					<a href="{{ route('needs.all') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('needs/*')) { text-yellow-400 } @endif">
 
-						<div class="text-gray-100">
+						<div>
 
 							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
@@ -284,9 +284,9 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1 font-semibold">Bedarfe</p>
+							<p class="navigation-element text-sm font-medium leading-none mb-1 font-semibold">Bedarfe</p>
 
-							<p class="navigation-element text-xs text-gray-400">Hilfsangebot ersuchen</p>
+							<p class="navigation-element text-xs">Hilfsangebot ersuchen</p>
 
 						</div>
 

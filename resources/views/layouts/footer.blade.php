@@ -32,13 +32,13 @@
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal mt-2">
 
-                            Das <em>digi:match</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Paare im Rahmen des Projekts <em>Augsburger DaZ-Buddies</em> zu bilden.
+                            <em>Daz-buddies</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Paare im Rahmen des Projekts <em>Augsburger DaZ-Buddies</em> zu bilden.
 
                         </p>
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal mt-2 mr-2">
 
-                            <em>digi:match</em> von <strong>Vincent Dusanek</strong> und <strong>Norman Szabo</strong> für <strong>DigiLLab</strong>, 2022. MIT-Lizenz.
+                            <em>Daz-buddies</em> von <strong>Vincent Dusanek</strong> und <strong>Norman Szabo</strong> für <strong>DigiLLab</strong>, 2022. MIT-Lizenz.
 
                         </p>
 

@@ -166,7 +166,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        Bearbeiten Sie den <strong>Vornamen</strong> der Person
+                                        Bearbeiten Sie den <strong>Vornamen</strong>
 
                                     </dt>
 
@@ -187,7 +187,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        Bearbeiten Sie den <strong>Nachnamen</strong> der Person
+                                        Bearbeiten Sie den <strong>Nachnamen</strong>
 
                                     </dt>
 
@@ -208,7 +208,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        Bearbeiten Sie die <strong>E-Mail-Adresse</strong> der Person
+                                        Bearbeiten Sie die <strong>E-Mail-Adresse</strong>
 
                                     </dt>
 
@@ -229,7 +229,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        Vergeben Sie ein neues <strong>Passwort</strong> für die Person
+                                        Vergeben Sie ein neues <strong>Passwort</strong>
 
                                     </dt>
 
@@ -250,7 +250,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        <strong>Bestätigen</strong> Sie das <strong>neue Passwort</strong> der Person
+                                        <strong>Bestätigen</strong> Sie das <strong>neue Passwort</strong>
 
                                     </dt>
 
@@ -271,7 +271,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        <strong>Motivation</strong> bearbeiten
+                                        Erläutern Sie Ihre <strong>Motivation</strong>
 
                                     </dt>
 
@@ -292,7 +292,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        <strong>Studiengang</strong> bearbeiten
+                                        Wählen Sie Ihren <strong>Studiengang</strong> aus
 
                                     </dt>
 
@@ -325,7 +325,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        <strong>Fachsemester</strong> bearbeiten
+                                        Geben Sie Ihr <strong>Fachsemester</strong> an
 
                                     </dt>
 
@@ -347,7 +347,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        <strong>Interessen</strong> bearbeiten
+                                        Nennen Sie Ihre <strong>Interessen</strong>
 
                                     </dt>
 
@@ -368,7 +368,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        <strong>Erfahrungen</strong> bearbeiten
+                                        Teilen Sie Ihre <strong>Erfahrungen</strong> mit
 
                                     </dt>
 
@@ -389,7 +389,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        <strong>Treffen</strong> bearbeiten
+                                        Bestimmen Sie den Rahmen eines <strong>Treffens</strong>
 
                                     </dt>
 
@@ -410,7 +410,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        <strong>Grüße</strong> bearbeiten
+                                        Lassen Sie <strong>Grüße</strong> da
 
                                     </dt>
 

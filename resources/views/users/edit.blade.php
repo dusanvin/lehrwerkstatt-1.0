@@ -4,6 +4,7 @@
 @section('content')
 
 <style type="text/css">
+
     [type="text"], [type="email"], select, [type="password"] {
         border-width: 0 !important;
     }
@@ -13,6 +14,7 @@
         --tw-ring-color: white !important;
         border-bottom-color: black !important;
     }
+
 </style>
 
 
@@ -243,6 +245,22 @@
                                     </dd>
 
                                 </div>
+
+                                <!-- Stop -->
+
+                                @unlessrole('Admin')
+
+                                    <style type="text/css">
+                                        
+                                        option[value=Admin] { 
+                                            display: none;
+                                        }
+
+                                    </style>
+
+                                @endrole
+
+                                <!-- Stop -->
 
                             </dl>
 

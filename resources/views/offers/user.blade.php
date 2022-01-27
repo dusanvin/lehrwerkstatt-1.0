@@ -137,15 +137,35 @@
 
                                         <!-- Status des Angebots -->
 
-                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                        <td class="px-6 py-4 whitespace-no-wrap ">
 
                                             @if ($offer->active == 1)
 
-                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-green-600 rounded-full">Aktiv</label>
+                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-green-600 rounded-full">
+
+                                                    <span class="has-tooltip">
+
+                                                        Aktiv
+
+                                                        <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 -ml-40 text-xs'>Ihr Angebot ist aktiv. Deaktivieren Sie es bei Bedarf.</span>
+
+                                                    </span>
+
+                                                </label>
 
                                             @else
 
-                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">Inaktiv</label>
+                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">
+
+                                                    <span class="has-tooltip">
+
+                                                        Inaktiv
+
+                                                        <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 -ml-40 text-xs'>Ihr Angebot ist inaktiv. Aktivieren Sie es bei Bedarf.</span>
+                                                        
+                                                    </span>
+
+                                                </label>
 
                                             @endif
 

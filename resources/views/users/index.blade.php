@@ -201,7 +201,7 @@
 
                                     @csrf
 
-                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm focus:outline-none ml-4 transition ease-in-out duration-150 justify-items-end">
+                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm focus:outline-none ml-4 transition ease-in-out duration-150 justify-items-end has-tooltip">
 
                                         <div class="grid justify-items-center">
 
@@ -213,7 +213,7 @@
 
                                             </svg>
 
-                                            <!-- <span class="mx-3 mt-1">Person anzeigen</span> -->
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Anzeigen</span>
 
                                         </div>
 
@@ -233,7 +233,7 @@
 
                                     @csrf
 
-                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm focus:outline-none ml-4 transition ease-in-out duration-150">
+                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm focus:outline-none ml-4 transition ease-in-out duration-150  has-tooltip">
 
                                         <div class="grid justify-items-center">
 
@@ -243,7 +243,7 @@
 
                                             </svg>
 
-                                            <!-- <span class="mx-3 mt-1">Person bearbeiten</span> -->
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Bearbeiten</span>
 
                                         </div>
 
@@ -265,7 +265,7 @@
 
                                     @method('DELETE')
 
-                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
+                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip">
 
                                         <div class="grid justify-items-center">
 
@@ -273,7 +273,7 @@
                                                 <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                                             </svg>
 
-                                            <!-- <span class="mx-3 mt-1">Zurückziehen</span> -->
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Löschen</span>
 
                                         </div>
 
@@ -316,12 +316,6 @@
                         </div>
 
                         <div class="pl-5">
-
-                            <p class="mt-1 text-xs text-gray-500">
-
-                                <strong>Administration:</strong> Alle Rechte.
-
-                            </p>
 
                             <p class="mt-1 text-xs text-gray-500">
 

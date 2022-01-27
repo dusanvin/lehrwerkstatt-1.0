@@ -43,6 +43,11 @@ class OffersController extends Controller
     }
 
 
+    public function edit(Offer $offer) {
+        return view('offers.edit', ['offer' => $offer]);
+    }
+
+
     public function store(Request $request)
     {
         $dates = explode('bis', $request->datum);

@@ -44,6 +44,11 @@ class NeedsController extends Controller
         return view('needs.make');
     }
 
+
+    public function edit(Need $need) {
+        return view('needs.edit', ['need' => $need]);
+    }
+
     public function store(Request $request)
     {
         $dates = explode('bis', $request->datum);

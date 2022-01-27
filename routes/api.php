@@ -168,6 +168,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/offers/make', [OffersController::class, 'make'])
             ->name('offers.make');
 
+        /* Angebote bearbeiten*/
+        Route::post('/offers/{offer}/edit', [OffersController::class, 'edit'])
+            ->name('offers.edit');
+
         /* Angebot: Posten */
         Route::post('/offers', [OffersController::class, 'store'])
             ->name('offers');
@@ -226,6 +230,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         /* Bedarfe erstellen*/
         Route::get('/needs/make', [NeedsController::class, 'make'])
             ->name('needs.make');
+
+        /* Bedarfe bearbeiten*/
+        Route::post('/needs/{need}/edit', [NeedsController::class, 'edit'])
+            ->name('needs.edit');
 
         /* Bedarf: Hinzufügen */
         Route::post('/needs', [NeedsController::class, 'store'])

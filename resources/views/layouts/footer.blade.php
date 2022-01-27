@@ -38,7 +38,7 @@
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal mt-2 mr-2">
 
-                            <em>Daz-buddies</em> von <strong>Vincent Dusanek</strong> und <strong>Norman Szabo</strong> für <strong>DigiLLab</strong>, 2022. MIT-Lizenz.
+                            <em>DaZ-Buddies</em> von <strong>Vincent Dusanek</strong> und <strong>Norman Szabo</strong> für <strong>DigiLLab</strong>, 2022. MIT-Lizenz.
 
                         </p>
 

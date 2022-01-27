@@ -1,53 +1,46 @@
-<nav class="bg-top w-80 justify-between flex flex-col sm:rounded-l-lg shadow-b transition ease-in-out duration-150" id="navigation-digillab" style="max-width: fit-content; background-color: #344955;">
+<style type="text/css">
+	
+	#navigation-digillab {
+		transition: width 0.2s
+	}
+
+</style>
+
+<nav class="bg-top w-80 justify-between flex flex-col sm:rounded-l-lg shadow-b transition ease-in-out duration-150" id="navigation-digillab" style="background-color: #344955;">
 
 	<div class="mt-10 mb-10">
 
 		<!-- Toggle-Menu -->
-
-		<style type="text/css">
-			#navigation-digillab {
-				transition: width 0.5s
-			}
-
-			.navigation-element {
-				transition: opacity 1s;
-			}
-		</style>
 
 		<script type="text/javascript">
 			function menufunction() {
 
 				if (document.getElementById("navigation-digillab").style.width != "67px") {
 
-					document.getElementById("navigation-digillab").style.width = "67px";
-					localStorage.setItem('menu', 'false');
-
 					var elements = document.getElementsByClassName('navigation-element'),
 						i, len;
 
 					for (i = 0, len = elements.length; i < len; i++) {
-
 						elements[i].style.display = 'none';
-						elements[i].style.opacity = '0';
-
 					}
 
+					document.getElementById("navigation-digillab").style.width = "67px";
+					localStorage.setItem('menu', 'false');
 					return;
+
 				} else if (document.getElementById("navigation-digillab").style.width == "67px") {
+
+					var elements = document.getElementsByClassName('navigation-element'),
+						i, len;
+
+					setTimeout(function () {
+						for (i = 0, len = elements.length; i < len; i++) {
+							elements[i].style.display = 'block';
+						}
+					}, 100)
 
 					document.getElementById("navigation-digillab").style.width = "322px";
 					localStorage.setItem('menu', 'true');
-
-					var elements = document.getElementsByClassName('navigation-element'),
-						i, len;
-
-					for (i = 0, len = elements.length; i < len; i++) {
-
-						elements[i].style.display = 'block';
-						elements[i].style.opacity = '1';
-
-					}
-
 					return;
 				}
 			}
@@ -65,65 +58,55 @@
 
 		<!-- Toggle-Menu -->
 
-		<!-- Nutzer anzeigen -->
-
 		@if (auth()->user())
 
-		<div class="text-center pt-3 text-gray-200 mt-10">
+			<div class="text-center pt-3 text-gray-200 mt-10">
+			
+				@php
+					$id = auth()->user()->id;
+				@endphp
 
-			<!-- <img class="h-24 w-24 rounded-full mx-auto" src="https://randomuser.me/api/portraits/men/24.jpg" alt="Randy Robertson"> -->
+				<a href="{{ route('profile.details', ['id' => $id]) }}" class="mx-2 px-4 py-2 text-gray-100 hover:text-gray-400 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('profile/details/*')) { text-yellow-400 } @endif">
 
-			<!-- {{ route('user') }} -->
-			@php
-			$id = auth()->user()->id;
-			@endphp
+					<div class="">
 
-			<a href="{{ route('profile.details', ['id' => $id]) }}" class="pt-2 font-medium text-sm inline-block hover:text-gray-400">
+<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                  <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                                                </svg>
 
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 rounded-full mx-auto mb-1" viewBox="0 0 20 20" fill="currentColor">
+					</div>
 
-					<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+					<div class="pl-3">
 
-				</svg><span class="navigation-element font-semibold px-2"> {{ Auth::user()->vorname }} {{ Auth::user()->nachname }}
-					<!-- 
+						<p class="navigation-element text-sm font-medium leading-none mb-1 font-semibold">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</p>
 
-				$firstName = (Auth::user()->vorname)[0];
-				$lastName = (Auth::user()->nachname)[0];
+						<p class="navigation-element text-left text-xs">{{ Auth::user()->roles[0]->name }}</p>
 
-				$iniName = $firstName . $lastName;
+					</div>
 
-				echo $iniName;
+				</a>
 
-				-->
-
-				</span>
-
-			</a>
-
-			<!-- 
-			<p class="text-xs text-gray-400">{{ Auth::user()->role }}</p> -->
-
-		</div>
+			</div>
+			
 
 		@endif
 
-		<!-- Nutzer anzeigen -->
-
 		<div class="mt-5">
 
+			<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Allgemeines</p>
+			
 			<ul>
-
-				<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Allgemeines</p>
 
 				<!-- Mein Bereich -->
 
-				<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-					<a href="{{ route('profile.edit') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md  transition ease-in-out duration-150 @if (Request::is('dashboard')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+					<a href="{{ route('profile.edit') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('profile/edit')) { text-yellow-400 } @endif">
 
-						<div class="text-gray-100">
+						<div>
 
-							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5 text-gray-100" viewBox="0 0 20 20" fill="currentColor">
+							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
 								<path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
 
@@ -133,9 +116,9 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1 font-semibold">Mein Bereich</p>
+							<p class="navigation-element text-sm font-medium  leading-none mb-1 font-semibold">Mein Bereich</p>
 
-							<p class="navigation-element text-xs text-gray-400">Persönliche Informationen</p>
+							<p class="navigation-element text-xs">Persönliche Informationen</p>
 
 						</div>
 
@@ -147,14 +130,13 @@
 
 				<!-- Nachrichten -->
 
-				<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
+					<a href="{{ route('messages') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('messages')) { text-yellow-400 } @endif">
 
-					<a href="{{ route('messages') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md  transition ease-in-out duration-150 @if (Request::is('messages')) { text-gray-900 bg-black bg-opacity-60 } @endif">
+						<div>
 
-						<div class="text-gray-100">
-
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-100" viewBox="0 0 20 20" fill="currentColor">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
 								<path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
 
@@ -166,9 +148,9 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium text-gray-100 leading-none mb-1 font-semibold">Nachrichten</p>
+							<p class="navigation-element text-sm font-medium  leading-none mb-1 font-semibold">Nachrichten</p>
 
-							<p class="navigation-element text-xs text-gray-400">Gespräche und Kontakte</p>
+							<p class="navigation-element text-xs">Gespräche und Kontakte</p>
 
 						</div>
 
@@ -178,9 +160,13 @@
 
 				<!-- Nachrichten -->
 
-				@role('Admin|Moderierende')
+			</ul>
 
-				<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Administration</p>
+			@role('Admin|Moderierende')
+
+			<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Administration</p>
+			
+			<ul>
 
 				<!-- Statistiken -->
 
@@ -242,13 +228,15 @@
 
 				</li>
 
-				@else
+			</ul>
 
-				@endrole
+			@endrole
 
-				<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Paare</p>
+			<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Paare</p>
 
-				<!-- Angebote -->
+			<!-- Angebote -->
+
+			<ul>
 
 				<li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
@@ -305,37 +293,6 @@
 					</a>
 
 				</li>
-
-				<!-- Bedarfe Praktika -->
-
-				<!-- Zuweisungen -->
-
-				<!-- <li class="hover:bg-black hover:bg-opacity-60 ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
-
-				<a href="{{ route('matching') }}" class="px-4 py-2 hover:bg-gray-900 hover:text-gray-900 flex items-center rounded-l-md rounded-r-md @if (Request::is('matching')) { text-gray-900 bg-black bg-opacity-60 } @endif">
-
-		            <div class="text-gray-100">
-
-					<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-						<path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z" />
-					</svg>
-
-		            </div>
-
-		            <div class="pl-3">
-
-		              <p class="text-sm font-medium text-gray-100 leading-none">Zuweisungen</p>
-
-		              <p class="text-xs text-gray-400">Übersicht und Erstellung</p>
-
-		            </div>
-
-		        </a>
-
-			</li> -->
-
-				<!-- Zuweisungen -->
 
 			</ul>
 

@@ -94,7 +94,8 @@
 
                                 <span class="block xl:inline">Finden Sie Ihre*n</span>
 
-                                <span class="block text-purple-600 xl:inline">DaZ-Buddy</span>
+                                <!-- <span class="block text-purple-600 xl:inline">DaZ-Buddy</span> -->
+                                <span class="block text-purple-600 xl:inline">{{ Config::get('site_vars.platformName') }}</span>
 
                             </h1>
 

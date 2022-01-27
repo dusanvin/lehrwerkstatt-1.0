@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="/css/styledigi.css">
+
 <!-- Nav -->
 
 <nav class="p-3 flex justify-between max-w-7xl mx-auto">

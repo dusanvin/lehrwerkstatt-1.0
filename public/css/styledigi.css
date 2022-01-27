@@ -1,0 +1,19 @@
+.tooltip{
+  visibility: hidden;
+  position: absolute;
+}
+.has-tooltip:hover .tooltip {
+  visibility: visible;
+  z-index: 100;
+}
+
+.has-tooltip .tooltip::after {
+  content: " ";
+  position: absolute;
+  top: 95%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}

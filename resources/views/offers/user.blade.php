@@ -169,7 +169,7 @@
 
                                             <div class="" x-data="{ open: false }">
 
-                                                <button class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150" @click="open=true">
+                                                <button class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip" @click="open=true">
 
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
@@ -177,6 +177,8 @@
                                                         <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
 
                                                     </svg>
+
+                                                    <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 -ml-5 text-xs'>Anzeigen</span>
 
                                                 </button>
 
@@ -265,7 +267,7 @@
                                                     </div>
 
                                                 </div>
-                                                
+
                                             </div>
 
                                             <!-- Anzeigen -->
@@ -278,7 +280,7 @@
 
                                                 @method('POST')
 
-                                                <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
+                                                <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip">
 
                                                     <div class="grid justify-items-center">
 
@@ -287,6 +289,8 @@
                                                             <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
 
                                                         </svg>
+
+                                                        <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Bearbeiten</span>    
 
                                                     </div>
 
@@ -304,7 +308,7 @@
 
                                                     @csrf
 
-                                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
+                                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip">
 
                                                         <div class="grid justify-items-center">
 
@@ -315,6 +319,8 @@
                                                             </svg>
 
                                                             <!-- <span class="mx-3 mt-1">Angebot aktivieren</span> -->
+
+                                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Aktivieren</span>
 
                                                         </div>
 
@@ -332,7 +338,7 @@
 
                                                     @csrf
 
-                                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
+                                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip">
 
                                                         <div class="grid justify-items-center">
 
@@ -343,6 +349,8 @@
                                                             </svg>
 
                                                             <!-- <span class="mx-3 mt-1">Angebot deaktivieren</span> -->
+
+                                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Deaktivieren</span>
 
                                                         </div>
 
@@ -367,7 +375,7 @@
 
                                                 @method('DELETE')
 
-                                                <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
+                                                <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip">
 
                                                     <div class="grid justify-items-center">
 
@@ -376,6 +384,8 @@
                                                         </svg>
 
                                                         <!-- <span class="mx-3 mt-1">Zurückziehen</span> -->
+                                                        
+                                                        <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Löschen</span>
 
                                                     </div>
 

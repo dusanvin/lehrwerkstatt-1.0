@@ -182,7 +182,7 @@
                                 <div class="text-sm leading-5 font-normal text-gray-900 select-none">
 
                                     @if($user->last_login_at === NULL)
-                                    Ausstehend
+                                    Ausstehende Bestätigung
                                     @else
 
                                     {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}

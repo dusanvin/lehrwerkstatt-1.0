@@ -81,7 +81,7 @@
 
                                             <div>
 
-                                                <span class="text-gray-400 text-xs"><strong><span class="hidden sm:inline-block">Angebot </span>#{{ $offer->id }}</strong> <span class="hidden sm:inline-block">erstellt </span> {{ $offer->created_at->diffForHumans() }}</span>
+                                                <span class="text-gray-400 text-xs"><strong><span class="hidden sm:inline-block">Angebot </span> #{{ $offer->id }}</strong> <span class="hidden sm:inline-block">erstellt </span> {{ $offer->created_at->diffForHumans() }}</span>
 
                                             </div>
 

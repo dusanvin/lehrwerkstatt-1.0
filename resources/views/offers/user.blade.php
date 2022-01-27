@@ -189,7 +189,7 @@
 
                                             <div class="" x-data="{ open: false }">
 
-                                                <button class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip" @click="open=true">
+                                                <button class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300" @click="open=true">
 
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
@@ -292,7 +292,7 @@
 
                                             <!-- Anzeigen -->
 
-                                            <!-- Ändern -->
+                                            <!-- Bearbeiten -->
 
                                             <form action="{{ route('offers.edit', $offer) }}" method="post">
 
@@ -300,7 +300,7 @@
 
                                                 @method('POST')
 
-                                                <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip">
+                                                <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:ring ring-gray-300 border-2 border-white hover:border-gray-300 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
 
                                                     <div class="grid justify-items-center">
 
@@ -318,7 +318,7 @@
 
                                             </form>
 
-                                            <!-- Ändern -->
+                                            <!-- Bearbeiten -->
 
                                             @if ($offer->active)
 
@@ -328,7 +328,7 @@
 
                                                     @csrf
 
-                                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip">
+                                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
 
                                                         <div class="grid justify-items-center">
 
@@ -340,7 +340,7 @@
 
                                                             <!-- <span class="mx-3 mt-1">Angebot aktivieren</span> -->
 
-                                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Aktivieren</span>
+                                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Deaktivieren</span>
 
                                                         </div>
 
@@ -358,7 +358,7 @@
 
                                                     @csrf
 
-                                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip">
+                                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
 
                                                         <div class="grid justify-items-center">
 
@@ -370,7 +370,7 @@
 
                                                             <!-- <span class="mx-3 mt-1">Angebot deaktivieren</span> -->
 
-                                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Deaktivieren</span>
+                                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Aktivieren</span>
 
                                                         </div>
 
@@ -395,7 +395,7 @@
 
                                                 @method('DELETE')
 
-                                                <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip">
+                                                <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
 
                                                     <div class="grid justify-items-center">
 

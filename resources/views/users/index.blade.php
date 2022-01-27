@@ -151,27 +151,27 @@
 
                                 @if(!empty($user->getRoleNames()))
 
-                                @foreach($user->getRoleNames() as $v)
+                                    @foreach($user->getRoleNames() as $v)
 
-                                @if ($v == 'Admin')
+                                        @if ($v == 'Admin')
 
-                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">Administration</label>
+                                            <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">Administration</label>
 
-                                @elseif ($v == 'Moderierende')
+                                        @elseif ($v == 'Moderierende')
 
-                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-pink-600 rounded-full">Moderation</label>
+                                            <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-pink-600 rounded-full">Moderation</label>
 
-                                @elseif ($v == 'Helfende')
+                                        @elseif ($v == 'Helfende')
 
-                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-indigo-600 rounded-full">Hilfe</label>
+                                            <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-indigo-600 rounded-full">Hilfe</label>
 
-                                @elseif ($v == 'Lehrende')
+                                        @elseif ($v == 'Lehrende')
 
-                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-yellow-600 rounded-full">Suche</label>
+                                            <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-yellow-600 rounded-full">Lehre</label>
 
-                                @endif
+                                        @endif
 
-                                @endforeach
+                                    @endforeach
 
                                 @endif
 
@@ -331,7 +331,7 @@
 
                             <p class="mt-1 text-xs text-gray-500">
 
-                                <strong>Suche:</strong> Hat Zugriff auf die Bereiche <em>Angebote</em>, <em>Bedarfe</em> und alle nutzerrelevanten Seiten. Darf Bedarfe erstellen und auf Angebote eingehen.
+                                <strong>Lehre:</strong> Hat Zugriff auf die Bereiche <em>Angebote</em>, <em>Bedarfe</em> und alle nutzerrelevanten Seiten. Darf Bedarfe erstellen und auf Angebote eingehen.
 
                             </p>
 

@@ -95,6 +95,9 @@
 
                                 @csrf
 
+                                <input name="offer_id" id="offer_id" type="hidden" value={{ $offer->id }}>
+
+
                                 <div class="mt-1">
 
                                     <label for="body" class="sr-only">Body</label><textarea name="body" id="body" cols="30" rows="4" class="py-2 px-3 bg-gray-100 border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent w-full rounded-lg @error('body') border-red-500 @enderror" placeholder="Beschreiben Sie Ihr Angebot.">{{ $offer->body }}</textarea>

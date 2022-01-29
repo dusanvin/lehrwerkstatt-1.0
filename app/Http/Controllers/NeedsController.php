@@ -40,12 +40,13 @@ class NeedsController extends Controller
 
     public function make()
     {
-        
+
         return view('needs.make');
     }
 
 
-    public function edit(Need $need) {
+    public function edit(Need $need)
+    {
         return view('needs.edit', ['need' => $need]);
     }
 
@@ -67,24 +68,42 @@ class NeedsController extends Controller
             'datum' => 'required'
         ]);
 
-        $request->user()->needs()->create([
-            'body' => $request->body,
-            'rahmen' => $request->rahmen,
-            'sprachkenntnisse' => $request->sprachkenntnisse,
-            'studiengang' => $request->studiengang,
-            'fachsemester' => $request->fachsemester,
-            'datum_start' => $startDate,
-            'datum_end' => $endDate,
-            'schulart' => $request->schulart,
-            'active' => 1,
-        ]);
+        $need_id = request('need_id');
+
+
+        if (isset($need_id)) {
+            $need = need::where('id', $need_id)->first();
+            $need->body = $request->body;
+            $need->rahmen = $request->rahmen;
+            $need->sprachkenntnisse = $request->sprachkenntnisse;
+            $need->studiengang = $request->studiengang;
+            $need->fachsemester = $request->fachsemester;
+            $need->datum_start = $startDate;
+            $need->datum_end = $endDate;
+            $need->schulart = $request->schulart;
+
+            $need->save();
+        } else {
+
+            $request->user()->needs()->create([
+                'body' => $request->body,
+                'rahmen' => $request->rahmen,
+                'sprachkenntnisse' => $request->sprachkenntnisse,
+                'studiengang' => $request->studiengang,
+                'fachsemester' => $request->fachsemester,
+                'datum_start' => $startDate,
+                'datum_end' => $endDate,
+                'schulart' => $request->schulart,
+                'active' => 1,
+            ]);
+        }
 
         session()->flash('success', 'true');
 
-        $needs = Need::with([
-            'user',
-            'likes'
-        ]);
+        // $needs = Need::with([
+        //     'user',
+        //     'likes'
+        // ]);
 
         $needs = Need::where('user_id', auth()->user()->id)->latest()->simplePaginate(10);
 

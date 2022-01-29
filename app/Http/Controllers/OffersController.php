@@ -29,7 +29,7 @@ class OffersController extends Controller
             'likes'
         ])->latest()->simplePaginate(10);
 
-        $offers = Offer::where('user_id', auth()->user()->id)->latest()->simplePaginate(10);
+        $offers = Offer::where('user_id', auth()->user()->id)->latest('updated_at')->simplePaginate(10);
 
         return view('offers.user', [
             'offers' => $offers
@@ -43,13 +43,19 @@ class OffersController extends Controller
     }
 
 
-    public function edit(Offer $offer) {
+    public function edit(Offer $offer)
+    {
         return view('offers.edit', ['offer' => $offer]);
+    }
+
+    public function change(Offer $offer)
+    {
     }
 
 
     public function store(Request $request)
     {
+        // dd($request);
         $dates = explode('bis', $request->datum);
         $startDate = trim($dates[0]);
         if (1 == preg_match('/bis/', $request->datum)) {
@@ -66,26 +72,46 @@ class OffersController extends Controller
             'datum' => 'required'
         ]);
 
-        $request->user()->offers()->create([
-            'body' => $request->body,
-            'rahmen' => $request->rahmen,
-            'sprachkenntnisse' => $request->sprachkenntnisse,
-            'studiengang' => $request->studiengang,
-            'fachsemester' => $request->fachsemester,
-            'datum_start' => $startDate,
-            'datum_end' => $endDate,
-            'schulart' => $request->schulart,
-            'active' => 1,
-        ]);
+        $offer_id = request('offer_id');
+
+
+        if (isset($offer_id)) {
+            $offer = Offer::where('id', $offer_id)->first();
+            $offer->body = $request->body;
+            $offer->rahmen = $request->rahmen;
+            $offer->sprachkenntnisse = $request->sprachkenntnisse;
+            $offer->studiengang = $request->studiengang;
+            $offer->fachsemester = $request->fachsemester;
+            $offer->datum_start = $startDate;
+            $offer->datum_end = $endDate;
+            $offer->schulart = $request->schulart;
+
+            $offer->save();
+
+        } else {
+            $request->user()->offers()->create([
+                'body' => $request->body,
+                'rahmen' => $request->rahmen,
+                'sprachkenntnisse' => $request->sprachkenntnisse,
+                'studiengang' => $request->studiengang,
+                'fachsemester' => $request->fachsemester,
+                'datum_start' => $startDate,
+                'datum_end' => $endDate,
+                'schulart' => $request->schulart,
+                'active' => 1,
+            ]);
+        }
+
+
 
         session()->flash('success', 'true');
 
-        $offers = Offer::with([
-            'user',
-            'likes'
-        ])->latest()->simplePaginate(10);
+        // $offers = Offer::with([
+        //     'user',
+        //     'likes'
+        // ])->latest()->simplePaginate(10);
 
-        $offers = Offer::where('user_id', auth()->user()->id)->latest()->simplePaginate(10);
+        $offers = Offer::where('user_id', auth()->user()->id)->latest()->simplePaginate(10); //'updated_at'
 
         return view('offers.user', [
             'offers' => $offers

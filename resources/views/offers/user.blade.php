@@ -107,7 +107,7 @@
                                     Status</th>
 
                                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                    Datum</th>                            
+                                    Datum</th>
 
                                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider text-right">
                                 </th>
@@ -119,328 +119,328 @@
 
                             @if ($offers->count())
 
-                                @foreach($offers as $offer)
+                            @foreach($offers as $offer)
 
-                                    @if($offer->ownedBy(auth()->user()))
+                            @if($offer->ownedBy(auth()->user()))
 
-                                    <tr class="border-t border-gray-200">
+                            <tr class="border-t border-gray-200">
 
-                                        <!-- ID des Angebots -->
+                                <!-- ID des Angebots -->
 
-                                        <td class="pl-6 py-4 whitespace-no-wrap ">
+                                <td class="pl-6 py-4 whitespace-no-wrap ">
 
-                                            {{ $offer->id }}
+                                    {{ $offer->id }}
 
-                                        </td>
+                                </td>
 
-                                        <!-- ID des Angebots -->
+                                <!-- ID des Angebots -->
 
-                                        <!-- Status des Angebots -->
+                                <!-- Status des Angebots -->
 
-                                        <td class="px-6 py-4 whitespace-no-wrap ">
+                                <td class="px-6 py-4 whitespace-no-wrap ">
 
-                                            @if ($offer->active == 1)
+                                    @if ($offer->active == 1)
 
-                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-green-600 rounded-full">
+                                    <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-green-600 rounded-full">
 
-                                                    <span class="has-tooltip">
+                                        <span class="has-tooltip">
 
-                                                        Aktiv
+                                            Aktiv
 
-                                                        <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 -ml-40 text-xs'>Ihr Angebot ist aktiv. Deaktivieren Sie es bei Bedarf.</span>
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 -ml-40 text-xs'>Ihr Angebot ist aktiv. Deaktivieren Sie es bei Bedarf.</span>
 
-                                                    </span>
+                                        </span>
 
-                                                </label>
+                                    </label>
 
-                                            @else
+                                    @else
 
-                                                <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">
+                                    <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">
 
-                                                    <span class="has-tooltip">
+                                        <span class="has-tooltip">
 
-                                                        Inaktiv
+                                            Inaktiv
 
-                                                        <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 -ml-40 text-xs'>Ihr Angebot ist inaktiv. Aktivieren Sie es bei Bedarf.</span>
-                                                        
-                                                    </span>
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 -ml-40 text-xs'>Ihr Angebot ist inaktiv. Aktivieren Sie es bei Bedarf.</span>
 
-                                                </label>
+                                        </span>
 
-                                            @endif
+                                    </label>
 
-                                        </td>
+                                    @endif
 
-                                        <!-- Status des Angebots -->
+                                </td>
 
-                                        <!-- Erstellungsdatum des Angebots -->
+                                <!-- Status des Angebots -->
 
-                                        <td class="px-6 py-4 whitespace-no-wrap select-none text-sm">
+                                <!-- Erstellungsdatum des Angebots -->
 
-                                            {{ $offer->created_at->diffForHumans() }}
+                                <td class="px-6 py-4 whitespace-no-wrap select-none text-sm">
 
-                                        </td>
+                                    {{ $offer->created_at->diffForHumans() }}
 
-                                        <!-- Erstellungsdatum des Angebots -->
+                                </td>
 
-                                        <td class="pl-6 pr-0 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium flex">
+                                <!-- Erstellungsdatum des Angebots -->
 
-                                            <!-- Anzeigen -->
+                                <td class="pl-6 pr-0 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium flex">
 
-                                            <div class="" x-data="{ open: false }">
+                                    <!-- Anzeigen -->
 
-                                                <button class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300" @click="open=true">
+                                    <div class="" x-data="{ open: false }">
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <button class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300" @click="open=true">
 
-                                                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                        <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                                    </svg>
+                                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
 
-                                                    <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 -ml-5 text-xs'>Anzeigen</span>
+                                            </svg>
 
-                                                </button>
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 -ml-5 text-xs'>Anzeigen</span>
 
-                                                <!-- Dialog (full screen) -->
+                                        </button>
 
-                                                <div class="absolute top-0 left-0 flex items-center justify-center h-full w-full" style="background-color: rgba(0,0,0,.5);" x-cloak x-show="open">
+                                        <!-- Dialog (full screen) -->
 
-                                                    <!-- A basic modal dialog with title, body and one button to close -->
+                                        <div class="absolute top-0 left-0 flex items-center justify-center h-full w-full" style="background-color: rgba(0,0,0,.5);" x-cloak x-show="open">
 
-                                                    <div class="h-auto p-4 mx-10 text-left bg-white rounded shadow-xl max-w-screen-sm" @click.away="open = false">
+                                            <!-- A basic modal dialog with title, body and one button to close -->
 
-                                                        <div class="mt-3 text-center sm:text-left">
+                                            <div class="h-auto p-4 mx-10 text-left bg-white rounded shadow-xl max-w-screen-sm" @click.away="open = false">
 
-                                                            <h2 class="text-lg font-medium leading-6 text-gray-900">
-                                                                Nähere Informationen zu Angebot #{{$offer->id}}
-                                                            </h2>
+                                                <div class="mt-3 text-center sm:text-left">
 
-                                                            <div class="mt-2">
+                                                    <h2 class="text-lg font-medium leading-6 text-gray-900">
+                                                        Nähere Informationen zu Angebot #{{$offer->id}}
+                                                    </h2>
 
-                                                                <h3 class="text-sm">Datum</h3>
+                                                    <div class="mt-2">
 
-                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                                    {{ $offer->created_at->diffForHumans() }}
-                                                                </p>
+                                                        <h3 class="text-sm">Datum</h3>
 
-                                                                <h3 class="text-sm">Betreuungszeitraum</h3>
+                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                            {{ $offer->created_at->diffForHumans() }}
+                                                        </p>
 
-                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                                    <span class="font-medium">{{ date('m/Y', strtotime($offer->datum_start)) }} bis {{ date('m/Y', strtotime($offer->datum_end)) }}</span>
-                                                                </p>
+                                                        <h3 class="text-sm">Betreuungszeitraum</h3>
 
-                                                                <h3 class="text-sm">Betreuungsrahmen</h3>
+                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                            <span class="font-medium">{{ date('m/Y', strtotime($offer->datum_start)) }} bis {{ date('m/Y', strtotime($offer->datum_end)) }}</span>
+                                                        </p>
 
-                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                                    <span class="font-medium">{{ $offer->rahmen }} Person/en</span>
-                                                                </p>
+                                                        <h3 class="text-sm">Betreuungsrahmen</h3>
 
-                                                                <h3 class="text-sm">Fremdsprachkenntnisse</h3>
+                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                            <span class="font-medium">{{ $offer->rahmen }} Person/en</span>
+                                                        </p>
 
-                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                                    <span class="font-medium">{{ $offer->sprachkenntnisse }}</span>
-                                                                </p>
+                                                        <h3 class="text-sm">Fremdsprachkenntnisse</h3>
 
-                                                                <h3 class="text-sm">Studiengang</h3>
+                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                            <span class="font-medium">{{ $offer->sprachkenntnisse }}</span>
+                                                        </p>
 
-                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                                    <span class="font-medium">{{ $offer->studiengang }}
-                                                                </p>
+                                                        <h3 class="text-sm">Studiengang</h3>
 
-                                                                <h3 class="text-sm">Fachsemester</h3>
+                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                            <span class="font-medium">{{ $offer->studiengang }}
+                                                        </p>
 
-                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                                    <span class="font-medium">{{ $offer->fachsemester }}
-                                                                </p>
+                                                        <h3 class="text-sm">Fachsemester</h3>
 
-                                                                <h3 class="text-sm">Schulart</h3>
+                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                            <span class="font-medium">{{ $offer->fachsemester }}
+                                                        </p>
 
-                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                                    <span class="font-medium">{{ $offer->schulart }}
-                                                                </p>
+                                                        <h3 class="text-sm">Schulart</h3>
 
-                                                                <h3 class="text-sm">Beschreibung</h3>
+                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                            <span class="font-medium">{{ $offer->schulart }}
+                                                        </p>
 
-                                                                <p class="leading-5 text-gray-500 mb-2 text-xs">
-                                                                    <span class="font-medium">{{ $offer->body }}
-                                                                </p>
+                                                        <h3 class="text-sm">Beschreibung</h3>
 
-                                                            </div>
-
-                                                        </div>
-
-                                                        <!-- One big close button.  --->
-
-                                                        <div class="mt-5 sm:mt-6">
-
-                                                            <span class="flex w-full rounded-md shadow-sm">
-
-                                                                <button @click="open = false" class="inline-flex justify-center w-full px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-900">
-                                                                    Schließen
-                                                                </button>
-
-                                                            </span>
-
-                                                        </div>
+                                                        <p class="leading-5 text-gray-500 mb-2 text-xs">
+                                                            <span class="font-medium">{{ $offer->body }}
+                                                        </p>
 
                                                     </div>
 
                                                 </div>
 
+                                                <!-- One big close button.  --->
+
+                                                <div class="mt-5 sm:mt-6">
+
+                                                    <span class="flex w-full rounded-md shadow-sm">
+
+                                                        <button @click="open = false" class="inline-flex justify-center w-full px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-900">
+                                                            Schließen
+                                                        </button>
+
+                                                    </span>
+
+                                                </div>
+
                                             </div>
 
-                                            <!-- Anzeigen -->
+                                        </div>
 
-                                            <!-- Bearbeiten -->
+                                    </div>
 
-                                            <form action="{{ route('offers.edit', $offer) }}" method="post">
+                                    <!-- Anzeigen -->
 
-                                                @csrf
+                                    <!-- Bearbeiten -->
 
-                                                @method('POST')
+                                    <form action="{{ route('offers.edit', $offer) }}" method="post">
 
-                                                <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:ring ring-gray-300 border-2 border-white hover:border-gray-300 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
+                                        @csrf
 
-                                                    <div class="grid justify-items-center">
+                                        @method('POST')
 
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                          
-                                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:ring ring-gray-300 border-2 border-white hover:border-gray-300 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
 
-                                                        </svg>
+                                            <div class="grid justify-items-center">
 
-                                                        <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Bearbeiten</span>    
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                                    </div>
+                                                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
 
-                                                </button>
+                                                </svg>
 
-                                            </form>
+                                                <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Bearbeiten</span>
 
-                                            <!-- Bearbeiten -->
+                                            </div>
 
-                                            @if ($offer->active)
+                                        </button>
 
-                                                <!-- Angebot aktivieren -->
+                                    </form>
 
-                                                <form action="{{ route('offers.setinactive', $offer) }}" method="post">
+                                    <!-- Bearbeiten -->
 
-                                                    @csrf
+                                    @if ($offer->active)
 
-                                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
+                                    <!-- Angebot aktivieren -->
 
-                                                        <div class="grid justify-items-center">
+                                    <form action="{{ route('offers.setinactive', $offer) }}" method="post">
 
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        @csrf
 
-                                                                <path d="M3.707 2.293a1 1 0 00-1.414 1.414l6.921 6.922c.05.062.105.118.168.167l6.91 6.911a1 1 0 001.415-1.414l-.675-.675a9.001 9.001 0 00-.668-11.982A1 1 0 1014.95 5.05a7.002 7.002 0 01.657 9.143l-1.435-1.435a5.002 5.002 0 00-.636-6.294A1 1 0 0012.12 7.88c.924.923 1.12 2.3.587 3.415l-1.992-1.992a.922.922 0 00-.018-.018l-6.99-6.991zM3.238 8.187a1 1 0 00-1.933-.516c-.8 3-.025 6.336 2.331 8.693a1 1 0 001.414-1.415 6.997 6.997 0 01-1.812-6.762zM7.4 11.5a1 1 0 10-1.73 1c.214.371.48.72.795 1.035a1 1 0 001.414-1.414c-.191-.191-.35-.4-.478-.622z" />
+                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
 
-                                                            </svg>
+                                            <div class="grid justify-items-center">
 
-                                                            <!-- <span class="mx-3 mt-1">Angebot aktivieren</span> -->
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Deaktivieren</span>
+                                                    <path d="M3.707 2.293a1 1 0 00-1.414 1.414l6.921 6.922c.05.062.105.118.168.167l6.91 6.911a1 1 0 001.415-1.414l-.675-.675a9.001 9.001 0 00-.668-11.982A1 1 0 1014.95 5.05a7.002 7.002 0 01.657 9.143l-1.435-1.435a5.002 5.002 0 00-.636-6.294A1 1 0 0012.12 7.88c.924.923 1.12 2.3.587 3.415l-1.992-1.992a.922.922 0 00-.018-.018l-6.99-6.991zM3.238 8.187a1 1 0 00-1.933-.516c-.8 3-.025 6.336 2.331 8.693a1 1 0 001.414-1.415 6.997 6.997 0 01-1.812-6.762zM7.4 11.5a1 1 0 10-1.73 1c.214.371.48.72.795 1.035a1 1 0 001.414-1.414c-.191-.191-.35-.4-.478-.622z" />
 
-                                                        </div>
+                                                </svg>
 
-                                                    </button>
+                                                <!-- <span class="mx-3 mt-1">Angebot aktivieren</span> -->
 
-                                                </form>
+                                                <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Deaktivieren</span>
 
-                                                <!-- Angebot aktivieren -->
+                                            </div>
 
-                                            @else
+                                        </button>
 
-                                                <!-- Angebot deaktivieren -->
+                                    </form>
 
-                                                <form action="{{ route('offers.setactive', $offer) }}" method="post">
+                                    <!-- Angebot aktivieren -->
 
-                                                    @csrf
+                                    @else
 
-                                                    <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
+                                    <!-- Angebot deaktivieren -->
 
-                                                        <div class="grid justify-items-center">
+                                    <form action="{{ route('offers.setactive', $offer) }}" method="post">
 
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        @csrf
 
-                                                                <path fill-rule="evenodd" d="M5.05 3.636a1 1 0 010 1.414 7 7 0 000 9.9 1 1 0 11-1.414 1.414 9 9 0 010-12.728 1 1 0 011.414 0zm9.9 0a1 1 0 011.414 0 9 9 0 010 12.728 1 1 0 11-1.414-1.414 7 7 0 000-9.9 1 1 0 010-1.414zM7.879 6.464a1 1 0 010 1.414 3 3 0 000 4.243 1 1 0 11-1.415 1.414 5 5 0 010-7.07 1 1 0 011.415 0zm4.242 0a1 1 0 011.415 0 5 5 0 010 7.072 1 1 0 01-1.415-1.415 3 3 0 000-4.242 1 1 0 010-1.415zM10 9a1 1 0 011 1v.01a1 1 0 11-2 0V10a1 1 0 011-1z" clip-rule="evenodd" />
+                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
 
-                                                            </svg>
+                                            <div class="grid justify-items-center">
 
-                                                            <!-- <span class="mx-3 mt-1">Angebot deaktivieren</span> -->
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Aktivieren</span>
+                                                    <path fill-rule="evenodd" d="M5.05 3.636a1 1 0 010 1.414 7 7 0 000 9.9 1 1 0 11-1.414 1.414 9 9 0 010-12.728 1 1 0 011.414 0zm9.9 0a1 1 0 011.414 0 9 9 0 010 12.728 1 1 0 11-1.414-1.414 7 7 0 000-9.9 1 1 0 010-1.414zM7.879 6.464a1 1 0 010 1.414 3 3 0 000 4.243 1 1 0 11-1.415 1.414 5 5 0 010-7.07 1 1 0 011.415 0zm4.242 0a1 1 0 011.415 0 5 5 0 010 7.072 1 1 0 01-1.415-1.415 3 3 0 000-4.242 1 1 0 010-1.415zM10 9a1 1 0 011 1v.01a1 1 0 11-2 0V10a1 1 0 011-1z" clip-rule="evenodd" />
 
-                                                        </div>
+                                                </svg>
 
-                                                    </button>
+                                                <!-- <span class="mx-3 mt-1">Angebot deaktivieren</span> -->
 
-                                                </form>
+                                                <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Aktivieren</span>
 
-                                                <!-- Angebot deaktivieren -->
+                                            </div>
 
-                                            @endif
+                                        </button>
 
-                                        </td>
+                                    </form>
 
-                                        <!-- Löschen -->
+                                    <!-- Angebot deaktivieren -->
 
-                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                    @endif
 
+                                </td>
 
-                                            <form action="{{ route('offers.destroy', $offer) }}" method="post">
+                                <!-- Löschen -->
 
-                                                @csrf
-
-                                                @method('DELETE')
-
-                                                <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
-
-                                                    <div class="grid justify-items-center">
-
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                                        </svg>
-
-                                                        <!-- <span class="mx-3 mt-1">Zurückziehen</span> -->
-                                                        
-                                                        <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Löschen</span>
-
-                                                    </div>
-
-                                                </button>
-
-                                            </form>
+                                <td class="px-6 py-4 whitespace-no-wrap">
 
 
-                                        </td>
-                                        
-                                        <!-- Löschen -->
+                                    <form action="{{ route('offers.destroy', $offer) }}" method="post">
 
-                                    </tr>
+                                        @csrf
 
-                                @endif
+                                        @method('DELETE')
+
+                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
+
+                                            <div class="grid justify-items-center">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                                </svg>
+
+                                                <!-- <span class="mx-3 mt-1">Zurückziehen</span> -->
+
+                                                <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Löschen</span>
+
+                                            </div>
+
+                                        </button>
+
+                                    </form>
+
+
+                                </td>
+
+                                <!-- Löschen -->
+
+                            </tr>
+
+                            @endif
 
                             @endforeach
 
-                        @endif
+                            @endif
 
-                    </table>
+                        </table>
 
-                    <div class="mt-5">
+                        <div class="mt-5">
 
-                        {{ $offers->links() }}
+                            {{ $offers->links() }}
+
+                        </div>
 
                     </div>
 
                 </div>
 
+                <!-- Meine Angebote -->
+
             </div>
-
-            <!-- Meine Angebote -->
-
-        </div>
 
             <!-- Tab Contents -->
 

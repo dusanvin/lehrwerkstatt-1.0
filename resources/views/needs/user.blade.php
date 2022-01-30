@@ -28,13 +28,13 @@
 
             <script>
                 function removemessage() {
-                    document.getElementById('success_make_offer').remove();
+                    document.getElementById('success_make_need').remove();
                 }
             </script>
 
             @if ($message = Session::get('success'))
 
-            <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-600 text-xs sm:text-sm lg:text-lg" id="success_make_offer">
+            <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-600 text-xs sm:text-sm lg:text-lg" id="success_make_need">
 
                 <span class="text-xl inline-block mr-2 align-middle">
 
@@ -68,11 +68,11 @@
 
             <ul id="tabs" class="inline-flex w-full">
 
-                <li class="px-4 py-2 font-medium text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('needs.all') }}">Alle Bedarfe</a></li>
+                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('needs.all') }}">Alle Bedarfe</a></li>
 
-                <li class="px-4 py-2 -mb-px font-medium text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100"><a href="{{ route('needs.user') }}">Meine Bedarfe</a></li>
+                <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100"><a href="{{ route('needs.user') }}">Meine Bedarfe</a></li>
 
-                <li class="px-4 py-2 font-medium text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('needs.make') }}">Bedarf erstellen</a></li>
+                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('needs.make') }}">Bedarf erstellen</a></li>
 
             </ul>
 
@@ -90,7 +90,7 @@
 
                         <p class="font-medium text-gray-800 leading-none text-lg leading-6">Bedarfsübersicht</p>
 
-                        <p class="text-sm text-gray-500 mt-2 mb-3">Erhalten Sie eine Übersicht über Ihre Bedarfe. Sehen Sie sich Ihren Bedarf genauer an, setzen Sie diesen auf aktiv/inaktiv oder löschen Sie diesen permanent.</p>
+                        <p class="text-sm text-gray-500 mt-2 mb-3">Erhalten Sie eine Übersicht über Ihre Bedarfe. Sehen Sie sich Ihren Bedarf genauer an, setzen Sie dieses auf aktiv/inaktiv oder löschen Sie dieses permanent.</p>
 
                     </div>
 
@@ -137,15 +137,35 @@
 
                                 <!-- Status des Bedarfs -->
 
-                                <td class="px-6 py-4 whitespace-no-wrap">
+                                <td class="px-6 py-4 whitespace-no-wrap ">
 
                                     @if ($need->active == 1)
 
-                                    <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-green-600 rounded-full">Aktiv</label>
+                                    <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-green-600 rounded-full">
+
+                                        <span class="has-tooltip">
+
+                                            Aktiv
+
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 -ml-40 text-xs'>Ihr Bedarf ist aktiv. Deaktivieren Sie es bei Bedarf.</span>
+
+                                        </span>
+
+                                    </label>
 
                                     @else
 
-                                    <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">Inaktiv</label>
+                                    <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">
+
+                                        <span class="has-tooltip">
+
+                                            Inaktiv
+
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 -ml-40 text-xs'>Ihr Bedarf ist inaktiv. Aktivieren Sie es bei Bedarf.</span>
+
+                                        </span>
+
+                                    </label>
 
                                     @endif
 
@@ -187,67 +207,87 @@
                                         <div class="absolute top-0 left-0 flex items-center justify-center h-full w-full" style="background-color: rgba(0,0,0,.5);" x-cloak x-show="open">
 
                                             <!-- A basic modal dialog with title, body and one button to close -->
+
                                             <div class="h-auto p-4 mx-10 text-left bg-white rounded shadow-xl max-w-screen-sm" @click.away="open = false">
+
                                                 <div class="mt-3 text-center sm:text-left">
+
                                                     <h2 class="text-lg font-medium leading-6 text-gray-900">
                                                         Nähere Informationen zu Bedarf #{{$need->id}}
                                                     </h2>
 
                                                     <div class="mt-2">
+
                                                         <h3 class="text-sm">Datum</h3>
+
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
                                                             {{ $need->created_at->diffForHumans() }}
                                                         </p>
 
                                                         <h3 class="text-sm">Betreuungszeitraum</h3>
+
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
                                                             <span class="font-medium">{{ date('m/Y', strtotime($need->datum_start)) }} bis {{ date('m/Y', strtotime($need->datum_end)) }}</span>
                                                         </p>
 
                                                         <h3 class="text-sm">Betreuungsrahmen</h3>
+
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
                                                             <span class="font-medium">{{ $need->rahmen }} Person/en</span>
                                                         </p>
 
                                                         <h3 class="text-sm">Fremdsprachkenntnisse</h3>
+
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
                                                             <span class="font-medium">{{ $need->sprachkenntnisse }}</span>
                                                         </p>
 
                                                         <h3 class="text-sm">Studiengang</h3>
+
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
                                                             <span class="font-medium">{{ $need->studiengang }}
                                                         </p>
 
                                                         <h3 class="text-sm">Fachsemester</h3>
+
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
                                                             <span class="font-medium">{{ $need->fachsemester }}
                                                         </p>
 
                                                         <h3 class="text-sm">Schulart</h3>
+
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
                                                             <span class="font-medium">{{ $need->schulart }}
                                                         </p>
 
                                                         <h3 class="text-sm">Beschreibung</h3>
+
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">
                                                             <span class="font-medium">{{ $need->body }}
                                                         </p>
 
                                                     </div>
+
                                                 </div>
 
                                                 <!-- One big close button.  --->
+
                                                 <div class="mt-5 sm:mt-6">
+
                                                     <span class="flex w-full rounded-md shadow-sm">
+
                                                         <button @click="open = false" class="inline-flex justify-center w-full px-4 py-2 text-white bg-gray-700 rounded hover:bg-gray-900">
                                                             Schließen
                                                         </button>
+
                                                     </span>
+
                                                 </div>
 
                                             </div>
+
                                         </div>
+
                                     </div>
 
                                     <!-- Anzeigen -->
@@ -298,59 +338,55 @@
 
                                                 </svg>
 
-                                                <!-- <span class="mx-3 mt-1">Angebot aktivieren</span> -->
+                                                <!-- <span class="mx-3 mt-1">Bedarf aktivieren</span> -->
                                                 <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Deaktivieren</span>
 
                                             </div>
 
                                         </button>
 
+                                    </form>
 
-                                        <!-- Bedarf deaktivieren -->
+                                    <!-- Bedarf deaktivieren -->
 
-                                        @else
+                                    @else
 
-                                        <!-- Bedarf aktivieren -->
+                                    <!-- Bedarf aktivieren -->
 
-                                        <form action="{{ route('needs.setactive', $need) }}" method="post">
+                                    <form action="{{ route('needs.setactive', $need) }}" method="post">
 
-                                            @csrf
+                                        @csrf
 
-                                            <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
+                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
 
-                                                <div class="grid justify-items-center">
+                                            <div class="grid justify-items-center">
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                                        <path fill-rule="evenodd" d="M5.05 3.636a1 1 0 010 1.414 7 7 0 000 9.9 1 1 0 11-1.414 1.414 9 9 0 010-12.728 1 1 0 011.414 0zm9.9 0a1 1 0 011.414 0 9 9 0 010 12.728 1 1 0 11-1.414-1.414 7 7 0 000-9.9 1 1 0 010-1.414zM7.879 6.464a1 1 0 010 1.414 3 3 0 000 4.243 1 1 0 11-1.415 1.414 5 5 0 010-7.07 1 1 0 011.415 0zm4.242 0a1 1 0 011.415 0 5 5 0 010 7.072 1 1 0 01-1.415-1.415 3 3 0 000-4.242 1 1 0 010-1.415zM10 9a1 1 0 011 1v.01a1 1 0 11-2 0V10a1 1 0 011-1z" clip-rule="evenodd" />
+                                                    <path fill-rule="evenodd" d="M5.05 3.636a1 1 0 010 1.414 7 7 0 000 9.9 1 1 0 11-1.414 1.414 9 9 0 010-12.728 1 1 0 011.414 0zm9.9 0a1 1 0 011.414 0 9 9 0 010 12.728 1 1 0 11-1.414-1.414 7 7 0 000-9.9 1 1 0 010-1.414zM7.879 6.464a1 1 0 010 1.414 3 3 0 000 4.243 1 1 0 11-1.415 1.414 5 5 0 010-7.07 1 1 0 011.415 0zm4.242 0a1 1 0 011.415 0 5 5 0 010 7.072 1 1 0 01-1.415-1.415 3 3 0 000-4.242 1 1 0 010-1.415zM10 9a1 1 0 011 1v.01a1 1 0 11-2 0V10a1 1 0 011-1z" clip-rule="evenodd" />
 
-                                                    </svg>
+                                                </svg>
 
-                                                    <!-- <span class="mx-3 mt-1">Angebot deaktivieren</span> -->
+                                                <!-- <span class="mx-3 mt-1">Bedarf deaktivieren</span> -->
 
-                                                    <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Aktivieren</span>
+                                                <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Aktivieren</span>
 
-                                                </div>
+                                            </div>
 
-                                            </button>
+                                        </button>
 
-                                        </form>
+                                    </form>
 
-                                        <!-- Bedarf aktivieren -->
+                                    <!-- Bedarf aktivieren -->
 
-                                        @endif
-
-                                </td>
-
-                                <td class="px-6 py-4 whitespace-no-wrap">
-
-
+                                    @endif
 
                                 </td>
 
+                                <!-- Löschen -->
+
                                 <td class="px-6 py-4 whitespace-no-wrap">
 
-                                    <!-- Löschen -->
 
                                     <form action="{{ route('needs.destroy', $need) }}" method="post">
 
@@ -376,19 +412,16 @@
 
                                     </form>
 
-                                    <!-- Löschen -->
 
                                 </td>
+
+                                <!-- Löschen -->
 
                             </tr>
 
                             @endif
 
                             @endforeach
-
-                            @else
-
-                            Keine Bedarfe vorhanden.
 
                             @endif
 

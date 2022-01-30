@@ -322,7 +322,7 @@
 
                                     @if ($offer->active)
 
-                                    <!-- Angebot aktivieren -->
+                                    <!-- Angebot deaktivieren -->
 
                                     <form action="{{ route('offers.setinactive', $offer) }}" method="post">
 
@@ -339,7 +339,6 @@
                                                 </svg>
 
                                                 <!-- <span class="mx-3 mt-1">Angebot aktivieren</span> -->
-
                                                 <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Deaktivieren</span>
 
                                             </div>
@@ -348,11 +347,11 @@
 
                                     </form>
 
-                                    <!-- Angebot aktivieren -->
+                                    <!-- Angebot deaktivieren -->
 
                                     @else
 
-                                    <!-- Angebot deaktivieren -->
+                                    <!-- Angebot aktivieren -->
 
                                     <form action="{{ route('offers.setactive', $offer) }}" method="post">
 
@@ -378,7 +377,7 @@
 
                                     </form>
 
-                                    <!-- Angebot deaktivieren -->
+                                    <!-- Angebot aktivieren -->
 
                                     @endif
 

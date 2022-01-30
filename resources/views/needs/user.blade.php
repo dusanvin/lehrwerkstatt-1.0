@@ -169,7 +169,7 @@
 
                                     <div class="" x-data="{ open: false }">
 
-                                        <button class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150" @click="open=true">
+                                        <button class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300" @click="open=true">
 
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
@@ -178,9 +178,12 @@
 
                                             </svg>
 
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 -ml-5 text-xs'>Anzeigen</span>
+
                                         </button>
 
                                         <!-- Dialog (full screen) -->
+
                                         <div class="absolute top-0 left-0 flex items-center justify-center h-full w-full" style="background-color: rgba(0,0,0,.5);" x-cloak x-show="open">
 
                                             <!-- A basic modal dialog with title, body and one button to close -->
@@ -279,13 +282,13 @@
 
                                     @if ($need->active)
 
-                                    <!-- Bedarf aktivieren -->
+                                    <!-- Bedarf deaktivieren -->
 
                                     <form action="{{ route('needs.setinactive', $need) }}" method="post">
 
                                         @csrf
 
-                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
+                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
 
                                             <div class="grid justify-items-center">
 
@@ -295,45 +298,47 @@
 
                                                 </svg>
 
-                                                <!-- <span class="mx-3 mt-1">Bedarf aktivieren</span> -->
+                                                <!-- <span class="mx-3 mt-1">Angebot aktivieren</span> -->
+                                                <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Deaktivieren</span>
 
                                             </div>
 
                                         </button>
 
-                                    </form>
 
-                                    <!-- Bedarf aktivieren -->
+                                        <!-- Bedarf deaktivieren -->
 
-                                    @else
+                                        @else
 
-                                    <!-- Bedarf deaktivieren -->
+                                        <!-- Bedarf aktivieren -->
 
-                                    <form action="{{ route('needs.setactive', $need) }}" method="post">
+                                        <form action="{{ route('needs.setactive', $need) }}" method="post">
 
-                                        @csrf
+                                            @csrf
 
-                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
+                                            <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
 
-                                            <div class="grid justify-items-center">
+                                                <div class="grid justify-items-center">
 
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                                    <path fill-rule="evenodd" d="M5.05 3.636a1 1 0 010 1.414 7 7 0 000 9.9 1 1 0 11-1.414 1.414 9 9 0 010-12.728 1 1 0 011.414 0zm9.9 0a1 1 0 011.414 0 9 9 0 010 12.728 1 1 0 11-1.414-1.414 7 7 0 000-9.9 1 1 0 010-1.414zM7.879 6.464a1 1 0 010 1.414 3 3 0 000 4.243 1 1 0 11-1.415 1.414 5 5 0 010-7.07 1 1 0 011.415 0zm4.242 0a1 1 0 011.415 0 5 5 0 010 7.072 1 1 0 01-1.415-1.415 3 3 0 000-4.242 1 1 0 010-1.415zM10 9a1 1 0 011 1v.01a1 1 0 11-2 0V10a1 1 0 011-1z" clip-rule="evenodd" />
+                                                        <path fill-rule="evenodd" d="M5.05 3.636a1 1 0 010 1.414 7 7 0 000 9.9 1 1 0 11-1.414 1.414 9 9 0 010-12.728 1 1 0 011.414 0zm9.9 0a1 1 0 011.414 0 9 9 0 010 12.728 1 1 0 11-1.414-1.414 7 7 0 000-9.9 1 1 0 010-1.414zM7.879 6.464a1 1 0 010 1.414 3 3 0 000 4.243 1 1 0 11-1.415 1.414 5 5 0 010-7.07 1 1 0 011.415 0zm4.242 0a1 1 0 011.415 0 5 5 0 010 7.072 1 1 0 01-1.415-1.415 3 3 0 000-4.242 1 1 0 010-1.415zM10 9a1 1 0 011 1v.01a1 1 0 11-2 0V10a1 1 0 011-1z" clip-rule="evenodd" />
 
-                                                </svg>
+                                                    </svg>
 
-                                                <!-- <span class="mx-3 mt-1">Bedarf deaktivieren</span> -->
+                                                    <!-- <span class="mx-3 mt-1">Angebot deaktivieren</span> -->
 
-                                            </div>
+                                                    <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Aktivieren</span>
 
-                                        </button>
+                                                </div>
 
-                                    </form>
+                                            </button>
 
-                                    <!-- Bedarf deaktivieren -->
+                                        </form>
 
-                                    @endif
+                                        <!-- Bedarf aktivieren -->
+
+                                        @endif
 
                                 </td>
 
@@ -353,7 +358,7 @@
 
                                         @method('DELETE')
 
-                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150">
+                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
 
                                             <div class="grid justify-items-center">
 
@@ -362,6 +367,8 @@
                                                 </svg>
 
                                                 <!-- <span class="mx-3 mt-1">Zurückziehen</span> -->
+
+                                                <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Löschen</span>
 
                                             </div>
 

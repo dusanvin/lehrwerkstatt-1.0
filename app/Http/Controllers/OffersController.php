@@ -77,6 +77,9 @@ class OffersController extends Controller
 
         if (isset($offer_id)) {
             $offer = Offer::where('id', $offer_id)->first();
+            if (!$offer->ownedBy(auth()->user())) {
+                return back();
+            }
             $offer->body = $request->body;
             $offer->rahmen = $request->rahmen;
             $offer->sprachkenntnisse = $request->sprachkenntnisse;

@@ -73,6 +73,9 @@ class NeedsController extends Controller
 
         if (isset($need_id)) {
             $need = need::where('id', $need_id)->first();
+            if (!$need->ownedBy(auth()->user())) {
+                return back();
+            }
             $need->body = $request->body;
             $need->rahmen = $request->rahmen;
             $need->sprachkenntnisse = $request->sprachkenntnisse;

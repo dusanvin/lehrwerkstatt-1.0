@@ -24,10 +24,10 @@ class OffersController extends Controller
 
     public function user()
     {
-        $offers = Offer::with([
-            'user',
-            'likes'
-        ])->latest()->simplePaginate(10);
+        // $offers = Offer::with([
+        //     'user',
+        //     'likes'
+        // ])->latest()->simplePaginate(10);
 
         $offers = Offer::where('user_id', auth()->user()->id)->latest('updated_at')->simplePaginate(10);
 
@@ -113,9 +113,9 @@ class OffersController extends Controller
 
         $offers = Offer::where('user_id', auth()->user()->id)->latest()->simplePaginate(10); //'updated_at'
 
-        return view('offers.user', [
+        return redirect()->route('offers.user', [
             'offers' => $offers
-        ]);
+        ]); 
     }
 
 

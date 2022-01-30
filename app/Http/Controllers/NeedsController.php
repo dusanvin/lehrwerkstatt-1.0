@@ -25,10 +25,10 @@ class NeedsController extends Controller
 
     public function user()
     {
-        $needs = Need::with([
-            'user',
-            'likes'
-        ]);
+        // $needs = Need::with([
+        //     'user',
+        //     'likes'
+        // ]);
 
         $needs = Need::where('user_id', auth()->user()->id)->latest()->simplePaginate(10);
 
@@ -107,9 +107,9 @@ class NeedsController extends Controller
 
         $needs = Need::where('user_id', auth()->user()->id)->latest()->simplePaginate(10);
 
-        return view('needs.user', [
+        return redirect()->route('needs.user', [
             'needs' => $needs
-        ]);
+        ]); 
     }
 
     public function setinactive(Need $need)

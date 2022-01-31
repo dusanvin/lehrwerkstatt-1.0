@@ -16,7 +16,17 @@ return [
 */
 
 return [
-    'platformName' => 'DaZ-Buddy',
+
+	/* header.blade.php */
+    'platformName1' => 'daz-',
+    'platformName2' => 'buddies',
+
+    /* welcome.blade.php*/
+    'welcomeString1' => 'Finden Sie Ihre*n',
+    'welcomeString2' => 'DaZ-Buddy',
+    'welcomeVideo' => '../img/welcome_start.mp4',
+
+    /* footer.blade.php */
     'adminEmail' => 'admin@sitename.com'
 ];
 

@@ -92,10 +92,10 @@
 
                             <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
 
-                                <span class="block xl:inline">Finden Sie Ihre*n</span>
+                                <span class="block xl:inline">{{ Config::get('site_vars.welcomeString1') }}</span>
 
                                 <!-- <span class="block text-purple-600 xl:inline">DaZ-Buddy</span> -->
-                                <span class="block text-purple-600 xl:inline">{{ Config::get('site_vars.platformName') }}</span>
+                                <span class="block text-purple-600 xl:inline">{{ Config::get('site_vars.welcomeString2') }}</span>
 
                             </h1>
 
@@ -145,7 +145,7 @@
 
                 <video class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" autoplay muted loop>
 
-                    <source type="video/mp4" src="../img/welcome_start.mp4">
+                    <source type="video/mp4" src="{{ Config::get('site_vars.welcomeVideo') }}">
 
                 </video>
 

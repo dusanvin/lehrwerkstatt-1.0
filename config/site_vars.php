@@ -49,9 +49,28 @@ return [
     'bedarfeInfo' => 'Hilfsangebot ersuchen',
 
     /* MeinBereich */
-    'meinBereichMotivation' => 'Bearbeiten Sie die Daten zu Ihrer Person und stellen Sie sich vor.',
+    'meinBereichMotivation' => 'Bearbeiten Sie Ihre Daten und stellen Sie sich vor.',
+
     'meinBereichMotivationDetails' => 'Was hat Sie dazu bewogen, DaZ-Buddy zu werden?',
+    'meinBereichMotivationDetailsPlaceholder' => 'Erläutern Sie Ihre Motivationsgründe.',
+
     'meinBereichStudiengang' => 'Welchen Studiengang studieren Sie?',
+    'meinBereichStudiengangPlaceholder' => 'Geben Sie Ihren Studiengang an.',
+
+    'meinBereichFachsemester' => 'Im wievielten (Fach-)Semester befinden Sie sich?',
+    'meinBereichFachsemesterPlaceholder' => 'Geben Sie Ihr aktuelles (Fach-)Semester an.',
+
+    'meinBereichFreizeit' => 'Was machen Sie gerne in ihrer Freizeit?',
+    'meinBereichFreizeitPlaceholder' => 'Geben Sie Ihre Interessen an.',
+
+    'meinBereichErfahrung' => 'Haben Sie schon Erfahrungen im DaZ/DaF-Bereich, im Rahmen von anderen Praktika, sammeln können?',
+    'meinBereichErfahrungPlaceholder' => 'Nennen Sie Erfahrungen, die relevant sein könnten.',
+
+    'meinBereichTreffen' => 'Was könnten Sie sich vorstellen mit dem/der Schüler*in während der Treffen zu machen?',
+    'meinBereichTreffenPlaceholder' => 'Schlagen Sie Möglichkeiten der Zusammenarbeit vor.',
+
+    'meinBereichGruesse' => 'Welche Grüße möchten Sie an Ihre Profilbesucher*innen richten?',
+    'meinBereichGruessePlaceholder' => 'Hinterlegen Sie freundliche Grüße für Ihre Profilbesucher.',
 
     /* components/auth-card.blade.php */
     'backgroundImageAuth' => '../img/welcome_picture.jpg',

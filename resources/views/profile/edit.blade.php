@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
 
 <style type="text/css">
@@ -21,6 +20,22 @@
         border-bottom-color: black !important;
     }
 </style>
+
+
+@php
+
+    /* PHP-Interpreter for short_tags */
+    ini_set('short_open_tag',1);
+
+    $valMot =  Config::get('site_vars.meinBereichMotivationDetailsPlaceholder');
+    $valStud =  Config::get('site_vars.meinBereichStudiengangPlaceholder');
+    $valFachsemest =  Config::get('site_vars.meinBereichFachsemesterPlaceholder');
+    $valFrei =  Config::get('site_vars.meinBereichFreizeitPlaceholder');
+    $valErfahrung =  Config::get('site_vars.meinBereichErfahrungPlaceholder');
+    $valTreffen =  Config::get('site_vars.meinBereichTreffenPlaceholder');
+    $valGruesse =  Config::get('site_vars.meinBereichGruessePlaceholder');
+
+@endphp
 
 
 <body style="background-color: white;">
@@ -76,7 +91,7 @@
 
                     @if ($message = Session::get('success'))
 
-                    <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-600 text-xs sm:text-sm lg:text-lg" id="success_make_offer">
+                    <div class="text-white px-6 mx-6 py-4 border-0 rounded relative mb-4 bg-green-600 text-xs sm:text-sm lg:text-lg" id="success_make_offer">
 
                         <span class="text-xl inline-block mr-2 align-middle">
 
@@ -282,7 +297,7 @@
                                             <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        {!! Form::text('motivation', null, array('placeholder' => 'Hier können Sie Ihre Motivationsgründe erläutern.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}
+                                        {!! Form::text('motivation', null, array('placeholder' => "$valMot",'class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}
 
                                     </dd>
 
@@ -303,9 +318,8 @@
                                             <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        <!-- {!! Form::text('studiengang', null, array('placeholder' => 'Wählen Sie hier Ihren Studiengang aus.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}  -->
+                                        <!-- {!! Form::text('studiengang', null, array('placeholder' => "$valStud",'class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}  -->
                                         {!! Form::select('studiengang', array(
-                                        'Keine Angabe.' => 'Wählen Sie hier Ihren Studiengang aus.',
                                         'Hauptfach Deutsch als Zweit- und Fremdsprache (B.A.)' => 'Hauptfach Deutsch als Zweit- und Fremdsprache (B.A.)',
                                         'Nebenfach Deutsch als Zweit- und Fremdsprache (B.A.)' => 'Nebenfach Deutsch als Zweit- und Fremdsprache (B.A.)',
                                         'Grundschule (LA)' => 'Grundschule (LA)',
@@ -325,7 +339,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        Geben Sie Ihr <strong>Fachsemester</strong> an
+                                        {{ Config::get('site_vars.meinBereichFachsemester') }}
 
                                     </dt>
 
@@ -336,7 +350,7 @@
                                             <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        <!-- {!! Form::text('fachsemester', null, array('placeholder' => 'Geben Sie hier ein Fachsemester an.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}  -->
+                                        <!-- {!! Form::text('fachsemester', null, array('placeholder' => "$valFachsemest",'class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}  -->
                                         {!! Form::selectRange('fachsemester', 1, 12, null, array('class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}
 
                                     </dd>
@@ -347,7 +361,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        Was machen Sie gerne in Ihrer <strong>Freizeit</strong>?
+                                        {{ Config::get('site_vars.meinBereichFreizeit') }}
 
                                     </dt>
 
@@ -358,7 +372,7 @@
                                             <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        {!! Form::text('interessen', null, array('placeholder' => 'Geben Sie Interessen an.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}
+                                        {!! Form::text('interessen', null, array('placeholder' => "$valFrei",'class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}
 
                                     </dd>
 
@@ -368,7 +382,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        Teilen Sie Ihre <strong>Erfahrungen</strong> im Bereich DaZ/DaF (z.B. Praktika)
+                                        {{ Config::get('site_vars.meinBereichErfahrung') }}
 
                                     </dt>
 
@@ -379,7 +393,7 @@
                                             <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        {!! Form::text('erfahrungen', null, array('placeholder' => 'Geben Sie Erfahrungen an, die relevant sein könnten.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}
+                                        {!! Form::text('erfahrungen', null, array('placeholder' => "$valErfahrung",'class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}
 
                                     </dd>
 
@@ -389,7 +403,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        Bestimmen Sie den Rahmen eines <strong>Treffens</strong>
+                                        {{ Config::get('site_vars.meinBereichTreffen') }}
 
                                     </dt>
 
@@ -400,7 +414,7 @@
                                             <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        {!! Form::text('treffen', null, array('placeholder' => 'Geben Sie an unter welchen Bedingungen ein Treffen möglich wäre.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}
+                                        {!! Form::text('treffen', null, array('placeholder' => "$valTreffen",'class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}
 
                                     </dd>
 
@@ -410,7 +424,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        Lassen Sie <strong>Grüße</strong> da
+                                        {{ Config::get('site_vars.meinBereichGruesse') }}
 
                                     </dt>
 
@@ -421,7 +435,7 @@
                                             <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
 
-                                        {!! Form::text('gruesse', null, array('placeholder' => 'Hier können Sie einen freundlichen Gruß für Ihre Profilbesucher hinterlegen.','class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}
+                                        {!! Form::text('gruesse', null, array('placeholder' => "$valGruesse",'class' => 'w-full px-2 py-2 ml-2 border-b-2 border-gray-200 focus:outline-none focus:text-gray-900 transition ease-in-out duration-500')) !!}
 
                                     </dd>
 

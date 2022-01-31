@@ -1,6 +1,6 @@
 <style type="text/css">
 	.main-img {
-	    background-image: url('http://hosted-024-216.rz.uni-augsburg.de/img/welcome_picture.jpg');
+	    background-image: url('../img/welcome_picture.jpg');
 	    background-position: center center;
 	    background-repeat: no-repeat;
 	    background-size: cover;

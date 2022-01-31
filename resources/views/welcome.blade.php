@@ -145,7 +145,7 @@
 
                 <video class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" autoplay muted loop>
 
-                    <source type="video/mp4" src="http://hosted-024-216.rz.uni-augsburg.de/img/welcome_start.mp4">
+                    <source type="video/mp4" src="../img/welcome_start.mp4">
 
                 </video>
 

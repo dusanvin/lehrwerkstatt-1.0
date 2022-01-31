@@ -1,6 +1,6 @@
 <style type="text/css">
 	.main-img {
-	    background-image: url('../img/welcome_picture.jpg');
+	    background-image: url('{{ Config::get('site_vars.backgroundImageAuth') }}');
 	    background-position: center center;
 	    background-repeat: no-repeat;
 	    background-size: cover;

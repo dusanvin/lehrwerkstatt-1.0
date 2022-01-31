@@ -116,9 +116,9 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium  leading-none mb-1 font-semibold">Mein Bereich</p>
+							<p class="navigation-element text-sm font-medium  leading-none mb-1 font-semibold">{{ Config::get('site_vars.meinBereich') }}</p>
 
-							<p class="navigation-element text-xs">Persönliche Informationen</p>
+							<p class="navigation-element text-xs">{{ Config::get('site_vars.meinBereichInfo') }}</p>
 
 						</div>
 
@@ -148,9 +148,9 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium  leading-none mb-1 font-semibold">Nachrichten</p>
+							<p class="navigation-element text-sm font-medium  leading-none mb-1 font-semibold">{{ Config::get('site_vars.nachrichten') }}</p>
 
-							<p class="navigation-element text-xs">Gespräche und Kontakte</p>
+							<p class="navigation-element text-xs">{{ Config::get('site_vars.nachrichtenInfo') }}</p>
 
 						</div>
 
@@ -188,9 +188,9 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium leading-none mb-1 font-semibold">Statistiken</p>
+							<p class="navigation-element text-sm font-medium leading-none mb-1 font-semibold">{{ Config::get('site_vars.stats') }}</p>
 
-							<p class="navigation-element text-xs">Details zum Portal</p>
+							<p class="navigation-element text-xs">{{ Config::get('site_vars.statsInfo') }}</p>
 
 						</div>
 
@@ -218,9 +218,9 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-mediumleading-none mb-1 font-semibold">Verwaltung</p>
+							<p class="navigation-element text-sm font-mediumleading-none mb-1 font-semibold">{{ Config::get('site_vars.verwaltung') }}</p>
 
-							<p class="navigation-element text-xs">Nutzende und Rollen</p>
+							<p class="navigation-element text-xs">{{ Config::get('site_vars.verwaltungInfo') }}</p>
 
 						</div>
 
@@ -254,9 +254,9 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-mediumleading-none mb-1 font-semibold">Angebote</p>
+							<p class="navigation-element text-sm font-mediumleading-none mb-1 font-semibold">{{ Config::get('site_vars.angebote') }}</p>
 
-							<p class="navigation-element text-xs">Hilfsangebot anbieten</p>
+							<p class="navigation-element text-xs">{{ Config::get('site_vars.angeboteInfo') }}</p>
 
 						</div>
 
@@ -284,9 +284,9 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium leading-none mb-1 font-semibold">Bedarfe</p>
+							<p class="navigation-element text-sm font-medium leading-none mb-1 font-semibold">{{ Config::get('site_vars.bedarfe') }}</p>
 
-							<p class="navigation-element text-xs">Hilfsangebot ersuchen</p>
+							<p class="navigation-element text-xs">{{ Config::get('site_vars.bedarfeInfo') }}</p>
 
 						</div>
 

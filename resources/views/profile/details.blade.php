@@ -50,14 +50,11 @@
 
                             <div class="p-3 select-none">
 
-                                <!-- <div class="image overflow-hidden">
+                                <div class="image overflow-hidden">
 
                                     <img class="h-auto w-full mx-auto" src="http://hosted-024-216.rz.uni-augsburg.de/img/avatar.jpg" alt="">
 
                                 </div>
-
-                                -->
-                                
 
                                 <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->vorname }} {{ $user->nachname }}</h2>
                                 <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->id }}</h2>

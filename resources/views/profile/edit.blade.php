@@ -46,7 +46,7 @@
 
                     <p class="mt-1 text-sm text-gray-500">
 
-                        Bearbeiten Sie die Informationen zu Ihrer Person. Die Daten sind <a href="{{ route('profile.details', ['id' => $user->id]) }}" style="color:blue;">hier</a> öffentlich einsehbar.
+                        {{ Config::get('site_vars.meinBereichMotivation') }} Ihr Profil ist <a href="{{ route('profile.details', ['id' => $user->id]) }}" style="color:blue;">hier</a> öffentlich einsehbar.
 
                     </p>
 
@@ -246,7 +246,7 @@
 
                                 </div>
 
-                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 mb-6">
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
@@ -271,7 +271,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        Erläutern Sie Ihre <strong>Motivation</strong>
+                                        {{ Config::get('site_vars.meinBereichMotivationDetails') }}
 
                                     </dt>
 
@@ -292,7 +292,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        Wählen Sie Ihren <strong>Studiengang</strong> aus
+                                        {{ Config::get('site_vars.meinBereichStudiengang') }}
 
                                     </dt>
 
@@ -347,7 +347,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        Nennen Sie Ihre <strong>Interessen</strong>
+                                        Was machen Sie gerne in Ihrer <strong>Freizeit</strong>?
 
                                     </dt>
 
@@ -368,7 +368,7 @@
 
                                     <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                        Teilen Sie Ihre <strong>Erfahrungen</strong> mit
+                                        Teilen Sie Ihre <strong>Erfahrungen</strong> im Bereich DaZ/DaF (z.B. Praktika)
 
                                     </dt>
 

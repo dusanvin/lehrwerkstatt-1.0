@@ -24,12 +24,7 @@ class OffersController extends Controller
 
     public function user()
     {
-        // $offers = Offer::with([
-        //     'user',
-        //     'likes'
-        // ])->latest()->simplePaginate(10);
-
-        $offers = Offer::where('user_id', auth()->user()->id)->latest('updated_at')->simplePaginate(10);
+        $offers = Offer::where('user_id', auth()->user()->id)->latest()->simplePaginate(10); //latest('updated_at')
 
         return view('offers.user', [
             'offers' => $offers
@@ -48,14 +43,9 @@ class OffersController extends Controller
         return view('offers.edit', ['offer' => $offer]);
     }
 
-    public function change(Offer $offer)
-    {
-    }
-
 
     public function store(Request $request)
     {
-        // dd($request);
         $dates = explode('bis', $request->datum);
         $startDate = trim($dates[0]);
         if (1 == preg_match('/bis/', $request->datum)) {
@@ -74,8 +64,8 @@ class OffersController extends Controller
 
         $offer_id = request('offer_id');
 
-
         if (isset($offer_id)) {
+
             $offer = Offer::where('id', $offer_id)->first();
             if (!$offer->ownedBy(auth()->user())) {
                 return back();
@@ -88,10 +78,10 @@ class OffersController extends Controller
             $offer->datum_start = $startDate;
             $offer->datum_end = $endDate;
             $offer->schulart = $request->schulart;
-
             $offer->save();
 
         } else {
+
             $request->user()->offers()->create([
                 'body' => $request->body,
                 'rahmen' => $request->rahmen,
@@ -103,19 +93,12 @@ class OffersController extends Controller
                 'schulart' => $request->schulart,
                 'active' => 1,
             ]);
+
         }
-
-
 
         session()->flash('success', 'true');
 
-        // $offers = Offer::with([
-        //     'user',
-        //     'likes'
-        // ])->latest()->simplePaginate(10);
-
         $offers = Offer::where('user_id', auth()->user()->id)->latest()->simplePaginate(10); //'updated_at'
-
         return redirect()->route('offers.user', [
             'offers' => $offers
         ]); 
@@ -127,9 +110,9 @@ class OffersController extends Controller
         if (!$offer->ownedBy(auth()->user())) {
             return back();
         }
+
         $offer->active = 0;
         $offer->save();
-
         return back();
     }
 
@@ -139,9 +122,9 @@ class OffersController extends Controller
         if (!$offer->ownedBy(auth()->user())) {
             return back();
         }
+
         $offer->active = 1;
         $offer->save();
-
         return back();
     }
 
@@ -153,7 +136,6 @@ class OffersController extends Controller
         }
 
         $offer->delete();
-
         return back();
     }
 }

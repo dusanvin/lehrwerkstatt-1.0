@@ -55,15 +55,11 @@ class RegisteredUserController extends Controller
             'privacy_statement' => 'accepted'
         ]);
 
-        //$request->request->add(['username' => 'Keine Angabe.']);
-
         $user = User::create([
     		'vorname' => $request->firstname,
     		'nachname' => $request->lastname,
     		'email' => $request->email,
-            //'role' => $request->role,
     		'password' => Hash::make($request->password),
-            //'username' => $request->username,
         ]);
 
         // Helfende 4, Lehrende 5
@@ -74,19 +70,11 @@ class RegisteredUserController extends Controller
             $role_id = 4;
         }
             
-
         if ($role == 'btn-lehrende') {
             $role_id = 5;
         }
-            
-        // create([
-        //     'role_id' => $role_id,
-        //     'model_type' => 'App\Models\User',
-        //     'model_id' => $user->id
-        // ]);
 
         event(new Registered($user));
-
         Auth::login($user);
 
         // Integration last_login_at 

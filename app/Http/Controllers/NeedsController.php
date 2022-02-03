@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Need;
-use Auth;
 
 class NeedsController extends Controller
 {
@@ -25,12 +24,7 @@ class NeedsController extends Controller
 
     public function user()
     {
-        // $needs = Need::with([
-        //     'user',
-        //     'likes'
-        // ]);
-
-        $needs = Need::where('user_id', auth()->user()->id)->latest()->simplePaginate(10);
+        $needs = Need::where('user_id', auth()->user()->id)->latest()->simplePaginate(10); //latest('updated_at')
 
         return view('needs.user', [
             'needs' => $needs
@@ -40,7 +34,6 @@ class NeedsController extends Controller
 
     public function make()
     {
-
         return view('needs.make');
     }
 
@@ -49,6 +42,7 @@ class NeedsController extends Controller
     {
         return view('needs.edit', ['need' => $need]);
     }
+
 
     public function store(Request $request)
     {
@@ -70,8 +64,8 @@ class NeedsController extends Controller
 
         $need_id = request('need_id');
 
-
         if (isset($need_id)) {
+
             $need = need::where('id', $need_id)->first();
             if (!$need->ownedBy(auth()->user())) {
                 return back();
@@ -84,8 +78,8 @@ class NeedsController extends Controller
             $need->datum_start = $startDate;
             $need->datum_end = $endDate;
             $need->schulart = $request->schulart;
-
             $need->save();
+
         } else {
 
             $request->user()->needs()->create([
@@ -99,17 +93,12 @@ class NeedsController extends Controller
                 'schulart' => $request->schulart,
                 'active' => 1,
             ]);
+
         }
 
         session()->flash('success', 'true');
 
-        // $needs = Need::with([
-        //     'user',
-        //     'likes'
-        // ]);
-
         $needs = Need::where('user_id', auth()->user()->id)->latest()->simplePaginate(10);
-
         return redirect()->route('needs.user', [
             'needs' => $needs
         ]); 
@@ -120,9 +109,9 @@ class NeedsController extends Controller
         if (!$need->ownedBy(auth()->user())) {
             return back();
         }
+
         $need->active = 0;
         $need->save();
-
         return back();
     }
 
@@ -131,9 +120,9 @@ class NeedsController extends Controller
         if (!$need->ownedBy(auth()->user())) {
             return back();
         }
+
         $need->active = 1;
         $need->save();
-
         return back();
     }
 
@@ -144,7 +133,6 @@ class NeedsController extends Controller
         }
 
         $need->delete();
-
         return back();
     }
 }

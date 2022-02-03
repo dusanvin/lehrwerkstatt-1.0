@@ -36,7 +36,7 @@
 
                     <div class="grid justify-items-center sm:justify-items-start select-none">
 
-                        <h2 class="text-lg leading-6 font-medium text-gray-900">
+                        <h2 class="font-semibold text-lg text-gray-600">
 
                             Statistiken
 
@@ -267,7 +267,7 @@
 
                                     <h3 class="font-semibold text-lg text-gray-600">Angebote</h3>
 
-                                    <p class="text-sm text-gray-500">Angebote im relativen Vergleich</p>
+                                    <p class="text-sm text-gray-500">{{ $alleAngeboteCount }} Angebote im relativen Vergleich</p>
 
                                 </div>
 
@@ -293,7 +293,7 @@
 
                                     <h3 class="font-semibold text-lg text-gray-600">Bedarfe</h3>
 
-                                    <p class="text-sm text-gray-500">Bedarfe im relativen Vergleich</p>
+                                    <p class="text-sm text-gray-500">{{ $alleBedarfeCount }} Bedarfe im relativen Vergleich</p>
 
                                 </div>
 
@@ -419,17 +419,17 @@
 
         <script type="text/javascript">
 
-            //myChart7
+            //Angebote myChart7
 
             DATA_COUNT = 5;
             NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
 
             datapie = {
-              labels: ['Angenommen', 'Offen'],
+              labels: ['Aktiv', 'Inaktiv'],
               datasets: [
                 {
                   label: 'Dataset 1',
-                  data: [5, 3],
+                  data: [{{ $aktiveAngeboteCount }}, {{ $inaktiveAngeboteCount }}],
                   backgroundColor: ['rgba(5, 150, 105, 0.6)', 'rgba(220, 38, 38, 0.6)']
                 }
               ]
@@ -453,17 +453,17 @@
                 config
             );
 
-            //myChart8
+            //Bedarfe myChart8
 
             DATA_COUNT = 5;
             NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
 
             datapie = {
-              labels: ['Angenommen', 'Offen'],
+              labels: ['Aktiv', 'Inaktiv'],
               datasets: [
                 {
                   label: 'Dataset 1',
-                  data: [8, 2],
+                  data: [{{ $aktiveBedarfeCount }}, {{ $inaktiveBedarfeCount }}],
                   backgroundColor: ['rgba(5, 150, 105, 0.6)', 'rgba(220, 38, 38, 0.6)']
                 }
               ]
@@ -488,91 +488,88 @@
             );
 
 
-            //nutzende
+            //Nutzende
+                // Setup
+                DATA_COUNT = 5;
+                NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 400};
 
-            // Setup
-            DATA_COUNT = 5;
-            NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 400};
-
-            labels2 = ['Admins', 'Moderierende', 'Helfende', 'Lehrende'];
-            data = {
-              labels: labels2,
-              datasets: [
-                {
-                  label: 'Dataset 1',
-                  data: [{{ $adminsCount }}, {{ $modsCount }}, {{ $helfendeCount }}, {{ $lehrendeCount }}],
-                  backgroundColor: [
-                    'rgba(220, 38, 38, 0.6)',
-                    'rgba(5, 150, 105, 0.6)',
-                    'rgba(79, 70, 229, 0.6)',
-                    'rgba(245, 158, 11, 0.6)'
+                labels2 = ['Admins', 'Moderierende', 'Helfende', 'Lehrende'];
+                data = {
+                  labels: labels2,
+                  datasets: [
+                    {
+                      label: 'Dataset 1',
+                      data: [{{ $adminsCount }}, {{ $modsCount }}, {{ $helfendeCount }}, {{ $lehrendeCount }}],
+                      backgroundColor: [
+                        'rgba(220, 38, 38, 0.6)',
+                        'rgba(5, 150, 105, 0.6)',
+                        'rgba(79, 70, 229, 0.6)',
+                        'rgba(245, 158, 11, 0.6)'
+                      ]
+                    }
                   ]
-                }
-              ]
-            };
+                };
 
-            // Config
-            config = {
-              type: 'polarArea',
-              data: data,
-              options: {
-                responsive: true,
-                plugins: {
-                  legend: {
-                    position: 'top',
-                  }
+                // Config
+                config = {
+                  type: 'polarArea',
+                  data: data,
+                  options: {
+                    responsive: true,
+                    plugins: {
+                      legend: {
+                        position: 'top',
+                      }
 
-                }
-              },
-            };
+                    }
+                  },
+                };
 
-            // Aufruf
-            var myChart = new Chart(
-                document.getElementById('nutzende'),
-                config
-              );
+                // Aufruf
+                var myChart = new Chart(
+                    document.getElementById('nutzende'),
+                    config
+                  );
 
-            // mychart4
+            // mychart4 - Rollen
+                // Setup
+                DATA_COUNT = 5;
+                NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
 
-            // Setup
-            DATA_COUNT = 5;
-            NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
+                data = {
+                  labels: [ 'Lehrende', 'Helfende'],
+                  datasets: [
+                    {
+                      label: 'Dataset 1',
+                      data: [{{ $lehrendeCount }}, {{ $helfendeCount }}],
+                      backgroundColor: [
+                        'rgba(245, 158, 11, 0.6)',
+                        'rgba(79, 70, 229, 0.6)'
+                    ],
+                    }
+                  ]
+                };
 
-            data = {
-              labels: [ 'Lehrende', 'Helfende'],
-              datasets: [
-                {
-                  label: 'Dataset 1',
-                  data: [{{ $lehrendeCount }}, {{ $helfendeCount }}],
-                  backgroundColor: [
-                    'rgba(245, 158, 11, 0.6)',
-                    'rgba(79, 70, 229, 0.6)'
-                ],
-                }
-              ]
-            };
+                // Config
+                config = {
+                  type: 'pie',
+                  data: data,
+                  options: {
+                    responsive: true,
+                    plugins: {
+                      legend: {
+                        position: 'top',
+                      }
 
-            // Config
-            config = {
-              type: 'pie',
-              data: data,
-              options: {
-                responsive: true,
-                plugins: {
-                  legend: {
-                    position: 'top',
-                  }
+                    }
+                  },
+                };
 
-                }
-              },
-            };
-
-            // Aufruf
-            var myChart = new Chart(
-                document.getElementById('myChart4'),
-                config
-              );
-
+                // Aufruf
+                var myChart = new Chart(
+                    document.getElementById('myChart4'),
+                    config
+                  );
 
             //Lernende
 

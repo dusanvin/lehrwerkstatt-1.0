@@ -87,7 +87,15 @@
 
                                 <p class="font-medium text-gray-800 leading-none text-lg leading-6">Angebotserstellung</p>
 
-                                <p class="text-sm text-gray-500 mt-1 mb-3 mt-2">Erstellen Sie ein Angebot, um Ihre Hilfe anzubieten. Beschreiben Sie bitte die wöchentliche Stundenzahl, die Art, das Fach und Ihre fachlichen sowie technischen Fähigkeiten.
+                                <p class="text-sm text-gray-500 mt-1 mt-2 mb-1">Erstellen Sie ein Angebot, um Ihre Hilfe anzubieten. Beschreiben Sie bitte die Art, das Fach und Ihre fachlichen sowie technischen Fähigkeiten. Versuchen Sie außerdem auf folgende Fragen einzugehen und Ihr Angebot vorzustellen:
+
+                                    <ul class="mb-3 ml-5 list-disc">
+
+                                        <li>An welchen Wochentagen/-zeiten können Sie ein Treffen veranstalten?</li>
+                                        <li>Welche Aktivitäten könnten Sie sich vorstellen mit dem Lernenden durchzuführen? Nennen Sie ein paar Beispiele.</li>
+                                        <li>Hinterlassen Sie einen kurzen Gruß für die Lernenden. </li>
+
+                                    </ul>
 
                                 </p>
 

@@ -24,16 +24,16 @@
 
 @php
 
-    /* PHP-Interpreter for short_tags */
-    ini_set('short_open_tag',1);
+/* PHP-Interpreter for short_tags */
+ini_set('short_open_tag',1);
 
-    $valMot =  Config::get('site_vars.meinBereichMotivationDetailsPlaceholder');
-    $valStud =  Config::get('site_vars.meinBereichStudiengangPlaceholder');
-    $valFachsemest =  Config::get('site_vars.meinBereichFachsemesterPlaceholder');
-    $valFrei =  Config::get('site_vars.meinBereichFreizeitPlaceholder');
-    $valErfahrung =  Config::get('site_vars.meinBereichErfahrungPlaceholder');
-    $valTreffen =  Config::get('site_vars.meinBereichTreffenPlaceholder');
-    $valGruesse =  Config::get('site_vars.meinBereichGruessePlaceholder');
+$valMot = Config::get('site_vars.meinBereichMotivationDetailsPlaceholder');
+$valStud = Config::get('site_vars.meinBereichStudiengangPlaceholder');
+$valFachsemest = Config::get('site_vars.meinBereichFachsemesterPlaceholder');
+$valFrei = Config::get('site_vars.meinBereichFreizeitPlaceholder');
+$valErfahrung = Config::get('site_vars.meinBereichErfahrungPlaceholder');
+$valTreffen = Config::get('site_vars.meinBereichTreffenPlaceholder');
+$valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
 @endphp
 
@@ -64,7 +64,6 @@
                         {{ Config::get('site_vars.meinBereichMotivation') }} Ihr Profil ist <a href="{{ route('profile.details', ['id' => $user->id]) }}" style="color:blue;">hier</a> öffentlich einsehbar.
 
                     </p>
-
 
 
                 </div>
@@ -168,6 +167,28 @@
                         @endif
 
                         <!-- Fehlerbehandlung -->
+
+
+                        <!-- Profilbild -->
+
+                        <div>
+                            @if(isset($user->image->filename))
+                            <img src="{{ url('images/show/'.$user->id) }}">
+                            @else
+                            <img src="" alt="Kein Profilbild hinterlegt.">
+                            @endif
+                        </div>
+
+                        <form method="POST" action="{{ route('images.store') }}" enctype="multipart/form-data">
+                            @csrf
+                            <label for="file">Profilbild ändern</label><br>
+                            <input type="file" name="image" id="file" />
+
+                            <button type="submit">Bild hochladen</button>
+                        </form>
+
+                        <!-- Profilbild -->
+
 
                         <!-- Informationsanzeige sowie -bearbeitung -->
 

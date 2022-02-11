@@ -26,6 +26,14 @@
 
                     </h2>
 
+                    <div>
+                            @if(isset($user->image->filename))
+                            <img src="{{ url('images/show/'.$user->id) }}">
+                            @else
+                            <img src="" alt="Kein Profilbild hinterlegt.">
+                            @endif
+                    </div>
+
                     <!-- <p class="mt-1 text-sm text-gray-500">
 
                         Betrachten Sie die Informationen zu Ihrer Person. Die Daten sind öffentlich einsehbar.
@@ -49,12 +57,6 @@
                             <!-- Profile Card -->
 
                             <div class="p-3 select-none">
-
-                                <div class="image overflow-hidden">
-
-                                    <img class="h-auto w-full mx-auto" src="http://hosted-024-216.rz.uni-augsburg.de/img/avatar.jpg" alt="">
-
-                                </div>
 
                                 <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->vorname }} {{ $user->nachname }}</h2>
                                 <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->id }}</h2>

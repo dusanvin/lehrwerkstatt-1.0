@@ -22,7 +22,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\MessagesController;
-
+use App\Http\Controllers\ImageController;
+use App\Models\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +81,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('profile.edit');
 
         Route::resource('profiles', ProfileController::class);
+
+        Route::get('/image', [ImageController::class, 'index'])
+            ->name('images.index');
+        Route::post('/image', [ImageController::class, 'store'])
+            ->name('images.store');
+        Route::post('images/{image}', [ImageController::class, 'destroy'])
+            ->name('images.destroy');
+        
+        Route::get('/images/show/{user_id}', [ImageController::class, 'show'])
+            ->name('images.show');
 
     });
 

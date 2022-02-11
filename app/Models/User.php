@@ -71,4 +71,8 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new CustomVerifyEmail);
     }
 
+    public function image() {
+        return $this->hasOne(ImageFile::class);
+    }
+
 }

@@ -79,7 +79,7 @@
 
 					<div class="pl-3">
 
-						<p class="navigation-element text-sm font-medium leading-none mb-1 font-semibold">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</p>
+						<p class="navigation-element text-sm font-medium leading-none mb-1 font-semibold text-left">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</p>
 
 						<p class="navigation-element text-left text-xs">{{ Auth::user()->roles[0]->name }}</p>
 

@@ -30,6 +30,6 @@ class CreateImageFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('imagefiles');
+        Schema::dropIfExists('image_files');
     }
 }

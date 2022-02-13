@@ -174,18 +174,24 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
                         <div>
                             @if(isset($user->image->filename))
                             <img src="{{ url('images/show/'.$user->id) }}">
+                            <form method="POST" action="{{ route('images.store') }}" enctype="multipart/form-data">
+                                @csrf
+                                <input type="file" name="image" id="file" />
+                                <button type="submit">Profilbild ändern</button>
+                            </form>
+                            <form method="POST" action="{{ route('images.destroy', ['user_id' => $user->id]) }}">
+                                @csrf
+                                <br>
+                                <button type="submit">Bild löschen</button>
+                            </form>
                             @else
-                            <img src="" alt="Kein Profilbild hinterlegt.">
+                            <form method="POST" action="{{ route('images.store') }}" enctype="multipart/form-data">
+                                @csrf
+                                <input type="file" name="image" id="file" />
+                                <button type="submit">Profilbild hinterlegen</button>
+                            </form>
                             @endif
                         </div>
-
-                        <form method="POST" action="{{ route('images.store') }}" enctype="multipart/form-data">
-                            @csrf
-                            <label for="file">Profilbild ändern</label><br>
-                            <input type="file" name="image" id="file" />
-
-                            <button type="submit">Bild hochladen</button>
-                        </form>
 
                         <!-- Profilbild -->
 

@@ -50,7 +50,11 @@ class ImageController extends Controller
         return response()->file($path);
     }
 
-    public function destroy() {
-
+    public function destroy($user_id) {
+        $user = User::find($user_id);
+        Storage::delete($user->image->filename);
+        ImageFile::where('filename', $user->image->filename)->delete();
+        session()->flash('success', 'true');
+        return back();
     }
 }

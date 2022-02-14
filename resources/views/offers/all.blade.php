@@ -22,9 +22,13 @@
 
                 <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100"><a href="{{ route('offers.all') }}">Alle Angebote</a></li>
 
-                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('offers.user') }}">Meine Angebote</a></li>
+                @role('Admin|Moderierende|Helfende')
 
-                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('offers.make') }}">Angebot erstellen</a></li>
+                    <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('offers.user') }}">Meine Angebote</a></li>
+
+                    <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('offers.make') }}">Angebot erstellen</a></li>
+
+                @endrole
 
             </ul>
 

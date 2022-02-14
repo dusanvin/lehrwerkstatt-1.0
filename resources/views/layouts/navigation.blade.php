@@ -79,7 +79,7 @@
 
 					<div class="pl-3">
 
-						<p class="navigation-element text-sm font-medium leading-none mb-1 font-semibold text-left">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</p>
+						<p class="navigation-element text-sm font-medium mb-1 font-semibold text-left">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</p>
 
 						<p class="navigation-element text-left text-xs">{{ Auth::user()->roles[0]->name }}</p>
 
@@ -116,7 +116,7 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium  leading-none mb-1 font-semibold">{{ Config::get('site_vars.meinBereich') }}</p>
+							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.meinBereich') }}</p>
 
 							<p class="navigation-element text-xs">{{ Config::get('site_vars.meinBereichInfo') }}</p>
 
@@ -148,7 +148,7 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium  leading-none mb-1 font-semibold">{{ Config::get('site_vars.nachrichten') }}</p>
+							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.nachrichten') }}</p>
 
 							<p class="navigation-element text-xs">{{ Config::get('site_vars.nachrichtenInfo') }}</p>
 
@@ -188,7 +188,7 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium leading-none mb-1 font-semibold">{{ Config::get('site_vars.stats') }}</p>
+							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.stats') }}</p>
 
 							<p class="navigation-element text-xs">{{ Config::get('site_vars.statsInfo') }}</p>
 
@@ -218,7 +218,7 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-mediumleading-none mb-1 font-semibold">{{ Config::get('site_vars.verwaltung') }}</p>
+							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.verwaltung') }}</p>
 
 							<p class="navigation-element text-xs">{{ Config::get('site_vars.verwaltungInfo') }}</p>
 
@@ -254,7 +254,7 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-mediumleading-none mb-1 font-semibold">{{ Config::get('site_vars.angebote') }}</p>
+							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.angebote') }}</p>
 
 							<p class="navigation-element text-xs">{{ Config::get('site_vars.angeboteInfo') }}</p>
 
@@ -284,7 +284,7 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium leading-none mb-1 font-semibold">{{ Config::get('site_vars.bedarfe') }}</p>
+							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.bedarfe') }}</p>
 
 							<p class="navigation-element text-xs">{{ Config::get('site_vars.bedarfeInfo') }}</p>
 

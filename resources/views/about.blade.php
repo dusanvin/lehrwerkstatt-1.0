@@ -96,7 +96,7 @@
 
                                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">PROFIL</h2>
 
-                                <p class="leading-relaxed">Praktikumssuchene ergänzen ihr Profil individuell, um Schulen die Auswahl zu erleichtern.</p>
+                                <p class="leading-relaxed">Praktikumssuchende ergänzen ihr Profil individuell, um Schulen die Auswahl zu erleichtern.</p>
 
                             </div>
 
@@ -126,7 +126,7 @@
 
                                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">ZUTEILUNG</h2>
 
-                                <p class="leading-relaxed">Praktikumssuchene und -beauftragte erstellen Bedarfe und Angebote, um ein Praktikum zu finden.</p>
+                                <p class="leading-relaxed">Praktikumssuchende und -beauftragte erstellen Bedarfe und Angebote, um ein Praktikum zu finden.</p>
 
                             </div>
 
@@ -156,7 +156,7 @@
 
                                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">CHAT</h2>
 
-                                <p class="leading-relaxed">Praktikumsbeauftrage schreiben -suchene an, um ein Praktikum zu offerieren.</p>
+                                <p class="leading-relaxed">Praktikumsbeauftrage schreiben -suchende an, um ein Praktikum zu offerieren.</p>
 
                             </div>
 

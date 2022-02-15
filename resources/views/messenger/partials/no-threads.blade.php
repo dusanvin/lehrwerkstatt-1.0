@@ -1,1 +1,1 @@
-<p><strong>Keine</strong> Nachrichten vorhanden.</p>
+<p class="px-4 pb-4"><strong>Keine</strong> Nachrichten vorhanden.</p>

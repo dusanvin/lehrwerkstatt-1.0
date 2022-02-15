@@ -1,19 +1,15 @@
-@if (Auth::user()->getRoleNames()[0] === 'Admin')
+@role('Admin|Moderierende')
 
-    <div class="bg-white px-6 py-4">
+    <ul id="tabs" class="inline-flex w-full">
 
-        <nav class="flex flex-col sm:flex-row text-sm border-b border-gray-300">
+        <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100"><a href="{{ route('users.index') }}">Personen verwalten</a></li>
 
-            <a href="{{ route('users.index') }}" class="font-medium text-purple-500 py-4 px-6 inline-block focus:outline-none border-b-2 border-purple-500">
-                Personen<span class="text-xs font-normal"><br>Datenverwaltung</span>
-            </a>
+        @role('Admin')
 
-            <a href="{{ route('roles.index') }}" class="border-b-2 font-medium text-gray-500 py-4 px-6 inline-block focus:border-purple-300 focus:text-purple-500 focus:outline-none hover:text-purple-500 hover:border-purple-300">
-                Rollen<span class="text-xs font-normal"><br>Datenverwaltung</span>
-            </a>
+            <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('roles.index') }}">Rollen verwalten</a></li>
 
-        </nav>
-        
-    </div>
+        @endrole
 
-@endif
+    </ul>
+
+@endrole

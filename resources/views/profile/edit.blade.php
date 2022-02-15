@@ -46,10 +46,9 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
         @include('layouts.navigation')
 
-        <div class="px-1 md:px-8 py-8 md:py-8 text-gray-700 w-screen sm:rounded-r-lg" style="background-color: #EDF2F7;">
+        <div class="px-1 md:px-8 py-1 md:py-8 text-gray-700 w-screen sm:rounded-r-lg" style="background-color: #EDF2F7;">
 
             <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
-
 
                 <div class="px-4 py-5 sm:px-6">
 
@@ -64,7 +63,6 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
                         {{ Config::get('site_vars.meinBereichMotivation') }} Ihr Profil ist <a href="{{ route('profile.details', ['id' => $user->id]) }}" style="color:blue;">hier</a> öffentlich einsehbar.
 
                     </p>
-
 
                 </div>
 

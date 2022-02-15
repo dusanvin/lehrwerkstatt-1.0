@@ -28,12 +28,11 @@
         font-size: 0.875rem;
         line-height: 1.25rem;
         cursor: pointer;
-        border:none;
+        border: none;
         padding-left: 10px !important;
         padding-top: 10px;
         padding-bottom: 10px;
     }
-
 </style>
 
 
@@ -139,47 +138,129 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                         @if (count($errors) > 0)
 
-                            <div class="alert alert-danger">
+                        <div class="alert alert-danger">
 
-                                <ul>
+                            <ul>
 
-                                    @foreach ($errors->all() as $error)
+                                @foreach ($errors->all() as $error)
 
-                                    <li class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-400">
+                                <li class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-400">
 
-                                        <span class="text-xl inline-block mr-2 align-middle">
+                                    <span class="text-xl inline-block mr-2 align-middle">
 
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                                            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
 
-                                            </svg>
+                                        </svg>
 
-                                        </span>
+                                    </span>
 
-                                        <span class="inline-block align-middle">
+                                    <span class="inline-block align-middle">
 
-                                            {{ $error }}
+                                        {{ $error }}
 
-                                        </span>
+                                    </span>
 
-                                        <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+                                    <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
 
-                                            <span>×</span>
+                                        <span>×</span>
 
-                                        </button>
+                                    </button>
 
-                                    </li>
+                                </li>
 
-                                    @endforeach
+                                @endforeach
 
-                                </ul>
+                            </ul>
 
-                            </div>
+                        </div>
 
                         @endif
 
                         <!-- Fehlerbehandlung -->
+
+                        <!-- Profilbild -->
+
+                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 mb-6">
+
+                            <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                <strong>Hinterlegen</strong> Sie ein <strong>Profilbild</strong> (max. 20MB)
+
+                            </dt>
+
+                            @if(isset($user->image->filename))
+
+                            <img src="{{ url('images/show/'.$user->id) }}">
+
+                            <div>
+
+                                <form method="POST" action="{{ route('images.store') }}" enctype="multipart/form-data">
+
+                                    @csrf
+
+                                    <input type="file" name="image" id="file" class="mb-4" />
+
+                                    <button type="submit" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 pr-4 pl-3 mb-2 border border-purple-600 hover:border-transparent focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 rounded flex items-center transition ease-in-out duration-150">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+
+                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+
+                                        </svg>Bild hochladen
+
+                                    </button>
+
+                                </form>
+
+                                <form method="POST" action="{{ route('images.destroy', ['user_id' => $user->id]) }}">
+
+                                    @csrf
+
+                                    <button type="submit" class="bg-transparent hover:bg-yellow-600 text-yellow-600 font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-yellow-600 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition ease-in-out duration-150">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+
+                                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+
+                                        </svg>Bild löschen
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                            @else
+
+                            <div>
+
+                                <form method="POST" action="{{ route('images.store') }}" enctype="multipart/form-data">
+
+                                    @csrf
+
+                                    <input type="file" name="image" id="file" class="mb-4 block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded-lg" />
+
+                                    <button type="submit" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 pr-4 pl-3 mb-2 border border-purple-600 hover:border-transparent focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 rounded flex items-center transition ease-in-out duration-150">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+
+                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+
+                                        </svg>Bild hochladen
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                            @endif
+
+                        </div>
+
+                        <!-- Profilbild -->
 
                         <!-- Informationsanzeige sowie -bearbeitung -->
 
@@ -293,88 +374,6 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
                                     </dd>
 
                                 </div>
-
-                                <!-- Profilbild -->
-
-                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 mb-6">
-
-                                    <dt class="text-sm font-medium text-gray-500 py-2">
-
-                                        <strong>Hinterlegen</strong> Sie ein <strong>Profilbild</strong> (max. 20MB)
-
-                                    </dt>
-
-                                    @if(isset($user->image->filename))              
-
-                                        <img src="{{ url('images/show/'.$user->id) }}">
-
-                                        <div>
-
-                                            <form method="POST" action="{{ route('images.store') }}" enctype="multipart/form-data">
-
-                                                @csrf
-
-                                                <input type="file" name="image" id="file" class="mb-4"/>
-
-                                                <button type="submit" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 pr-4 pl-3 mb-2 border border-purple-600 hover:border-transparent focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 rounded flex items-center transition ease-in-out duration-150">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
-                                                        
-                                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                                                    
-                                                    </svg>Bild hochladen
-
-                                                </button>
-
-                                            </form>
-
-                                            <form method="POST" action="{{ route('images.destroy', ['user_id' => $user->id]) }}">
-
-                                                @csrf
-
-                                                <button type="submit" class="bg-transparent hover:bg-yellow-600 text-yellow-600 font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-yellow-600 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition ease-in-out duration-150">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
-                                                        
-                                                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-
-                                                    </svg>Bild löschen
-
-                                                </button>
-
-                                            </form>
-
-                                        </div>
-
-                                    @else
-
-                                        <div>
-
-                                            <form method="POST" action="{{ route('images.store') }}" enctype="multipart/form-data">
-
-                                                @csrf
-
-                                                <input type="file" name="image" id="file" class="mb-4 block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded-lg"/>
-
-                                                <button type="submit" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 pr-4 pl-3 mb-2 border border-purple-600 hover:border-transparent focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 rounded flex items-center transition ease-in-out duration-150">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
-                                                        
-                                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                                                    
-                                                    </svg>Bild hochladen
-
-                                                </button>
-
-                                            </form>
-
-                                        </div>
-
-                                    @endif
-
-                                </div>
-
-                                <!-- Test -->
 
                                 <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 

@@ -91,7 +91,7 @@ class ProfileController extends Controller
             'vorname' => 'required|max:255',
             'nachname' => 'required|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'same:confirm-password', //confirm-password
+            'password' => 'same:confirm-password',
         ]);
 
 
@@ -106,7 +106,7 @@ class ProfileController extends Controller
 				->mixedCase()
 				->letters(),
 			    ]
-            ]);
+            ], ['password' => 'ijwefiuhweuoifhwoiuefhuoi']);
             $input['password'] = Hash::make($input['password']);
         } else {
             $input = Arr::except($input, array('password'));

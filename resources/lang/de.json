@@ -1,3 +1,5 @@
 {
-    "The :attribute must contain at least one symbol.": "Das :attribute muss mindestens ein Sonderzeichen enthalten."
+    "The :attribute must contain at least one number.": "Das :attribute muss mindestens eine Ziffer (0-9) enthalten.",
+    "The :attribute must contain at least one symbol.": "Das :attribute muss mindestens ein Sonderzeichen enthalten.",
+    "The :attribute must contain at least one uppercase and one lowercase letter.": "Das :attribute muss mindestens einen Groß- und Kleinbuchstaben enthalten." 
 }

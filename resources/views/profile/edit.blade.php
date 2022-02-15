@@ -19,6 +19,21 @@
         --tw-ring-color: white !important;
         border-bottom-color: black !important;
     }
+
+    input[type=file]::-webkit-file-upload-button,
+    input[type=file]::file-selector-button {
+        background: #344955;
+        color: white !important;
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        cursor: pointer;
+        border:none;
+        padding-left: 10px !important;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
 </style>
 
 
@@ -339,7 +354,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                                 @csrf
 
-                                                <input type="file" name="image" id="file" class="mb-4"/>
+                                                <input type="file" name="image" id="file" class="mb-4 block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded-lg"/>
 
                                                 <button type="submit" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 pr-4 pl-3 mb-2 border border-purple-600 hover:border-transparent focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 rounded flex items-center transition ease-in-out duration-150">
 
@@ -359,7 +374,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                 </div>
 
-                                <!-- Profilbild -->
+                                <!-- Test -->
 
                                 <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 

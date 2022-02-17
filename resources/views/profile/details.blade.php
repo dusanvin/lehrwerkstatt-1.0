@@ -17,36 +17,11 @@
 
             <div class="overflow-hidden sm:rounded-lg mb-4">
 
-
-                <div class="px-4 py-5 sm:px-6">
-
-                    <h2 class="font-semibold text-lg text-gray-600">
-
-                        Öffentliches Profil
-
-                    </h2>
-
-                    <div>
-                            @if(isset($user->image->filename))
-                            <img src="{{ url('images/show/'.$user->id) }}">
-                            @else
-                            <img src="" alt="Kein Profilbild hinterlegt.">
-                            @endif
-                    </div>
-
-                    <!-- <p class="mt-1 text-sm text-gray-500">
-
-                        Betrachten Sie die Informationen zu Ihrer Person. Die Daten sind öffentlich einsehbar.
-
-                    </p> -->
-
-                </div>
-
                 <!-- Informationsanzeige -->
 
                 <!-- Inof neu -->
 
-                <div class="container px-2 sm:px-4">
+                <div class="px-2 sm:px-4">
 
                     <div class="md:flex no-wrap md:-mx-2 ">
 
@@ -56,56 +31,55 @@
 
                             <!-- Profile Card -->
 
-                            <div class="p-3 select-none">
+                            <div class="p-3 select-none mx-auto">
 
-                                <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->vorname }} {{ $user->nachname }}</h2>
-                                <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->id }}</h2>
-
-                                <p class="text-gray-600 font-lg text-semibold text-xs">
-
-                                    @if(!empty($user->getRoleNames()))
-
-                                        @foreach($user->getRoleNames() as $v)
-
-                                            <label class="badge badge-success">{{ $v }}</label>
-
-                                        @endforeach
-
-                                    @endif
-
-                                </p>
-
-                                <p class="text-sm text-gray-500 mt-2 select-none">
-
-                                    @if($user->motivation === NULL)
-                                        
-                                        Es sind keine näheren Angaben zu Motivationsgründen vorhanden.
-
+                                <div class="">
+                                    @if(isset($user->image->filename))
+                                    <img src="{{ url('images/show/'.$user->id) }}" class="w-48 h-48 rounded-full object-cover border-4 border-white mx-auto z-40">
                                     @else
-
-                                        {{ $user->motivation }}
-
+                                    <img src="" alt="Kein Profilbild hinterlegt.">
                                     @endif
+                                </div>
+                                
+                                <div class="text-center">
+                                    
+                                    <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->vorname }} {{ $user->nachname }}</h2>
 
-                                </p>
+                                    <p class="text-gray-600 font-lg text-semibold text-xs">
+
+                                        @if(!empty($user->getRoleNames()))
+
+                                            @foreach($user->getRoleNames() as $v)
+
+                                                <label class="badge badge-success">{{ $v }}</label>
+
+                                            @endforeach
+
+                                        @endif
+
+                                    </p>
+
+                                    <p class="text-sm text-gray-500 mt-2 select-none mb-6">
+
+                                        @if($user->gruesse === NULL)
+                                            
+                                            Es sind keine Profilgruesse hinterlegt.
+
+                                        @else
+
+                                            {{ $user->gruesse }}
+
+                                        @endif
+
+                                    </p>
+
+                                </div>                                
 
                                 <ul class="bg-white text-gray-600 py-2 px-3 mt-3 divide-y rounded text-sm">
 
-                                    <li class="flex items-center py-3">
-
-                                        <span>Status</span>
-
-                                        <span class="ml-auto">
-
-                                            <span class="bg-green-500 py-1 px-2 rounded text-white text-sm">Aktiv</span>
-
-                                        </span>
-
-                                    </li>
-
-                                    <li class="flex items-center py-3">
-                                        <span>Letzte Anmeldung</span>
-                                        <span class="ml-auto">
+                                    <li class="py-3">
+                                        <div class="text-teal-600">Letzte Anmeldung</div>
+                                        <div class="text-gray-500 text-xs">
                                             @if($user->last_login_at === NULL)
                                                 -
                                             @else
@@ -113,194 +87,209 @@
                                                 {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}
 
                                             @endif
-                                        </span>
+                                        </div>
                                     </li>
                                     
-                                    <li class="flex items-center py-3">
-                                        <span>Registrierung</span>
-                                        <span class="ml-auto">{{ $user->created_at->DiffForHumans() }}</span>
+                                    <li class="py-3">
+                                        <div class="text-teal-600">Registrierung</div>
+                                        <div class="text-gray-500 text-xs">{{ $user->created_at->DiffForHumans() }}</div>
                                     </li>
+
+                                    <li class="py-3">
+                                        <div class="text-teal-600">E-Mail</div>
+                                        <div class="text-gray-500 text-xs">{{ $user->email }}</div>
+                                    </li>
+
+                                    <li class="py-3">
+                                        <div class="text-teal-600">Studiengang</div>
+                                        <div class="text-gray-500 text-xs">{{ $user->studiengang }}</div>
+                                    </li>
+                                    <li class="py-3">
+                                        <div class="text-teal-600">Fachsemester</div>
+                                        <div class="text-gray-500 text-xs">{{ $user->fachsemester }}</div>
+                                    </li>
+
                                 </ul>
+
+                                <!-- Anfragen -->
+
+                                @if($user->id != Auth::id())
+
+                                    <form action="{{ route('messages.store') }}" method="post">
+
+                                        {{ csrf_field() }}
+
+                                        <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="Neuer Chat über Profilanfrage" name="subject" type="hidden">
+
+                                        <textarea name="message" placeholder="Ihre Nachricht." style="display:none;">Hallo, ich schreibe Ihnen über Ihr Profil. Das ist eine automatisierte Systemnachricht.</textarea>
+
+                                        <div class="checkbox">
+
+                                            <input name="recipients[]" value="{{ $user->id }}" type="hidden">
+
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300 text-sm flex focus:outline-none mx-1 transition ease-in-out duration-150 has-tooltip">
+
+                                                <div class="grid justify-items-center">
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                      <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                                                      <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
+                                                    </svg>
+
+                                                    <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Anfragen</span>
+
+                                                </div>
+
+                                            </button>
+
+                                        </div>
+
+                                    </form>
+
+                                @endif
+
+                                <!-- Anfragen -->
+
+
                             </div>
+
                             <!-- End of profile card -->
+
                             <div class="my-4"></div>
                             
                         </div>
+
                         <!-- Right Side -->
-                        <div class="w-full md:w-9/12 mx-2">
+
+                        <div class="w-full md:w-9/12 mr-2 gap-4">
+
                             <!-- Profile tab -->
-                            <!-- Experience and education -->
-                            <div class="bg-white rounded rounded-sm px-3 py-2">
 
-                                <div class="grid grid-cols-1 sm:grid-cols-2">
-                                    <div>
-                                        <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 my-3 mr-2">
-                                            <span>
-                                                <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                                </svg>
-                                            </span>
-                                            <span class="tracking-wide">Generelles</span>
-                                        </div>
-                                        <ul class="list-inside space-y-2">
-                                            <li>
-                                                <div class="text-teal-600">Vorname</div>
-                                                <div class="text-gray-500 text-xs">{{ $user->vorname }}</div>
-                                            </li>
-                                            <li>
-                                                <div class="text-teal-600">Nachname</div>
-                                                <div class="text-gray-500 text-xs">{{ $user->nachname }}</div>
-                                            </li>
-                                            <li>
-                                                <div class="text-teal-600">E-Mail</div>
-                                                <div class="text-gray-500 text-xs">{{ $user->email }}</div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 my-3">
-                                            <span clas="text-green-500">
-                                                <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    stroke="currentColor">
-                                                    <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
-                                                    <path fill="#fff"
-                                                        d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                                                </svg>
-                                            </span>
-                                            <span class="tracking-wide">Bildung</span>
-                                        </div>
-                                        <ul class="list-inside space-y-2">
-                                            <li>
-                                                <div class="text-teal-600">Studiengang</div>
-                                                <div class="text-gray-500 text-xs">{{ $user->studiengang }}</div>
-                                            </li>
-                                            <li>
-                                                <div class="text-teal-600">Fachsemester</div>
-                                                <div class="text-gray-500 text-xs">{{ $user->fachsemester }}</div>
-                                            </li>
-                                        </ul>
-                                    </div>
+                            <div class="px-3 py-2">
+
+                                <!-- Motivation -->
+                                
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                        Motivation
+
+                                    </dt>
+
+                                    <dd class="text-gray-500 text-xs">
+
+                                        @if($user->motivation === NULL)
+                                                
+                                            Es sind keine näheren Angaben zu Motivationsgründen vorhanden.
+
+                                        @else
+
+                                            {{ $user->motivation }}
+
+                                        @endif
+
+                                    </dd>
+
                                 </div>
-                                <!-- End of Experience and education grid -->
-                            <div class="my-4"></div>
 
-                            
+                                <!-- Motivation -->
+
+                                <!-- Erfahrungen -->
+
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                        Erfahrungen
+
+                                    </dt>
+
+                                    <dd class="text-gray-500 text-xs">
+
+                                        @if($user->erfahrungen === NULL)
+                                                
+                                            Es sind keine näheren Angaben zu Erfahrungen vorhanden.
+
+                                        @else
+
+                                            {{ $user->erfahrungen }}
+
+                                        @endif
+
+                                    </dd>
+
+                                </div>
+
+                                <!-- Erfahrungen -->
+
+                                <!-- Interessen -->
+
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                        Interessen
+
+                                    </dt>
+
+                                    <dd class="text-gray-500 text-xs">
+
+                                        @if($user->interessen === NULL)
+                                                
+                                            Es sind keine näheren Angaben zu Interessen vorhanden.
+
+                                        @else
+
+                                            {{ $user->interessen }}
+
+                                        @endif
+
+                                    </dd>
+
+                                </div>
+
+                                <!-- Interessen -->
+
+                                <!-- Treffen -->
+
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                        Möglichkeiten der Zusammenarbeit
+
+                                    </dt>
+
+                                    <dd class="text-gray-500 text-xs">
+
+                                        @if($user->treffen === NULL)
+                                                
+                                            Es sind keine näheren Angaben zu Möglichkeiten der Zusammenarbeit vorhanden.
+
+                                        @else
+
+                                            {{ $user->treffen }}
+
+                                        @endif
+
+                                    </dd>
+
+                                </div>
+
+                                <!-- Treffen -->
+
                             </div>
+
                             <!-- End of profile tab -->
+
                         </div>
+
                     </div>
-                </div>
-
-
-
-
-                <!-- Inof neu -->
-
-                <div>
-
-                    <dl>
-
-                        
-
-                        
-
-                        
-
-                        
-
-                        
-
-                        
-
-                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-
-                            <dt class="text-sm font-medium text-gray-500 py-2">
-
-                                <strong>Motivation</strong>
-
-                            </dt>
-
-                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
-
-                                {{ $user->motivation }}
-
-                            </dd>
-
-                        </div>
-
-                        
-
-                        
-
-                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-
-                            <dt class="text-sm font-medium text-gray-500 py-2">
-
-                                <strong>Interessen</strong>
-
-                            </dt>
-
-                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
-
-                                {{ $user->interessen }}
-
-                            </dd>
-
-                        </div>
-
-                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-
-                            <dt class="text-sm font-medium text-gray-500 py-2">
-
-                                <strong>Erfahrungen</strong>
-
-                            </dt>
-
-                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
-
-                                {{ $user->erfahrungen }}
-
-                            </dd>
-
-                        </div>
-
-                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-
-                            <dt class="text-sm font-medium text-gray-500 py-2">
-
-                                <strong>Treffen</strong>
-
-                            </dt>
-
-                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
-
-                                {{ $user->treffen }}
-
-                            </dd>
-
-                        </div>
-
-                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-
-                            <dt class="text-sm font-medium text-gray-500 py-2">
-
-                                <strong>Grüße</strong>
-
-                            </dt>
-
-                            <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
-
-                                {{ $user->gruesse }}
-
-                            </dd>
-
-                        </div>
-
-                    </dl>
 
                 </div>
 

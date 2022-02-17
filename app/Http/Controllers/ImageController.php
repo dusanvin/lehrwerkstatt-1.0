@@ -31,7 +31,7 @@ class ImageController extends Controller
         
         $img = Image::make($request->file('image'));
 
-        $img->resize(150, null, function ($constraint) {
+        $img->resize(300, null, function ($constraint) {
             $constraint->aspectRatio();
         });
 

@@ -112,7 +112,7 @@
 
                                 </div>
 
-                                <!-- Test -->
+                                <!-- Betreuungsrahmen -->
 
                                 <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
 
@@ -136,7 +136,11 @@
 
                                             <script>
                                                 var rahmen_select = document.getElementById("rahmen");
-                                                rahmen_select.value = {{ $need->rahmen }};
+                                                rahmen_select.value = {
+                                                    {
+                                                        $need - > rahmen
+                                                    }
+                                                };
                                             </script>
 
                                             @error('rahmen')
@@ -153,7 +157,7 @@
 
                                     </div>
 
-                                    <!-- Test -->
+                                    <!-- Betreuungsrahmen -->
 
                                     <!-- Schulart -->
 
@@ -175,7 +179,7 @@
 
                                             <script>
                                                 var schulart_select = document.getElementById("schulart");
-                                                schulart_select.value ="{{ $need->schulart }}";
+                                                schulart_select.value = "{{ $need->schulart }}";
                                             </script>
 
                                             @error('schulart')
@@ -194,7 +198,7 @@
 
                                     <!-- Schulart -->
 
-                                    <!-- Test -->
+                                    <!-- Fremdsprachkenntnisse -->
 
                                     <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
 
@@ -218,7 +222,7 @@
 
                                             <script>
                                                 var sprachkenntnisse_select = document.getElementById("sprachkenntnisse");
-                                                sprachkenntnisse_select.value ="{{ $need->sprachkenntnisse }}";
+                                                sprachkenntnisse_select.value = "{{ $need->sprachkenntnisse }}";
                                             </script>
 
                                             @error('sprachkenntnisse')
@@ -235,7 +239,74 @@
 
                                     </div>
 
-                                    <!-- Test -->
+                                    <!-- Fremdsprachkenntnisse -->
+
+                                    <!-- Interessen -->
+
+                                    <script>
+                                        var interessen = [];
+
+                                        function addToSelection(interesse, checked) {
+                                            console.log(interesse, checked);
+                                            if (checked) {
+                                                interessen.push(interesse);
+                                            } else {
+                                                let i = interessen.indexOf(interesse);
+                                                interessen.splice(i, 1);
+                                            }
+                                            console.log(interessen);
+                                            document.getElementById('interessen').value = interessen;
+                                        }
+                                    </script>
+
+                                    <input name="interessen" id="interessen" value="" />
+
+
+
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Sport" onclick="addToSelection(this.value, this.checked)">
+                                            Sport
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Musik" onclick="addToSelection(this.value, this.checked)">
+                                            Musik
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Lesen" onclick="addToSelection(this.value, this.checked)">
+                                            Lesen
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Schreiben" onclick="addToSelection(this.value, this.checked)">
+                                            Schreiben
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Kochen" onclick="addToSelection(this.value, this.checked)">
+                                            Kochen
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Kunst" onclick="addToSelection(this.value, this.checked)">
+                                            Kunst
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Basteln" onclick="addToSelection(this.value, this.checked)">
+                                            Basteln
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Malen" onclick="addToSelection(this.value, this.checked)">
+                                            Malen
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Reisen" onclick="addToSelection(this.value, this.checked)">
+                                            Reisen
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Tiere" onclick="addToSelection(this.value, this.checked)">
+                                            Tiere
+                                        </li>
+                                    </ul>
+
+                                    <!-- Interessen -->
 
                                     <!-- Studiengang -->
 
@@ -262,7 +333,7 @@
 
                                             <script>
                                                 var studiengang_select = document.getElementById("studiengang");
-                                                studiengang_select.value ="{{ $need->studiengang }}";
+                                                studiengang_select.value = "{{ $need->studiengang }}";
                                             </script>
 
                                             @error('studiengang')
@@ -368,7 +439,11 @@
 
                                             <script>
                                                 var fachsemester_select = document.getElementById("fachsemester");
-                                                fachsemester_select.value ={{ $need->fachsemester }};
+                                                fachsemester_select.value = {
+                                                    {
+                                                        $need - > fachsemester
+                                                    }
+                                                };
                                             </script>
 
                                             @error('fachsemester')

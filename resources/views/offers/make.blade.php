@@ -89,13 +89,13 @@
 
                                 <p class="text-sm text-gray-500 mt-1 mt-2 mb-1">Erstellen Sie ein Angebot, um Ihre Hilfe anzubieten. Beschreiben Sie bitte die Art, das Fach und Ihre fachlichen sowie technischen Fähigkeiten. Versuchen Sie außerdem auf folgende Fragen einzugehen und Ihr Angebot vorzustellen:
 
-                                    <ul class="mb-3 ml-5 list-disc">
+                                <ul class="mb-3 ml-5 list-disc">
 
-                                        <li>An welchen Wochentagen/-zeiten können Sie ein Treffen veranstalten?</li>
-                                        <li>Welche Aktivitäten könnten Sie sich vorstellen mit dem Lernenden durchzuführen? Nennen Sie ein paar Beispiele.</li>
-                                        <li>Hinterlassen Sie einen kurzen Gruß für die Lernenden. </li>
+                                    <li>An welchen Wochentagen/-zeiten können Sie ein Treffen veranstalten?</li>
+                                    <li>Welche Aktivitäten könnten Sie sich vorstellen mit dem Lernenden durchzuführen? Nennen Sie ein paar Beispiele.</li>
+                                    <li>Hinterlassen Sie einen kurzen Gruß für die Lernenden. </li>
 
-                                    </ul>
+                                </ul>
 
                                 </p>
 
@@ -121,7 +121,7 @@
 
                                 </div>
 
-                                <!-- Test -->
+                                <!-- Betreuungsrahmen -->
 
                                 <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
 
@@ -157,7 +157,7 @@
 
                                     </div>
 
-                                    <!-- Test -->
+                                    <!-- Betreuungsrahmen -->
 
                                     <!-- Schulart -->
 
@@ -193,7 +193,7 @@
 
                                     <!-- Schulart -->
 
-                                    <!-- Test -->
+                                    <!-- Fremdsprachkenntnisse -->
 
                                     <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
 
@@ -229,7 +229,74 @@
 
                                     </div>
 
-                                    <!-- Test -->
+                                    <!-- Fremdsprachkenntnisse -->
+
+                                    <!-- Interessen -->
+
+                                    <script>
+                                        var interessen = [];
+
+                                        function addToSelection(interesse, checked) {
+                                            console.log(interesse, checked);
+                                            if (checked) {
+                                                interessen.push(interesse);
+                                            } else {
+                                                let i = interessen.indexOf(interesse);
+                                                interessen.splice(i, 1);
+                                            }
+                                            console.log(interessen);
+                                            document.getElementById('interessen').value = interessen;
+                                        }
+                                    </script>
+
+                                    <input name="interessen" id="interessen" value="" />
+
+
+
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Sport" onclick="addToSelection(this.value, this.checked)">
+                                            Sport
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Musik" onclick="addToSelection(this.value, this.checked)">
+                                            Musik
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Lesen" onclick="addToSelection(this.value, this.checked)">
+                                            Lesen
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Schreiben" onclick="addToSelection(this.value, this.checked)">
+                                            Schreiben
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Kochen" onclick="addToSelection(this.value, this.checked)">
+                                            Kochen
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Kunst" onclick="addToSelection(this.value, this.checked)">
+                                            Kunst
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Basteln" onclick="addToSelection(this.value, this.checked)">
+                                            Basteln
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Malen" onclick="addToSelection(this.value, this.checked)">
+                                            Malen
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Reisen" onclick="addToSelection(this.value, this.checked)">
+                                            Reisen
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="Tiere" onclick="addToSelection(this.value, this.checked)">
+                                            Tiere
+                                        </li>
+                                    </ul>
+
+                                    <!-- Interessen -->
 
                                     <!-- Studiengang -->
 

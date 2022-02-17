@@ -73,6 +73,7 @@ class NeedsController extends Controller
             $need->body = $request->body;
             $need->rahmen = $request->rahmen;
             $need->sprachkenntnisse = $request->sprachkenntnisse;
+            $need->interessen = $request->interessen;
             $need->studiengang = $request->studiengang;
             $need->fachsemester = $request->fachsemester;
             $need->datum_start = $startDate;
@@ -86,6 +87,7 @@ class NeedsController extends Controller
                 'body' => $request->body,
                 'rahmen' => $request->rahmen,
                 'sprachkenntnisse' => $request->sprachkenntnisse,
+                'interessen' => $request->interessen,
                 'studiengang' => $request->studiengang,
                 'fachsemester' => $request->fachsemester,
                 'datum_start' => $startDate,

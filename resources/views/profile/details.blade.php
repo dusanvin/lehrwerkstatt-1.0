@@ -34,11 +34,17 @@
                             <div class="p-3 select-none mx-auto">
 
                                 <div class="">
+
                                     @if(isset($user->image->filename))
-                                    <img src="{{ url('images/show/'.$user->id) }}" class="w-48 h-48 rounded-full object-cover border-4 border-white mx-auto z-40">
+
+                                        <img src="{{ url('images/show/'.$user->id) }}" class="w-48 h-48 rounded-full object-cover border-4 border-white mx-auto">
+
                                     @else
-                                    <img src="" alt="Kein Profilbild hinterlegt.">
+                                    
+                                        <img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-48 h-48 rounded-full object-cover border-4 border-white mx-auto">                              
+
                                     @endif
+
                                 </div>
                                 
                                 <div class="text-center">
@@ -110,50 +116,72 @@
                                     </li>
 
                                 </ul>
+                                
+                                <div class="mt-4 flex justify-center">
 
                                 <!-- Anfragen -->
 
-                                @if($user->id != Auth::id())
+                                    @if($user->id != Auth::id())
 
-                                    <form action="{{ route('messages.store') }}" method="post">
+                                        <form action="{{ route('messages.store') }}" method="post">
 
-                                        {{ csrf_field() }}
+                                            {{ csrf_field() }}
 
-                                        <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="Neuer Chat über Profilanfrage" name="subject" type="hidden">
+                                            <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="Neuer Chat über Profilanfrage" name="subject" type="hidden">
 
-                                        <textarea name="message" placeholder="Ihre Nachricht." style="display:none;">Hallo, ich schreibe Ihnen über Ihr Profil. Das ist eine automatisierte Systemnachricht.</textarea>
+                                            <textarea name="message" placeholder="Ihre Nachricht." style="display:none;">Hallo, ich schreibe Ihnen über Ihr Profil. Das ist eine automatisierte Systemnachricht.</textarea>
 
-                                        <div class="checkbox">
+                                            <div class="checkbox">
 
-                                            <input name="recipients[]" value="{{ $user->id }}" type="hidden">
+                                                <input name="recipients[]" value="{{ $user->id }}" type="hidden">
+
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300 text-sm flex focus:outline-none mx-1 transition ease-in-out duration-150 has-tooltip">
+
+                                                    <div class="grid justify-items-center">
+
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                          <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                                                          <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
+                                                        </svg>
+
+                                                        <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Nachricht schreiben</span>
+
+                                                    </div>
+
+                                                </button>
+
+                                            </div>
+
+                                        </form>
+
+                                    @endif
+
+                                    <!-- Anfragen -->
+
+                                    <!-- E-Mail -->
+
+                                    <a href="mailto:{{  $user->email }}" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300 text-sm flex focus:outline-none mx-1 transition ease-in-out duration-150 has-tooltip">
+
+                                        <div class="grid justify-items-center">
+                                            
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                                            </svg>
+
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>E-Mail schreiben</span>
 
                                         </div>
 
-                                        <div class="form-group">
+                                    </a>
 
-                                            <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300 text-sm flex focus:outline-none mx-1 transition ease-in-out duration-150 has-tooltip">
+                                    <!-- E-Mail -->
 
-                                                <div class="grid justify-items-center">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                      <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
-                                                      <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
-                                                    </svg>
-
-                                                    <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Anfragen</span>
-
-                                                </div>
-
-                                            </button>
-
-                                        </div>
-
-                                    </form>
-
-                                @endif
-
-                                <!-- Anfragen -->
-
+                                </div>
 
                             </div>
 

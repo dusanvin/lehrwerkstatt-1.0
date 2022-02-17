@@ -186,7 +186,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                             <dt class="text-sm font-medium text-gray-500 py-2">
 
-                                <strong>Hinterlegen</strong> Sie ein <strong>Profilbild</strong> (max. 20MB)
+                                <strong>Hinterlegen</strong> Sie ein <strong>Profilbild</strong> (max. 20MB mit den min. Abmessungen 300x300px)
 
                             </dt>
 

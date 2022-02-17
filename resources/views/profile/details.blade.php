@@ -97,7 +97,7 @@
 
                                     <li class="py-3">
                                         <div class="text-teal-600">E-Mail</div>
-                                        <div class="text-gray-500 text-xs">{{ $user->email }}</div>
+                                        <div class="text-gray-500 text-xs break-all">{{ $user->email }}</div>
                                     </li>
 
                                     <li class="py-3">

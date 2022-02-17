@@ -64,9 +64,6 @@
 
 		@php
 			$id = auth()->user()->id;
-			if(isset(Auth::user()->image->filename)) {
-				
-			}
 		@endphp
 
 
@@ -76,11 +73,11 @@
 
 	                    @if(isset(Auth::user()->image->filename)) 
 
-	                    	<a href="{{ route('profile.details', ['id' => $user->id]) }}" class="text-gray-500 hover:text-gray-800 hover:bg-opacity-10 rounded-md flex items-center">
+	                    	<a href="{{ route('profile.details', ['id' => Auth::user()->id]) }}" class="text-gray-500 hover:text-gray-800 hover:bg-opacity-10 rounded-md flex items-center">
 
 	                    		<img src="{{ url('images/show/'.$id) }}" class="w-10 h-10 rounded-full object-cover border-gray-200">
 
-								<span class="text-xs sm:text-sm font-medium font-semibold text-left px-4">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</span>
+								<span class="text-xs sm:text-sm font-medium font-semibold text-left px-4 break-all">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</span>
 
 	                    	</a>
 

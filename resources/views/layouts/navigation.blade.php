@@ -58,41 +58,7 @@
 
 		<!-- Toggle-Menu -->
 
-		@if (auth()->user())
-
-			<div class="text-center pt-3 text-gray-200 mt-10">
-			
-				@php
-					$id = auth()->user()->id;
-				@endphp
-
-				<a href="{{ route('profile.details', ['id' => $id]) }}" class="mx-2 px-4 py-2 text-gray-100 hover:text-gray-400 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('profile/details/*')) { text-yellow-400 } @endif">
-
-					<div class="">
-
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                         	<path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
-                          	<path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
-                        </svg>
-
-					</div>
-
-					<div class="pl-3">
-
-						<p class="navigation-element text-sm font-medium mb-1 font-semibold text-left">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</p>
-
-						<p class="navigation-element text-left text-xs">{{ Auth::user()->roles[0]->name }}</p>
-
-					</div>
-
-				</a>
-
-			</div>
-			
-
-		@endif
-
-		<div class="mt-5">
+		<div class="mt-10 pt-3">
 
 			<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Allgemeines</p>
 			

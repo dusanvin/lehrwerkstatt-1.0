@@ -71,17 +71,17 @@
 
                     <div class="px-3">
 
-	                    @if(isset(Auth::user()->image->filename)) 
+                    	<a href="{{ route('profile.details', ['id' => Auth::user()->id]) }}" class="text-gray-500 hover:text-gray-800 hover:bg-opacity-10 rounded-md flex items-center">
 
-	                    	<a href="{{ route('profile.details', ['id' => Auth::user()->id]) }}" class="text-gray-500 hover:text-gray-800 hover:bg-opacity-10 rounded-md flex items-center">
+                    		@if(isset(Auth::user()->image->filename)) 
 
-	                    		<img src="{{ url('images/show/'.$id) }}" class="w-10 h-10 rounded-full object-cover border-gray-200">
+                    			<img src="{{ url('images/show/'.$id) }}" class="w-10 h-10 rounded-full object-cover border-gray-200">
 
-								<span class="text-xs sm:text-sm font-medium font-semibold text-left px-4 break-all">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</span>
+                    		@endif
 
-	                    	</a>
+							<span class="text-xs sm:text-sm font-medium font-semibold text-left px-4 break-words">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</span>
 
-	                    @endif
+                    	</a>
 
                     </div>
 

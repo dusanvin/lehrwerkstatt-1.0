@@ -74,7 +74,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                     <p class="mt-1 text-sm text-gray-500">
 
-                        {{ Config::get('site_vars.meinBereichMotivation') }} Ihr Profil ist <a href="{{ route('profile.details', ['id' => $user->id]) }}" style="color:blue;">hier</a> öffentlich einsehbar.
+                        {{ Config::get('site_vars.meinBereichMotivation') }} Ihr Profil ist <a href="{{ route('profile.details', ['id' => $user->id]) }}" class="text-purple-600 hover:text-purple-900">hier</a> öffentlich einsehbar.
 
                     </p>
 

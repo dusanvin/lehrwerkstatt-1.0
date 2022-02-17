@@ -34,11 +34,17 @@
                             <div class="p-3 select-none mx-auto">
 
                                 <div class="">
+
                                     @if(isset($user->image->filename))
-                                    <img src="{{ url('images/show/'.$user->id) }}" class="w-48 h-48 rounded-full object-cover border-4 border-white mx-auto z-40">
+
+                                        <img src="{{ url('images/show/'.$user->id) }}" class="w-48 h-48 rounded-full object-cover border-4 border-white mx-auto">
+
                                     @else
-                                    <img src="" alt="Kein Profilbild hinterlegt.">
+                                    
+                                        <img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-48 h-48 rounded-full object-cover border-4 border-white mx-auto">                              
+
                                     @endif
+
                                 </div>
                                 
                                 <div class="text-center">

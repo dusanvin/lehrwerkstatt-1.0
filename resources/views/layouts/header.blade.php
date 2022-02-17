@@ -77,6 +77,10 @@
 
                     			<img src="{{ url('images/show/'.$id) }}" class="w-10 h-10 rounded-full object-cover border-gray-200">
 
+                    		@else
+
+								<img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-10 h-10 rounded-full object-cover border-gray-200">                    		
+
                     		@endif
 
 							<span class="text-xs sm:text-sm font-medium font-semibold text-left px-4 break-words">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</span>

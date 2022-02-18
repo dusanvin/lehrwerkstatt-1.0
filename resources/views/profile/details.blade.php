@@ -69,7 +69,7 @@
 
                                         @if($user->gruesse === NULL)
                                             
-                                            Es sind keine Profilgruesse hinterlegt.
+                                            Es sind keine Profilgrüße hinterlegt.
 
                                         @else
 

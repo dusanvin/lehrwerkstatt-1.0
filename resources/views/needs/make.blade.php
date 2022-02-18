@@ -405,70 +405,70 @@
 
                                             <div class="grid items-center mx-2 mb-4"> <!-- content-center oben: flex content-center-->
                                             
-                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value="Sport" onclick="addToSelection(this.value, this.checked)">
+                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Sport" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Sport</span>
                                             
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
 
-                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value="Musik" onclick="addToSelection(this.value, this.checked)">
+                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Musik" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Musik</span>
 
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
                                             
-                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value="Lesen" onclick="addToSelection(this.value, this.checked)">
+                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Lesen" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Lesen</span>
                                             
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
 
-                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value="Schreiben" onclick="addToSelection(this.value, this.checked)">
+                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Schreiben" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Schreiben</span>
                                             
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
 
-                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value="Kochen" onclick="addToSelection(this.value, this.checked)">
+                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Kochen" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Kochen</span>
                                             
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
 
-                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value="Kunst" onclick="addToSelection(this.value, this.checked)">
+                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Kunst" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Kunst</span>
                                             
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
 
-                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value="Basteln" onclick="addToSelection(this.value, this.checked)">
+                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Basteln" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Basteln</span>
                                             
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
 
-                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value="Malen" onclick="addToSelection(this.value, this.checked)">
+                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Malen" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Malen</span>
                                             
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
 
-                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value="Reisen" onclick="addToSelection(this.value, this.checked)">
+                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Reisen" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Reisen</span>
                                             
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
 
-                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value="Tiere" onclick="addToSelection(this.value, this.checked)">
+                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Tiere" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Tiere</span>
 
                                             </div>

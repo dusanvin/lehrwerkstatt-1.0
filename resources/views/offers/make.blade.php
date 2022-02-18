@@ -486,13 +486,6 @@
                                                 <span class="mt-1 text-xs">Tiere</span>
 
                                             </div>
-
-                                            <div class="grid items-center mx-2 mb-4">
-
-                                                <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Tiere" onclick="addToSelection(this.value, this.checked)">
-                                                <span class="mt-1 text-xs">Keine Angabe</span>
-
-                                            </div>
                                             
                                         </div>
 

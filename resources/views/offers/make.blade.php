@@ -411,7 +411,7 @@
 
                                         <p class="font-medium text-gray-800 leading-none">Interessen</p>
 
-                                        <p class="text-xs text-gray-500 mt-1 mb-4">Wählen Sie die Interessen aus, die Ihr*e Helfer*in charakterisieren könnte.</p>
+                                        <p class="text-xs text-gray-500 mt-1 mb-4">Geben Sie Ihre Interessen an.</p>
 
                                         <input name="interessen" id="interessen" value="Keine Angabe" type="hidden" />
 

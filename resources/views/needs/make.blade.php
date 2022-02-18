@@ -175,6 +175,9 @@
                                             <select name="schulart" id="schulart" class="text-gray-500 text-xs py-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('schulart') border-red-500 @enderror">
                                                 <option>Keine</option>
                                                 <option>Grundschule</option>
+                                                <option>Mittelschule</option>
+                                                <option>Realschule</option>
+                                                <option>Gymnasium</option>
                                                 <option>Weitere</option>
                                             </select>
 
@@ -399,7 +402,7 @@
 
                                         <p class="text-xs text-gray-500 mt-1 mb-4">Wählen Sie die Interessen aus, die Ihr*e Helfer*in charakterisieren könnte.</p>
 
-                                        <input name="interessen" id="interessen" value="" type="hidden" />
+                                        <input name="interessen" id="interessen" value="Keine Angabe" type="hidden" />
 
                                         <div class="flex relative flex-wrap">
 

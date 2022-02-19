@@ -136,11 +136,7 @@
 
                                             <script>
                                                 var rahmen_select = document.getElementById("rahmen");
-                                                rahmen_select.value = {
-                                                    {
-                                                        $need - > rahmen
-                                                    }
-                                                };
+                                                rahmen_select.value = {{ $need->rahmen }};
                                             </script>
 
                                             @error('rahmen')
@@ -439,11 +435,7 @@
 
                                             <script>
                                                 var fachsemester_select = document.getElementById("fachsemester");
-                                                fachsemester_select.value = {
-                                                    {
-                                                        $need - > fachsemester
-                                                    }
-                                                };
+                                                fachsemester_select.value = {{ $need->fachsemester }};
                                             </script>
 
                                             @error('fachsemester')

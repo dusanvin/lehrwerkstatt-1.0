@@ -49,12 +49,9 @@ class UserController extends Controller
         $input['password'] = Hash::make($input['password']);
 
         $user = User::create($input);
-        // $user->assignRole($request->input('roles'));
 
         $role = $request->input('roles');
         $role_id = 0;
-        // dd(request());
-        // dd($role[0]);
         if ($role[0] == 'Admin') {
             $role_id = 7;
         }  
@@ -74,8 +71,6 @@ class UserController extends Controller
 
         $user->timestamps = false;
         $user->last_login_at = now();
-
-        // $user->sendEmailVerificationNotification();
 
         return redirect()->route('users.index')
             ->with('success', 'Person erfolgreich erstellt.');

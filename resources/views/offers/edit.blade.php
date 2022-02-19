@@ -260,7 +260,7 @@
                                     <input name="interessen" id="interessen" value="" />
 
 
-
+                                    
                                     <ul class="list-group">
                                         <li class="list-group-item">
                                             <input class="form-check-input me-1" type="checkbox" value="Sport" onclick="addToSelection(this.value, this.checked)">

@@ -106,7 +106,7 @@ class ProfileController extends Controller
 				->mixedCase()
 				->letters(),
 			    ]
-            ], ['password' => 'ijwefiuhweuoifhwoiuefhuoi']);
+            ]);
             $input['password'] = Hash::make($input['password']);
         } else {
             $input = Arr::except($input, array('password'));

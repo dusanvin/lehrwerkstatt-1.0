@@ -84,16 +84,14 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $id = auth()->id();
-        // Nach Klick auf "Änderungen übernehmen"
+        $user = User::find($id);
 
         $this->validate($request, [
-            'vorname' => 'min:1|max:255',
-            'nachname' => 'min:1|max:255',
+            'vorname' => 'filled|max:255',
+            'nachname' => 'filled|max:255',
             'email' => 'email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
         ]);
-
-        $user = User::find($id);
 
         $input = $request->all();
 
@@ -121,7 +119,6 @@ class ProfileController extends Controller
         session()->flash('success', 'true');
 
         return redirect()->route('profile.edit');
-            //->with('success', 'Informationen erfolgreich aktualisiert.');
     }
 
     /**

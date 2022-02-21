@@ -40,6 +40,8 @@
 
                     </div>
 
+                    <!-- 
+
                     @can('add_users')
 
                     <div class="float-right mb-4 mt-4 mr-4">
@@ -64,7 +66,7 @@
 
                     </div>
 
-                    @endcan
+                    @endcan -->
 
                     <!-- Success Message -->
 

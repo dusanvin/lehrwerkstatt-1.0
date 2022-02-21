@@ -13,6 +13,7 @@ class Offer extends Model
         'body',
         'rahmen',
         'sprachkenntnisse',
+        'interessen',
         'studiengang',
         'datum_start',
         'datum_end',

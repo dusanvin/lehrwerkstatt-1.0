@@ -84,21 +84,23 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $id = auth()->id();
-
-        // Nach Klick auf "Änderungen übernehmen"
+        $user = User::find($id);
 
         $this->validate($request, [
-            'vorname' => 'required|max:255',
-            'nachname' => 'required|max:255',
-            'email' => 'required|email|unique:users,email,' . $id,
+            'vorname' => 'filled|max:255',
+            'nachname' => 'filled|max:255',
+            'email' => 'email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
         ]);
 
-
-
         $input = $request->all();
 
-        if (!empty($input['password'])) {
+        if($input['email'] != $user->email) {
+            $user->email_verified_at = null;
+            $user->sendEmailVerificationNotification();
+        }
+
+        if (isset($input['password'])) {
             $this->validate($request, [
                 'password' => [Password::min(10)
 				->numbers()
@@ -106,21 +108,17 @@ class ProfileController extends Controller
 				->mixedCase()
 				->letters(),
 			    ]
-            ], ['password' => 'ijwefiuhweuoifhwoiuefhuoi']);
+            ]);
             $input['password'] = Hash::make($input['password']);
         } else {
             $input = Arr::except($input, array('password'));
         }
 
-
-
-        $user = User::find($id);
         $user->update($input);
 
         session()->flash('success', 'true');
 
         return redirect()->route('profile.edit');
-            //->with('success', 'Informationen erfolgreich aktualisiert.');
     }
 
     /**

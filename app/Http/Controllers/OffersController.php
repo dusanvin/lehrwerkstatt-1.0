@@ -65,7 +65,6 @@ class OffersController extends Controller
         $offer_id = request('offer_id');
 
         if (isset($offer_id)) {
-
             $offer = Offer::where('id', $offer_id)->first();
             if (!$offer->ownedBy(auth()->user())) {
                 return back();
@@ -73,6 +72,7 @@ class OffersController extends Controller
             $offer->body = $request->body;
             $offer->rahmen = $request->rahmen;
             $offer->sprachkenntnisse = $request->sprachkenntnisse;
+            $offer->interessen = $request->interessen;
             $offer->studiengang = $request->studiengang;
             $offer->fachsemester = $request->fachsemester;
             $offer->datum_start = $startDate;
@@ -81,11 +81,11 @@ class OffersController extends Controller
             $offer->save();
 
         } else {
-
             $request->user()->offers()->create([
                 'body' => $request->body,
                 'rahmen' => $request->rahmen,
                 'sprachkenntnisse' => $request->sprachkenntnisse,
+                'interessen' => $request->interessen,
                 'studiengang' => $request->studiengang,
                 'fachsemester' => $request->fachsemester,
                 'datum_start' => $startDate,

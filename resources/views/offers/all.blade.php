@@ -103,6 +103,8 @@
 
                                             <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Fremdsprachkenntnisse: <span class="font-medium">{{ $offer->sprachkenntnisse }}</span></p>
 
+                                            <p class="text-gray-400 text-sm mr-5">Interessen: <span class="font-medium">{{ $offer->interessen }}</span></p>
+
                                             <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Studiengang: <span class="font-medium">{{ $offer->studiengang }}</span></p>
 
                                             <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Fachsemester: <span class="font-medium">{{ $offer->fachsemester }}</span></p>

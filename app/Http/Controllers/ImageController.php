@@ -18,6 +18,11 @@ class ImageController extends Controller
     }
 
     public function store(Request $request) {
+        $user = User::find(auth()->user()->id);
+        if(isset($user->image->filename)) {
+            Storage::delete($user->image->filename);
+        }
+            
         $image = $request->validate([
             'image' => 'required|image' // |mimes:jpg, jpeg, png, bmp
         ]);
@@ -26,7 +31,7 @@ class ImageController extends Controller
         
         $img = Image::make($request->file('image'));
 
-        $img->resize(150, null, function ($constraint) {
+        $img->resize(300, null, function ($constraint) {
             $constraint->aspectRatio();
         });
 

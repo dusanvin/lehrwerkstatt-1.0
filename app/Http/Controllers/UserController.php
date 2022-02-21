@@ -10,6 +10,8 @@ use DB;
 use Hash;
 use Illuminate\Support\Arr;
 
+use Illuminate\Auth\Events\Registered;
+
 class UserController extends Controller
 
 {
@@ -43,14 +45,32 @@ class UserController extends Controller
             'password' => 'required|same:confirm-password'
         ]);
 
-
-
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
 
-
         $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+
+        $role = $request->input('roles');
+        $role_id = 0;
+        if ($role[0] == 'Admin') {
+            $role_id = 7;
+        }  
+        if ($role[0] == 'Helfende') {
+            $role_id = 4;
+        }
+        if ($role[0] == 'Lehrende') {
+            $role_id = 5;
+        }  
+        if ($role[0] == 'Moderierende') {
+            $role_id = 3;
+        }
+
+        DB::insert('insert into model_has_roles (role_id, model_type, model_id) values (?, ?, ?)', [$role_id, 'App\Models\User', $user->id]);
+        
+        event(new Registered($user));
+
+        $user->timestamps = false;
+        $user->last_login_at = now();
 
         return redirect()->route('users.index')
             ->with('success', 'Person erfolgreich erstellt.');

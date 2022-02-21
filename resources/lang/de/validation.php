@@ -134,7 +134,8 @@ return [
         'privacy_statement' => 'Datenschutzerklärung',
         'confirm-password' => 'Passwortbestätigung',
         'vorname' => 'Vorname',
-        'nachname' => 'Nachname'
+        'nachname' => 'Nachname',
+        'image' => 'Bild'
     ],
 
 ];

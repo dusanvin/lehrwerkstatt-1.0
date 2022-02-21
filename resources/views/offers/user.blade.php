@@ -242,6 +242,12 @@
                                                             <span class="font-medium">{{ $offer->sprachkenntnisse }}</span>
                                                         </p>
 
+                                                        <h3 class="text-sm">Interessen</h3>
+
+<p class="leading-5 text-gray-500 mb-2 text-xs">
+    <span class="font-medium">{{ $offer->interessen }}</span>
+</p>
+
                                                         <h3 class="text-sm">Studiengang</h3>
 
                                                         <p class="leading-5 text-gray-500 mb-2 text-xs">

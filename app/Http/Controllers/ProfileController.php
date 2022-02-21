@@ -102,7 +102,7 @@ class ProfileController extends Controller
             $user->sendEmailVerificationNotification();
         }
 
-        if (!empty($input['password'])) {
+        if (isset($input['password'])) {
             $this->validate($request, [
                 'password' => [Password::min(10)
 				->numbers()

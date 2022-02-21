@@ -84,19 +84,23 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $id = auth()->id();
-
         // Nach Klick auf "Änderungen übernehmen"
 
         $this->validate($request, [
-            'vorname' => 'required|max:255',
-            'nachname' => 'required|max:255',
-            'email' => 'required|email|unique:users,email,' . $id,
+            'vorname' => 'min:1|max:255',
+            'nachname' => 'min:1|max:255',
+            'email' => 'email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
         ]);
 
-
+        $user = User::find($id);
 
         $input = $request->all();
+
+        if($input['email'] != $user->email) {
+            $user->email_verified_at = null;
+            $user->sendEmailVerificationNotification();
+        }
 
         if (!empty($input['password'])) {
             $this->validate($request, [
@@ -112,9 +116,6 @@ class ProfileController extends Controller
             $input = Arr::except($input, array('password'));
         }
 
-
-
-        $user = User::find($id);
         $user->update($input);
 
         session()->flash('success', 'true');

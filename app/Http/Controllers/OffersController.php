@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Offer;
+use App\Models\Language;
 
 class OffersController extends Controller
 {
@@ -34,13 +35,15 @@ class OffersController extends Controller
 
     public function make()
     {
-        return view('offers.make');
+        $languages = Language::all();
+        return view('offers.make', ['languages' => $languages]);
     }
 
 
     public function edit(Offer $offer)
     {
-        return view('offers.edit', ['offer' => $offer]);
+        $languages = Language::all();
+        return view('offers.edit', ['offer' => $offer, 'languages' => $languages]);
     }
 
 

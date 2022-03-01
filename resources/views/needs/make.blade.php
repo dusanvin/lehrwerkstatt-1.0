@@ -207,16 +207,12 @@
 
                                         <div>
 
-                                            <label for="sprachkenntnisse" class="sr-only flex items-center">sprachkenntnisse</label>
+                                            <label for="sprachkenntnisse" class="sr-only flex items-center">Sprachkenntnisse</label>
 
                                             <select name="sprachkenntnisse" id="sprachkenntnisse" class="text-gray-500 text-xs py-1 px-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('sprachkenntnisse') border-red-500 @enderror">
-                                                <option>Keine</option>
-                                                <option>Englisch</option>
-                                                <option>Französisch</option>
-                                                <option>Spanisch</option>
-                                                <option>Türkisch</option>
-                                                <option>Arabisch</option>
-                                                <option>Chinesisch</option>
+                                                @foreach ($languages as $language)
+                                                    <option>{{ $language->Sprache }}</option>
+                                                @endforeach
                                             </select>
 
                                             @error('sprachkenntnisse')

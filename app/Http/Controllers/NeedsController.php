@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Need;
+use App\Models\Language;
 
 class NeedsController extends Controller
 {
@@ -34,13 +35,15 @@ class NeedsController extends Controller
 
     public function make()
     {
-        return view('needs.make');
+        $languages = Language::all();
+        return view('needs.make', ['languages' => $languages]);
     }
 
 
     public function edit(Need $need)
     {
-        return view('needs.edit', ['need' => $need]);
+        $languages = Language::all();
+        return view('needs.edit', ['need' => $need, 'languages' => $languages]);
     }
 
 

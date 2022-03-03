@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Need;
 use App\Models\Language;
+use Carbon\Carbon;
 
 class NeedsController extends Controller
 {
@@ -17,8 +18,79 @@ class NeedsController extends Controller
             'likes'
         ])->latest()->simplePaginate(10);
 
+        $languages = Language::all();
+        foreach ($languages as $language => $value) {
+            if ($value->Sprache == 'Keine') {
+                $languages->forget($language);
+            }
+        }
         return view('needs.all', [
-            'needs' => $needs
+            'needs' => $needs, 
+            'languages' => $languages, 
+            'startDate' => now(), 
+            'endDate' => now()->addMonths(1),
+            'rahmen' => 'Beliebig',
+            'schulart' => 'Beliebig',
+            'sprachkenntnisse' => 'Beliebig',
+            'studiengang' => 'Beliebig',
+            'fachsemester' => 'Beliebig'
+        ]);
+    }
+
+
+    public function filtered(Request $request)
+    {
+        $dates = explode('bis', $request->datum);
+        $startDate = trim($dates[0]);
+        if (1 == preg_match('/bis/', $request->datum)) {
+            $endDate = trim($dates[1]);
+        } else $endDate = $startDate;
+
+        $startDate = new Carbon($startDate);
+        $endDate = new Carbon($endDate);
+
+        $needs = need::query();
+        $needs = $needs->where([
+            ['datum_start', '<=', $startDate],
+            ['datum_end', '>=', $endDate],
+        ]);
+
+        if ($request->rahmen != 'Beliebig') {
+            $needs = $needs->where('rahmen', '<=', $request->rahmen);
+        }
+        if ($request->schulart != 'Beliebig') {
+            $needs = $needs->where('schulart', $request->schulart);
+        }
+        if ($request->sprachkenntnisse != 'Beliebig') {
+            $needs = $needs->where('sprachkenntnisse', $request->sprachkenntnisse);
+        }
+        if ($request->studiengang != 'Beliebig') {
+            $needs = $needs->where('studiengang', $request->studiengang);
+        }
+        if ($request->fachsemester != 'Beliebig') {
+            $needs = $needs->where('fachsemester', '>=', $request->fachsemester);
+        }
+        $needs = $needs->with([
+            'user',
+            'likes'
+        ])->latest()->simplePaginate(10);
+
+        $languages = Language::all();
+        foreach ($languages as $language => $value) {
+            if ($value->Sprache == 'Keine') {
+                $languages->forget($language);
+            }
+        }
+        return view('needs.all', [
+            'needs' => $needs,
+            'languages' => $languages,
+            'startDate' => $startDate,
+            'endDate' => $endDate,
+            'rahmen' => $request->rahmen,
+            'schulart' => $request->schulart,
+            'sprachkenntnisse' => $request->sprachkenntnisse,
+            'studiengang' => $request->studiengang,
+            'fachsemester' => $request->fachsemester
         ]);
     }
 
@@ -43,7 +115,16 @@ class NeedsController extends Controller
     public function edit(Need $need)
     {
         $languages = Language::all();
-        return view('needs.edit', ['need' => $need, 'languages' => $languages]);
+        $interessen = $need->interessen;
+        $interessen = explode(',', $interessen);
+        return view(
+            'needs.edit',
+            [
+                'need' => $need,
+                'languages' => $languages,
+                'interessen' => $interessen
+            ]
+        );
     }
 
 
@@ -83,7 +164,6 @@ class NeedsController extends Controller
             $need->datum_end = $endDate;
             $need->schulart = $request->schulart;
             $need->save();
-
         } else {
 
             $request->user()->needs()->create([
@@ -98,7 +178,6 @@ class NeedsController extends Controller
                 'schulart' => $request->schulart,
                 'active' => 1,
             ]);
-
         }
 
         session()->flash('success', 'true');
@@ -106,7 +185,7 @@ class NeedsController extends Controller
         $needs = Need::where('user_id', auth()->user()->id)->latest()->simplePaginate(10);
         return redirect()->route('needs.user', [
             'needs' => $needs
-        ]); 
+        ]);
     }
 
     public function setinactive(Need $need)

@@ -114,7 +114,7 @@
 
                                 </div>
 
-                                <!-- Test -->
+                                <!-- Betreuungsrahmen -->
 
                                 <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
 
@@ -138,7 +138,7 @@
 
                                             <script>
                                                 var rahmen_select = document.getElementById("rahmen");
-                                                rahmen_select.value = {{ $offer->rahmen }};
+                                                rahmen_select.value = '{{ $offer->rahmen }}';
                                             </script>
 
                                             @error('rahmen')
@@ -155,7 +155,7 @@
 
                                     </div>
 
-                                    <!-- Test -->
+                                    <!-- Betreuungsrahmen -->
 
                                     <!-- Schulart -->
 
@@ -210,7 +210,7 @@
 
                                             <select name="sprachkenntnisse" id="sprachkenntnisse" class="text-gray-500 text-xs py-1 px-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('sprachkenntnisse') border-red-500 @enderror">
                                                 @foreach ($languages as $language)
-                                                    <option>{{ $language->Sprache }}</option>
+                                                <option>{{ $language->Sprache }}</option>
                                                 @endforeach
                                             </select>
 
@@ -253,52 +253,72 @@
                                         }
                                     </script>
 
-                                    <input name="interessen" id="interessen" value="" />
+                                    <input name="interessen" id="interessen" type=hidden value="" />
 
+                                    <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
 
+                                        <p class="font-medium text-gray-800 leading-none">Interessen</p>
 
-                                    <ul class="list-group">
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="Sport" onclick="addToSelection(this.value, this.checked)">
-                                            Sport
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="Musik" onclick="addToSelection(this.value, this.checked)">
-                                            Musik
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="Lesen" onclick="addToSelection(this.value, this.checked)">
-                                            Lesen
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="Schreiben" onclick="addToSelection(this.value, this.checked)">
-                                            Schreiben
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="Kochen" onclick="addToSelection(this.value, this.checked)">
-                                            Kochen
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="Kunst" onclick="addToSelection(this.value, this.checked)">
-                                            Kunst
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="Basteln" onclick="addToSelection(this.value, this.checked)">
-                                            Basteln
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="Malen" onclick="addToSelection(this.value, this.checked)">
-                                            Malen
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="Reisen" onclick="addToSelection(this.value, this.checked)">
-                                            Reisen
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="Tiere" onclick="addToSelection(this.value, this.checked)">
-                                            Tiere
-                                        </li>
-                                    </ul>
+                                        <p class="text-xs text-gray-500 mt-1 mb-3">Geben Sie Interessen an, die das Betreuungsverhältnis ergänzen könnten.</p>
+
+                                        <div>
+
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Sport" onclick="addToSelection(this.value, this.checked)">
+                                                    Sport
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Musik" onclick="addToSelection(this.value, this.checked)">
+                                                    Musik
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Lesen" onclick="addToSelection(this.value, this.checked)">
+                                                    Lesen
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Schreiben" onclick="addToSelection(this.value, this.checked)">
+                                                    Schreiben
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Kochen" onclick="addToSelection(this.value, this.checked)">
+                                                    Kochen
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Kunst" onclick="addToSelection(this.value, this.checked)">
+                                                    Kunst
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Basteln" onclick="addToSelection(this.value, this.checked)">
+                                                    Basteln
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Malen" onclick="addToSelection(this.value, this.checked)">
+                                                    Malen
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Reisen" onclick="addToSelection(this.value, this.checked)">
+                                                    Reisen
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Tiere" onclick="addToSelection(this.value, this.checked)">
+                                                    Tiere
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        
+                                    </div>
+
+                                    <script>
+                                        let checkboxes = document.getElementsByClassName("form-check-input me-1");
+                                        for (let checkbox of checkboxes) {
+                                            @foreach($interessen as $interesse)
+                                            if (checkbox.value == '{{ $interesse }}')
+                                                checkbox.click();
+                                            @endforeach
+                                        }
+                                    </script>
 
                                     <!-- Interessen -->
 
@@ -410,30 +430,13 @@
                                             <label for="fachsemester" class="sr-only flex items-center">fachsemester</label>
 
                                             <select name="fachsemester" id="fachsemester" class="text-gray-500 text-xs py-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('fachsemester') border-red-500 @enderror">
-                                                <option>0</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                                <option>11</option>
-                                                <option>12</option>
-                                                <option>13</option>
-                                                <option>14</option>
-                                                <option>15</option>
-                                                <option>16</option>
-                                                <option>17</option>
-                                                <option>18</option>
+                                                @for ($i = 0; $i < 15; $i++) <option>{{ $i }}</option>
+                                                    @endfor
                                             </select>
 
                                             <script>
                                                 var fachsemester_select = document.getElementById("fachsemester");
-                                                fachsemester_select.value = {{ $offer->fachsemester }};
+                                                fachsemester_select.value = '{{ $offer->fachsemester }}';
                                             </script>
 
                                             @error('fachsemester')

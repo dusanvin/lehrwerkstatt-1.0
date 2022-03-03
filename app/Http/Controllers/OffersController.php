@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Offer;
 use App\Models\Language;
+use Carbon\Carbon;
 
 class OffersController extends Controller
 {
@@ -17,8 +18,81 @@ class OffersController extends Controller
             'likes'
         ])->latest()->simplePaginate(10);
 
+        $languages = Language::all();
+        foreach ($languages as $language => $value) {
+            if ($value->Sprache == 'Keine') {
+                $languages->forget($language);
+            }
+        }
         return view('offers.all', [
-            'offers' => $offers
+            'offers' => $offers,
+            'languages' => $languages,
+            'startDate' => now(),
+            'endDate' => now()->addMonths(1),
+            'rahmen' => 'Beliebig',
+            'schulart' => 'Beliebig',
+            'sprachkenntnisse' => 'Beliebig',
+            'studiengang' => 'Beliebig',
+            'fachsemester' => 'Beliebig'
+
+        ]);
+    }
+
+
+    public function filtered(Request $request)
+    {
+        $dates = explode('bis', $request->datum);
+        $startDate = trim($dates[0]);
+        if (1 == preg_match('/bis/', $request->datum)) {
+            $endDate = trim($dates[1]);
+        } else $endDate = $startDate;
+
+        $startDate = new Carbon($startDate);
+        $endDate = new Carbon($endDate);
+
+        $offers = Offer::query();
+        $offers = $offers->where([
+            ['datum_start', '<=', $startDate],
+            ['datum_end', '>=', $endDate],
+        ]);
+
+        if ($request->rahmen != 'Beliebig') {
+            $offers = $offers->where('rahmen', '<=', $request->rahmen);
+        }
+        if ($request->schulart != 'Beliebig') {
+            $offers = $offers->where('schulart', $request->schulart);
+        }
+        if ($request->sprachkenntnisse != 'Beliebig') {
+            $offers = $offers->where('sprachkenntnisse', $request->sprachkenntnisse);
+        }
+        if ($request->studiengang != 'Beliebig') {
+            $offers = $offers->where('studiengang', $request->studiengang);
+        }
+        if ($request->fachsemester != 'Beliebig') {
+
+            $offers = $offers->where('fachsemester', '>=', $request->fachsemester);
+        }
+        $offers = $offers->with([
+            'user',
+            'likes'
+        ])->latest()->simplePaginate(10);
+
+        $languages = Language::all();
+        foreach ($languages as $language => $value) {
+            if ($value->Sprache == 'Keine') {
+                $languages->forget($language);
+            }
+        }
+        return view('offers.all', [
+            'offers' => $offers,
+            'languages' => $languages,
+            'startDate' => $startDate,
+            'endDate' => $endDate,
+            'rahmen' => $request->rahmen,
+            'schulart' => $request->schulart,
+            'sprachkenntnisse' => $request->sprachkenntnisse,
+            'studiengang' => $request->studiengang,
+            'fachsemester' => $request->fachsemester
         ]);
     }
 
@@ -43,7 +117,16 @@ class OffersController extends Controller
     public function edit(Offer $offer)
     {
         $languages = Language::all();
-        return view('offers.edit', ['offer' => $offer, 'languages' => $languages]);
+        $interessen = $offer->interessen;
+        $interessen = explode(',', $interessen);
+        return view(
+            'offers.edit',
+            [
+                'offer' => $offer,
+                'languages' => $languages,
+                'interessen' => $interessen
+            ]
+        );
     }
 
 
@@ -82,7 +165,6 @@ class OffersController extends Controller
             $offer->datum_end = $endDate;
             $offer->schulart = $request->schulart;
             $offer->save();
-
         } else {
             $request->user()->offers()->create([
                 'body' => $request->body,
@@ -96,7 +178,6 @@ class OffersController extends Controller
                 'schulart' => $request->schulart,
                 'active' => 1,
             ]);
-
         }
 
         session()->flash('success', 'true');
@@ -104,7 +185,7 @@ class OffersController extends Controller
         $offers = Offer::where('user_id', auth()->user()->id)->latest()->simplePaginate(10); //'updated_at'
         return redirect()->route('offers.user', [
             'offers' => $offers
-        ]); 
+        ]);
     }
 
 

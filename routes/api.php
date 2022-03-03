@@ -71,7 +71,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::group(['middleware' => ['role:Admin|Moderierende|Lehrende|Helfende']], function () {
 
         Route::get('/profile/details/{id}', [ProfileController::class, 'show'])
-            ->name('profile.details');  
+            ->name('profile.details');
 
         Route::get('/profile/edit', [ProfileController::class, 'edit'])
             ->name('profile.edit');
@@ -86,7 +86,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('images.show');
         Route::post('images/delete/{user_id}', [ImageController::class, 'destroy'])
             ->name('images.destroy');
-
     });
 
     /*--------------------------------------------------------------------------*/
@@ -111,7 +110,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     /* Zugriffsrechte Moderierende + Admin*/
     Route::group(['middleware' => ['role:Admin|Moderierende']], function () {
-        
+
         /* Account bearbeiten */
         Route::get('/user', [UserEditController::class, 'index'])
             ->name('user');
@@ -132,7 +131,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         /* Rollen */
         Route::resource('roles', RoleController::class);
-
     });
 
     /*--------------------------------------------------------------------------*/
@@ -144,6 +142,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         /* Alle Angebote anzeigen*/
         Route::get('/offers/all', [OffersController::class, 'all'])
+            ->name('offers.all');
+
+        Route::post('/offers/all', [OffersController::class, 'filtered'])
             ->name('offers.all');
 
         /* Angebote Likes Hinzufügen */
@@ -193,7 +194,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         /* Angebote: aktiv setzen */
         Route::post('/offers/{offer}/setactive', [OffersController::class, 'setactive'])
             ->name('offers.setactive');
-
     });
 
     /*--------------------------------------------------------------------------*/
@@ -205,6 +205,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         /* Alle Bedarfe anzeigen*/
         Route::get('/needs/all', [NeedsController::class, 'all'])
+            ->name('needs.all');
+
+        Route::post('/needs/all', [NeedsController::class, 'filtered'])
             ->name('needs.all');
 
         /* Needs Likes Hinzufügen */
@@ -222,7 +225,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         /* Needs Anfrage Löschen */
         Route::delete('/needs/{need}/requests', [NeedRequestController::class, 'destroy'])
             ->name('needs.requests');
-
     });
 
     /* Zugriffsrechte Lehrende im Speziellen */
@@ -256,7 +258,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         /* Bedarf: aktiv setzen */
         Route::post('/needs/{need}/setactive', [NeedsController::class, 'setactive'])
             ->name('needs.setactive');
-
     });
 
     /*--------------------------------------------------------------------------*/
@@ -266,5 +267,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
     /* Zuweisungen */
     Route::get('/matching', [MatchingController::class, 'index'])
         ->name('matching');
-
 });

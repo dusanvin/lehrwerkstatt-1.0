@@ -278,10 +278,6 @@
 
                                     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
 
-                                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/plugins/monthSelect/style.css">
-
-                                    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/plugins/monthSelect/index.js"></script>
-
                                     <script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
 
                                     <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">

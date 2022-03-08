@@ -41,7 +41,6 @@ class OffersController extends Controller
 
     public function filtered(Request $request)
     {
-        // dd($request->interessen);
         $dates = explode('bis', $request->datum);
         $startDate = trim($dates[0]);
         if (1 == preg_match('/bis/', $request->datum)) {
@@ -73,6 +72,14 @@ class OffersController extends Controller
 
             $offers = $offers->where('fachsemester', '>=', $request->fachsemester);
         }
+
+        $interessen = $request->interessen;
+        $interessen = explode(',', $interessen);
+
+        foreach($interessen as $interesse) {
+            $offers = $offers->where('interessen', 'LIKE', '%'.$interesse.'%');
+        }
+
         $offers = $offers->with([
             'user',
             'likes'
@@ -84,9 +91,6 @@ class OffersController extends Controller
                 $languages->forget($language);
             }
         }
-
-        $interessen = $request->interessen;
-        $interessen = explode(',', $interessen);
 
         return view('offers.all', [
             'offers' => $offers,

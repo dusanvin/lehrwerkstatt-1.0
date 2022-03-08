@@ -71,6 +71,14 @@ class NeedsController extends Controller
         if ($request->fachsemester != 'Beliebig') {
             $needs = $needs->where('fachsemester', '>=', $request->fachsemester);
         }
+
+        $interessen = $request->interessen;
+        $interessen = explode(',', $interessen);
+
+        foreach($interessen as $interesse) {
+            $needs = $needs->where('interessen', 'LIKE', '%'.$interesse.'%');
+        }
+
         $needs = $needs->with([
             'user',
             'likes'
@@ -82,9 +90,6 @@ class NeedsController extends Controller
                 $languages->forget($language);
             }
         }
-
-        $interessen = $request->interessen;
-        $interessen = explode(',', $interessen);
 
         return view('needs.all', [
             'needs' => $needs,

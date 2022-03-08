@@ -51,8 +51,8 @@ class NeedsController extends Controller
 
         $needs = need::query();
         $needs = $needs->where([
-            ['datum_start', '<=', $startDate],
-            ['datum_end', '>=', $endDate],
+            ['datum_end', '>', $startDate], // Angebote die zu Beginn des Suchzeitraums noch nicht beendet sind
+            ['datum_start', '<', $endDate], // Angebote die noch vor dem Ende des Suchzeitraums beginnen
         ]);
 
         if ($request->rahmen != 'Beliebig') {

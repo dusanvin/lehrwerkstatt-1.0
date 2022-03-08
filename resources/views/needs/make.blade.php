@@ -3,15 +3,13 @@
 @section('content')
 
 <style type="text/css">
-    
     [type='checkbox'] {
         color: #374151 !important;
-    }    
+    }
 
     [type='checkbox'] {
         --tw-ring-color: #374151 !important;
     }
-
 </style>
 
 <div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
@@ -211,7 +209,7 @@
 
                                             <select name="sprachkenntnisse" id="sprachkenntnisse" class="text-gray-500 text-xs py-1 px-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('sprachkenntnisse') border-red-500 @enderror">
                                                 @foreach ($languages as $language)
-                                                    <option>{{ $language->Sprache }}</option>
+                                                <option>{{ $language->Sprache }}</option>
                                                 @endforeach
                                             </select>
 
@@ -329,25 +327,8 @@
                                             <label for="fachsemester" class="sr-only flex items-center">fachsemester</label>
 
                                             <select name="fachsemester" id="fachsemester" class="text-gray-500 text-xs py-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('fachsemester') border-red-500 @enderror">
-                                                <option>0</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                                <option>11</option>
-                                                <option>12</option>
-                                                <option>13</option>
-                                                <option>14</option>
-                                                <option>15</option>
-                                                <option>16</option>
-                                                <option>17</option>
-                                                <option>18</option>
+                                                @for ($i = 0; $i < 15; $i++) <option>{{ $i }}</option>
+                                                    @endfor
                                             </select>
 
                                             @error('fachsemester')
@@ -398,11 +379,12 @@
 
                                         <div class="flex relative flex-wrap">
 
-                                            <div class="grid items-center mx-2 mb-4"> <!-- content-center oben: flex content-center-->
-                                            
+                                            <div class="grid items-center mx-2 mb-4">
+                                                <!-- content-center oben: flex content-center-->
+
                                                 <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Sport" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Sport</span>
-                                            
+
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
@@ -413,52 +395,52 @@
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
-                                            
+
                                                 <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Lesen" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Lesen</span>
-                                            
+
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
 
                                                 <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Schreiben" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Schreiben</span>
-                                            
+
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
 
                                                 <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Kochen" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Kochen</span>
-                                            
+
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
 
                                                 <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Kunst" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Kunst</span>
-                                            
+
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
 
                                                 <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Basteln" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Basteln</span>
-                                            
+
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
 
                                                 <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Malen" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Malen</span>
-                                            
+
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
 
                                                 <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none align-top bg-no-repeat bg-center bg-contain items-center mx-auto cursor-pointer" type="checkbox" value=" Reisen" onclick="addToSelection(this.value, this.checked)">
                                                 <span class="mt-1 text-xs">Reisen</span>
-                                            
+
                                             </div>
 
                                             <div class="grid items-center mx-2 mb-4">
@@ -467,7 +449,7 @@
                                                 <span class="mt-1 text-xs">Tiere</span>
 
                                             </div>
-                                            
+
                                         </div>
 
                                     </div>

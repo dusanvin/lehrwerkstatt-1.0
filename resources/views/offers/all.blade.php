@@ -155,6 +155,9 @@
                                     <select name="schulart" id="schulart" class="text-gray-500 text-xs py-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('schulart') border-red-500 @enderror">
                                         <option>Beliebig</option>
                                         <option>Grundschule</option>
+                                        <option>Mittelschule</option>
+                                        <option>Realschule</option>
+                                        <option>Gymnasium</option>
                                         <option>Weitere</option>
                                     </select>
 

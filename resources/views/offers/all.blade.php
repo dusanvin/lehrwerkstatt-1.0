@@ -277,6 +277,91 @@
 
                         <!-- Fachsemester -->
 
+                                                            <!-- Interessen -->
+
+                                                            <script>
+                                        var interessen = [];
+
+                                        function addToSelection(interesse, checked) {
+                                            console.log(interesse, checked);
+                                            if (checked) {
+                                                interessen.push(interesse);
+                                            } else {
+                                                let i = interessen.indexOf(interesse);
+                                                interessen.splice(i, 1);
+                                            }
+                                            console.log(interessen);
+                                            document.getElementById('interessen').value = interessen;
+                                        }
+                                    </script>
+
+                                    <input name="interessen" id="interessen" type=hidden value="" />
+
+                                    <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
+
+                                        <p class="font-medium text-gray-800 leading-none">Interessen</p>
+
+                                        <p class="text-xs text-gray-500 mt-1 mb-3">Geben Sie Interessen an, die das Betreuungsverhältnis ergänzen könnten.</p>
+
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-1" type="checkbox" value="Sport" onclick="addToSelection(this.value, this.checked)">
+                                                Sport
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-1" type="checkbox" value="Musik" onclick="addToSelection(this.value, this.checked)">
+                                                Musik
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-1" type="checkbox" value="Lesen" onclick="addToSelection(this.value, this.checked)">
+                                                Lesen
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-1" type="checkbox" value="Schreiben" onclick="addToSelection(this.value, this.checked)">
+                                                Schreiben
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-1" type="checkbox" value="Kochen" onclick="addToSelection(this.value, this.checked)">
+                                                Kochen
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-1" type="checkbox" value="Kunst" onclick="addToSelection(this.value, this.checked)">
+                                                Kunst
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-1" type="checkbox" value="Basteln" onclick="addToSelection(this.value, this.checked)">
+                                                Basteln
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-1" type="checkbox" value="Malen" onclick="addToSelection(this.value, this.checked)">
+                                                Malen
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-1" type="checkbox" value="Reisen" onclick="addToSelection(this.value, this.checked)">
+                                                Reisen
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input class="form-check-input me-1" type="checkbox" value="Tiere" onclick="addToSelection(this.value, this.checked)">
+                                                Tiere
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    
+                                </div>
+
+                                <script>
+                                    let checkboxes = document.getElementsByClassName("form-check-input me-1");
+                                    for (let checkbox of checkboxes) {
+                                        @foreach($interessen as $interesse)
+                                        if (checkbox.value == '{{ $interesse }}')
+                                            checkbox.click();
+                                        @endforeach
+                                    }
+                                </script>
+
+                                <!-- Interessen -->
+
                         <div class="flex justify-end md:gap-8 gap-4 pt-1 rounded-md text-sm">
 
                             <button class="flex items-center w-auto bg-gray-700 hover:bg-gray-900 rounded-lg font-medium text-white px-4 py-2">

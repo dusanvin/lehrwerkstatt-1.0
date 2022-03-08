@@ -33,7 +33,8 @@ class NeedsController extends Controller
             'schulart' => 'Beliebig',
             'sprachkenntnisse' => 'Beliebig',
             'studiengang' => 'Beliebig',
-            'fachsemester' => 'Beliebig'
+            'fachsemester' => 'Beliebig',
+            'interessen' => []
         ]);
     }
 
@@ -81,6 +82,10 @@ class NeedsController extends Controller
                 $languages->forget($language);
             }
         }
+
+        $interessen = $request->interessen;
+        $interessen = explode(',', $interessen);
+
         return view('needs.all', [
             'needs' => $needs,
             'languages' => $languages,
@@ -90,7 +95,8 @@ class NeedsController extends Controller
             'schulart' => $request->schulart,
             'sprachkenntnisse' => $request->sprachkenntnisse,
             'studiengang' => $request->studiengang,
-            'fachsemester' => $request->fachsemester
+            'fachsemester' => $request->fachsemester,
+            'interessen' => $interessen
         ]);
     }
 

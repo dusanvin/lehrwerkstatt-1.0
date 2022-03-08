@@ -33,14 +33,15 @@ class OffersController extends Controller
             'schulart' => 'Beliebig',
             'sprachkenntnisse' => 'Beliebig',
             'studiengang' => 'Beliebig',
-            'fachsemester' => 'Beliebig'
-
+            'fachsemester' => 'Beliebig',
+            'interessen' => []
         ]);
     }
 
 
     public function filtered(Request $request)
     {
+        // dd($request->interessen);
         $dates = explode('bis', $request->datum);
         $startDate = trim($dates[0]);
         if (1 == preg_match('/bis/', $request->datum)) {
@@ -83,6 +84,10 @@ class OffersController extends Controller
                 $languages->forget($language);
             }
         }
+
+        $interessen = $request->interessen;
+        $interessen = explode(',', $interessen);
+
         return view('offers.all', [
             'offers' => $offers,
             'languages' => $languages,
@@ -92,7 +97,8 @@ class OffersController extends Controller
             'schulart' => $request->schulart,
             'sprachkenntnisse' => $request->sprachkenntnisse,
             'studiengang' => $request->studiengang,
-            'fachsemester' => $request->fachsemester
+            'fachsemester' => $request->fachsemester,
+            'interessen' => $interessen
         ]);
     }
 

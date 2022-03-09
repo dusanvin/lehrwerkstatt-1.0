@@ -212,7 +212,7 @@
 
                                         <p class="font-medium text-gray-800 leading-none">Fremdsprachkenntnisse</p>
 
-                                        <p class="text-xs text-gray-500 mt-1 mb-3">Bestimmen Sie, welche Fremdsprache das Betreuungsverhältnis ergänzen könnte.</p>
+                                        <p class="text-xs text-gray-500 mt-1 mb-3">Bestimmen Sie, welche Fremdsprache das Betreuungsverhältnis ergänzt.</p>
 
                                         <div>
 

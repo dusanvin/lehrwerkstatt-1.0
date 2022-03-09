@@ -40,7 +40,7 @@
 
                 <!-- Alle Angebote -->
 
-                <div id="first" class="p-4 bg-white mb-4">
+                <div id="first" class="px-4 pt-4 pb-2 bg-white mb-4 rounded-b-md">
 
                     <!-- <div class="grid grid-cols-1 text-sm text-gray-500 text-light py-1 my-2">
 
@@ -60,344 +60,393 @@
 
                         </p>
 
-                        <p class="text-sm text-gray-500 mt-1 mb-3 mt-2">Suchen Sie nach aktiven Angeboten.</p>
+                        <!-- Jumbatron -->
+
+                        <div class="rounded-sm flex flex-row-reverse">
+
+                            <details class="flex-auto">
+
+                                <summary class="cursor-pointer text-sm text-gray-500 mt-1 mb-3 mt-2">
+
+                                    Suchen Sie nach aktiven Angeboten.
+
+                                </summary>
+
+                               <!-- Details -->
+
+                                <form action="{{ route('offers.all') }}" method="post">
+
+                                    @csrf
+
+                                    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mb-6">
+
+                                        <!-- Betreuungsrahmen -->
+
+                                        <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
+
+                                            <p class="font-medium text-gray-800 leading-none mb-3">Betreuungsrahmen</p>
+
+                                            <!--<p class="text-xs text-gray-500 mt-1 mb-3">Ändern Sie, bis zu wieviele Personen betreut werden sollen.</p>-->
+
+                                            <div>
+
+                                                <label for="rahmen" class="sr-only flex items-center">rahmen</label>
+
+                                                <select name="rahmen" id="rahmen" class="text-gray-500 text-xs py-1 pl-2 pr-8 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('rahmen') border-red-500 @enderror">
+                                                    <option>Beliebig</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+
+                                                <script>
+                                                    var rahmen_select = document.getElementById("rahmen");
+                                                    rahmen_select.value = '{{ $rahmen }}';
+                                                </script>
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Betreuungsrahmen -->
+
+                                        <!-- Schulart -->
+
+                                        <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
+
+                                            <p class="font-medium text-gray-800 leading-none mb-3">Schulart</p>
+
+                                            <!--<p class="text-xs text-gray-500 mt-1 mb-3">Ändern Sie, welche Schule Sie bevorzugen.</p> -->
+
+                                            <div>
+
+                                                <label for="rahmen" class="sr-only flex items-center">schulart</label>
+
+                                                <select name="schulart" id="schulart" class="text-gray-500 text-xs py-1 px-2 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('schulart') border-red-500 @enderror">
+                                                    <option>Beliebig</option>
+                                                    <option>Grundschule</option>
+                                                    <option>Mittelschule</option>
+                                                    <option>Realschule</option>
+                                                    <option>Gymnasium</option>
+                                                    <option>Weitere</option>
+                                                </select>
+
+                                                <script>
+                                                    var schulart_select = document.getElementById("schulart");
+                                                    schulart_select.value = "{{ $schulart }}";
+                                                </script>
+
+                                                @error('schulart')
+
+                                                <div class="text-red-500 mt-2 text-sm">
+
+                                                    {{ 'Bitte legen Sie fest, welche Schule Sie bevorzugen.' }}
+
+                                                </div>
+
+                                                @enderror
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Schulart -->
+
+                                        <!-- Fremdsprachkenntnisse -->
+
+                                        <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
+
+                                            <p class="font-medium text-gray-800 leading-none mb-3">Fremdsprachkenntnisse</p>
+
+                                            <!--<p class="text-xs text-gray-500 mt-1 mb-3">Ändern Sie Angaben zur Fremdsprache, die das Betreuungsverhältnis ergänzen könnte.</p>-->
+
+                                            <div>
+
+                                                <label for="sprachkenntnisse" class="sr-only flex items-center">Sprachkenntnisse</label>
+
+                                                <select name="sprachkenntnisse" id="sprachkenntnisse" class="text-gray-500 text-xs py-1 px-2 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('sprachkenntnisse') border-red-500 @enderror">
+                                                    <option>Beliebig</option>
+                                                    @foreach ($languages as $language)
+                                                    <option>{{ $language->Sprache }}</option>
+                                                    @endforeach
+                                                </select>
+
+                                                <script>
+                                                    var sprachkenntnisse_select = document.getElementById("sprachkenntnisse");
+                                                    sprachkenntnisse_select.value = "{{ $sprachkenntnisse }}";
+                                                </script>
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Fremdsprachkenntnisse -->
+
+                                        <!-- Studiengang -->
+
+                                        <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
+
+                                            <p class="font-medium text-gray-800 leading-none mb-3">Studiengang</p>
+
+                                            <!--<p class="text-xs text-gray-500 mt-1 mb-3">Aktualisieren Sie Ihren Studiengang.</p>-->
+
+                                            <div>
+
+                                                <label for="studiengang" class="sr-only flex items-center">studiengang</label>
+
+                                                <select name="studiengang" id="studiengang" class="text-gray-500 text-xs py-1 px-2 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('studiengang') border-red-500 @enderror">
+                                                    <option>Beliebig</option>
+                                                    <option>Hauptfach Deutsch als Zweit- und Fremdsprache (B.A.)</option>
+                                                    <option>Nebenfach Deutsch als Zweit- und Fremdsprache (B.A.)</option>
+                                                    <option>Grundschule (LA)</option>
+                                                    <option>Mittelschule (LA)</option>
+                                                    <option>Realschule (LA)</option>
+                                                    <option>Gymnasium (LA)</option>
+                                                    <option>Sonstiges</option>
+                                                </select>
+
+                                                <script>
+                                                    var studiengang_select = document.getElementById("studiengang");
+                                                    studiengang_select.value = "{{ $studiengang }}";
+                                                </script>
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Studiengang -->
+
+                                        <!-- Datum -->
+
+                                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+                                        <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+
+                                        <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+
+                                        <script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
+
+
+                                        <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
+
+                                            <p class="font-medium text-gray-800 leading-none mb-3">Betreuungszeitraum</p>
+
+                                            <!--<p class="text-xs text-gray-500 mt-1 mb-3">Wählen Sie einen Betreuungszeitraum.</p>-->
+
+                                            <label for="datum" class="sr-only flex items-center">Datum</label>
+
+                                            <div>
+                                                
+                                                <input class="text-gray-500 text-xs py-1 px-2 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('sprachkenntnisse') border-red-500 @enderror" type="text" id="datum" name="datum">
+
+                                                <script type="text/javascript">
+                                                    var $flatpickr = flatpickr("#datum", {
+                                                        altInput: true,
+                                                        altFormat: "F Y", // was "j F, Y"
+                                                        dateFormat: "Y-m-d", // was "Y-F"
+                                                        theme: "dark",
+                                                        //minDate: "today",
+                                                        mode: "range",
+                                                        "locale": "de",
+                                                        defaultDate: ['{{ $startDate }}', '{{ $endDate }}']
+                                                    });
+
+                                                    function resetDate() {
+                                                        $flatpickr.clear();
+                                                    }
+                                                </script>
+
+                                                <button onclick="resetDate()">
+
+                                                    <div class="hover:text-gray-700">
+                                                    
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 h-5 w-5 inline-block align-text-bottom" viewBox="0 0 20 20" fill="currentColor">
+                                                          <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+                                                        </svg>
+
+                                                        Zurücksetzen
+
+                                                    </div>
+
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Datum -->
+
+                                        <!-- Fachsemester -->
+
+                                        <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
+
+                                            <p class="font-medium text-gray-800 leading-none mb-3">Fachsemester</p>
+
+                                            <!--<p class="text-xs text-gray-500 mt-1 mb-3">Wählen Sie wieviele Fachsemester mindestens vorhanden sein sollten.</p>-->
+
+                                            <div>
+
+                                                <label for="fachsemester" class="flex items-center hidden">fachsemester</label>
+
+                                                <select name="fachsemester" id="fachsemester" class="text-gray-500 text-xs py-1 pl-2 pr-8 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('fachsemester') border-red-500 @enderror">
+                                                    <option>Beliebig</option>
+                                                    @for ($i = 0; $i < 15; $i++) <option>{{ $i }}</option>
+                                                        @endfor
+                                                </select>
+
+                                                <script>
+                                                    var fachsemester_select = document.getElementById("fachsemester");
+                                                    fachsemester_select.value = '{{ $fachsemester }}';
+                                                </script>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Fachsemester -->
+
+                                    <!-- Interessen -->
+
+                                    <script>
+                                        var interessen = [];
+
+                                        function addToSelection(interesse, checked) {
+                                            console.log(interesse, checked);
+                                            if (checked) {
+                                                interessen.push(interesse);
+                                            } else {
+                                                let i = interessen.indexOf(interesse);
+                                                interessen.splice(i, 1);
+                                            }
+                                            console.log(interessen);
+                                            document.getElementById('interessen').value = interessen;
+                                        }
+                                    </script>
+
+                                    <input name="interessen" id="interessen" type=hidden value="" />
+
+                                    <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
+
+                                        <p class="font-medium text-gray-800 leading-none mb-3">Interessen</p>
+
+                                        <!--<p class="text-xs text-gray-500 mt-1 mb-3">Geben Sie Interessen an, die das Betreuungsverhältnis ergänzen könnten.</p>-->
+
+                                        <div class="flex relative flex-wrap">
+
+                                            <ul class="list-group">
+
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Sport" onclick="addToSelection(this.value, this.checked)">
+                                                    Sport
+                                                </li>
+
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Musik" onclick="addToSelection(this.value, this.checked)">
+                                                    Musik
+                                                </li>
+
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Lesen" onclick="addToSelection(this.value, this.checked)">
+                                                    Lesen
+                                                </li>
+
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Schreiben" onclick="addToSelection(this.value, this.checked)">
+                                                    Schreiben
+                                                </li>
+
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Kochen" onclick="addToSelection(this.value, this.checked)">
+                                                    Kochen
+                                                </li>
+
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Kunst" onclick="addToSelection(this.value, this.checked)">
+                                                    Kunst
+                                                </li>
+
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Basteln" onclick="addToSelection(this.value, this.checked)">
+                                                    Basteln
+                                                </li>
+
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Malen" onclick="addToSelection(this.value, this.checked)">
+                                                    Malen
+                                                </li>
+
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Reisen" onclick="addToSelection(this.value, this.checked)">
+                                                    Reisen
+                                                </li>
+
+                                                <li class="list-group-item">
+                                                    <input class="form-check-input me-1" type="checkbox" value="Tiere" onclick="addToSelection(this.value, this.checked)">
+                                                    Tiere
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                                
+                                        <script>
+                                            let checkboxes = document.getElementsByClassName("form-check-input me-1");
+                                            for (let checkbox of checkboxes) {
+                                                @foreach($interessen as $interesse)
+                                                if (checkbox.value == '{{ $interesse }}')
+                                                    checkbox.click();
+                                                @endforeach
+                                            }
+                                        </script>
+
+                                    <!-- Interessen -->
+
+                                    <!-- Suchen -->
+
+                                    <div class="flex justify-end md:gap-8 gap-4 pt-1 rounded-md text-sm">
+
+                                        <button class="flex items-center w-auto bg-gray-700 hover:bg-gray-900 rounded-lg font-medium text-white px-4 py-2">
+
+                                                <div>
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                                                      <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                                    
+                                                    </svg>
+
+                                                </div>
+
+
+                                                <div class="pl-3 sm:inline-block hidden">
+
+                                                    <span>Suchen</span>
+
+                                                </div>
+
+                                        </button>
+
+                                    </div>
+
+                                    <!-- Suchen -->
+
+                                </form>
+
+                            </details>
+
+                           <!-- Details -->
+
+                        </div>
+
+                        <!-- Jumbatron -->
 
                     </div>
 
-                    <form action="{{ route('offers.all') }}" method="post" class="mb-4">
-
-                        @csrf
-
-                        <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-
-                            <!-- Datum -->
-
-                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-                            <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
-
-                            <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
-
-                            <script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
-
-
-                            <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
-
-                                <p class="font-medium text-gray-800 leading-none">Betreuungszeitraum</p>
-
-                                <p class="text-xs text-gray-500 mt-1 mb-3">Wählen Sie einen Betreuungszeitraum.</p>
-
-                                <label for="datum" class="sr-only flex items-center">Datum</label>
-
-                                <input class="date form-control text-gray-500 text-xs py-1 px-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('sprachkenntnisse') border-red-500 @enderror" type="text" id="datum" name="datum">
-
-                                <script type="text/javascript">
-                                    var $flatpickr = flatpickr("#datum", {
-                                        altInput: true,
-                                        altFormat: "F Y", // was "j F, Y"
-                                        dateFormat: "Y-m-d", // was "Y-F"
-                                        theme: "dark",
-                                        //minDate: "today",
-                                        mode: "range",
-                                        "locale": "de",
-                                        defaultDate: ['{{ $startDate }}', '{{ $endDate }}']
-                                    });
-
-                                    function resetDate() {
-                                        $flatpickr.clear();
-                                    }
-                                </script>
-
-                                <button onclick="resetDate()">Datum zurücksetzen</button>
-
-                            </div>
-
-                            <!-- Datum -->
-
-                            <!-- Betreuungsrahmen -->
-
-                            <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
-
-                                <p class="font-medium text-gray-800 leading-none">Betreuungsrahmen</p>
-
-                                <p class="text-xs text-gray-500 mt-1 mb-3">Ändern Sie, bis zu wieviele Personen betreut werden sollen.</p>
-
-                                <div>
-
-                                    <label for="rahmen" class="sr-only flex items-center">rahmen</label>
-
-                                    <select name="rahmen" id="rahmen" class="text-gray-500 text-xs py-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('rahmen') border-red-500 @enderror">
-                                        <option>Beliebig</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-
-                                    <script>
-                                        var rahmen_select = document.getElementById("rahmen");
-                                        rahmen_select.value = '{{ $rahmen }}';
-                                    </script>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Betreuungsrahmen -->
-
-                            <!-- Schulart -->
-
-                            <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
-
-                                <p class="font-medium text-gray-800 leading-none">Schulart</p>
-
-                                <p class="text-xs text-gray-500 mt-1 mb-3">Ändern Sie, welche Schule Sie bevorzugen.</p>
-
-                                <div>
-
-                                    <label for="rahmen" class="sr-only flex items-center">schulart</label>
-
-                                    <select name="schulart" id="schulart" class="text-gray-500 text-xs py-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('schulart') border-red-500 @enderror">
-                                        <option>Beliebig</option>
-                                        <option>Grundschule</option>
-                                        <option>Mittelschule</option>
-                                        <option>Realschule</option>
-                                        <option>Gymnasium</option>
-                                        <option>Weitere</option>
-                                    </select>
-
-                                    <script>
-                                        var schulart_select = document.getElementById("schulart");
-                                        schulart_select.value = "{{ $schulart }}";
-                                    </script>
-
-                                    @error('schulart')
-
-                                    <div class="text-red-500 mt-2 text-sm">
-
-                                        {{ 'Bitte legen Sie fest, welche Schule Sie bevorzugen.' }}
-
-                                    </div>
-
-                                    @enderror
-
-                                </div>
-
-                            </div>
-
-                            <!-- Schulart -->
-
-                            <!-- Fremdsprachkenntnisse -->
-
-                            <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
-
-                                <p class="font-medium text-gray-800 leading-none">Fremdsprachkenntnisse</p>
-
-                                <p class="text-xs text-gray-500 mt-1 mb-3">Ändern Sie Angaben zur Fremdsprache, die das Betreuungsverhältnis ergänzen könnte.</p>
-
-                                <div>
-
-                                    <label for="sprachkenntnisse">Sprachkenntnisse</label>
-
-                                    <select name="sprachkenntnisse" id="sprachkenntnisse" class="text-gray-500 text-xs py-1 px-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('sprachkenntnisse') border-red-500 @enderror">
-                                        <option>Beliebig</option>
-                                        @foreach ($languages as $language)
-                                        <option>{{ $language->Sprache }}</option>
-                                        @endforeach
-                                    </select>
-
-                                    <script>
-                                        var sprachkenntnisse_select = document.getElementById("sprachkenntnisse");
-                                        sprachkenntnisse_select.value = "{{ $sprachkenntnisse }}";
-                                    </script>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Fremdsprachkenntnisse -->
-
-                            <!-- Studiengang -->
-
-                            <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
-
-                                <p class="font-medium text-gray-800 leading-none">Studiengang</p>
-
-                                <p class="text-xs text-gray-500 mt-1 mb-3">Aktualisieren Sie Ihren Studiengang.</p>
-
-                                <div>
-
-                                    <label for="studiengang" class="sr-only flex items-center">studiengang</label>
-
-                                    <select name="studiengang" id="studiengang" class="text-gray-500 text-xs py-1 px-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('studiengang') border-red-500 @enderror">
-                                        <option>Beliebig</option>
-                                        <option>Hauptfach Deutsch als Zweit- und Fremdsprache (B.A.)</option>
-                                        <option>Nebenfach Deutsch als Zweit- und Fremdsprache (B.A.)</option>
-                                        <option>Grundschule (LA)</option>
-                                        <option>Mittelschule (LA)</option>
-                                        <option>Realschule (LA)</option>
-                                        <option>Gymnasium (LA)</option>
-                                        <option>Sonstiges</option>
-                                    </select>
-
-                                    <script>
-                                        var studiengang_select = document.getElementById("studiengang");
-                                        studiengang_select.value = "{{ $studiengang }}";
-                                    </script>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Studiengang -->
-
-                            <!-- Fachsemester -->
-
-                            <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
-
-                                <p class="font-medium text-gray-800 leading-none">Fachsemester</p>
-
-                                <p class="text-xs text-gray-500 mt-1 mb-3">Wählen Sie wieviele Fachsemester mindestens vorhanden sein sollten.</p>
-
-                                <div>
-
-                                    <label for="fachsemester" class="sr-only flex items-center">fachsemester</label>
-
-                                    <select name="fachsemester" id="fachsemester" class="text-gray-500 text-xs py-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('fachsemester') border-red-500 @enderror">
-                                        <option>Beliebig</option>
-                                        @for ($i = 0; $i < 15; $i++) <option>{{ $i }}</option>
-                                            @endfor
-                                    </select>
-
-                                    <script>
-                                        var fachsemester_select = document.getElementById("fachsemester");
-                                        fachsemester_select.value = '{{ $fachsemester }}';
-                                    </script>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Fachsemester -->
-
-                        <!-- Interessen -->
-
-                        <script>
-                            var interessen = [];
-
-                            function addToSelection(interesse, checked) {
-                                console.log(interesse, checked);
-                                if (checked) {
-                                    interessen.push(interesse);
-                                } else {
-                                    let i = interessen.indexOf(interesse);
-                                    interessen.splice(i, 1);
-                                }
-                                console.log(interessen);
-                                document.getElementById('interessen').value = interessen;
-                            }
-                        </script>
-
-                        <input name="interessen" id="interessen" type=hidden value="" />
-
-                        <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
-
-                            <p class="font-medium text-gray-800 leading-none">Interessen</p>
-
-                            <p class="text-xs text-gray-500 mt-1 mb-3">Geben Sie Interessen an, die das Betreuungsverhältnis ergänzen könnten.</p>
-
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Sport" onclick="addToSelection(this.value, this.checked)">
-                                    Sport
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Musik" onclick="addToSelection(this.value, this.checked)">
-                                    Musik
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Lesen" onclick="addToSelection(this.value, this.checked)">
-                                    Lesen
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Schreiben" onclick="addToSelection(this.value, this.checked)">
-                                    Schreiben
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Kochen" onclick="addToSelection(this.value, this.checked)">
-                                    Kochen
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Kunst" onclick="addToSelection(this.value, this.checked)">
-                                    Kunst
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Basteln" onclick="addToSelection(this.value, this.checked)">
-                                    Basteln
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Malen" onclick="addToSelection(this.value, this.checked)">
-                                    Malen
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Reisen" onclick="addToSelection(this.value, this.checked)">
-                                    Reisen
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="Tiere" onclick="addToSelection(this.value, this.checked)">
-                                    Tiere
-                                </li>
-                            </ul>
-
-                        </div>
-                                    
-                    
-
-                    <script>
-                        let checkboxes = document.getElementsByClassName("form-check-input me-1");
-                        for (let checkbox of checkboxes) {
-                            @foreach($interessen as $interesse)
-                            if (checkbox.value == '{{ $interesse }}')
-                                checkbox.click();
-                            @endforeach
-                        }
-                    </script>
-
-                    <!-- Interessen -->
-
-                        <!-- Suchen -->
-
-                        <div class="flex justify-end md:gap-8 gap-4 pt-1 rounded-md text-sm">
-
-                            <button class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
-
-                                    <div>
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-                                          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                                        
-                                        </svg>
-
-                                    </div>
-
-
-                                    <div class="pl-3 sm:inline-block hidden">
-
-                                        <span class="text-xs">Suchen</span>
-
-                                    </div>
-
-                            </button>
-
-                        </div>
-
-                        <!-- Suchen -->
-
-                    </form>
+                    <!-- Kontakt -->                    
 
                 </div>
 

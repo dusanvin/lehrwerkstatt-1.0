@@ -40,19 +40,29 @@
 
                 <!-- Alle Bedarfe -->
 
-                <div id="first" class="p-4 bg-white">
+                <div id="first" class="p-4 bg-white mb-4">
 
-                    <div class="grid grid-cols-1 text-sm text-gray-500 text-light py-1 my-2">
+                    <!-- <div class="grid grid-cols-1 text-sm text-gray-500 text-light py-1 my-2">
 
                         <p class="font-medium text-gray-800 leading-none text-lg leading-6">Bedarfsübersicht</p>
 
                         <p class="text-sm text-gray-500 mt-1 mb-3 mt-2">Erhalten Sie eine Übersicht über alle aktiven Bedarfe. Fragen Sie einen Bedarf an, um Ihr Interesse zu bekunden. Sollte Ihnen ein Bedarf gefallen, können Sie diesen gern liken.</p>
 
-                    </div>
+                    </div> -->
 
                     <!-- Suchfilter -->
 
-                    Suchfilter
+                    <div class="grid grid-cols-1 text-sm text-gray-500 text-light py-1 my-2">
+
+                        <p class="font-medium text-gray-800 leading-none text-lg leading-6">
+
+                            Suchfilter
+
+                        </p>
+
+                        <p class="text-sm text-gray-500 mt-1 mb-3 mt-2">Suchen Sie nach aktiven Bedarfen.</p>
+
+                    </div>
 
                     <form action="{{ route('needs.all') }}" method="post" class="mb-4">
 
@@ -277,112 +287,151 @@
 
                         <!-- Fachsemester -->
 
-                                                            <!-- Interessen -->
+                        <!-- Interessen -->
 
-                                                            <script>
-                                        var interessen = [];
+                        <script>
+                            var interessen = [];
 
-                                        function addToSelection(interesse, checked) {
-                                            console.log(interesse, checked);
-                                            if (checked) {
-                                                interessen.push(interesse);
-                                            } else {
-                                                let i = interessen.indexOf(interesse);
-                                                interessen.splice(i, 1);
-                                            }
-                                            console.log(interessen);
-                                            document.getElementById('interessen').value = interessen;
-                                        }
-                                    </script>
+                            function addToSelection(interesse, checked) {
+                                console.log(interesse, checked);
+                                if (checked) {
+                                    interessen.push(interesse);
+                                } else {
+                                    let i = interessen.indexOf(interesse);
+                                    interessen.splice(i, 1);
+                                }
+                                console.log(interessen);
+                                document.getElementById('interessen').value = interessen;
+                            }
+                        </script>
 
-                                    <input name="interessen" id="interessen" type=hidden value="" />
+                        <input name="interessen" id="interessen" type=hidden value="" />
 
-                                    <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
+                        <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
 
-                                        <p class="font-medium text-gray-800 leading-none">Interessen</p>
+                            <p class="font-medium text-gray-800 leading-none">Interessen</p>
 
-                                        <p class="text-xs text-gray-500 mt-1 mb-3">Geben Sie Interessen an, die das Betreuungsverhältnis ergänzen könnten.</p>
+                            <p class="text-xs text-gray-500 mt-1 mb-3">Geben Sie Interessen an, die das Betreuungsverhältnis ergänzen könnten.</p>
 
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <input class="form-check-input me-1" type="checkbox" value="Sport" onclick="addToSelection(this.value, this.checked)">
-                                                Sport
-                                            </li>
-                                            <li class="list-group-item">
-                                                <input class="form-check-input me-1" type="checkbox" value="Musik" onclick="addToSelection(this.value, this.checked)">
-                                                Musik
-                                            </li>
-                                            <li class="list-group-item">
-                                                <input class="form-check-input me-1" type="checkbox" value="Lesen" onclick="addToSelection(this.value, this.checked)">
-                                                Lesen
-                                            </li>
-                                            <li class="list-group-item">
-                                                <input class="form-check-input me-1" type="checkbox" value="Schreiben" onclick="addToSelection(this.value, this.checked)">
-                                                Schreiben
-                                            </li>
-                                            <li class="list-group-item">
-                                                <input class="form-check-input me-1" type="checkbox" value="Kochen" onclick="addToSelection(this.value, this.checked)">
-                                                Kochen
-                                            </li>
-                                            <li class="list-group-item">
-                                                <input class="form-check-input me-1" type="checkbox" value="Kunst" onclick="addToSelection(this.value, this.checked)">
-                                                Kunst
-                                            </li>
-                                            <li class="list-group-item">
-                                                <input class="form-check-input me-1" type="checkbox" value="Basteln" onclick="addToSelection(this.value, this.checked)">
-                                                Basteln
-                                            </li>
-                                            <li class="list-group-item">
-                                                <input class="form-check-input me-1" type="checkbox" value="Malen" onclick="addToSelection(this.value, this.checked)">
-                                                Malen
-                                            </li>
-                                            <li class="list-group-item">
-                                                <input class="form-check-input me-1" type="checkbox" value="Reisen" onclick="addToSelection(this.value, this.checked)">
-                                                Reisen
-                                            </li>
-                                            <li class="list-group-item">
-                                                <input class="form-check-input me-1" type="checkbox" value="Tiere" onclick="addToSelection(this.value, this.checked)">
-                                                Tiere
-                                            </li>
-                                        </ul>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="Sport" onclick="addToSelection(this.value, this.checked)">
+                                    Sport
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="Musik" onclick="addToSelection(this.value, this.checked)">
+                                    Musik
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="Lesen" onclick="addToSelection(this.value, this.checked)">
+                                    Lesen
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="Schreiben" onclick="addToSelection(this.value, this.checked)">
+                                    Schreiben
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="Kochen" onclick="addToSelection(this.value, this.checked)">
+                                    Kochen
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="Kunst" onclick="addToSelection(this.value, this.checked)">
+                                    Kunst
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="Basteln" onclick="addToSelection(this.value, this.checked)">
+                                    Basteln
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="Malen" onclick="addToSelection(this.value, this.checked)">
+                                    Malen
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="Reisen" onclick="addToSelection(this.value, this.checked)">
+                                    Reisen
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="Tiere" onclick="addToSelection(this.value, this.checked)">
+                                    Tiere
+                                </li>
+                            </ul>
 
-                                    </div>
-                                    
-                                </div>
+                        </div>
 
-                                <script>
-                                    let checkboxes = document.getElementsByClassName("form-check-input me-1");
-                                    for (let checkbox of checkboxes) {
-                                        @foreach($interessen as $interesse)
-                                        if (checkbox.value == '{{ $interesse }}')
-                                            checkbox.click();
-                                        @endforeach
-                                    }
-                                </script>
+                        <script>
+                            let checkboxes = document.getElementsByClassName("form-check-input me-1");
+                            for (let checkbox of checkboxes) {
+                                @foreach($interessen as $interesse)
+                                if (checkbox.value == '{{ $interesse }}')
+                                    checkbox.click();
+                                @endforeach
+                            }
+                        </script>
 
-                                <!-- Interessen -->
+                        <!-- Interessen -->
+
+                        <!-- Suchen -->
 
                         <div class="flex justify-end md:gap-8 gap-4 pt-1 rounded-md text-sm">
 
-                            <button class="flex items-center w-auto bg-gray-700 hover:bg-gray-900 rounded-lg font-medium text-white px-4 py-2">
+                            <button class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
 
-                                <div class="pl-3">
+                                    <div>
 
-                                    <p>Suchen</p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                </div>
+                                          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                        
+                                        </svg>
+
+                                    </div>
+
+
+                                    <div class="pl-3 sm:inline-block hidden">
+
+                                        <span class="text-xs">Suchen</span>
+
+                                    </div>
+
+                            </button>
 
                         </div>
+
+                        <!-- Suchen -->
 
                     </form>
 
                 </div>
 
-                @if($needs->count() == 1)
-                Es ist {{ $needs->count() }} Eintrag vorhanden.
+                <!-- Anzahl -->
+
+                @if ($needs->count() == 0)
+
+                    <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
+                    
+                        Kein Bedarf gefunden.
+                        
+                    </div>
+
+                @elseif ($needs->count() == 1)
+
+                    <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
+                    
+                        {{ $needs->count() }} Bedarf gefunden.
+                        
+                    </div>
+
                 @else
-                Es sind {{ $needs->count() }} Einträge vorhanden.
+
+                    <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
+                    
+                        {{ $needs->count() }} Bedarfe gefunden.
+                        
+                    </div>
+
                 @endif
+
+                <!-- Anzahl -->
 
                 <!-- Suchfilter -->
 
@@ -703,7 +752,7 @@
 
                     @else
 
-                    <p>Keine Einträge vorhanden.</p>
+                    <p class="hidden">Keine Einträge vorhanden.</p>
 
                     @endif
 

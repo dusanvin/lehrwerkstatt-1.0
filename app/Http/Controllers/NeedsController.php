@@ -27,8 +27,8 @@ class NeedsController extends Controller
         return view('needs.all', [
             'needs' => $needs, 
             'languages' => $languages, 
-            'startDate' => now(), 
-            'endDate' => now()->addMonths(1),
+            'startDate' => '',
+            'endDate' => '',
             'rahmen' => 'Beliebig',
             'schulart' => 'Beliebig',
             'sprachkenntnisse' => 'Beliebig',
@@ -41,20 +41,26 @@ class NeedsController extends Controller
 
     public function filtered(Request $request)
     {
+        $needs = Need::query();
+
         $dates = explode('bis', $request->datum);
-        $startDate = trim($dates[0]);
-        if (1 == preg_match('/bis/', $request->datum)) {
-            $endDate = trim($dates[1]);
-        } else $endDate = $startDate;
+        if (!is_null($request->datum)) {
+            $startDate = trim($dates[0]);
+            if (1 == preg_match('/bis/', $request->datum)) {
+                $endDate = trim($dates[1]);
+            } else $endDate = $startDate;
 
-        $startDate = new Carbon($startDate);
-        $endDate = new Carbon($endDate);
+            $startDate = new Carbon($startDate);
+            $endDate = new Carbon($endDate);
 
-        $needs = need::query();
-        $needs = $needs->where([
-            ['datum_end', '>', $startDate], // Angebote die zu Beginn des Suchzeitraums noch nicht beendet sind
-            ['datum_start', '<', $endDate], // Angebote die noch vor dem Ende des Suchzeitraums beginnen
-        ]);
+            $needs = $needs->where([
+                ['datum_end', '>', $startDate],
+                ['datum_start', '<', $endDate],
+            ]);
+        } else {
+            $startDate = '';
+            $endDate = '';
+        }
 
         if ($request->rahmen != 'Beliebig') {
             $needs = $needs->where('rahmen', '<=', $request->rahmen);

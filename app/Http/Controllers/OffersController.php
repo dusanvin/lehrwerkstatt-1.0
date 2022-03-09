@@ -27,8 +27,8 @@ class OffersController extends Controller
         return view('offers.all', [
             'offers' => $offers,
             'languages' => $languages,
-            'startDate' => now(),
-            'endDate' => now()->addMonths(1),
+            'startDate' => '',
+            'endDate' => '',
             'rahmen' => 'Beliebig',
             'schulart' => 'Beliebig',
             'sprachkenntnisse' => 'Beliebig',
@@ -41,20 +41,26 @@ class OffersController extends Controller
 
     public function filtered(Request $request)
     {
-        $dates = explode('bis', $request->datum);
-        $startDate = trim($dates[0]);
-        if (1 == preg_match('/bis/', $request->datum)) {
-            $endDate = trim($dates[1]);
-        } else $endDate = $startDate;
-
-        $startDate = new Carbon($startDate);
-        $endDate = new Carbon($endDate);
-
         $offers = Offer::query();
-        $offers = $offers->where([
-            ['datum_end', '>', $startDate], // Angebote die zu Beginn des Suchzeitraums noch nicht beendet sind
-            ['datum_start', '<', $endDate], // Angebote die noch vor dem Ende des Suchzeitraums beginnen
-        ]);
+
+        $dates = explode('bis', $request->datum);
+        if (!is_null($request->datum)) {
+            $startDate = trim($dates[0]);
+            if (1 == preg_match('/bis/', $request->datum)) {
+                $endDate = trim($dates[1]);
+            } else $endDate = $startDate;
+
+            $startDate = new Carbon($startDate);
+            $endDate = new Carbon($endDate);
+
+            $offers = $offers->where([
+                ['datum_end', '>', $startDate],
+                ['datum_start', '<', $endDate],
+            ]);
+        } else {
+            $startDate = '';
+            $endDate = '';
+        }
 
         if ($request->rahmen != 'Beliebig') {
             $offers = $offers->where('rahmen', '<=', $request->rahmen);
@@ -76,8 +82,8 @@ class OffersController extends Controller
         $interessen = $request->interessen;
         $interessen = explode(',', $interessen);
 
-        foreach($interessen as $interesse) {
-            $offers = $offers->where('interessen', 'LIKE', '%'.$interesse.'%');
+        foreach ($interessen as $interesse) {
+            $offers = $offers->where('interessen', 'LIKE', '%' . $interesse . '%');
         }
 
         $offers = $offers->with([

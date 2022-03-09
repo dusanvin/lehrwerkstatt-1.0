@@ -403,7 +403,7 @@
 
                 <!-- Anzahl -->
 
-                @if ($offers->count() == 0)
+                @if ($offers->total() == 0)
 
                     <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
                     
@@ -411,11 +411,11 @@
                         
                     </div>
 
-                @elseif ($offers->count() == 1)
+                @elseif ($offers->total() == 1)
 
                     <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
                     
-                        {{ $offers->count() }} Angebot gefunden.
+                        {{ $offers->total() }} Angebot gefunden.
                         
                     </div>
 
@@ -423,7 +423,7 @@
 
                     <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
                     
-                        {{ $offers->count() }} Angebote gefunden.
+                        {{ $offers->total() }} Angebote gefunden.
                         
                     </div>
 

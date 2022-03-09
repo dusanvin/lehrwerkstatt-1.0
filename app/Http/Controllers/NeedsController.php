@@ -16,7 +16,7 @@ class NeedsController extends Controller
         $needs = Need::with([
             'user',
             'likes'
-        ])->latest()->simplePaginate(10);
+        ])->latest()->paginate(10);
 
         $languages = Language::all();
         foreach ($languages as $language => $value) {
@@ -88,7 +88,7 @@ class NeedsController extends Controller
         $needs = $needs->with([
             'user',
             'likes'
-        ])->latest()->simplePaginate(10);
+        ])->latest()->paginate(10);
 
         $languages = Language::all();
         foreach ($languages as $language => $value) {

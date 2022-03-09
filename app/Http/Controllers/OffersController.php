@@ -16,7 +16,7 @@ class OffersController extends Controller
         $offers = Offer::with([
             'user',
             'likes'
-        ])->latest()->simplePaginate(10);
+        ])->latest()->paginate(10);
 
         $languages = Language::all();
         foreach ($languages as $language => $value) {
@@ -89,7 +89,7 @@ class OffersController extends Controller
         $offers = $offers->with([
             'user',
             'likes'
-        ])->latest()->simplePaginate(10);
+        ])->latest()->paginate(10);
 
         $languages = Language::all();
         foreach ($languages as $language => $value) {
@@ -108,7 +108,7 @@ class OffersController extends Controller
             'sprachkenntnisse' => $request->sprachkenntnisse,
             'studiengang' => $request->studiengang,
             'fachsemester' => $request->fachsemester,
-            'interessen' => $interessen
+            'interessen' => $interessen,
         ]);
     }
 

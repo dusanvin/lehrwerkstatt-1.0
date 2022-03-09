@@ -401,7 +401,7 @@
 
                 <!-- Anzahl -->
 
-                @if ($needs->count() == 0)
+                @if ($needs->total() == 0)
 
                     <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
                     
@@ -409,11 +409,11 @@
                         
                     </div>
 
-                @elseif ($needs->count() == 1)
+                @elseif ($needs->total() == 1)
 
                     <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
                     
-                        {{ $needs->count() }} Bedarf gefunden.
+                        {{ $needs->total() }} Bedarf gefunden.
                         
                     </div>
 
@@ -421,7 +421,7 @@
 
                     <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
                     
-                        {{ $needs->count() }} Bedarfe gefunden.
+                        {{ $needs->total() }} Bedarfe gefunden.
                         
                     </div>
 

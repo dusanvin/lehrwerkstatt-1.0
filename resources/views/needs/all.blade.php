@@ -91,18 +91,8 @@
 
                                 <input class="date form-control text-gray-500 text-xs py-1 px-1 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('sprachkenntnisse') border-red-500 @enderror" type="text" id="datum" name="datum">
 
-                                @error('datum')
-
-                                <div class="text-red-500 mt-2 text-sm">
-
-                                    {{ 'Bitte wählen Sie ein Datum aus.' }}
-
-                                </div>
-
-                                @enderror
-
                                 <script type="text/javascript">
-                                    flatpickr("#datum", {
+                                    var $flatpickr = flatpickr("#datum", {
                                         altInput: true,
                                         altFormat: "F Y", // was "j F, Y"
                                         dateFormat: "Y-m-d", // was "Y-F"
@@ -112,7 +102,13 @@
                                         "locale": "de",
                                         defaultDate: ['{{ $startDate }}', '{{ $endDate }}']
                                     });
+
+                                    function resetDate() {
+                                        $flatpickr.clear();
+                                    }
                                 </script>
+
+                                <button onclick="resetDate()">Datum zurücksetzen</button>
 
                             </div>
 

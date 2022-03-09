@@ -135,6 +135,8 @@ return [
         'confirm-password' => 'Passwortbestätigung',
         'vorname' => 'Vorname',
         'nachname' => 'Nachname',
+        'firstname' => 'Vorname',
+        'lastname' => 'Nachname',
         'image' => 'Bild'
     ],
 

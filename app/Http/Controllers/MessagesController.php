@@ -89,7 +89,7 @@ class MessagesController extends Controller
         Message::create([
             'thread_id' => $thread->id,
             'user_id' => Auth::id(),
-            'body' => $input['message'],
+            'body' => empty($input['message']) ? 'Keine Nachricht.' : $input['message'],
         ]);
 
         // Sender

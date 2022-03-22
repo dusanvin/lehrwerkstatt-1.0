@@ -81,8 +81,12 @@ class MessagesController extends Controller
     {
         $input = Request::all();
 
+        if(empty($input['recipients'][0])) {
+            return back();
+        }
+
         $thread = Thread::create([
-            'subject' => $input['subject'],
+            'subject' => empty($input['subject']) ? 'Kein Betreff' : $input['subject'],
         ]);
 
         // Message

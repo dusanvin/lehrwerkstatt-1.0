@@ -347,7 +347,7 @@
 
                         <!-- Nutzende im relativen Vergleich -->
 
-                        <!-- Rollen im relativen Vergleich -->
+                        <!-- Studiengänge -->
 
                         <div class="mx-1 my-1 bg-white rounded-md ">
 
@@ -355,9 +355,9 @@
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-600">Registrierungen</h3>
+                                    <h3 class="font-semibold text-lg text-gray-600">Studiengänge</h3>
 
-                                    <p class="text-sm text-gray-500">Neue Nutzende</p>
+                                    <p class="text-sm text-gray-500">Nutzende</p>
 
                                 </div>
 
@@ -371,9 +371,9 @@
 
                         </div>
 
-                        <!-- Rollen im relativen Vergleich -->
+                        <!-- Studiengänge x-Achse: HF DaZ | NF DaZ | GS | MS | RS | GYM | Sonstiges -->
 
-                        <!-- Angebote im relativen Vergleich -->
+                        <!-- Rollen (nach Monat) im relativen Vergleich -->
 
                         <div class="mx-1 my-1 bg-white rounded-md ">
 
@@ -381,9 +381,9 @@
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-600">Angebote</h3>
+                                    <h3 class="font-semibold text-lg text-gray-600">Registrierungen</h3>
 
-                                    <p class="text-sm text-gray-500">Angebote im relativen Vergleich</p>
+                                    <p class="text-sm text-gray-500">Rollen im relativen Vergleich</p>
 
                                 </div>
 
@@ -397,7 +397,7 @@
 
                         </div>
 
-                        <!-- Angebote im relativen Vergleich -->
+                        <!-- Rollen (nach Monat) im relativen Vergleich -->
 
                     </div>
 
@@ -489,7 +489,6 @@
 
 
             //Nutzende
-                // Setup
                 DATA_COUNT = 5;
                 NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 400};
 
@@ -510,11 +509,21 @@
                   ]
                 };
 
-                // Config
                 config = {
-                  type: 'polarArea',
+                  // type: 'polarArea',
+                  type: 'pie',
                   data: data,
                   options: {
+                    // scales: {
+                    //   r: {
+                    //     ticks: {
+                    //       display: false
+                    //     },
+                    //     gridLines: {
+                    //       display: false
+                    //     }
+                    //   }
+                    // },
                     responsive: true,
                     plugins: {
                       legend: {
@@ -525,14 +534,12 @@
                   },
                 };
 
-                // Aufruf
                 var myChart = new Chart(
                     document.getElementById('nutzende'),
                     config
                   );
 
             // mychart4 - Rollen
-                // Setup
                 DATA_COUNT = 5;
                 NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
 
@@ -550,7 +557,6 @@
                   ]
                 };
 
-                // Config
                 config = {
                   type: 'pie',
                   data: data,
@@ -565,15 +571,13 @@
                   },
                 };
 
-                // Aufruf
                 var myChart = new Chart(
                     document.getElementById('myChart4'),
                     config
                   );
 
+            
             //Lernende
-
-            // Setup
             labels = [
               'September',
               'Oktober',
@@ -598,22 +602,28 @@
               }]
             };
 
-            // Config
             config = {
               type: 'line',
               data,
               options: {
+                scales: {
+                        y: {
+                            min: 0,
+                            ticks: {
+                              stepSize: 1
+                            }
+                        }
+                    },
                 responsive: true,
                 plugins: {
                   legend: {
-                        display: true,
+                        display: false,
                   }
 
                 }
               }
             };
 
-            // Aufruf
             var myChart = new Chart(
                 document.getElementById('lernende'),
                 config
@@ -621,16 +631,21 @@
 
 
             // mychart
-
-            labels: [
-                'DaZ/DaF (HF)',
+            labels = [
+              'HF DaZ',
+              'NF DaZ',
+              'GS',
+              'MS',
+              'RS',
+              'GYM',
+              'Sonstiges'
             ];
 
             data = {
                 labels: labels,
                 datasets: [{
-                    label: 'DaZ/DaF (B.A.)',
-                    data: [4, 0, 0, 0, 0, 0],
+                    // label: 'DaZ/DaF (B.A.)',
+                    data: [{{ $hfDazCount }}, {{ $nfDazCount }}, {{ $gsCount }}, {{ $msCount }}, {{ $rsCount }}, {{ $gymCount }}, {{ $sonstigesCount }}],
                     backgroundColor: [
                         'rgba(79, 70, 229, 0.6)'
                     ]
@@ -643,18 +658,20 @@
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true
+                            min: 0,
+                            ticks: {
+                              stepSize: 1
+                            }
                         }
                     },
                     plugins: {
                       legend: {
-                        display: true,
+                        display: false,
                       }
                     }
                 }
             };
 
-            // Aufruf
             var myChart = new Chart(
                 document.getElementById('myChart'),
                 config

@@ -16,15 +16,9 @@ class StatsController extends Controller
 {
 
 	/* Nur erreichbar, wenn eingeloggt */
-
-    // public function __construct()
-    // {
-    // 	$this->middleware(['auth']);
-    // }
 	
     public function index()
     {
-        //dd(auth()->user());
 
         // Nutzende
             // Anzahl aller Nutzenden
@@ -64,11 +58,18 @@ class StatsController extends Controller
             ])->get()->count();
 
             // Anzahl aller aktiven Bedarfe
-            $aktiveBedarfeCount = Need::where('active', 1)->get()->count();;
+            $aktiveBedarfeCount = Need::where('active', 1)->get()->count();
 
             // Anzahl aller inaktiven Bedarfe
-            $inaktiveBedarfeCount = Need::where('active', 0)->get()->count();;
+            $inaktiveBedarfeCount = Need::where('active', 0)->get()->count();
 
+        $hfDazCount = User::where('studiengang', 'Hauptfach Deutsch als Zweit- und Fremdsprache (B.A.)')->get()->count();
+        $nfDazCount = User::where('studiengang', 'Nebenfach Deutsch als Zweit- und Fremdsprache (B.A.)')->get()->count();
+        $gsCount = User::where('studiengang', 'Grundschule (LA)')->get()->count();
+        $msCount = User::where('studiengang', 'Mittelschule (LA)')->get()->count();
+        $rsCount = User::where('studiengang', 'Realschule (LA)')->get()->count();
+        $gymCount = User::where('studiengang', 'Gymnasium (LA)')->get()->count();
+        $sonstigesCount = User::where('studiengang', 'Sonstiges')->get()->count();
 
         return view('stats',
             compact(
@@ -83,7 +84,14 @@ class StatsController extends Controller
                 'inaktiveAngeboteCount',
                 'alleBedarfeCount',
                 'aktiveBedarfeCount',
-                'inaktiveBedarfeCount'
+                'inaktiveBedarfeCount',
+                'hfDazCount',
+                'nfDazCount',
+                'gsCount',
+                'msCount',
+                'rsCount',
+                'gymCount',
+                'sonstigesCount'
             )
         );
     }

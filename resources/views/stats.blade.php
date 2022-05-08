@@ -701,21 +701,30 @@
               datasets: [
                 {
                   label: 'Helfende',
-                  data: [4],
+                  data: [{{ $m09_last_year_helfende }}, {{ $m10_last_year_helfende }}, {{ $m11_last_year_helfende }}, {{ $m12_last_year_helfende }}, 
+                  {{ $m01_current_year_helfende }}, {{ $m02_current_year_helfende }}, {{ $m03_current_year_helfende }}, {{ $m04_current_year_helfende }},
+                  {{ $m05_current_year_helfende }}, {{ $m06_current_year_helfende }}, {{ $m07_current_year_helfende }}, {{ $m08_current_year_helfende }}
+                ],
                   backgroundColor: 'rgba(79, 70, 229, 0.6)',
                   stack: 'Stack 0',
                 },
                 {
                   label: 'Lehrende',
-                  data: [4],
+                  data: [{{ $m09_last_year_lehrende }}, {{ $m10_last_year_lehrende }}, {{ $m11_last_year_lehrende }}, {{ $m12_last_year_lehrende }}, 
+                  {{ $m01_current_year_lehrende }}, {{ $m02_current_year_lehrende }}, {{ $m03_current_year_lehrende }}, {{ $m04_current_year_lehrende }},
+                  {{ $m05_current_year_lehrende }}, {{ $m06_current_year_lehrende }}, {{ $m07_current_year_lehrende }}, {{ $m08_current_year_lehrende }}
+                ],
                   backgroundColor: 'rgba(245, 158, 11, 0.6)',
-                  stack: 'Stack 0',
+                  stack: 'Stack 1',
                 },
                 {
-                  label: 'Lernende',
-                  data: [2],
+                  label: 'Moderation',
+                  data: [{{ $m09_last_year_moderation }}, {{ $m10_last_year_moderation }}, {{ $m11_last_year_moderation }}, {{ $m12_last_year_moderation }}, 
+                  {{ $m01_current_year_moderation }}, {{ $m02_current_year_moderation }}, {{ $m03_current_year_moderation }}, {{ $m04_current_year_moderation }},
+                  {{ $m05_current_year_moderation }}, {{ $m06_current_year_moderation }}, {{ $m07_current_year_moderation }}, {{ $m08_current_year_moderation }}
+                ],
                   backgroundColor: 'rgba(5, 150, 105, 0.6)',
-                  stack: 'Stack 1',
+                  stack: 'Stack 2',
                 },
               ]
             };
@@ -738,7 +747,11 @@
                     stacked: true,
                   },
                   y: {
-                    stacked: true
+                    stacked: true,
+                    min: 0,
+                    ticks: {
+                      stepSize: 1
+                    }
                   }
                 }
               }

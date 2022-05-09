@@ -15,11 +15,11 @@ class CustomVerifyEmail extends VerifyEmail
     use Queueable;
 
     protected function buildMailMessage($url)
-    {
+    { 
         return (new MailMessage)
         ->subject(Lang::get('Verifizieren Sie Ihre E-Mail-Adresse.'))
         ->line(Lang::get('Willkommen!'))
-        ->line(Lang::get('Bitte bestätigen Sie Ihre E-Mail-Adresse'))
+        ->line(Lang::get('Bitte bestätigen Sie Ihre E-Mail-Adresse. Der Link ist 60 Minuten gültig. Sollte dieser bereits abgelaufen sein, loggen Sie sich bitte ein um eine neue E-Mail anzufordern.'))
         ->action(Lang::get('E-Mail-Adresse verifizieren'), $url)
         ->line(Lang::get('Sollten Sie diese E-Mail fälschlicherweise erhalten haben, müssen Sie nichts weiter tun.'));
     }

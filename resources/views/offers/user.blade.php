@@ -139,13 +139,13 @@
 
                                 <td class="px-6 py-4 whitespace-no-wrap ">
 
-                                    @if ($offer->active == 1)
+                                    @if ($offer->active)
 
-                                    <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-green-600 rounded-full">
+                                    <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white {{ $offer->assigned ? 'bg-yellow-400' : 'bg-green-600' }} rounded-full">
 
                                         <span class="has-tooltip">
 
-                                            Aktiv
+                                            {{ $offer->assigned ? 'Vergeben' : 'Aktiv' }}
 
                                             <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 -ml-40 text-xs'>Ihr Angebot ist aktiv. Deaktivieren Sie es bei Bedarf.</span>
 
@@ -354,6 +354,62 @@
                                     </form>
 
                                     <!-- Angebot deaktivieren -->
+
+                                    @if ($offer->assigned)
+
+                                    <!-- Bedarf als nicht vergeben markieren -->
+
+                                    <form action="{{ route('offers.setnotassigned', $offer) }}" method="post">
+
+                                        @csrf
+
+                                        <button type="submit" class="py-2 px-2 rounded-full bg-yellow-400 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
+
+                                            <div class="grid justify-items-center">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+
+                                                <!-- <span class="mx-3 mt-1">Bedarf aktivieren</span> -->
+                                                <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Angebot als nicht mehr vergeben markieren</span>
+
+                                            </div>
+
+                                        </button>
+
+                                    </form>
+
+                                    <!-- Bedarf als nicht vergeben markieren -->
+
+                                    @else
+
+                                    <!-- Bedarf als vergeben markieren -->
+
+                                    <form action="{{ route('offers.setassigned', $offer) }}" method="post">
+
+                                        @csrf
+
+                                        <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
+
+                                            <div class="grid justify-items-center">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+
+                                                <!-- <span class="mx-3 mt-1">Bedarf aktivieren</span> -->
+                                                <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Angebot als vergeben markieren</span>
+
+                                            </div>
+
+                                        </button>
+
+                                    </form>
+
+                                    <!-- Bedarf als vergeben markieren -->
+
+                                    @endif
 
                                     @else
 

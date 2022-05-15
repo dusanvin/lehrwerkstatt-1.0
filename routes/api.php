@@ -193,7 +193,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         /* Angebote: aktiv setzen */
         Route::post('/offers/{offer}/setactive', [OffersController::class, 'setactive'])
-            ->name('offers.setactive');
+            ->name('offers.setactive');            
+
+        /* Angebote: als vergeben markieren */
+        Route::post('/offers/{offer}/setassigned', [OffersController::class, 'setassigned'])
+            ->name('offers.setassigned');
+
+        /* Angebote: als nicht vergeben markieren */
+        Route::post('/offers/{offer}/setnotassigned', [OffersController::class, 'setnotassigned'])
+            ->name('offers.setnotassigned');
+
+
     });
 
     /*--------------------------------------------------------------------------*/
@@ -258,6 +268,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         /* Bedarf: aktiv setzen */
         Route::post('/needs/{need}/setactive', [NeedsController::class, 'setactive'])
             ->name('needs.setactive');
+
+        /* Bedarf: als derzeit vergeben markieren */
+        Route::post('/needs/{need}/setassigned', [NeedsController::class, 'setassigned'])
+            ->name('needs.setassigned');
+
+        /* Bedarf: als derzeit vergeben markieren */
+        Route::post('/needs/{need}/setnotassigned', [NeedsController::class, 'setnotassigned'])
+            ->name('needs.setnotassigned');
     });
 
     /*--------------------------------------------------------------------------*/

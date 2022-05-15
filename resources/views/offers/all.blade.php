@@ -72,7 +72,7 @@
 
                                 </summary>
 
-                               <!-- Details -->
+                                <!-- Details -->
 
                                 <form action="{{ route('offers.all') }}" method="post">
 
@@ -238,7 +238,7 @@
                                             <label for="datum" class="sr-only flex items-center">Datum</label>
 
                                             <div>
-                                                
+
                                                 <input class="text-gray-500 text-xs py-1 px-2 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('sprachkenntnisse') border-red-500 @enderror" type="text" id="datum" name="datum">
 
                                                 <script type="text/javascript">
@@ -261,9 +261,9 @@
                                                 <button onclick="resetDate()">
 
                                                     <div class="hover:text-gray-700">
-                                                    
+
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 h-5 w-5 inline-block align-text-bottom" viewBox="0 0 20 20" fill="currentColor">
-                                                          <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+                                                            <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
                                                         </svg>
 
                                                         Zurücksetzen
@@ -392,7 +392,7 @@
                                             </ul>
 
                                         </div>
-                                                
+
                                         <script>
                                             let checkboxes = document.getElementsByClassName("form-check-input me-1");
                                             for (let checkbox of checkboxes) {
@@ -403,20 +403,20 @@
                                             }
                                         </script>
 
-                                    <!-- Interessen -->
+                                        <!-- Interessen -->
 
-                                    <!-- Suchen -->
+                                        <!-- Suchen -->
 
-                                    <div class="flex justify-end md:gap-8 gap-4 pt-1 rounded-md text-sm">
+                                        <div class="flex justify-end md:gap-8 gap-4 pt-1 rounded-md text-sm">
 
-                                        <button class="flex items-center w-auto bg-gray-700 hover:bg-gray-900 rounded-lg font-medium text-white px-4 py-2">
+                                            <button class="flex items-center w-auto bg-gray-700 hover:bg-gray-900 rounded-lg font-medium text-white px-4 py-2">
 
                                                 <div>
 
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-                                                      <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                                                    
+                                                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+
                                                     </svg>
 
                                                 </div>
@@ -428,17 +428,17 @@
 
                                                 </div>
 
-                                        </button>
+                                            </button>
 
-                                    </div>
+                                        </div>
 
-                                    <!-- Suchen -->
+                                        <!-- Suchen -->
 
                                 </form>
 
                             </details>
 
-                           <!-- Details -->
+                            <!-- Details -->
 
                         </div>
 
@@ -446,7 +446,7 @@
 
                     </div>
 
-                    <!-- Kontakt -->                    
+                    <!-- Kontakt -->
 
                 </div>
 
@@ -454,27 +454,27 @@
 
                 @if ($offers->total() == 0)
 
-                    <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
-                    
-                        Kein Angebot gefunden.
-                        
-                    </div>
+                <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
+
+                    Kein Angebot gefunden.
+
+                </div>
 
                 @elseif ($offers->total() == 1)
 
-                    <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
-                    
-                        {{ $offers->total() }} Angebot gefunden.
-                        
-                    </div>
+                <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
+
+                    {{ $offers->total() }} Angebot gefunden.
+
+                </div>
 
                 @else
 
-                    <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
-                    
-                        {{ $offers->total() }} Angebote gefunden.
-                        
-                    </div>
+                <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
+
+                    {{ $offers->total() }} Angebote gefunden.
+
+                </div>
 
                 @endif
 
@@ -494,7 +494,7 @@
 
                     @foreach($offers as $offer)
 
-                    @if($offer->active == 1)
+                    @if($offer->active)
 
                     <div class="bg-white rounded-md pb-4">
 
@@ -542,6 +542,10 @@
                                 <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Fachsemester: <span class="font-medium">{{ $offer->fachsemester }}</span></p>
 
                             </div>
+
+                            @if ($offer->assigned)
+                            <div>Dieses Angebot ist momentan vergeben. Eine Anfrage kann sich dennoch lohnen.</div>
+                            @endif
 
                             <!-- Informationen -->
 
@@ -647,34 +651,6 @@
 
                                 @else
 
-                                <!-- Angebot deaktivieren -->
-
-                                <form action="{{ route('offers.setactive', $offer) }}" method="post">
-
-                                    @csrf
-
-                                    <button type="submit" class="py-2 px-2 rounded-full bg-yellow-700 text-white text-sm flex focus:outline-none mx-1 transition ease-in-out duration-150 has-tooltip hover:bg-yellow-900 hover:ring ring-yellow-300 border-2 border-white hover:border-yellow-300">
-
-                                        <div class="grid justify-items-center">
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-                                                <path d="M3.707 2.293a1 1 0 00-1.414 1.414l6.921 6.922c.05.062.105.118.168.167l6.91 6.911a1 1 0 001.415-1.414l-.675-.675a9.001 9.001 0 00-.668-11.982A1 1 0 1014.95 5.05a7.002 7.002 0 01.657 9.143l-1.435-1.435a5.002 5.002 0 00-.636-6.294A1 1 0 0012.12 7.88c.924.923 1.12 2.3.587 3.415l-1.992-1.992a.922.922 0 00-.018-.018l-6.99-6.991zM3.238 8.187a1 1 0 00-1.933-.516c-.8 3-.025 6.336 2.331 8.693a1 1 0 001.414-1.415 6.997 6.997 0 01-1.812-6.762zM7.4 11.5a1 1 0 10-1.73 1c.214.371.48.72.795 1.035a1 1 0 001.414-1.414c-.191-.191-.35-.4-.478-.622z" />
-
-                                            </svg>
-
-                                            <!-- <span class="mx-3 mt-1">Angebot deaktivieren</span> -->
-
-                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Deaktivieren</span>
-
-                                        </div>
-
-                                    </button>
-
-                                </form>
-
-                                <!-- Angebot deaktivieren -->
-
                                 <!-- Bearbeiten -->
 
                                 <form action="{{ route('offers.edit', $offer) }}" method="post">
@@ -702,6 +678,88 @@
                                 </form>
 
                                 <!-- Bearbeiten -->
+
+                                <!-- Angebot deaktivieren -->
+
+                                <form action="{{ route('offers.setinactive', $offer) }}" method="post">
+
+                                    @csrf
+
+                                    <button type="submit" class="py-2 px-2 rounded-full bg-yellow-700 text-white text-sm flex focus:outline-none mx-1 transition ease-in-out duration-150 has-tooltip hover:bg-yellow-900 hover:ring ring-yellow-300 border-2 border-white hover:border-yellow-300">
+
+                                        <div class="grid justify-items-center">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                                                <path d="M3.707 2.293a1 1 0 00-1.414 1.414l6.921 6.922c.05.062.105.118.168.167l6.91 6.911a1 1 0 001.415-1.414l-.675-.675a9.001 9.001 0 00-.668-11.982A1 1 0 1014.95 5.05a7.002 7.002 0 01.657 9.143l-1.435-1.435a5.002 5.002 0 00-.636-6.294A1 1 0 0012.12 7.88c.924.923 1.12 2.3.587 3.415l-1.992-1.992a.922.922 0 00-.018-.018l-6.99-6.991zM3.238 8.187a1 1 0 00-1.933-.516c-.8 3-.025 6.336 2.331 8.693a1 1 0 001.414-1.415 6.997 6.997 0 01-1.812-6.762zM7.4 11.5a1 1 0 10-1.73 1c.214.371.48.72.795 1.035a1 1 0 001.414-1.414c-.191-.191-.35-.4-.478-.622z" />
+
+                                            </svg>
+
+                                            <!-- <span class="mx-3 mt-1">Angebot deaktivieren</span> -->
+
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Deaktivieren</span>
+
+                                        </div>
+
+                                    </button>
+
+                                </form>
+
+                                <!-- Angebot deaktivieren -->
+
+                                @if ($offer->assigned)
+
+                                <!-- Angebot als nicht vergeben markieren -->
+
+                                <form action="{{ route('offers.setnotassigned', $offer) }}" method="post">
+
+                                    @csrf
+
+                                    <button type="submit" class="py-2 px-2 rounded-full bg-yellow-400 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
+
+                                        <div class="grid justify-items-center">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Angebot als nicht mehr vergeben markieren</span>
+
+                                        </div>
+
+                                    </button>
+
+                                </form>
+
+                                <!-- Angebot als nicht vergeben markieren -->
+
+                                @else
+
+                                <!-- Angebot als vergeben markieren -->
+
+                                <form action="{{ route('offers.setassigned', $offer) }}" method="post">
+
+                                    @csrf
+
+                                    <button type="submit" class="py-2 px-2 rounded-full bg-yellow-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
+
+                                        <div class="grid justify-items-center">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Angebot als vergeben markieren</span>
+
+                                        </div>
+
+                                    </button>
+
+                                </form>
+
+                                <!-- Angebot als vergeben markieren -->
+
+                                @endif
 
                                 <!-- Löschen -->
 
@@ -802,7 +860,7 @@
 
                     @else
 
-                        <p class="hidden">Keine Einträge vorhanden.</p>
+                    <p class="hidden">Keine Einträge vorhanden.</p>
 
                     @endif
 

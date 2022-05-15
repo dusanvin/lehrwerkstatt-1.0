@@ -205,6 +205,7 @@ class NeedsController extends Controller
         ]);
     }
 
+
     public function setinactive(Need $need)
     {
         if (!$need->ownedBy(auth()->user())) {
@@ -216,6 +217,7 @@ class NeedsController extends Controller
         return back();
     }
 
+
     public function setactive(Need $need)
     {
         if (!$need->ownedBy(auth()->user())) {
@@ -226,6 +228,27 @@ class NeedsController extends Controller
         $need->save();
         return back();
     }
+
+
+    public function setnotassigned(need $need) {
+        if(!$need->ownedBy(auth()->user())) {
+            return back();
+        }
+        $need->assigned = 0;
+        $need->save();
+        return back();
+    }
+
+
+    public function setassigned(need $need) {
+        if(!$need->ownedBy(auth()->user())) {
+            return back();
+        }
+        $need->assigned = 1;
+        $need->save();
+        return back();
+    }
+
 
     public function destroy(Need $need)
     {

@@ -229,6 +229,26 @@ class OffersController extends Controller
     }
 
 
+    public function setnotassigned(Offer $offer) {
+        if(!$offer->ownedBy(auth()->user())) {
+            return back();
+        }
+        $offer->assigned = 0;
+        $offer->save();
+        return back();
+    }
+
+
+    public function setassigned(Offer $offer) {
+        if(!$offer->ownedBy(auth()->user())) {
+            return back();
+        }
+        $offer->assigned = 1;
+        $offer->save();
+        return back();
+    }
+
+
     public function destroy(Offer $offer)
     {
         if (!$offer->ownedBy(auth()->user())) {

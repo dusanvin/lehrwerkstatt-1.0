@@ -171,6 +171,10 @@ class NeedsController extends Controller
             if (!$need->ownedBy(auth()->user())) {
                 return back();
             }
+            
+            if(!$request->interessen)
+                $request->interessen = 'Keine Angabe';
+
             $need->body = $request->body;
             $need->rahmen = $request->rahmen;
             $need->sprachkenntnisse = $request->sprachkenntnisse;
@@ -194,6 +198,7 @@ class NeedsController extends Controller
                 'datum_end' => $endDate,
                 'schulart' => $request->schulart,
                 'active' => 1,
+                'assigned' => 0,
             ]);
         }
 

@@ -171,6 +171,10 @@ class OffersController extends Controller
             if (!$offer->ownedBy(auth()->user())) {
                 return back();
             }
+
+            if(!$request->interessen)
+                $request->interessen = 'Keine Angabe';
+
             $offer->body = $request->body;
             $offer->rahmen = $request->rahmen;
             $offer->sprachkenntnisse = $request->sprachkenntnisse;
@@ -193,6 +197,7 @@ class OffersController extends Controller
                 'datum_end' => $endDate,
                 'schulart' => $request->schulart,
                 'active' => 1,
+                'assigned' => 0,
             ]);
         }
 

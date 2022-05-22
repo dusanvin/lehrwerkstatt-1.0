@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Offer;
 use App\Models\Language;
 use Carbon\Carbon;
+use App\Models\Assignment;
 
 class OffersController extends Controller
 {
@@ -250,6 +251,10 @@ class OffersController extends Controller
         }
         $offer->assigned = 1;
         $offer->save();
+
+        $assignment = new Assignment;
+        $offer->assignment()->save($assignment);
+        
         return back();
     }
 

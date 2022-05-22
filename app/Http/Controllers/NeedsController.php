@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Need;
 use App\Models\Language;
 use Carbon\Carbon;
+use App\Models\Assignment;
 
 class NeedsController extends Controller
 {
@@ -251,6 +252,10 @@ class NeedsController extends Controller
         }
         $need->assigned = 1;
         $need->save();
+
+        $assignment = new Assignment;
+        $need->assignment()->save($assignment);
+
         return back();
     }
 

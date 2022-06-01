@@ -151,11 +151,7 @@
 
             <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
 
-                <video class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" autoplay muted loop>
-
-                    <source type="video/mp4" src="{{ Config::get('site_vars.welcomeVideo') }}">
-
-                </video>
+                <img src="{{ Config::get('site_vars.welcomeImg') }}"></img>
 
             </div>
 

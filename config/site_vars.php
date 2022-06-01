@@ -24,7 +24,6 @@ return [
     /* welcome.blade.php*/
     'welcomeString1' => 'Finden Sie Ihre*n',
     'welcomeString2' => 'Tandempartner*in',
-    'welcomeVideo' => '../img/welcome_start.mp4',
     'welcomeImg' => '../img/Lehrwerkstatt_Puzzle.jpg',
 
     /* footer.blade.php */

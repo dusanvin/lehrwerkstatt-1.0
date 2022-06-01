@@ -42,7 +42,7 @@
 
                     <a href="\">
 
-                        <div class="flex items-center"><svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 16" class="h-7 w-7 -mt-2 flex-shrink-0"><path fill-rule="evenodd" clip-rule="evenodd" d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.057-3.382 12.758-10.145-2.551 3.382-5.528 4.65-8.93 3.804-1.942-.482-3.33-1.882-4.865-3.431C34.736 2.92 31.841 0 25.517 0zM12.758 15.218C5.954 15.218 1.701 18.6 0 25.364c2.552-3.382 5.529-4.65 8.93-3.805 1.942.482 3.33 1.882 4.865 3.432 2.502 2.524 5.397 5.445 11.722 5.445 6.804 0 11.057-3.381 12.758-10.145-2.552 3.382-5.529 4.65-8.931 3.805-1.941-.483-3.329-1.883-4.864-3.432-2.502-2.524-5.398-5.446-11.722-5.446z" fill="#7C3AED"></path></svg> <p class="text-xl ml-2">daz-<strong>buddies</strong></p></div>
+                        <div class="flex items-center"><svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 16" class="h-7 w-7 -mt-2 flex-shrink-0"><path fill-rule="evenodd" clip-rule="evenodd" d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.057-3.382 12.758-10.145-2.551 3.382-5.528 4.65-8.93 3.804-1.942-.482-3.33-1.882-4.865-3.431C34.736 2.92 31.841 0 25.517 0zM12.758 15.218C5.954 15.218 1.701 18.6 0 25.364c2.552-3.382 5.529-4.65 8.93-3.805 1.942.482 3.33 1.882 4.865 3.432 2.502 2.524 5.397 5.445 11.722 5.445 6.804 0 11.057-3.381 12.758-10.145-2.552 3.382-5.529 4.65-8.931 3.805-1.941-.483-3.329-1.883-4.864-3.432-2.502-2.524-5.398-5.446-11.722-5.446z" fill="#7C3AED"></path></svg> <p class="text-xl ml-2">Lehr:<strong>werkstatt</strong> an der Universität Augsburg</p></div>
 
                     </a>
 
@@ -101,11 +101,11 @@
 
                             <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
 
-                                <em>DaZ-Buddies</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Paare im Rahmen der 
+                                <em>Das Matchingtool</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Tandems im Rahmen der 
 
-                                    <a class="text-purple-600 font-bold" href="https://www.uni-augsburg.de/de/fakultaet/philhist/professuren/germanistik/deutsch-als-zweit-fremdsprache-und-seine-didaktik/fort-und-weiterbildung/outreach/daz-buddies/" target="_blank"><em>Augsburger DaZ-Buddies</em></a> 
+                                    <a class="text-purple-600 font-bold" href="#" target="_blank"><em>Augsburger {{ Config::get('site_vars.platformName1') }}{{ Config::get('site_vars.platformName2') }}</em></a> 
 
-                                zu bilden. <br><strong>Für Studierende und LehrerInnen.</strong>
+                                zu bilden. <br><strong>Für Studierende und Lehrer*innen.</strong>
 
                             </p>
 
@@ -132,6 +132,14 @@
                                 </div>
 
                             </div>
+
+                            <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+
+                            Informationen und FAQ zur Lehr:werkstatt an der Universität Augsburg finden Sie 
+
+                                <a class="text-purple-600 font-bold" href="https://www.uni-augsburg.de/zlbib/lehrwerkstatt" target="_blank"><em>hier</em></a> 
+
+                            </p>
 
                         </div>
 

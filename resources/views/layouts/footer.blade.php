@@ -26,19 +26,19 @@
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal">
 
-                            BETA-Version 0.2: 01/2022
+                            ALPHA-Version 0.1: 06/2022
 
                         </p>
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal mt-2">
 
-                            <em>Daz-Buddies</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Paare im Rahmen des Projekts <em>Augsburger DaZ-Buddies</em> zu bilden.
+                            <em>{{ Config::get('site_vars.platformName1') }}{{ Config::get('site_vars.platformName2') }}</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Tandems im Rahmen des Projekts <em>Augsburger {{ Config::get('site_vars.platformName1') }}{{ Config::get('site_vars.platformName2') }}</em> zu bilden.
 
                         </p>
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal mt-2 mr-2">
 
-                            <em>DaZ-Buddies</em> von <strong>Vincent Dusanek</strong> und <strong>Norman Szabo</strong> für <strong>DigiLLab</strong>, 2022. MIT-Lizenz.
+                            <em>{{ Config::get('site_vars.platformName1') }}{{ Config::get('site_vars.platformName2') }}</em> von <strong>Vincent Dusanek</strong> und <strong>Norman Szabo</strong> für <strong>DigiLLab</strong>, 2022. MIT-Lizenz.
 
                         </p>
 
@@ -73,9 +73,9 @@
 
                     <li>
 
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/fakultaet/philhist/professuren/germanistik/deutsch-als-zweit-fremdsprache-und-seine-didaktik/fort-und-weiterbildung/outreach/daz-buddies/" target="_blank">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/zlbib/lehrwerkstatt" target="_blank">
 
-                            DaZ-Buddies
+                        {{ Config::get('site_vars.platformName1') }}{{ Config::get('site_vars.platformName2') }}
 
                         </a>
 
@@ -150,7 +150,7 @@
 
                         <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-bold" href="/faq" target="_blank">
 
-                            FAQ
+                            FAQ zum <em>digi:match</em>
 
                         </a>
 

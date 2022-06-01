@@ -18,12 +18,12 @@ return [
 return [
 
 	/* header.blade.php */
-    'platformName1' => 'daz-',
-    'platformName2' => 'buddies',
+    'platformName1' => 'Lehr:',
+    'platformName2' => 'werkstatt',
 
     /* welcome.blade.php*/
     'welcomeString1' => 'Finden Sie Ihre*n',
-    'welcomeString2' => 'DaZ-Buddy',
+    'welcomeString2' => 'Tandempartner*in',
     'welcomeVideo' => '../img/welcome_start.mp4',
 
     /* footer.blade.php */

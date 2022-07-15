@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'digi:match'),
+    'name' => env('APP_NAME', 'lehr:werkstatt'),
 
     /*
     |--------------------------------------------------------------------------

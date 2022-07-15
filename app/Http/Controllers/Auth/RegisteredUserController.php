@@ -41,37 +41,32 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-    		'firstname' => 'required|max:255',
-    		'lastname' => 'required|max:255',
     		'email' => 'required|max:255', //'required|unique:users,email|max:255',
-            'role' => ['required', Rule::in(['btn-helfende', 'btn-lehrende'])],
     		'password' => ['required', 'confirmed', Password::min(10)
 				->numbers()
 				->symbols()
 				->mixedCase()
 				->letters(),
-			],
-            'user_agreement' => 'accepted',
-            'privacy_statement' => 'accepted'
+            ],
+            'role' => ['required', Rule::in(['lehr', 'stud'])]
         ]);
 
         $user = User::create([
-    		'vorname' => $request->firstname,
-    		'nachname' => $request->lastname,
     		'email' => $request->email,
     		'password' => Hash::make($request->password),
+            'role' => $request->role
         ]);
 
-        // Helfende 4, Lehrende 5
+        // Lehr 1, Stud 2
         $role = $request->input('role');
         
         $role_id = 0;
-        if ($role == 'btn-helfende') {
-            $role_id = 4;
+        if ($role == 'lehr') {
+            $role_id = 3;
         }
             
-        if ($role == 'btn-lehrende') {
-            $role_id = 5;
+        if ($role == 'stud') {
+            $role_id = 4;
         }
 
         event(new Registered($user));

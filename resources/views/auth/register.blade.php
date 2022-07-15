@@ -2,16 +2,16 @@
 
     <style>
 
-        #btn-helfende, #btn-lehrende {
+        #lehr, #stud {
             background-color: rgb(31, 41, 55);
         }
-        #btn-helfende:active, #btn-lehrende:active {
+        #lehr:active, #stud:active {
             background-color: rgb(107, 114, 128) !important;
         }
-        #btn-helfende:focus, #btn-lehrende:focus {
+        #lehr:focus, #stud:focus {
             background-color: rgb(107, 114, 128) !important;
         }
-        #btn-helfende:hover, #btn-lehrende:hover {
+        #lehr:hover, #stud:hover {
             background-color: rgb(107, 114, 128) !important;
         }
         #privacy_statement:checked, #user_agreement:checked {
@@ -29,8 +29,8 @@
         var selected = null;
 
         role_button_ids = [
-            "btn-helfende",
-            "btn-lehrende"
+            "lehr",
+            "stud"
         ];
 
         function setRole(id) {
@@ -66,46 +66,6 @@
         <form method="POST" action="{{ route('register') }}">
 
             @csrf
-
-            <!-- Vorname -->
-
-            <div>
-
-                <x-label for="firstname" :value="__('Vorname*')" />
-
-                <x-input id="firstname" class="block mt-2 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus />
-
-            </div>
-
-            <!-- Vorname -->
-            
-            <!-- Nachname -->
-
-            <div class="mt-4">
-
-                <x-label for="lastname" :value="__('Nachname*')" />
-
-                <x-input id="lastname" class="block mt-2 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus />
-
-            </div>
-
-            <!-- Nachname -->
-
-            <!-- Rolle -->
-
-            <div class="mt-4">
-
-                <x-label for="role" :value="__('Rolle*')" />
-
-                <input id="role" type="hidden" name="role"></input>
-
-                <x-button id="btn-helfende" type="button" class="mt-2" onclick=setRole(this.id)>Helfende</x-button>
-
-                <x-button id="btn-lehrende" type="button" class="mt-2" onclick=setRole(this.id)>Lehrende</x-button>
-
-            </div>
-
-            <!-- Rolle -->
 
             <!-- Email Addresse -->
 
@@ -153,6 +113,22 @@
             </div>
 
             <!-- Confirm Password -->
+
+            <!-- Rolle -->
+
+            <div class="mt-4">
+
+                <x-label for="role" :value="__('Rolle*')" />
+
+                <input id="role" type="hidden" name="role"></input>
+
+                <x-button id="lehr" type="button" class="mt-2" onclick=setRole(this.id)>Lehrkraft</x-button>
+
+                <x-button id="stud" type="button" class="mt-2" onclick=setRole(this.id)>Student*in</x-button>
+
+            </div>
+
+            <!-- Rolle -->
 
             <!-- Nutzungsbedingungen -->
 

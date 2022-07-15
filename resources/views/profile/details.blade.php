@@ -37,49 +37,35 @@
 
                                     @if(isset($user->image->filename))
 
-                                        <img src="{{ url('images/show/'.$user->id) }}" class="w-48 h-48 rounded-full object-cover border-4 border-white mx-auto">
+                                    <img src="{{ url('images/show/'.$user->id) }}" class="w-48 h-48 rounded-full object-cover border-4 border-white mx-auto">
 
                                     @else
-                                    
-                                        <img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-48 h-48 rounded-full object-cover border-4 border-white mx-auto">                              
+
+                                    <img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-48 h-48 rounded-full object-cover border-4 border-white mx-auto">
 
                                     @endif
 
                                 </div>
-                                
+
                                 <div class="text-center">
-                                    
-                                    <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->vorname }} {{ $user->nachname }}</h2>
+
+                                    <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->survey_data->nachname }} {{ $user->survey_data->vorname }}</h2>
 
                                     <p class="text-gray-600 font-lg text-semibold text-xs">
 
                                         @if(!empty($user->getRoleNames()))
 
-                                            @foreach($user->getRoleNames() as $v)
-
-                                                <label class="badge badge-success">{{ $v }}</label>
-
-                                            @endforeach
+                                        @foreach($user->getRoleNames() as $v)
+                                        @if($v == 'Lehr')
+                                        <label class="badge badge-success">{{ $v }}kraft</label>
+                                        @elseif($v == 'Stud')
+                                        <label class="badge badge-success">{{ $v }}ent*in</label>
+                                        @endif
+                                        @endforeach
 
                                         @endif
 
-                                    </p>
-
-                                    <p class="text-sm text-gray-500 mt-2 select-none mb-6">
-
-                                        @if($user->gruesse === NULL)
-                                            
-                                            Es sind keine Profilgrüße hinterlegt.
-
-                                        @else
-
-                                            {{ $user->gruesse }}
-
-                                        @endif
-
-                                    </p>
-
-                                </div>                                
+                                </div>
 
                                 <ul class="bg-white text-gray-600 py-2 px-3 mt-3 divide-y rounded text-sm">
 
@@ -87,15 +73,15 @@
                                         <div class="text-teal-600">Letzte Anmeldung</div>
                                         <div class="text-gray-500 text-xs">
                                             @if($user->last_login_at === NULL)
-                                                -
+                                            -
                                             @else
 
-                                                {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}
+                                            {{ \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() }}
 
                                             @endif
                                         </div>
                                     </li>
-                                    
+
                                     <li class="py-3">
                                         <div class="text-teal-600">Registrierung</div>
                                         <div class="text-gray-500 text-xs">{{ $user->created_at->DiffForHumans() }}</div>
@@ -107,56 +93,71 @@
                                     </li>
 
                                     <li class="py-3">
-                                        <div class="text-teal-600">Studiengang</div>
-                                        <div class="text-gray-500 text-xs">{{ $user->studiengang }}</div>
+                                        <div class="text-teal-600">Telefonnummer</div>
+                                        <div class="text-gray-500 text-xs break-all">{{ $user->survey_data->telefonnummer }}</div>
                                     </li>
+
+                                    <li class="py-3">
+                                        <div class="text-teal-600">Schulart</div>
+                                        <div class="text-gray-500 text-xs">{{ $user->survey_data->schulart }}</div>
+                                    </li>
+                                    @if(isset($user->survey_data->faecher))
+                                    <li class="py-3">
+                                        <div class="text-teal-600">Fächer</div>
+                                        <div class="text-gray-500 text-xs break-all">{{ $user->survey_data->faecher }}</div>
+                                    </li>
+                                    @endif
+                                    @foreach($user->getRoleNames() as $v)
+                                    @if($v == 'Stud')
                                     <li class="py-3">
                                         <div class="text-teal-600">Fachsemester</div>
-                                        <div class="text-gray-500 text-xs">{{ $user->fachsemester }}</div>
+                                        <div class="text-gray-500 text-xs">{{ $user->survey_data->fachsemester }}</div>
                                     </li>
+                                    @endif
+                                    @endforeach
 
                                 </ul>
-                                
+
                                 <div class="mt-4 flex justify-center">
 
-                                <!-- Anfragen -->
+                                    <!-- Anfragen -->
 
                                     @if($user->id != Auth::id())
 
-                                        <form action="{{ route('messages.store') }}" method="post">
+                                    <form action="{{ route('messages.store') }}" method="post">
 
-                                            {{ csrf_field() }}
+                                        {{ csrf_field() }}
 
-                                            <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="Neuer Chat über Profilanfrage" name="subject" type="hidden">
+                                        <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="Neuer Chat über Profilanfrage" name="subject" type="hidden">
 
-                                            <textarea name="message" placeholder="Ihre Nachricht." style="display:none;">Hallo, ich schreibe Ihnen über Ihr Profil. Das ist eine automatisierte Systemnachricht.</textarea>
+                                        <textarea name="message" placeholder="Ihre Nachricht." style="display:none;">Hallo, ich schreibe Ihnen über Ihr Profil. Das ist eine automatisierte Systemnachricht.</textarea>
 
-                                            <div class="checkbox">
+                                        <div class="checkbox">
 
-                                                <input name="recipients[]" value="{{ $user->id }}" type="hidden">
+                                            <input name="recipients[]" value="{{ $user->id }}" type="hidden">
 
-                                            </div>
+                                        </div>
 
-                                            <div class="form-group">
+                                        <div class="form-group">
 
-                                                <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300 text-sm flex focus:outline-none mx-1 transition ease-in-out duration-150 has-tooltip">
+                                            <button type="submit" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300 text-sm flex focus:outline-none mx-1 transition ease-in-out duration-150 has-tooltip">
 
-                                                    <div class="grid justify-items-center">
+                                                <div class="grid justify-items-center">
 
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                          <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
-                                                          <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
-                                                        </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                                                        <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
+                                                    </svg>
 
-                                                        <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Nachricht schreiben</span>
+                                                    <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Nachricht schreiben</span>
 
-                                                    </div>
+                                                </div>
 
-                                                </button>
+                                            </button>
 
-                                            </div>
+                                        </div>
 
-                                        </form>
+                                    </form>
 
                                     @endif
 
@@ -167,7 +168,7 @@
                                     <a href="mailto:{{  $user->email }}" class="py-2 px-2 rounded-full bg-gray-700 text-white hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300 text-sm flex focus:outline-none mx-1 transition ease-in-out duration-150 has-tooltip">
 
                                         <div class="grid justify-items-center">
-                                            
+
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                                                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
@@ -188,10 +189,33 @@
                             <!-- End of profile card -->
 
                             <div class="my-4"></div>
-                            
+
                         </div>
 
                         <!-- Right Side -->
+
+                        <script>
+                            zutreffend = [
+                                {value: 1, text: "Trifft überhaupt nicht zu."},
+                                {value: 2, text: "Trifft eher nicht zu."},
+                                {value: 3, text: "Teils, teils."},
+                                {value: 4, text: "Trifft eher zu."},
+                                {value: 5, text: "Trifft voll und ganz zu."}
+                            ];
+                            feedback = [
+                                {value: 1, text: "ist sehr behutsam."},
+                                {value: 2, text: "ist eher behutsam."},
+                                {value: 3, text: "ist manchmal behutsam, manchmal direkt."},
+                                {value: 4, text: "ist eher direkt."},
+                                {value: 5, text: "ist sehr direkt."}
+                                ];
+                            freiraum = [
+                                {value: 1, text: "mir eher Freiraum für eigene Ideen und Entscheidungen lässt."},
+                                {value: 2, text: "mir teils Freiraum lässt, teils klare Anweisungen gibt."},
+                                {value: 3, text: "mir eher klare Anweisungen gibt."}
+                            ];        
+                        </script>
+
 
                         <div class="w-full md:w-9/12 mr-2 gap-4">
 
@@ -199,117 +223,411 @@
 
                             <div class="px-3 py-2">
 
-                                <!-- Motivation -->
+                                <!-- Schule -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if($v == 'Lehr')
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                        Name und Adresse der Schule
+
+                                    </dt>
+
+                                    <dd class="text-gray-500 text-xs">
+
+                                        {{ $user->survey_data->schulname }}<br>
+                                        {{ $user->survey_data->strasse }} {{ $user->survey_data->hausnummer }}<br>
+                                        {{ $user->survey_data->postleitzahl }} {{ $user->survey_data->ort }}<br>
+                                        {{ $user->survey_data->landkreis }} (Landkreis)
+
+                                    </dd>
+
+                                </div>
+                                @elseif($v == 'Stud' && isset($user->survey_data->ehem_schulname))
+                                <div class="py-3">
+
+                                <dt class="text-teal-600">
+
+                                        Ehemalige Schule:
+
+                                </dt>
+
+                                <dd class="text-gray-500 text-xs">
+
+                                    {{ $user->survey_data->ehem_schulname }}<br>
+                                    {{ $user->survey_data->ehem_schulort }}
+
+                                </dd>
+
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- Schule -->
+
+
+                                <!-- religionslehre -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if($v == 'Stud' && isset($user->survey_data->religionslehre))
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Studieren Sie das Didaktikfach ev./kath. Religionslehre?:<br> 
+                                    <b id="religionslehre"></b>
+                                    <script>
+                                        document.getElementById('religionslehre').innerHTML = '{{ $user->survey_data->religionslehre }}';
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- religionslehre -->
+
+
+                                <!-- landkreise -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if($v == 'Stud' && isset($user->survey_data->landkreise))
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Ich kann die Lehr:werkstatt in folgenden Landkreisen ableisten:<br> 
+                                    <b id="landkreise"></b>
+                                    <script>
+                                        document.getElementById('landkreise').innerHTML = '{{ $user->survey_data->landkreise }}';
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- landkreise -->
+
+
+                                <!-- verkehrsmittel -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if($v == 'Stud' && isset($user->survey_data->verkehrsmittel))
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Mir stehen folgende Verkehrsmittel zur Verfügung:<br> 
+                                    <b id="verkehrsmittel"></b>
+                                    <script>
+                                        document.getElementById('verkehrsmittel').innerHTML = '{{ $user->survey_data->verkehrsmittel }}';
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- verkehrsmittel -->
+
+
+                                <!-- feedback_an -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if($v == 'Lehr')
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Das Feedback, das ich meinem Lehr:werker bzw. meiner Lehr:werkerin gebe,:<br> 
+                                    <b id="feedback_an"></b>
+                                    <script>
+                                        document.getElementById('feedback_an').innerHTML = feedback[{{ $user->survey_data->feedback_an }} - 1]['text'];
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @elseif($v == 'Stud')
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Beim Feedback, das ich meinem Lehr:mentor bzw. meiner Lehr:mentorin gebe, sage ich ganz direkt, was ich von seinem bzw. ihrem Unterricht halte:<br> 
+                                    <b id="feedback_an"></b>
+                                    <script>
+                                        document.getElementById('feedback_an').innerHTML = zutreffend[{{ $user->survey_data->feedback_an }} - 1]['text'];
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- feedback_an -->
+
+
+                                <!-- feedback_von -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if($v == 'Lehr')
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Ich wünsche mir von meinem Lehr:werker bzw. meiner Lehr:werkerin kritische Rückmeldungen zu meinem Unterricht:<br> 
+                                    <b id="feedback_von"></b>
+                                    <script>
+                                        document.getElementById('feedback_von').innerHTML = zutreffend[{{ $user->survey_data->feedback_von }} - 1]['text'];
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @elseif($v == 'Stud')
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Das Feedback, das mir mein*e Lehr:mentor*in geben sollte,:<br> 
+                                    <b id="feedback_von"></b>
+                                    <script>
+                                        document.getElementById('feedback_von').innerHTML = feedback[{{ $user->survey_data->feedback_von }} - 1]['text'];
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- feedback_von -->
+
+
+                                <!-- eigenstaendigkeit -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if($v == 'Lehr')
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Mein*e Lehr:werker*in soll langsam ins selbstständige Unterrichten hineinwachsen und nicht von Anfang an Teile des Unterrichts übernehmen:<br> 
+                                    <b id="eigenstaendigkeit"></b>
+                                    <script>
+                                        document.getElementById('eigenstaendigkeit').innerHTML = zutreffend[{{ $user->survey_data->eigenstaendigkeit }} - 1]['text'];
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @elseif($v == 'Stud')
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Ich möchte langsam ins selbstständige Unterrichten hineinwachsen und nicht von Anfang an Teile des Unterrichts übernehmen:<br> 
+                                    <b id="eigenstaendigkeit"></b>
+                                    <script>
+                                        document.getElementById('eigenstaendigkeit').innerHTML = zutreffend[{{ $user->survey_data->eigenstaendigkeit }} - 1]['text'];
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- eigenstaendigkeit -->
+
+
+                                <!-- improvisation -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if($v == 'Lehr' || $v == 'Stud')
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Situationen, in denen ich improvisieren muss, versuche ich durch intensive Planung strikt zu vermeiden:<br> 
+                                    <b id="improvisation"></b>
+                                    <script>
+                                        document.getElementById('improvisation').innerHTML = zutreffend[{{ $user->survey_data->improvisation }} - 1]['text'];
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- improvisation -->
+
+
+                                <!-- freiraum -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if($v == 'Lehr')
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Ich wünsche mir eine*n Lehr:werker*in, die bzw. der:<br> 
+                                    <b id="freiraum"></b>
+                                    <script>
+                                        document.getElementById('freiraum').innerHTML = freiraum[{{ $user->survey_data->freiraum }} - 1]['text'];
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @elseif($v == 'Stud')
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Ich wünsche mir eine*n Lehr:mentor*in, die bzw. der:<br> 
+                                    <b id="freiraum"></b>
+                                    <script>
+                                        document.getElementById('freiraum').innerHTML = freiraum[{{ $user->survey_data->freiraum }} - 1]['text'];
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- freiraum -->
+
                                 
+                                <!-- innovationsoffenheit -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if($v == 'Lehr')
                                 <div class="py-3">
 
                                     <dt class="text-teal-600">
 
-                                        Motivation
-
+                                    Ich möchte lieber meine Erfahrungen an den bzw. die Lehr:werker*in weitergeben als gemeinsam mit ihm bzw. ihr Neues auszuprobieren:<br> 
+                                    <b id="innovationsoffenheit"></b>
+                                    <script>
+                                        document.getElementById('innovationsoffenheit').innerHTML = zutreffend[{{ $user->survey_data->innovationsoffenheit }} - 1]['text'];
+                                    </script>
                                     </dt>
 
-                                    <dd class="text-gray-500 text-xs">
-
-                                        @if($user->motivation === NULL)
-                                                
-                                            Es sind keine näheren Angaben zu Motivationsgründen vorhanden.
-
-                                        @else
-
-                                            {{ $user->motivation }}
-
-                                        @endif
-
-                                    </dd>
-
                                 </div>
-
-                                <!-- Motivation -->
-
-                                <!-- Erfahrungen -->
-
+                                @elseif($v == 'Stud')
                                 <div class="py-3">
 
                                     <dt class="text-teal-600">
 
-                                        Erfahrungen
-
+                                    Ein großer Erfahrungsschatz ist mir bei meinem Lehr:mentor bzw. meiner Lehr:mentorin wichtiger als die Neigung, Neues auszuprobieren:<br> 
+                                    <b id="innovationsoffenheit"></b>
+                                    <script>
+                                        document.getElementById('innovationsoffenheit').innerHTML = zutreffend[{{ $user->survey_data->innovationsoffenheit }} - 1]['text'];
+                                    </script>
                                     </dt>
 
-                                    <dd class="text-gray-500 text-xs">
-
-                                        @if($user->erfahrungen === NULL)
-                                                
-                                            Es sind keine näheren Angaben zu Erfahrungen vorhanden.
-
-                                        @else
-
-                                            {{ $user->erfahrungen }}
-
-                                        @endif
-
-                                    </dd>
-
                                 </div>
+                                @endif
+                                @endforeach
+                                <!-- innovationsoffenheit -->
 
-                                <!-- Erfahrungen -->
 
-                                <!-- Interessen -->
-
+                                <!-- belastbarkeit -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if($v == 'Lehr')
                                 <div class="py-3">
 
                                     <dt class="text-teal-600">
 
-                                        Interessen
-
+                                    Ich wünsche mir eine*n Lehr:werker*in, die bzw. der sich das Unterrichten in schwierigen bzw. höheren Klassen zutraut:<br> 
+                                    <b id="belastbarkeit"></b>
+                                    <script>
+                                        document.getElementById('belastbarkeit').innerHTML = zutreffend[{{ $user->survey_data->belastbarkeit }} - 1]['text'];
+                                    </script>
                                     </dt>
 
-                                    <dd class="text-gray-500 text-xs">
-
-                                        @if($user->interessen === NULL)
-                                                
-                                            Es sind keine näheren Angaben zu Interessen vorhanden.
-
-                                        @else
-
-                                            {{ $user->interessen }}
-
-                                        @endif
-
-                                    </dd>
-
                                 </div>
-
-                                <!-- Interessen -->
-
-                                <!-- Treffen -->
-
+                                @elseif($v == 'Stud')
                                 <div class="py-3">
 
                                     <dt class="text-teal-600">
 
-                                        Möglichkeiten der Zusammenarbeit
-
+                                    Ich traue mir zu, mit meinem Lehr:mentor bzw. meiner Lehr:mentorin in „schwierigen“ oder höheren Klassen zu unterrichten:<br> 
+                                    <b id="belastbarkeit"></b>
+                                    <script>
+                                        document.getElementById('belastbarkeit').innerHTML = zutreffend[{{ $user->survey_data->belastbarkeit }} - 1]['text'];
+                                    </script>
                                     </dt>
 
-                                    <dd class="text-gray-500 text-xs">
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- belastbarkeit -->
 
-                                        @if($user->treffen === NULL)
-                                                
-                                            Es sind keine näheren Angaben zu Möglichkeiten der Zusammenarbeit vorhanden.
 
-                                        @else
+                                <!-- berufserfahrung -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if($v == 'Lehr')
+                                <div class="py-3">
 
-                                            {{ $user->treffen }}
+                                    <dt class="text-teal-600">
 
-                                        @endif
-
-                                    </dd>
+                                    Meine Berufserfahrung: Ich bin Lehrer*in seit:<br> 
+                                    <b id="berufserfahrung"></b>
+                                    <script>
+                                        berufserfahrung = [
+                                            {value: 1, text: "maximal einem Jahr."},
+                                            {value: 2, text: "mehr als einem Jahr und maximal 3 Jahren."},
+                                            {value: 3, text: "mehr als drei Jahren und maximal 10 Jahren."},
+                                            {value: 4, text: "mehr als 10 Jahren."},
+                                        ]
+                                        document.getElementById('berufserfahrung').innerHTML = berufserfahrung[{{ $user->survey_data->berufserfahrung }} - 1]['text'];
+                                    </script>
+                                    </dt>
 
                                 </div>
+                                @endif
+                                @endforeach
+                                <!-- berufserfahrung -->
 
-                                <!-- Treffen -->
+
+                                <!-- praktika -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if($v == 'Stud')
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Welche(s) der folgenden Praktika haben Sie im Rahmen Ihres Lehramtsstudiums bereits absolviert?:<br> 
+                                    <b id="praktika"></b>
+                                    <script>
+                                        document.getElementById('praktika').innerHTML = '{{ $user->survey_data->praktika }}';
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- praktika -->
+
+
+                                <!-- freue_auf -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if( ($v == 'Lehr' || $v == 'Stud') && isset($user->survey_data->freue_auf))
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Ich freue mich im Rahmen der Lehr:werkstatt besonders auf:<br> 
+                                    <b id="freue_auf"></b>
+                                    <script>
+                                        document.getElementById('freue_auf').innerHTML = '{{ $user->survey_data->freue_auf }}';
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- freue_auf -->
+
+
+                                <!-- anmerkungen -->
+                                @foreach($user->getRoleNames() as $v)
+                                @if($v == 'Stud' && isset($user->survey_data->anmerkungen))
+                                <div class="py-3">
+
+                                    <dt class="text-teal-600">
+
+                                    Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?:<br> 
+                                    <b id="anmerkungen"></b>
+                                    <script>
+                                        document.getElementById('anmerkungen').innerHTML = '{{ $user->survey_data->anmerkungen }}';
+                                    </script>
+                                    </dt>
+
+                                </div>
+                                @endif
+                                @endforeach
+                                <!-- anmerkungen -->
 
                             </div>
 

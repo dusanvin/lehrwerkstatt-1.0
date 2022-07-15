@@ -38,6 +38,8 @@
 
                                 }
 
+                                
+
                             @endphp
 
                             <!-- Verlinkung zu Profil des Gegenübers -->

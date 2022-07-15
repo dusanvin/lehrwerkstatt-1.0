@@ -43,12 +43,13 @@ return [
     'verwaltungInfo' => 'Nutzende und Rollen',
 
     'angebote' => 'Angebote',
-    /*'angeboteInfo' => 'Hilfsangebot anbieten',*/
-    'angeboteInfo' => 'DaZ-Buddy werden',
+    'angeboteInfo' => 'von Lehrkräften',
 
     'bedarfe' => 'Bedarfe',
-    /*'bedarfeInfo' => 'Hilfsangebot ersuchen',*/
-    'bedarfeInfo' => 'DaZ-Buddy suchen',
+    'bedarfeInfo' => 'von Student*innen',
+
+    'vorschlaege' => 'Vorschläge',
+    'vorschlaegeInfo' => 'basierend auf Algorithmus',
 
     /* MeinBereich */
     'meinBereichMotivation' => 'Bearbeiten Sie Ihre Daten und stellen Sie sich vor.',

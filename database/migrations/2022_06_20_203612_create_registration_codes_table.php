@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RemoveUsernameFromUsersTable extends Migration
+class CreateRegistrationCodesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class RemoveUsernameFromUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('username');
+        Schema::create('registration_codes', function (Blueprint $table) {
+            $table->string('code');
         });
     }
 
@@ -25,8 +25,6 @@ class RemoveUsernameFromUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('username');
-        });
+        Schema::dropIfExists('registration_codes');
     }
 }

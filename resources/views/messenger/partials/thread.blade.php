@@ -38,7 +38,7 @@
                     foreach ($thread->participantsUserIds(Auth::id()) as $user) {
                         
                         if($user != Auth::id()) {
-
+                            
                             $id = $user;
                             break;
                         }
@@ -53,8 +53,7 @@
 
                     @php
 
-                        if(!empty($thread->participantsString(Auth::id(),['vorname']))) {
-
+                        if( !empty( $thread->participantsString(Auth::id()) ) ) {
                             echo $thread->participantsString(Auth::id(),['vorname'])[0] . $thread->participantsString(Auth::id(),['nachname'])[0];
                         }
 

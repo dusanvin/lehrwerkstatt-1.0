@@ -155,7 +155,7 @@
 
                                 <div class="mt-4 text-sm text-gray-500">
 
-                                    Helfende
+                                    Studierende
 
                                     </div>
 
@@ -183,7 +183,7 @@
 
                                 <div class="mt-4 text-sm text-gray-500">
 
-                                    Lehrende 
+                                    Lehrkräfte
 
                                     </div>
 
@@ -492,7 +492,7 @@
                 DATA_COUNT = 5;
                 NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 400};
 
-                labels2 = ['Admins', 'Moderierende', 'Helfende', 'Lehrende'];
+                labels2 = ['Admins', 'Moderierende', 'Studierende', 'Lehrkräfte'];
                 data = {
                   labels: labels2,
                   datasets: [
@@ -544,7 +544,7 @@
                 NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
 
                 data = {
-                  labels: [ 'Lehrende', 'Helfende'],
+                  labels: [ 'Lehrkräfte', 'Studierende'],
                   datasets: [
                     {
                       label: 'Dataset 1',

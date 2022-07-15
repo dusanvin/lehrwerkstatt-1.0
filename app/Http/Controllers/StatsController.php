@@ -33,10 +33,10 @@ class StatsController extends Controller
             $modsCount = User::role('Moderierende')->get()->count();
 
             // Anzahl aller Helfenden
-            $helfendeCount = User::role('Helfende')->get()->count();
+            $helfendeCount = User::role('Stud')->get()->count();
 
             // Anzahl aller Lehrenden
-            $lehrendeCount = User::role('Lehrende')->get()->count();
+            $lehrendeCount = User::role('Lehr')->get()->count();
 
         // Angebote
             // Anzahl aller Angebote

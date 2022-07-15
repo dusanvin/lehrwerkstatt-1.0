@@ -26,7 +26,7 @@ class AddSchulartToNeedsTable extends Migration
     public function down()
     {
         Schema::table('needs', function (Blueprint $table) {
-            $table->dropColumn('username');
+            $table->dropColumn('schulart');
         });
     }
 }

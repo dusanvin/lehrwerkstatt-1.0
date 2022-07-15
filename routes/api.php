@@ -20,6 +20,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ImageController;
 
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,8 +68,50 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     /*--------------------------------------------------------------------------*/
 
+    /* Bewerbungsformular */
+
+    Route::group(['middleware' => ['role:Lehr']], function () {
+
+        Route::get('/bewerbungsformular/lehr', function() {
+            return view('surveys.lehr');
+        })->name('surveys.lehr');
+
+        Route::post('/bewerbungsformular/registrierungscode', function(Request $request) {
+            $codes = DB::table('registration_codes')->where('code', $request->code)->get();
+            return $codes->count();
+        });
+ 
+    });
+
+    Route::group(['middleware' => ['role:Admin|Stud']], function () {
+
+        Route::get('/bewerbungsformular/stud', function() {
+            return view('surveys.stud');
+        })->name('surveys.stud');
+
+        Route::get('/angebote', [UserController::class, 'lehr'])
+            ->name('users.lehr');
+
+        Route::post('/angebote', [UserController::class, 'filtered'])
+            ->name('users.lehr');
+ 
+    });
+
+    Route::group(['middleware' => ['role:Admin|Lehr|Stud']], function () {
+
+        Route::post('/bewerbungsformular', [UserController::class, 'save']);
+
+    });
+
+    Route::group(['middleware' => ['role:Admin|Moderierende']], function () {
+        Route::get('/matchings', [UserController::class, 'matchings'])->name('users.matchings');
+    });
+
+
+    /*--------------------------------------------------------------------------*/
+
     /* Profilbereich */
-    Route::group(['middleware' => ['role:Admin|Moderierende|Lehrende|Helfende']], function () {
+    Route::group(['middleware' => ['role:Admin|Moderierende|Lehr|Stud']], function () {
 
         Route::get('/profile/details/{id}', [ProfileController::class, 'show'])
             ->name('profile.details');
@@ -138,7 +181,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     /* Angebote */
 
     /* Zugriffsrechte Alle */
-    Route::group(['middleware' => ['role:Admin|Moderierende|Lehrende|Helfende']], function () {
+    Route::group(['middleware' => ['role:Admin|Moderierende|Lehr|Stud']], function () {
 
         /* Alle Angebote anzeigen*/
         Route::get('/offers/all', [OffersController::class, 'all'])
@@ -165,7 +208,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     /* Zugriffsrechte Helfende im Speziellen */
-    Route::group(['middleware' => ['role:Admin|Moderierende|Helfende']], function () {
+    Route::group(['middleware' => ['role:Admin|Moderierende|Stud']], function () {
 
         /* Meine Angebote anzeigen*/
         Route::get('/offers/myoffers', [OffersController::class, 'user'])
@@ -211,7 +254,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     /* Bedarfe */
 
     /* Zugriffsrechte Alle */
-    Route::group(['middleware' => ['role:Admin|Moderierende|Lehrende|Helfende']], function () {
+    Route::group(['middleware' => ['role:Admin|Moderierende|Lehr|Stud']], function () {
 
         /* Alle Bedarfe anzeigen*/
         Route::get('/needs/all', [NeedsController::class, 'all'])
@@ -239,7 +282,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     /* Zugriffsrechte Lehrende im Speziellen */
 
-    Route::group(['middleware' => ['role:Admin|Moderierende|Lehrende']], function () {
+    Route::group(['middleware' => ['role:Admin|Moderierende|Lehr']], function () {
 
         /* Meine Bedarfe anzeigen*/
         Route::get('/needs/myneeds', [NeedsController::class, 'user'])

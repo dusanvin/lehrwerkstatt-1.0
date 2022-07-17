@@ -101,6 +101,12 @@ class ProfileController extends Controller
             }
         }
 
+        if(!$user->survey_data) {
+            return view('surveys.admin_mod', ['Bitte vervollständigen Sie die Daten.' => $attention, 'user' => $user]);
+        } else {
+            return view('surveys.admin_mod', ['Hier können Sie Ihre Daten korrigieren.' => $attention, 'user' => $user]);
+        }
+
         // $roles = Role::pluck('name', 'name')->all();
         // $userRole = $user->roles->pluck('name', 'name')->all();
 

@@ -19,6 +19,7 @@ use App\HTTP\Controllers\User\UserEditController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\FilterController;
 
 use Illuminate\Support\Facades\DB;
 
@@ -37,9 +38,9 @@ use Illuminate\Support\Facades\DB;
 
 /* Generell erreichbar */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 /* Log */
 Route::get('/log', function () {
@@ -70,6 +71,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     /* Bewerbungsformular */
 
+    // Lehrkräfte
     Route::group(['middleware' => ['role:Lehr']], function () {
 
         Route::get('/bewerbungsformular/lehr', function() {
@@ -83,28 +85,39 @@ Route::middleware(['auth', 'verified'])->group(function () {
  
     });
 
-    Route::group(['middleware' => ['role:Admin|Stud']], function () {
+    // Studenten
+    Route::group(['middleware' => ['role:Stud']], function () {
 
         Route::get('/bewerbungsformular/stud', function() {
             return view('surveys.stud');
         })->name('surveys.stud');
 
-        Route::get('/angebote', [UserController::class, 'lehr'])
-            ->name('users.lehr');
-
-        Route::post('/angebote', [UserController::class, 'filtered'])
-            ->name('users.lehr');
- 
     });
 
-    Route::group(['middleware' => ['role:Admin|Lehr|Stud']], function () {
+    // Survey Daten senden
+    Route::group(['middleware' => ['role:Admin|Moderierende|Lehr|Stud']], function () {
 
         Route::post('/bewerbungsformular', [UserController::class, 'save']);
 
     });
 
+    // Adminbereich
     Route::group(['middleware' => ['role:Admin|Moderierende']], function () {
+
+        Route::get('/angebote/lehr', [FilterController::class, 'lehr'])
+            ->name('users.lehr');
+
+        Route::post('/angebote/lehr', [FilterController::class, 'filteredLehr'])
+            ->name('users.lehr');
+
+        Route::get('/angebote/stud', [FilterController::class, 'stud'])
+            ->name('users.stud');
+
+        Route::post('/angebote/stud', [FilterController::class, 'filteredStud'])
+            ->name('users.stud');
+
         Route::get('/matchings', [UserController::class, 'matchings'])->name('users.matchings');
+        
     });
 
 

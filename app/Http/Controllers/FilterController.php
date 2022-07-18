@@ -45,7 +45,8 @@ class FilterController extends Controller
         "Unterallgäu"
     ];
 
-    private function getUnmatchedUsers($roleName) {
+    private function getUnmatchedUsers($roleName)
+    {
         $users = User::where('role', $roleName)->where('valid', true)->where('assigned', false)->get();
         foreach ($users as $user) {
             $user->survey_data = json_decode($user->survey_data);
@@ -55,7 +56,8 @@ class FilterController extends Controller
         return $users;
     }
 
-    private function implodeFaecher($users) {
+    private function implodeFaecher($users)
+    {
         foreach ($users as $user) {
             if (isset($user->survey_data->faecher))
                 $user->survey_data->faecher = implode(', ', $user->survey_data->faecher);
@@ -63,7 +65,16 @@ class FilterController extends Controller
         return $users;
     }
 
-    private function filterSchule($request, $users) {
+    private function implodeLandkreise($users) {
+        foreach ($users as $user) {
+            if (isset($user->survey_data->landkreise))
+                $user->survey_data->landkreise = implode(', ', $user->survey_data->landkreise);
+        }
+        return $users;
+    }
+
+    private function filterSchule($request, $users)
+    {
         if ($request->schulart != 'Beliebig') {
             if ($request->schulart == 'Grundschule') {
                 $users = $users->reject(function ($user, $key) {
@@ -82,7 +93,8 @@ class FilterController extends Controller
         return $users;
     }
 
-    private function filterFaecher($selected_faecher, $users) {
+    private function filterFaecher($selected_faecher, $users)
+    {
         $users = $users->reject(function ($user, $key) use ($selected_faecher) {
             if (isset($user->survey_data->faecher)) {
                 foreach ($selected_faecher as $fach) {
@@ -96,22 +108,31 @@ class FilterController extends Controller
         return $users;
     }
 
-    private function filterLandkreise($selected_landkreise, $users) {
+    private function filterLandkreise($selected_landkreise, $users)
+    {
         $users = $users->reject(function ($user, $key) use ($selected_landkreise) {
             foreach ($selected_landkreise as $landkreis) {
-                $v = true;
-                if ($user->survey_data->landkreis == $landkreis)
-                    $v = false;
-                return $v;
+                if (isset($user->survey_data->landkreis)) {
+                    if ($user->survey_data->landkreis == $landkreis)
+                        return false;
+                }
+                elseif (isset($user->survey_data->landkreise)) {
+                    foreach ($user->survey_data->landkreise as $lk) {
+                        if ($lk == $landkreis)
+                            return false;
+                    }
+                }
             }
+            return true;
         });
         return $users;
     }
 
 
-    public function lehr(Request $request) {
+    public function lehr(Request $request)
+    {
         $users = $this->getUnmatchedUsers('lehr');
-        $users = $this->implodeFaecher($users);
+        $this->implodeFaecher($users);
         return view('offers.all', [
             'users' => $users,
             'faecher' => $this->faecher,
@@ -120,9 +141,11 @@ class FilterController extends Controller
     }
 
 
-    public function stud(Request $request) {
+    public function stud(Request $request)
+    {
         $users = $this->getUnmatchedUsers('stud');
-        $users = $this->implodeFaecher($users);
+        $this->implodeFaecher($users);
+        $this->implodeLandkreise($users);
         return view('needs.all', [
             'users' => $users,
             'faecher' => $this->faecher,
@@ -131,7 +154,8 @@ class FilterController extends Controller
     }
 
 
-    public function filteredLehr(Request $request) {
+    public function filteredLehr(Request $request)
+    {
         $users = $this->getUnmatchedUsers('lehr');
         $users = $this->filterSchule($request, $users);
 
@@ -160,7 +184,8 @@ class FilterController extends Controller
     }
 
 
-    public function filteredStud(Request $request) {
+    public function filteredStud(Request $request)
+    {
         $users = $this->getUnmatchedUsers('stud');
         $users = $this->filterSchule($request, $users);
 
@@ -170,11 +195,12 @@ class FilterController extends Controller
             $users = $this->filterFaecher($selected_faecher, $users);
         }
         $users = $this->implodeFaecher($users);
-
+        
         $selected_landkreise = [];
         if ($request->landkreise) {
             $selected_landkreise = explode(',', $request->landkreise);
             $users = $this->filterLandkreise($selected_landkreise, $users);
+            $this->implodeLandkreise($users);
         }
 
         return view('needs.all', [
@@ -184,11 +210,6 @@ class FilterController extends Controller
             'selected_faecher' => $selected_faecher,
             'landkreise' => $this->landkreise,
             'selected_landkreise' => $selected_landkreise,
-
         ]);
     }
-
-
-
-
 }

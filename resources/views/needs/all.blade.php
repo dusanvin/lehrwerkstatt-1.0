@@ -352,12 +352,7 @@
                                 @if(isset($user->survey_data->faecher))
                                 <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Angebotene Fächer: <span class="font-medium">{{ $user->survey_data->faecher }}</span></p>
                                 @endif
-                                @if(isset($user->survey_data->postleitzahl))
-                                <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Ausübungsort: <span class="font-medium">{{ $user->survey_data->postleitzahl }} {{ $user->survey_data->ort }}</span></p>
-                                @endif
-                                @if(isset($user->survey_data->landkreis))
-                                <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Gebiet: <span class="font-medium">{{ $user->survey_data->landkreis }}</span></p>
-                                @endif
+                                <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Mögliche Ausübungsorte: <span class="font-medium">{{ $user->survey_data->landkreise }}</span></p>
 
                             </div>
 

@@ -132,6 +132,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/profile/edit', [ProfileController::class, 'edit'])
             ->name('profile.edit');
 
+        Route::get('/profile/account', [ProfileController::class, 'account'])
+            ->name('profile.account');    
+
         Route::resource('profiles', ProfileController::class);
 
         // Route::get('/image', [ImageController::class, 'index'])

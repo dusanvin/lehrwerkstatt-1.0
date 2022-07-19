@@ -92,6 +92,66 @@
 
 				<!-- Bewerbungsformular -->
 
+				<!-- Account -->
+
+				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+
+					<a href="{{ route('profile.editAccount') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('profile/edit')) { text-yellow-400 } @endif">
+
+						<div>
+
+							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+								<path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+
+							</svg>
+
+						</div>
+
+						<div class="pl-3">
+
+							<p class="navigation-element text-sm font-medium mb-1 font-semibold">Account</p>
+
+							<p class="navigation-element text-xs">E-Mail und Passwort</p>
+
+						</div>
+
+					</a>
+
+				</li>
+
+				<!-- Account -->
+
+				<!-- Vorschläge -->
+
+				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+
+					<a href="{{ route('profile.edit') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('profile/edit')) { text-yellow-400 } @endif">
+
+						<div>
+
+							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+								<path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+
+							</svg>
+
+						</div>
+
+						<div class="pl-3">
+
+							<p class="navigation-element text-sm font-medium mb-1 font-semibold">Vorschläge</p>
+
+							<p class="navigation-element text-xs">E-Mail und Passwort</p>
+
+						</div>
+
+					</a>
+
+				</li>
+
+				<!-- Vorschläge -->
+
 				<!-- Mein Bereich -->
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">

@@ -30,8 +30,8 @@ return [
     'adminEmail' => 'admin@sitename.com',
 
     /* navigation.blade.php */
-    'meinBereich' => 'Mein Bereich',
-    'meinBereichInfo' => 'Persönliche Informationen',
+    'meinBereich' => 'Visitenkarte',
+    'meinBereichInfo' => 'Für Mitglieder öffentliche Informationen',
 
     'nachrichten' => 'Nachrichten',
     'nachrichtenInfo' => 'Gespräche und Kontakte',

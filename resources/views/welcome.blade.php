@@ -100,7 +100,7 @@
 
                         <div class="text-base text-center md:text-left lg:text-left xl:text-left 2xl:text-left sm:max-w-xl sm:mx-auto lg:mx-0">
 
-                            <h1 class="text-2xl sm:text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                            <h1 class="text-2xl sm:text-4xl tracking-tight font-extrabold text-gray-800 sm:text-5xl md:text-6xl">
 
                                 <span class="block xl:inline">{{ Config::get('site_vars.welcomeString1') }}</span>
 

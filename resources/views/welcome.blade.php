@@ -94,18 +94,17 @@
 
                                 <span class="block xl:inline">{{ Config::get('site_vars.welcomeString1') }}</span>
 
-                                <!-- <span class="block text-purple-600 xl:inline">DaZ-Buddy</span> -->
-                                <span class="block text-purple-600 xl:inline">{{ Config::get('site_vars.welcomeString2') }}</span>
+                                <span class="block text-yellow-600 xl:inline">{{ Config::get('site_vars.welcomeString2') }}</span>
 
                             </h1>
 
                             <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
 
-                                <em>Das Matchingtool</em> ist eine Plattform des DigiLLab der Uni Augsburg, um Tandems im Rahmen der 
+                                Bilden Sie im Rahmen der 
 
-                                    <a class="text-purple-600 font-bold" href="#" target="_blank"><em>Augsburger {{ Config::get('site_vars.platformName1') }}{{ Config::get('site_vars.platformName2') }}</em></a> 
+                                    <a class="text-yellow-600 font-bold" href="#" target="_blank"><em>Augsburger {{ Config::get('site_vars.platformName1') }}{{ Config::get('site_vars.platformName2') }}</em></a> 
 
-                                zu bilden. <br><strong>Für Studierende und Lehrer*innen.</strong>
+                                Tandems. <br><strong>Für Studierende und Lehrer*innen.</strong>
 
                             </p>
 
@@ -113,7 +112,7 @@
 
                                 <div class="rounded-md shadow">
 
-                                    <a href="{{ route('register') }}" class="transition duration-300 ease-in-out w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 md:py-4 md:text-lg md:px-10">
+                                    <a href="{{ route('register') }}" class="transition duration-300 ease-in-out w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700 md:py-4 md:text-lg md:px-10">
 
                                         Registrieren
 
@@ -123,7 +122,7 @@
 
                                 <div class="mt-3 sm:mt-0 sm:ml-3">
 
-                                    <a href="{{ route('login') }}" class="transition duration-300 ease-in-out w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-purple-700 bg-purple-100 hover:bg-purple-200 md:py-4 md:text-lg md:px-10">
+                                    <a href="{{ route('login') }}" class="transition duration-300 ease-in-out w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-yellow-600 bg-yellow-100 hover:bg-yellow-200 md:py-4 md:text-lg md:px-10">
 
                                         Anmelden
 
@@ -133,11 +132,11 @@
 
                             </div>
 
-                            <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                            <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-sm sm:max-w-xl sm:mx-auto md:mt-5 md:text-sm lg:mx-0">
 
                             Informationen und FAQ zur Lehr:werkstatt an der Universität Augsburg finden Sie 
 
-                                <a class="text-purple-600 font-bold" href="https://www.uni-augsburg.de/zlbib/lehrwerkstatt" target="_blank"><em>hier</em></a> 
+                                <a class="text-yellow-600 font-bold" href="https://www.uni-augsburg.de/zlbib/lehrwerkstatt" target="_blank"><em>hier</em></a>. 
 
                             </p>
 

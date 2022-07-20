@@ -138,7 +138,7 @@
 
                     <input id="user_agreement" type="checkbox" name="user_agreement">
 
-                    Ich habe die <a href="#" style="color: rgb(124, 58, 237);" class="hover:underline">Nutzungsbedingungen</a> gelesen und erkläre mich damit einverstanden.*
+                    Ich habe die <a href="#" class="hover:underline text-yellow-600">Nutzungsbedingungen</a> gelesen und erkläre mich damit einverstanden.*
 
                 </div>
 
@@ -154,7 +154,7 @@
 
                     <input id="privacy_statement" type="checkbox" name="privacy_statement">
 
-                        Ich habe die <a href="#" style="color: rgb(124, 58, 237);" class="hover:underline">Datenschutzerklärung</a> gelesen.*
+                        Ich habe die <a href="#" class="hover:underline text-yellow-600">Datenschutzerklärung</a> gelesen.*
 
                 </div>
 

@@ -99,7 +99,7 @@
 
                     		@endif
 
-							<span class="text-xs sm:text-sm font-medium font-semibold text-left px-4 break-words">{{ Auth::user()->vorname }} {{ Auth::user()->nachname }}</span>
+							<span class="text-xs sm:text-sm font-medium font-semibold text-left px-4 break-words">Konto <!--{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} --></span>
 
                     	</a>
 

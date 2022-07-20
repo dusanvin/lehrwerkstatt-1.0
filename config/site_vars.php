@@ -49,7 +49,7 @@ return [
     'bedarfeInfo' => 'von Student*innen',
 
     'vorschlaege' => 'Vorschläge',
-    'vorschlaegeInfo' => 'basierend auf Algorithmus',
+    'vorschlaegeInfo' => 'Paarungen',
 
     /* MeinBereich */
     'meinBereichMotivation' => 'Bearbeiten Sie Ihre Daten und stellen Sie sich vor.',

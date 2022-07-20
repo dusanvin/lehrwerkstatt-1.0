@@ -21,7 +21,7 @@
         <!--CSS        
 
         <link rel="stylesheet" href="https://tailwindui.com/css/components-v2.css?id=f3889d577d4cc5a215ba"> -->
-
+        <link rel="icon" href="{{ url('img/favicon.png') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 
         <!--CSS -->
@@ -146,7 +146,7 @@
 
                             Informationen und FAQ zur Lehr:werkstatt an der Universität Augsburg finden Sie 
 
-                                <a class="text-yellow-600 font-bold" href="https://www.uni-augsburg.de/zlbib/lehrwerkstatt" target="_blank"><em>hier</em></a>. 
+                                <a class="text-yellow-600" href="https://www.uni-augsburg.de/zlbib/lehrwerkstatt" target="_blank">hier</a>. 
 
                             </p>
 

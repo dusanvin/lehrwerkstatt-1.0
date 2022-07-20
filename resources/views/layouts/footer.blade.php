@@ -81,6 +81,16 @@
 
                     </li>
 
+                    <li>
+
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/" target="_blank">
+
+                        Univeristät Augsburg
+
+                        </a>
+
+                    </li>
+
                 </ul>
 
             </li>

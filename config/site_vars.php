@@ -76,7 +76,7 @@ return [
     'meinBereichGruessePlaceholder' => 'Hinterlegen Sie freundliche Grüße für Ihre Profilbesucher.',
 
     /* components/auth-card.blade.php */
-    'backgroundImageAuth' => '../img/welcome_picture.jpg',
+    'backgroundImageAuth' => '../img/lehr_login.jpg',
 
     'adminEmail' => 'admin@sitename.com'
 ];

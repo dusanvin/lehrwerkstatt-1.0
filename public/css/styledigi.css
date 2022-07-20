@@ -17,3 +17,35 @@
   border-style: solid;
   border-color: black transparent transparent transparent;
 }
+
+.sv-string-viewer {
+  color: rgba(55, 65, 81, var(--tw-text-opacity));
+}
+
+.sd-progress__bar {
+  background-color: #D97706 !important;
+}
+
+.sd-btn {
+  color: #D97706 !important;
+}
+
+.sd-item--checked .sd-item__decorator {
+  background: #D97706 !important;
+}
+
+.sd-navigation__next-btn {
+  background-color: white !important;
+}
+
+.sd-btn:not(:disabled):hover {
+  box-shadow: 0 0 0 2px #D97706 !important;
+}
+
+.sd-btn:not(:disabled):focus {
+  box-shadow: 0 0 0 2px #D97706 !important;
+}
+
+.sd-input:focus {
+  box-shadow: 0 0 0 2px #D97706 !important;,inset 0px 1px 2px var(--border-inside, rgba(0, 0, 0, 0.16));
+}

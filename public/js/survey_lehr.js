@@ -5,6 +5,8 @@ window.addEventListener("beforeunload", function(event) {
 
 Survey.StylesManager.applyTheme("defaultV2");
 
+Survey.StylesManager.ThemeCss[".sd-header__text h3"] = "color: var(--primary, #fff);"
+
 schularten = [
     "Grundschule",
     "Realschule",
@@ -103,7 +105,7 @@ freue_auf = [
 ]
 
 var json = {
-    title: "Lehr:werkstatt Bewerbungsformular Lehrkräfte",
+    title: "Bewerbungsformular Lehrkräfte",
     pages: [{
         description: attention,
         elements: [{

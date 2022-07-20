@@ -122,7 +122,7 @@ verkehrsmittel = [
 ]
 
 var json = {
-    title: "Lehr:werkstatt Bewerbungsformular Studenten",
+    title: "Bewerbungsformular Studierende",
     pages: [{
         description: attention,
         elements: [{

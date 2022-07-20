@@ -102,7 +102,7 @@
 
                                 Bilden Sie im Rahmen der 
 
-                                    <a class="text-yellow-600 font-bold" href="#" target="_blank"><em>Augsburger {{ Config::get('site_vars.platformName1') }}{{ Config::get('site_vars.platformName2') }}</em></a> 
+                                    <a class="text-yellow-600 font-bold" href="https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/" target="_blank"><em>Augsburger {{ Config::get('site_vars.platformName1') }}{{ Config::get('site_vars.platformName2') }}</em></a> 
 
                                 Tandems. <br><strong>Für Studierende und Lehrer*innen.</strong>
 

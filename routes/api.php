@@ -133,7 +133,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('profile.edit');
 
         Route::get('/profile/account', [ProfileController::class, 'account'])
-            ->name('profile.account');    
+            ->name('profile.account');
+
+        Route::get('/profile/matchings', [ProfileController::class, 'matchings'])
+            ->name('profile.matchings');
 
         Route::resource('profiles', ProfileController::class);
 

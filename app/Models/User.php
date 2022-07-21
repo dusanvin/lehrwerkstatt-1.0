@@ -72,4 +72,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(ImageFile::class);
     }
 
+    public function matchings(){
+        return $this->belongsToMany(User::class, 'user_user', 'user_id', 'matching_id');
+    }
+
 }

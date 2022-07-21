@@ -143,6 +143,11 @@ class ProfileController extends Controller
         return redirect()->route('profile.account');
     }
 
+    public function matchings() {
+        $user = auth()->user();
+        return view('profile.matchings', compact('user'));
+    }
+
 
     /**
      * Update the specified resource in storage.

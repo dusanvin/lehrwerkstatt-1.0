@@ -51,10 +51,9 @@ var json = {
 
 const survey = new Survey.Model(json);
 survey.questionsOnPageMode = 'singlePage';
-// if(typeof data !== 'undefined') {
-//     survey.data = data;
-//     survey.questionsOnPageMode = 'singlePage';
-// }
+if(typeof data !== 'undefined') {
+    survey.data = data;
+}
 survey.locale = 'de';
 
 survey.showQuestionNumbers = 'off';

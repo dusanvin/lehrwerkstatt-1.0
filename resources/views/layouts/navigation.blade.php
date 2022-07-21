@@ -4,7 +4,7 @@
 	}
 </style>
 
-<nav class="bg-top w-80 justify-between flex flex-col sm:rounded-l-lg shadow-b transition ease-in-out duration-150" id="navigation-digillab" style="background-color: #344955;">
+<nav class="bg-top bg-gray-700 w-80 justify-between flex flex-col sm:rounded-l-lg shadow-b transition ease-in-out duration-150" id="navigation-digillab">
 
 	<div class="mt-10 mb-10">
 

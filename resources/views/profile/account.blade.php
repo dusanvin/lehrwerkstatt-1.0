@@ -78,7 +78,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                     <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                        Erhalten Sie Einblicke in die Nutzungsstatistiken des Portals. Momentane Statistiken sind hinsichtlich der Registrierungen, Abmeldungen, Nutzenden, Zuweisungen, Studiengänge und des Betreuungsverhältnisses einsehbar. Kontaktieren Sie bei technischen Anregungen und Anliegen das DigiLLab der Universität Augsburg.
+                        Ändern Sie Ihre E-Mail-Adresse sowie Ihr Passwort. Kontaktieren Sie bei technischen Anliegen das DigiLLab der Universität Augsburg unter: team[at]digillab.uni-augsburg.de.
 
                     </div>
 
@@ -254,9 +254,9 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                     <!-- Zurück oder Bestätigen -->
 
-                    <div class="block mx-2">
+                    <div class="block">
 
-                        <div class="mb-4 mt-4 mx-4 float-left">
+                        <div class="mb-4 mt-4 mr-4 float-left">
 
                             <a href="{{ route('profile.edit') }}" class="bg-gray-700 bg-transparent hover:bg-yellow-600 text-white font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-gray-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition ease-in-out duration-150">
 
@@ -270,7 +270,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                         </div>
 
-                        <div class="mb-4 mt-4 mx-4 float-right">
+                        <div class="mb-4 mt-4 ml-4 float-right">
 
                             <button type="submit" class="bg-gray-700 bg-transparent hover:bg-green-600 text-white font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-gray-700 hover:border-transparent focus:outline-none focus:ring ring-green-300 focus:border-green-300 rounded flex items-center transition ease-in-out duration-150">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">

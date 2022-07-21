@@ -36,13 +36,13 @@
 
                     <div class="grid justify-items-center sm:justify-items-start select-none">
 
-                        <h2 class="font-semibold text-lg text-gray-600">
+                        <h2 class="font-semibold text-lg text-gray-200">
 
                             Statistiken
 
                         </h2>
 
-                        <div class="mt-1 text-sm text-gray-500 grid text-center sm:text-left flex">
+                        <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
                             Erhalten Sie Einblicke in die Nutzungsstatistiken des Portals. Momentane Statistiken sind hinsichtlich der Registrierungen, Abmeldungen, Nutzenden, Zuweisungen, Studiengänge und des Betreuungsverhältnisses einsehbar. Kontaktieren Sie bei technischen Anregungen und Anliegen das DigiLLab der Universität Augsburg.
 
@@ -52,7 +52,7 @@
 
                     <!-- Diagramme -->
 
-                    <div class="flex flex-wrap px-4 pt-4 pb-1 mx-1 mt-0 sm:mt-6 bg-white rounded-md">
+                    <div class="flex flex-wrap px-4 pt-4 pb-1 mx-1 mt-0 sm:mt-6 bg-gray-700 rounded-md">
 
                         <!-- Alle Nutzenden -->
 
@@ -62,13 +62,13 @@
 
                                 <div class="py-4 px-4 grid justify-items-center rounded-md">                                    
 
-                                    <h3 class="text-3xl leading-6 font-medium">
+                                    <h3 class="text-3xl leading-6 font-medium text-gray-200">
 
                                         {{$users}}
 
                                     </h3>
 
-                                    <div class="mt-4 text-sm text-gray-500">
+                                    <div class="mt-4 text-sm text-gray-400">
 
                                         Nutzende 
 
@@ -91,13 +91,13 @@
 
                                 <div class="py-4 px-4 grid justify-items-center rounded-md">
 
-                                    <h3 class="text-3xl leading-6 font-medium">
+                                    <h3 class="text-3xl leading-6 font-medium text-gray-200">
 
                                         {{ $adminsCount }}
 
                                     </h3>
 
-                                    <div class="mt-4 text-sm text-gray-500">
+                                    <div class="mt-4 text-sm text-gray-400">
 
                                         Administrierende
 
@@ -119,13 +119,13 @@
 
                                 <div class="py-4 px-4 grid justify-items-center rounded-md">
 
-                                    <h3 class="text-3xl leading-6 font-medium">
+                                    <h3 class="text-3xl leading-6 font-medium text-gray-200">
 
                                     {{ $modsCount }}
 
                                 </h3>
 
-                                <div class="mt-4 text-sm text-gray-500">
+                                <div class="mt-4 text-sm text-gray-400">
 
                                     Moderierende 
 
@@ -147,13 +147,13 @@
 
                                 <div class="py-4 px-4 grid justify-items-center rounded-md">
 
-                                    <h3 class="text-3xl leading-6 font-medium">
+                                    <h3 class="text-3xl leading-6 font-medium text-gray-200">
 
                                     {{ $helfendeCount }}
 
                                 </h3>
 
-                                <div class="mt-4 text-sm text-gray-500">
+                                <div class="mt-4 text-sm text-gray-400">
 
                                     Studierende
 
@@ -173,7 +173,7 @@
 
                             <div class="grid justify-items-center">
 
-                                <div class="py-4 px-4 grid justify-items-center rounded-md">
+                                <div class="py-4 px-4 grid justify-items-center rounded-md text-gray-200">
 
                                     <h3 class="text-3xl leading-6 font-medium">
 
@@ -181,7 +181,7 @@
 
                                 </h3>
 
-                                <div class="mt-4 text-sm text-gray-500">
+                                <div class="mt-4 text-sm text-gray-400">
 
                                     Lehrkräfte
 
@@ -199,19 +199,19 @@
 
                     <!-- Kreisdiagramme -->
 
-                    <div class="grid grid-cols-1 md:grid-cols-4 pt-1 sm:pt-8" style="background-color: #EDF2F7;">
+                    <div class="grid grid-cols-1 md:grid-cols-4 pt-1 sm:pt-8">
 
                         <!-- Nutzende im relativen Vergleich -->
 
-                        <div class="mx-1 my-1 bg-white rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-700 rounded-md ">
 
                             <div class="rounded-md p-6 ">
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-600">Nutzende</h3>
+                                    <h3 class="font-semibold text-lg text-gray-200">Nutzende</h3>
 
-                                    <p class="text-sm text-gray-500">Nutzende im relativen Vergleich</p>
+                                    <p class="text-sm text-gray-300">Nutzende im relativen Vergleich</p>
 
                                 </div>
 
@@ -233,15 +233,15 @@
 
                         <!-- Rollen im relativen Vergleich -->
 
-                        <div class="mx-1 my-1 bg-white rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-700 rounded-md ">
 
                             <div class="rounded-md p-6">
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-600">Rollen</h3>
+                                    <h3 class="font-semibold text-lg text-gray-200">Rollen</h3>
 
-                                    <p class="text-sm text-gray-500">Rollen im relativen Vergleich</p>
+                                    <p class="text-sm text-gray-300">Rollen im relativen Vergleich</p>
 
                                 </div>
 
@@ -259,15 +259,15 @@
 
                         <!-- Angebote im relativen Vergleich -->
 
-                        <div class="mx-1 my-1 bg-white rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-700 rounded-md ">
 
                             <div class="rounded-md p-6">
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-600">Angebote</h3>
+                                    <h3 class="font-semibold text-lg text-gray-200">Angebote</h3>
 
-                                    <p class="text-sm text-gray-500">{{ $alleAngeboteCount }} Angebote im relativen Vergleich</p>
+                                    <p class="text-sm text-gray-300">{{ $alleAngeboteCount }} Angebote im relativen Vergleich</p>
 
                                 </div>
 
@@ -285,15 +285,15 @@
 
                         <!-- Bedarfe im relativen Vergleich -->
 
-                        <div class="mx-1 my-1 bg-white rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-700 rounded-md ">
 
                             <div class="rounded-md p-6">
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-600">Bedarfe</h3>
+                                    <h3 class="font-semibold text-lg text-gray-200">Bedarfe</h3>
 
-                                    <p class="text-sm text-gray-500">{{ $alleBedarfeCount }} Bedarfe im relativen Vergleich</p>
+                                    <p class="text-sm text-gray-300">{{ $alleBedarfeCount }} Bedarfe im relativen Vergleich</p>
 
                                 </div>
 
@@ -315,19 +315,19 @@
 
                     <!-- Balkendiagramme -->
 
-                    <div class="grid grid-cols-1 md:grid-cols-3" style="background-color: #EDF2F7;">
+                    <div class="grid grid-cols-1 md:grid-cols-3">
 
                         <!-- Nutzende im relativen Vergleich -->
 
-                        <div class="mx-1 my-1 bg-white rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-700 rounded-md ">
 
                             <div class="rounded-md p-6 ">
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-600">Lernende</h3>
+                                    <h3 class="font-semibold text-lg text-gray-200">Lernende</h3>
 
-                                    <p class="text-sm text-gray-500">Betreute Lernende</p>
+                                    <p class="text-sm text-gray-300">Betreute Lernende</p>
 
                                 </div>
 
@@ -349,15 +349,15 @@
 
                         <!-- Studiengänge -->
 
-                        <div class="mx-1 my-1 bg-white rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-700 rounded-md ">
 
                             <div class="rounded-md p-6">
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-600">Studiengänge</h3>
+                                    <h3 class="font-semibold text-lg text-gray-200">Studiengänge</h3>
 
-                                    <p class="text-sm text-gray-500">Nutzende</p>
+                                    <p class="text-sm text-gray-300">Nutzende</p>
 
                                 </div>
 
@@ -375,15 +375,15 @@
 
                         <!-- Rollen (nach Monat) im relativen Vergleich -->
 
-                        <div class="mx-1 my-1 bg-white rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-700 rounded-md ">
 
                             <div class="rounded-md p-6">
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-600">Registrierungen</h3>
+                                    <h3 class="font-semibold text-lg text-gray-200">Registrierungen</h3>
 
-                                    <p class="text-sm text-gray-500">Rollen im relativen Vergleich</p>
+                                    <p class="text-sm text-gray-300">Rollen im relativen Vergleich</p>
 
                                 </div>
 

@@ -13,7 +13,7 @@
 
         <!-- Inhalt -->
 
-        <div class="px-1 md:px-8 py-8 md:py-8 text-gray-700 w-screen sm:rounded-r-lg" style="background-color: #EDF2F7;">
+        <div class="px-1 md:px-8 py-8 md:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-600">
 
             <div class="overflow-hidden sm:rounded-lg mb-4">
 
@@ -49,7 +49,7 @@
 
                                 <div class="text-center">
 
-                                    <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}</h2>
+                                    <h2 class="text-gray-200 text-xl leading-8 my-1">{{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}</h2>
 
                                     <p class="text-gray-600 font-lg text-semibold text-xs">
 
@@ -637,32 +637,6 @@
                 </div>
 
                 <!-- Informationsanzeige -->
-
-                <!-- Zurück -->
-
-                <div class="block px-2">
-
-                    <div class="mb-4 mt-4 mx-4 float-right">
-
-                        <a href="mailto:{{ $user->email }}" class="bg-transparent hover:bg-green-600 text-green-600 font-semibold text-sm hover:text-white py-2 pr-4 pl-4 border border-green-600 hover:border-transparent focus:outline-none focus:ring ring-green-300 focus:border-green-300 rounded flex items-center transition ease-in-out duration-150">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-
-                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-
-                            </svg>
-
-                            <div class="pl-3">Kontaktieren</div>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-                <!-- Zurück -->
 
             </div>
 

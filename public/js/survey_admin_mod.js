@@ -7,7 +7,7 @@ Survey.StylesManager.applyTheme("defaultV2");
 
 
 var json = {
-    title: "Lehr:werkstatt",
+    title: "Moderation und Administration",
     pages: [{
         description: attention,
         elements: [{

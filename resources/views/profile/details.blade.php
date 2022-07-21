@@ -49,7 +49,7 @@
 
                                 <div class="text-center">
 
-                                    <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->survey_data->nachname }} {{ $user->survey_data->vorname }}</h2>
+                                    <h2 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}</h2>
 
                                     <p class="text-gray-600 font-lg text-semibold text-xs">
 
@@ -97,10 +97,7 @@
                                         <div class="text-gray-500 text-xs break-all">{{ $user->survey_data->telefonnummer }}</div>
                                     </li>
 
-                                    <li class="py-3">
-                                        <div class="text-teal-600">Schulart</div>
-                                        <div class="text-gray-500 text-xs">{{ $user->survey_data->schulart }}</div>
-                                    </li>
+                                    
                                     @if(isset($user->survey_data->faecher))
                                     <li class="py-3">
                                         <div class="text-teal-600">Fächer</div>

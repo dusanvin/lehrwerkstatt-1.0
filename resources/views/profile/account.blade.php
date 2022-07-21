@@ -189,7 +189,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                     </dt>
 
-                                    <dd class="bg-gray-700 mt-1 text-sm text-gray-200 text-white hover:text-gray-400 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center border-b-2 pl-3 transition ease-in-out duration-500">
+                                    <dd class="bg-gray-700 mt-1 text-sm text-gray-200 text-white hover:text-gray-400 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center border-b-2 pl-3 rounded transition ease-in-out duration-500">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                             <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
@@ -210,7 +210,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                     </dt>
 
-                                    <dd class="bg-gray-700 mt-1 text-sm text-gray-200 text-white hover:text-gray-400 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center border-b-2 pl-3 transition ease-in-out duration-500">
+                                    <dd class="bg-gray-700 mt-1 text-sm text-gray-200 text-white hover:text-gray-400 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center border-b-2 pl-3 rounded transition ease-in-out duration-500">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                             <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
@@ -231,7 +231,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                     </dt>
 
-                                    <dd class="bg-gray-700 mt-1 text-sm text-gray-200 text-white hover:text-gray-400 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center border-b-2 pl-3 transition ease-in-out duration-500">
+                                    <dd class="bg-gray-700 mt-1 text-sm text-gray-200 text-white hover:text-gray-400 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center border-b-2 pl-3 rounded transition ease-in-out duration-500">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                             <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />

@@ -60,7 +60,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
         @include('layouts.navigation')
 
-        <div class="px-1 md:px-8 py-1 md:py-8 text-gray-700 w-screen sm:rounded-r-lg" style="background-color: #EDF2F7;">
+        <div class="px-1 md:px-8 py-1 md:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-600">
 
             <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
 

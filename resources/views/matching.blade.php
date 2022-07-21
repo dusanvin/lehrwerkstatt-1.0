@@ -12,7 +12,7 @@
     
     <!-- Content -->
 
-    <div class="px-8 py-8 text-gray-700 w-screen rounded-r-lg" style="background-color: #EDF2F7;">
+    <div class="px-8 py-8 text-gray-700 w-screen rounded-r-lg bg-gray-600">
 
         <div class="overflow-hidden px-4 py-5 sm:px-6">
 

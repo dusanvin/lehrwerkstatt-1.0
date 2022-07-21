@@ -28,7 +28,7 @@
 		    
 		    <!-- Content -->
 
-            <div class="px-16 py-8 text-gray-700 w-screen bg-white rounded-r-lg shadow-b border-b border-gray-200" style="background-color: #EDF2F7;">
+            <div class="px-16 py-8 text-gray-700 w-screen bg-white rounded-r-lg shadow-b border-b border-gray-200 bg-gray-600">
 
                 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
 

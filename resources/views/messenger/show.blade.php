@@ -14,7 +14,7 @@
 
         	<!-- Inhalt -->
 
-            <div class="px-3 sm:px-8 py-3 sm:py-8 text-gray-700 w-screen sm:rounded-r-lg" style="background-color: #EDF2F7;">
+            <div class="px-3 sm:px-8 py-3 sm:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-600">
 
             	<!-- Header -->
 

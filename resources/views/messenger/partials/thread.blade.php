@@ -53,7 +53,7 @@
 
                     @php
 
-                        if( !empty( $thread->participantsString(Auth::id()) ) ) {
+                        if( !empty( $thread->participantsString(Auth::id(), ['vorname']) ) ) {
                             echo $thread->participantsString(Auth::id(),['vorname'])[0] . $thread->participantsString(Auth::id(),['nachname'])[0];
                         }
 

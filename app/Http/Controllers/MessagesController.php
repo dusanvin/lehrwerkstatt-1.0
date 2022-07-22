@@ -20,13 +20,13 @@ class MessagesController extends Controller
         // All threads, ignore deleted/archived participants
         // $threads = Thread::getAllLatest()->get();;
          //$threads_counter = Thread::getAllLatest()->get()->count();
-
+        
         // All threads that user is participating in
          $threads = Thread::forUser(Auth::id())
             ->latest('updated_at')
             ->simplePaginate(5);
 
-
+            
         // All threads that user is participating in, with new messages
         //$threads = Thread::forUserWithNewMessages(Auth::id())->latest('updated_at')->get();
         
@@ -34,7 +34,7 @@ class MessagesController extends Controller
             ->latest('updated_at')
             ->get()
             ->count();
-
+            
         //return view('messenger.index', compact('threads','threads_counter'));
         return view('messenger.index',[
             'threads' => $threads,

@@ -20,7 +20,7 @@
 
             <ul id="tabs" class="inline-flex w-full">
 
-                <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100">Matchings</li>
+                <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100">Matchings (Lehrkräfte, Student*innen, MSE)</li>
 
             </ul>
 
@@ -42,6 +42,42 @@
 
                     </div> -->
 
+                    <ul>
+
+                        @if (count($matchings) == 0)
+                        Keine Lehrkraft konnte vorab gematched werden.
+                        @elseif (count($matchings) > 0)
+                        @foreach($matchings as $matching)
+                        <li>
+                            {{ $matching['lehr']->vorname }} {{ $matching['lehr']->nachname }} {{ $matching['lehr']->email }},
+                            {{ $matching['stud']->vorname }} {{ $matching['stud']->nachname }} {{ $matching['stud']->email }} (MSE {{ $matching['stud']->mse }})
+                            <form action="{{ route('matchings.setassigned', ['lehr' => $matching['lehr']->id, 'stud' => $matching['stud']->id, 'mse' => $matching['stud']->mse]) }}" method="get">
+
+                                @csrf
+
+                                <button type="submit" class="py-2 px-2 rounded-full bg-yellow-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
+
+                                    <div class="grid justify-items-center">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+
+                                        <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Vorschlag in Liste aufnehmen</span>
+
+                                    </div>
+
+                                </button>
+
+                            </form>
+                        </li>
+                        @endforeach
+                        @endif
+
+
+
+                    </ul>
+
 
                     <!-- Kontakt -->
 
@@ -53,7 +89,7 @@
 
                 <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
 
-                    Kein Angebot gefunden.
+                    Keine weiteren Matchings möglich.
 
                 </div>
 
@@ -61,7 +97,7 @@
 
                 <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
 
-                    {{ $users->count() }} Angebot gefunden.
+                    {{ $users->count() }} ungematchte Lehrkraft.
 
                 </div>
 
@@ -69,7 +105,7 @@
 
                 <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
 
-                    {{ $users->count() }} Angebote gefunden.
+                    {{ $users->count() }} ungematchte Lehrkräfte.
 
                 </div>
 
@@ -141,9 +177,28 @@
 
                                     <summary class="cursor-pointer text-sm text-gray-500 mt-1 mb-3 mt-2">
 
-                                        {{ $matching->survey_data->vorname }} {{ $matching->survey_data->nachname }}, <span @if($user->mses[$count] < 2.5) class="bg-green-400" @elseif($user->mses[$count] < 4) class="bg-yellow-400" @else class="bg-red-400" @endif>MSE: {{ $user->mses[$count] }}</span>, @if($matching->count_matchings == 1) <span class="bg-yellow-400"><b>Kann nur mit dieser Lehrkraft gematcht werden</b></span> @else  Kann mit {{ $matching->count_matchings }} Lehrkräften gematcht werden. @endif
+                                        {{ $matching->survey_data->vorname }} {{ $matching->survey_data->nachname }}, <span @if($user->mses[$count] < 2.5) class="bg-green-400" @elseif($user->mses[$count] < 4) class="bg-yellow-400" @else class="bg-red-400" @endif>MSE: {{ $user->mses[$count] }}</span>, @if($matching->count_matchings == 1) <span class="bg-yellow-400"><b>Kann nur mit dieser Lehrkraft gematcht werden</b></span> @else Kann mit {{ $matching->count_matchings }} Lehrkräften gematcht werden. @endif
+                                        <form action="{{ route('matchings.setassigned', ['lehr' => $user->id, 'stud' => $matching->id, 'mse' => $matching->mse]) }}" method="get">
 
+                                            @csrf
+
+                                            <button type="submit" class="py-2 px-2 rounded-full bg-yellow-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
+
+                                                <div class="grid justify-items-center">
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+
+                                                    <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Vorschlag in Liste aufnehmen</span>
+
+                                                </div>
+
+                                            </button>
+
+                                        </form>
                                     </summary>
+
 
                                     <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Feedback Lehrkraft zu Student*in [Abweichung 0 bis 5]: <span class="font-medium">{{ abs($user->survey_data->feedback_an - $matching->survey_data->feedback_von) }}</span></p>
                                     <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Feedback Student*in zu Lehrkraft [Abweichung 0 bis 5]: <span class="font-medium">{{ abs($user->survey_data->feedback_von - $matching->survey_data->feedback_an) }}</span></p>

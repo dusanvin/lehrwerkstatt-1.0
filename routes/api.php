@@ -117,6 +117,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('users.stud');
 
         Route::get('/matchings', [UserController::class, 'matchings'])->name('users.matchings');
+
+        Route::get('/matchings/{lehr}/{stud}/{mse}', [UserController::class, 'setAssigned'])->name('matchings.setassigned');
+
+        Route::post('/addMatching', [UserController::class, 'addMatching'])->name('users.addMatching');
         
     });
 

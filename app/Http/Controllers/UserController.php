@@ -251,6 +251,55 @@ class UserController extends Controller
             if (isset($current_lehr->survey_data->faecher))
                 $current_lehr->survey_data->faecher = implode(', ', $current_lehr->survey_data->faecher);
         }
-        return view('matchings', ['users' => $lehr]);
+        // alle studenten matchen für die nur ein lehrer gefunden wurde
+        $unmatchable_lehr = [];
+        $matchings = [];
+        foreach ($lehr as $key => $current_lehr) {
+            // falls lehrkraft keine matchings
+            if (count($current_lehr->matchings) == 0) {
+                $unmatchable_lehr[] = $current_lehr;
+                $lehr->forget($key);
+            } else
+                foreach ($current_lehr->matchings as $current_stud) {
+                    if ($current_stud->count_matchings == 1) {
+                        // für diesen student gibt es genau nur diesen lehrer als matching
+                        // da bereits sortiert wird stud mit besserem mse mit der lehrkräft falls mehrere studenten nur mit dieser lehrkraft können
+
+                        $matching = [
+                            'lehr' => $current_lehr,
+                            'stud' => $current_stud
+                        ];
+                        $matchings[] = $matching;
+                        $lehr->forget($key);
+
+                        break; // nachdem der bestmöglich student daraus zugewiesen wurde abbruch
+                    }
+                }
+        }
+
+        return view('matchings', ['users' => $lehr, 'matchings' => $matchings, 'unmatchable_lehr' => $unmatchable_lehr]);
+    }
+
+    public function setAssigned(Request $request, $lehrid, $studid, $mse)
+    {
+        $lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', false)->where('id', $lehrid)->get();
+        $stud = User::where('role', 'stud')->where('valid', true)->where('assigned', false)->where('id', $studid)->get();
+
+        $lehr = $lehr[0];
+        $stud = $stud[0];
+
+        $lehr->assigned = true;
+        $lehr->save();
+
+        DB::insert('insert into user_user (user_id, matching_id, mse) values (?, ?, ?)', [$lehrid, $studid, $mse]);
+
+        $stud->assigned = true;
+        $stud->save();
+
+        return redirect()->route('users.matchings');
+    }
+
+    public function confirmMatching(Request $request)
+    {
     }
 }

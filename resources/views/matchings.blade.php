@@ -16,11 +16,61 @@
 
         <div class="mx-auto rounded">
 
+            <!-- Liste -->
+
+            <ul id="tabs" class="inline-flex w-full">
+
+                <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100">Übernommene Vorschläge (Lehrkräfte, Student*innen, MSE)</li>
+
+            </ul>
+
+            <div id="first" class="px-4 pt-4 pb-2 bg-white mb-4 rounded-b-md">
+
+                <ul>
+
+                    @if (count($assigned_matchings) == 0)
+                    List ist leer.
+                    @elseif (count($assigned_matchings) > 0)
+                    @foreach($assigned_matchings as $matching)
+                    <li>
+                        {{ $matching['lehr']->vorname }} {{ $matching['lehr']->nachname }} {{ $matching['lehr']->email }},
+                        {{ $matching['stud']->vorname }} {{ $matching['stud']->nachname }} {{ $matching['stud']->email }} (MSE {{ $matching['mse'] }})
+                        <form action="{{ route('matchings.setunassigned', ['lehr' => $matching['lehr']->id, 'stud' => $matching['stud']->id]) }}" method="get">
+
+                            @csrf
+
+                            <button type="submit" class="py-2 px-2 rounded-full bg-yellow-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
+
+                                <div class="grid justify-items-center">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+
+                                    <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Aus Liste entfernen.</span>
+
+                                </div>
+
+                            </button>
+
+                        </form>
+                    </li>
+                    @endforeach
+                    @endif
+
+
+
+                </ul>
+
+            </div>
+
+            <!-- Liste -->
+
             <!-- Tabs -->
 
             <ul id="tabs" class="inline-flex w-full">
 
-                <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100">Matchings (Lehrkräfte, Student*innen, MSE)</li>
+                <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100">Folgende Vorschläge sind derzeit alternativlos (Lehrkräfte, Student*innen, MSE)</li>
 
             </ul>
 
@@ -33,14 +83,6 @@
                 <!-- Alle Angebote -->
 
                 <div id="first" class="px-4 pt-4 pb-2 bg-white mb-4 rounded-b-md">
-
-                    <!-- <div class="grid grid-cols-1 text-sm text-gray-500 text-light py-1 my-2">
-
-                        <p class="font-medium text-gray-800 leading-none text-lg leading-6">Angebotsübersicht</p>
-
-                        <p class="text-sm text-gray-500 mt-1 mb-3 mt-2">Erhalten Sie eine Übersicht über alle aktiven Angebote. Fragen Sie ein Angebot an, um Ihr fach zu bekunden. Sollte Ihnen ein Angebot gefallen, können Sie dieses gern liken.</p>
-
-                    </div> -->
 
                     <ul>
 

@@ -120,6 +120,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/matchings/{lehr}/{stud}/{mse}', [UserController::class, 'setAssigned'])->name('matchings.setassigned');
 
+        Route::get('/matchings/{lehr}/{stud}', [UserController::class, 'setUnassigned'])->name('matchings.setunassigned');
+
         Route::post('/addMatching', [UserController::class, 'addMatching'])->name('users.addMatching');
         
     });

@@ -276,8 +276,18 @@ class UserController extends Controller
                     }
                 }
         }
+        $assigned_matchings = DB::table('user_user')->get();
+        $assigned = [];
+        foreach($assigned_matchings as $am) {
+            $assigned_lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', true)->where('id', $am->user_id)->get();
+            $assigned_stud = User::where('role', 'stud')->where('valid', true)->where('assigned', true)->where('id', $am->matching_id)->get();
+            $mse = $am->mse;
+            $assigned[] = ['lehr' => $assigned_lehr[0], 'stud' => $assigned_stud[0], 'mse' => $am->mse];
 
-        return view('matchings', ['users' => $lehr, 'matchings' => $matchings, 'unmatchable_lehr' => $unmatchable_lehr]);
+        }
+        // dd($assigned_matchings);
+
+        return view('matchings', ['users' => $lehr, 'matchings' => $matchings, 'assigned_matchings' => $assigned, 'unmatchable_lehr' => $unmatchable_lehr]);
     }
 
     public function setAssigned(Request $request, $lehrid, $studid, $mse)
@@ -294,6 +304,25 @@ class UserController extends Controller
         DB::insert('insert into user_user (user_id, matching_id, mse) values (?, ?, ?)', [$lehrid, $studid, $mse]);
 
         $stud->assigned = true;
+        $stud->save();
+
+        return redirect()->route('users.matchings');
+    }
+
+    public function setUnassigned(Request $request, $lehrid, $studid)
+    {
+        $lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', true)->where('id', $lehrid)->get();
+        $stud = User::where('role', 'stud')->where('valid', true)->where('assigned', true)->where('id', $studid)->get();
+
+        $lehr = $lehr[0];
+        $stud = $stud[0];
+
+        $lehr->assigned = false;
+        $lehr->save();
+
+        DB::table('user_user')->where('user_id', $lehrid)->where('matching_id', $studid)->delete();
+
+        $stud->assigned = false;
         $stud->save();
 
         return redirect()->route('users.matchings');

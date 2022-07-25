@@ -87,7 +87,7 @@
 
                         <!-- Informationen -->
 
-                        @if($user->role == 'Lehr')
+                        @if(strcasecmp($user->role, 'lehr'))
 
                         <div class="block sm:flex sm:flex-wrap content-start">
 
@@ -100,7 +100,7 @@
 
                         </div>
 
-                        @elseif($user->role == 'Stud')
+                        @elseif(strcasecmp($user->role, 'stud'))
 
                         <div class="block sm:flex sm:flex-wrap content-start">
 

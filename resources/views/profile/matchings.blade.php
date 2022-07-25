@@ -56,7 +56,7 @@
 
                 @if ($user->matchings()->count())
 
-                @foreach($user->matchings as $user)
+                @foreach($user->matchings as $matching)
 
                 <div class="bg-white rounded-md pb-4">
 
@@ -68,7 +68,7 @@
 
                             <a class="flex hover:underline" href="{{ route('profile.details', ['id' => $user->id]) }}">
 
-                                {{ $user->vorname }} {{ $user->nachname }}
+                                {{ $matching->vorname }} {{ $matching->nachname }}
 
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 pt-1" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
@@ -79,7 +79,7 @@
 
                             <div>
 
-                                <span class="text-gray-400 text-xs"><strong><span class="hidden sm:inline-block">Angebot </span> #{{ $user->id }}</strong> <span class="hidden sm:inline-block">erstellt </span> {{ $user->created_at->diffForHumans() }}</span>
+                                <span class="text-gray-400 text-xs"><strong><span class="hidden sm:inline-block">Angebot </span> </strong> <span class="hidden sm:inline-block">erstellt </span> {{ $user->created_at->diffForHumans() }}</span>
 
                             </div>
 
@@ -87,28 +87,27 @@
 
                         <!-- Informationen -->
 
-                        @if(strcasecmp($user->role, 'lehr'))
 
+                        @if(strcasecmp($matching->role, 'lehr') == 0)
                         <div class="block sm:flex sm:flex-wrap content-start">
 
-                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Schulart: <span class="font-medium">{{ $user->survey_data->schulart }}</span></p>
-                            @if(isset($user->survey_data->faecher))
-                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Angebotene Fächer: <span class="font-medium">{{ $user->survey_data->faecher }}</span></p>
+                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Schulart: <span class="font-medium">{{ $matching->survey_data->schulart }}</span></p>
+                            @if(isset($matching->survey_data->faecher))
+                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Angebotene Fächer: <span class="font-medium">{{ $matching->survey_data->faecher }}</span></p>
                             @endif
-                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Ausübungsort: <span class="font-medium">{{ $user->survey_data->postleitzahl }} {{ $user->survey_data->ort }}</span></p>
-                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Gebiet: <span class="font-medium">{{ $user->survey_data->landkreis }}</span></p>
+                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Ausübungsort: <span class="font-medium">{{ $matching->survey_data->postleitzahl }} {{ $matching->survey_data->ort }}</span></p>
+                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Gebiet: <span class="font-medium">{{ $matching->survey_data->landkreis }}</span></p>
 
                         </div>
 
-                        @elseif(strcasecmp($user->role, 'stud'))
-
+                        @elseif(strcasecmp($matching->role, 'stud') == 0)
                         <div class="block sm:flex sm:flex-wrap content-start">
 
-                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Schulart: <span class="font-medium">{{ $user->survey_data->schulart }}</span></p>
-                            @if(isset($user->survey_data->faecher))
-                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Angebotene Fächer: <span class="font-medium">{{ $user->survey_data->faecher }}</span></p>
+                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Schulart: <span class="font-medium">{{ $matching->survey_data->schulart }}</span></p>
+                            @if(isset($matching->survey_data->faecher))
+                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Angebotene Fächer: <span class="font-medium">{{ $matching->survey_data->faecher }}</span></p>
                             @endif
-                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Mögliche Ausübungsorte: <span class="font-medium">{{ $user->survey_data->landkreise }}</span></p>
+                            <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Mögliche Ausübungsorte: <span class="font-medium">{{ $matching->survey_data->landkreise }}</span></p>
 
                         </div>
                         @endif

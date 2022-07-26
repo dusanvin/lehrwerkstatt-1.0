@@ -42,7 +42,17 @@
 
                     <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                        <p>Folgende Vorschläge wurden von Ihnen übernommen.</p>
+                        @if (count($assigned_matchings) == 0)
+
+                        @elseif (count($assigned_matchings) == 1)
+
+                            <p>Der folgende Vorschlag wurden von Ihnen übernommen.</p>
+
+                        @elseif (count($assigned_matchings) > 1)
+
+                            <p>Die folgenden <strong>{{ count($assigned_matchings) }} Vorschläge</strong> wurden von Ihnen übernommen.</p>
+
+                        @endif
 
                     </div>
 
@@ -54,7 +64,7 @@
 
                         @if (count($assigned_matchings) == 0)
 
-                            <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">Bisher wurden keine Vorschläge von Ihnen übernommen.</p>
+                            <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">Bisher wurden keine Vorschläge von Ihnen übernommen. Suchen Sie auf Basis des MSE nach Paarungen.</p>
 
                         @elseif (count($assigned_matchings) > 0)
 
@@ -64,10 +74,10 @@
                                     #</th>
 
                                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
-                                    Name der Lehrkraft</th>
+                                    Lehrkraft</th>
 
                                 <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
-                                    Name der Student*in</th>
+                                    Student*in</th>
 
                                 <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
                                     MSE</th>
@@ -131,12 +141,14 @@
 
                                         @csrf
 
-                                        <button type="submit" class="py-2 px-2 rounded-full bg-green-600 text-white text-sm flex focus:outline-none has-tooltip hover:bg-red-900 border-2 border-white transition ease-in-out duration-150">
+                                        <button type="submit" class="py-2 px-2 rounded-full text-white text-sm flex focus:outline-none bg-yellow-700 has-tooltip hover:bg-yellow-900 border-2 border-white transition ease-in-out duration-150">
 
                                             <div class="grid justify-items-center">
 
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                
+                                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                
                                                 </svg>
 
                                                 <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150'>Entfernen</span>
@@ -166,7 +178,7 @@
 
             <!-- Übernommene Vorschläge -->
 
-            <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md mt-2">
+            <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md mt-4">
 
                 <div class="grid justify-items-center sm:justify-items-start select-none">
 
@@ -178,21 +190,141 @@
 
                     <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                        <p>Folgende Vorschläge sind derzeit alternativlos. Es ist daher ratsam, diese Paarungen durchzuführen, um allen Bewerber*innen die Teilnahme an der <em>Lehr:werkstatt</em> zu ermöglichen.</p>
+                        @if (count($matchings) == 0)
+
+                        @elseif (count($matchings) == 1)
+
+                            <p>Der folgende Vorschlag ist derzeit alternativlos.</p>
+
+                        @elseif (count($matchings) > 1)
+
+                            <p>Die folgenden <strong>{{ count($matchings) }} Vorschläge</strong> sind derzeit alternativlos. Es ist daher ratsam, diese Paarungen durchzuführen, um alle Bewerber*innen zuzuweisen. Übernehmen Sie mittels einer Aktion einen Vorschlag.</p>
+
+                        @endif
 
                     </div>
 
                 </div>
 
+                <table class="min-w-full mt-4 mb-2 mr-4 shadow-sm rounded-lg">
+
+                    <tbody>
+
+                        @if (count($matchings) == 0)
+
+                            <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">Bisher wurden keine Vorschläge von Ihnen übernommen. Suchen Sie auf Basis des MSE nach Paarungen.</p>
+
+                        @elseif (count($matchings) > 0)
+
+                            <tr>
+
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md">
+                                    #</th>
+
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
+                                    Lehrkraft</th>
+
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
+                                    Student*in</th>
+
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
+                                    MSE</th>
+
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
+                                </th>
+
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
+                                </th>
+
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md">
+                                Aktion</th>
+
+                            </tr>
+
+                            @foreach($matchings as $index => $matching)
+
+                            <tr class="border-t border-gray-200 bg-gray-700">
+
+                                <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
+
+                                    {{ $index + 1 }}
+
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-no-wrap">
+
+                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching['lehr']->vorname }} {{ $matching['lehr']->nachname }}</div>
+
+                                    <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-300 hover:text-gray-100">{{ $matching['lehr']->email }}</a>
+
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-no-wrap">
+
+                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching['stud']->vorname }} {{ $matching['stud']->nachname }}</div>
+
+                                    <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100">{{ $matching['stud']->email }}</a>
+
+                                </td>
+
+                                <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap">
+
+                                    <div class="text-sm leading-5 font-normal text-white select-none font-bold">
+                
+                                        {{ $matching['stud']->mse }}
+                                        
+                                    </div>
+
+                                </td>
+
+                                <td></td>
+
+                                <td></td>
+                                
+                                <!-- Löschen -->
+
+                                <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+
+                                    <form action="{{ route('matchings.setassigned', ['lehr' => $matching['lehr']->id, 'stud' => $matching['stud']->id, 'mse' => $matching['stud']->mse]) }}" method="get">
+
+                                        @csrf
+
+                                        <button type="submit" class="py-2 px-2 rounded-full text-white text-sm flex focus:outline-none bg-green-700 has-tooltip hover:bg-green-900 border-2 border-white transition ease-in-out duration-150">
+
+                                            <div class="grid justify-items-center">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                
+                                                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                                                
+                                                </svg>
+
+                                                <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150'>Aufnehmen</span>
+
+                                            </div>
+
+                                        </button>
+
+                                    </form>
+
+
+                                </td>
+
+                                <!-- Löschen -->
+
+                            </tr>
+
+                            @endforeach
+
+                        @endif
+
+                    </tbody>
+
+                </table>
+
             </div>
 
-            <ul id="tabs" class="inline-flex w-full">
-
-                <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100">Folgende Vorschläge sind derzeit alternativlos (Lehrkräfte, Student*innen, MSE)</li>
-
-            </ul>
-
-            <!-- Tabs -->
+            
 
             <!-- Tab Contents -->
 
@@ -200,48 +332,6 @@
 
                 <!-- Alle Angebote -->
 
-                <div id="first" class="px-4 pt-4 pb-2 bg-white mb-4 rounded-b-md">
-
-                    <ul>
-
-                        @if (count($matchings) == 0)
-                        Keine Lehrkraft konnte vorab gematched werden.
-                        @elseif (count($matchings) > 0)
-                        @foreach($matchings as $matching)
-                        <li>
-                            {{ $matching['lehr']->vorname }} {{ $matching['lehr']->nachname }} {{ $matching['lehr']->email }},
-                            {{ $matching['stud']->vorname }} {{ $matching['stud']->nachname }} {{ $matching['stud']->email }} (MSE {{ $matching['stud']->mse }})
-                            <form action="{{ route('matchings.setassigned', ['lehr' => $matching['lehr']->id, 'stud' => $matching['stud']->id, 'mse' => $matching['stud']->mse]) }}" method="get">
-
-                                @csrf
-
-                                <button type="submit" class="py-2 px-2 rounded-full bg-yellow-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
-
-                                    <div class="grid justify-items-center">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-
-                                        <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Vorschlag in Liste aufnehmen</span>
-
-                                    </div>
-
-                                </button>
-
-                            </form>
-                        </li>
-                        @endforeach
-                        @endif
-
-
-
-                    </ul>
-
-
-                    <!-- Kontakt -->
-
-                </div>
 
                 <!-- Anzahl -->
 

@@ -10,7 +10,7 @@
 
     </head>
 
-    <body class="" style="">
+    <body class="">
 
         @include('layouts.header')
 

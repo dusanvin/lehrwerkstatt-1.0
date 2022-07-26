@@ -82,7 +82,7 @@
 
 							<p class="navigation-element text-sm font-medium mb-1 font-semibold">Bewerbungsformular</p>
 
-							<p class="navigation-element text-xs">Jahrgang 2022/2023</p>
+							<!--<p class="navigation-element text-xs">Jahrgang 2022/2023</p>-->
 
 						</div>
 
@@ -112,7 +112,7 @@
 
 							<p class="navigation-element text-sm font-medium mb-1 font-semibold">Account</p>
 
-							<p class="navigation-element text-xs">E-Mail und Passwort</p>
+							<!--<p class="navigation-element text-xs">E-Mail und Passwort</p>-->
 
 						</div>
 
@@ -130,11 +130,11 @@
 
 						<div>
 
-							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-								<path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-
-							</svg>
+						<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+						
+							<path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+						
+						</svg>
 
 						</div>
 
@@ -142,7 +142,7 @@
 
 							<p class="navigation-element text-sm font-medium mb-1 font-semibold">Vorschläge</p>
 
-							<p class="navigation-element text-xs">E-Mail und Passwort</p>
+							<!--<p class="navigation-element text-xs">E-Mail und Passwort</p>-->
 
 						</div>
 
@@ -174,7 +174,7 @@
 
 							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.nachrichten') }}</p>
 
-							<p class="navigation-element text-xs">{{ Config::get('site_vars.nachrichtenInfo') }}</p>
+							<!--<p class="navigation-element text-xs">{{ Config::get('site_vars.nachrichtenInfo') }}</p>-->
 
 						</div>
 
@@ -214,7 +214,7 @@
 
 							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.stats') }}</p>
 
-							<p class="navigation-element text-xs">{{ Config::get('site_vars.statsInfo') }}</p>
+							<!--<p class="navigation-element text-xs">{{ Config::get('site_vars.statsInfo') }}</p>-->
 
 						</div>
 
@@ -244,7 +244,7 @@
 
 							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.verwaltung') }}</p>
 
-							<p class="navigation-element text-xs">{{ Config::get('site_vars.verwaltungInfo') }}</p>
+							<!--<p class="navigation-element text-xs">{{ Config::get('site_vars.verwaltungInfo') }}</p>-->
 
 						</div>
 
@@ -280,7 +280,7 @@
 
 							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.angebote') }}</p>
 
-							<p class="navigation-element text-xs">{{ Config::get('site_vars.angeboteInfo') }}</p>
+							<!--<p class="navigation-element text-xs">{{ Config::get('site_vars.angeboteInfo') }}</p>-->
 
 						</div>
 
@@ -310,7 +310,7 @@
 
 							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.bedarfe') }}</p>
 
-							<p class="navigation-element text-xs">{{ Config::get('site_vars.bedarfeInfo') }}</p>
+							<!--<p class="navigation-element text-xs">{{ Config::get('site_vars.bedarfeInfo') }}</p>-->
 
 						</div>
 
@@ -318,7 +318,7 @@
 
 				</li>
 
-				<!-- Vorschläge -->
+				<!-- Paarungen -->
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
@@ -327,16 +327,18 @@
 						<div>
 
 							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-							  <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z" />
+							
+								<path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+							
 							</svg>
 							
 						</div>
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.vorschlaege') }}</p>
+							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.vorschlaegeInfo') }}</p>
 
-							<p class="navigation-element text-xs">{{ Config::get('site_vars.vorschlaegeInfo') }}</p>
+							<!--<p class="navigation-element text-xs">{{ Config::get('site_vars.vorschlaegeInfo') }}</p>-->
 
 						</div>
 
@@ -344,7 +346,7 @@
 
 				</li>
 
-				<!-- Vorschläge -->
+				<!-- Paarungen -->
 
 			</ul>
 

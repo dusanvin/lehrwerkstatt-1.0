@@ -76,7 +76,7 @@
 
 						</div>
 
-						<div class="bg-white rounded-md pt-4">
+						<div class="bg-gray-700 rounded-md pt-4">
 
 			           		@each('messenger.partials.thread', $threads, 'thread', 'messenger.partials.no-threads')
 

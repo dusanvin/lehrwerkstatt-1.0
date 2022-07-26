@@ -428,7 +428,7 @@
                                     <summary class="cursor-pointer text-sm text-gray-500 mt-1 mb-3 mt-2">
 
                                         {{ $matching->survey_data->vorname }} {{ $matching->survey_data->nachname }}, <span @if($user->mses[$count] < 2.5) class="bg-green-400" @elseif($user->mses[$count] < 4) class="bg-yellow-400" @else class="bg-red-400" @endif>MSE: {{ $user->mses[$count] }}</span>, @if($matching->count_matchings == 1) <span class="bg-yellow-400"><b>Kann nur mit dieser Lehrkraft gematcht werden</b></span> @else Kann mit {{ $matching->count_matchings }} Lehrkräften gematcht werden. @endif
-                                        <form action="{{ route('matchings.setassigned', ['lehr' => $user->id, 'stud' => $matching->id, 'mse' => $matching->mse]) }}" method="get">
+                                        <form action="{{ route('matchings.setassigned', ['lehr' => $user->id, 'stud' => $matching->id, 'mse' => $user->mses[$count]]) }}" method="get">
 
                                             @csrf
 

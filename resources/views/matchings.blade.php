@@ -26,7 +26,7 @@
 
             <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                <p>Hier erhalten Sie eine Übersicht der möglichen Paarungen. Die Berechnung erfolgt auf Basis des <em>Mean Square Errors (Mittlerer quadratischer Fehler)</em> - kurz <em>MSE</em> - auf einer Skala von 0-10. Umso kleiner dieser ist, umso geringer ist die Abweichung beziehungsweise besser die Paarung. <strong>Ein großer MSE ist demnach nicht ratsam.</strong> Sollten Sie einen Vorschlag in die Liste aufnehmen, werden beide Partner*innen aus dem Pool der Suchenden entfernt.</p>
+                <p>Hier erhalten Sie eine Übersicht der möglichen Paarungen. Die Berechnung erfolgt auf Basis des <em>Mean Square Errors (Mittlerer quadratischer Fehler)</em> - kurz <em>MSE</em> - auf einer Skala von 0-10. Umso kleiner dieser ist, umso geringer ist die Abweichung beziehungsweise besser die Paarung. <strong>Ein großer MSE ist demnach nicht ratsam.</strong> Zu jeder Lehrkraft werden Student*innen aufgelistet, die bezüglich Schulart, Landkreis und mindestens einem Fach kompatibel sind. Sollten Sie einen Vorschlag in die Liste aufnehmen, werden beide Partner*innen aus dem Pool der Suchenden entfernt.</p>
 
             </div>
 
@@ -176,7 +176,7 @@
 
             </div>
 
-            <!-- Übernommene Vorschläge -->
+            <!-- Alternativlose Vorschläge -->
 
             <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md mt-4">
 
@@ -324,7 +324,148 @@
 
             </div>
 
-            
+            <!-- Alternativlose Vorschläge -->
+
+            <!-- Weitere Vorschläge -->
+
+            <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md mt-4">
+
+                <div class="grid justify-items-center sm:justify-items-start select-none">
+
+                    <h2 class="font-semibold text-lg text-gray-200">
+
+                        Weitere Vorschläge
+
+                    </h2>
+
+                    <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
+
+                        @if ($users->count() == 0)
+
+                        @elseif ($users->count() == 1)
+
+                            <p>Folgende Paarung ist möglich.</p>
+
+                        @elseif ($users->count() > 1)
+
+                            <p>Die folgenden <strong>{{ $users->count() }} Paarungen</strong> sind derzeit möglich.</p>
+
+                        @endif
+
+                    </div>
+
+                </div>
+
+                <div class="min-w-full mt-4 mb-2 mr-4 shadow-sm">
+
+                    @if (count($matchings) == 0)
+
+                    @elseif (count($matchings) > 0)
+
+                    @php
+
+                        $zaehler = 0;
+
+                    @endphp
+
+                    <div>
+
+                        <p class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 rounded-t-lg tracking-wider uppercase">Auflistung von Lehrkräften und <strong>kompatiblen</strong> Student*innen</p>
+
+                        @foreach($users as $index => $user)
+
+                            <div class="border-b border-gray-200 bg-gray-700 flex">
+
+                                <div class="hidden sm:table-cell text-sm pl-6 py-4 text-gray-100">
+
+                                    {{ ++$zaehler }}
+
+                                </div>
+
+                                <div class="px-6 py-4 w-96">
+
+                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+
+                                        <a href="{{ route('profile.details', ['id' => $user->id]) }}" class="text-xs sm:text-sm leading-5 font-medium text-white hover:underline">
+
+                                            {{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}
+
+                                        </a>
+
+                                    </div>
+
+                                    <a href="mailto:#" class="text-xs sm:text-sm leading-5 text-gray-300 hover:text-gray-100">{{ $user->survey_data->email_schul }} </a>
+
+                                </div>
+
+                                <div class="hidden sm:table-cell px-6 py-4 w-96">
+
+                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+                
+                                        {{ $user->survey_data->schulart }}
+                                        
+                                    </div>
+
+                                    <!-- Fächer -->
+
+                                    @if(isset($user->survey_data->faecher))
+
+                                    <div class="text-xs sm:text-sm leading-5 font-medium text-gray-400">
+                
+                                        {{ $user->survey_data->faecher }}
+                                        
+                                    </div>
+
+                                    @endif
+
+                                </div>
+
+                                <div class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap">
+
+                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+                
+                                        {{ $user->survey_data->postleitzahl }}
+                                        
+                                    </div>
+
+                                    <div class="text-xs sm:text-sm leading-5 font-medium text-gray-400">
+                
+                                        {{ $user->survey_data->ort }}
+                                        
+                                    </div>
+
+                                </div>
+
+                                <div>
+                                    
+
+                                </div>
+
+                                <div></div>
+
+                            </div>
+
+                            <div>
+
+
+
+                            </div>
+
+
+
+                            @endforeach
+
+                        </div>
+
+                        @endif
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Weitere Vorschläge -->
 
             <!-- Tab Contents -->
 
@@ -333,35 +474,7 @@
                 <!-- Alle Angebote -->
 
 
-                <!-- Anzahl -->
-
-                @if ($users->count() == 0)
-
-                <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
-
-                    Keine weiteren Matchings möglich.
-
-                </div>
-
-                @elseif ($users->count() == 1)
-
-                <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
-
-                    {{ $users->count() }} ungematchte Lehrkraft.
-
-                </div>
-
-                @else
-
-                <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
-
-                    {{ $users->count() }} ungematchte Lehrkräfte.
-
-                </div>
-
-                @endif
-
-                <!-- Anzahl -->
+                
 
                 <!-- Suchfilter -->
 
@@ -417,6 +530,8 @@
 
                             </div>
 
+                            <!-- bis hier hin -->
+
                             @foreach($user->matchings as $count=>$matching)
 
                             <!-- Jumbatron -->
@@ -427,7 +542,23 @@
 
                                     <summary class="cursor-pointer text-sm text-gray-500 mt-1 mb-3 mt-2">
 
-                                        {{ $matching->survey_data->vorname }} {{ $matching->survey_data->nachname }}, <span @if($user->mses[$count] < 2.5) class="bg-green-400" @elseif($user->mses[$count] < 4) class="bg-yellow-400" @else class="bg-red-400" @endif>MSE: {{ $user->mses[$count] }}</span>, @if($matching->count_matchings == 1) <span class="bg-yellow-400"><b>Kann nur mit dieser Lehrkraft gematcht werden</b></span> @else Kann mit {{ $matching->count_matchings }} Lehrkräften gematcht werden. @endif
+                                        {{ $matching->survey_data->vorname }} {{ $matching->survey_data->nachname }}, 
+
+                                        <span @if($user->mses[$count] < 2.5) class="bg-green-400" 
+
+                                            @elseif($user->mses[$count] < 4) class="bg-yellow-400" 
+
+                                            @else class="bg-red-400" 
+
+                                            @endif>MSE: {{ $user->mses[$count] }}</span>, 
+
+                                            @if($matching->count_matchings == 1) <span class="bg-yellow-400"><b>Kann nur mit dieser Lehrkraft gematcht werden</b></span> 
+
+                                            @else Kann mit {{ $matching->count_matchings }} Lehrkräften gematcht werden. 
+
+                                            @endif
+
+
                                         <form action="{{ route('matchings.setassigned', ['lehr' => $user->id, 'stud' => $matching->id, 'mse' => $user->mses[$count]]) }}" method="get">
 
                                             @csrf

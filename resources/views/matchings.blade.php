@@ -72,26 +72,20 @@
 
                             <tr>
 
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md">
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
                                     #</th>
 
-                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                     Lehrkraft</th>
 
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                     Student*in</th>
 
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                     MSE</th>
 
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
                                 </th>
-
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
-                                </th>
-
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md">
-                                Aktion</th>
 
                             </tr>
 
@@ -109,7 +103,7 @@
 
                                     <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching['lehr']->vorname }} {{ $matching['lehr']->nachname }}</div>
 
-                                    <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-300 hover:text-gray-100">{{ $matching['lehr']->email }}</a>
+                                    <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching['lehr']->email }}</a>
 
                                 </td>
 
@@ -117,27 +111,23 @@
 
                                     <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching['stud']->vorname }} {{ $matching['stud']->nachname }}</div>
 
-                                    <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100">{{ $matching['stud']->email }}</a>
+                                    <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching['stud']->email }}</a>
 
                                 </td>
 
-                                <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap">
+                                <td class="px-6 py-4 whitespace-no-wrap">
 
-                                    <div class="text-sm leading-5 font-normal text-white select-none font-bold">
+                                    <div class="text-sm leading-5 font-normal text-white select-none font-bold bg-gray-500 text-center p-1 w-12 rounded-sm">
                 
                                         {{ $matching['mse'] }}
                                         
                                     </div>
 
                                 </td>
-
-                                <td></td>
-
-                                <td></td>
                                 
                                 <!-- Löschen -->
 
-                                <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
 
                                     <form action="{{ route('matchings.setunassigned', ['lehr' => $matching['lehr']->id, 'stud' => $matching['stud']->id]) }}" method="get">
 
@@ -214,32 +204,26 @@
 
                         @if (count($matchings) == 0)
 
-                            <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">Bisher wurden keine Vorschläge von Ihnen übernommen. Suchen Sie auf Basis des MSE nach Paarungen.</p>
+                            <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">Keine alternativlosen Paarungen vorhanden.</p>
 
                         @elseif (count($matchings) > 0)
 
                             <tr>
 
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md">
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
                                     #</th>
 
-                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                     Lehrkraft</th>
 
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                     Student*in</th>
 
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                     MSE</th>
 
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
                                 </th>
-
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider">
-                                </th>
-
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md">
-                                Aktion</th>
 
                             </tr>
 
@@ -257,7 +241,7 @@
 
                                     <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching['lehr']->vorname }} {{ $matching['lehr']->nachname }}</div>
 
-                                    <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-300 hover:text-gray-100">{{ $matching['lehr']->email }}</a>
+                                    <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching['lehr']->email }}</a>
 
                                 </td>
 
@@ -265,27 +249,23 @@
 
                                     <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching['stud']->vorname }} {{ $matching['stud']->nachname }}</div>
 
-                                    <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100">{{ $matching['stud']->email }}</a>
+                                    <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching['stud']->email }}</a>
 
                                 </td>
 
-                                <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap">
+                                <td class="px-6 py-4 whitespace-no-wrap">
 
-                                    <div class="text-sm leading-5 font-normal text-white select-none font-bold">
+                                    <div class="text-sm leading-5 font-normal text-white select-none font-bold bg-gray-500 text-center p-1 w-12 rounded-sm">
                 
                                         {{ $matching['stud']->mse }}
                                         
                                     </div>
 
                                 </td>
-
-                                <td></td>
-
-                                <td></td>
                                 
                                 <!-- Löschen -->
 
-                                <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
 
                                     <form action="{{ route('matchings.setassigned', ['lehr' => $matching['lehr']->id, 'stud' => $matching['stud']->id, 'mse' => $matching['stud']->mse]) }}" method="get">
 
@@ -360,9 +340,7 @@
 
                 <div class="min-w-full mt-4 mb-2 mr-4 shadow-sm">
 
-                    @if (count($matchings) == 0)
 
-                    @elseif (count($matchings) > 0)
 
                     @php
 
@@ -372,13 +350,13 @@
 
                     <div>
 
-                        <p class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 rounded-t-lg tracking-wider uppercase">Auflistung von Lehrkräften und <strong>kompatiblen</strong> Student*innen</p>
+                        <p class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 rounded-t-lg tracking-wider uppercase font-bold">Auflistung von Lehrkräften und kompatiblen Student*innen</p>
 
                         @foreach($users as $index => $user)
 
                             <div class="border-b border-gray-200 bg-gray-700 flex">
 
-                                <div class="hidden sm:table-cell text-sm pl-6 py-4 text-gray-100">
+                                <div class="hidden sm:table-cell text-sm pl-6 py-4 text-gray-100 w-12">
 
                                     {{ ++$zaehler }}
 
@@ -386,9 +364,9 @@
 
                                 <div class="px-6 py-4 w-96">
 
-                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64">
 
-                                        <a href="{{ route('profile.details', ['id' => $user->id]) }}" class="text-xs sm:text-sm leading-5 font-medium text-white hover:underline">
+                                        <a href="{{ route('profile.details', ['id' => $user->id]) }}" class="text-xs sm:text-sm leading-5 font-medium text-white hover:underline break-all">
 
                                             {{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}
 
@@ -396,7 +374,7 @@
 
                                     </div>
 
-                                    <a href="mailto:#" class="text-xs sm:text-sm leading-5 text-gray-300 hover:text-gray-100">{{ $user->survey_data->email_schul }} </a>
+                                    <a href="mailto:#" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-all">{{ $user->survey_data->email_schul }} </a>
 
                                 </div>
 
@@ -412,17 +390,25 @@
 
                                     @if(isset($user->survey_data->faecher))
 
-                                    <div class="text-xs sm:text-sm leading-5 font-medium text-gray-400">
+                                        <div class="text-xs sm:text-sm leading-5 font-medium text-gray-400">
+                    
+                                            {{ $user->survey_data->faecher }}
+                                            
+                                        </div>
+
+                                    @else
+
+                                        <div class="text-xs sm:text-sm leading-5 font-medium text-gray-400">
                 
-                                        {{ $user->survey_data->faecher }}
-                                        
-                                    </div>
+                                            Keine Fächer angegeben
+                                            
+                                        </div>
 
                                     @endif
 
                                 </div>
 
-                                <div class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap w-96">
+                                <div class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap w-64">
 
                                     <div class="text-xs sm:text-sm leading-5 font-medium text-white">
                 
@@ -438,18 +424,126 @@
 
                                 </div>
 
-                                <div>
+                                <div class="w-full px-6 py-4 flex">
 
                                     
 
-<div x-data="{ modelOpen: false }">
-    <button @click="modelOpen =!modelOpen" class="flex items-center justify-center px-3 py-2 space-x-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
-        </svg>
+<div x-data="{ modelOpen: false }" class="flex flex-wrap gap-2">
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
 
-        <span>Invite Member</span>
+        <span>(MSE)</span>
     </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+</svg>
+
+        <span>(MSE)</span>
+    </button>
+      
+
+
 
     <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
@@ -475,7 +569,7 @@
                 <div class="flex items-center justify-between space-x-4">
                     <h1 class="text-xl font-medium text-gray-100">Vorschlag übernehmen</h1>
 
-                    <button @click="modelOpen = false" class="text-gray-600 focus:outline-none hover:text-gray-700">
+                    <button @click="modelOpen = false" class="text-gray-400 focus:outline-none hover:text-gray-100">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -483,7 +577,7 @@
                 </div>
 
                 <p class="mt-2 text-sm text-gray-400">
-                    Nehmen Sie aufgrund der nachfolgenden Übereinstimmungen den Vorschlag in die übernommenen Vorschläge auf.
+                    Führen Sie aufgrund der Übereinstimmungen eine Paarung durch.
                 </p>
 
                 <form class="mt-5">
@@ -514,7 +608,7 @@
                     </div>
                     
                     <div class="flex justify-end mt-6">
-                        <button type="button" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
+                        <button type="button" class="border-2 border-white px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-green-700 rounded-md hover:bg-green-900 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
                             Aufnehmen
                         </button>
                     </div>
@@ -543,7 +637,6 @@
 
                         </div>
 
-                        @endif
 
                     </div>
 

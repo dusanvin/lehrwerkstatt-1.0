@@ -320,323 +320,305 @@
 
                     </h2>
 
-                    <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
+                    <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex w-full">
 
                         @if ($users->count() == 0)
 
-                        @elseif ($users->count() == 1)
+                            <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">Keine weiteren Paarungen vorhanden.</p>
+
+                        @elseif ($users->count() >= 1)
+
+                            @if ($users->count() == 1)
 
                             <p>Folgende Paarung ist möglich.</p>
 
-                        @elseif ($users->count() > 1)
+                            @elseif ($users->count() > 1)
 
-                            <p>Die folgenden <strong>{{ $users->count() }} Paarungen</strong> sind derzeit möglich.</p>
+                                <p>Die folgenden <strong>{{ $users->count() }} Paarungen</strong> sind derzeit möglich.</p>
+
+                            @endif
+
+                            <div class="min-w-full mt-4 mb-2 mr-4 shadow-sm">
+
+                                @php
+
+                                    $zaehler = 0;
+
+                                @endphp
+
+                                <div>
+
+                                    <p class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 rounded-t-lg tracking-wider uppercase font-bold">Auflistung von Lehrkräften und kompatiblen Student*innen</p>
+
+                                    @foreach($users as $index => $user)
+
+                                        <div class="border-b border-gray-200 bg-gray-700 flex">
+
+                                            <div class="hidden sm:table-cell text-sm pl-6 py-4 text-gray-100 w-12">
+
+                                                {{ ++$zaehler }}
+
+                                            </div>
+
+                                            <div class="px-6 py-4 w-96">
+
+                                                <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64">
+
+                                                    <a href="{{ route('profile.details', ['id' => $user->id]) }}" class="text-xs sm:text-sm leading-5 font-medium text-white hover:underline break-all">
+
+                                                        {{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}
+
+                                                    </a>
+
+                                                </div>
+
+                                                <a href="mailto:#" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-all">{{ $user->survey_data->email_schul }} </a>
+
+                                            </div>
+
+                                            <div class="hidden sm:table-cell px-6 py-4 w-96">
+
+                                                <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+                            
+                                                    {{ $user->survey_data->schulart }}
+                                                    
+                                                </div>
+
+                                                <!-- Fächer -->
+
+                                                @if(isset($user->survey_data->faecher))
+
+                                                    <div class="text-xs sm:text-sm leading-5 font-medium text-gray-400">
+                                
+                                                        {{ $user->survey_data->faecher }}
+                                                        
+                                                    </div>
+
+                                                @else
+
+                                                    <div class="text-xs sm:text-sm leading-5 font-medium text-gray-400">
+                            
+                                                        Keine Fächer angegeben
+                                                        
+                                                    </div>
+
+                                                @endif
+
+                                            </div>
+
+                                            <div class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap w-64">
+
+                                                <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+                            
+                                                    {{ $user->survey_data->postleitzahl }}
+                                                    
+                                                </div>
+
+                                                <div class="text-xs sm:text-sm leading-5 font-medium text-gray-400">
+                            
+                                                    {{ $user->survey_data->ort }}
+                                                    
+                                                </div>
+
+                                            </div>
+
+                                            <div class="w-full px-6 py-4 flex">
+
+                                                @foreach($user->matchings as $count=>$matching)
+
+                                                    <!-- MSE -->
+
+                                                    <div x-data="{ modelOpen: false }" class="flex flex-wrap mr-2 mb-2">
+
+                                                        <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                                                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+
+                                                            </svg>
+
+                                                            <span>{{ $matching->survey_data->vorname }} {{ $matching->survey_data->nachname }} ({{ $user->mses[$count] }})</span>
+
+                                                        </button>
+
+                                                        <!-- ModelOpen -->
+
+                                                        <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+
+                                                            <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+
+                                                                <div x-cloak @click="modelOpen = false" x-show="modelOpen" 
+                                                                    x-transition:enter="transition ease-out duration-300 transform"
+                                                                    x-transition:enter-start="opacity-0" 
+                                                                    x-transition:enter-end="opacity-100"
+                                                                    x-transition:leave="transition ease-in duration-200 transform"
+                                                                    x-transition:leave-start="opacity-100" 
+                                                                    x-transition:leave-end="opacity-0"
+                                                                    class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"
+                                                                ></div>
+
+                                                                <!-- ModelOpen -->
+
+                                                                <!-- ModelOpen x-cloak -->
+
+                                                                <div x-cloak x-show="modelOpen" 
+                                                                    x-transition:enter="transition ease-out duration-300 transform"
+                                                                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+                                                                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                                                    x-transition:leave="transition ease-in duration-200 transform"
+                                                                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
+                                                                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                                    class="bg-gray-700 inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
+                                                                >
+
+                                                                <!-- ModelOpen x-cloak -->
+
+                                                                    <!-- ModelInner -->
+
+                                                                    <div class="flex items-center justify-between space-x-4">
+
+                                                                        <h1 class="text-xl font-medium text-gray-100">Vorschlag <strong>{{ $matching->survey_data->vorname }} {{ $matching->survey_data->nachname }}</strong> übernehmen</h1>
+
+                                                                        <button @click="modelOpen = false" class="text-gray-400 focus:outline-none hover:text-gray-100">
+
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+
+                                                                            </svg>
+
+                                                                        </button>
+
+                                                                    </div>
+
+                                                                    <p class="mt-2">
+
+                                                                        @if ($matching->count_matchings == 1) 
+
+                                                                            <p class="text-gray-400 text-sm">Kann <strong>nur mit dieser Lehrkraft</strong> gematcht werden
+
+                                                                        @else 
+
+                                                                            <p class="text-gray-400 text-sm">Kann mit {{ $matching->count_matchings }} Lehrkräften gematcht werden.
+
+                                                                        @endif
+
+                                                                        Führen Sie gegebenenfalls aufgrund der Übereinstimmungen eine Paarung durch.</p> 
+
+                                                                    </p>
+                                                                        
+                                                                    <div class="mt-4">
+
+                                                                        <h3 class="text-xs font-medium text-white uppercase">Mean Square Error (MSE)</h3>
+
+                                                                        <div class="pb-2 w-96">
+
+                                                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
+
+                                                                                    {{ $user->mses[$count] }}
+
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                        <div>
+
+                                                                            <h3 class="text-xs font-medium text-white uppercase">Attribute zur Berechnung des MSE</h3>
+
+                                                                            <div class="pb-2 w-96 text-sm text-gray-400 ">
+
+                                                                                    <p>
+
+                                                                                        Feedback Lehrkraft zu Student*in [Abweichung 0 bis 5]: {{ abs($user->survey_data->feedback_an - $matching->survey_data->feedback_von) }}
+
+                                                                                    </p>
+
+                                                                                    <p>
+
+                                                                                        Feedback Student*in zu Lehrkraft [Abweichung 0 bis 5]: {{ abs($user->survey_data->feedback_von - $matching->survey_data->feedback_an) }}
+
+                                                                                    </p>
+
+                                                                                    <p>
+
+                                                                                        Eigenstaendigkeit [Abweichung 0 bis 5]**: {{ abs($user->survey_data->eigenstaendigkeit - $matching->survey_data->eigenstaendigkeit) }}
+
+                                                                                    </p>
+
+                                                                                    <p>
+
+                                                                                        Improvisation [Abweichung 0 bis 5]: {{ abs($user->survey_data->improvisation - $matching->survey_data->improvisation) }}
+
+                                                                                    </p>
+
+                                                                                    <p>
+
+                                                                                        Freiraum [Abweichung 0 bis 3]: {{ abs($user->survey_data->freiraum - $matching->survey_data->freiraum) }}
+
+                                                                                    </p>
+
+                                                                                    <p>
+
+                                                                                        Innovationsoffenheit [Abweichung 0 bis 5]: {{ abs($user->survey_data->innovationsoffenheit - $matching->survey_data->innovationsoffenheit) }}
+
+                                                                                    </p>
+
+                                                                                    <p>
+
+                                                                                        Belastbarkeit [Abweichung 0 bis 5]:** {{ abs($user->survey_data->belastbarkeit - $matching->survey_data->belastbarkeit) }}
+
+                                                                                    </p>
+
+                                                                                    <p class="text-gray-400 text-xs mt-2"><em>**: Attribute fließen stärker in die Gewichtung mit ein</em></p>
+
+                                                                                </div>
+
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <form action="{{ route('matchings.setassigned', ['lehr' => $user->id, 'stud' => $matching->id, 'mse' => $user->mses[$count]]) }}" method="get">
+
+                                                                        @csrf
+                                                                    
+                                                                        <div class="flex justify-end mt-6">
+
+                                                                            <button type="submit" class="border-2 border-white px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-green-700 rounded-md hover:bg-green-900 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
+                                                                                Aufnehmen
+                                                                            </button>
+
+                                                                        </div>
+
+                                                                    </form>
+
+                                                                    <!-- ModelInner -->
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                    
+                                                    <!-- MSE -->
+
+                                                @endforeach
+
+                                            </div>
+
+                                        </div>
+
+                                        @endforeach
+
+                                    </div>
+
+                                </div>
+
+                            </div>
 
                         @endif
-
-                    </div>
-
-                </div>
-
-                <div class="min-w-full mt-4 mb-2 mr-4 shadow-sm">
-
-
-
-                    @php
-
-                        $zaehler = 0;
-
-                    @endphp
-
-                    <div>
-
-                        <p class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 rounded-t-lg tracking-wider uppercase font-bold">Auflistung von Lehrkräften und kompatiblen Student*innen</p>
-
-                        @foreach($users as $index => $user)
-
-                            <div class="border-b border-gray-200 bg-gray-700 flex">
-
-                                <div class="hidden sm:table-cell text-sm pl-6 py-4 text-gray-100 w-12">
-
-                                    {{ ++$zaehler }}
-
-                                </div>
-
-                                <div class="px-6 py-4 w-96">
-
-                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64">
-
-                                        <a href="{{ route('profile.details', ['id' => $user->id]) }}" class="text-xs sm:text-sm leading-5 font-medium text-white hover:underline break-all">
-
-                                            {{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}
-
-                                        </a>
-
-                                    </div>
-
-                                    <a href="mailto:#" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-all">{{ $user->survey_data->email_schul }} </a>
-
-                                </div>
-
-                                <div class="hidden sm:table-cell px-6 py-4 w-96">
-
-                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                
-                                        {{ $user->survey_data->schulart }}
-                                        
-                                    </div>
-
-                                    <!-- Fächer -->
-
-                                    @if(isset($user->survey_data->faecher))
-
-                                        <div class="text-xs sm:text-sm leading-5 font-medium text-gray-400">
-                    
-                                            {{ $user->survey_data->faecher }}
-                                            
-                                        </div>
-
-                                    @else
-
-                                        <div class="text-xs sm:text-sm leading-5 font-medium text-gray-400">
-                
-                                            Keine Fächer angegeben
-                                            
-                                        </div>
-
-                                    @endif
-
-                                </div>
-
-                                <div class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap w-64">
-
-                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                
-                                        {{ $user->survey_data->postleitzahl }}
-                                        
-                                    </div>
-
-                                    <div class="text-xs sm:text-sm leading-5 font-medium text-gray-400">
-                
-                                        {{ $user->survey_data->ort }}
-                                        
-                                    </div>
-
-                                </div>
-
-                                <div class="w-full px-6 py-4 flex">
-
-                                    
-
-<div x-data="{ modelOpen: false }" class="flex flex-wrap gap-2">
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-</svg>
-
-        <span>(MSE)</span>
-    </button>
-      
-
-
-
-    <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-            <div x-cloak @click="modelOpen = false" x-show="modelOpen" 
-                x-transition:enter="transition ease-out duration-300 transform"
-                x-transition:enter-start="opacity-0" 
-                x-transition:enter-end="opacity-100"
-                x-transition:leave="transition ease-in duration-200 transform"
-                x-transition:leave-start="opacity-100" 
-                x-transition:leave-end="opacity-0"
-                class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"
-            ></div>
-
-            <div x-cloak x-show="modelOpen" 
-                x-transition:enter="transition ease-out duration-300 transform"
-                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
-                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                x-transition:leave="transition ease-in duration-200 transform"
-                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
-                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                class="bg-gray-700 inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
-            >
-                <div class="flex items-center justify-between space-x-4">
-                    <h1 class="text-xl font-medium text-gray-100">Vorschlag übernehmen</h1>
-
-                    <button @click="modelOpen = false" class="text-gray-400 focus:outline-none hover:text-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </button>
-                </div>
-
-                <p class="mt-2 text-sm text-gray-400">
-                    Führen Sie aufgrund der Übereinstimmungen eine Paarung durch.
-                </p>
-
-                <form class="mt-5">
-                    
-                    
-                    <div class="mt-4">
-                        <h1 class="text-xs font-medium text-gray-400 uppercase">Permissions</h1>
-
-                        <div class="mt-4 space-y-5">
-                            <div class="flex items-center space-x-3 cursor-pointer" x-data="{ show: true }" @click="show =!show">
-                                
-
-                                <p class="text-gray-500">Can make task</p>
-                            </div>
-
-                            <div class="flex items-center space-x-3 cursor-pointer" x-data="{ show: false }" @click="show =!show">
-                                
-
-                                <p class="text-gray-500">Can delete task</p>
-                            </div>
-
-                            <div class="flex items-center space-x-3 cursor-pointer" x-data="{ show: true }" @click="show =!show">
-                                
-
-                                <p class="text-gray-500">Can edit task</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-end mt-6">
-                        <button type="button" class="border-2 border-white px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-green-700 rounded-md hover:bg-green-900 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
-                            Aufnehmen
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-                                    
-
-                                </div>
-
-                                <div></div>
-
-                            </div>
-
-                            <div>
-
-
-
-                            </div>
-
-
-
-                            @endforeach
-
-                        </div>
-
 
                     </div>
 
@@ -646,171 +628,9 @@
 
             <!-- Weitere Vorschläge -->
 
-            <!-- Tab Contents -->
-
-            <div id="tab-contents">
-
-                <!-- Alle Angebote -->
-
-
-                
-
-                <!-- Suchfilter -->
-
-                <div class="px-2 sm:px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider rounded-tl-md">
-
-                    Zu jeder Lehrkraft werden Student*innen aufgelistet, die bezüglich Schulart, Landkreis und mindestens einem Fach kompatibel sind, sortiert nach dem Mean Squared Error.
-
-                </div>
-
-                <div class="shadow-sm rounded-lg" id="angebote">
-
-                    @if ($users->count())
-
-                    @foreach($users as $user)
-
-                    <div class="bg-white rounded-md pb-4">
-
-                        <div class="px-1 sm:px-4 sm:px-6 border-t border-gray-200">
-
-                            <!-- Informationen -->
-
-                            <div class="flex items-center justify-between pt-4 leading-5 sm:leading-6 mb-4 text-xs sm:text-lg font-medium">
-
-                                <a class="flex hover:underline" href="{{ route('profile.details', ['id' => $user->id]) }}">
-
-                                    {{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 pt-1" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                                    </svg>
-
-                                </a>
-
-                                <div>
-
-                                    <span class="text-gray-400 text-xs"><strong><span class="hidden sm:inline-block">Angebot </span> #{{ $user->id }}</strong> <span class="hidden sm:inline-block">erstellt </span> {{ $user->created_at->diffForHumans() }}</span>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Informationen -->
-
-                            <div class="block sm:flex sm:flex-wrap content-start">
-
-                                <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Schulart: <span class="font-medium">{{ $user->survey_data->schulart }}</span></p>
-                                @if(isset($user->survey_data->faecher))
-                                <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Angebotene Fächer: <span class="font-medium">{{ $user->survey_data->faecher }}</span></p>
-                                @endif
-                                <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Ausübungsort: <span class="font-medium">{{ $user->survey_data->postleitzahl }} {{ $user->survey_data->ort }}</span></p>
-                                <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Gebiet: <span class="font-medium">{{ $user->survey_data->landkreis }}</span></p>
-
-                            </div>
-
-                            <!-- bis hier hin -->
-
-                            @foreach($user->matchings as $count=>$matching)
-
-                            <!-- Jumbatron -->
-
-                            <div class="rounded-sm flex flex-row-reverse">
-
-                                <details class="flex-auto">
-
-                                    <summary class="cursor-pointer text-sm text-gray-500 mt-1 mb-3 mt-2">
-
-                                        {{ $matching->survey_data->vorname }} {{ $matching->survey_data->nachname }}, 
-
-                                        <span @if($user->mses[$count] < 2.5) class="bg-green-400" 
-
-                                            @elseif($user->mses[$count] < 4) class="bg-yellow-400" 
-
-                                            @else class="bg-red-400" 
-
-                                            @endif>MSE: {{ $user->mses[$count] }}</span>, 
-
-                                            @if($matching->count_matchings == 1) <span class="bg-yellow-400"><b>Kann nur mit dieser Lehrkraft gematcht werden</b></span> 
-
-                                            @else Kann mit {{ $matching->count_matchings }} Lehrkräften gematcht werden. 
-
-                                            @endif
-
-
-                                        <form action="{{ route('matchings.setassigned', ['lehr' => $user->id, 'stud' => $matching->id, 'mse' => $user->mses[$count]]) }}" method="get">
-
-                                            @csrf
-
-                                            <button type="submit" class="py-2 px-2 rounded-full bg-yellow-700 text-white text-sm flex focus:outline-none ml-4 transition ease-in-out duration-150 has-tooltip hover:bg-gray-900 hover:ring ring-gray-300 border-2 border-white hover:border-gray-300">
-
-                                                <div class="grid justify-items-center">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-
-                                                    <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs'>Vorschlag in Liste aufnehmen</span>
-
-                                                </div>
-
-                                            </button>
-
-                                        </form>
-                                    </summary>
-
-
-                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Feedback Lehrkraft zu Student*in [Abweichung 0 bis 5]: <span class="font-medium">{{ abs($user->survey_data->feedback_an - $matching->survey_data->feedback_von) }}</span></p>
-                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Feedback Student*in zu Lehrkraft [Abweichung 0 bis 5]: <span class="font-medium">{{ abs($user->survey_data->feedback_von - $matching->survey_data->feedback_an) }}</span></p>
-                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Eigenstaendigkeit** [Abweichung 0 bis 5]: <span class="font-medium">{{ abs($user->survey_data->eigenstaendigkeit - $matching->survey_data->eigenstaendigkeit) }}</span></p>
-                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Improvisation [Abweichung 0 bis 5]: <span class="font-medium">{{ abs($user->survey_data->improvisation - $matching->survey_data->improvisation) }}</span></p>
-                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Freiraum [Abweichung 0 bis 3]: <span class="font-medium">{{ abs($user->survey_data->freiraum - $matching->survey_data->freiraum) }}</span></p>
-                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Innovationsoffenheit [Abweichung 0 bis 5]: <span class="font-medium">{{ abs($user->survey_data->innovationsoffenheit - $matching->survey_data->innovationsoffenheit) }}</span></p>
-                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Belastbarkeit** [Abweichung 0 bis 5]: <span class="font-medium">{{ abs($user->survey_data->belastbarkeit - $matching->survey_data->belastbarkeit) }}</span></p>
-                                    <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5"><span class="font-medium"><em>** Attribute fließen stärker in die Gewichtung mit ein</em></span></p>
-                                </details>
-
-                            </div>
-
-                            <!-- Jumbatron -->
-
-                            @endforeach
-
-                            <!-- Informationen -->
-
-                        </div>
-
-                    </div>
-
-                    </script>
-
-                    @endforeach
-
-                </div>
-
-                @else
-
-                <p class="hidden">Keine Einträge vorhanden.</p>
-
-                @endif
-
-                <!-- Zeige alle offers -->
-
-            </div>
-
         </div>
 
-        <!-- Alle Angebote -->
-
     </div>
-
-</div>
-
-<!-- Tab Contents -->
-
-</div>
-
-</div>
 
 </div>
 

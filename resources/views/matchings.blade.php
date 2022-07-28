@@ -433,9 +433,8 @@
                                                         <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
 
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-                                                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-
+                                                              <path d="M9 9a2 2 0 114 0 2 2 0 01-4 0z" />
+                                                              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a4 4 0 00-3.446 6.032l-2.261 2.26a1 1 0 101.414 1.415l2.261-2.261A4 4 0 1011 5z" clip-rule="evenodd" />
                                                             </svg>
 
                                                             <span>{{ $matching->survey_data->vorname }} {{ $matching->survey_data->nachname }} ({{ $user->mses[$count] }})</span>
@@ -478,7 +477,7 @@
 
                                                                     <div class="flex items-center justify-between space-x-4">
 
-                                                                        <h1 class="text-xl font-medium text-gray-100">Vorschlag <strong>{{ $matching->survey_data->vorname }} {{ $matching->survey_data->nachname }}</strong> übernehmen</h1>
+                                                                        <h1 class="text-xl font-medium text-gray-100">Vorschlag übernehmen</h1>
 
                                                                         <button @click="modelOpen = false" class="text-gray-400 focus:outline-none hover:text-gray-100">
 
@@ -507,12 +506,25 @@
                                                                         Führen Sie gegebenenfalls aufgrund der Übereinstimmungen eine Paarung durch.</p> 
 
                                                                     </p>
+
+                                                                    <h3 class="text-xs font-medium text-white uppercase mt-4">Schüler*in</h3>
+
+                                                                    <div class="w-96 mt-2">
+
+                                                                        <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
+
+                                                                            <p>{{ $matching->survey_data->vorname }} {{ $matching->survey_data->nachname }}</p>
+                                                                            <a href="mailto:{{ $user->email }}" class="text-gray-400 hover:text-gray-100 break-words">{{ $user->email }}</a>
+
+                                                                        </div>
+
+                                                                    </div>
                                                                         
                                                                     <div class="mt-4">
 
                                                                         <h3 class="text-xs font-medium text-white uppercase">Mean Square Error (MSE)</h3>
 
-                                                                        <div class="pb-2 w-96">
+                                                                        <div class="pb-2 w-96 mt-2">
 
                                                                             <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
 
@@ -526,55 +538,55 @@
 
                                                                             <h3 class="text-xs font-medium text-white uppercase">Attribute zur Berechnung des MSE</h3>
 
-                                                                            <div class="pb-2 w-96 text-sm text-gray-400 ">
+                                                                            <div class="pb-2 w-96 text-sm text-gray-400 mt-2">
 
-                                                                                    <p>
+                                                                                <p>
 
-                                                                                        Feedback Lehrkraft zu Student*in [Abweichung 0 bis 5]: {{ abs($user->survey_data->feedback_an - $matching->survey_data->feedback_von) }}
+                                                                                    Feedback Lehrkraft zu Student*in [Abweichung 0 bis 5]: {{ abs($user->survey_data->feedback_an - $matching->survey_data->feedback_von) }}
 
-                                                                                    </p>
+                                                                                </p>
 
-                                                                                    <p>
+                                                                                <p>
 
-                                                                                        Feedback Student*in zu Lehrkraft [Abweichung 0 bis 5]: {{ abs($user->survey_data->feedback_von - $matching->survey_data->feedback_an) }}
+                                                                                    Feedback Student*in zu Lehrkraft [Abweichung 0 bis 5]: {{ abs($user->survey_data->feedback_von - $matching->survey_data->feedback_an) }}
 
-                                                                                    </p>
+                                                                                </p>
 
-                                                                                    <p>
+                                                                                <p>
 
-                                                                                        Eigenstaendigkeit [Abweichung 0 bis 5]**: {{ abs($user->survey_data->eigenstaendigkeit - $matching->survey_data->eigenstaendigkeit) }}
+                                                                                    Eigenstaendigkeit [Abweichung 0 bis 5]**: {{ abs($user->survey_data->eigenstaendigkeit - $matching->survey_data->eigenstaendigkeit) }}
 
-                                                                                    </p>
+                                                                                </p>
 
-                                                                                    <p>
+                                                                                <p>
 
-                                                                                        Improvisation [Abweichung 0 bis 5]: {{ abs($user->survey_data->improvisation - $matching->survey_data->improvisation) }}
+                                                                                    Improvisation [Abweichung 0 bis 5]: {{ abs($user->survey_data->improvisation - $matching->survey_data->improvisation) }}
 
-                                                                                    </p>
+                                                                                </p>
 
-                                                                                    <p>
+                                                                                <p>
 
-                                                                                        Freiraum [Abweichung 0 bis 3]: {{ abs($user->survey_data->freiraum - $matching->survey_data->freiraum) }}
+                                                                                    Freiraum [Abweichung 0 bis 3]: {{ abs($user->survey_data->freiraum - $matching->survey_data->freiraum) }}
 
-                                                                                    </p>
+                                                                                </p>
 
-                                                                                    <p>
+                                                                                <p>
 
-                                                                                        Innovationsoffenheit [Abweichung 0 bis 5]: {{ abs($user->survey_data->innovationsoffenheit - $matching->survey_data->innovationsoffenheit) }}
+                                                                                    Innovationsoffenheit [Abweichung 0 bis 5]: {{ abs($user->survey_data->innovationsoffenheit - $matching->survey_data->innovationsoffenheit) }}
 
-                                                                                    </p>
+                                                                                </p>
 
-                                                                                    <p>
+                                                                                <p>
 
-                                                                                        Belastbarkeit [Abweichung 0 bis 5]:** {{ abs($user->survey_data->belastbarkeit - $matching->survey_data->belastbarkeit) }}
+                                                                                    Belastbarkeit [Abweichung 0 bis 5]:** {{ abs($user->survey_data->belastbarkeit - $matching->survey_data->belastbarkeit) }}
 
-                                                                                    </p>
+                                                                                </p>
 
-                                                                                    <p class="text-gray-400 text-xs mt-2"><em>**: Attribute fließen stärker in die Gewichtung mit ein</em></p>
-
-                                                                                </div>
+                                                                            </div>
 
                                                                         </div>
+
+                                                                        <p class="text-gray-400 text-xs mt-2">Umso kleiner der Wert, umso geringer die Abweichung. Attribute mit ** fließen stärker in die Gewichtung mit ein.</p>
 
                                                                     </div>
 

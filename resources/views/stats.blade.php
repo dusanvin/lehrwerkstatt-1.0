@@ -30,7 +30,7 @@
 
             <!-- Inhalt -->
 
-            <div class="px-1 md:px-8 py-8 md:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-600">
+            <div class="px-1 md:px-8 py-8 md:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-900">
 
                 <div class="overflow-hidden sm:rounded-lg">
 
@@ -52,7 +52,7 @@
 
                     <!-- Diagramme -->
 
-                    <div class="flex flex-wrap px-4 pt-4 pb-1 mx-1 mt-0 sm:mt-6 bg-gray-700 rounded-md">
+                    <div class="flex flex-wrap px-4 pt-4 pb-1 mx-1 mt-0 sm:mt-6 bg-gray-800 rounded-md">
 
                         <!-- Alle Nutzenden -->
 
@@ -203,7 +203,7 @@
 
                         <!-- Nutzende im relativen Vergleich -->
 
-                        <div class="mx-1 my-1 bg-gray-700 rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
 
                             <div class="rounded-md p-6 ">
 
@@ -233,7 +233,7 @@
 
                         <!-- Rollen im relativen Vergleich -->
 
-                        <div class="mx-1 my-1 bg-gray-700 rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
 
                             <div class="rounded-md p-6">
 
@@ -259,7 +259,7 @@
 
                         <!-- Angebote im relativen Vergleich -->
 
-                        <div class="mx-1 my-1 bg-gray-700 rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
 
                             <div class="rounded-md p-6">
 
@@ -285,7 +285,7 @@
 
                         <!-- Bedarfe im relativen Vergleich -->
 
-                        <div class="mx-1 my-1 bg-gray-700 rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
 
                             <div class="rounded-md p-6">
 
@@ -319,7 +319,7 @@
 
                         <!-- Nutzende im relativen Vergleich -->
 
-                        <div class="mx-1 my-1 bg-gray-700 rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
 
                             <div class="rounded-md p-6 ">
 
@@ -349,7 +349,7 @@
 
                         <!-- Studiengänge -->
 
-                        <div class="mx-1 my-1 bg-gray-700 rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
 
                             <div class="rounded-md p-6">
 
@@ -375,7 +375,7 @@
 
                         <!-- Rollen (nach Monat) im relativen Vergleich -->
 
-                        <div class="mx-1 my-1 bg-gray-700 rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
 
                             <div class="rounded-md p-6">
 
@@ -499,6 +499,8 @@
                     {
                       label: 'Dataset 1',
                       data: [{{ $adminsCount }}, {{ $modsCount }}, {{ $helfendeCount }}, {{ $lehrendeCount }}],
+                      borderColor: 'transparent',
+                      color: 'transparent',
                       backgroundColor: [
                         'rgba(220, 38, 38, 0.6)',
                         'rgba(5, 150, 105, 0.6)',

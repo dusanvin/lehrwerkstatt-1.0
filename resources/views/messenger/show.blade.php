@@ -14,7 +14,7 @@
 
         <!-- Inhalt -->
 
-        <div class="px-3 sm:px-8 py-3 sm:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-600">
+        <div class="px-3 sm:px-8 py-3 sm:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-900">
 
             <!-- Header -->
 
@@ -22,7 +22,7 @@
 
                 <div class="">
 
-                    <h2 class="text-lg leading-6 font-medium text-gray-900" style="user-select:none;">
+                    <h2 class="text-lg leading-6 font-medium text-gray-300" style="user-select:none;">
 
                         <!-- Verlinkung zu Profil des Gegenübers -->
 
@@ -44,11 +44,11 @@
 
                         <!-- Verlinkung zu Profil des Gegenübers -->
 
-                        Gesprächsverlauf mit <a href="{{ route('profile.details', ['id' => $id]) }}" class="text-purple-600 hover:text-purple-800">{{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}</a>
+                        Gesprächsverlauf mit <a href="{{ route('profile.details', ['id' => $id]) }}" class="text-gray-200 hover:underline">{{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}</a>
 
                     </h2>
 
-                    <p class="mt-1 text-sm text-gray-500" style="user-select:none;">
+                    <p class="mt-1 text-sm text-gray-400" style="user-select:none;">
 
                         {{ $thread->subject }}
 
@@ -74,7 +74,7 @@
 
                         <div class="flex flex-row-reverse">
 
-                            <div class="ml-0 sm:ml-2 md:ml-4 lg:ml-8 px-4 py-4 flex rounded-tl-2xl rounded-bl-2xl rounded-br-2xl text-gray-200 text-sm" style="background-color: #3A4049;">
+                            <div class="ml-0 sm:ml-2 md:ml-4 lg:ml-8 px-4 py-4 flex rounded-tl-2xl rounded-bl-2xl rounded-br-2xl text-gray-200 text-sm bg-gray-700">
 
                                 @include('messenger.partials.messages', $message)
 
@@ -90,7 +90,7 @@
 
                         <div class="flex">
 
-                            <div class="mr-0 sm:mr-2 md:mr-4 lg:mr-8 px-4 py-4 flex rounded-bl-2xl rounded-br-2xl rounded-tr-2xl text-gray-600 text-sm bg-white">
+                            <div class="mr-0 sm:mr-2 md:mr-4 lg:mr-8 px-4 py-4 flex rounded-bl-2xl rounded-br-2xl rounded-tr-2xl text-gray-100 text-sm bg-gray-700">
 
                                 @include('messenger.partials.messages', $message)
 

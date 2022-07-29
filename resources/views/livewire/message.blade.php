@@ -1,16 +1,22 @@
-<div class="px-1 md:px-8 py-1 md:py-8 text-gray-700 w-screen rounded-r-lg bg-gray-600">
+<style type="text/css">
+input::placeholder {    
+    color: white !important;
+}
+</style>
+
+<div class="px-1 md:px-8 py-1 md:py-8 text-gray-200 w-screen rounded-r-lg bg-gray-900">
 
     <div class="overflow-hidden sm:rounded-lg">
 
         <div class="">
 
-            <h2 class="text-lg leading-6 font-medium text-gray-900">
+            <h2 class="text-lg leading-6 font-medium text-white">
 
                 Nachrichten
 
             </h2>
 
-            <p class="mt-1 text-sm text-gray-500">
+            <p class="mt-1 text-sm text-gray-400">
 
                 Schreiben Sie eine neue Nachricht.
 
@@ -20,7 +26,7 @@
 
         <!-- Fehlermeldung -->
 
-        <div class="px-4 py-4 pb mx-auto mt-6 bg-white rounded-md">
+        <div class="px-4 py-4 pb mx-auto mt-6 bg-gray-700 rounded-md">
 
             <!-- Inhalt 2 -->
 
@@ -45,7 +51,7 @@
 
                         <form>
 
-                            <input id="search" wire:model="search" type="text" placeholder="Ihre EmpfängerIn: {{ $receivers }}" class="border border-gray-100 bg-gray-100 w-full rounded form-control form-input focus:ring-2 focus:ring-gray-900 focus:border-transparent">
+                            <input id="search" wire:model="search" type="text" placeholder="Ihre EmpfängerIn: {{ $receivers }}" class="text-white border border-gray-500 bg-gray-500 w-full rounded form-control form-input focus:ring-2 focus:ring-gray-200 focus:border-transparent">
 
                         </form>
 
@@ -55,7 +61,7 @@
 
                                 <div class="block relative w-full mt-1">
 
-                                    <div class="select-group block appearance-none w-full bg-white px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                    <div class="select-group block appearance-none w-full bg-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
 
                                         @foreach($users as $user)
                                             
@@ -81,7 +87,7 @@
 
                         <label class="block sr-only">Ihr Betreff.</label>
 
-                        <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="{{ old('subject') }}" name="subject">
+                        <input class="py-2 px-3 text-white border border-gray-500 bg-gray-500 border-1 w-full rounded-sm form-control form-input focus:ring-2 focus:ring-gray-200 focus:border-transparent" placeholder="Ihr Betreff." value="{{ old('subject') }}" name="subject">
 
                     </div>
 
@@ -89,9 +95,9 @@
 
                     <div class="mt-1">
 
-                        <label class="block sr-only">Ihre Nachricht.</label>
+                        <label class="block sr-only text-white">Ihre Nachricht.</label>
 
-                        <textarea name="message" cols="30" rows="8" class="py-2 px-3 bg-gray-100 border-1 border-gray-100 w-full rounded-sm form-control focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent" placeholder="Ihre Nachricht.">{{ old('message') }}</textarea>
+                        <textarea name="message" cols="30" rows="8" class="py-2 px-3 bg-gray-500 text-white border-1 border-gray-500 w-full rounded-sm form-control focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent" placeholder="Ihre Nachricht.">{{ old('message') }}</textarea>
 
                     </div>
 

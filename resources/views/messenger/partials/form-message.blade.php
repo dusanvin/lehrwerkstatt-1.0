@@ -14,9 +14,9 @@
 
     <div class="mt-1">
                             
-        <label class="block sr-only">Ihre Nachricht.</label>
+        <label class="block sr-only text-white">Ihre Nachricht.</label>
 
-        <textarea name="message" cols="30" rows="8" class="py-2 px-3 bg-white text-gray-600 border-1 border-gray-100 w-full rounded-sm form-control focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent" placeholder="Ihre Nachricht.">{{ old('message') }}</textarea>        
+        <textarea name="message" cols="30" rows="8" class="py-2 px-3 bg-gray-500 text-white border-1 border-gray-500 w-full rounded-sm form-control focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent" placeholder="Ihre Nachricht.">{{ old('message') }}</textarea>        
 
     </div>
 

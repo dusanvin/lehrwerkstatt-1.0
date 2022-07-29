@@ -49,7 +49,7 @@
 
                 <!-- Verlinkung zu Profil des Gegenübers -->
 
-                <a class="font-semibold flex-none mr-4 text-white user-ring bg-gray-700 hover:bg-gray-900 transition-all" href="{{ route('profile.details', ['id' => $id]) }}">
+                <a class="font-semibold flex-none mr-4 text-white user-ring bg-gray-700 hover:bg-gray-600 transition-all" href="{{ route('profile.details', ['id' => $id]) }}">
 
                     @php
 
@@ -69,7 +69,7 @@
 
                 <div>
 
-                    <a href="{{ route('messages.show', $thread->id) }}" class="text-gray-500 hover:text-black transition-all">
+                    <a href="{{ route('messages.show', $thread->id) }}" class="text-gray-300 hover:text-gray-100 transition-all">
 
                         <div class="">
 

@@ -55,6 +55,16 @@ input::placeholder {
 
                         </form>
 
+                        <!-- Für Norman -->
+
+                        @php
+
+                            echo $users->count();
+
+                        @endphp
+
+                        <!-- Für Norman -->
+
                         @if($users && $users->count() > 0)
 
                             <ul class="px-3 list-group absolute rounded">

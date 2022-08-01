@@ -28,7 +28,8 @@
 
                         <p class="mt-1 text-sm text-gray-500 grid text-center sm:text-left">
 
-                            Gespräche zum Informationsaustausch. Schreiben Sie einer Person, wenn Ihnen ein Angebot oder ein Bedarf zusagt.
+                            <!-- Gespräche zum Informationsaustausch. Schreiben Sie einer Person, wenn Ihnen ein Angebot oder ein Bedarf zusagt. -->
+							Gesprächsverläufe bezüglich der Personen mit denen Sie in Kontakt stehen. 
 
                         </p>
 
@@ -36,7 +37,7 @@
 
                     <!-- Fehlermeldung -->
 
-                    <div class="py-2 mx-auto rounded-md">
+                    <!-- <div class="py-2 mx-auto rounded-md">
 
                     	<div class="grid justify-items-center md:justify-items-end">
 
@@ -60,7 +61,7 @@
 
 			                </div>
 
-			            </div>
+			            </div> -->
 
 		                @include('messenger.partials.flash')
 

@@ -85,14 +85,14 @@ class ProfileController extends Controller
         $user = auth()->user();
 
         if($user->survey_data) {
-            if($user->role == 'lehr' || $user->role == 'stud') {
+            if(strcasecmp($user->role, 'lehr') || strcasecmp($user->role, 'stud')) {
                 $attention = 'Die Bewerbung für den aktuellen Jahrgang 2022/2023 liegt uns vor. Sie können Angaben korrigieren, während Sie das Formular durchgehen. Bitte beachten Sie, dass Pflichtfelder weiterhin ausgefüllt sein und Änderungen anschließend bestätigt werden müssen, bevor diese wirksam werden können.';
                 return view('surveys.'.$user->role, ['attention' => $attention, 'user' => $user]);
             } else {
                 return view('surveys.admin_mod', ['attention' => 'Hier können Sie Ihre Daten korrigieren.', 'user' => $user]);
             }
         } else {
-            if($user->role == 'lehr' || $user->role == 'stud') {
+            if(strcasecmp($user->role, 'lehr') || strcasecmp($user->role, 'stud')) {
                 $attention = 'Zum aktuellen Jahrgang 2022/2023 liegt uns keine Bewerbung vor. Wir bitten Sie, sich kurz Zeit zu nehmen und das Bewerbungsformular auszufüllen.';
                 return view('surveys.'.$user->role, ['attention' => $attention]);
             } else {

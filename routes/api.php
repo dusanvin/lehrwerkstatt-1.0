@@ -163,7 +163,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/', ['as' => 'messages', 'uses' => 'App\Http\Controllers\MessagesController@index']);
 
-        Route::get('create', ['as' => 'messages.create', 'uses' => 'App\Http\Controllers\MessagesController@create']);
+        Route::get('create/{id}', ['as' => 'messages.create', 'uses' => 'App\Http\Controllers\MessagesController@create']);
 
         Route::post('/', ['as' => 'messages.store', 'uses' => 'App\Http\Controllers\MessagesController@store']);
 

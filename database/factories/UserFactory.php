@@ -25,7 +25,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $role_id = $this->faker->randomElement([1, 2]);
+        $role_id = $this->faker->randomElement([3, 4]);
 
         $faecher = [
             'Deutsch',
@@ -109,7 +109,7 @@ class UserFactory extends Factory
             
         }
 
-        if($role_id == 1) {
+        if($role_id == 3) {
 
             $role = 'Lehr';
 
@@ -153,7 +153,7 @@ class UserFactory extends Factory
             $survey_data['aufmerksam_geworden'] = $this->faker->randomElements($aufmerksam_geworden_lehr, rand(1, count($aufmerksam_geworden_lehr)));
             $survey_data['freue_auf'] = $this->faker->randomElements($freue_auf_lehr, rand(1, count($freue_auf_lehr)));
         }
-        if($role_id == 2) {
+        if($role_id == 4) {
 
             $role = 'Stud';
 
@@ -238,12 +238,12 @@ class UserFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (User $user) {
-            $role_id = $this->faker->randomElement([1, 2]);
+            $role_id = $this->faker->randomElement([3, 4]);
             if($user->role == 'Lehr') {
-                $role_id = 1;
+                $role_id = 3;
             }
             if($user->role == 'Stud') {
-                $role_id = 2;
+                $role_id = 4;
             }
             DB::insert('insert into model_has_roles (role_id, model_type, model_id) values (?, ?, ?)', [$role_id, 'App\Models\User', $user->id]);
         });

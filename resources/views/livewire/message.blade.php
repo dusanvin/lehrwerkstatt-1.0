@@ -1,7 +1,7 @@
 <style type="text/css">
-input::placeholder {    
-    color: white !important;
-}
+    input::placeholder {
+        color: white !important;
+    }
 </style>
 
 <div class="px-1 md:px-8 py-1 md:py-8 text-gray-200 w-screen rounded-r-lg bg-gray-900">
@@ -41,25 +41,17 @@ input::placeholder {
 
                     <div>
 
-                        <script>
-                            function setReceiver(id) {
-                                @this.receivers = document.getElementById(id).innerHTML;
-                                @this.receiverids = id;
-                                @this.search = '';
-                            }
-                        </script>
-
                         <form>
 
-                            <input id="search" wire:model="search" type="text" placeholder="Ihre EmpfängerIn: {{ $receivers }}" class="text-white border border-gray-500 bg-gray-500 w-full rounded form-control form-input focus:ring-2 focus:ring-gray-200 focus:border-transparent">
+                            <input type="text" placeholder="Ihre EmpfängerIn: {{ $users }}" class="text-white border border-gray-500 bg-gray-500 w-full rounded form-control form-input focus:ring-2 focus:ring-gray-200 focus:border-transparent">
 
                         </form>
 
                         <!-- Für Norman -->
 
                         @php
-
-                            echo $users->count();
+                    
+                        echo $users;
 
                         @endphp
 
@@ -67,23 +59,23 @@ input::placeholder {
 
                         @if($users && $users->count() > 0)
 
-                            <ul class="px-3 list-group absolute rounded">
+                        <ul class="px-3 list-group absolute rounded">
 
-                                <div class="block relative w-full mt-1">
+                            <div class="block relative w-full mt-1">
 
-                                    <div class="select-group block appearance-none w-full bg-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                <div class="select-group block appearance-none w-full bg-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
 
-                                        @foreach($users as $user)
-                                            
-                                            <li id={{ $user->id }} onclick=setReceiver(this.id)  style="cursor:pointer;" class="hover:bg-gray-100 px-4 py-2">{{ $user->vorname }} {{ $user->nachname }}</li>
-                                            
-                                        @endforeach
+                                    @foreach($users as $user)
 
-                                    </div>
+                                    <li id={{ $user->id }} onclick=setReceiver(this.id) style="cursor:pointer;" class="hover:bg-gray-100 px-4 py-2">{{ $user->vorname }} {{ $user->nachname }}</li>
+
+                                    @endforeach
 
                                 </div>
 
-                            </ul>
+                            </div>
+
+                        </ul>
 
                         @endif
 
@@ -124,7 +116,7 @@ input::placeholder {
 
                         <div class="flex my-1 justify-center">
 
-                            <a href="{{ route('messages') }}" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center justify-center transition ease-in-out duration-150 disabled:opacity-25">
+                            <a href="{{ route('profile.matchings') }}" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center justify-center transition ease-in-out duration-150 disabled:opacity-25">
 
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-none " viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />

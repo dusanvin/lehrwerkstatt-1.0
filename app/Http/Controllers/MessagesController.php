@@ -65,25 +65,18 @@ class MessagesController extends Controller
         return view('messenger.show', compact('thread', 'users'));
     }
 
-    //public $vince = 'Vince';
 
-    public function create()
+    public function create($id)
     {
-        $users = User::where('id', '!=', Auth::id())->get();
-
-        // Suche mit Argument 'Vince' eingrenzen
-        //$users = User::Where('vorname', 'LIKE', '%'. $this->vince . '%')->get();
-
+        $users = User::where('id', $id)->get();
         return view('messenger.create', compact('users'));
     }
 
+
     public function store()
     {
-        $input = Request::all();
-
-        if(empty($input['recipients'][0])) {
-            return back();
-        }
+        $input = Request::all(); // $input['subject']) $input['message'])
+        // dd($input);
 
         $thread = Thread::create([
             'subject' => empty($input['subject']) ? 'Kein Betreff' : $input['subject'],
@@ -103,10 +96,7 @@ class MessagesController extends Controller
             'last_read' => new Carbon,
         ]);
 
-        // Recipients
-        if (Request::has('recipients')) {
-            $thread->addParticipant($input['recipients']);
-        }
+        $thread->addParticipant($input['user_id']);
 
         return redirect()->route('messages.show', $thread->id);
     }
@@ -147,6 +137,7 @@ class MessagesController extends Controller
         return redirect()->route('messages.show', $id);
     }
 
+    
      public function delete($id)
     {
         try {

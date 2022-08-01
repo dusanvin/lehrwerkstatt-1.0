@@ -34,156 +34,188 @@
 
             @if ($user->matchings()->count() == 0)
 
-                <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
+            <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
 
-                    Keine Vorschläge vorhanden.
+                Keine Vorschläge vorhanden.
 
-                </div>
+            </div>
 
             @else
 
-                @if ($user->matchings()->count() == 1)
+            @if ($user->matchings()->count() == 1)
 
-                    <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
+            <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
 
-                        {{ $user->matchings()->count() }} Vorschlag vorhanden.
+                {{ $user->matchings()->count() }} Vorschlag vorhanden.
 
-                    </div>
+            </div>
 
-                @else
+            @else
 
-                    <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
+            <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
 
-                        {{ $user->matchings()->count() }} Vorschläge vorhanden.
+                {{ $user->matchings()->count() }} Vorschläge vorhanden.
 
-                    </div>
+            </div>
 
-                @endif            
+            @endif
 
             <!-- Anzahl -->
 
-                <div class="shadow-sm" id="angebote">
+            <div class="shadow-sm" id="angebote">
 
-                    <table class="min-w-full mt-4 mb-2 mr-4 shadow-sm rounded-lg">
+                <table class="min-w-full mt-4 mb-2 mr-4 shadow-sm rounded-lg">
 
-                        <tbody>
+                    <tbody>
 
-                            <tr>
+                        <tr>
 
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
-                                    #</th>
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
+                                #</th>
 
-                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Partner*in</th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Partner*in</th>
 
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Schulart</th>
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Schulart</th>
 
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Fach/Fächer</th>
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Fach/Fächer</th>
 
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Mögliche/r Ausübungsort/e</th>
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Mögliche/r Ausübungsort/e</th>
 
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">Erstellungsdatum</th>
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">Erstellungsdatum</th>
 
-                            </tr>
+                        </tr>
 
-                        </tbody>
+                    </tbody>
 
-                        @if ($user->matchings()->count())
+                    @if ($user->matchings()->count())
 
-                            @foreach($user->matchings as $index => $matching)
+                    @foreach($user->matchings as $index => $matching)
 
-                                <tr class="border-t border-gray-200 bg-gray-700 text-sm text-gray-400">
+                    <tr class="border-t border-gray-200 bg-gray-700 text-sm text-gray-400">
 
-                                    <td class="hidden sm:table-cell pl-6 py-4 whitespace-no-wrap">
+                        <td class="hidden sm:table-cell pl-6 py-4 whitespace-no-wrap">
 
-                                        {{ $index+1 }}
+                            {{ $index+1 }}
 
-                                    </td>
+                        </td>
 
-                                    <td class="px-6 py-4 whitespace-no-wrap align-top">
+                        <td class="px-6 py-4 whitespace-no-wrap align-top">
 
-                                        <a class="flex hover:underline text-white hover:text-gray-100" href="{{ route('profile.details', ['id' => $matching->id]) }}">
+                            <a class="flex hover:underline text-white hover:text-gray-100" href="{{ route('profile.details', ['id' => $matching->id]) }}">
 
-                                            {{ $matching->vorname }} {{ $matching->nachname }}
+                                {{ $matching->vorname }} {{ $matching->nachname }}
 
-                                        </a>
+                            </a>
 
-                                        <a href="mailto:{{  $matching->email }}" class="leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->email }}</a>
+                            <a href="mailto:{{  $matching->email }}" class="leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->email }}</a>
 
-                                    </td>
+                        </td>
 
-                                    <td class="px-6 py-4 whitespace-no-wrap align-top">
+                        <td class="px-6 py-4 whitespace-no-wrap align-top">
 
-                                        <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
-                    
-                                            {{ $matching->survey_data->schulart }}
-                                            
-                                        </div>
+                            <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
 
-                                    </td>
+                                {{ $matching->survey_data->schulart }}
 
-                                    <td class="px-6 py-4 whitespace-no-wrap align-top">
+                            </div>
 
-                                        <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
-                    
-                                            @if($matching->survey_data->faecher)
+                        </td>
 
-                                                {{ $matching->survey_data->faecher }}
+                        <td class="px-6 py-4 whitespace-no-wrap align-top">
 
-                                            @else
+                            <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
 
-                                                -
+                                @if($matching->survey_data->faecher)
 
-                                            @endif
-                                            
-                                        </div>
+                                {{ $matching->survey_data->faecher }}
 
-                                    </td>
+                                @else
 
-                                    @if(strcasecmp($matching->role, 'lehr') == 0)                                
+                                -
 
-                                        <td class="px-6 py-4 whitespace-no-wrap align-top">
+                                @endif
 
-                                            <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
-                        
-                                                {{ $matching->survey_data->postleitzahl }} {{ $matching->survey_data->ort }}
-                                                
-                                            </div>
+                            </div>
 
-                                        </td>
+                        </td>
 
-                                    @elseif(strcasecmp($matching->role, 'stud') == 0)
+                        @if(strcasecmp($matching->role, 'lehr') == 0)
 
-                                        <td class="px-6 py-4 whitespace-no-wrap align-top">
+                        <td class="px-6 py-4 whitespace-no-wrap align-top">
 
-                                            <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
-                        
-                                                {{ $matching->survey_data->landkreise }}
-                                                
-                                            </div>
+                            <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
 
-                                        </td>
+                                {{ $matching->survey_data->postleitzahl }} {{ $matching->survey_data->ort }}
 
-                                    @endif
+                            </div>
 
-                                    <td class="px-6 py-4 whitespace-no-wrap align-top">
+                        </td>
 
-                                        <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
-                    
-                                            {{ $user->created_at->diffForHumans() }}
-                                            
-                                        </div>
+                        @elseif(strcasecmp($matching->role, 'stud') == 0)
 
-                                    </td>
+                        <td class="px-6 py-4 whitespace-no-wrap align-top">
 
-                                </tr>
+                            <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
 
-                            @endforeach
+                                {{ $matching->survey_data->landkreise }}
+
+                            </div>
+
+                        </td>
 
                         @endif
 
-                    </table>               
+                        <td class="px-6 py-4 whitespace-no-wrap align-top">
 
-                </div>
+                            <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
+
+                                {{ $user->created_at->diffForHumans() }}
+
+                            </div>
+
+                            <div class="py-2 mx-auto rounded-md">
+
+                                <div class="grid justify-items-center md:justify-items-end">
+
+                                    <div class="float-right mb-2">
+
+                                        <a href="/messages/create/{{ $matching->id }}" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
+
+                                            <div class="">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                                </svg>
+
+                                            </div>
+
+                                            <div class="pl-3 sm:inline-block hidden">
+
+                                                <span class="text-xs">Neue Nachricht</span>
+
+                                            </div>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    @endforeach
+
+                    @endif
+
+                </table>
+
+            </div>
 
             @endif
 

@@ -31,12 +31,6 @@ var json = {
             title: "Ihr Vorname:",
             isRequired: true
         }, {
-            name: "email",
-            type: "text",
-            inputMask: "email",
-            title: "Ihre universitäre E-Mail-Adresse (mit Endung @student.uni-augsburg.de bzw. @uni-a.de):",
-            isRequired: true
-        }, {
             name: "telefonnummer",
             type: "text",
             inputFormat: "9{*}",

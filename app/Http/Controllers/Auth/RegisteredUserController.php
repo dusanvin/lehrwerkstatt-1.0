@@ -41,23 +41,9 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-    		'email' => 'required|max:255', //'required|unique:users,email|max:255',
-    		'password' => ['required', 'confirmed', Password::min(10)
-				->numbers()
-				->symbols()
-				->mixedCase()
-				->letters(),
-            ],
             'role' => ['required', Rule::in(['lehr', 'stud'])]
         ]);
-
-        $user = User::create([
-    		'email' => $request->email,
-    		'password' => Hash::make($request->password),
-            'role' => $request->role
-        ]);
-
-        // Lehr 1, Stud 2
+        // Lehr 3, Stud 4
         $role = $request->input('role');
         
         $role_id = 0;
@@ -68,6 +54,39 @@ class RegisteredUserController extends Controller
         if ($role == 'stud') {
             $role_id = 4;
         }
+
+        if($role_id == 3) {
+            $request->validate([
+                'email' => 'required|max:255', //'required|unique:users,email|max:255',
+                'password' => ['required', 'confirmed', Password::min(10)
+                    ->numbers()
+                    ->symbols()
+                    ->mixedCase()
+                    ->letters(),
+                ],
+                'role' => ['required', Rule::in(['lehr', 'stud'])]
+            ]);
+        } elseif($role_id == 4) {
+            $request->validate([
+                'email' => ['required', 'regex:/^.+@(student.uni-augsburg|uni-a)\.de$/', 'max:255'], //'required|unique:users,email|max:255',
+                'password' => ['required', 'confirmed', Password::min(10)
+                    ->numbers()
+                    ->symbols()
+                    ->mixedCase()
+                    ->letters(),
+                ],
+                'role' => ['required', Rule::in(['lehr', 'stud'])]
+            ]);
+        }
+
+
+        $user = User::create([
+    		'email' => $request->email,
+    		'password' => Hash::make($request->password),
+            'role' => $request->role
+        ]);
+
+
 
         event(new Registered($user));
         Auth::login($user);

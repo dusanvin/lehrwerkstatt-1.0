@@ -41,7 +41,13 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'role' => ['required', Rule::in(['lehr', 'stud'])]
+            'role' => ['required', Rule::in(['lehr', 'stud'])],
+            'password' => ['required', 'confirmed', Password::min(10)
+            ->numbers()
+            ->symbols()
+            ->mixedCase()
+            ->letters(),
+        ]
         ]);
         // Lehr 3, Stud 4
         $role = $request->input('role');
@@ -58,24 +64,11 @@ class RegisteredUserController extends Controller
         if($role_id == 3) {
             $request->validate([
                 'email' => 'required|max:255', //'required|unique:users,email|max:255',
-                'password' => ['required', 'confirmed', Password::min(10)
-                    ->numbers()
-                    ->symbols()
-                    ->mixedCase()
-                    ->letters(),
-                ],
-                'role' => ['required', Rule::in(['lehr', 'stud'])]
+
             ]);
         } elseif($role_id == 4) {
             $request->validate([
                 'email' => ['required', 'regex:/^.+@(student.uni-augsburg|uni-a)\.de$/', 'max:255'], //'required|unique:users,email|max:255',
-                'password' => ['required', 'confirmed', Password::min(10)
-                    ->numbers()
-                    ->symbols()
-                    ->mixedCase()
-                    ->letters(),
-                ],
-                'role' => ['required', Rule::in(['lehr', 'stud'])]
             ]);
         }
 

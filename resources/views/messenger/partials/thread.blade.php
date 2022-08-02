@@ -19,7 +19,7 @@
 
 <div class="media alert {{ $class }} pb-2 px-1 sm:px-4">
 
-    <div class="mb-1 pb-4 border-b">
+    <div class="mb-1 pb-4">
 
         <!-- Eine Nachricht -->
 
@@ -67,7 +67,7 @@
 
                 <!-- Nachrichtenkorpus -->
 
-                <div>
+                <div class="inline-block m-auto">
 
                     <a href="{{ route('messages.show', $thread->id) }}" class="text-gray-300 hover:text-gray-100 transition-all">
 
@@ -77,7 +77,7 @@
 
                             <div class="flex">
 
-                                <p class="flex-auto font-semibold leading-5 md:leading-normal mb-1 text-xs sm:text-sm line-clamp break-all">
+                                <p class="flex-auto mb-1 font-semibold leading-5 md:leading-normal text-xs sm:text-sm line-clamp break-all">
 
                                     {{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}
 
@@ -87,7 +87,7 @@
 
                             <div class="flex">
 
-                                <div class="flex-auto font-normal leading-5 md:leading-normal mb-1 text-xs sm:text-sm">
+                                <div class="flex-auto font-normal leading-5 md:leading-normal text-xs sm:text-sm">
 
                                     <p class="line-clamp mb-1 text-xs break-all">
 

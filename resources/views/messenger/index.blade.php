@@ -20,28 +20,27 @@
 
                     <div class="grid justify-items-center sm:justify-items-start select-none">
 
-                        <h2 class="text-lg leading-6 font-medium text-gray-900">
+                        <h2 class="font-semibold text-lg text-gray-200">
 
                             Nachrichten
 
                         </h2>
 
-                        <p class="mt-1 text-sm text-gray-500 grid text-center sm:text-left">
+                        <p class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                            <!-- Gespräche zum Informationsaustausch. Schreiben Sie einer Person, wenn Ihnen ein Angebot oder ein Bedarf zusagt. -->
-							Gesprächsverläufe bezüglich der Personen mit denen Sie in Kontakt stehen. 
+                            Gespräche zum Informationsaustausch. Schreiben Sie einer Person, wenn Ihnen ein Angebot oder ein Bedarf zusagt.
 
-                        </p>
+                        </p>                            
 
                     </div>
 
                     <!-- Fehlermeldung -->
 
-                    <!-- <div class="py-2 mx-auto rounded-md">
+                    <div class="py-2 mx-auto rounded-md">
 
                     	<div class="grid justify-items-center md:justify-items-end">
 
-					        <div class="float-right mb-2">
+					        <!-- <div class="float-right mb-2">
 
 			                    <a href="/messages/create" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
 
@@ -59,9 +58,9 @@
 
 			                    </a>
 
-			                </div>
+			                </div> -->
 
-			            </div> -->
+			            </div>
 
 		                @include('messenger.partials.flash')
 
@@ -77,7 +76,7 @@
 
 						</div>
 
-						<div class="bg-gray-800 rounded-md pt-4">
+						<div class="bg-gray-800 rounded-md pt-6">
 
 			           		@each('messenger.partials.thread', $threads, 'thread', 'messenger.partials.no-threads')
 

@@ -14,7 +14,7 @@ var json = {
             name: "anrede",
             type: "dropdown",
             title: "Anrede",
-            isRequired: true,
+            // isRequired: true,
             choices: [
                 "Herr",
                 "Frau",
@@ -24,18 +24,18 @@ var json = {
             name: "nachname",
             type: "text",
             title: "Ihr Nachname:",
-            isRequired: true
+            // isRequired: true
         }, {
             name: "vorname",
             type: "text",
             title: "Ihr Vorname:",
-            isRequired: true
+            // isRequired: true
         }, {
             name: "telefonnummer",
             type: "text",
             inputFormat: "9{*}",
             title: "Ihre Telefonnummer:",
-            isRequired: true
+            // isRequired: true
         }]
     } 
         

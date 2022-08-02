@@ -79,9 +79,12 @@
 						</div>
 
 						<div class="pl-3">
-
+						@role('Admin|Moderierende')
+							<p class="navigation-element text-sm font-medium mb-1 font-semibold">Mitgliedsdaten</p>
+						@endrole
+						@role('Lehr|Stud')
 							<p class="navigation-element text-sm font-medium mb-1 font-semibold">Bewerbungsformular</p>
-
+						@endrole
 							<!--<p class="navigation-element text-xs">Jahrgang 2022/2023</p>-->
 
 						</div>
@@ -122,6 +125,8 @@
 
 				<!-- Account -->
 
+				@role('Lehr|Stud')
+
 				<!-- Vorschläge -->
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
@@ -151,6 +156,8 @@
 				</li>
 
 				<!-- Vorschläge -->
+
+				@endrole
 
 				<!-- Nachrichten -->
 
@@ -256,6 +263,8 @@
 
 			@endrole
 
+			@role('Admin|Moderierende')
+
 			<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Paare</p>
 
 			<!-- Angebote -->
@@ -353,6 +362,8 @@
 		</div>
 
 	</div>
+
+	@endrole
 
 	<!-- Ausloggen Button -->
 

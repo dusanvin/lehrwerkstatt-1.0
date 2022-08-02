@@ -125,7 +125,7 @@
 
                             <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
 
-                                @if($matching->survey_data->faecher)
+                                @if(isset($matching->survey_data->faecher))
 
                                 {{ $matching->survey_data->faecher }}
 

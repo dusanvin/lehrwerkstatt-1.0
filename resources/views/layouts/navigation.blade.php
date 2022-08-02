@@ -145,7 +145,7 @@
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium mb-1 font-semibold">Vorschläge</p>
+							<p class="navigation-element text-sm font-medium mb-1 font-semibold">Vorschläge ({{ count(Auth::user()->matchings) }})</p>
 
 							<!--<p class="navigation-element text-xs">E-Mail und Passwort</p>-->
 

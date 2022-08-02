@@ -372,7 +372,7 @@
 
                                                 </div>
 
-                                                <a href="mailto:#" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-all">{{ $user->survey_data->email_schul }} </a>
+                                                <a href="mailto:{{ $user->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-all">{{ $user->email }} </a>
 
                                             </div>
 
@@ -507,14 +507,14 @@
 
                                                                     </p>
 
-                                                                    <h3 class="text-xs font-medium text-white uppercase mt-4">Schüler*in</h3>
+                                                                    <h3 class="text-xs font-medium text-white uppercase mt-4">Student*in</h3>
 
                                                                     <div class="w-96 mt-2">
 
                                                                         <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
 
                                                                             <p>{{ $matching->survey_data->vorname }} {{ $matching->survey_data->nachname }}</p>
-                                                                            <a href="mailto:{{ $user->email }}" class="text-gray-400 hover:text-gray-100 break-words">{{ $user->email }}</a>
+                                                                            <a href="mailto:{{ $matching->email }}" class="text-gray-400 hover:text-gray-100 break-words">{{ $matching->email }}</a>
 
                                                                         </div>
 

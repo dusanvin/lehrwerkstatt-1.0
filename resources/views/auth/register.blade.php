@@ -71,7 +71,7 @@
 
             <div class="mt-4">
 
-                <x-label for="email" :value="__('Email-Adresse*')" />
+                <x-label for="email" :value="__('Email-Adresse* (Als Student*in wird eine E-Mail mit Endung @student.uni-augsburg.de bzw. @uni-a.de benötigt.)')" />
 
                 <x-input id="email" class="block mt-2 w-full" type="email" name="email" :value="old('email')" required />
 

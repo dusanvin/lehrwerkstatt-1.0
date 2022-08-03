@@ -34,11 +34,11 @@
 
             @if ($user->matchings()->count() == 0)
 
-            <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
+            <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">
 
                 Keine Vorschläge vorhanden.
 
-            </div>
+            </p>
 
             @else
 

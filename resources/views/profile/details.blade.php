@@ -13,7 +13,7 @@
 
         <!-- Inhalt -->
 
-        <div class="px-1 md:px-8 py-8 md:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-600">
+        <div class="px-1 md:px-8 py-8 md:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-900">
 
             <div class="overflow-hidden sm:rounded-lg mb-4">
 
@@ -51,7 +51,7 @@
 
                                     <h2 class="text-gray-200 text-xl leading-8 my-1">{{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}</h2>
 
-                                    <p class="text-gray-600 font-lg text-semibold text-xs">
+                                    <p class="text-gray-400 font-lg text-semibold text-xs">
 
                                         @if(!empty($user->getRoleNames()))
 
@@ -67,11 +67,11 @@
 
                                 </div>
 
-                                <ul class="bg-white text-gray-600 py-2 px-3 mt-3 divide-y rounded text-sm">
+                                <ul class="bg-gray-800 text-gray-400 py-2 px-3 mt-3 rounded text-sm">
 
                                     <li class="py-3">
-                                        <div class="text-teal-600">Letzte Anmeldung</div>
-                                        <div class="text-gray-500 text-xs">
+                                        <div class="text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Letzte Anmeldung</div>
+                                        <div class="text-gray-400 text-xs">
                                             @if($user->last_login_at === NULL)
                                             -
                                             @else
@@ -83,32 +83,32 @@
                                     </li>
 
                                     <li class="py-3">
-                                        <div class="text-teal-600">Registrierung</div>
-                                        <div class="text-gray-500 text-xs">{{ $user->created_at->DiffForHumans() }}</div>
+                                        <div class="text-xs leading-4 text-gray-400 uppercase tracking-wider font-bold">Registrierung</div>
+                                        <div class="text-gray-400 text-xs">{{ $user->created_at->DiffForHumans() }}</div>
                                     </li>
 
                                     <li class="py-3">
-                                        <div class="text-teal-600">E-Mail</div>
-                                        <div class="text-gray-500 text-xs break-all">{{ $user->email }}</div>
+                                        <div class="text-xs leading-4 text-gray-400 uppercase tracking-wider font-bold">E-Mail</div>
+                                        <div class="text-gray-400 text-xs break-all">{{ $user->email }}</div>
                                     </li>
 
                                     <li class="py-3">
-                                        <div class="text-teal-600">Telefonnummer</div>
-                                        <div class="text-gray-500 text-xs break-all">{{ $user->survey_data->telefonnummer }}</div>
+                                        <div class="text-xs leading-4 text-gray-400 uppercase tracking-wider font-bold">Telefonnummer</div>
+                                        <div class="text-gray-400 text-xs break-all">{{ $user->survey_data->telefonnummer }}</div>
                                     </li>
 
                                     
                                     @if(isset($user->survey_data->faecher))
                                     <li class="py-3">
-                                        <div class="text-teal-600">Fächer</div>
-                                        <div class="text-gray-500 text-xs break-all">{{ $user->survey_data->faecher }}</div>
+                                        <div class="text-xs leading-4 text-gray-400 uppercase tracking-wider font-bold">Fächer</div>
+                                        <div class="text-gray-400 text-xs break-all">{{ $user->survey_data->faecher }}</div>
                                     </li>
                                     @endif
                                     @foreach($user->getRoleNames() as $v)
                                     @if($v == 'Stud')
                                     <li class="py-3">
-                                        <div class="text-teal-600">Fachsemester</div>
-                                        <div class="text-gray-500 text-xs">{{ $user->survey_data->fachsemester }}</div>
+                                        <div class="text-xs leading-4 text-gray-400 uppercase tracking-wider font-bold">Fachsemester</div>
+                                        <div class="text-gray-400 text-xs">{{ $user->survey_data->fachsemester }}</div>
                                     </li>
                                     @endif
                                     @endforeach
@@ -214,7 +214,7 @@
                         </script>
 
 
-                        <div class="w-full md:w-9/12 mr-2 gap-4">
+                        <div class="w-full md:w-9/12 mr-2 gap-4 bg-gray-800">
 
                             <!-- Profile tab -->
 
@@ -225,13 +225,13 @@
                                 @if($v == 'Lehr')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                         Name und Adresse der Schule
 
                                     </dt>
 
-                                    <dd class="text-gray-500 text-xs">
+                                    <dd class="text-gray-400 text-sm">
 
                                         {{ $user->survey_data->schulname }}<br>
                                         {{ $user->survey_data->strasse }} {{ $user->survey_data->hausnummer }}<br>
@@ -244,13 +244,13 @@
                                 @elseif($v == 'Stud' && isset($user->survey_data->ehem_schulname))
                                 <div class="py-3">
 
-                                <dt class="text-teal-600">
+                                <dt class="text-gray-200 text-sm">
 
                                         Ehemalige Schule:
 
                                 </dt>
 
-                                <dd class="text-gray-500 text-xs">
+                                <dd class="text-gray-500 text-sm">
 
                                     {{ $user->survey_data->ehem_schulname }}<br>
                                     {{ $user->survey_data->ehem_schulort }}
@@ -268,10 +268,10 @@
                                 @if($v == 'Stud' && isset($user->survey_data->religionslehre))
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Studieren Sie das Didaktikfach ev./kath. Religionslehre?:<br> 
-                                    <b id="religionslehre"></b>
+                                    <p id="religionslehre" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('religionslehre').innerHTML = '{{ $user->survey_data->religionslehre }}';
                                     </script>
@@ -288,10 +288,10 @@
                                 @if($v == 'Stud' && isset($user->survey_data->landkreise))
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Ich kann die Lehr:werkstatt in folgenden Landkreisen ableisten:<br> 
-                                    <b id="landkreise"></b>
+                                    <p id="landkreise" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('landkreise').innerHTML = '{{ $user->survey_data->landkreise }}';
                                     </script>
@@ -308,10 +308,10 @@
                                 @if($v == 'Stud' && isset($user->survey_data->verkehrsmittel))
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Mir stehen folgende Verkehrsmittel zur Verfügung:<br> 
-                                    <b id="verkehrsmittel"></b>
+                                    <p id="verkehrsmittel" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('verkehrsmittel').innerHTML = '{{ $user->survey_data->verkehrsmittel }}';
                                     </script>
@@ -328,10 +328,10 @@
                                 @if($v == 'Lehr')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Das Feedback, das ich meinem Lehr:werker bzw. meiner Lehr:werkerin gebe,:<br> 
-                                    <b id="feedback_an"></b>
+                                    <p id="feedback_an" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('feedback_an').innerHTML = feedback[{{ $user->survey_data->feedback_an }} - 1]['text'];
                                     </script>
@@ -341,10 +341,10 @@
                                 @elseif($v == 'Stud')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Beim Feedback, das ich meinem Lehr:mentor bzw. meiner Lehr:mentorin gebe, sage ich ganz direkt, was ich von seinem bzw. ihrem Unterricht halte:<br> 
-                                    <b id="feedback_an"></b>
+                                    <p id="feedback_an" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('feedback_an').innerHTML = zutreffend[{{ $user->survey_data->feedback_an }} - 1]['text'];
                                     </script>
@@ -361,10 +361,10 @@
                                 @if($v == 'Lehr')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Ich wünsche mir von meinem Lehr:werker bzw. meiner Lehr:werkerin kritische Rückmeldungen zu meinem Unterricht:<br> 
-                                    <b id="feedback_von"></b>
+                                    <p id="feedback_von" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('feedback_von').innerHTML = zutreffend[{{ $user->survey_data->feedback_von }} - 1]['text'];
                                     </script>
@@ -374,10 +374,10 @@
                                 @elseif($v == 'Stud')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Das Feedback, das mir mein*e Lehr:mentor*in geben sollte,:<br> 
-                                    <b id="feedback_von"></b>
+                                    <p id="feedback_von" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('feedback_von').innerHTML = feedback[{{ $user->survey_data->feedback_von }} - 1]['text'];
                                     </script>
@@ -394,10 +394,10 @@
                                 @if($v == 'Lehr')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Mein*e Lehr:werker*in soll langsam ins selbstständige Unterrichten hineinwachsen und nicht von Anfang an Teile des Unterrichts übernehmen:<br> 
-                                    <b id="eigenstaendigkeit"></b>
+                                    <p id="eigenstaendigkeit" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('eigenstaendigkeit').innerHTML = zutreffend[{{ $user->survey_data->eigenstaendigkeit }} - 1]['text'];
                                     </script>
@@ -407,10 +407,10 @@
                                 @elseif($v == 'Stud')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Ich möchte langsam ins selbstständige Unterrichten hineinwachsen und nicht von Anfang an Teile des Unterrichts übernehmen:<br> 
-                                    <b id="eigenstaendigkeit"></b>
+                                    <p id="eigenstaendigkeit" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('eigenstaendigkeit').innerHTML = zutreffend[{{ $user->survey_data->eigenstaendigkeit }} - 1]['text'];
                                     </script>
@@ -427,10 +427,10 @@
                                 @if($v == 'Lehr' || $v == 'Stud')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Situationen, in denen ich improvisieren muss, versuche ich durch intensive Planung strikt zu vermeiden:<br> 
-                                    <b id="improvisation"></b>
+                                    <p id="improvisation" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('improvisation').innerHTML = zutreffend[{{ $user->survey_data->improvisation }} - 1]['text'];
                                     </script>
@@ -447,10 +447,10 @@
                                 @if($v == 'Lehr')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Ich wünsche mir eine*n Lehr:werker*in, die bzw. der:<br> 
-                                    <b id="freiraum"></b>
+                                    <p id="freiraum" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('freiraum').innerHTML = freiraum[{{ $user->survey_data->freiraum }} - 1]['text'];
                                     </script>
@@ -460,10 +460,10 @@
                                 @elseif($v == 'Stud')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Ich wünsche mir eine*n Lehr:mentor*in, die bzw. der:<br> 
-                                    <b id="freiraum"></b>
+                                    <p id="freiraum" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('freiraum').innerHTML = freiraum[{{ $user->survey_data->freiraum }} - 1]['text'];
                                     </script>
@@ -480,10 +480,10 @@
                                 @if($v == 'Lehr')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Ich möchte lieber meine Erfahrungen an den bzw. die Lehr:werker*in weitergeben als gemeinsam mit ihm bzw. ihr Neues auszuprobieren:<br> 
-                                    <b id="innovationsoffenheit"></b>
+                                    <p id="innovationsoffenheit" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('innovationsoffenheit').innerHTML = zutreffend[{{ $user->survey_data->innovationsoffenheit }} - 1]['text'];
                                     </script>
@@ -493,10 +493,10 @@
                                 @elseif($v == 'Stud')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Ein großer Erfahrungsschatz ist mir bei meinem Lehr:mentor bzw. meiner Lehr:mentorin wichtiger als die Neigung, Neues auszuprobieren:<br> 
-                                    <b id="innovationsoffenheit"></b>
+                                    <p id="innovationsoffenheit" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('innovationsoffenheit').innerHTML = zutreffend[{{ $user->survey_data->innovationsoffenheit }} - 1]['text'];
                                     </script>
@@ -513,10 +513,10 @@
                                 @if($v == 'Lehr')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Ich wünsche mir eine*n Lehr:werker*in, die bzw. der sich das Unterrichten in schwierigen bzw. höheren Klassen zutraut:<br> 
-                                    <b id="belastbarkeit"></b>
+                                    <p id="belastbarkeit" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('belastbarkeit').innerHTML = zutreffend[{{ $user->survey_data->belastbarkeit }} - 1]['text'];
                                     </script>
@@ -526,10 +526,10 @@
                                 @elseif($v == 'Stud')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Ich traue mir zu, mit meinem Lehr:mentor bzw. meiner Lehr:mentorin in „schwierigen“ oder höheren Klassen zu unterrichten:<br> 
-                                    <b id="belastbarkeit"></b>
+                                    <p id="belastbarkeit" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('belastbarkeit').innerHTML = zutreffend[{{ $user->survey_data->belastbarkeit }} - 1]['text'];
                                     </script>
@@ -546,10 +546,10 @@
                                 @if($v == 'Lehr')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Meine Berufserfahrung: Ich bin Lehrer*in seit:<br> 
-                                    <b id="berufserfahrung"></b>
+                                    <p id="berufserfahrung" class="text-gray-400"></p>
                                     <script>
                                         berufserfahrung = [
                                             {value: 1, text: "maximal einem Jahr."},
@@ -572,10 +572,10 @@
                                 @if($v == 'Stud')
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Welche(s) der folgenden Praktika haben Sie im Rahmen Ihres Lehramtsstudiums bereits absolviert?:<br> 
-                                    <b id="praktika"></b>
+                                    <p id="praktika" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('praktika').innerHTML = '{{ $user->survey_data->praktika }}';
                                     </script>
@@ -592,10 +592,10 @@
                                 @if( ($v == 'Lehr' || $v == 'Stud') && isset($user->survey_data->freue_auf))
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Ich freue mich im Rahmen der Lehr:werkstatt besonders auf:<br> 
-                                    <b id="freue_auf"></b>
+                                    <p id="freue_auf" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('freue_auf').innerHTML = '{{ $user->survey_data->freue_auf }}';
                                     </script>
@@ -612,10 +612,10 @@
                                 @if($v == 'Stud' && isset($user->survey_data->anmerkungen))
                                 <div class="py-3">
 
-                                    <dt class="text-teal-600">
+                                    <dt class="text-gray-200 text-sm">
 
                                     Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?:<br> 
-                                    <b id="anmerkungen"></b>
+                                    <p id="anmerkungen" class="text-gray-400"></p>
                                     <script>
                                         document.getElementById('anmerkungen').innerHTML = '{{ $user->survey_data->anmerkungen }}';
                                     </script>

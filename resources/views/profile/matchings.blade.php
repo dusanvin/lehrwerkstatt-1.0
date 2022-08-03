@@ -93,7 +93,7 @@
 
                     <tr class="border-t border-gray-200 bg-gray-700 text-sm text-gray-400">
 
-                        <td class="hidden sm:table-cell pl-6 py-4 whitespace-no-wrap">
+                        <td class="hidden sm:table-cell pl-6 py-4 whitespace-no-wrap align-top">
 
                             {{ $index+1 }}
 

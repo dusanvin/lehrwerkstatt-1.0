@@ -371,7 +371,7 @@
 
 		@csrf
 
-		<button class="flex text-xs items-center p-1 md:p-3 text-gray-300 hover:text-yellow-400 focus:border-transparent focus:outline-none transition ease-in-out duration-150" type="submit">
+		<button class="mx-auto flex text-xs items-center p-1 md:p-3 text-gray-300 hover:text-yellow-400 focus:border-transparent focus:outline-none transition ease-in-out duration-150" type="submit">
 
 			<svg class="fill-current h-5 w-5 mx-auto ml-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 

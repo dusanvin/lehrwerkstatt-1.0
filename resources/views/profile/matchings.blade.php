@@ -73,15 +73,17 @@
                             <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
                                 #</th>
 
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Partner*in</th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Partner*in</th>
 
-                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Schulart</th>
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Schulart</th>
 
-                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Fach/Fächer</th>
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Fach/Fächer</th>
 
-                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Mögliche/r Ausübungsort/e</th>
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Mögliche/r Ausübungsort/e</th>
 
-                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">Erstellungsdatum</th>
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Erstellungsdatum</th>
+
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold"></th>
 
                         </tr>
 
@@ -93,7 +95,7 @@
 
                     <tr class="border-t border-gray-200 bg-gray-700 text-sm text-gray-400">
 
-                        <td class="hidden sm:table-cell pl-6 py-4 whitespace-no-wrap align-top">
+                        <td class="hidden sm:table-cell pl-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
 
                             {{ $index+1 }}
 
@@ -111,7 +113,7 @@
 
                         </td>
 
-                        <td class="px-6 py-4 whitespace-no-wrap align-top">
+                        <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
 
                             <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
 
@@ -121,7 +123,7 @@
 
                         </td>
 
-                        <td class="px-6 py-4 whitespace-no-wrap align-top">
+                        <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
 
                             <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
 
@@ -141,7 +143,7 @@
 
                         @if(strcasecmp($matching->role, 'lehr') == 0)
 
-                        <td class="px-6 py-4 whitespace-no-wrap align-top">
+                        <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
 
                             <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
 
@@ -153,7 +155,7 @@
 
                         @elseif(strcasecmp($matching->role, 'stud') == 0)
 
-                        <td class="px-6 py-4 whitespace-no-wrap align-top">
+                        <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
 
                             <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
 
@@ -165,7 +167,7 @@
 
                         @endif
 
-                        <td class="px-6 py-4 whitespace-no-wrap align-top">
+                        <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
 
                             <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
 
@@ -173,31 +175,21 @@
 
                             </div>
 
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-no-wrap align-top">
+
                             <div class="py-2 mx-auto rounded-md">
 
-                                <div class="grid justify-items-center md:justify-items-end">
+                                <div class="flex">
 
-                                    <div class="float-right mb-2">
 
-                                        <a href="/messages/create/{{ $matching->id }}" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 uppercase tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
+                                        <a href="/messages/create/{{ $matching->id }}" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
 
-                                            <div class="">
-
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                                                </svg>
-
-                                            </div>
-
-                                            <div class="pl-3 sm:inline-block hidden">
-
-                                                <span class="text-xs">Neue Nachricht</span>
-
-                                            </div>
+                                            Kontaktieren
 
                                         </a>
 
-                                    </div>
 
                                 </div>
 

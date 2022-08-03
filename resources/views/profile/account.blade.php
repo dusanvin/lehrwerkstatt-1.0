@@ -64,7 +64,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
         <!-- Inhalt -->
 
-        <div class="px-1 md:px-8 py-8 md:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-600">
+        <div class="px-1 md:px-8 py-8 md:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-900">
 
             <div class="overflow-hidden mb-4">
 

@@ -24,7 +24,7 @@
 <body>
     <div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
         @include('layouts.navigation')
-        <div class="px-3 sm:px-8 py-3 sm:py-8 text-gray-700 w-screen sm:rounded-r-lg" style="background-color: #EDF2F7;">
+        <div class="px-3 sm:px-8 py-3 sm:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-900">
 
             <div class="overflow-hidden sm:rounded-lg">
                 

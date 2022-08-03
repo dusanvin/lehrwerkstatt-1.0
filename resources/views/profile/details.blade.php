@@ -67,10 +67,10 @@
 
                                 </div>
 
-                                <ul class="bg-gray-800 text-gray-400 py-2 px-3 mt-3 rounded text-sm">
+                                <ul class="bg-gray-700 text-gray-400 py-2 px-3 mt-3 rounded text-sm">
 
                                     <li class="py-3">
-                                        <div class="text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Letzte Anmeldung</div>
+                                        <div class="text-xs leading-4 font-medium text-gray-200">Letzte Anmeldung</div>
                                         <div class="text-gray-400 text-xs">
                                             @if($user->last_login_at === NULL)
                                             -
@@ -83,31 +83,31 @@
                                     </li>
 
                                     <li class="py-3">
-                                        <div class="text-xs leading-4 text-gray-400 uppercase tracking-wider font-bold">Registrierung</div>
+                                        <div class="text-xs leading-4 text-gray-200">Registrierung</div>
                                         <div class="text-gray-400 text-xs">{{ $user->created_at->DiffForHumans() }}</div>
                                     </li>
 
                                     <li class="py-3">
-                                        <div class="text-xs leading-4 text-gray-400 uppercase tracking-wider font-bold">E-Mail</div>
+                                        <div class="text-xs leading-4 text-gray-200">E-Mail</div>
                                         <div class="text-gray-400 text-xs break-all">{{ $user->email }}</div>
                                     </li>
 
                                     <li class="py-3">
-                                        <div class="text-xs leading-4 text-gray-400 uppercase tracking-wider font-bold">Telefonnummer</div>
+                                        <div class="text-xs leading-4 text-gray-200">Telefonnummer</div>
                                         <div class="text-gray-400 text-xs break-all">{{ $user->survey_data->telefonnummer }}</div>
                                     </li>
 
                                     
                                     @if(isset($user->survey_data->faecher))
                                     <li class="py-3">
-                                        <div class="text-xs leading-4 text-gray-400 uppercase tracking-wider font-bold">Fächer</div>
+                                        <div class="text-xs leading-4 text-gray-200">Fächer</div>
                                         <div class="text-gray-400 text-xs break-all">{{ $user->survey_data->faecher }}</div>
                                     </li>
                                     @endif
                                     @foreach($user->getRoleNames() as $v)
                                     @if($v == 'Stud')
                                     <li class="py-3">
-                                        <div class="text-xs leading-4 text-gray-400 uppercase tracking-wider font-bold">Fachsemester</div>
+                                        <div class="text-xs leading-4 text-gray-200">Fachsemester</div>
                                         <div class="text-gray-400 text-xs">{{ $user->survey_data->fachsemester }}</div>
                                     </li>
                                     @endif
@@ -214,7 +214,7 @@
                         </script>
 
 
-                        <div class="w-full md:w-9/12 mr-2 gap-4 bg-gray-800">
+                        <div class="w-full md:w-9/12 mr-2 gap-4 bg-gray-700">
 
                             <!-- Profile tab -->
 

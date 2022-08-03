@@ -71,7 +71,7 @@
 
             <div class="mt-4">
 
-                <x-label for="email" :value="__('Email-Adresse* (Als Student*in wird eine E-Mail mit Endung @student.uni-augsburg.de bzw. @uni-a.de benötigt.)')" />
+                <x-label for="email" :value="__('Email-Adresse**')" />
 
                 <x-input id="email" class="block mt-2 w-full" type="email" name="email" :value="old('email')" required />
 
@@ -124,7 +124,7 @@
 
                 <x-button id="lehr" type="button" class="mt-2" onclick=setRole(this.id)>Lehrkraft</x-button>
 
-                <x-button id="stud" type="button" class="mt-2" onclick=setRole(this.id)>Student*in</x-button>
+                <x-button id="stud" type="button" class="mt-2" onclick=setRole(this.id)>Studentin**</x-button>
 
             </div>
 
@@ -168,7 +168,8 @@
 
                 <div class="block font-medium text-xs text-gray-700">
 
-                    <p>* Alle Angaben sind zwingend für die Registrierung erforderlich.</p>
+                    <p class="mb-1">* Alle Angaben sind zwingend für die Registrierung erforderlich.</p>
+                    <p>**Als Student*in wird eine E-Mail mit Endung <em>@student.uni-augsburg.de</em> bzw. <em>@uni-a.de</em> benötigt.</p>
 
                 </div>
 

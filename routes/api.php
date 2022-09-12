@@ -104,16 +104,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Adminbereich
     Route::group(['middleware' => ['role:Admin|Moderierende']], function () {
 
-        Route::get('/angebote/lehr', [FilterController::class, 'lehr'])
+        Route::get('/angebote/lehr/{schulart?}', [FilterController::class, 'lehr'])
             ->name('users.lehr');
 
-        Route::post('/angebote/lehr', [FilterController::class, 'filteredLehr'])
+        Route::post('/angebote/lehr/{schulart?}', [FilterController::class, 'filteredLehr'])
             ->name('users.lehr');
 
-        Route::get('/angebote/stud', [FilterController::class, 'stud'])
+        Route::get('/angebote/stud/{schulart?}', [FilterController::class, 'stud'])
             ->name('users.stud');
 
-        Route::post('/angebote/stud', [FilterController::class, 'filteredStud'])
+        Route::post('/angebote/stud/{schulart?}', [FilterController::class, 'filteredStud'])
             ->name('users.stud');
 
         Route::get('/matchings', [UserController::class, 'matchings'])->name('users.matchings');

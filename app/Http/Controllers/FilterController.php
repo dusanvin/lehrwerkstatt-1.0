@@ -129,24 +129,37 @@ class FilterController extends Controller
     }
 
 
-    public function lehr(Request $request)
+    public function lehr(Request $request, $schulart=null)
     {
+        $view = 'all';
         $users = $this->getUnmatchedUsers('lehr');
+        if(!empty($schulart)) {
+            $view = $schulart;
+            $request->schulart = $schulart;
+            $users = $this->filterSchule($request, $users);
+        }
         $this->implodeFaecher($users);
-        return view('offers.all', [
+        return view('offers.'.$view, [
             'users' => $users,
             'faecher' => $this->faecher,
-            'landkreise' => $this->landkreise
+            'landkreise' => $this->landkreise,
+            'schulart' => $schulart,
         ]);
     }
 
 
-    public function stud(Request $request)
+    public function stud(Request $request, $schulart=null)
     {
+        $view = 'all';
         $users = $this->getUnmatchedUsers('stud');
+        if(!empty($schulart)) {
+            $view = $schulart;
+            $request->schulart = $schulart;
+            $users = $this->filterSchule($request, $users);
+        }
         $this->implodeFaecher($users);
         $this->implodeLandkreise($users);
-        return view('needs.all', [
+        return view('needs.'.$view, [
             'users' => $users,
             'faecher' => $this->faecher,
             'landkreise' => $this->landkreise
@@ -154,7 +167,7 @@ class FilterController extends Controller
     }
 
 
-    public function filteredLehr(Request $request)
+    public function filteredLehr(Request $request, $schulart=null)
     {
         $users = $this->getUnmatchedUsers('lehr');
         $users = $this->filterSchule($request, $users);
@@ -184,7 +197,7 @@ class FilterController extends Controller
     }
 
 
-    public function filteredStud(Request $request)
+    public function filteredStud(Request $request, $schulart=null)
     {
         $users = $this->getUnmatchedUsers('stud');
         $users = $this->filterSchule($request, $users);

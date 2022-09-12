@@ -20,13 +20,13 @@
 
             <ul id="tabs" class="inline-flex w-full">
 
-                <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100"><a href="{{ route('users.lehr') }}">Alle Schularten</a></li>
+                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('users.lehr') }}">Alle Schularten</a></li>
 
                 <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('users.lehr', ['schulart' => 'Grundschule']) }}">Grundschule</a></li>
 
                 <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('users.lehr', ['schulart' => 'Realschule']) }}">Realschule</a></li>
 
-                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('users.lehr', ['schulart' => 'Gymnasium']) }}">Gymnasium</a></li>
+                <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100"><a href="{{ route('users.lehr', ['schulart' => 'Gymnasium']) }}">Gymnasium</a></li>
 
             </ul>
 
@@ -77,100 +77,69 @@
                                     @csrf
 
                                     <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mb-6">
-                                        <div>
-                                            <!-- Schulart -->
 
-                                            <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
 
-                                                <p class="font-medium text-gray-800 leading-none mb-3">Schulart</p>
+                                        <!-- Schulart -->
 
-                                                <!--<p class="text-xs text-gray-500 mt-1 mb-3">Ändern Sie, welche Schule Sie bevorzugen.</p> -->
+                                        <label for="schulart" class="sr-only flex items-center"></label>
 
-                                                <div>
+                                        <select hidden name="schulart" id="schulart" class="text-gray-500 text-xs py-1 px-2 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('schulart') border-red-500 @enderror">
+                                            <option selected>Gymnasium</option>
+                                        </select>
 
-                                                    <label for="schulart" class="sr-only flex items-center">schulart</label>
+                                        <!-- Schulart -->
+                                        
 
-                                                    <select name="schulart" id="schulart" class="text-gray-500 text-xs py-1 px-2 rounded-sm border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('schulart') border-red-500 @enderror">
-                                                        <option>Beliebig</option>
-                                                        <option>Grundschule</option>
-                                                        <option>Realschule</option>
-                                                        <option>Gymnasium</option>
-                                                    </select>
+                                        <!-- Fächer -->
 
-                                                    <script>
-                                                        var schulart_select = document.getElementById("schulart");
-                                                        @if(isset($schulart))
-                                                        schulart_select.value = "{{ $schulart }}";
-                                                        @endif
-                                                    </script>
+                                        <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
 
-                                                    @error('schulart')
+                                            <p class="font-medium text-gray-800 leading-none mb-3">Fächer</p>
 
-                                                    <div class="text-red-500 mt-2 text-sm">
+                                            <script>
+                                                var faecher = [];
 
-                                                        {{ 'Bitte legen Sie fest, welche Schule Sie bevorzugen.' }}
-
-                                                    </div>
-
-                                                    @enderror
-
-                                                </div>
-
-                                            </div>
-
-                                            <!-- Schulart -->
-
-                                            <!-- Fächer -->
-
-                                            <div class="grid grid-cols-1 text-sm text-gray-500 text-light mt-3">
-
-                                                <p class="font-medium text-gray-800 leading-none mb-3">Fächer (nur relevant für Realschule und Gymnasium)</p>
-
-                                                <script>
-                                                    var faecher = [];
-
-                                                    function addToSelection(fach, checked) {
-                                                        console.log(fach, checked);
-                                                        if (checked) {
-                                                            faecher.push(fach);
-                                                        } else {
-                                                            let i = faecher.indexOf(fach);
-                                                            faecher.splice(i, 1);
-                                                        }
-                                                        console.log(faecher);
-                                                        document.getElementById('faecher').value = faecher;
+                                                function addToSelection(fach, checked) {
+                                                    console.log(fach, checked);
+                                                    if (checked) {
+                                                        faecher.push(fach);
+                                                    } else {
+                                                        let i = faecher.indexOf(fach);
+                                                        faecher.splice(i, 1);
                                                     }
-                                                </script>
+                                                    console.log(faecher);
+                                                    document.getElementById('faecher').value = faecher;
+                                                }
+                                            </script>
 
-                                                <input name="faecher" id="faecher" type=hidden value="" />
+                                            <input name="faecher" id="faecher" type=hidden value="" />
 
-                                                <div class="flex relative flex-wrap">
+                                            <div class="flex relative flex-wrap">
 
-                                                    <ul class="list-group">
-                                                        @foreach($faecher as $fach)
+                                                <ul class="list-group">
+                                                    @foreach($faecher as $fach)
 
-                                                        <li class="list-group-item">
-                                                            <input class="form-check-input me-1" type="checkbox" value="{{ $fach }}" id="{{ $fach }}" onclick="addToSelection(this.value, this.checked)">
-                                                            {{ $fach }}
-                                                        </li>
-                                                        @endforeach
-                                                    </ul>
-
-                                                </div>
-
-                                                <script>
-                                                    @if(isset($selected_faecher))
-                                                    @foreach($selected_faecher as $fach)
-                                                    document.getElementById("{{ $fach }}").click();
+                                                    <li class="list-group-item">
+                                                        <input class="form-check-input me-1" type="checkbox" value="{{ $fach }}" id="{{ $fach }}" onclick="addToSelection(this.value, this.checked)">
+                                                        {{ $fach }}
+                                                    </li>
                                                     @endforeach
-                                                    @endif
-                                                </script>
+                                                </ul>
 
                                             </div>
 
-                                            <!-- Fächer -->
+                                            <script>
+                                                @if(isset($selected_faecher))
+                                                @foreach($selected_faecher as $fach)
+                                                document.getElementById("{{ $fach }}").click();
+                                                @endforeach
+                                                @endif
+                                            </script>
 
                                         </div>
+
+                                        <!-- Fächer -->
+
 
                                         <!-- Landkreise -->
 
@@ -311,7 +280,7 @@
                     @if ($users->count())
 
                     @foreach($users as $user)
-                    
+
 
                     <div class="bg-white rounded-md pb-4">
 

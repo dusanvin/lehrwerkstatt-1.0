@@ -20,17 +20,13 @@
 
             <ul id="tabs" class="inline-flex w-full">
 
-                <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100">Alle Angebote</li>
+                <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100"><a href="{{ route('users.stud') }}">Alle Schularten</a></li>
 
-                <!-- <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100"><a href="{{ route('needs.all') }}">Alle Angebote</a></li>
+                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('users.stud', ['schulart' => 'Grundschule']) }}">Grundschule</a></li>
 
-                @role('Admin|Moderierende|Helfende')
+                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('users.stud', ['schulart' => 'Realschule']) }}">Realschule</a></li>
 
-                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('needs.user') }}">Meine Angebote</a></li>
-
-                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('needs.make') }}">Angebot erstellen</a></li>
-
-                @endrole -->
+                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('users.stud', ['schulart' => 'Gymnasium']) }}">Gymnasium</a></li>
 
             </ul>
 
@@ -352,8 +348,9 @@
                                 @if(isset($user->survey_data->faecher))
                                 <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Angebotene Fächer: <span class="font-medium">{{ $user->survey_data->faecher }}</span></p>
                                 @endif
+                                @if(isset($user->survey_data->landkreise))
                                 <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Mögliche Ausübungsorte: <span class="font-medium">{{ $user->survey_data->landkreise }}</span></p>
-
+                                @endif
                             </div>
 
                             <!-- Informationen -->

@@ -157,8 +157,8 @@ class FilterController extends Controller
             $request->schulart = $schulart;
             $users = $this->filterSchule($request, $users);
         }
-        $this->implodeFaecher($users);
-        $this->implodeLandkreise($users);
+        $users = $this->implodeFaecher($users);
+        $users = $this->implodeLandkreise($users);
         return view('needs.'.$view, [
             'users' => $users,
             'faecher' => $this->faecher,
@@ -169,6 +169,7 @@ class FilterController extends Controller
 
     public function filteredLehr(Request $request, $schulart=null)
     {
+        $view = $schulart == null ? 'all': $schulart;
         $users = $this->getUnmatchedUsers('lehr');
         $users = $this->filterSchule($request, $users);
 
@@ -185,7 +186,7 @@ class FilterController extends Controller
             $users = $this->filterLandkreise($selected_landkreise, $users);
         }
 
-        return view('offers.all', [
+        return view('offers.'.$view, [
             'users' => $users,
             'schulart' => $request->schulart,
             'faecher' => $this->faecher,
@@ -199,6 +200,7 @@ class FilterController extends Controller
 
     public function filteredStud(Request $request, $schulart=null)
     {
+        $view = $schulart == null ? 'all': $schulart;
         $users = $this->getUnmatchedUsers('stud');
         $users = $this->filterSchule($request, $users);
 
@@ -213,10 +215,10 @@ class FilterController extends Controller
         if ($request->landkreise) {
             $selected_landkreise = explode(',', $request->landkreise);
             $users = $this->filterLandkreise($selected_landkreise, $users);
-            $this->implodeLandkreise($users);
         }
+        $users = $this->implodeLandkreise($users);
 
-        return view('needs.all', [
+        return view('needs.'.$view, [
             'users' => $users,
             'schulart' => $request->schulart,
             'faecher' => $this->faecher,

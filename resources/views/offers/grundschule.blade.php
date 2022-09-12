@@ -72,12 +72,12 @@
 
                                 <!-- Details -->
 
-                                <form id="search" action="{{ route('users.lehr') }}" method="post">
+                                <form id="search" action="{{ route('users.lehr', ['schulart' => 'Grundschule']) }}" method="post">
 
                                     @csrf
 
                                     <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mb-6">
-                                        
+
 
                                         <!-- Schulart -->
 

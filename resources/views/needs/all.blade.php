@@ -348,9 +348,8 @@
                                 @if(isset($user->survey_data->faecher))
                                 <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Angebotene Fächer: <span class="font-medium">{{ $user->survey_data->faecher }}</span></p>
                                 @endif
-                                @if(isset($user->survey_data->landkreise))
                                 <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Mögliche Ausübungsorte: <span class="font-medium">{{ $user->survey_data->landkreise }}</span></p>
-                                @endif
+                                
                             </div>
 
                             <!-- Informationen -->

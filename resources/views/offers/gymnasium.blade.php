@@ -72,7 +72,7 @@
 
                                 <!-- Details -->
 
-                                <form id="search" action="{{ route('users.lehr') }}" method="post">
+                                <form id="search" action="{{ route('users.lehr', ['schulart' => 'Gymnasium']) }}" method="post">
 
                                     @csrf
 
@@ -88,7 +88,7 @@
                                         </select>
 
                                         <!-- Schulart -->
-                                        
+
 
                                         <!-- Fächer -->
 

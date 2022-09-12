@@ -42,14 +42,17 @@ return [
     'verwaltung' => 'Verwaltung',
     'verwaltungInfo' => 'Nutzende und Rollen',
 
-    'angebote' => 'Angebote',
+    'angebote' => 'Lehrkräfte',
     'angeboteInfo' => 'von Lehrkräften',
 
-    'bedarfe' => 'Bedarfe',
+    'bedarfe' => 'Student*innen',
     'bedarfeInfo' => 'von Student*innen',
 
     'vorschlaege' => 'Vorschläge',
-    'vorschlaegeInfo' => 'Paarungen',
+    'vorschlaegeInfo' => 'mögliche Tandems',
+
+    'paarungen' => 'Paarungen',
+    'paarungenInfo' => 'feste Tandems',
 
     /* MeinBereich */
     'meinBereichMotivation' => 'Bearbeiten Sie Ihre Daten und stellen Sie sich vor.',

@@ -72,19 +72,19 @@
 
 							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
-							  <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+								<path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
 
 							</svg>
 
 						</div>
 
 						<div class="pl-3">
-						@role('Admin|Moderierende')
+							@role('Admin|Moderierende')
 							<p class="navigation-element text-sm font-medium mb-1 font-semibold">Mitgliedsdaten</p>
-						@endrole
-						@role('Lehr|Stud')
+							@endrole
+							@role('Lehr|Stud')
 							<p class="navigation-element text-sm font-medium mb-1 font-semibold">Bewerbungsformular</p>
-						@endrole
+							@endrole
 							<!--<p class="navigation-element text-xs">Jahrgang 2022/2023</p>-->
 
 						</div>
@@ -104,9 +104,9 @@
 						<div>
 
 							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-							 
+
 								<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-							
+
 							</svg>
 
 						</div>
@@ -135,11 +135,11 @@
 
 						<div>
 
-						<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-						
-							<path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
-						
-						</svg>
+							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+								<path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+
+							</svg>
 
 						</div>
 
@@ -267,7 +267,7 @@
 
 			<p class="navigation-element mb-3 mt-10 pl-7 text-xs tracking-wider text-gray-300 antialiased uppercase font-medium">Paare</p>
 
-			<!-- Angebote -->
+			<!-- Lehrkräfte -->
 
 			<ul>
 
@@ -297,9 +297,9 @@
 
 				</li>
 
-				<!-- Angebote -->
+				<!-- Lehrkräfte -->
 
-				<!-- Bedarfe Praktika -->
+				<!-- Student*innen -->
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
@@ -327,6 +327,38 @@
 
 				</li>
 
+				<!-- Student*innen -->
+
+				<!-- Vorschläge -->
+
+				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+
+					<a href="{{ route('users.matchings') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('offers/*')) { text-yellow-400 } @endif">
+
+						<div>
+
+							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+								<path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+
+							</svg>
+
+						</div>
+
+						<div class="pl-3">
+
+							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.vorschlaege') }}</p>
+
+							<!--<p class="navigation-element text-xs">{{ Config::get('site_vars.vorschlaegeInfo') }}</p>-->
+
+						</div>
+
+					</a>
+
+				</li>
+
+				<!-- Vorschläge -->
+
 				<!-- Paarungen -->
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
@@ -336,16 +368,16 @@
 						<div>
 
 							<svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-							
+
 								<path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-							
+
 							</svg>
-							
+
 						</div>
 
 						<div class="pl-3">
 
-							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.vorschlaegeInfo') }}</p>
+							<p class="navigation-element text-sm font-medium mb-1 font-semibold">{{ Config::get('site_vars.paarungen') }}</p>
 
 							<!--<p class="navigation-element text-xs">{{ Config::get('site_vars.vorschlaegeInfo') }}</p>-->
 

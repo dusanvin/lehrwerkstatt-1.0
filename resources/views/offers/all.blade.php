@@ -348,83 +348,309 @@
 
                 <!-- Suchfilter -->
 
-                <div class="min-w-full mt-4 mb-2 mr-4 shadow-sm">
+                <div class="min-w-full mt-4 mr-4 shadow-sm">
 
                     <p class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 rounded-t-lg tracking-wider uppercase font-bold">Auflistung von kompatiblen Angeboten</p>
 
                 </div>
 
+                @foreach($users as $user)
+
+                    <div class="border-b border-gray-200 bg-gray-700 flex">
+
+                        <div class="hidden sm:table-cell text-sm pl-6 py-4 text-gray-100 w-36">
+
+                            {{ $user->created_at->diffForHumans() }}
+
+                        </div>
+
+                        <div class="px-6 py-4 w-96">
+
+                            <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64">
+
+                                <a href="{{ route('profile.details', ['id' => $user->id]) }}" class="text-xs sm:text-sm leading-5 font-medium text-white hover:underline break-all">
+
+                                    {{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}
+
+                                </a>
+
+                            </div>
+
+                            <a href="mailto:{{ $user->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-all">{{ $user->email }} </a>
+
+                        </div>
+
+                        <div class="hidden sm:table-cell px-6 py-4 w-96">
+
+                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+        
+                                {{ $user->survey_data->schulart }}
+                                
+                            </div>
+
+                            <!-- Fächer -->
+
+                            @if(isset($user->survey_data->faecher))
+
+                                <div class="text-xs sm:text-sm leading-5 text-gray-400">
+            
+                                    {{ $user->survey_data->faecher }}
+                                    
+                                </div>
+
+                            @else
+
+                                <div class="text-xs sm:text-sm leading-5 text-gray-400">
+        
+                                    Keine Fächer angegeben
+                                    
+                                </div>
+
+                            @endif
+
+                        </div>
+
+                        <div class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap w-64">
+
+                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+        
+                                {{ $user->survey_data->postleitzahl }}
+                                
+                            </div>
+
+                            <div class="text-xs sm:text-sm leading-5 text-gray-400">
+        
+                                {{ $user->survey_data->landkreis }}
+                                
+                            </div>
+
+                        </div>
 
 
-                    <div class="min-w-full mt-4 mb-2 mr-4 shadow-sm rounded-lg">
 
-                        Angebote
 
-                    </div>
+                        <div class="w-32 px-6 py-4 flex">
 
-                    <div class="shadow-sm rounded-lg" id="angebote">
 
-                        @if ($users->count())
+                                <!-- MSE -->
 
-                            @foreach($users as $user)
+                                <div x-data="{ modelOpen: false }" class="flex flex-wrap mr-2 mb-2">
 
-                            <div class="bg-white rounded-md pb-4">
+                                    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
 
-                                <div class="px-1 sm:px-4 sm:px-6 border-t border-gray-200">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path d="M9 9a2 2 0 114 0 2 2 0 01-4 0z" />
+                                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a4 4 0 00-3.446 6.032l-2.261 2.26a1 1 0 101.414 1.415l2.261-2.261A4 4 0 1011 5z" clip-rule="evenodd" />
+                                        </svg>
 
-                                    <!-- Informationen -->
+                                        <span>Details</span>
 
-                                    <div class="flex items-center justify-between pt-4 leading-5 sm:leading-6 mb-4 text-xs sm:text-lg font-medium">
+                                    </button>
 
-                                        <a class="flex hover:underline" href="{{ route('profile.details', ['id' => $user->id]) }}">
+                                    <!-- ModelOpen -->
 
-                                            {{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}
+                                    <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 pt-1" viewBox="0 0 20 20" fill="currentColor">
-                                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                                            </svg>
+                                        <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
 
-                                        </a>
+                                            <div x-cloak @click="modelOpen = false" x-show="modelOpen" 
+                                                x-transition:enter="transition ease-out duration-300 transform"
+                                                x-transition:enter-start="opacity-0" 
+                                                x-transition:enter-end="opacity-100"
+                                                x-transition:leave="transition ease-in duration-200 transform"
+                                                x-transition:leave-start="opacity-100" 
+                                                x-transition:leave-end="opacity-0"
+                                                class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"
+                                            ></div>
 
-                                        <div>
+                                            <!-- ModelOpen -->
 
-                                            <span class="text-gray-400 text-xs"><strong><span class="hidden sm:inline-block">Angebot </span> #{{ $user->id }}</strong> <span class="hidden sm:inline-block">erstellt </span> {{ $user->created_at->diffForHumans() }}</span>
+                                            <!-- ModelOpen x-cloak -->
+
+                                            <div x-cloak x-show="modelOpen" 
+                                                x-transition:enter="transition ease-out duration-300 transform"
+                                                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+                                                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                                x-transition:leave="transition ease-in duration-200 transform"
+                                                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
+                                                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                class="bg-gray-700 inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
+                                            >
+
+                                            <!-- ModelOpen x-cloak -->
+
+                                                <!-- ModelInner -->
+
+                                                <div class="flex items-center justify-between space-x-4">
+
+                                                    <h1 class="text-xl font-medium text-gray-100">Angebot #{{ $user->id }}</h1>
+
+                                                    <button @click="modelOpen = false" class="text-gray-400 focus:outline-none hover:text-gray-100">
+
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+
+                                                        </svg>
+
+                                                    </button>
+
+                                                </div>
+
+                                                
+                                                <p class="mt-2 text-gray-400 text-sm">
+                                                    Sehen Sie sich das Angebot genauer an.
+                                                </p>
+
+                                                
+                                                    
+                                                <div class="mt-4">
+
+                                                    <h3 class="text-xs font-medium text-white uppercase">Informationen zur Lehrkraft</h3>
+
+                                                    <div class="pb-2 w-96 mt-2">
+
+                                                        <div class="text-xs sm:text-sm leading-5 w-full text-white">
+
+                                                            <span class="text-gray-400">Vor-/Nachname:</span> {{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}
+
+                                                        </div>
+                                                        
+                                                        <div class="text-xs sm:text-sm leading-5 w-full text-white">
+
+                                                            <span class="text-gray-400">Schule:</span> {{ $user->survey_data->schulname }}
+
+                                                        </div>
+
+                                                        <div class="text-xs sm:text-sm leading-5 w-full text-white">
+
+                                                            <span class="text-gray-400">Schulische Mailadresse:</span> {{ $user->survey_data->email_schul }}
+
+                                                        </div>
+
+                                                           <div class="text-xs sm:text-sm leading-5 w-full text-white">
+
+                                                            <span class="text-gray-400">Schulart:</span> {{ $user->survey_data->schulart }}
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div>
+
+                                                        <h3 class="text-xs font-medium text-white uppercase">Attribute zur Berechnung des MSE</h3>
+
+                                                        <div class="pb-2 w-96 text-sm text-gray-400 mt-2">
+
+                                                            <p>
+
+                                                                Feedback Lehrkraft zu Student*in [Abweichung 0 bis 5]: 
+
+                                                            </p>
+
+                                                            <p>
+
+                                                                Feedback Student*in zu Lehrkraft [Abweichung 0 bis 5]:
+
+                                                            </p>
+
+                                                            <p>
+
+                                                                Eigenstaendigkeit [Abweichung 0 bis 5]**: 
+
+                                                            </p>
+
+                                                            <p>
+
+                                                                Improvisation [Abweichung 0 bis 5]: 
+
+                                                            </p>
+
+                                                            <p>
+
+                                                                Freiraum [Abweichung 0 bis 3]:
+
+                                                            </p>
+
+                                                            <p>
+
+                                                                Innovationsoffenheit [Abweichung 0 bis 5]: 
+
+                                                            </p>
+
+                                                            <p>
+
+                                                                Belastbarkeit [Abweichung 0 bis 5]:** 
+
+                                                            </p>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <p class="text-gray-400 text-xs mt-2">Umso kleiner der Wert, umso geringer die Abweichung. Attribute mit ** fließen stärker in die Gewichtung mit ein.</p>
+
+                                                </div>
+
+                                                
+
+                                                <!-- ModelInner -->
+
+                                            </div>
 
                                         </div>
 
                                     </div>
 
-                                    <!-- Informationen -->
-
-                                    <div class="block sm:flex sm:flex-wrap content-start">
-
-                                        <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Schulart: <span class="font-medium">{{ $user->survey_data->schulart }}</span></p>
-                                        @if(isset($user->survey_data->faecher))
-                                        <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Angebotene Fächer: <span class="font-medium">{{ $user->survey_data->faecher }}</span></p>
-                                        @endif
-                                        <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Ausübungsort: <span class="font-medium">{{ $user->survey_data->postleitzahl }} {{ $user->survey_data->ort }}</span></p>
-                                        <p class="text-gray-400 text-xs sm:text-sm mr-2 sm:mr-5">Gebiet: <span class="font-medium">{{ $user->survey_data->landkreis }}</span></p>
-
-                                    </div>
-
-                                    <!-- Informationen -->
-
                                 </div>
+                                
+                                <!-- MSE -->
 
-                            </div>
 
-                            @endforeach
 
-                        @else
+                                        </div>
 
-                        <p class="hidden">Keine Einträge vorhanden.</p>
 
-                        @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        
 
                     </div>
 
-                </div>
+                @endforeach
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
 
                 <!-- Zeige alle offers -->
 

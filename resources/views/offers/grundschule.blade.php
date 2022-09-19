@@ -22,11 +22,11 @@
 
                 <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('users.lehr') }}">Alle Schularten</a></li>
 
-                <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100"><a href="{{ route('users.lehr', ['schulart' => 'Grundschule']) }}">Grundschule</a></li>
+                <li class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-800 border-b-2 border-gray-700 rounded-t opacity-50 bg-white border-b-4 -mb-px opacity-100"><a href="{{ route('users.lehr', ['schulart' => 'grundschule']) }}">Grundschule</a></li>
 
-                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('users.lehr', ['schulart' => 'Realschule']) }}">Realschule</a></li>
+                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('users.lehr', ['schulart' => 'realschule']) }}">Realschule</a></li>
 
-                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('users.lehr', ['schulart' => 'Gymnasium']) }}">Gymnasium</a></li>
+                <li class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-800 rounded-t opacity-50 bg-white border-gray-400"><a href="{{ route('users.lehr', ['schulart' => 'gymnasium']) }}">Gymnasium</a></li>
 
             </ul>
 

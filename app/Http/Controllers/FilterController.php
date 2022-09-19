@@ -169,7 +169,7 @@ class FilterController extends Controller
 
     public function filteredLehr(Request $request, $schulart=null)
     {
-        $view = $schulart == null ? 'all': $schulart;
+        $view = lcfirst($schulart == null ? 'all': $schulart);
         $users = $this->getUnmatchedUsers('lehr');
         $users = $this->filterSchule($request, $users);
 
@@ -200,7 +200,7 @@ class FilterController extends Controller
 
     public function filteredStud(Request $request, $schulart=null)
     {
-        $view = $schulart == null ? 'all': $schulart;
+        $view = lcfirst($schulart == null ? 'all': $schulart);
         $users = $this->getUnmatchedUsers('stud');
         $users = $this->filterSchule($request, $users);
 

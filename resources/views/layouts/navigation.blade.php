@@ -99,7 +99,7 @@
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-					<a href="{{ route('profile.details', ['id' => $user->id]) }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('profile/details/*')) { text-yellow-400 } @endif">
+					<a href="{{ route('profile.details', ['id' => auth()->user()->id]) }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('profile/details/*')) { text-yellow-400 } @endif">
 
 						<div>
 

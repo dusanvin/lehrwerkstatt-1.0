@@ -44,7 +44,7 @@ class ImageController extends Controller
 
         session()->flash('success', 'true');
 
-        return redirect()->route('profile.edit');
+        return redirect()->route('profile.account');
 
     }
 

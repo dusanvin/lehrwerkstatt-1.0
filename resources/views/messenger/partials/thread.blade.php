@@ -34,22 +34,19 @@
                 <!-- Verlinkung zu Profil des Gegenübers -->
 
                 @php
-
                     foreach ($thread->participantsUserIds(Auth::id()) as $user) {
                         
                         if($user != Auth::id()) {
-                            
-                            $id = $user;
+                            $GLOBALS['target_id'] = $user;
                             break;
                         }
 
                     }
-
                 @endphp
 
                 <!-- Verlinkung zu Profil des Gegenübers -->
 
-                <a class="font-semibold flex-none mr-4 text-white user-ring bg-gray-700 hover:bg-gray-600 transition-all" href="{{ route('profile.details', ['id' => $id]) }}">
+                <a class="font-semibold flex-none mr-4 text-white user-ring bg-gray-700 hover:bg-gray-600 transition-all" href="{{ route('profile.details', ['id' => $GLOBALS['target_id']]) }}">
 
                     @php
 
@@ -79,7 +76,7 @@
 
                                 <p class="flex-auto mb-1 font-semibold leading-5 md:leading-normal text-xs sm:text-sm line-clamp break-all">
 
-                                    {{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}
+                                    {{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}, Betreff: {{ $thread->subject }}
 
                                 </p>
 

@@ -23,9 +23,11 @@
     <!-- Nachrichtenbody -->
 
 
-    <!-- Zurück -->
+    <!-- Zurück, Senden -->
 
-    <div class="mb-4 mt-4 flex justify-end">
+    <div class="mb-4 mt-4 flex justify-between">
+
+    <a href="{{ route('messages') }}">&#x2B9C; Zurück</a>
 
         <div class="my-1">
 
@@ -51,5 +53,6 @@
 
     </div>
 
-    <!-- Zurück -->
+    <!-- Zurück, Senden -->
+
 </form>

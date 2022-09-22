@@ -120,8 +120,8 @@
                                     <!-- Anfragen -->
 
                                     @if($user->id != Auth::id())
-
-                                    <form action="{{ route('messages.store') }}" method="post">
+                                    <!-- <form action="{{ route('messages.store') }}" method="post"> -->
+                                    <form action="/messages/create/{{ $user->id }}">
 
                                         {{ csrf_field() }}
 

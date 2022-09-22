@@ -27,24 +27,31 @@
                         <!-- Verlinkung zu Profil des Gegenübers -->
 
                         @php
-
                         foreach ($thread->participantsUserIds(Auth::id()) as $user) {
 
                         if($user != Auth::id()) {
-
-                        $id = $user;
+                        $GLOBALS['target_id'] = $user;
                         break;
                         }
 
                         }
-
-
-
                         @endphp
 
                         <!-- Verlinkung zu Profil des Gegenübers -->
 
-                        Gesprächsverlauf mit <a href="{{ route('profile.details', ['id' => $id]) }}" class="text-gray-200 hover:underline">{{ $thread->participantsString(Auth::id(),['vorname', 'nachname']) }}</a>
+                        Gesprächsverlauf mit <a href="{{ route('profile.details', ['id' => $GLOBALS['target_id']]) }}" class="text-gray-200 hover:underline">
+
+                            @php
+
+                            if( !empty( $thread->participantsString(Auth::id(), ['vorname']) ) ) {
+                            echo $thread->participantsString(Auth::id(),['vorname']) .' '. $thread->participantsString(Auth::id(),['nachname']);
+                            }
+
+                            else echo '-';
+
+                            @endphp
+
+                        </a>
 
                     </h2>
 

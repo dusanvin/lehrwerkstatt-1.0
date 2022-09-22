@@ -426,173 +426,497 @@
 
                         </div>
 
-
-
-
                         <div class="w-32 px-6 py-4 flex">
 
+                            <!-- MSE -->
 
-                                <!-- MSE -->
+                            <div x-data="{ modelOpen: false }" class="flex flex-wrap mr-2 mb-2">
 
-                                <div x-data="{ modelOpen: false }" class="flex flex-wrap mr-2 mb-2">
+                                <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
 
-                                    <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                      <path d="M9 9a2 2 0 114 0 2 2 0 01-4 0z" />
+                                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a4 4 0 00-3.446 6.032l-2.261 2.26a1 1 0 101.414 1.415l2.261-2.261A4 4 0 1011 5z" clip-rule="evenodd" />
+                                    </svg>
 
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                          <path d="M9 9a2 2 0 114 0 2 2 0 01-4 0z" />
-                                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a4 4 0 00-3.446 6.032l-2.261 2.26a1 1 0 101.414 1.415l2.261-2.261A4 4 0 1011 5z" clip-rule="evenodd" />
-                                        </svg>
+                                    <span>Details</span>
 
-                                        <span>Details</span>
+                                </button>
 
-                                    </button>
+                                <!-- ModelOpen -->
 
-                                    <!-- ModelOpen -->
+                                <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
-                                    <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                                    <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
 
-                                        <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+                                        <div x-cloak @click="modelOpen = false" x-show="modelOpen" 
+                                            x-transition:enter="transition ease-out duration-300 transform"
+                                            x-transition:enter-start="opacity-0" 
+                                            x-transition:enter-end="opacity-100"
+                                            x-transition:leave="transition ease-in duration-200 transform"
+                                            x-transition:leave-start="opacity-100" 
+                                            x-transition:leave-end="opacity-0"
+                                            class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"
+                                        >
+                                            
+                                        </div>
 
-                                            <div x-cloak @click="modelOpen = false" x-show="modelOpen" 
-                                                x-transition:enter="transition ease-out duration-300 transform"
-                                                x-transition:enter-start="opacity-0" 
-                                                x-transition:enter-end="opacity-100"
-                                                x-transition:leave="transition ease-in duration-200 transform"
-                                                x-transition:leave-start="opacity-100" 
-                                                x-transition:leave-end="opacity-0"
-                                                class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"
-                                            ></div>
+                                        <!-- ModelOpen -->
 
-                                            <!-- ModelOpen -->
+                                        <!-- ModelOpen x-cloak -->
 
-                                            <!-- ModelOpen x-cloak -->
+                                        <div x-cloak x-show="modelOpen" 
+                                            x-transition:enter="transition ease-out duration-300 transform"
+                                            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+                                            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                            x-transition:leave="transition ease-in duration-200 transform"
+                                            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
+                                            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                            class="bg-gray-700 inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
+                                        >
 
-                                            <div x-cloak x-show="modelOpen" 
-                                                x-transition:enter="transition ease-out duration-300 transform"
-                                                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
-                                                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                                                x-transition:leave="transition ease-in duration-200 transform"
-                                                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
-                                                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                                class="bg-gray-700 inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
-                                            >
+                                        <!-- ModelOpen x-cloak -->
 
-                                            <!-- ModelOpen x-cloak -->
+                                            <!-- ModelInner -->
 
-                                                <!-- ModelInner -->
+                                            <div class="flex items-center justify-between space-x-4">
 
-                                                <div class="flex items-center justify-between space-x-4">
+                                                <h1 class="text-xl font-medium text-gray-100">Angebot #{{ $user->id }}</h1>
 
-                                                    <h1 class="text-xl font-medium text-gray-100">Angebot #{{ $user->id }}</h1>
+                                                <button @click="modelOpen = false" class="text-gray-400 focus:outline-none hover:text-gray-100">
 
-                                                    <button @click="modelOpen = false" class="text-gray-400 focus:outline-none hover:text-gray-100">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
 
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+
+                                                </button>
+
+                                            </div>
+
+                                            <p class="mt-2 text-gray-400 text-sm">
+                                                Sehen Sie sich das Angebot genauer an.
+                                            </p>
+                                                        
+                                            <div class="mt-4">
+
+                                                <h3 class="text-xs font-medium text-white uppercase">Informationen zur Schule</h3>
+
+                                                <div class="pb-4 w-full mt-3">
+
+                                                    <div class="text-xs sm:text-sm leading-5 w-full text-gray-400">
+
+                                                        <p class="text-gray-300 text-xs text-left leading-4 uppercase font-medium mb-1">{{ $user->survey_data->schulart }}</p>
+
+                                                        {{ $user->survey_data->schulname }}, {{ $user->survey_data->strasse }} {{ $user->survey_data->hausnummer }} in {{ $user->survey_data->postleitzahl }} {{ $user->survey_data->ort }} (Landkreis {{ $user->survey_data->landkreis }})
+
+                                                    </div>
+
+                                                    <div class="text-xs sm:text-sm leading-5 w-full text-gray-400">
+
+                                                        
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div>
+
+                                                    <h3 class="text-xs font-medium text-white uppercase">Informationen zur Zusammenarbeit</h3>
+
+                                                    <!-- Feedback Lehr zu Stud -->
+
+                                                    <div class="w-full mt-3 text-sm text-gray-400">
+
+                                                        <p class="text-gray-300 text-xs leading-4 uppercase font-medium mb-1">Feedback von Lehrkraft</p>
+
+                                                        <p>
+
+                                                            Das Feedback, das ich meinem Lehr:werker bzw. meiner Lehr:werkerin gebe:
+
+                                                            @switch($user->survey_data->feedback_an)
+
+                                                                @case('1')
+
+                                                                    <span class="status">ist sehr behutsam.</span>
+                                                                    @break
+                                                     
+                                                                @case('2')
+
+                                                                    <span class="status">ist eher behutsam.</span>
+                                                                    @break
+
+                                                                 @case('3')
+
+                                                                    <span class="status">ist manchmal behutsam, manchmal direkt.</span>
+                                                                    @break
+
+                                                                 @case('4')
+
+                                                                    <span class="status">ist eher direkt.</span>
+                                                                    @break
+
+                                                                 @case('5')
+
+                                                                    <span class="status">ist sehr direkt.</span>
+                                                                    @break
+                                                     
+                                                                @default
+
+                                                                    <span class="status">-</span>
+
+                                                            @endswitch
+
+                                                        </p>
+
+                                                    </div>
+
+                                                    <!-- Feedback Lehr zu Stud -->
+
+                                                    <!-- Feedback Stud zu Lehr -->
+
+                                                    <div class="w-full mt-3 text-sm text-gray-400">
+
+                                                        <p class="text-gray-300 text-xs leading-4 uppercase font-medium mb-1">Feedback von Tandempartner*in</p>
+
+                                                        <p>
+
+                                                           Ich wünsche mir von meinem Lehr:werker bzw. meiner Lehr:werkerin kritische Rückmeldungen zu meinem Unterricht: 
+
+                                                            @switch($user->survey_data->feedback_von)
+
+                                                                @case('1')
+
+                                                                    <span class="status">Trifft überhaupt nicht zu.</span>
+                                                                    @break
+                                                     
+                                                                @case('2')
+
+                                                                    <span class="status">Trifft eher nicht zu.</span>
+                                                                    @break
+
+                                                                 @case('3')
+
+                                                                    <span class="status">Teils, teils.</span>
+                                                                    @break
+
+                                                                 @case('4')
+
+                                                                    <span class="status">Trifft eher zu.</span>
+                                                                    @break
+
+                                                                 @case('5')
+
+                                                                    <span class="status">Trifft voll und ganz zu.</span>
+                                                                    @break
+                                                     
+                                                                @default
+
+                                                                    <span class="status">-</span>
+
+                                                            @endswitch
+
+                                                        </p>
+
+                                                    </div>
+
+                                                    <!-- Feedback Stud zu Lehr -->
+
+                                                    <!-- Eigenständigkeit -->
+
+                                                    <div class="w-full mt-3 text-sm text-gray-400">
+
+                                                        <p class="text-gray-300 text-xs leading-4 uppercase font-medium mb-1">Eigenständigkeit</p>
+
+                                                        <p>
+
+                                                           Mein*e Lehr:werker*in soll langsam ins selbstständige Unterrichten hineinwachsen und nicht von Anfang an Teile des Unterrichts übernehmen:            
+
+                                                            @switch($user->survey_data->eigenstaendigkeit)
+
+                                                                @case('1')
+
+                                                                    <span class="status">Trifft überhaupt nicht zu.</span>
+                                                                    @break
+                                                     
+                                                                @case('2')
+
+                                                                    <span class="status">Trifft eher nicht zu.</span>
+                                                                    @break
+
+                                                                 @case('3')
+
+                                                                    <span class="status">Teils, teils.</span>
+                                                                    @break
+
+                                                                 @case('4')
+
+                                                                    <span class="status">Trifft eher zu.</span>
+                                                                    @break
+
+                                                                 @case('5')
+
+                                                                    <span class="status">Trifft voll und ganz zu.</span>
+                                                                    @break
+                                                     
+                                                                @default
+
+                                                                    <span class="status">-</span>
+
+                                                            @endswitch
+
+                                                        </p>
+
+                                                    </div>
+
+                                                    <!-- Eigenständigkeit -->
+
+                                                    <!-- Improvisation -->
+
+                                                    <div class="w-full mt-3 text-sm text-gray-400">
+
+                                                        <p class="text-gray-300 text-xs leading-4 uppercase font-medium mb-1">Improvisation</p>
+
+                                                        <p>
+
+                                                           Situationen, in denen ich improvisieren muss, versuche ich durch intensive Planung strikt zu vermeiden:            
+
+                                                            @switch($user->survey_data->improvisation)
+
+                                                                @case('1')
+
+                                                                    <span class="status">Trifft überhaupt nicht zu.</span>
+                                                                    @break
+                                                     
+                                                                @case('2')
+
+                                                                    <span class="status">Trifft eher nicht zu.</span>
+                                                                    @break
+
+                                                                 @case('3')
+
+                                                                    <span class="status">Teils, teils.</span>
+                                                                    @break
+
+                                                                 @case('4')
+
+                                                                    <span class="status">Trifft eher zu.</span>
+                                                                    @break
+
+                                                                 @case('5')
+
+                                                                    <span class="status">Trifft voll und ganz zu.</span>
+                                                                    @break
+                                                     
+                                                                @default
+
+                                                                    <span class="status">-</span>
+
+                                                            @endswitch
+
+                                                        </p>
+
+                                                    </div>
+
+                                                    <!-- Improvisation -->
+
+                                                    <!-- Freiraum -->
+
+                                                    <div class="w-full mt-3 text-sm text-gray-400">
+
+                                                        <p class="text-gray-300 text-xs leading-4 uppercase font-medium mb-1">Freiraum</p>
+
+                                                        <p>
+
+                                                           Ich wünsche mir eine*n Lehr:werker*in, die bzw. der            
+
+                                                            @switch($user->survey_data->freiraum)
+
+                                                                @case('1')
+
+                                                                    <span class="status">mir eher Freiraum für eigene Ideen und Entscheidungen lässt.</span>
+                                                                    @break
+                                                     
+                                                                @case('2')
+
+                                                                    <span class="status">mir teils Freiraum lässt, teils klare Anweisungen gibt.</span>
+                                                                    @break
+
+                                                                 @case('3')
+
+                                                                    <span class="status">mir eher klare Anweisungen gibt.</span>
+                                                                    @break
+                                                     
+                                                                @default
+
+                                                                    <span class="status">-</span>
+
+                                                            @endswitch
+
+                                                        </p>
+
+                                                    </div>
+
+                                                    <!-- Freiraum -->
+
+                                                    <!-- Innovationsoffenheit -->
+
+                                                    <div class="w-full mt-3 text-sm text-gray-400">
+
+                                                        <p class="text-gray-300 text-xs leading-4 uppercase font-medium mb-1">Innovationsoffenheit</p>
+
+                                                        <p>
+
+                                                           Ich möchte lieber meine Erfahrungen an den bzw. die Lehr:werker*in weitergeben als gemeinsam mit ihm bzw. ihr Neues auszuprobieren:         
+
+                                                            @switch($user->survey_data->innovationsoffenheit)
+
+                                                                @case('1')
+
+                                                                    <span class="status">Trifft überhaupt nicht zu.</span>
+                                                                    @break
+                                                     
+                                                                @case('2')
+
+                                                                    <span class="status">Trifft eher nicht zu.</span>
+                                                                    @break
+
+                                                                 @case('3')
+
+                                                                    <span class="status">Teils, teils.</span>
+                                                                    @break
+
+                                                                 @case('4')
+
+                                                                    <span class="status">Trifft eher zu.</span>
+                                                                    @break
+
+                                                                 @case('5')
+
+                                                                    <span class="status">Trifft voll und ganz zu.</span>
+                                                                    @break
+                                                     
+                                                                @default
+
+                                                                    <span class="status">-</span>
+
+                                                            @endswitch
+                                                        </p>
+
+                                                    </div>
+
+                                                    <!-- Innovationsoffenheit -->
+
+                                                    <!-- Belastbarkeit -->
+
+                                                    <div class="w-full mt-3 text-sm text-gray-400">
+
+                                                        <p class="text-gray-300 text-xs leading-4 uppercase font-medium mb-1">Belastbarkeit</p>
+
+                                                        <p>
+
+                                                           Ich wünsche mir eine*n Lehr:werker*in, die bzw. der sich das Unterrichten in schwierigen bzw. höheren Klassen zutraut:     
+
+                                                            @switch($user->survey_data->belastbarkeit)
+
+                                                                @case('1')
+
+                                                                    <span class="status">Trifft überhaupt nicht zu.</span>
+                                                                    @break
+                                                     
+                                                                @case('2')
+
+                                                                    <span class="status">Trifft eher nicht zu.</span>
+                                                                    @break
+
+                                                                 @case('3')
+
+                                                                    <span class="status">Teils, teils.</span>
+                                                                    @break
+
+                                                                 @case('4')
+
+                                                                    <span class="status">Trifft eher zu.</span>
+                                                                    @break
+
+                                                                 @case('5')
+
+                                                                    <span class="status">Trifft voll und ganz zu.</span>
+                                                                    @break
+                                                     
+                                                                @default
+
+                                                                    <span class="status">-</span>
+
+                                                            @endswitch
+                                                        </p>
+
+                                                    </div>
+
+                                                    <!-- Belastbarkeit -->
+
+                                                </div>
+
+                                                <!-- Anfragen -->
+                                                    
+                                                <div class="mt-4 flex">
+
+                                                    <form action="{{ route('messages.store') }}" method="post">
+
+                                                        {{ csrf_field() }}
+
+                                                        <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="Anfrage zu Angebot #{{ $user->id }}" name="subject" type="hidden">
+
+                                                        <textarea name="message" placeholder="Ihre Nachricht." style="display:none;">Ich möchte auf Ihr Angebot #{{ $user->id }} reagieren, wobei folgende Spezifika mit angegeben wurden: Die Beschreibung Ihres Angebots lautet: Hätten Sie Interesse an meiner Unterstützung?</textarea>
+
+                                                        <div class="checkbox">
+
+                                                            <input name="recipients[]" value="{{ $user->id }}" type="hidden">
+
+                                                        </div>
+
+                                                        <div class="form-group mr-2">
+
+                                                            <button type="submit" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">          
+
+                                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                    <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                                                                    <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
+                                                                </svg>
+
+                                                                <p>Anfragen</p>
+                                                                                        
+                                                            </button>
+
+                                                        </div>
+
+                                                    </form>
+
+                                                    <!-- Anfragen -->
+
+                                                    <!-- E-Mail -->
+
+                                                    <a href="mailto:{{  $user->email }}" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                                                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                                                            <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
 
                                                         </svg>
 
-                                                    </button>
+                                                        <p>E-Mail schreiben</p>
+
+                                                    </a>
+
+                                                    <!-- E-Mail -->
 
                                                 </div>
 
-                                                
-                                                <p class="mt-2 text-gray-400 text-sm">
-                                                    Sehen Sie sich das Angebot genauer an.
-                                                </p>
+                                                <p class="text-gray-400 text-xs mt-2 mb-4">Sollte Ihnen der Bedarf zusagen, scheuen Sie sich nicht davor, die Lehrkraft zu kontaktieren</p>
 
-                                                
-                                                    
-                                                <div class="mt-4">
-
-                                                    <h3 class="text-xs font-medium text-white uppercase">Informationen zur Lehrkraft</h3>
-
-                                                    <div class="pb-2 w-96 mt-2">
-
-                                                        <div class="text-xs sm:text-sm leading-5 w-full text-white">
-
-                                                            <span class="text-gray-400">Vor-/Nachname:</span> {{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}
-
-                                                        </div>
-                                                        
-                                                        <div class="text-xs sm:text-sm leading-5 w-full text-white">
-
-                                                            <span class="text-gray-400">Schule:</span> {{ $user->survey_data->schulname }}
-
-                                                        </div>
-
-                                                        <div class="text-xs sm:text-sm leading-5 w-full text-white">
-
-                                                            <span class="text-gray-400">Schulische Mailadresse:</span> {{ $user->survey_data->email_schul }}
-
-                                                        </div>
-
-                                                           <div class="text-xs sm:text-sm leading-5 w-full text-white">
-
-                                                            <span class="text-gray-400">Schulart:</span> {{ $user->survey_data->schulart }}
-
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div>
-
-                                                        <h3 class="text-xs font-medium text-white uppercase">Attribute zur Berechnung des MSE</h3>
-
-                                                        <div class="pb-2 w-96 text-sm text-gray-400 mt-2">
-
-                                                            <p>
-
-                                                                Feedback Lehrkraft zu Student*in [Abweichung 0 bis 5]: 
-
-                                                            </p>
-
-                                                            <p>
-
-                                                                Feedback Student*in zu Lehrkraft [Abweichung 0 bis 5]:
-
-                                                            </p>
-
-                                                            <p>
-
-                                                                Eigenstaendigkeit [Abweichung 0 bis 5]**: 
-
-                                                            </p>
-
-                                                            <p>
-
-                                                                Improvisation [Abweichung 0 bis 5]: 
-
-                                                            </p>
-
-                                                            <p>
-
-                                                                Freiraum [Abweichung 0 bis 3]:
-
-                                                            </p>
-
-                                                            <p>
-
-                                                                Innovationsoffenheit [Abweichung 0 bis 5]: 
-
-                                                            </p>
-
-                                                            <p>
-
-                                                                Belastbarkeit [Abweichung 0 bis 5]:** 
-
-                                                            </p>
-
-                                                        </div>
-
-                                                    </div>
-
-                                                    <p class="text-gray-400 text-xs mt-2">Umso kleiner der Wert, umso geringer die Abweichung. Attribute mit ** fließen stärker in die Gewichtung mit ein.</p>
-
-                                                </div>
-
-                                                
+                                            </div>
 
                                                 <!-- ModelInner -->
 
@@ -603,69 +927,31 @@
                                     </div>
 
                                 </div>
-                                
-                                <!-- MSE -->
-
-
-
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         
+                            <!-- MSE -->
+
+                        </div>
 
                     </div>
 
                 @endforeach
                     
+            </div>
 
+                    <!-- Zeige alle offers -->
 
+                </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    </div>
-
-                <!-- Zeige alle offers -->
+                <!-- Tab Contents -->
 
             </div>
 
-            <!-- Tab Contents -->
+            <!-- Alle Angebote -->
 
         </div>
 
-        <!-- Alle Angebote -->
+        <!-- Content -->
 
     </div>
-
-    <!-- Content -->
-
-</div>
 
 @endsection

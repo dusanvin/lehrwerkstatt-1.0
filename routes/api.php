@@ -94,10 +94,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     });
 
-    // Survey Daten senden
+    // Alle Nutzer
     Route::group(['middleware' => ['role:Admin|Moderierende|Lehr|Stud']], function () {
 
         Route::post('/bewerbungsformular', [UserController::class, 'save']);
+
+        Route::post('/acceptMatching', [UserController::class, 'acceptMatching'])->name('acceptMatching');
 
     });
 
@@ -118,12 +120,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/matchings', [UserController::class, 'matchings'])->name('users.matchings');
 
+        Route::get('/accepted-matchings', [UserController::class, 'acceptedMatchings'])->name('acceptedMatchings');
+
         Route::get('/matchings/{lehr}/{stud}/{mse}', [UserController::class, 'setAssigned'])->name('matchings.setassigned');
 
         Route::get('/matchings/{lehr}/{stud}', [UserController::class, 'setUnassigned'])->name('matchings.setunassigned');
 
         Route::post('/addMatching', [UserController::class, 'addMatching'])->name('users.addMatching');
-        
+
     });
 
 

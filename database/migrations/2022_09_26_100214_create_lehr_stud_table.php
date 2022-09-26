@@ -17,6 +17,8 @@ class CreateLehrStudTable extends Migration
             $table->id();
             $table->integer('lehr_id');
             $table->integer('stud_id');
+            $table->boolean('is_accepted_lehr')->default(false);
+            $table->boolean('is_accepted_stud')->default(false); 
             $table->float('mse');
             $table->timestamps();
         });

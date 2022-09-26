@@ -195,6 +195,18 @@
 
                             </div>
 
+                            @if( (strcasecmp($user->role, 'lehr') == 0 && empty($matching->pivot->is_accepted_lehr)) || (strcasecmp($user->role, 'stud') == 0 && empty($matching->pivot->is_accepted_stud)) )
+                            <form action="{{ route('acceptMatching') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="role" value="{{ $user->role }}">
+                                <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $matching->id }}">
+                                <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $matching->id }}">
+                                <input type="submit" value="Verbindlich Zusagen">
+                            </form>
+                            @else
+                                Zugesagt
+                            @endif
+
                         </td>
 
                     </tr>

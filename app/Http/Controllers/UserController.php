@@ -328,15 +328,42 @@ class UserController extends Controller
         return redirect()->route('users.matchings');
     }
 
-    public function confirmMatching(Request $request)
+
+    public function acceptMatching(Request $request)
     {
-        $assigned_matchings = DB::table('lehr_stud')->get();
-        $assigned = [];
-        foreach($assigned_matchings as $am) {
-            $assigned_lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', true)->where('id', $am->user_id)->get();
-            $assigned_stud = User::where('role', 'stud')->where('valid', true)->where('assigned', true)->where('id', $am->matching_id)->get();
-            $assigned[] = ['lehr' => $assigned_lehr[0], 'stud' => $assigned_stud[0], 'mse' => $am->mse];
+        // $matching = DB::table('lehr_stud')->where('lehr_id', $request->input('lehrid'))->where('stud_id', $request->input('studid'))->first();
+        if($request->input('role') == 'Lehr') {
+            DB::table('lehr_stud')->where('lehr_id', $request->input('lehrid'))->where('stud_id', $request->input('studid'))->update([
+                'is_accepted_lehr' => true
+            ]);
+        }
+
+        if($request->input('role') == 'Stud') {
+            DB::table('lehr_stud')->where('lehr_id', $request->input('lehrid'))->where('stud_id', $request->input('studid'))->update([
+                'is_accepted_stud' => true
+            ]);
+        }
+
+        $matching = DB::table('lehr_stud')->where('lehr_id', $request->input('lehrid'))->where('stud_id', $request->input('studid'))->first();
+        if($matching->is_accepted_lehr && $matching->is_accepted_stud) {
 
         }
+
+        return back();
+
+    }
+
+
+    public function acceptedMatchings(Request $request) {
+        $accepted_matchings = DB::table('lehr_stud')->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->get();
+
+        foreach($accepted_matchings as $am) {
+            $am->lehr = User::find($am->lehr_id);
+            $am->stud = User::find($am->stud_id);
+        }
+        // return $accepted_matchings;
+
+
+        return view('accepted_matchings', ['accepted_matchings' => $accepted_matchings]);
     }
 }

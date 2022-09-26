@@ -862,7 +862,7 @@
                                                     
                                                 <div class="mt-4 flex">
 
-                                                    <form action="{{ route('messages.store') }}" method="post">
+                                                    <form action="/messages/create/{{ $user->id }}" method="get">
 
                                                         {{ csrf_field() }}
 
@@ -872,7 +872,7 @@
 
                                                         <div class="checkbox">
 
-                                                            <input name="recipients[]" value="{{ $user->id }}" type="hidden">
+                                                            <!-- <input name="recipients[]" value="{{ $user->id }}" type="hidden"> -->
 
                                                         </div>
 

@@ -276,11 +276,11 @@ class UserController extends Controller
                     }
                 }
         }
-        $assigned_matchings = DB::table('user_user')->get();
+        $assigned_matchings = DB::table('lehr_stud')->get();
         $assigned = [];
         foreach($assigned_matchings as $am) {
-            $assigned_lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', true)->where('id', $am->user_id)->get();
-            $assigned_stud = User::where('role', 'stud')->where('valid', true)->where('assigned', true)->where('id', $am->matching_id)->get();
+            $assigned_lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', true)->where('id', $am->lehr_id)->get();
+            $assigned_stud = User::where('role', 'stud')->where('valid', true)->where('assigned', true)->where('id', $am->stud_id)->get();
             $mse = $am->mse;
             $assigned[] = ['lehr' => $assigned_lehr[0], 'stud' => $assigned_stud[0], 'mse' => $am->mse];
 
@@ -301,7 +301,7 @@ class UserController extends Controller
         $lehr->assigned = true;
         $lehr->save();
 
-        DB::insert('insert into user_user (user_id, matching_id, mse) values (?, ?, ?)', [$lehrid, $studid, $mse]);
+        DB::insert('insert into lehr_stud (lehr_id, stud_id, mse) values (?, ?, ?)', [$lehrid, $studid, $mse]);
 
         $stud->assigned = true;
         $stud->save();
@@ -320,17 +320,17 @@ class UserController extends Controller
         $lehr->assigned = false;
         $lehr->save();
 
-        DB::table('user_user')->where('user_id', $lehrid)->where('matching_id', $studid)->delete();
-
         $stud->assigned = false;
         $stud->save();
+
+        DB::table('lehr_stud')->where('lehr_id', $lehrid)->where('stud_id', $studid)->delete();
 
         return redirect()->route('users.matchings');
     }
 
     public function confirmMatching(Request $request)
     {
-        $assigned_matchings = DB::table('user_user')->get();
+        $assigned_matchings = DB::table('lehr_stud')->get();
         $assigned = [];
         foreach($assigned_matchings as $am) {
             $assigned_lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', true)->where('id', $am->user_id)->get();

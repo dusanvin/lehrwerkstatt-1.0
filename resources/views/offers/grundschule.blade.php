@@ -78,7 +78,7 @@
 
                                     <p>
 
-                                        Suchen Sie nach <span class="font-semibold">aktiven Angeboten</span>. Filtern Sie diese bei Bedarf nach Schulart, Einsatzgebieten und Fächern. Fächer sind bei der Schulart <em>Grundschule</em> irrelevant.
+                                        Suchen Sie nach <span class="font-semibold">aktiven Angeboten</span>. Filtern Sie diese bei Bedarf nach Einsatzgebieten.
 
                                     </p>
 

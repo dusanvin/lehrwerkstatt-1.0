@@ -349,15 +349,15 @@
 
                     <div class="border-b border-gray-200 bg-gray-700 flex">
 
-                        <div class="hidden sm:table-cell text-sm pl-6 py-4 text-gray-100 w-36">
+                        <div class="hidden sm:table-cell text-sm pl-6 py-4 text-gray-100 w-1/8">
 
                             {{ $user->created_at->diffForHumans() }}
 
                         </div>
 
-                        <div class="px-6 py-4 w-96">
+                        <div class="px-6 py-4 w-1/4">
 
-                            <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64">
+                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
 
                                 <a href="{{ route('profile.details', ['id' => $user->id]) }}" class="text-xs sm:text-sm leading-5 font-medium text-white hover:underline break-all">
 
@@ -371,7 +371,7 @@
 
                         </div>
 
-                        <div class="hidden sm:table-cell px-6 py-4 w-96">
+                        <div class="hidden sm:table-cell px-6 py-4 w-1/4">
 
                             <div class="text-xs sm:text-sm leading-5 font-medium text-white">
         
@@ -401,7 +401,7 @@
 
                         </div>
 
-                        <div class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap w-64">
+                        <div class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap w-1/4">
 
                             <div class="text-xs sm:text-sm leading-5 font-medium text-white">
         
@@ -417,7 +417,7 @@
 
                         </div>
 
-                        <div class="w-32 px-6 py-4 flex">
+                        <div class="w-1/8 px-6 py-4 flex">
 
                             <!-- MSE -->
 

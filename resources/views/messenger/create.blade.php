@@ -51,7 +51,7 @@
 
                         <div class="col-md-6">
 
-                            <div class="text-white border border-gray-500 bg-gray-500 w-full rounded form-control form-input focus:ring-2 focus:ring-gray-200 focus:border-transparent">
+                            <div class="py-2 px-3 text-white border border-gray-500 bg-gray-500 border-1 w-full rounded-sm form-control form-input focus:ring-2 focus:ring-gray-200 focus:border-transparent">
                                 EmpfängerIn: {{ $users[0]->vorname }} {{ $users[0]->nachname }}
                             </div>
 

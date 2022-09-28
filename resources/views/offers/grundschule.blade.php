@@ -98,14 +98,18 @@
 
                                     <div class="flex flex-wrap mb-6">
 
-                                        <!-- Gebiete -->
+                                        <!-- Schulart -->
 
                                         <script>
-                                                    var schulart_select = document.getElementById("schulart");
-                                                    @if(isset($schulart))
-                                                    schulart_select.value = "grundschule";
-                                                    @endif
-                                                </script>
+                                            var schulart_select = document.getElementById("schulart");
+                                            @if(isset($schulart))
+                                            schulart_select.value = "grundschule";
+                                            @endif
+                                        </script>
+
+                                        <!-- Schulart -->
+
+                                        <!-- Gebiete -->
 
                                         <div class="text-sm text-gray-500 text-light mt-3 mx-6">
 
@@ -235,7 +239,27 @@
 
                 <!-- Anzahl -->
 
-                @if ($users->count() == 0)
+                @php
+
+                    $zaehler = 0;
+
+                @endphp
+
+                @foreach($users as $user)
+
+                    @if($user->survey_data->schulart  == "Grundschule")
+
+                        @php
+
+                            $zaehler++;
+
+                        @endphp
+
+                    @endif
+
+                @endforeach
+
+                @if ($zaehler == 0)
 
                     <div class="mt-1 text-sm text-gray-300 text-center sm:text-left">
 
@@ -243,7 +267,7 @@
 
                     </div>
 
-                @elseif ($users->count() == 1)
+                @elseif ($zaehler == 1)
 
                     <div class="mt-1 text-sm text-gray-300 text-center sm:text-left">
 
@@ -255,7 +279,7 @@
 
                     <div class="mt-1 text-sm text-gray-300 text-center sm:text-left">
 
-                        Die folgenden <strong>{{ $users->count() }} Angebote</strong> wurden gefunden.
+                        Die folgenden <strong>{{ $zaehler }} Angebote</strong> wurden gefunden.
 
                     </div>
 

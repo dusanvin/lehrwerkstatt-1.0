@@ -64,7 +64,7 @@
 
                         <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                            <p>Hier erhalten Sie eine Übersicht zu den <span class="font-semibold">momentan aktiven Angeboten</span>. Die Darstellung erfolgt in Abhängigkeit Ihrer Suchkriterien. Sollten keine Kriterien ausgewählt werden, erfolgt keine Filterung.</p>
+                            <p>Hier erhalten Sie eine Übersicht zu den momentan aktiven Angeboten in der <span class="font-semibold">Realschule</span>. Die Darstellung erfolgt in Abhängigkeit Ihrer Suchkriterien. Sollten keine Kriterien ausgewählt werden, erfolgt keine Filterung.</p>
 
                         </div>
 

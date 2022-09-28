@@ -275,7 +275,7 @@
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-					<a href="{{ route('users.lehr') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('offers/*')) { text-yellow-400 } @endif">
+					<a href="{{ route('users.lehr') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('angebote/*')) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -305,7 +305,7 @@
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
 
-					<a href="{{ route('users.stud') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('needs/*')) { text-yellow-400 } @endif">
+					<a href="{{ route('users.stud') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('bedarfe/*')) { text-yellow-400 } @endif">
 
 						<div>
 

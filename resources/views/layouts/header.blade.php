@@ -107,25 +107,25 @@
 
                     		<span class="text-xs sm:text-sm font-semibold text-left px-4 break-words">
 
-                    		@if (Auth::user()->vorname)
+	                    		@if (Auth::user()->vorname)
 
-                    			{{ Auth::user()->vorname}} {{ Auth::user()->nachname }}
+	                    			{{ Auth::user()->vorname}} {{ Auth::user()->nachname }}
 
-                    		@else
+	                    		@else
 
-								Konto <!--{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} -->
-                    		
-                    		@endif
+									Konto <!--{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} -->
+	                    		
+	                    		@endif
 
-                    		<div>
-                    			@if(!empty($user->getRoleNames()))
+	                    		<div>
 
-	                            	@foreach($user->getRoleNames() as $v)
-	                           			<span class="font-normal text-gray-500">{{ $v }}</span>
-	                                @endforeach
+	                    			@if(!empty(Auth::user()->role))
 
-                                @endif
-                    		</div>
+	                           			<span class="font-normal text-gray-500 capitalize">{{ Auth::user()->role }}</span>
+
+	                                @endif
+
+	                    		</div>
 
                     		</span>
 
@@ -134,29 +134,6 @@
                     </div>
 
 			</li>
-		
-			<li class="text-yellow-600 border-2 border-white hover:border-yellow-600 rounded-md ml-4">
-
-				<form action="{{ route('logout') }}" method="post">
-
-					@csrf
-
-					<button class="flex text-xs items-center p-1 md:p-3" type="submit">
-
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-
-					  		<path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd" />
-
-						</svg>
-
-
-					</button>
-
-				</form>
-
-			</li>
-
-			<!--Ausloggen -->
 
 		@endauth
 

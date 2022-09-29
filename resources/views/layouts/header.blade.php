@@ -91,11 +91,17 @@
 
                     		@if(isset(Auth::user()->image->filename)) 
 
-                    			<img src="{{ url('images/show/'.$id) }}" class="w-10 h-10 rounded-full object-cover border-gray-200">
+                    			<div class="relative">
+							    	<img src="{{ url('images/show/'.$id) }}" class="w-10 h-10 rounded-full object-cover border-gray-200">
+							    	<span class="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+								</div>
 
                     		@else
-
-								<img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-10 h-10 rounded-full object-cover border-gray-200">                    		
+                    		
+								<div class="relative">
+							    	<img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-10 h-10 rounded-full object-cover border-gray-200">
+							    	<span class="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+								</div>                    		
 
                     		@endif
 

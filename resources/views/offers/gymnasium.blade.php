@@ -14,9 +14,9 @@
 
     <!-- Content -->
 
-        <div class="px-1 md:px-8 py-1 md:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-900">
+    <div class="px-1 md:px-8 py-1 md:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-900">
 
-            <div class="mx-auto rounded">
+        <div class="mx-auto rounded">
 
             <!-- Tabs -->
 
@@ -56,7 +56,7 @@
 
                         <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                            <p>Hier erhalten Sie eine Übersicht zu den momentan aktiven Angeboten in der <span class="font-semibold">Gymnasium</span>. Die Darstellung erfolgt in Abhängigkeit Ihrer Suchkriterien. Sollten keine Kriterien ausgewählt werden, erfolgt keine Filterung.</p>
+                            <p>Hier erhalten Sie eine Übersicht zu den momentan aktiven Angeboten am <span class="font-semibold">Gymnasium</span>. Die Darstellung erfolgt in Abhängigkeit Ihrer Suchkriterien. Sollten keine Kriterien ausgewählt werden, erfolgt keine Filterung.</p>
 
                         </div>
 

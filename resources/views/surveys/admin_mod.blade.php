@@ -18,6 +18,27 @@
     <script src="{{ asset('js/surveyjs-widgets.min.js') }}"></script>
 
     <link href="{{ asset('css/defaultV2.min.css') }}" type="text/css" rel="stylesheet" />
+    <style>
+        .sd-title {
+            display: none !important;
+        }
+        .sd-body {
+            background-color: rgb(31 41 55) !important;
+        }
+        .sd-panel {
+            background-color: rgb(55 65 81) !important;
+        }
+        .sv-string-viewer {
+            color: white !important;
+        }
+        .sd-btn {
+            background-color: rgb(55 65 81) !important;
+            color: white !important;
+        }
+        .sd-progress__bar {
+            display: none !important;
+        }
+    </style>
 </head>
 
 

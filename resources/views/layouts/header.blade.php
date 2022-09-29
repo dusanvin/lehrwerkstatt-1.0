@@ -87,7 +87,7 @@
 
                     <div class="px-3">
 
-                    	<a href="{{ route('profile.details', ['id' => Auth::user()->id]) }}" class="text-gray-700 hover:text-gray-900 flex items-center">
+                    	<a href="{{ route('profile.details', ['id' => Auth::user()->id]) }}" class="text-gray-700 hover:text-gray-900 flex items-center hover:text-yellow-600">
 
                     		@if(isset(Auth::user()->image->filename)) 
 
@@ -97,7 +97,7 @@
 								</div>
 
                     		@else
-                    		
+
 								<div class="relative">
 							    	<img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-10 h-10 rounded-full object-cover border-gray-200">
 							    	<span class="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
@@ -105,7 +105,7 @@
 
                     		@endif
 
-                    		<span class="text-xs sm:text-sm font-medium font-semibold text-left px-4 break-words">
+                    		<span class="text-xs sm:text-sm font-semibold text-left px-4 break-words">
 
                     		@if (Auth::user()->vorname)
 
@@ -116,6 +116,16 @@
 								Konto <!--{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} -->
                     		
                     		@endif
+
+                    		<div>
+                    			@if(!empty($user->getRoleNames()))
+
+	                            	@foreach($user->getRoleNames() as $v)
+	                           			<span class="font-normal text-gray-500">{{ $v }}</span>
+	                                @endforeach
+
+                                @endif
+                    		</div>
 
                     		</span>
 

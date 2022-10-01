@@ -65,8 +65,11 @@
 				<!-- Bewerbungsformular -->
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+					@php
+						$route_name='profile.edit';
+					@endphp
 
-					<a href="{{ route('profile.edit') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('profile/edit')) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -98,8 +101,11 @@
 				<!-- Account -->
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+					@php
+						$route_name='profile.account';
+					@endphp
 
-					<a href="{{ route('profile.account') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('profile/account')) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -130,8 +136,11 @@
 				<!-- Vorschläge -->
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+					@php
+						$route_name='profile.matchings';
+					@endphp
 
-					<a href="{{ route('profile.matchings') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('profile/matchings')) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -164,8 +173,11 @@
 				<!-- Nachrichten -->
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+					@php
+						$route_name='messages';
+					@endphp
 
-					<a href="{{ route('messages') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('messages')) { text-yellow-400 } @endif @if (Request::is('messages/*')) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -204,8 +216,11 @@
 				<!-- Statistiken -->
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+					@php
+						$route_name='stats';
+					@endphp
 
-					<a href="{{ route('stats') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150  @if (Request::is('stats')) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -236,8 +251,11 @@
 				<!-- Personen -->
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+					@php
+						$route_name='users.index';
+					@endphp
 
-					<a href="{{ route('users.index') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('users')) { text-yellow-400 } @endif @if (Request::is('roles')) { text-yellow-400 } @endif @if (Request::is('users/*')) { text-yellow-400 } @endif @if (Request::is('roles/*')) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -264,8 +282,11 @@
 				<!-- Vorschläge -->
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+					@php
+						$route_name='users.matchings';
+					@endphp
 
-					<a href="{{ route('users.matchings') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('offers/*')) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -295,8 +316,11 @@
 				<!-- Paarungen -->
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+					@php
+						$route_name='acceptedMatchings';
+					@endphp
 
-					<a href="{{ route('acceptedMatchings') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('offers/*')) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -335,8 +359,11 @@
 			<ul>
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+					@php
+						$route_name='users.lehr';
+					@endphp
 
-					<a href="{{ route('users.lehr') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('angebote/lehr/*')) { text-yellow-400 } @endif @if (Request::is('angebote/lehr')) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -365,8 +392,11 @@
 				<!-- Student*innen -->
 
 				<li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+					@php
+						$route_name='users.stud';
+					@endphp
 
-					<a href="{{ route('users.stud') }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::is('angebote/stud/*')) { text-yellow-400 } @endif @if (Request::is('angebote/stud/*')) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-100 hover:text-gray-400 px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 

@@ -75,9 +75,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function matchings(){
         // return $this->belongsToMany(User::class, 'user_user', 'user_id', 'matching_id');
         if ($this->role == 'Lehr') {
-            return $this->belongsToMany(User::class, 'lehr_stud', 'lehr_id', 'stud_id')->withPivot(['is_accepted_lehr', 'is_accepted_stud']);
+            return $this->belongsToMany(User::class, 'lehr_stud', 'lehr_id', 'stud_id')->withPivot(['is_accepted_lehr', 'is_accepted_stud'])->withTimestamps();
         } elseif ($this->role == 'Stud') {
-            return $this->belongsToMany(User::class, 'lehr_stud', 'stud_id', 'lehr_id')->withPivot(['is_accepted_lehr', 'is_accepted_stud']);
+            return $this->belongsToMany(User::class, 'lehr_stud', 'stud_id', 'lehr_id')->withPivot(['is_accepted_lehr', 'is_accepted_stud'])->withTimestamps();
         }
         
     }

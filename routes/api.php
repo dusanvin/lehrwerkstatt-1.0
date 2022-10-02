@@ -100,6 +100,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/bewerbungsformular', [UserController::class, 'save']);
 
         Route::post('/acceptMatching', [UserController::class, 'acceptMatching'])->name('acceptMatching');
+        Route::post('/declineMatching', [UserController::class, 'declineMatching'])->name('declineMatching');
 
     });
 

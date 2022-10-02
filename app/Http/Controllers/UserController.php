@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 
+use Carbon\Carbon;
+
 class UserController extends Controller
 
 {
@@ -281,8 +283,7 @@ class UserController extends Controller
         foreach($assigned_matchings as $am) {
             $assigned_lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', true)->where('id', $am->lehr_id)->get();
             $assigned_stud = User::where('role', 'stud')->where('valid', true)->where('assigned', true)->where('id', $am->stud_id)->get();
-            $mse = $am->mse;
-            $assigned[] = ['lehr' => $assigned_lehr[0], 'stud' => $assigned_stud[0], 'mse' => $am->mse];
+            $assigned[] = ['lehr' => $assigned_lehr[0], 'stud' => $assigned_stud[0], 'is_accepted_lehr' => $am->is_accepted_lehr, 'is_accepted_stud' => $am->is_accepted_stud, 'mse' => $am->mse, 'elapsed_time' => Carbon::parse($am->created_at)->diffForHumans(Carbon::now())];
 
         }
         // dd($assigned_matchings);
@@ -298,10 +299,11 @@ class UserController extends Controller
         $lehr = $lehr[0];
         $stud = $stud[0];
 
+        $lehr->matchings()->attach($stud, ['mse' => $mse]);
+        // DB::insert('insert into lehr_stud (lehr_id, stud_id, mse) values (?, ?, ?)', [$lehrid, $studid, $mse]);
+
         $lehr->assigned = true;
         $lehr->save();
-
-        DB::insert('insert into lehr_stud (lehr_id, stud_id, mse) values (?, ?, ?)', [$lehrid, $studid, $mse]);
 
         $stud->assigned = true;
         $stud->save();
@@ -347,6 +349,31 @@ class UserController extends Controller
         $matching = DB::table('lehr_stud')->where('lehr_id', $request->input('lehrid'))->where('stud_id', $request->input('studid'))->first();
         if($matching->is_accepted_lehr && $matching->is_accepted_stud) {
 
+        }
+
+        return back();
+
+    }
+
+
+    public function declineMatching(Request $request)
+    {
+        // $matching = DB::table('lehr_stud')->where('lehr_id', $request->input('lehrid'))->where('stud_id', $request->input('studid'))->first();
+        if($request->input('role') == 'Lehr') {
+            DB::table('lehr_stud')->where('lehr_id', $request->input('lehrid'))->where('stud_id', $request->input('studid'))->update([
+                'is_accepted_lehr' => false
+            ]);
+        }
+
+        if($request->input('role') == 'Stud') {
+            DB::table('lehr_stud')->where('lehr_id', $request->input('lehrid'))->where('stud_id', $request->input('studid'))->update([
+                'is_accepted_stud' => false
+            ]);
+        }
+
+        $matching = DB::table('lehr_stud')->where('lehr_id', $request->input('lehrid'))->where('stud_id', $request->input('studid'))->first();
+        if($matching->is_accepted_lehr == 0 ||  $matching->is_accepted_stud == 0) {
+            
         }
 
         return back();

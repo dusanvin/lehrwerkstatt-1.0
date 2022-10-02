@@ -195,7 +195,7 @@
 
                             </div>
 
-                            @if( (strcasecmp($user->role, 'lehr') == 0 && empty($matching->pivot->is_accepted_lehr)) || (strcasecmp($user->role, 'stud') == 0 && empty($matching->pivot->is_accepted_stud)) )
+                            @if( (strcasecmp($user->role, 'lehr') == 0 && !isset($matching->pivot->is_accepted_lehr)) || (strcasecmp($user->role, 'stud') == 0 && !isset($matching->pivot->is_accepted_stud)) )
                             <form action="{{ route('acceptMatching') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="role" value="{{ $user->role }}">
@@ -203,8 +203,20 @@
                                 <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $matching->id }}">
                                 <input type="submit" value="Verbindlich Zusagen">
                             </form>
+                            <br>
+                            <form action="{{ route('declineMatching') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="role" value="{{ $user->role }}">
+                                <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $matching->id }}">
+                                <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $matching->id }}">
+                                <input type="submit" value="Ablehnen">
+                            </form>
                             @else
-                                Zugesagt
+                                @if (strcasecmp($user->role, 'lehr') == 0)
+                                    {{ $matching->pivot->is_accepted_lehr == 1 ? 'Zugesagt' : 'Abgelehnt' }}
+                                @elseif (strcasecmp($user->role, 'stud') == 0)
+                                    {{ $matching->pivot->is_accepted_stud == 1 ? 'Zugesagt' : 'Abgelehnt' }}
+                                @endif
                             @endif
 
                         </td>

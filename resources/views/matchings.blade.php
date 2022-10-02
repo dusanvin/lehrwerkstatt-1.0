@@ -105,6 +105,8 @@
 
                                     <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching['lehr']->email }}</a>
 
+                                    <div class="text-white">{{ isset($matching['is_accepted_lehr']) ? ($matching['is_accepted_lehr'] == 1 ? 'Zugesagt' : 'Abgelehnt') : 'Zusage ausstehend' }}</div>
+
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap">
@@ -112,6 +114,8 @@
                                     <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching['stud']->vorname }} {{ $matching['stud']->nachname }}</div>
 
                                     <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching['stud']->email }}</a>
+
+                                    <div class="text-white">{{ isset($matching['is_accepted_stud']) ? ($matching['is_accepted_stud'] == 1 ? 'Zugesagt' : 'Abgelehnt') : 'Zusage ausstehend' }}</div>
 
                                 </td>
 
@@ -122,6 +126,9 @@
                                         {{ $matching['mse'] }}
                                         
                                     </div>
+
+                                    <br>
+                                    <div class="font-normal text-white">Erstellt: {{ $matching['elapsed_time'] }}</div>
 
                                 </td>
                                 

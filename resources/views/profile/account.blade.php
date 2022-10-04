@@ -76,15 +76,159 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                     </h2>
 
-                    <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
+                    <div class="mt-1 text-sm text-gray-300 text-center sm:text-left">
 
-                        Ändern Sie Ihre E-Mail-Adresse sowie Ihr Passwort. Kontaktieren Sie bei technischen Anliegen das DigiLLab der Universität Augsburg unter: team[at]digillab.uni-augsburg.de.
+                        Bearbeiten Sie Ihre Accountdaten. Wenden Sie sich bei Fragen zu Ihrem Account an das <a href="mailto:team@digillab.uni-augsburg.de" class="hover:underline">DigiLLab der Universität Augsburg</a>.
 
                     </div>
 
                 </div>
 
                 <div class="min-width-full block">
+
+                    <!-- Profilbild -->
+
+                    <div class="mt-4 mb-4 bg-gray-800 p-8 rounded-md">
+
+                        <h2 class="font-semibold text-lg text-gray-200 sm:text-left text-center">
+
+                            Profilbild
+
+                        </h2>
+
+                        <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left flex">
+
+                            <p>Hinterlegen Sie ein Profilbild (max. 20MB mit den min. Abmessungen 300x300px), indem Sie eine Bilddatei auswählen und diese anschließend hochladen. Löschen Sie Ihr Profilbild, bevor Sie ein neues auswählen.</p>
+
+                        </div>
+
+                        @if(isset($user->image->filename))
+
+                        <ul class="flex items-center">
+
+                            <li class="">
+
+                                <div class="pr-3">
+
+                                    <div class="text-white flex items-center">
+
+                                        <img src="{{ url('images/show/'.$user->id) }}" class="w-28 rounded-md object-cover border-gray-200">
+                                        
+                                        <span class="text-xs sm:text-sm font-semibold text-left px-4 break-words">
+
+                                            @if (Auth::user()->vorname)
+
+                                                {{ Auth::user()->vorname}} {{ Auth::user()->nachname }}
+
+                                            @else
+
+                                                Konto <!--{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} -->
+                                            
+                                            @endif
+                                        
+                                            <div>
+
+                                                @if(!empty(Auth::user()->role))
+
+                                                    <span class="font-normal text-gray-500 capitalize">{{ Auth::user()->role }}</span>
+
+                                                @endif
+
+                                                <div class="flex mt-4">
+
+                                                    <form method="POST" action="{{ route('images.store') }}" enctype="multipart/form-data" class="flex items-center">
+
+                                                        @csrf
+
+                                                        <input type="file" name="image" id="file" class="mr-2 block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded" />
+
+                                                        <button type="submit" class="bg-transparent bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm py-2 pr-4 pl-3 border border-purple-600 hover:border-transparent focus:outline-none focus:ring ring-purple-600 focus:border-purple-300 rounded flex items-center transition ease-in-out duration-150">
+
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-1">
+                                                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                                                            </svg><!-- Bild hochladen -->
+
+                                                            @php
+                                                            cache()->flush();
+                                                            @endphp
+
+                                                        </button>
+
+                                                    </form>
+
+                                                    <form method="POST" action="{{ route('images.destroy', ['user_id' => $user->id]) }}" class="flex">
+
+                                                        @csrf
+
+                                                        <button type="submit" class="ml-2 bg-transparent bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm py-2 pr-4 pl-3 border border-yellow-600 hover:border-transparent focus:outline-none focus:ring ring-yellow-600 focus:border-yellow-300 rounded flex items-center transition ease-in-out duration-150">
+
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-1">
+                                                              <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                                            </svg><!-- Bild löschen -->
+
+                                                            @php
+                                                            cache()->flush();
+                                                            @endphp
+
+                                                        </button>
+
+                                                    </form>
+
+                                                </div>
+
+                                            </div>
+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </li>
+
+                        </ul>
+
+                        @else
+
+                        <img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-32 h-32 rounded-full object-cover border-4 border-white mx-auto">
+
+                        <div>
+
+                            <form method="POST" action="{{ route('images.store') }}" enctype="multipart/form-data">
+
+                                @csrf
+
+                                <input type="file" name="image" id="file" class="mb-4 block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded" />
+
+                                <button type="submit" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 pr-4 pl-3 mb-2 border border-purple-600 hover:border-transparent focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 rounded flex items-center transition ease-in-out duration-150">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+
+                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+
+                                    </svg>Bild hochladen
+
+                                    @php
+                                    cache()->flush();
+                                    @endphp
+
+                                </button>
+
+                            </form>
+
+                            <dt class="text-sm font-medium text-gray-500 py-2">
+
+                                <strong>Hinterlegen</strong> Sie ein <strong>Profilbild</strong> (max. 20MB mit den min. Abmessungen 300x300px)
+
+                            </dt>
+
+                        </div>
+
+                        @endif
+
+                    </div>
+
+                    <!-- Profilbild -->
 
                     <script>
                         function removemessage() {
@@ -177,74 +321,119 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                         {!! Form::model($user, ['method' => 'PATCH','route' => ['profiles.update', $user->id]]) !!}
 
-                        <div>
+                        <div class="bg-gray-800 p-8 rounded-md">
 
-                            <dl>
+                            <h2 class="font-semibold text-lg text-gray-200 sm:text-left text-center">
 
-                                <div class="py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+                            Account
 
-                                    <dt class="text-sm font-medium text-gray-200 py-2">
+                            </h2>
 
-                                        Bearbeiten Sie die <strong>E-Mail-Adresse</strong>
+                            <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                                    </dt>
+                                <p>Ändern Sie Ihre E-Mail-Adresse sowie Ihr Passwort.</p>
 
-                                    <dd class="bg-gray-700 mt-1 text-sm text-gray-200 text-white hover:text-gray-400 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center border-b-2 pl-3 rounded transition ease-in-out duration-500">
+                            </div>
 
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                            <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                            <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                            <div class="mb-4">
+
+                                <dt class="text-sm font-semibold text-gray-200 pb-2 sm:text-left text-center">
+
+                                    E-Mail-Adresse bearbeiten
+
+                                </dt>
+
+                                <dd class="bg-gray-700 mt-1 text-sm text-gray-200 text-white hover:text-gray-400 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center pl-3 rounded transition ease-in-out duration-500">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                        <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                    </svg>
+
+                                    {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'bg-gray-700 w-full px-2 py-2 ml-2 focus:outline-none focus:text-gray-400')) !!}
+
+                                </dd>
+
+                            </div>
+
+                            <div class="mb-4">
+
+                                <dt class="text-sm font-semibold text-gray-200 py-2 sm:text-left text-center">
+
+                                    Neues Passwort vergeben
+
+                                </dt>
+
+                                <dd class="bg-gray-700 mt-1 text-sm text-gray-200 text-white hover:text-gray-400 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center pl-3 rounded transition ease-in-out duration-500">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                        <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                    </svg>
+
+                                    {!! Form::password('password', array('placeholder' => 'Passwort','class' => 'bg-gray-700 w-full px-2 py-2 ml-2 focus:outline-none focus:text-gray-400')) !!}
+
+                                </dd>
+
+                            </div>
+
+                            <div class="mb-4">
+
+                                <dt class="text-sm font-semibold text-gray-200 py-2 sm:text-left text-center">
+
+                                    Neues Passwort bestätigen
+
+                                </dt>
+
+                                <dd class="bg-gray-700 mt-1 text-sm text-gray-200 text-white hover:text-gray-400 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center pl-3 rounded transition ease-in-out duration-500">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                        <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                    </svg>
+
+                                    {!! Form::password('confirm-password', array('placeholder' => 'Passwort bestätigen','class' => 'bg-gray-700 w-full px-2 py-2 ml-2 focus:outline-none focus:text-gray-400')) !!}
+
+                                </dd>
+
+                            </div>
+<!-- Zurück oder Bestätigen -->
+
+                            <div class="flex justify-between space-x-3 mb-4">
+
+                                <div class="mt-4 inline-flex flex-wrap">
+
+                                    <a href="{{ route('profile.account') }}" class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-yellow-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition ease-in-out duration-150">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
 
-                                        {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'bg-gray-700 w-full px-2 py-2 ml-2 focus:outline-none focus:text-gray-400')) !!}
+                                        <p class="pl-3">Abbrechen</p>
 
-                                    </dd>
+                                    </a>
 
                                 </div>
 
-                                <div class="py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+                                <div class="mt-4 inline-flex flex-wrap">
 
-                                    <dt class="text-sm font-medium text-gray-200 py-2">
+                                    <button type="submit" class="bg-green-600 bg-transparent hover:bg-green-700 text-white font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-green-700 hover:border-transparent focus:outline-none focus:ring ring-green-300 focus:border-green-300 rounded flex items-center transition ease-in-out duration-150">
 
-                                        Vergeben Sie ein neues <strong>Passwort</strong>
-
-                                    </dt>
-
-                                    <dd class="bg-gray-700 mt-1 text-sm text-gray-200 text-white hover:text-gray-400 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center border-b-2 pl-3 rounded transition ease-in-out duration-500">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                            <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                            <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
+                                        <span class="pl-3">Bestätigen</span>
 
-                                        {!! Form::password('password', array('placeholder' => 'Passwort','class' => 'bg-gray-700 w-full px-2 py-2 ml-2 focus:outline-none focus:text-gray-400')) !!}
-
-                                    </dd>
+                                    </button>
 
                                 </div>
 
-                                <div class="py-5 sm:grid sm:grid-cols-3 sm:gap-4 mb-6">
+                            </div>
 
-                                    <dt class="text-sm font-medium text-gray-200 py-2">
+                            <!-- Zurück oder Bestätigen -->
 
-                                        <strong>Bestätigen</strong> Sie das <strong>neue Passwort</strong>
+                            {!! Form::close() !!}
 
-                                    </dt>
-
-                                    <dd class="bg-gray-700 mt-1 text-sm text-gray-200 text-white hover:text-gray-400 active:text-gray-1000 sm:mt-0 sm:col-span-2 flex items-center border-b-2 pl-3 rounded transition ease-in-out duration-500">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                            <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                            <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
-                                        </svg>
-
-                                        {!! Form::password('confirm-password', array('placeholder' => 'Passwort bestätigen','class' => 'bg-gray-700 w-full px-2 py-2 ml-2 focus:outline-none focus:text-gray-400')) !!}
-
-                                    </dd>
-
-                                </div>
-
-                            </dl>
 
                         </div>
 
@@ -252,142 +441,13 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                     <!-- Informationsanzeige sowie -bearbeitung -->
 
-                    <!-- Zurück oder Bestätigen -->
-
-                    <div class="block">
-
-                        <div class="mb-4 mt-4 mr-4 float-left">
-
-                            <a href="{{ route('profile.account') }}" class="bg-gray-700 bg-transparent hover:bg-yellow-600 text-white font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-gray-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition ease-in-out duration-150">
-
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                                </svg>
-
-                                <p class="pl-3">Abbrechen</p>
-
-                            </a>
-
-                        </div>
-
-                        <div class="mb-4 mt-4 ml-4 float-right">
-
-                            <button type="submit" class="bg-gray-700 bg-transparent hover:bg-green-600 text-white font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-gray-700 hover:border-transparent focus:outline-none focus:ring ring-green-300 focus:border-green-300 rounded flex items-center transition ease-in-out duration-150">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
-
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-
-                                </svg>Änderungen bestätigen
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                    <!-- Zurück oder Bestätigen -->
-
-                    {!! Form::close() !!}
+                    
 
                 </div>
 
             </div>
 
-            <!-- Profilbild -->
-
-            <div class="px-4 pb-3 pt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-
-                <dt class="text-sm font-medium text-gray-500 py-2">
-
-                    <strong>Hinterlegen</strong> Sie ein <strong>Profilbild</strong> (max. 20MB mit den min. Abmessungen 300x300px)
-
-                </dt>
-
-                @if(isset($user->image->filename))
-
-                <img src="{{ url('images/show/'.$user->id) }}">
-
-                <div>
-
-                    <form method="POST" action="{{ route('images.store') }}" enctype="multipart/form-data">
-
-                        @csrf
-
-                        <input type="file" name="image" id="file" class="mb-4 block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded" />
-
-                        <button type="submit" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 pr-4 pl-3 mb-2 border border-purple-600 hover:border-transparent focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 rounded flex items-center transition ease-in-out duration-150">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
-
-                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-
-                            </svg>Bild hochladen
-
-                            @php
-                            cache()->flush();
-                            @endphp
-
-                        </button>
-
-                    </form>
-
-                    <form method="POST" action="{{ route('images.destroy', ['user_id' => $user->id]) }}">
-
-                        @csrf
-
-                        <button type="submit" class="bg-transparent hover:bg-yellow-600 text-yellow-600 font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-yellow-600 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition ease-in-out duration-150">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
-
-                                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-
-                            </svg>Bild löschen
-
-                            @php
-                            cache()->flush();
-                            @endphp
-
-                        </button>
-
-                    </form>
-
-                </div>
-
-                @else
-
-                <img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-48 h-48 rounded-full object-cover border-4 border-white mx-auto">
-
-                <div>
-
-                    <form method="POST" action="{{ route('images.store') }}" enctype="multipart/form-data">
-
-                        @csrf
-
-                        <input type="file" name="image" id="file" class="mb-4 block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded" />
-
-                        <button type="submit" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 pr-4 pl-3 mb-2 border border-purple-600 hover:border-transparent focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 rounded flex items-center transition ease-in-out duration-150">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
-
-                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-
-                            </svg>Bild hochladen
-
-                            @php
-                            cache()->flush();
-                            @endphp
-
-                        </button>
-
-                    </form>
-
-                </div>
-
-                @endif
-
-            </div>
-
-            <!-- Profilbild -->
+            
 
         </div>
 

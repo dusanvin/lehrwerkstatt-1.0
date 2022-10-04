@@ -51,6 +51,11 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
 @endphp
 
+<!-- 
+1. Hover über die Buttons oben
+2. Wenn kein Bild hochgeladen ist, Ansicht richtigstellen
+-->
+
 
 <body style="background-color: white;">
 
@@ -65,6 +70,94 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
         <!-- Inhalt -->
 
         <div class="px-1 md:px-8 py-8 md:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-900">
+
+            <!-- Success Message -->
+
+                    <script>
+                        function removemessage() {
+                            document.getElementById('success_make_offer').remove();
+                        }
+                    </script>
+
+                    @if ($message = Session::get('success'))
+
+                    <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-600 text-xs sm:text-sm lg:text-lg" id="success_make_offer">
+
+                        <span class="text-xl inline-block mr-2 align-middle">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+
+                            </svg>
+
+                        </span>
+
+                        <span class="inline-block align-middle">
+
+                            <b>Aktion erfolgreich ausgeführt.</b>
+
+                        </span>
+
+                        <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onclick="removemessage()">
+
+                            <span>×</span>
+
+                        </button>
+
+                    </div>
+
+                    @endif
+
+                    <!-- Success Message -->
+
+                    <div>
+
+                    <!-- Fehlerbehandlung -->
+
+                    @if (count($errors) > 0)
+
+                    <div class="alert alert-danger">
+
+                        <ul>
+
+                            @foreach ($errors->all() as $error)
+
+                            <li class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-400">
+
+                                <span class="text-xl inline-block mr-2 align-middle">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                                        <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+
+                                    </svg>
+
+                                </span>
+
+                                <span class="inline-block align-middle">
+
+                                    {{ $error }} Bitte löschen Sie zuerst Ihr Profilbild, bevor Sie ein neues hochladen.
+
+                                </span>
+
+                                <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+
+                                    <span>×</span>
+
+                                </button>
+
+                            </li>
+
+                            @endforeach
+
+                        </ul>
+
+                    </div>
+
+                    @endif
+
+                    <!-- Fehlerbehandlung -->
 
             <div class="overflow-hidden mb-4">
 
@@ -229,93 +322,6 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
                     </div>
 
                     <!-- Profilbild -->
-
-                    <script>
-                        function removemessage() {
-                            document.getElementById('success_make_offer').remove();
-                        }
-                    </script>
-
-                    @if ($message = Session::get('success'))
-
-                    <div class="text-white px-6 mx-6 py-4 border-0 rounded relative mb-4 bg-green-600 text-xs sm:text-sm lg:text-lg" id="success_make_offer">
-
-                        <span class="text-xl inline-block mr-2 align-middle">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-                                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-
-                            </svg>
-
-                        </span>
-
-                        <span class="inline-block align-middle">
-
-                            <b>Aktion erfolgreich ausgeführt.</b>
-
-                        </span>
-
-                        <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onclick="removemessage()">
-
-                            <span>×</span>
-
-                        </button>
-
-                    </div>
-
-                    @endif
-
-                    <!-- Success Message -->
-
-                    <div>
-
-                        <!-- Fehlerbehandlung -->
-
-                        @if (count($errors) > 0)
-
-                        <div class="alert alert-danger">
-
-                            <ul>
-
-                                @foreach ($errors->all() as $error)
-
-                                <li class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-400">
-
-                                    <span class="text-xl inline-block mr-2 align-middle">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-                                            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-
-                                        </svg>
-
-                                    </span>
-
-                                    <span class="inline-block align-middle">
-
-                                        {{ $error }}
-
-                                    </span>
-
-                                    <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
-
-                                        <span>×</span>
-
-                                    </button>
-
-                                </li>
-
-                                @endforeach
-
-                            </ul>
-
-                        </div>
-
-                        @endif
-
-                        <!-- Fehlerbehandlung -->
-
 
                         <!-- Informationsanzeige sowie -bearbeitung -->
 

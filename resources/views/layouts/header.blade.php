@@ -121,7 +121,27 @@
 
 	                    			@if(!empty(Auth::user()->role))
 
-	                           			<span class="font-normal text-gray-500 capitalize">{{ Auth::user()->role }}</span>
+	                                    @foreach($user->getRoleNames() as $v)
+
+	                                        @if ($v == 'admin')
+
+	                                            <span class="font-normal text-gray-500">Administration</span>
+
+	                                        @elseif ($v == 'Moderierende')
+
+	                                            <span class="font-normal text-gray-500">Moderation</span>
+
+	                                        @elseif ($v == 'Stud')
+
+	                                            <span class="font-normal text-gray-500">Studium</label>
+
+	                                        @elseif ($v == 'Lehr')
+
+	                                            <span class="font-normal text-gray-500">Schuldienst</label>
+
+	                                        @endif
+
+	                                    @endforeach
 
 	                                @endif
 

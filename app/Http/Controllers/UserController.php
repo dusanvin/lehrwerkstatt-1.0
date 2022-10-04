@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\MatchingProposal;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -278,7 +279,7 @@ class UserController extends Controller
                     }
                 }
         }
-        $assigned_matchings = DB::table('lehr_stud')->get();
+        $assigned_matchings = DB::table('lehr_stud')->where('is_notified', false)->get();
         $assigned = [];
         foreach($assigned_matchings as $am) {
             $assigned_lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', true)->where('id', $am->lehr_id)->get();
@@ -381,6 +382,26 @@ class UserController extends Controller
     }
 
 
+    public function notifyMatchings() {
+
+        $matchings = DB::table('lehr_stud')->where('is_notified', false)->get();
+
+        foreach($matchings as $matching) {
+
+            $lehr = User::find($matching->lehr_id);
+            $lehr->notify(new MatchingProposal());
+
+            $stud = User::find($matching->stud_id);
+            $stud->notify(new MatchingProposal());
+
+            DB::table('lehr_stud')->where('lehr_id', $lehr->id)->where('stud_id', $stud->id)->update(['created_at' => Carbon::now(), 'is_notified' => true]);
+
+        }
+
+        return back();
+    }
+
+
     public function acceptedMatchings(Request $request) {
         $accepted_matchings = DB::table('lehr_stud')->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->get();
 
@@ -388,9 +409,15 @@ class UserController extends Controller
             $am->lehr = User::find($am->lehr_id);
             $am->stud = User::find($am->stud_id);
         }
-        // return $accepted_matchings;
 
+        $notified_matchings = DB::table('lehr_stud')->where('is_notified', true)->get();
 
-        return view('accepted_matchings', ['accepted_matchings' => $accepted_matchings]);
+        foreach($notified_matchings as $am) {
+            $am->lehr = User::find($am->lehr_id);
+            $am->stud = User::find($am->stud_id);
+            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
+        }
+
+        return view('accepted_matchings', ['accepted_matchings' => $accepted_matchings, 'notified_matchings' => $notified_matchings]);
     }
 }

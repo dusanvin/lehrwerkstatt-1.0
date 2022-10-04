@@ -20,6 +20,7 @@ class CreateLehrStudTable extends Migration
             $table->boolean('is_accepted_lehr')->nullable();
             $table->boolean('is_accepted_stud')->nullable(); 
             $table->float('mse');
+            $table->boolean('is_notified')->default(false);
             $table->timestamps();
         });
     }

@@ -129,6 +129,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::post('/addMatching', [UserController::class, 'addMatching'])->name('users.addMatching');
 
+        Route::get('/notifyMatchings', [UserController::class, 'notifyMatchings'])->name('notifyMatchings');
+
     });
 
 

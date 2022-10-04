@@ -400,11 +400,11 @@
 
 			</ul>
 
+			@endrole
+
 		</div>
 
 	</div>
-
-	@endrole
 
 	<!-- Ausloggen Button -->
 

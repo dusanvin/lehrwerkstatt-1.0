@@ -51,12 +51,6 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
 @endphp
 
-<!-- 
-1. Hover über die Buttons oben
-2. Wenn kein Bild hochgeladen ist, Ansicht richtigstellen
--->
-
-
 <body style="background-color: white;">
 
     <div class="flex flex-row h-full mx-0 sm:mx-5 mt-1 sm:mt-10 mb-1 sm:mb-10">
@@ -137,7 +131,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                 <span class="inline-block align-middle">
 
-                                    {{ $error }} Bitte löschen Sie zuerst Ihr Profilbild, bevor Sie ein neues hochladen.
+                                    {{ $error }} Bitte löschen Sie zuerst Ihr Profilbild, bevor Sie ein neues auswählen und hochladen.
 
                                 </span>
 
@@ -223,7 +217,27 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                                 @if(!empty(Auth::user()->role))
 
-                                                    <span class="font-normal text-gray-500 capitalize">{{ Auth::user()->role }}</span>
+                                                    @foreach($user->getRoleNames() as $v)
+
+                                                        @if ($v == 'admin')
+
+                                                            <span class="font-normal text-gray-500">Administration</span>
+
+                                                        @elseif ($v == 'Moderierende')
+
+                                                            <span class="font-normal text-gray-500">Moderation</span>
+
+                                                        @elseif ($v == 'Stud')
+
+                                                            <span class="font-normal text-gray-500">Studium</label>
+
+                                                        @elseif ($v == 'Lehr')
+
+                                                            <span class="font-normal text-gray-500">Schuldienst</label>
+
+                                                        @endif
+
+                                                    @endforeach
 
                                                 @endif
 
@@ -239,7 +253,9 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-1">
                                                               <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
-                                                            </svg><!-- Bild hochladen -->
+                                                            </svg>
+
+                                                            <span class="pl-3 font-semibold">Hochladen</span>
 
                                                             @php
                                                             cache()->flush();
@@ -257,7 +273,9 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-1">
                                                               <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                                            </svg><!-- Bild löschen -->
+                                                            </svg>
+
+                                                            <span class="pl-3 font-semibold">Löschen</span>
 
                                                             @php
                                                             cache()->flush();
@@ -283,39 +301,93 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                         @else
 
-                        <img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-32 h-32 rounded-full object-cover border-4 border-white mx-auto">
+                        <ul class="flex items-center">
 
-                        <div>
+                            <li class="">
 
-                            <form method="POST" action="{{ route('images.store') }}" enctype="multipart/form-data">
+                                <div class="pr-3">
 
-                                @csrf
+                                    <div class="text-white flex items-center">
 
-                                <input type="file" name="image" id="file" class="mb-4 block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded" />
+                                        <img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-28 rounded-md object-cover border-gray-200">
+                                        
+                                        <span class="text-xs sm:text-sm font-semibold text-left px-4 break-words">
 
-                                <button type="submit" class="bg-transparent hover:bg-purple-600 text-purple-600 font-semibold text-sm hover:text-white py-2 pr-4 pl-3 mb-2 border border-purple-600 hover:border-transparent focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 rounded flex items-center transition ease-in-out duration-150">
+                                            @if (Auth::user()->vorname)
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+                                                {{ Auth::user()->vorname}} {{ Auth::user()->nachname }}
 
-                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                            @else
 
-                                    </svg>Bild hochladen
+                                                Konto <!--{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} -->
+                                            
+                                            @endif
+                                        
+                                            <div>
 
-                                    @php
-                                    cache()->flush();
-                                    @endphp
+                                                @if(!empty(Auth::user()->role))
 
-                                </button>
+                                                    @foreach($user->getRoleNames() as $v)
 
-                            </form>
+                                                        @if ($v == 'admin')
 
-                            <dt class="text-sm font-medium text-gray-500 py-2">
+                                                            <span class="font-normal text-gray-500">Administration</span>
 
-                                <strong>Hinterlegen</strong> Sie ein <strong>Profilbild</strong> (max. 20MB mit den min. Abmessungen 300x300px)
+                                                        @elseif ($v == 'Moderierende')
 
-                            </dt>
+                                                            <span class="font-normal text-gray-500">Moderation</span>
 
-                        </div>
+                                                        @elseif ($v == 'Stud')
+
+                                                            <span class="font-normal text-gray-500">Studium</label>
+
+                                                        @elseif ($v == 'Lehr')
+
+                                                            <span class="font-normal text-gray-500">Schuldienst</label>
+
+                                                        @endif
+
+                                                    @endforeach
+
+                                                @endif
+
+                                                <div class="flex mt-4">
+
+                                                    <form method="POST" action="{{ route('images.store') }}" enctype="multipart/form-data" class="flex items-center">
+
+                                                        @csrf
+
+                                                        <input type="file" name="image" id="file" class="mr-2 block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded" />
+
+                                                        <button type="submit" class="bg-transparent bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm py-2 pr-4 pl-3 border border-purple-600 hover:border-transparent focus:outline-none focus:ring ring-purple-600 focus:border-purple-300 rounded flex items-center transition ease-in-out duration-150">
+
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-1">
+                                                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                                                            </svg>
+
+                                                            <span class="pl-3 font-semibold">Hochladen</span>
+
+                                                            @php
+                                                            cache()->flush();
+                                                            @endphp
+
+                                                        </button>
+
+                                                    </form>
+
+                                                </div>
+
+                                            </div>
+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </li>
+
+                        </ul>
 
                         @endif
 

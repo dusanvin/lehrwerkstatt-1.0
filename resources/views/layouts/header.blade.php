@@ -119,9 +119,9 @@
 
 	                    		<div>
 
-	                    			@if(!empty(Auth::user()->role))
+	                    			@if(isset(Auth::user()->role))
 
-	                                    @foreach($user->getRoleNames() as $v)
+	                                    @foreach(Auth::user()->getRoleNames() as $v)
 
 	                                        @if ($v == 'admin')
 

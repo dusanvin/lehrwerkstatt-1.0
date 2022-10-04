@@ -38,6 +38,16 @@
         .sd-progress__bar {
             display: none !important;
         }
+        .sd-input {
+            background-color: rgb(17, 24, 39);
+            color:white;
+        }
+        .sd-dropdown {
+            color: white !important;
+        }
+        option { 
+            color: #fff !important;
+        }
     </style>
 </head>
 

@@ -15,65 +15,54 @@ use Carbon\Carbon;
 
 class StatsController extends Controller
 {
-
-	/* Nur erreichbar, wenn eingeloggt */
 	
     public function index()
     {
 
-        // Nutzende
-            // Anzahl aller Nutzenden
-            $users = DB::table('users')->count();
-            $roles = Role::all();
+        $user_count = DB::table('users')->whereNotNull('email_verified_at')->count();
 
-            // Anzahl aller Admins
-            $adminsCount = User::role('Admin')->get()->count();
+        $admin_count = User::role('Admin')->whereNotNull('email_verified_at')->count();
+        $mod_count = User::role('Moderierende')->whereNotNull('email_verified_at')->count();
+        $lehr_count = User::role('Lehr')->whereNotNull('email_verified_at')->count();
+        $stud_count = User::role('Stud')->whereNotNull('email_verified_at')->count();
 
-            // Anzahl aller Moderierenden
-            $modsCount = User::role('Moderierende')->get()->count();
+        // Lehrkräfte mit ausgefülltem Bewerbungsbogen
+        $lehr_valid = User::role('Lehr')->where('valid', true)->count();
 
-            // Anzahl aller Helfenden
-            $helfendeCount = User::role('Stud')->get()->count();
+        // Studenten mit ausgefülltem Bewerbungsbogen
+        $stud_valid = User::role('Stud')->where('valid', true)->count();
 
-            // Anzahl aller Lehrenden
-            $lehrendeCount = User::role('Lehr')->get()->count();
 
-        // Angebote
-            // Anzahl aller Angebote
-            $alleAngeboteCount = Offer::with([
-                'user',
-                'likes'
-            ])->get()->count();
+        $lehr_grundschule = 0;
+        $lehr_realschule = 0;
+        $lehr_gymnasium = 0;
 
-            // Anzahl aller aktiven Angebote
-            $aktiveAngeboteCount = Offer::where('active', 1)->get()->count();
+        $stud_grundschule = 0;
+        $stud_realschule = 0;
+        $stud_gymnasium = 0;
 
-            // Anzahl aller inaktiven Angebote
-            $inaktiveAngeboteCount = Offer::where('active', 0)->get()->count();
+        $users = User::all();
+        foreach($users as $user) {
+            $user->survey_data = json_decode($user->survey_data);
+            if($user->role == 'Lehr') {
+                if($user->survey_data->schulart == 'Grundschule') {
+                    $lehr_grundschule++;
+                } elseif($user->survey_data->schulart == 'Realschule') {
+                    $lehr_realschule++;
+                } elseif($user->survey_data->schulart == 'Gymnasium') {
+                    $lehr_gymnasium++;
+                }
+            } elseif($user->role == 'Stud') {
+                if($user->survey_data->schulart == 'Grundschule') {
+                    $lehr_grundschule++;
+                } elseif($user->survey_data->schulart == 'Realschule') {
+                    $lehr_realschule++;
+                } elseif($user->survey_data->schulart == 'Gymnasium') {
+                    $lehr_gymnasium++;
+                }
+            }
+        }
 
-        // Bedarfe
-            // Anzahl aller Bedarfe
-            $alleBedarfeCount = Need::with([
-                'user',
-                'likes'
-            ])->get()->count();
-
-            // Anzahl aller aktiven Bedarfe
-            $aktiveBedarfeCount = Need::where('active', 1)->get()->count();
-
-            // Anzahl aller inaktiven Bedarfe
-            $inaktiveBedarfeCount = Need::where('active', 0)->get()->count();
-
-        $hfDazCount = User::where('studiengang', 'Hauptfach Deutsch als Zweit- und Fremdsprache (B.A.)')->get()->count();
-        $nfDazCount = User::where('studiengang', 'Nebenfach Deutsch als Zweit- und Fremdsprache (B.A.)')->get()->count();
-        $gsCount = User::where('studiengang', 'Grundschule (LA)')->get()->count();
-        $msCount = User::where('studiengang', 'Mittelschule (LA)')->get()->count();
-        $rsCount = User::where('studiengang', 'Realschule (LA)')->get()->count();
-        $gymCount = User::where('studiengang', 'Gymnasium (LA)')->get()->count();
-        $sonstigesCount = User::where('studiengang', 'Sonstiges')->get()->count();
-
-        $verifiedUsers = User::whereNotNull('email_verified_at')->join('model_has_roles', 'users.id', 'model_has_roles.model_id')->get();
-        // dd($verifiedUsers);
 
         $m09_last_year = 0;
         $m09_last_year_helfende = 0;

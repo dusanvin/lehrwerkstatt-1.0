@@ -87,18 +87,18 @@
 
                     <div class="px-3">
 
-                    	<a href="{{ route('profile.details', ['id' => Auth::user()->id]) }}" class="text-gray-700 hover:text-gray-900 flex items-center hover:text-yellow-600">
+                    	<a href="{{ route('profile.details', ['id' => Auth::user()->id]) }}" class="text-gray-700 hover:text-gray-900 flex items-center transform duration-150 hover:scale-105 transition-colors">
 
                     		@if(isset(Auth::user()->image->filename)) 
 
-                    			<div class="relative">
+                    			<div class="hidden relative sm:block">
 							    	<img src="{{ url('images/show/'.$id) }}" class="w-10 h-10 rounded-full object-cover border-gray-200">
 							    	<span class="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
 								</div>
 
                     		@else
 
-								<div class="relative">
+								<div class="hidden relative sm:block">
 							    	<img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-10 h-10 rounded-full object-cover border-gray-200">
 							    	<span class="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
 								</div>                    		

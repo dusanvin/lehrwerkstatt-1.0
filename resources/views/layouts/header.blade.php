@@ -92,14 +92,14 @@
                     		@if(isset(Auth::user()->image->filename)) 
 
                     			<div class="hidden relative sm:block">
-							    	<img src="{{ url('images/show/'.$id) }}" class="w-10 h-10 rounded-full object-cover border-gray-200">
+							    	<img src="{{ url('images/show/'.$id) }}" class="w-12 h-12 rounded-full object-cover border-gray-200 ring-2 ring-gray-300 p-1">
 							    	<span class="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
 								</div>
 
                     		@else
 
 								<div class="hidden relative sm:block">
-							    	<img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-10 h-10 rounded-full object-cover border-gray-200">
+							    	<img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg" class="w-12 h-12 rounded-full object-cover border-gray-200 ring-gray-300 p-1">
 							    	<span class="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
 								</div>                    		
 

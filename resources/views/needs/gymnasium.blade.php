@@ -206,18 +206,15 @@
 
                                     <div class="flex justify-end md:gap-8 gap-4 pt-1 rounded-md text-sm mb-4">
 
-                                        <button class="bg-yellow-700 bg-transparent hover:bg-green-600 text-white font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-transparent focus:outline-none focus:ring ring-green-300 focus:border-green-300 rounded flex items-center transition ease-in-out duration-150" form="search">
+                                        <button class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-yellow-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transform duration-150 hover:scale-105 transition-colors" form="search">
 
                                             <div>
 
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-                                                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                                                 </svg>
 
                                             </div>
-
 
                                             <div class="pl-3 sm:inline-block hidden">
 
@@ -409,11 +406,10 @@
 
                             <div x-data="{ modelOpen: false }" class="flex flex-wrap mr-2 mb-2">
 
-                                <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
+                                <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                      <path d="M9 9a2 2 0 114 0 2 2 0 01-4 0z" />
-                                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a4 4 0 00-3.446 6.032l-2.261 2.26a1 1 0 101.414 1.415l2.261-2.261A4 4 0 1011 5z" clip-rule="evenodd" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
                                     </svg>
 
                                     <span>Details</span>
@@ -458,7 +454,70 @@
 
                                             <div class="flex items-center justify-between space-x-4">
 
-                                                <h1 class="text-xl font-medium text-gray-100">Angebot #{{ $user->id }}</h1>
+                                                <div class="mt-4 flex">
+
+                                                    <!-- Person -->
+
+                                                    <a href="{{ route('profile.details', ['id' => $user->id]) }}" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-600 focus:outline-none focus:bg-pink-500 focus:ring focus:ring-pink-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors mr-2">
+
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                                        </svg>
+
+                                                        <p>Person</p>
+
+                                                    </a>
+
+                                                    <!-- Person -->
+                                                
+                                                    <!-- Anfragen -->
+
+                                                    <form action="/messages/create/{{ $user->id }}" method="get">
+
+                                                        {{ csrf_field() }}
+
+                                                        <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="Anfrage zu Angebot #{{ $user->id }}" name="subject" type="hidden">
+
+                                                        <textarea name="message" placeholder="Ihre Nachricht." style="display:none;">Ich möchte auf Ihr Angebot #{{ $user->id }} reagieren, wobei folgende Spezifika mit angegeben wurden: Die Beschreibung Ihres Angebots lautet: Hätten Sie Interesse an meiner Unterstützung?</textarea>
+
+                                                        <div class="checkbox">
+
+                                                            <!-- <input name="recipients[]" value="{{ $user->id }}" type="hidden"> -->
+
+                                                        </div>
+
+                                                        <div class="form-group mr-2">
+
+                                                            <button type="submit" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-600 focus:outline-none focus:bg-pink-500 focus:ring focus:ring-pink-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">          
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"></path>
+                                                                </svg>
+
+                                                                <p>Nachricht</p>
+                                                                                        
+                                                            </button>
+
+                                                        </div>
+
+                                                    </form>
+
+                                                    <!-- Anfragen -->
+
+                                                    <!-- E-Mail -->
+
+                                                    <a href="mailto:{{  $user->email }}" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-600 focus:outline-none focus:bg-pink-500 focus:ring focus:ring-pink-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
+
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                                                            </svg>
+
+                                                        <p>E-Mail</p>
+
+                                                    </a>
+
+                                                    <!-- E-Mail -->
+
+                                                </div>
 
                                                 <button @click="modelOpen = false" class="text-gray-400 focus:outline-none hover:text-gray-100">
 
@@ -472,47 +531,93 @@
 
                                             </div>
 
-                                            <p class="mt-2 text-gray-400 text-sm">
-                                                Sehen Sie sich das Angebot genauer an.
+                                            
+
+                                            <p class="mt-4 text-gray-400 text-sm">
+
+                                                Sehen Sie sich das Angebot #{{ $user->id }} genauer an. Sollten Rückfragen auftreten, scheuen Sie sich nicht davor, die Lehrkraft zu kontaktieren.
+
                                             </p>
                                                         
                                             <div class="mt-4">
 
-                                                <h3 class="text-xs font-medium text-white uppercase">Informationen zur Schule</h3>
+                                                <h3 class="text-xl font-medium text-gray-200">Informationen zur Person</h3>
 
-                                                <div class="pb-4 w-full mt-3">
+                                                <!-- Schulart -->
 
-                                                    <div class="text-xs sm:text-sm leading-5 w-full text-gray-400">
+                                                <div class="w-full mt-3 text-sm text-gray-400">
 
-                                                        <p class="text-gray-300 text-xs text-left leading-4 uppercase font-medium mb-1">{{ $user->survey_data->schulart }}</p>
+                                                    <p class="text-gray-200 mb-1">
 
-                                                        
+                                                        Schulart
 
-                                                    </div>
+                                                    </p>                                                   
 
-                                                    <div class="text-xs sm:text-sm leading-5 w-full text-gray-400">
+                                                    <p>
 
-                                                        
+                                                        Ich studiere für die Schulart {{ $user->survey_data->schulart }} Lehramt.
 
-                                                    </div>
+                                                    </p>
 
                                                 </div>
 
+                                                <!-- Schulart -->
+
+                                                <!-- Fachsemester -->
+
+                                                <div class="w-full mt-3 text-sm text-gray-400">
+
+                                                    <p class="text-gray-200 mb-1">
+
+                                                        Fachsemester
+
+                                                    </p>                                                   
+
+                                                    <p>
+
+                                                         Ich befinde mich jetzt in meinen für das Matching gewählten Fächern mindestens im {{ $user->survey_data->fachsemester }} Fachsemester.
+
+                                                    </p>
+
+                                                </div>
+
+                                                <!-- Fachsemester -->
+
+                                                <!-- Faecher -->
+
+                                                <div class="w-full mt-3 text-sm text-gray-400">
+
+                                                    <p class="text-gray-200 mb-1">
+
+                                                        Fächer
+
+                                                    </p>                                                   
+
+                                                    <p>
+
+                                                         Ich möchte gerne in folgenden meiner studierten Fächer gematcht werden: {{ $user->survey_data->faecher }}.
+
+                                                    </p>
+
+                                                </div>
+
+                                                <!-- Faecher -->
+
                                                 <div>
 
-                                                    <h3 class="text-xs font-medium text-white uppercase">Informationen zur Zusammenarbeit</h3>
+                                                    <h3 class="text-xl font-medium text-gray-200 mt-4">Informationen zur Zusammenarbeit</h3>
 
                                                     <!-- Feedback Lehr zu Stud -->
 
                                                     <div class="w-full mt-3 text-sm text-gray-400">
 
-                                                        <p class="text-gray-300 text-xs leading-4 uppercase font-medium mb-1">Feedback von Lehrkraft</p>
+                                                        <p class="text-gray-200 mb-1">Feedback von Lehr:mentor*in</p>
 
                                                         <p>
 
-                                                            Das Feedback, das ich meinem Lehr:werker bzw. meiner Lehr:werkerin gebe:
+                                                            Das Feedback, das mir mein*e Lehr:mentor*in geben sollte, 
 
-                                                            @switch($user->survey_data->feedback_an)
+                                                            @switch($user->survey_data->feedback_von)
 
                                                                 @case('1')
 
@@ -555,13 +660,13 @@
 
                                                     <div class="w-full mt-3 text-sm text-gray-400">
 
-                                                        <p class="text-gray-300 text-xs leading-4 uppercase font-medium mb-1">Feedback von Tandempartner*in</p>
+                                                        <p class="text-gray-200 mb-1">Feedback an Lehr:mentor*in</p>
 
                                                         <p>
 
-                                                           Ich wünsche mir von meinem Lehr:werker bzw. meiner Lehr:werkerin kritische Rückmeldungen zu meinem Unterricht: 
+                                                           Beim Feedback, das ich meinem Lehr:mentor bzw. meiner Lehr:mentorin gebe, sage ich ganz direkt, was ich von seinem bzw. ihrem Unterricht halte: 
 
-                                                            @switch($user->survey_data->feedback_von)
+                                                            @switch($user->survey_data->feedback_an)
 
                                                                 @case('1')
 
@@ -604,11 +709,11 @@
 
                                                     <div class="w-full mt-3 text-sm text-gray-400">
 
-                                                        <p class="text-gray-300 text-xs leading-4 uppercase font-medium mb-1">Eigenständigkeit</p>
+                                                        <p class="text-gray-200 mb-1">Eigenständigkeit</p>
 
                                                         <p>
 
-                                                           Mein*e Lehr:werker*in soll langsam ins selbstständige Unterrichten hineinwachsen und nicht von Anfang an Teile des Unterrichts übernehmen:            
+                                                          Ich möchte langsam ins selbstständige Unterrichten hineinwachsen und nicht von Anfang an Teile des Unterrichts übernehmen: 
 
                                                             @switch($user->survey_data->eigenstaendigkeit)
 
@@ -653,11 +758,11 @@
 
                                                     <div class="w-full mt-3 text-sm text-gray-400">
 
-                                                        <p class="text-gray-300 text-xs leading-4 uppercase font-medium mb-1">Improvisation</p>
+                                                        <p class="text-gray-200 mb-1">Improvisation</p>
 
                                                         <p>
 
-                                                           Situationen, in denen ich improvisieren muss, versuche ich durch intensive Planung strikt zu vermeiden:            
+                                                            Situationen, in denen ich improvisieren muss, versuche ich durch intensive Planung strikt zu vermeiden: 
 
                                                             @switch($user->survey_data->improvisation)
 
@@ -702,11 +807,11 @@
 
                                                     <div class="w-full mt-3 text-sm text-gray-400">
 
-                                                        <p class="text-gray-300 text-xs leading-4 uppercase font-medium mb-1">Freiraum</p>
+                                                        <p class="text-gray-200 mb-1">Freiraum</p>
 
                                                         <p>
 
-                                                           Ich wünsche mir eine*n Lehr:werker*in, die bzw. der            
+                                                            Ich wünsche mir eine*n Lehr:mentor*in, die bzw. der: 
 
                                                             @switch($user->survey_data->freiraum)
 
@@ -741,11 +846,11 @@
 
                                                     <div class="w-full mt-3 text-sm text-gray-400">
 
-                                                        <p class="text-gray-300 text-xs leading-4 uppercase font-medium mb-1">Innovationsoffenheit</p>
+                                                        <p class="text-gray-200 mb-1">Innovationsoffenheit</p>
 
                                                         <p>
 
-                                                           Ich möchte lieber meine Erfahrungen an den bzw. die Lehr:werker*in weitergeben als gemeinsam mit ihm bzw. ihr Neues auszuprobieren:         
+                                                           Ein großer Erfahrungsschatz ist mir bei meinem Lehr:mentor bzw. meiner Lehr:mentorin wichtiger als die Neigung, Neues auszuprobieren: 
 
                                                             @switch($user->survey_data->innovationsoffenheit)
 
@@ -789,11 +894,11 @@
 
                                                     <div class="w-full mt-3 text-sm text-gray-400">
 
-                                                        <p class="text-gray-300 text-xs leading-4 uppercase font-medium mb-1">Belastbarkeit</p>
+                                                        <p class="text-gray-200 mb-1">Belastbarkeit</p>
 
                                                         <p>
 
-                                                           Ich wünsche mir eine*n Lehr:werker*in, die bzw. der sich das Unterrichten in schwierigen bzw. höheren Klassen zutraut:     
+                                                           Ich traue mir zu, mit meinem Lehr:mentor bzw. meiner Lehr:mentorin in „schwierigen“ oder höheren Klassen zu unterrichten: 
 
                                                             @switch($user->survey_data->belastbarkeit)
 
@@ -833,65 +938,71 @@
 
                                                     <!-- Belastbarkeit -->
 
+                                                    <!-- Praktika -->
+
+                                                    <div class="w-full mt-3 text-sm text-gray-200 mb-1">
+
+                                                        <p>
+                                                            Welche(s) der folgenden Praktika haben Sie im Rahmen Ihres Lehramtsstudiums bereits absolviert?:
+                                                        </p>
+                                                        <ul>
+                                                            @foreach($user->survey_data->praktika as $praktikum)
+                                                                <li class="list-disc ml-6 text-gray-400"> {{ $praktikum }} </li>
+                                                            @endforeach
+                                                        </ul>   
+
+                                                    </div>
+
+                                                    <!-- Praktika -->
+
+                                                    <!-- Aufmerksam geworden -->
+
+                                                    <div class="w-full mt-3 text-sm text-gray-200 mb-1">
+                                                        <p>
+                                                            Wodurch sind Sie auf das Projekt aufmerksam geworden?
+                                                        </p>
+                                                        <ul>
+                                                            @foreach($user->survey_data->aufmerksam_geworden as $aufmerksam)
+                                                                <li class="list-disc ml-6 text-gray-400"> {{ $aufmerksam }} </li>
+                                                            @endforeach
+                                                        </ul>    
+
+                                                    </div>
+
+                                                    <!-- Aufmerksam geworden -->
+
+                                                    <!-- Freue mich auf -->
+
+                                                    <div class="w-full mt-3 text-sm text-gray-200 mb-1">
+
+                                                        <p>
+                                                            Ich freue mich im Rahmen der Lehr:werkstatt besonders darauf: 
+                                                        </p>
+                                                        <ul>
+                                                            @foreach($user->survey_data->freue_auf as $freuen)
+                                                                <li class="list-disc ml-6 text-gray-400"> {{ $freuen }} </li>
+                                                            @endforeach
+                                                        </ul>                                                        
+
+                                                    </div>
+
+                                                    <!-- Aufmerksam geworden -->
+
+                                                    <!-- Anmerkungen -->
+
+                                                    <div class="w-full mt-3 text-sm text-gray-200">
+
+                                                        <p class="mb-1">Anmerkungen</p>
+
+                                                        <span class="text-gray-400">{{ $user->survey_data->anmerkungen }}</span>
+
+                                                    </div>
+
+                                                    <!-- Anmerkungen -->
+
                                                 </div>
 
-                                                <!-- Anfragen -->
-                                                    
-                                                <div class="mt-4 flex">
 
-                                                    <form action="/messages/create/{{ $user->id }}" method="get">
-
-                                                        {{ csrf_field() }}
-
-                                                        <input class="py-2 px-3 bg-gray-100 border-1 w-full rounded-sm form-control form-input" placeholder="Ihr Betreff." value="Anfrage zu Angebot #{{ $user->id }}" name="subject" type="hidden">
-
-                                                        <textarea name="message" placeholder="Ihre Nachricht." style="display:none;">Ich möchte auf Ihr Angebot #{{ $user->id }} reagieren, wobei folgende Spezifika mit angegeben wurden: Die Beschreibung Ihres Angebots lautet: Hätten Sie Interesse an meiner Unterstützung?</textarea>
-
-                                                        <div class="checkbox">
-
-                                                            <!-- <input name="recipients[]" value="{{ $user->id }}" type="hidden"> -->
-
-                                                        </div>
-
-                                                        <div class="form-group mr-2">
-
-                                                            <button type="submit" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">          
-
-                                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                                    <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
-                                                                    <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
-                                                                </svg>
-
-                                                                <p>Anfragen</p>
-                                                                                        
-                                                            </button>
-
-                                                        </div>
-
-                                                    </form>
-
-                                                    <!-- Anfragen -->
-
-                                                    <!-- E-Mail -->
-
-                                                    <a href="mailto:{{  $user->email }}" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">
-
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-                                                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
-                                                            <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
-
-                                                        </svg>
-
-                                                        <p>E-Mail schreiben</p>
-
-                                                    </a>
-
-                                                    <!-- E-Mail -->
-
-                                                </div>
-
-                                                <p class="text-gray-400 text-xs mt-2 mb-4">Sollte Ihnen der Bedarf zusagen, scheuen Sie sich nicht davor, die Lehrkraft zu kontaktieren</p>
 
                                             </div>
 

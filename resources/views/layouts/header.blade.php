@@ -12,7 +12,7 @@
 
 	<ul class="flex items-center">
 
-		<li class="p-1 md:p-3 text-gray-700 hover:text-gray-900">
+		<li class="p-1 md:p-3 text-gray-700 hover:text-gray-900 transition-colors duration-200 transform duration-150 hover:scale-105">
 
 			<!-- Logo -->
 
@@ -119,31 +119,23 @@
 
 	                    		<div>
 
-	                    			@if(isset(Auth::user()->role))
+                               		@if (Auth::user()->role == 'admin')
 
-	                                    @foreach(Auth::user()->getRoleNames() as $v)
+                                        <span class="font-normal text-gray-500">Administration</span>
 
-	                                        @if ($v == 'admin')
+                                    @elseif (Auth::user()->role == 'Moderierende')
 
-	                                            <span class="font-normal text-gray-500">Administration</span>
+                                        <span class="font-normal text-gray-500">Moderation</span>
 
-	                                        @elseif ($v == 'Moderierende')
+                                    @elseif (Auth::user()->role == 'Stud')
 
-	                                            <span class="font-normal text-gray-500">Moderation</span>
+                                        <span class="font-normal text-gray-500">Studium</label>
 
-	                                        @elseif ($v == 'Stud')
+                                    @elseif (Auth::user()->role == 'Lehr')
 
-	                                            <span class="font-normal text-gray-500">Studium</label>
+                                        <span class="font-normal text-gray-500">Schuldienst</label>
 
-	                                        @elseif ($v == 'Lehr')
-
-	                                            <span class="font-normal text-gray-500">Schuldienst</label>
-
-	                                        @endif
-
-	                                    @endforeach
-
-	                                @endif
+                                    @endif
 
 	                    		</div>
 

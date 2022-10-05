@@ -219,7 +219,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                                     @foreach($user->getRoleNames() as $v)
 
-                                                        @if ($v == 'admin')
+                                                        @if ($v == 'Admin')
 
                                                             <span class="font-normal text-gray-500">Administration</span>
 
@@ -329,7 +329,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                                     @foreach($user->getRoleNames() as $v)
 
-                                                        @if ($v == 'admin')
+                                                        @if ($v == 'Admin')
 
                                                             <span class="font-normal text-gray-500">Administration</span>
 
@@ -344,6 +344,10 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
                                                         @elseif ($v == 'Lehr')
 
                                                             <span class="font-normal text-gray-500">Schuldienst</label>
+
+                                                        @else
+
+                                                            Test
 
                                                         @endif
 

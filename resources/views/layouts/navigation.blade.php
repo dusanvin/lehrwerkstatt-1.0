@@ -69,7 +69,7 @@
 						$route_name='profile.edit';
 					@endphp
 
-					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -104,7 +104,7 @@
 						$route_name='profile.account';
 					@endphp
 
-					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -138,7 +138,7 @@
 						$route_name='profile.matchings';
 					@endphp
 
-					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -171,7 +171,7 @@
 						$route_name='messages';
 					@endphp
 
-					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -210,7 +210,7 @@
 						$route_name='stats';
 					@endphp
 
-					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -242,7 +242,7 @@
 						$route_name='users.index';
 					@endphp
 
-					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -271,7 +271,7 @@
 						$route_name='users.matchings';
 					@endphp
 
-					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -302,7 +302,7 @@
 						$route_name='acceptedMatchings';
 					@endphp
 
-					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -343,7 +343,7 @@
 						$route_name='users.lehr';
 					@endphp
 
-					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -374,7 +374,7 @@
 						$route_name='users.stud';
 					@endphp
 
-					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition ease-in-out duration-150 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
+					<a href="{{ route($route_name) }}" class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
 						<div>
 
@@ -412,7 +412,7 @@
 
 		@csrf
 
-		<button class="mx-auto flex text-xs items-center p-1 md:p-3 text-gray-300 hover:text-yellow-400 focus:border-transparent focus:outline-none transition ease-in-out duration-150" type="submit">
+		<button class="mx-auto flex text-xs items-center p-1 md:p-3 text-gray-300 hover:text-yellow-400 focus:border-transparent focus:outline-none transition-colors duration-200 transform duration-150 hover:scale-105" type="submit">
 
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
 			  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />

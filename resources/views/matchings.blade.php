@@ -48,11 +48,11 @@
 
                         @elseif (count($assigned_matchings) == 1)
 
-                            <p>Der folgende Vorschlag wurden von Ihnen übernommen.</p>
+                            <p>Der folgende Vorschlag wurden von Ihnen übernommen. Sollten Sie den Vorschlag akzeptieren, wird dieser unter <a href="route('accepted_matchings')" class="font-semibold hover:underline text-white">Paarungen</a> gelistet. Die Personen erhalten zudem eine E-Mail.</p>
 
                         @elseif (count($assigned_matchings) > 1)
 
-                            <p>Die folgenden <strong>{{ count($assigned_matchings) }} Vorschläge</strong> wurden von Ihnen übernommen.</p>
+                            <p>Die folgenden <strong>{{ count($assigned_matchings) }} Vorschläge</strong> wurden von Ihnen übernommen. Sollten Sie die Vorschläge akzeptieren, werden diese unter <a href="route('accepted_matchings')" class="font-semibold hover:underline text-white">Paarungen</a> gelistet. Die Personen erhalten zudem eine E-Mail.</p>
 
                         @endif
 
@@ -83,6 +83,9 @@
 
                                 <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                     MSE</th>
+
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                    Übernommen</th>
 
                                 <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
                                 </th>
@@ -115,6 +118,7 @@
 
                                 </td>
 
+
                                 <td class="px-6 py-4 whitespace-no-wrap">
 
                                     <div class="text-sm leading-5 font-normal text-white select-none font-bold bg-gray-500 text-center p-1 w-12 rounded-sm">
@@ -123,8 +127,11 @@
                                         
                                     </div>
 
-                                    <br>
-                                    <div class="font-normal text-white">Erstellt: {{ $matching['elapsed_time'] }}</div>
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-no-wrap">
+
+                                    <div class="text-xs sm:text-sm leading-5 text-gray-400 break-words">{{ $matching['elapsed_time'] }}</div>
 
                                 </td>
                                 
@@ -169,7 +176,19 @@
 
                 </table>
 
-                <a href="{{ route('notifyMatchings') }}" class="text-white bg-blue-400">Vorschläge bestätigen (Diese sind dann unter Paarungen mit Status gelistet. Die Nutzer erhalten zudem eine E-Mail.)</a>
+                <div class="mt-4 flex justify-end">
+
+                    <a href="{{ route('notifyMatchings') }}" class="bg-green-600 hover:bg-green-700 text-white font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-green-700 hover:border-transparent focus:outline-none focus:ring ring-green-300 focus:border-green-300 rounded flex items-center transition ease-in-out duration-150 hover:scale-105 transform">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                        </svg>
+
+                        <p class="pl-3">Vorschläge bestätigen</p>
+
+                    </a>
+
+                </div>
 
             </div>
 
@@ -442,7 +461,13 @@
                                                               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a4 4 0 00-3.446 6.032l-2.261 2.26a1 1 0 101.414 1.415l2.261-2.261A4 4 0 1011 5z" clip-rule="evenodd" />
                                                             </svg>
 
-                                                            <span>{{ $matching->survey_data->vorname }} {{ $matching->survey_data->nachname }} ({{ $user->mses[$count] }})</span>
+                                                            <span>
+
+                                                                @php
+                                                                    echo $matching->survey_data->vorname[0] . $matching->survey_data->nachname[0]." ". "(" . $user->mses[$count] . ")";
+                                                                @endphp
+
+                                                            </span>
 
                                                         </button>
 

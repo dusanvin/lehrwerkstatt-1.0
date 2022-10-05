@@ -78,11 +78,20 @@
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                 Lehrkraft</th>
 
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                Zusage</th>
+
                             <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                 Student*in</th>
 
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                Zusage</th>
+
                             <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                 MSE</th>
+
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                Übernommen</th>
 
                             <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
                             </th>
@@ -105,7 +114,42 @@
 
                                 <a href="mailto:{{  $matching->lehr->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->lehr->email }}</a>
 
-                                <div class="text-white">{{ isset($matching->is_accepted_lehr) ? ($matching->is_accepted_lehr == 1 ? 'Zugesagt' : 'Abgelehnt') : 'Zusage ausstehend' }}</div>
+                            </td>
+
+                            <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
+
+                                @if(isset($matching->is_accepted_lehr))
+
+                                    <!-- Angenommen -->
+                                    <div class="has-tooltip">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150">Angenommen</span>
+                                    </div>
+
+                                @elseif(isset($matching->is_accepted_lehr)==1)
+                                    
+                                    <!-- Abgelehnt -->
+                                    <div class="has-tooltip">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white text-xs transition ease-in-out duration-150 -mt-14 -ml-6">Abgelehnt</span>
+                                    </div>
+
+                                @else
+
+                                    <!-- Ausstehend -->
+                                    
+                                    <div class="has-tooltip">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9v6m-4.5 0V9M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white text-xs transition ease-in-out duration-150 -mt-14 -ml-6">Ausstehend</span>
+                                    </div>
+
+                                @endif
 
                             </td>
 
@@ -115,7 +159,44 @@
 
                                 <a href="mailto:{{  $matching->lehr->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->stud->email }}</a>
 
-                                <div class="text-white">{{ isset($matching->is_accepted_stud) ? ($matching->is_accepted_stud == 1 ? 'Zugesagt' : 'Abgelehnt') : 'Zusage ausstehend' }}</div>
+                                <div class="text-white"></div>
+
+                            </td>
+
+                            <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
+
+                                @if(isset($matching->is_accepted_lehr))
+
+                                    <!-- Angenommen -->
+                                    <div class="has-tooltip">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150">Angenommen</span>
+                                    </div>
+
+                                @elseif(isset($matching->is_accepted_lehr)==1)
+                                    
+                                    <!-- Abgelehnt -->
+                                    <div class="has-tooltip">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white text-xs transition ease-in-out duration-150 -mt-14 -ml-6">Abgelehnt</span>
+                                    </div>
+
+                                @else
+
+                                    <!-- Ausstehend -->
+                                    
+                                    <div class="has-tooltip">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9v6m-4.5 0V9M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white text-xs transition ease-in-out duration-150 -mt-14 -ml-6">Ausstehend</span>
+                                    </div>
+
+                                @endif
 
                             </td>
 
@@ -127,10 +208,15 @@
 
                                 </div>
 
-                                <br>
-                                <div class="font-normal text-white">Benachrichtigung versandt: {{ $matching->elapsed_time }}</div>
-
                             </td>
+
+
+
+                                <td class="px-6 py-4 whitespace-no-wrap">
+
+                                    <div class="text-xs sm:text-sm leading-5 text-gray-400 break-words">{{ $matching->elapsed_time }}</div>
+
+                                </td>
 
                             <!-- Löschen -->
 

@@ -8,7 +8,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>digi:match - Finden Sie Ihren DaZ-Buddy</title>
+        <title>{{ Config::get('site_vars.platformName1') }}{{ Config::get('site_vars.platformName2') }} - {{ Config::get('site_vars.welcomeString1') }} {{ Config::get('site_vars.welcomeString2') }}</title>
         <style type="text/css">
         	li:hover {
 				/*background-color: #EDF2F7 !important;*/

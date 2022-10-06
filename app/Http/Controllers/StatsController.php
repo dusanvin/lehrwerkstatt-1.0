@@ -26,11 +26,12 @@ class StatsController extends Controller
         $lehr_count = User::role('Lehr')->whereNotNull('email_verified_at')->count();
         $stud_count = User::role('Stud')->whereNotNull('email_verified_at')->count();
 
-        // Lehrkräfte mit ausgefülltem Bewerbungsbogen
-        $lehr_valid = User::role('Lehr')->where('valid', true)->count();
 
-        // Studenten mit ausgefülltem Bewerbungsbogen
-        $stud_valid = User::role('Stud')->where('valid', true)->count();
+        $lehr_incomplete_form = User::role('Lehr')->whereNotNull('email_verified_at')->where('valid', false)->count();
+        $lehr_complete_form = User::role('Lehr')->where('valid', true)->count();
+
+        $stud_incomplete_form = User::role('Stud')->whereNotNull('email_verified_at')->where('valid', false)->count();
+        $stud_complete_form = User::role('Stud')->where('valid', true)->count();
 
 
         $lehr_grundschule = 0;
@@ -41,10 +42,88 @@ class StatsController extends Controller
         $stud_realschule = 0;
         $stud_gymnasium = 0;
 
-        $users = User::all();
+
+        $users = User::whereNotNull('email_verified_at')->where('valid', true)->get();
+        
+        $lehr_landkreise = [
+            "Augsburg Stadt" => 0,
+            "Augsburg Land" => 0,
+            "Aichach-Friedberg" => 0,
+            "Dillingen a. d. Donau" => 0,
+            "Donau-Ries" => 0,
+            "Günzburg" => 0,
+            "Kaufbeuren" => 0,
+            "Kempten" => 0,
+            "Lindau" => 0,
+            "Memmingen" => 0,
+            "Neu-Ulm" => 0,
+            "Oberallgäu" => 0,
+            "Ostallgäu" => 0,
+            "Unterallgäu" => 0
+        ];
+        $stud_landkreise = [
+            "Augsburg Stadt" => 0,
+            "Augsburg Land" => 0,
+            "Aichach-Friedberg" => 0,
+            "Dillingen a. d. Donau" => 0,
+            "Donau-Ries" => 0,
+            "Günzburg" => 0,
+            "Kaufbeuren" => 0,
+            "Kempten" => 0,
+            "Lindau" => 0,
+            "Memmingen" => 0,
+            "Neu-Ulm" => 0,
+            "Oberallgäu" => 0,
+            "Ostallgäu" => 0,
+            "Unterallgäu" => 0
+        ];
         foreach($users as $user) {
             $user->survey_data = json_decode($user->survey_data);
             if($user->role == 'Lehr') {
+                switch($user->survey_data->landkreis) {
+                    case "Augsburg Stadt":
+                        $lehr_landkreise["Augsburg Stadt"]++;
+                        break;
+                    case "Augsburg Land":
+                        $lehr_landkreise["Augsburg Land"]++;
+                        break;
+                    case "Aichach-Friedberg":
+                        $lehr_landkreise["Aichach-Friedberg"]++;
+                        break;
+                    case "Dillingen a. d. Donau":
+                        $lehr_landkreise["Dillingen a. d. Donau"]++;
+                        break;
+                    case "Donau-Ries":
+                        $lehr_landkreise["Donau-Ries"]++;
+                        break;
+                    case "Günzburg":
+                        $lehr_landkreise["Günzburg"]++;
+                        break;
+                    case "Kaufbeuren":
+                        $lehr_landkreise["Kaufbeuren"]++;
+                        break;
+                    case "Kempten":
+                        $lehr_landkreise["Kempten"]++;
+                        break;
+                    case "Lindau":
+                        $lehr_landkreise["Lindau"]++;
+                        break;
+                    case "Memmingen":
+                        $lehr_landkreise["Memmingen"]++;
+                        break;
+                    case "Neu-Ulm":
+                        $lehr_landkreise["Neu-Ulm"]++;
+                        break;
+                    case "Oberallgäu":
+                        $lehr_landkreise["Oberallgäu"]++;
+                        break;
+                    case "Ostallgäu":
+                        $lehr_landkreise["Ostallgäu"]++;
+                        break;
+                    case "Unterallgäu":
+                        $lehr_landkreise["Unterallgäu"]++;
+                        break;
+                }
                 if($user->survey_data->schulart == 'Grundschule') {
                     $lehr_grundschule++;
                 } elseif($user->survey_data->schulart == 'Realschule') {
@@ -53,255 +132,104 @@ class StatsController extends Controller
                     $lehr_gymnasium++;
                 }
             } elseif($user->role == 'Stud') {
+                foreach($user->survey_data->landkreise as $landkreis) {
+                    switch($landkreis) {
+                        case "Augsburg Stadt":
+                            $stud_landkreise["Augsburg Stadt"]++;
+                            break;
+                        case "Augsburg Land":
+                            $stud_landkreise["Augsburg Land"]++;
+                            break;
+                        case "Aichach-Friedberg":
+                            $stud_landkreise["Aichach-Friedberg"]++;
+                            break;
+                        case "Dillingen a. d. Donau":
+                            $stud_landkreise["Dillingen a. d. Donau"]++;
+                            break;
+                        case "Donau-Ries":
+                            $stud_landkreise["Donau-Ries"]++;
+                            break;
+                        case "Günzburg":
+                            $stud_landkreise["Günzburg"]++;
+                            break;
+                        case "Kaufbeuren":
+                            $stud_landkreise["Kaufbeuren"]++;
+                            break;
+                        case "Kempten":
+                            $stud_landkreise["Kempten"]++;
+                            break;
+                        case "Lindau":
+                            $stud_landkreise["Lindau"]++;
+                            break;
+                        case "Memmingen":
+                            $stud_landkreise["Memmingen"]++;
+                            break;
+                        case "Neu-Ulm":
+                            $stud_landkreise["Neu-Ulm"]++;
+                            break;
+                        case "Oberallgäu":
+                            $stud_landkreise["Oberallgäu"]++;
+                            break;
+                        case "Ostallgäu":
+                            $stud_landkreise["Ostallgäu"]++;
+                            break;
+                        case "Unterallgäu":
+                            $stud_landkreise["Unterallgäu"]++;
+                            break;
+                    }
+                }
                 if($user->survey_data->schulart == 'Grundschule') {
-                    $lehr_grundschule++;
+                    $stud_grundschule++;
                 } elseif($user->survey_data->schulart == 'Realschule') {
-                    $lehr_realschule++;
+                    $stud_realschule++;
                 } elseif($user->survey_data->schulart == 'Gymnasium') {
-                    $lehr_gymnasium++;
+                    $stud_gymnasium++;
                 }
             }
         }
 
 
-        $m09_last_year = 0;
-        $m09_last_year_helfende = 0;
-        $m09_last_year_lehrende = 0;
-        $m09_last_year_moderation = 0;
-            
-        $m10_last_year = 0;
-        $m10_last_year_helfende = 0;
-        $m10_last_year_lehrende = 0;
-        $m10_last_year_moderation = 0;
-
-        $m11_last_year = 0;
-        $m11_last_year_helfende = 0;
-        $m11_last_year_lehrende = 0;
-        $m11_last_year_moderation = 0;
-
-        $m12_last_year = 0;
-        $m12_last_year_helfende = 0;
-        $m12_last_year_lehrende = 0;
-        $m12_last_year_moderation = 0;
-
-        $m01_current_year = 0;
-        $m01_current_year_helfende = 0;
-        $m01_current_year_lehrende = 0;
-        $m01_current_year_moderation = 0;
-
-        $m02_current_year = 0;
-        $m02_current_year_helfende = 0;
-        $m02_current_year_lehrende = 0;
-        $m02_current_year_moderation = 0;
-
-        $m03_current_year = 0;
-        $m03_current_year_helfende = 0;
-        $m03_current_year_lehrende = 0;
-        $m03_current_year_moderation = 0;
-
-        $m04_current_year = 0;
-        $m04_current_year_helfende = 0;
-        $m04_current_year_lehrende = 0;
-        $m04_current_year_moderation = 0;
-
-        $m05_current_year = 0;
-        $m05_current_year_helfende = 0;
-        $m05_current_year_lehrende = 0;
-        $m05_current_year_moderation = 0;
-
-        $m06_current_year = 0;
-        $m06_current_year_helfende = 0;
-        $m06_current_year_lehrende = 0;
-        $m06_current_year_moderation = 0;
-
-        $m07_current_year = 0;
-        $m07_current_year_helfende = 0;
-        $m07_current_year_lehrende = 0;
-        $m07_current_year_moderation = 0;
-
-        $m08_current_year = 0;
-        $m08_current_year_helfende = 0;
-        $m08_current_year_lehrende = 0;
-        $m08_current_year_moderation = 0;
-
-
-        foreach($verifiedUsers as $verifiedUser) {
-            if($verifiedUser->email_verified_at->format('Y') == (Carbon::now()->format('Y') - 1)) 
-                switch($verifiedUser->email_verified_at->format('m')) {
-                    case(9):
-                        $m09_last_year++;
-                        if($verifiedUser->role_id == 4)
-                            $m09_last_year_helfende++;
-                        if($verifiedUser->role_id == 5)
-                            $m09_last_year_lehrende++;
-                        if($verifiedUser->role_id == 3)
-                            $m09_last_year_moderation++;
-                        break;
-                    case(10):
-                        $m10_last_year++;
-                        if($verifiedUser->role_id == 4)
-                            $m10_last_year_helfende++;
-                        if($verifiedUser->role_id == 5)
-                            $m10_last_year_lehrende++;
-                        if($verifiedUser->role_id == 3)
-                            $m10_last_year_moderation++;
-                        break;                        
-                    case(11):
-                        $m11_last_year++;
-                        if($verifiedUser->role_id == 4)
-                            $m11_last_year_helfende++;
-                        if($verifiedUser->role_id == 5)
-                            $m11_last_year_lehrende++;
-                        if($verifiedUser->role_id == 3)
-                            $m11_last_year_moderation++;
-                        break;                        
-                    case(12):
-                        $m12_last_year++;
-                        if($verifiedUser->role_id == 4)
-                            $m12_last_year_helfende++;
-                        if($verifiedUser->role_id == 5)
-                            $m12_last_year_lehrende++;
-                        if($verifiedUser->role_id == 3)
-                            $m12_last_year_moderation++;
-                        break;                                                                             
-                }
-            if($verifiedUser->email_verified_at->format('Y') == Carbon::now()->format('Y')) 
-                switch($verifiedUser->email_verified_at->format('m')) {
-                    case(1):
-                        $m01_current_year++;
-                        if($verifiedUser->role_id == 4)
-                            $m01_current_year_helfende++;
-                        if($verifiedUser->role_id == 5)
-                            $m01_current_year_lehrende++;
-                        if($verifiedUser->role_id == 3)
-                            $m01_current_year_moderation++;
-                        break;                        
-                    case(2):
-                        $m02_current_year++;
-                        if($verifiedUser->role_id == 4)
-                            $m02_current_year_helfende++;
-                        if($verifiedUser->role_id == 5)
-                            $m02_current_year_lehrende++;
-                        if($verifiedUser->role_id == 3)
-                            $m02_current_year_moderation++;
-                        break;                          
-                    case(3):
-                        $m03_current_year++;
-                        if($verifiedUser->role_id == 4)
-                            $m03_current_year_helfende++;
-                        if($verifiedUser->role_id == 5)
-                            $m03_current_year_lehrende++;
-                        if($verifiedUser->role_id == 3)
-                            $m03_current_year_moderation++;     
-                        break;                     
-                    case(4):
-                        $m04_current_year++;
-                        if($verifiedUser->role_id == 4)
-                            $m04_current_year_helfende++;
-                        if($verifiedUser->role_id == 5)
-                            $m04_current_year_lehrende++;
-                        if($verifiedUser->role_id == 3)
-                            $m04_current_year_moderation++; 
-                        break;                                         
-                    case(5):
-                        $m05_current_year++;
-                        if($verifiedUser->role_id == 4)
-                            $m05_current_year_helfende++;
-                        if($verifiedUser->role_id == 5)
-                            $m05_current_year_lehrende++;
-                        if($verifiedUser->role_id == 3)
-                            $m05_current_year_moderation++;  
-                        break;                        
-                    case(6):
-                        $m06_current_year++;
-                        if($verifiedUser->role_id == 4)
-                            $m06_current_year_helfende++;
-                        if($verifiedUser->role_id == 5)
-                            $m06_current_year_lehrende++;
-                        if($verifiedUser->role_id == 3)
-                            $m06_current_year_moderation++; 
-                        break;                         
-                    case(7):
-                        $m07_current_year++;
-                        if($verifiedUser->role_id == 4)
-                            $m07_current_year_helfende++;
-                        if($verifiedUser->role_id == 5)
-                            $m07_current_year_lehrende++;
-                        if($verifiedUser->role_id == 3)
-                            $m07_current_year_moderation++; 
-                        break;                         
-                    case(8):
-                        $m08_current_year++;
-                        if($verifiedUser->role_id == 4)
-                            $m08_current_year_helfende++;
-                        if($verifiedUser->role_id == 5)
-                            $m08_current_year_lehrende++;
-                        if($verifiedUser->role_id == 3)
-                            $m08_current_year_moderation++; 
-                        break;                                                                                                                                    
-                }            
+        $recent_month_names = [];
+        $lehr_registrations_recent_months = [];
+        $stud_registrationss_recent_months = [];
+        Carbon::now()->locale('de_DE');
+        for($i=12; $i>0; $i--) {
+            $recent_month_names[$i] = Carbon::now()->subMonthsNoOverflow($i)->shortMonthName;
+            $lehr_registrations_recent_months[$i] = DB::table('users')->whereMonth('email_verified_at', Carbon::now()->subMonthsNoOverflow($i)->month)->where('role', 'Lehr')->count();
+            $stud_registrations_recent_months[$i] = DB::table('users')->whereMonth('email_verified_at', Carbon::now()->subMonthsNoOverflow($i)->month)->where('role', 'Stud')->count();
         }
 
 
+        $current_month_name = Carbon::now()->monthName;
+        $lehr_registrations_current_month = DB::table('users')->whereMonth('email_verified_at', Carbon::now()->month)->where('role', 'Lehr')->count();
+        $stud_registrations_current_month = DB::table('users')->whereMonth('email_verified_at', Carbon::now()->month)->where('role', 'Stud')->count();
 
 
         return view('stats',
             compact(
-                'users',
-                'roles',
-                'adminsCount',
-                'modsCount',
-                'helfendeCount',
-                'lehrendeCount',
-                'alleAngeboteCount',
-                'aktiveAngeboteCount',
-                'inaktiveAngeboteCount',
-                'alleBedarfeCount',
-                'aktiveBedarfeCount',
-                'inaktiveBedarfeCount',
-                'hfDazCount',
-                'nfDazCount',
-                'gsCount',
-                'msCount',
-                'rsCount',
-                'gymCount',
-                'sonstigesCount',
-                'm09_last_year_helfende',
-                'm09_last_year_lehrende',
-                'm09_last_year_moderation',
-                'm10_last_year_helfende',
-                'm10_last_year_lehrende',
-                'm10_last_year_moderation',
-                'm11_last_year_helfende',
-                'm11_last_year_lehrende',
-                'm11_last_year_moderation',
-                'm12_last_year_helfende',
-                'm12_last_year_lehrende',
-                'm12_last_year_moderation',
-                'm01_current_year_helfende',
-                'm01_current_year_lehrende',
-                'm01_current_year_moderation',
-                'm02_current_year_helfende',
-                'm02_current_year_lehrende',
-                'm02_current_year_moderation',
-                'm03_current_year_helfende',
-                'm03_current_year_lehrende',
-                'm03_current_year_moderation',
-                'm04_current_year_helfende',
-                'm04_current_year_lehrende',
-                'm04_current_year_moderation',
-                'm05_current_year_helfende',
-                'm05_current_year_lehrende',
-                'm05_current_year_moderation',
-                'm06_current_year_helfende',
-                'm06_current_year_lehrende',
-                'm06_current_year_moderation',
-                'm07_current_year_helfende',
-                'm07_current_year_lehrende',
-                'm07_current_year_moderation',
-                'm08_current_year_helfende',
-                'm08_current_year_lehrende',
-                'm08_current_year_moderation'
+                'user_count',
+                'admin_count',
+                'mod_count',
+                'lehr_count',
+                'stud_count',
+                'current_month_name',
+                'lehr_registrations_current_month',
+                'stud_registrations_current_month',
+                'recent_month_names',
+                'lehr_registrations_recent_months',
+                'stud_registrations_recent_months',
+                'lehr_incomplete_form',
+                'lehr_complete_form',
+                'stud_incomplete_form',
+                'stud_complete_form',
+                'lehr_grundschule',
+                'lehr_realschule',
+                'lehr_gymnasium',
+                'stud_grundschule',
+                'stud_realschule',
+                'stud_gymnasium',
+                'lehr_landkreise',
+                'stud_landkreise'
             )
         );
     }

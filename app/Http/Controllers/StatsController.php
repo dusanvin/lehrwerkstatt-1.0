@@ -44,22 +44,7 @@ class StatsController extends Controller
 
 
         $users = User::whereNotNull('email_verified_at')->where('valid', true)->get();
-        $landkreise = [
-            "Augsburg Stadt",
-            "Augsburg Land",
-            "Aichach-Friedberg",
-            "Dillingen a. d. Donau",
-            "Donau-Ries",
-            "Günzburg",
-            "Kaufbeuren",
-            "Kempten",
-            "Lindau",
-            "Memmingen",
-            "Neu-Ulm",
-            "Oberallgäu",
-            "Ostallgäu",
-            "Unterallgäu"
-        ];
+        
         $lehr_landkreise = [
             "Augsburg Stadt" => 0,
             "Augsburg Land" => 0,

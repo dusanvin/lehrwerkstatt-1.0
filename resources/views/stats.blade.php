@@ -211,9 +211,9 @@
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-200">Registrierte Nutzer</h3>
+                                    <h3 class="font-semibold text-lg text-gray-300">Registrierte Nutzer</h3>
 
-                                    <p class="text-sm text-gray-300">Nutzende im relativen Vergleich</p>
+                                    <p class="text-sm text-gray-400">Nutzende im relativen Vergleich</p>
 
                                 </div>
 
@@ -241,9 +241,9 @@
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-200">Registrierungen</h3>
+                                    <h3 class="font-semibold text-lg text-gray-300">Registrierungen</h3>
 
-                                    <p class="text-sm text-gray-300">Die letzten {{ count($recent_month_names) }} Monate im
+                                    <p class="text-sm text-gray-400">Die letzten {{ count($recent_month_names) }} Monate im
                                         Vergleich</p>
 
                                 </div>
@@ -268,10 +268,10 @@
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-200">Registrierungen
+                                    <h3 class="font-semibold text-lg text-gray-300">Registrierungen
                                         {{ $current_month_name }}</h3>
 
-                                    <p class="text-sm text-gray-300">Vorkommen im laufenden Monat</p>
+                                    <p class="text-sm text-gray-400">Vorkommen im laufenden Monat</p>
 
                                 </div>
 
@@ -295,9 +295,9 @@
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-200">Bewerbungsformulare</h3>
+                                    <h3 class="font-semibold text-lg text-gray-300">Bewerbungsformulare</h3>
 
-                                    <p class="text-sm text-gray-300">Ausfüllstatus im relativen Vergleich</p>
+                                    <p class="text-sm text-gray-400">Ausfüllstatus im relativen Vergleich</p>
 
                                 </div>
 
@@ -325,9 +325,9 @@
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-200">Schularten</h3>
+                                    <h3 class="font-semibold text-lg text-gray-300">Schularten</h3>
 
-                                    <p class="text-sm text-gray-300">Ausgefüllte Bewerbungen im relativen Vergleich</p>
+                                    <p class="text-sm text-gray-400">Ausgefüllte Bewerbungen im relativen Vergleich</p>
 
                                 </div>
 
@@ -351,9 +351,9 @@
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-200">Angebotene Landkreise</h3>
+                                    <h3 class="font-semibold text-lg text-gray-300">Angebotene Landkreise</h3>
 
-                                    <p class="text-sm text-gray-300">Angebotene Landkreise von Lehrkräften</p>
+                                    <p class="text-sm text-gray-400">Angebotene Landkreise von Lehrkräften</p>
 
                                 </div>
 
@@ -381,9 +381,9 @@
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-200">Bevorzugte Landkreise</h3>
+                                    <h3 class="font-semibold text-lg text-gray-300">Bevorzugte Landkreise</h3>
 
-                                    <p class="text-sm text-gray-300">Von Studierenden bevorzugte Landkreise</p>
+                                    <p class="text-sm text-gray-400">Von Studierenden bevorzugte Landkreise</p>
 
                                 </div>
 
@@ -711,7 +711,7 @@
                                 {{ $stud_landkreis }},
                             @endforeach
                         ],
-                        backgroundColor: 'rgba(79, 70, 229, 0.6)',
+                        backgroundColor: 'rgba(126, 34, 206, 0.6)',
                     },
                 ]
             };
@@ -724,9 +724,33 @@
                     plugins: {
                         legend: {
                             position: 'top',
+                            labels: {
+                              color: 'rgb(156 163 175)',  // not 'fontColor:' anymore
+                              // fontSize: 18  // not 'fontSize:' anymore
+                            }
+                          }
+                    },
+                    scales: {
+                      y: {  // not 'yAxes: [{' anymore (not an array anymore)
+                        ticks: {
+                          color: 'rgb(156 163 175)', // not 'fontColor:' anymore
+                          // fontSize: 18,
+
+                          stepSize: 1,
+                          beginAtZero: true
                         }
+                      },
+                      x: {  // not 'xAxes: [{' anymore (not an array anymore)
+                        ticks: {
+                          color: 'rgb(156 163 175)',  // not 'fontColor:' anymore
+                          //fontSize: 14,
+                          
+                          stepSize: 1,
+                          beginAtZero: true
+                        }
+                      }
                     }
-                },
+                }
             };
 
             var myChart = new Chart(

@@ -1,9 +1,9 @@
 @extends ('layouts.app')
 
 @section('content')
+    <!DOCTYPE html>
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,13 +44,15 @@
 
                         <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                            Erhalten Sie Einblicke in die Nutzungsstatistiken des Portals. Momentane Statistiken sind hinsichtlich der Registrierungen, Abmeldungen, Nutzenden, Zuweisungen, Studiengänge und des Betreuungsverhältnisses einsehbar. Kontaktieren Sie bei technischen Anregungen und Anliegen das DigiLLab der Universität Augsburg.
+                            Erhalten Sie Einblicke in die Nutzungsstatistiken des Portals. Momentane Statistiken sind
+                            hinsichtlich der Registrierungen, Abmeldungen, Nutzenden, Zuweisungen, Studiengänge und des
+                            Betreuungsverhältnisses einsehbar. Kontaktieren Sie bei technischen Anregungen und Anliegen das
+                            DigiLLab der Universität Augsburg.
 
                         </div>
 
                     </div>
 
-                    <!-- Diagramme -->
 
                     <div class="flex flex-wrap px-4 pt-4 pb-1 mx-1 mt-0 sm:mt-6 bg-gray-800 rounded-md">
 
@@ -60,17 +62,17 @@
 
                             <div class="grid justify-items-center">
 
-                                <div class="py-4 px-4 grid justify-items-center rounded-md">                                    
+                                <div class="py-4 px-4 grid justify-items-center rounded-md">
 
                                     <h3 class="text-3xl leading-6 font-medium text-gray-200">
 
-                                        {{$users}}
+                                        {{ $user_count }}
 
                                     </h3>
 
                                     <div class="mt-4 text-sm text-gray-400">
 
-                                        Nutzende 
+                                        Registrierte Nutzer
 
                                     </div>
 
@@ -79,7 +81,6 @@
                             </div>
 
                         </div>
-
 
                         <!-- Alle Nutzenden -->
 
@@ -93,7 +94,7 @@
 
                                     <h3 class="text-3xl leading-6 font-medium text-gray-200">
 
-                                        {{ $adminsCount }}
+                                        {{ $admin_count }}
 
                                     </h3>
 
@@ -121,13 +122,13 @@
 
                                     <h3 class="text-3xl leading-6 font-medium text-gray-200">
 
-                                    {{ $modsCount }}
+                                        {{ $mod_count }}
 
-                                </h3>
+                                    </h3>
 
-                                <div class="mt-4 text-sm text-gray-400">
+                                    <div class="mt-4 text-sm text-gray-400">
 
-                                    Moderierende 
+                                        Moderierende
 
                                     </div>
 
@@ -139,7 +140,7 @@
 
                         <!-- Moderierende -->
 
-                        <!-- Helfende -->
+                        <!-- Lehrkräfte -->
 
                         <div class="flex-1 my-2 mx-4">
 
@@ -149,13 +150,13 @@
 
                                     <h3 class="text-3xl leading-6 font-medium text-gray-200">
 
-                                    {{ $helfendeCount }}
+                                        {{ $lehr_count }}
 
-                                </h3>
+                                    </h3>
 
-                                <div class="mt-4 text-sm text-gray-400">
+                                    <div class="mt-4 text-sm text-gray-400">
 
-                                    Studierende
+                                        Lehrkräfte
 
                                     </div>
 
@@ -165,9 +166,9 @@
 
                         </div>
 
-                        <!-- Helfende -->
+                        <!-- Lehrkräfte -->
 
-                        <!-- Lehrende -->
+                        <!-- Studierende -->
 
                         <div class="flex-1 my-2 mx-4">
 
@@ -177,13 +178,13 @@
 
                                     <h3 class="text-3xl leading-6 font-medium">
 
-                                    {{ $lehrendeCount }}
+                                        {{ $stud_count }}
 
-                                </h3>
+                                    </h3>
 
-                                <div class="mt-4 text-sm text-gray-400">
+                                    <div class="mt-4 text-sm text-gray-400">
 
-                                    Lehrkräfte
+                                        Studierende
 
                                     </div>
 
@@ -193,11 +194,12 @@
 
                         </div>
 
-                        <!-- Lehrende -->
+                        <!-- Studierende -->
 
                     </div>
 
-                    <!-- Kreisdiagramme -->
+
+                    <!-- Diagramme -->
 
                     <div class="grid grid-cols-1 md:grid-cols-4 pt-1 sm:pt-8">
 
@@ -209,17 +211,17 @@
 
                                 <div class="text-center">
 
-                                    <h3 class="font-semibold text-lg text-gray-200">Nutzende</h3>
+                                    <h3 class="font-semibold text-lg text-gray-200">Registrierte Nutzer</h3>
 
                                     <p class="text-sm text-gray-300">Nutzende im relativen Vergleich</p>
 
                                 </div>
 
-                                <div>                                    
+                                <div>
 
                                     <div class="px-0 py-0 sm:px-8 sm:py-8">
 
-                                        <canvas id="nutzende"></canvas>
+                                        <canvas id="first"></canvas>
 
                                     </div>
 
@@ -231,149 +233,7 @@
 
                         <!-- Nutzende im relativen Vergleich -->
 
-                        <!-- Rollen im relativen Vergleich -->
-
-                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
-
-                            <div class="rounded-md p-6">
-
-                                <div class="text-center">
-
-                                    <h3 class="font-semibold text-lg text-gray-200">Rollen</h3>
-
-                                    <p class="text-sm text-gray-300">Rollen im relativen Vergleich</p>
-
-                                </div>
-
-                                <div class="px-0 py-0 sm:px-8 sm:py-8">
-
-                                    <canvas id="myChart4"></canvas>
-
-                                </div>
-                                
-                            </div>
-
-                        </div>
-
-                        <!-- Rollen im relativen Vergleich -->
-
-                        <!-- Angebote im relativen Vergleich -->
-
-                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
-
-                            <div class="rounded-md p-6">
-
-                                <div class="text-center">
-
-                                    <h3 class="font-semibold text-lg text-gray-200">Angebote</h3>
-
-                                    <p class="text-sm text-gray-300">{{ $alleAngeboteCount }} Angebote im relativen Vergleich</p>
-
-                                </div>
-
-                                <div class="px-0 py-0 sm:px-8 sm:py-8">
-
-                                    <canvas id="myChart7"></canvas>
-
-                                </div>
-                                
-                            </div>
-
-                        </div>
-
-                        <!-- Angebote im relativen Vergleich -->
-
-                        <!-- Bedarfe im relativen Vergleich -->
-
-                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
-
-                            <div class="rounded-md p-6">
-
-                                <div class="text-center">
-
-                                    <h3 class="font-semibold text-lg text-gray-200">Bedarfe</h3>
-
-                                    <p class="text-sm text-gray-300">{{ $alleBedarfeCount }} Bedarfe im relativen Vergleich</p>
-
-                                </div>
-
-                                <div class="px-0 py-0 sm:px-8 sm:py-8">
-
-                                    <canvas id="myChart8"></canvas>
-
-                                </div>
-                                
-                            </div>
-
-                        </div>
-
-                        <!-- Bedarfe im relativen Vergleich -->
-
-                    </div>
-
-                    <!-- Kreisdiagramme -->
-
-                    <!-- Balkendiagramme -->
-
-                    <div class="grid grid-cols-1 md:grid-cols-3">
-
-                        <!-- Nutzende im relativen Vergleich -->
-
-                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
-
-                            <div class="rounded-md p-6 ">
-
-                                <div class="text-center">
-
-                                    <h3 class="font-semibold text-lg text-gray-200">Lernende</h3>
-
-                                    <p class="text-sm text-gray-300">Betreute Lernende</p>
-
-                                </div>
-
-                                <div>                                    
-
-                                    <div class="px-0 py-0 sm:py-8">
-
-                                        <canvas id="lernende"></canvas>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Nutzende im relativen Vergleich -->
-
-                        <!-- Studiengänge -->
-
-                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
-
-                            <div class="rounded-md p-6">
-
-                                <div class="text-center">
-
-                                    <h3 class="font-semibold text-lg text-gray-200">Studiengänge</h3>
-
-                                    <p class="text-sm text-gray-300">Nutzende</p>
-
-                                </div>
-
-                                <div class="px-0 py-0 sm:py-8">
-
-                                    <canvas id="myChart"></canvas>
-
-                                </div>
-                                
-                            </div>
-
-                        </div>
-
-                        <!-- Studiengänge x-Achse: HF DaZ | NF DaZ | GS | MS | RS | GYM | Sonstiges -->
-
-                        <!-- Rollen (nach Monat) im relativen Vergleich -->
+                        <!-- Registrierungen in den letzten 12 Monaten -->
 
                         <div class="mx-1 my-1 bg-gray-800 rounded-md ">
 
@@ -383,25 +243,163 @@
 
                                     <h3 class="font-semibold text-lg text-gray-200">Registrierungen</h3>
 
-                                    <p class="text-sm text-gray-300">Rollen im relativen Vergleich</p>
+                                    <p class="text-sm text-gray-300">Die letzten {{ count($recent_month_names) }} Monate im
+                                        Vergleich</p>
 
                                 </div>
 
                                 <div class="px-0 py-0 sm:py-8">
 
-                                    <canvas id="mix"></canvas>
+                                    <canvas id="second"></canvas>
 
                                 </div>
-                                
+
                             </div>
 
                         </div>
 
-                        <!-- Rollen (nach Monat) im relativen Vergleich -->
+                        <!-- Registrierungen in den letzten 12 Monaten -->
+
+                        <!-- Registrierungen diesen Monat -->
+
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
+
+                            <div class="rounded-md p-6">
+
+                                <div class="text-center">
+
+                                    <h3 class="font-semibold text-lg text-gray-200">Registrierungen
+                                        {{ $current_month_name }}</h3>
+
+                                    <p class="text-sm text-gray-300">Vorkommen im laufenden Monat</p>
+
+                                </div>
+
+                                <div class="px-0 py-0 sm:py-8">
+
+                                    <canvas id="third"></canvas>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Registrierungen diesen Monat -->
+
+                        <!-- Ausfüllstatus im relativen Vergleich -->
+
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
+
+                            <div class="rounded-md p-6">
+
+                                <div class="text-center">
+
+                                    <h3 class="font-semibold text-lg text-gray-200">Bewerbungsformulare</h3>
+
+                                    <p class="text-sm text-gray-300">Ausfüllstatus im relativen Vergleich</p>
+
+                                </div>
+
+                                <div class="px-0 py-0 sm:px-8 sm:py-8">
+
+                                    <canvas id="fourth"></canvas>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Ausfüllstatus im relativen Vergleich -->
 
                     </div>
 
-                    <!-- Balkendiagramme -->
+                    <div class="grid grid-cols-1 md:grid-cols-3">
+
+                        <!-- Ausgefüllte Bewerbungen im relativen Vergleich -->
+
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
+
+                            <div class="rounded-md p-6">
+
+                                <div class="text-center">
+
+                                    <h3 class="font-semibold text-lg text-gray-200">Schularten</h3>
+
+                                    <p class="text-sm text-gray-300">Ausgefüllte Bewerbungen im relativen Vergleich</p>
+
+                                </div>
+
+                                <div class="px-0 py-0 sm:px-8 sm:py-8">
+
+                                    <canvas id="fifth"></canvas>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Ausgefüllte Bewerbungen im relativen Vergleich -->
+
+                        <!-- Angebotene Landkreise von Lehrkräften -->
+
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
+
+                            <div class="rounded-md p-6 ">
+
+                                <div class="text-center">
+
+                                    <h3 class="font-semibold text-lg text-gray-200">Angebotene Landkreise</h3>
+
+                                    <p class="text-sm text-gray-300">Angebotene Landkreise von Lehrkräften</p>
+
+                                </div>
+
+                                <div>
+
+                                    <div class="px-0 py-0 sm:py-8">
+
+                                        <canvas id="sixth"></canvas>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Angebotene Landkreise von Lehrkräften -->
+
+                        <!-- Von Student*innen bevorzugte Landkreise -->
+
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
+
+                            <div class="rounded-md p-6">
+
+                                <div class="text-center">
+
+                                    <h3 class="font-semibold text-lg text-gray-200">Bevorzugte Landkreise</h3>
+
+                                    <p class="text-sm text-gray-300">Von Studierenden bevorzugte Landkreise</p>
+
+                                </div>
+
+                                <div class="px-0 py-0 sm:py-8">
+
+                                    <canvas id="seventh"></canvas>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Von Student*innen bevorzugte Landkreise -->
+
+                    </div>
 
                 </div>
 
@@ -419,357 +417,327 @@
 
         <script type="text/javascript">
 
-            //Angebote myChart7
 
-            DATA_COUNT = 5;
-            NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
+            // FIRST
 
-            datapie = {
-              labels: ['Aktiv', 'Inaktiv'],
-              datasets: [
-                {
-                  label: 'Dataset 1',
-                  data: [{{ $aktiveAngeboteCount }}, {{ $inaktiveAngeboteCount }}],
-                  backgroundColor: ['rgba(5, 150, 105, 0.6)', 'rgba(220, 38, 38, 0.6)']
-                }
-              ]
-            };
-
-            config = {
-              type: 'pie',
-              data: datapie,
-              options: {
-                responsive: true,
-                plugins: {
-                  legend: {
-                    position: 'top',
-                  }
-                }
-              },
-            };
-
-            var myChart = new Chart(
-                document.getElementById('myChart7'),
-                config
-            );
-
-            //Bedarfe myChart8
-
-            DATA_COUNT = 5;
-            NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
-
-            datapie = {
-              labels: ['Aktiv', 'Inaktiv'],
-              datasets: [
-                {
-                  label: 'Dataset 1',
-                  data: [{{ $aktiveBedarfeCount }}, {{ $inaktiveBedarfeCount }}],
-                  backgroundColor: ['rgba(5, 150, 105, 0.6)', 'rgba(220, 38, 38, 0.6)']
-                }
-              ]
-            };
-
-            config = {
-              type: 'pie',
-              data: datapie,
-              options: {
-                responsive: true,
-                plugins: {
-                  legend: {
-                    position: 'top',
-                  }
-                }
-              },
-            };
-
-            var myChart = new Chart(
-                document.getElementById('myChart8'),
-                config
-            );
-
-
-            //Nutzende
-                DATA_COUNT = 5;
-                NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 400};
-
-                labels2 = ['Admins', 'Moderierende', 'Studierende', 'Lehrkräfte'];
-                data = {
-                  labels: labels2,
-                  datasets: [
-                    {
-                      label: 'Dataset 1',
-                      data: [{{ $adminsCount }}, {{ $modsCount }}, {{ $helfendeCount }}, {{ $lehrendeCount }}],
-                      borderColor: 'transparent',
-                      color: 'transparent',
-                      backgroundColor: [
+            data = {
+                labels: ['Admins', 'Moderierende', 'Lehrkräfte', 'Studierende'],
+                datasets: [{
+                    label: 'Registrierte Nutzer',
+                    data: [{{ $admin_count }}, {{ $mod_count }}, {{ $lehr_count }}, {{ $stud_count }}],
+                    borderColor: 'transparent',
+                    color: 'transparent',
+                    backgroundColor: [
                         'rgba(220, 38, 38, 0.6)',
                         'rgba(5, 150, 105, 0.6)',
                         'rgba(79, 70, 229, 0.6)',
                         'rgba(245, 158, 11, 0.6)'
-                      ]
-                    }
-                  ]
-                };
-
-                config = {
-                  // type: 'polarArea',
-                  type: 'pie',
-                  data: data,
-                  options: {
-                    // scales: {
-                    //   r: {
-                    //     ticks: {
-                    //       display: false
-                    //     },
-                    //     gridLines: {
-                    //       display: false
-                    //     }
-                    //   }
-                    // },
-                    responsive: true,
-                    plugins: {
-                      legend: {
-                        position: 'top',
-                      }
-
-                    }
-                  },
-                };
-
-                var myChart = new Chart(
-                    document.getElementById('nutzende'),
-                    config
-                  );
-
-            // mychart4 - Rollen
-                DATA_COUNT = 5;
-                NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
-
-                data = {
-                  labels: [ 'Lehrkräfte', 'Studierende'],
-                  datasets: [
-                    {
-                      label: 'Dataset 1',
-                      data: [{{ $lehrendeCount }}, {{ $helfendeCount }}],
-                      backgroundColor: [
-                        'rgba(245, 158, 11, 0.6)',
-                        'rgba(79, 70, 229, 0.6)'
-                    ],
-                    }
-                  ]
-                };
-
-                config = {
-                  type: 'pie',
-                  data: data,
-                  options: {
-                    responsive: true,
-                    plugins: {
-                      legend: {
-                        position: 'top',
-                      }
-
-                    }
-                  },
-                };
-
-                var myChart = new Chart(
-                    document.getElementById('myChart4'),
-                    config
-                  );
-
-            
-            //Lernende
-            labels = [
-              'September',
-              'Oktober',
-              'November',
-              'Dezember',
-              'Januar',
-              'Februar',
-              'März',
-              'April',
-              'Mai',
-              'Juni',
-              'Juli',
-              'August',
-            ];
-            data = {
-              labels: labels,
-              datasets: [{
-                label: 'Betreute Lernende',
-                backgroundColor: 'rgba(5, 150, 105, 0.6)',
-                borderColor: 'rgba(5, 150, 105, 0.6)',
-                data: [4, 0, 0, 0, 0, 0, 0],
-              }]
-            };
-
-            config = {
-              type: 'line',
-              data,
-              options: {
-                scales: {
-                        y: {
-                            min: 0,
-                            ticks: {
-                              stepSize: 1
-                            }
-                        }
-                    },
-                responsive: true,
-                plugins: {
-                  legend: {
-                        display: false,
-                  }
-
-                }
-              }
-            };
-
-            var myChart = new Chart(
-                document.getElementById('lernende'),
-                config
-              );
-
-
-            // mychart
-            labels = [
-              'HF DaZ',
-              'NF DaZ',
-              'GS',
-              'MS',
-              'RS',
-              'GYM',
-              'Sonstiges'
-            ];
-
-            data = {
-                labels: labels,
-                datasets: [{
-                    // label: 'DaZ/DaF (B.A.)',
-                    data: [{{ $hfDazCount }}, {{ $nfDazCount }}, {{ $gsCount }}, {{ $msCount }}, {{ $rsCount }}, {{ $gymCount }}, {{ $sonstigesCount }}],
-                    backgroundColor: [
-                        'rgba(79, 70, 229, 0.6)'
                     ]
                 }]
             };
 
             config = {
-                type: 'bar',
-                data,
+                type: 'pie',
+                data: data,
                 options: {
-                    scales: {
-                        y: {
-                            min: 0,
-                            ticks: {
-                              stepSize: 1
-                            }
-                        }
-                    },
+                    responsive: true,
                     plugins: {
-                      legend: {
-                        display: false,
-                      }
+                        legend: {
+                            position: 'top',
+                        }
+
                     }
-                }
+                },
             };
 
             var myChart = new Chart(
-                document.getElementById('myChart'),
+                document.getElementById('first'),
                 config
-              );
+            );
 
-            //mix: Helfende, Lehrende und Lernende pro Monat als Stacked Bar Chart with Groups
 
-            DATA_COUNT = 7;
-            NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
+            // SECOND
 
-            labels = [
-              'September',
-              'Oktober',
-              'November',
-              'Dezember',
-              'Januar',
-              'Februar',
-              'März',
-              'April',
-              'Mai',
-              'Juni',
-              'Juli',
-              'August',
-            ];
             data = {
-              labels: labels,
-              datasets: [
-                {
-                  label: 'Helfende',
-                  data: [{{ $m09_last_year_helfende }}, {{ $m10_last_year_helfende }}, {{ $m11_last_year_helfende }}, {{ $m12_last_year_helfende }}, 
-                  {{ $m01_current_year_helfende }}, {{ $m02_current_year_helfende }}, {{ $m03_current_year_helfende }}, {{ $m04_current_year_helfende }},
-                  {{ $m05_current_year_helfende }}, {{ $m06_current_year_helfende }}, {{ $m07_current_year_helfende }}, {{ $m08_current_year_helfende }}
+                labels: [
+                    @for ($i = 12; $i > 0; $i--)
+                        '{{ $recent_month_names[$i] }}',
+                    @endfor
                 ],
-                  backgroundColor: 'rgba(79, 70, 229, 0.6)',
-                  stack: 'Stack 0',
-                },
-                {
-                  label: 'Lehrende',
-                  data: [{{ $m09_last_year_lehrende }}, {{ $m10_last_year_lehrende }}, {{ $m11_last_year_lehrende }}, {{ $m12_last_year_lehrende }}, 
-                  {{ $m01_current_year_lehrende }}, {{ $m02_current_year_lehrende }}, {{ $m03_current_year_lehrende }}, {{ $m04_current_year_lehrende }},
-                  {{ $m05_current_year_lehrende }}, {{ $m06_current_year_lehrende }}, {{ $m07_current_year_lehrende }}, {{ $m08_current_year_lehrende }}
-                ],
-                  backgroundColor: 'rgba(245, 158, 11, 0.6)',
-                  stack: 'Stack 1',
-                },
-                {
-                  label: 'Moderation',
-                  data: [{{ $m09_last_year_moderation }}, {{ $m10_last_year_moderation }}, {{ $m11_last_year_moderation }}, {{ $m12_last_year_moderation }}, 
-                  {{ $m01_current_year_moderation }}, {{ $m02_current_year_moderation }}, {{ $m03_current_year_moderation }}, {{ $m04_current_year_moderation }},
-                  {{ $m05_current_year_moderation }}, {{ $m06_current_year_moderation }}, {{ $m07_current_year_moderation }}, {{ $m08_current_year_moderation }}
-                ],
-                  backgroundColor: 'rgba(5, 150, 105, 0.6)',
-                  stack: 'Stack 2',
-                },
-              ]
+                datasets: [{
+                        label: 'Lehrkräfte',
+                        data: [
+                            @for ($i = 12; $i > 0; $i--)
+                                {{ $lehr_registrations_recent_months[$i] }},
+                            @endfor
+                        ],
+                        backgroundColor: 'rgba(79, 70, 229, 0.6)',
+                        stack: 'Stack 0',
+                    },
+                    {
+                        label: 'Studierende',
+                        data: [
+                            @for ($i = 12; $i > 0; $i--)
+                                {{ $stud_registrations_recent_months[$i] }},
+                            @endfor
+                        ],
+                        backgroundColor: 'rgba(245, 158, 11, 0.6)',
+                        stack: 'Stack 1',
+                    },
+                ]
             };
 
             config = {
-              type: 'bar',
-              data: data,
-              options: {
-                plugins: {
-                  title: {
-                    display: false
-                  },
-                },
-                responsive: true,
-                interaction: {
-                  intersect: false,
-                },
-                scales: {
-                  x: {
-                    stacked: true,
-                  },
-                  y: {
-                    stacked: true,
-                    min: 0,
-                    ticks: {
-                      stepSize: 1
+                type: 'bar',
+                data: data,
+                options: {
+                    plugins: {
+                        title: {
+                            display: false
+                        },
+                    },
+                    responsive: true,
+                    interaction: {
+                        intersect: false,
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                        },
+                        y: {
+                            stacked: true,
+                            min: 0,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
                     }
-                  }
                 }
-              }
             };
 
-            // Aufruf
             var myChart = new Chart(
-                document.getElementById('mix'),
+                document.getElementById('second'),
                 config
-              );
+            );
+
+
+
+            // THIRD
+
+            data = {
+                labels: ['Lehrkräfte', 'Studierende'],
+                datasets: [{
+                    label: 'Registrierte Nutzer (laufender Monat)',
+                    data: [{{ $lehr_registrations_current_month }}, {{ $stud_registrations_current_month }}],
+                    backgroundColor: ['rgba(5, 150, 105, 0.6)', 'rgba(220, 38, 38, 0.6)']
+                }]
+            };
+
+            config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    }
+                },
+            };
+
+            var myChart = new Chart(
+                document.getElementById('third'),
+                config
+            );
+
+
+            // FOURTH
+
+            data = {
+                labels: ['Lehrkräfte', 'Studierende'],
+                datasets: [{
+                        label: 'Unvollständig',
+                        data: [{{ $lehr_incomplete_form }}, {{ $stud_incomplete_form }}],
+                        backgroundColor: 'rgba(79, 70, 229, 0.6)',
+                        stack: 'Stack 0',
+                    },
+                    {
+                        label: 'Vollständig',
+                        data: [{{ $lehr_complete_form }}, {{ $stud_complete_form }}],
+                        backgroundColor: 'rgba(245, 158, 11, 0.6)',
+                        stack: 'Stack 1',
+                    },
+                ]
+            };
+
+            config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    plugins: {
+                        title: {
+                            display: false
+                        },
+                    },
+                    responsive: true,
+                    interaction: {
+                        intersect: false,
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                        },
+                        y: {
+                            stacked: true,
+                            min: 0,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            };
+
+            var myChart = new Chart(
+                document.getElementById('fourth'),
+                config
+            );
+
+
+            // FIFTH
+
+            data = {
+                labels: ['Grundschule', 'Realschule', 'Gymnasium'],
+                datasets: [{
+                        label: 'Lehrkräfte',
+                        data: [{{ $lehr_grundschule }}, {{ $lehr_realschule }}, {{ $lehr_gymnasium }}],
+                        backgroundColor: 'rgba(79, 70, 229, 0.6)',
+                        stack: 'Stack 0',
+                    },
+                    {
+                        label: 'Studierende',
+                        data: [{{ $stud_grundschule }}, {{ $stud_realschule }}, {{ $stud_gymnasium }}],
+                        backgroundColor: 'rgba(245, 158, 11, 0.6)',
+                        stack: 'Stack 1',
+                    },
+                ]
+            };
+
+            config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    plugins: {
+                        title: {
+                            display: false
+                        },
+                    },
+                    responsive: true,
+                    interaction: {
+                        intersect: false,
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                        },
+                        y: {
+                            stacked: true,
+                            min: 0,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            };
+
+            var myChart = new Chart(
+                document.getElementById('fifth'),
+                config
+            );
+
+
+            // SIXTH
+
+            data = {
+                labels: [
+                    @foreach ($lehr_landkreise as $landkreis => $value)
+                        '{{ $landkreis }}',
+                    @endforeach
+                ],
+                datasets: [{
+                        label: 'Lehrkräfte',
+                        data: [
+                            @foreach ($lehr_landkreise as $lehr_landkreis)
+                                {{ $lehr_landkreis }},
+                            @endforeach
+                        ],
+                        backgroundColor: 'rgba(79, 70, 229, 0.6)',
+                    },
+                ]
+            };
+
+            config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    }
+                },
+            };
+
+            var myChart = new Chart(
+                document.getElementById('sixth'),
+                config
+            );
+
+            // SEVENTH
+
+            data = {
+                labels: [
+                    @foreach ($stud_landkreise as $landkreis => $value)
+                        '{{ $landkreis }}',
+                    @endforeach
+                ],
+                datasets: [{
+                        label: 'Lehrkräfte',
+                        data: [
+                            @foreach ($stud_landkreise as $stud_landkreis)
+                                {{ $stud_landkreis }},
+                            @endforeach
+                        ],
+                        backgroundColor: 'rgba(79, 70, 229, 0.6)',
+                    },
+                ]
+            };
+
+            config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    }
+                },
+            };
+
+            var myChart = new Chart(
+                document.getElementById('seventh'),
+                config
+            );
 
 
         </script>
 
     </body>
 
-</html>
-
+    </html>
 @endsection

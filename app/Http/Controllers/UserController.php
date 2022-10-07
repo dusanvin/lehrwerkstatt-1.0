@@ -102,19 +102,13 @@ class UserController extends Controller
 
 
     public function update(Request $request, $id)
-
     {
-
-        // Nach Klick auf "Änderungen übernehmen"
-
         $this->validate($request, [
             'vorname' => 'required',
             'nachname' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
         ]);
-
-
 
         $input = $request->all();
 

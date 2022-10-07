@@ -53,7 +53,7 @@
 
                             <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
 
-                                {{ $user->survey_data->vorname }}
+                                {{ $user->vorname }}
 
                             </dd>
 
@@ -69,7 +69,7 @@
 
                             <dd class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
 
-                                {{ $user->survey_data->nachname }}
+                                {{ $user->nachname }}
 
                             </dd>
 

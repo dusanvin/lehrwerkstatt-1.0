@@ -361,7 +361,7 @@
 
                                 <a href="{{ route('profile.details', ['id' => $user->id]) }}" class="text-xs sm:text-sm leading-5 font-medium text-white hover:underline break-all">
 
-                                    {{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}
+                                    {{ $user->vorname }} {{ $user->nachname }}
 
                                 </a>
 

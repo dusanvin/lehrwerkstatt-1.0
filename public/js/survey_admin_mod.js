@@ -7,7 +7,7 @@ Survey.StylesManager.applyTheme("defaultV2");
 
 
 var json = {
-    title: "Moderation und Administration",
+    // title: "Moderation und Administration",
     pages: [{
         description: attention,
         elements: [{
@@ -51,7 +51,7 @@ if(typeof data !== 'undefined') {
 survey.locale = 'de';
 
 survey.showQuestionNumbers = 'off';
-survey.showProgressBar = 'top';
+// survey.showProgressBar = 'top';
 
 $(function() {
     $("#surveyElement").Survey({ model: survey });

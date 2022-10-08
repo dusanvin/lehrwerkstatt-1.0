@@ -42,44 +42,32 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'role' => ['required', Rule::in(['lehr', 'stud'])],
-            'password' => ['required', 'confirmed', Password::min(10)
-            ->numbers()
-            ->symbols()
-            ->mixedCase()
-            ->letters(),
-        ]
+            'password' => [
+                'required', 'confirmed', Password::min(10)
+                    ->numbers()
+                    ->symbols()
+                    ->mixedCase()
+                    ->letters(),
+            ]
         ]);
-        // Lehr 3, Stud 4
+
         $role = $request->input('role');
-        
-        $role_id = 0;
-        if ($role == 'lehr') {
-            $role_id = 3;
-        }
-            
-        if ($role == 'stud') {
-            $role_id = 4;
-        }
+        if (in_array($role, ['Lehr', 'Stud'])) {
+            if ($role == 'Lehr') {
+                $request->validate(['email' => 'required|max:255']);
+            }
 
-        if($role_id == 3) {
-            $request->validate([
-                'email' => 'required|max:255', //'required|unique:users,email|max:255',
+            if ($role == 'Stud') {
+                $request->validate(['email' => ['required', 'regex:/^.+@(student.uni-augsburg|uni-a)\.de$/', 'max:255']]);
+            }
 
+            $user = User::create([
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => $role
             ]);
-        } elseif($role_id == 4) {
-            $request->validate([
-                'email' => ['required', 'regex:/^.+@(student.uni-augsburg|uni-a)\.de$/', 'max:255'], //'required|unique:users,email|max:255',
-            ]);
+            $user->assignRole($role);
         }
-
-
-        $user = User::create([
-    		'email' => $request->email,
-    		'password' => Hash::make($request->password),
-            'role' => $request->role
-        ]);
-
-
 
         event(new Registered($user));
         Auth::login($user);
@@ -89,9 +77,6 @@ class RegisteredUserController extends Controller
         $user->timestamps = false;
         $user->last_login_at = now();
         $user->save();
-
-
-        DB::insert('insert into model_has_roles (role_id, model_type, model_id) values (?, ?, ?)', [$role_id, 'App\Models\User', $user->id]);
 
         return redirect(RouteServiceProvider::HOME);
     }

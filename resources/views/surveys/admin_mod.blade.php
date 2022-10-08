@@ -19,9 +19,9 @@
 
     <link href="{{ asset('css/defaultV2.min.css') }}" type="text/css" rel="stylesheet" />
     <style>
-        .sd-title {
+        /* .sd-title {
             display: none !important;
-        }
+        } */
         .sd-body {
             background-color: rgb(31 41 55) !important;
         }
@@ -69,6 +69,11 @@
                     <script>
                         var user = JSON.parse($('#user').val());
                         var data = JSON.parse(user.survey_data);
+                        if(!data) {
+                            data = new Object();
+                        }
+                        data.vorname = user.vorname;
+                        data.nachname = user.nachname;
                     </script>
                 @endisset
 

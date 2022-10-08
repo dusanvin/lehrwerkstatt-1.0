@@ -5,20 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Notifications\MatchingProposal;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
 
-use Illuminate\Auth\Events\Registered;
-
 use Illuminate\Support\Facades\Auth;
-
-use Illuminate\Pagination\Paginator;
-use Illuminate\Pagination\LengthAwarePaginator;
-
-use Carbon\Carbon;
 
 class UserController extends Controller
 
@@ -101,6 +93,7 @@ class UserController extends Controller
     }
 
 
+    // wenn admin einen user editiert und submittet
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -118,29 +111,30 @@ class UserController extends Controller
             $input = Arr::except($input, array('password'));
         }
 
-
-
         $user = User::find($id);
+
         $user->vorname = $input['vorname'];
         $user->nachname = $input['nachname'];
         $user->role = $input['roles'][0];
-        if(isset($user->survey_data->vorname)) {
-            $user->survey_data = json_decode($user->survey_data);
-            $user->survey_data->vorname = $input['vorname'];
-            $user->survey_data->nachname = $input['nachname'];
-            $user->survey_data->email = $input['email'];
-        }
-
         if (isset($input['password']))
             $user->password = $input['password'];
 
-        $user->survey_data = json_encode($user->survey_data);
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
+        $user->assignRole($request->input('roles')[0]);
 
         $user->save();
 
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
+        if (!empty($user->survey_data)) {
+            $user->survey_data = json_decode($user->survey_data);
+            // dd($user->survey_data);
+            $user->survey_data->vorname = $input['vorname'];
+            $user->survey_data->nachname = $input['nachname'];
+            $user->survey_data = json_encode($user->survey_data);
+            // dd($user->survey_data);
+            $user->save();
+        }
 
-        $user->assignRole($request->input('roles'));
+
 
         return redirect()->route('users.index')
             ->with('success', 'Informationen erfolgreich aktualisiert.');
@@ -148,27 +142,24 @@ class UserController extends Controller
 
 
     public function destroy($id)
-
     {
-
         User::find($id)->delete();
-
-        return redirect()->route('users.index')
-
-            ->with('success', 'Person erfolgreich gelöscht.');
+        return redirect()->route('users.index')->with('success', 'Person erfolgreich gelöscht.');
     }
 
+    
+    // wenn man den survey submittet
     public function save(Request $request)
     {
-        $id = Auth::id();
-        $user = User::find($id);
+        $user = Auth::user();
 
         $user->vorname = $request->survey['vorname'];
+        // unset($request->survey['vorname']);
         $user->nachname = $request->survey['nachname'];
+        // unset($request->survey['nachname']);
         $user->survey_data = $request->survey;
         $user->valid = true;
 
         $user->save();
     }
-
 }

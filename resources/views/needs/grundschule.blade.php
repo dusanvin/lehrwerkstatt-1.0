@@ -241,7 +241,7 @@
 
                                 <a class="flex hover:underline" href="{{ route('profile.details', ['id' => $user->id]) }}">
 
-                                    {{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}
+                                    {{ $user->vorname }} {{ $user->nachname }}
 
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 pt-1" viewBox="0 0 20 20" fill="currentColor">
                                         <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />

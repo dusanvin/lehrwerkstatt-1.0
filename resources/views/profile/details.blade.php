@@ -49,7 +49,7 @@
 
                                 <div class="text-center">
 
-                                    <h2 class="text-gray-200 text-xl leading-8 my-1">{{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}</h2>
+                                    <h2 class="text-gray-200 text-xl leading-8 my-1">{{ $user->vorname }} {{ $user->nachname }}</h2>
 
                                     <p class="text-gray-400 font-lg text-semibold text-xs">
                                     <label class="badge badge-success">{{ $user->getRoleName() }}</label>

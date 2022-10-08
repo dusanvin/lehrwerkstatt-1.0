@@ -29,8 +29,8 @@
         var selected = null;
 
         role_button_ids = [
-            "lehr",
-            "stud"
+            "Lehr",
+            "Stud"
         ];
 
         function setRole(id) {

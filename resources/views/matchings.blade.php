@@ -395,7 +395,7 @@
 
                                                     <a href="{{ route('profile.details', ['id' => $user->id]) }}" class="text-xs sm:text-sm leading-5 font-medium text-white hover:underline break-all">
 
-                                                        {{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}
+                                                        {{ $user->vorname }} {{ $user->nachname }}
 
                                                     </a>
 
@@ -468,7 +468,7 @@
                                                             <span>
 
                                                                 @php
-                                                                    echo $matching->survey_data->vorname[0] . $matching->survey_data->nachname[0]." ". "(" . $user->mses[$count] . ")";
+                                                                    echo $matching->vorname[0] . $matching->nachname[0]." ". "(" . $user->mses[$count] . ")";
                                                                 @endphp
 
                                                             </span>
@@ -547,7 +547,7 @@
 
                                                                         <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
 
-                                                                            <p>{{ $matching->survey_data->vorname }} {{ $matching->survey_data->nachname }}</p>
+                                                                            <p>{{ $matching->vorname }} {{ $matching->nachname }}</p>
                                                                             <a href="mailto:{{ $matching->email }}" class="text-gray-400 hover:text-gray-100 break-words">{{ $matching->email }}</a>
 
                                                                         </div>

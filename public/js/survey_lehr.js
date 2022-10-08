@@ -370,7 +370,7 @@ if(typeof data !== 'undefined') {
 survey.locale = 'de';
 
 survey.showQuestionNumbers = 'off';
-survey.showProgressBar = 'top';
+// survey.showProgressBar = 'top';
 
 $(function() {
     $("#surveyElement").Survey({ model: survey });

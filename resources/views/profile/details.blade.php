@@ -52,18 +52,7 @@
                                     <h2 class="text-gray-200 text-xl leading-8 my-1">{{ $user->survey_data->vorname }} {{ $user->survey_data->nachname }}</h2>
 
                                     <p class="text-gray-400 font-lg text-semibold text-xs">
-
-                                        @if(!empty($user->getRoleNames()))
-
-                                        @foreach($user->getRoleNames() as $v)
-                                        @if($v == 'Lehr')
-                                        <label class="badge badge-success">{{ $v }}kraft</label>
-                                        @elseif($v == 'Stud')
-                                        <label class="badge badge-success">{{ $v }}ent*in</label>
-                                        @endif
-                                        @endforeach
-
-                                        @endif
+                                    <label class="badge badge-success">{{ $user->getRoleName() }}</label>
 
                                 </div>
 

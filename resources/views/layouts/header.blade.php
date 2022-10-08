@@ -119,23 +119,7 @@
 
 	                    		<div>
 
-                               		@if (Auth::user()->role == 'admin')
-
-                                        <span class="font-normal text-gray-500">Administration</span>
-
-                                    @elseif (Auth::user()->role == 'Moderierende')
-
-                                        <span class="font-normal text-gray-500">Moderation</span>
-
-                                    @elseif (Auth::user()->role == 'Stud')
-
-                                        <span class="font-normal text-gray-500">Studium</label>
-
-                                    @elseif (Auth::user()->role == 'Lehr')
-
-                                        <span class="font-normal text-gray-500">Schuldienst</label>
-
-                                    @endif
+									<span class="font-normal text-gray-500">{{ Auth::user()->getRoleName() }}</span>
 
 	                    		</div>
 

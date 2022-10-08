@@ -124,8 +124,7 @@ class UserController extends Controller
         $user->vorname = $input['vorname'];
         $user->nachname = $input['nachname'];
         $user->role = $input['roles'][0];
-        if(!empty($user->survey_data)) {
-            dd(gettype($user->survey_data));
+        if(isset($user->survey_data->vorname)) {
             $user->survey_data = json_decode($user->survey_data);
             $user->survey_data->vorname = $input['vorname'];
             $user->survey_data->nachname = $input['nachname'];

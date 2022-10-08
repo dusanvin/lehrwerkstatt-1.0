@@ -222,31 +222,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
                                         
                                             <div>
 
-                                                @if(!empty(Auth::user()->role))
-
-                                                    @foreach($user->getRoleNames() as $v)
-
-                                                        @if ($v == 'Admin')
-
-                                                            <span class="font-normal text-gray-500">Administration</span>
-
-                                                        @elseif ($v == 'Moderierende')
-
-                                                            <span class="font-normal text-gray-500">Moderation</span>
-
-                                                        @elseif ($v == 'Stud')
-
-                                                            <span class="font-normal text-gray-500">Studium</label>
-
-                                                        @elseif ($v == 'Lehr')
-
-                                                            <span class="font-normal text-gray-500">Schuldienst</label>
-
-                                                        @endif
-
-                                                    @endforeach
-
-                                                @endif
+                                                <span class="font-normal text-gray-500">{{ Auth::user()->getRoleName() }}</span>
 
                                                 <div class="flex mt-4 flex-wrap ">
 
@@ -332,35 +308,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
                                         
                                             <div>
 
-                                                @if(!empty(Auth::user()->role))
-
-                                                    @foreach($user->getRoleNames() as $v)
-
-                                                        @if ($v == 'Admin')
-
-                                                            <span class="font-normal text-gray-500">Administration</span>
-
-                                                        @elseif ($v == 'Moderierende')
-
-                                                            <span class="font-normal text-gray-500">Moderation</span>
-
-                                                        @elseif ($v == 'Stud')
-
-                                                            <span class="font-normal text-gray-500">Studium</label>
-
-                                                        @elseif ($v == 'Lehr')
-
-                                                            <span class="font-normal text-gray-500">Schuldienst</label>
-
-                                                        @else
-
-                                                            Test
-
-                                                        @endif
-
-                                                    @endforeach
-
-                                                @endif
+                                                <span class="font-normal text-gray-500">{{ Auth::user()->getRoleName() }}</span>
 
                                                 <div class="flex mt-4">
 

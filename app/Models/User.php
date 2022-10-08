@@ -53,16 +53,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function offers() 
-    {
-        return $this->hasMany(Offer::class);
-    }
-
-    public function needs() 
-    {
-        return $this->hasMany(Need::class);
-    }
-
     public function SendEmailVerificationNotification() 
     {
         $this->notify(new CustomVerifyEmail);
@@ -70,6 +60,19 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function image() {
         return $this->hasOne(ImageFile::class);
+    }
+
+    public function getRoleName() {
+        switch($this->getRoleNames()[0]) {
+            case 'Admin':
+                return 'Administration';
+            case 'Moderierende':
+                return 'Moderation';
+            case 'Stud':
+                return 'Studium';
+            case 'Lehr':
+                return 'Schuldienst';
+        }
     }
 
     public function matchings(){

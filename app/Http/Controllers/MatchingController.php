@@ -14,6 +14,7 @@ use Graphp\Algorithms\MaxFlow;
 use Graphp\Algorithms\MaxFlow\EdmondsKarp;
 
 use Graphp\GraphViz\GraphViz;
+use Illuminate\Auth\Notifications\VerifyEmail;
 
 class MatchingController extends Controller
 {
@@ -381,14 +382,14 @@ class MatchingController extends Controller
     public function notifyMatchings()
     {
 
-        $matchings = DB::table('lehr_stud')->where('is_notified', false)->get();
+        $unnotified_matchings = DB::table('lehr_stud')->where('is_notified', false)->get();
 
-        foreach ($matchings as $matching) {
+        foreach ($unnotified_matchings as $unnotified_matching) {
 
-            $lehr = User::find($matching->lehr_id);
+            $lehr = User::find($unnotified_matching->lehr_id);
             $lehr->notify(new MatchingProposal());
 
-            $stud = User::find($matching->stud_id);
+            $stud = User::find($unnotified_matching->stud_id);
             $stud->notify(new MatchingProposal());
 
             DB::table('lehr_stud')->where('lehr_id', $lehr->id)->where('stud_id', $stud->id)->update(['created_at' => Carbon::now(), 'is_notified' => true]);

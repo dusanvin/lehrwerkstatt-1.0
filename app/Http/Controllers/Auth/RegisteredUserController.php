@@ -41,7 +41,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'role' => ['required', Rule::in(['lehr', 'stud'])],
+            'role' => ['required', Rule::in(['Lehr', 'Stud'])],
             'password' => [
                 'required', 'confirmed', Password::min(10)
                     ->numbers()

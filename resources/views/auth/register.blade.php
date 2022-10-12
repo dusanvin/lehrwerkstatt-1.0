@@ -122,9 +122,9 @@
 
                 <input id="role" type="hidden" name="role"></input>
 
-                <x-button id="lehr" type="button" class="mt-2" onclick=setRole(this.id)>Lehrkraft</x-button>
+                <x-button id="Lehr" type="button" class="mt-2" onclick=setRole(this.id)>Lehrkraft</x-button>
 
-                <x-button id="stud" type="button" class="mt-2" onclick=setRole(this.id)>Studentin**</x-button>
+                <x-button id="Stud" type="button" class="mt-2" onclick=setRole(this.id)>Studentin**</x-button>
 
             </div>
 

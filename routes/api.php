@@ -45,6 +45,8 @@ Route::get('/about', function () {
     return view('about');
 });
 
+
+
 /*--------------------------------------------------------------------------*/
 
 /* Nach Verifizierung */
@@ -108,6 +110,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('users.stud');
 
         Route::get('/matchings', [MatchingController::class, 'matchings'])->name('users.matchings');
+
+        Route::get('/matchable', [MatchingController::class, 'matchable'])->name('users.matchable');
 
         Route::get('/accepted-matchings', [MatchingController::class, 'acceptedMatchings'])->name('acceptedMatchings');
 

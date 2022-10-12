@@ -9,6 +9,12 @@ use DB;
 use App\Notifications\MatchingProposal;
 use Carbon\Carbon;
 
+use Fhaculty\Graph\Graph;
+use Graphp\Algorithms\MaxFlow;
+use Graphp\Algorithms\MaxFlow\EdmondsKarp;
+
+use Graphp\GraphViz\GraphViz;
+
 class MatchingController extends Controller
 {
 
@@ -35,6 +41,172 @@ class MatchingController extends Controller
         else
             return 1;
     }
+
+
+    public function matchable()
+    {
+        $graph = new Graph();
+        $source_vertex = $graph->createVertex('s');
+        $sink_vertex = $graph->createVertex('t');
+
+
+        $all_lehr = User::where('role', 'Lehr')->where('valid', true)->get();
+        $all_stud = User::where('role', 'Stud')->where('valid', true)->get();
+        // $all_lehr = User::where('role', 'Lehr')->where('valid', true)->where('assigned', false)->get();
+        // $all_stud = User::where('role', 'Stud')->where('valid', true)->where('assigned', false)->get();
+
+        DB::table('lehr_stud_matchable')->truncate();
+
+        foreach ($all_lehr as $lehr) {
+            $lehr->survey_data = json_decode($lehr->survey_data);
+
+            $lehr_vertex = $graph->createVertex($lehr->id);
+            $lehr_vertex->setAttribute('data', $lehr->survey_data);
+            $edge = $source_vertex->createEdgeTo($lehr_vertex);
+            $edge->setCapacity(1);
+
+            // $lehr_vertex->setAttribute('graphviz.shape', 'box');
+            $lehr_vertex->setAttribute('graphviz.label', $lehr->vorname . ' ' . $lehr->nachname);
+            // $lehr_vertex->setAttribute('graphviz.fontname', 'arial');
+            // $lehr_vertex->setAttribute('graphviz.fontcolor', 'white');
+            // $lehr_vertex->setAttribute('graphviz.color', 'grey');
+        }
+
+        foreach ($all_stud as $stud) {
+            $stud->survey_data = json_decode($stud->survey_data);
+
+            $stud_vertex = $graph->createVertex($stud->id);
+            $stud_vertex->setAttribute('data', $stud->survey_data);
+            $edge = $stud_vertex->createEdgeTo($sink_vertex);
+            $edge->setCapacity(1);
+
+            // $stud_vertex->setAttribute('graphviz.shape', 'box');
+            $stud_vertex->setAttribute('graphviz.label', $stud->vorname . ' ' . $stud->nachname);
+        }
+
+        foreach ($all_lehr as $lehr) {
+
+            foreach ($all_stud as $stud) {
+
+                if ($lehr->survey_data->schulart == $stud->survey_data->schulart) {
+
+                    if (in_array($lehr->survey_data->landkreis,  $stud->survey_data->landkreise)) {
+
+                        if ($lehr->survey_data->schulart == 'Grundschule') {
+                            $lehr_vertex = $graph->getVertex($lehr->id);
+                            $stud_vertex = $graph->getVertex($stud->id);
+                            $edge = $lehr_vertex->createEdgeTo($stud_vertex);
+                            $edge->setCapacity(1);
+
+                            $mse = $this->mse($lehr, $stud);
+                            $edge->setAttribute('graphviz.label', $mse . ', ');
+                            $lehr->matchable()->attach($stud, ['mse' => $mse]);
+
+                            User::find($lehr->id)->update(['is_matchable' => true]);
+                            User::find($stud->id)->update(['is_matchable' => true]);
+                        } elseif (array_intersect($lehr->survey_data->faecher, $stud->survey_data->faecher)) {
+                            $lehr_vertex = $graph->getVertex($lehr->id);
+                            $stud_vertex = $graph->getVertex($stud->id);
+                            $edge = $lehr_vertex->createEdgeTo($stud_vertex);
+                            $edge->setCapacity(1);
+
+                            $mse = $this->mse($lehr, $stud);
+                            $edge->setAttribute('graphviz.label', $mse . ', ');
+                            $lehr->matchable()->attach($stud, ['mse' => $mse]);
+
+                            User::find($lehr->id)->update(['is_matchable' => true]);
+                            User::find($stud->id)->update(['is_matchable' => true]);
+                        }
+                    }
+                }
+            }
+        }
+
+        $ek = new EdmondsKarp($source_vertex, $sink_vertex);
+
+        $resultGraph = $ek->createGraph();
+        $source_vertex = $resultGraph->getVertex('s');
+        foreach ($source_vertex->getEdges() as $edge) {
+            if ($edge->getFlow() == 1) {
+                $lehr_vertex = $edge->getVertexEnd();
+                foreach ($lehr_vertex->getEdges() as $edge) {
+                    if ($edge->getFlow() == 1 && $edge->getVertexStart() != 's') {
+                        $edge->setAttribute('graphviz.color', 'yellow');
+                        $edge->setAttribute('graphviz.dir', 'both');
+                        $stud_vertex = $edge->getVertexEnd();
+                        $lehr = User::find($lehr_vertex->getId());
+                        $stud = User::find($stud_vertex->getId());
+                        $lehr->matchable()->updateExistingPivot($stud, ['recommended' => true]);
+                    } else {
+                        $edge->setAttribute('graphviz.dir', 'none');
+                    }
+                }
+            } else {
+                $lehr_vertex = $edge->getVertexEnd();
+                foreach ($lehr_vertex->getEdges() as $edge) {
+                    $edge->setAttribute('graphviz.dir', 'none');
+                }
+            }
+        }
+
+        $max_flow = $ek->getFlowMax();
+        $graphviz = new GraphViz();
+
+        $resultGraph->getVertex('s')->destroy();
+        $resultGraph->getVertex('t')->destroy();
+
+        $unmatchable_users = User::where('valid', true)->where('is_matchable', false)->get();
+        foreach ($unmatchable_users as $user) {
+            if ($resultGraph->hasVertex($user->id)) {
+                $resultGraph->getVertex($user->id)->destroy();
+            }
+        }
+
+        $matchable_lehr = User::where('role', 'Lehr')->where('is_matchable', true)->get();
+        $matched_lehr = User::find(DB::table('lehr_stud')->pluck('lehr_id'));
+
+
+
+        $resultGraph->setAttribute('graphviz.graph.rankdir', 'LR');
+        $resultGraph->setAttribute('graphviz.graph.bgcolor', 'transparent');
+        // $graphviz->display($resultGraph);
+        // $graphviz->setFormat('svg');
+        $graph_img = $graphviz->createImageHtml($resultGraph);
+
+        $prematched_graph = $resultGraph->createGraphClone();
+        foreach ($prematched_graph->getEdges() as $edge) {
+
+            $edge->setAttribute('graphviz.dir', 'none');
+            $edge_lehr_id = $edge->getVertexStart()->getId();
+            $edge_stud_id = $edge->getVertexEnd()->getId();
+
+            foreach ($matchable_lehr as $lehr) {
+                if ($edge_lehr_id == $lehr->id) {
+                    if ($lehr->assigned) {
+                        if ($lehr->prematched->first()->id == $edge_stud_id) {
+                            $edge->setAttribute('graphviz.color', 'green');
+                            $edge->setAttribute('graphviz.dir', 'both');
+                        } else {
+                            $edge->setAttribute('graphviz.color', 'red');
+                        }
+                    } else {
+                        if(User::find($edge_stud_id)->assigned) {
+                            $edge->setAttribute('graphviz.color', 'red');
+                        } else {
+                            $edge->setAttribute('graphviz.color', 'black');
+                        }
+                    }
+                }
+            }
+        }
+        $prematched_graph->setAttribute('graphviz.graph.rankdir', 'LR');
+        $prematched_graph->setAttribute('graphviz.graph.bgcolor', 'transparent');
+        $prematched_graph_img = $graphviz->createImageHtml($prematched_graph);
+
+
+        return view('matchable', compact('graph_img', 'prematched_graph_img', 'max_flow', 'matched_lehr', 'matchable_lehr'));
+    }
+
 
     public function matchings(Request $request)
     {
@@ -128,11 +300,8 @@ class MatchingController extends Controller
 
     public function setAssigned(Request $request, $lehrid, $studid, $mse)
     {
-        $lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', false)->where('id', $lehrid)->get();
-        $stud = User::where('role', 'stud')->where('valid', true)->where('assigned', false)->where('id', $studid)->get();
-
-        $lehr = $lehr[0];
-        $stud = $stud[0];
+        $lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', false)->where('id', $lehrid)->first();
+        $stud = User::where('role', 'stud')->where('valid', true)->where('assigned', false)->where('id', $studid)->first();
 
         $lehr->matchings()->attach($stud, ['mse' => $mse]);
         // DB::insert('insert into lehr_stud (lehr_id, stud_id, mse) values (?, ?, ?)', [$lehrid, $studid, $mse]);
@@ -143,16 +312,13 @@ class MatchingController extends Controller
         $stud->assigned = true;
         $stud->save();
 
-        return redirect()->route('users.matchings');
+        return back();
     }
 
     public function setUnassigned(Request $request, $lehrid, $studid)
     {
-        $lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', true)->where('id', $lehrid)->get();
-        $stud = User::where('role', 'stud')->where('valid', true)->where('assigned', true)->where('id', $studid)->get();
-
-        $lehr = $lehr[0];
-        $stud = $stud[0];
+        $lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', true)->where('id', $lehrid)->first();
+        $stud = User::where('role', 'stud')->where('valid', true)->where('assigned', true)->where('id', $studid)->first();
 
         $lehr->assigned = false;
         $lehr->save();
@@ -162,7 +328,7 @@ class MatchingController extends Controller
 
         DB::table('lehr_stud')->where('lehr_id', $lehrid)->where('stud_id', $studid)->delete();
 
-        return redirect()->route('users.matchings');
+        return back();
     }
 
 
@@ -250,5 +416,10 @@ class MatchingController extends Controller
         }
 
         return view('accepted_matchings', ['accepted_matchings' => $accepted_matchings, 'notified_matchings' => $notified_matchings]);
+    }
+
+    public function graphAlgorithm()
+    {
+        $graph = new Graph();
     }
 }

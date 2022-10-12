@@ -31,6 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'survey_data',
         'valid',
         'assigned',
+        'is_matchable',
         'last_login_at',
     ];
 
@@ -75,14 +76,35 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
+    public function matchable(){
+        if ($this->role == 'Lehr') {
+            return $this->belongsToMany(User::class, 'lehr_stud_matchable', 'lehr_id', 'stud_id')->withPivot(['mse', 'recommended'])->withTimestamps();
+        } elseif ($this->role == 'Stud') {
+            return $this->belongsToMany(User::class, 'lehr_stud_matchable', 'stud_id', 'lehr_id')->withPivot(['mse', 'recommended'])->withTimestamps();
+        }  
+    }
+
+    public function prematched(){
+        if ($this->role == 'Lehr') {
+            return $this->belongsToMany(User::class, 'lehr_stud', 'lehr_id', 'stud_id')->withPivot(['is_accepted_lehr', 'is_accepted_stud', 'is_notified', 'mse'])->withTimestamps()->wherePivot('is_notified', false);
+        } elseif ($this->role == 'Stud') {
+            return $this->belongsToMany(User::class, 'lehr_stud', 'stud_id', 'lehr_id')->withPivot(['is_accepted_lehr', 'is_accepted_stud', 'is_notified', 'mse'])->withTimestamps()->wherePivot('is_notified', false);
+        }  
+    }
+
     public function matchings(){
         // return $this->belongsToMany(User::class, 'user_user', 'user_id', 'matching_id');
         if ($this->role == 'Lehr') {
-            return $this->belongsToMany(User::class, 'lehr_stud', 'lehr_id', 'stud_id')->withPivot(['is_accepted_lehr', 'is_accepted_stud', 'is_notified'])->withTimestamps()->wherePivot('is_notified', true);
+            return $this->belongsToMany(User::class, 'lehr_stud', 'lehr_id', 'stud_id')->withPivot(['is_accepted_lehr', 'is_accepted_stud', 'is_notified', 'mse'])->withTimestamps()->wherePivot('is_notified', true);
         } elseif ($this->role == 'Stud') {
-            return $this->belongsToMany(User::class, 'lehr_stud', 'stud_id', 'lehr_id')->withPivot(['is_accepted_lehr', 'is_accepted_stud', 'is_notified'])->withTimestamps()->wherePivot('is_notified', true);
+            return $this->belongsToMany(User::class, 'lehr_stud', 'stud_id', 'lehr_id')->withPivot(['is_accepted_lehr', 'is_accepted_stud', 'is_notified', 'mse'])->withTimestamps()->wherePivot('is_notified', true);
+        }  
+    }
+    
+    public function data() {
+        if(is_string($this->survey_data)) {
+            return json_decode($this->survey_data);
         }
-        
     }
 
 }

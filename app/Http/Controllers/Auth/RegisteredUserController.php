@@ -42,6 +42,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'role' => ['required', Rule::in(['Lehr', 'Stud'])],
+            'email' => 'email:rfc,dns',
             'password' => [
                 'required', 'confirmed', Password::min(10)
                     ->numbers()
@@ -68,8 +69,8 @@ class RegisteredUserController extends Controller
             ]);
             $user->assignRole($role);
         }
-
         event(new Registered($user));
+        
         Auth::login($user);
 
         // Integration last_login_at 

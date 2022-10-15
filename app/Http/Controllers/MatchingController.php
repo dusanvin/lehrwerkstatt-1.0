@@ -51,10 +51,10 @@ class MatchingController extends Controller
         $sink_vertex = $graph->createVertex('t');
 
 
-        $all_lehr = User::where('role', 'Lehr')->where('valid', true)->get();
-        $all_stud = User::where('role', 'Stud')->where('valid', true)->get();
-        // $all_lehr = User::where('role', 'Lehr')->where('valid', true)->where('assigned', false)->get();
-        // $all_stud = User::where('role', 'Stud')->where('valid', true)->where('assigned', false)->get();
+        $all_lehr = User::where('role', 'Lehr')->where('is_evaluable', true)->get();
+        $all_stud = User::where('role', 'Stud')->where('is_evaluable', true)->get();
+        // $all_lehr = User::where('role', 'Lehr')->where('is_evaluable', true)->where('assigned', false)->get();
+        // $all_stud = User::where('role', 'Stud')->where('is_evaluable', true)->where('assigned', false)->get();
 
         DB::table('lehr_stud_matchable')->truncate();
 
@@ -156,7 +156,7 @@ class MatchingController extends Controller
         $resultGraph->getVertex('s')->destroy();
         $resultGraph->getVertex('t')->destroy();
 
-        $unmatchable_users = User::where('valid', true)->where('is_matchable', false)->get();
+        $unmatchable_users = User::where('is_evaluable', true)->where('is_matchable', false)->get();
         foreach ($unmatchable_users as $user) {
             if ($resultGraph->hasVertex($user->id)) {
                 $resultGraph->getVertex($user->id)->destroy();
@@ -211,8 +211,8 @@ class MatchingController extends Controller
 
     public function matchings(Request $request)
     {
-        $lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', false)->get();
-        $stud = User::where('role', 'stud')->where('valid', true)->where('assigned', false)->get();
+        $lehr = User::where('role', 'lehr')->where('is_evaluable', true)->where('assigned', false)->get();
+        $stud = User::where('role', 'stud')->where('is_evaluable', true)->where('assigned', false)->get();
 
         foreach ($stud as $current_stud) {
             $current_stud->survey_data = json_decode($current_stud->survey_data);
@@ -290,8 +290,8 @@ class MatchingController extends Controller
         $assigned_matchings = DB::table('lehr_stud')->where('is_notified', false)->get();
         $assigned = [];
         foreach ($assigned_matchings as $am) {
-            $assigned_lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', true)->where('id', $am->lehr_id)->get();
-            $assigned_stud = User::where('role', 'stud')->where('valid', true)->where('assigned', true)->where('id', $am->stud_id)->get();
+            $assigned_lehr = User::where('role', 'lehr')->where('is_evaluable', true)->where('assigned', true)->where('id', $am->lehr_id)->get();
+            $assigned_stud = User::where('role', 'stud')->where('is_evaluable', true)->where('assigned', true)->where('id', $am->stud_id)->get();
             $assigned[] = ['lehr' => $assigned_lehr[0], 'stud' => $assigned_stud[0], 'is_accepted_lehr' => $am->is_accepted_lehr, 'is_accepted_stud' => $am->is_accepted_stud, 'mse' => $am->mse, 'elapsed_time' => Carbon::parse($am->created_at)->diffForHumans(Carbon::now())];
         }
         // dd($assigned_matchings);
@@ -301,8 +301,8 @@ class MatchingController extends Controller
 
     public function setAssigned(Request $request, $lehrid, $studid, $mse)
     {
-        $lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', false)->where('id', $lehrid)->first();
-        $stud = User::where('role', 'stud')->where('valid', true)->where('assigned', false)->where('id', $studid)->first();
+        $lehr = User::where('role', 'lehr')->where('is_evaluable', true)->where('assigned', false)->where('id', $lehrid)->first();
+        $stud = User::where('role', 'stud')->where('is_evaluable', true)->where('assigned', false)->where('id', $studid)->first();
 
         $lehr->matchings()->attach($stud, ['mse' => $mse]);
         // DB::insert('insert into lehr_stud (lehr_id, stud_id, mse) values (?, ?, ?)', [$lehrid, $studid, $mse]);
@@ -318,8 +318,8 @@ class MatchingController extends Controller
 
     public function setUnassigned(Request $request, $lehrid, $studid)
     {
-        $lehr = User::where('role', 'lehr')->where('valid', true)->where('assigned', true)->where('id', $lehrid)->first();
-        $stud = User::where('role', 'stud')->where('valid', true)->where('assigned', true)->where('id', $studid)->first();
+        $lehr = User::where('role', 'lehr')->where('is_evaluable', true)->where('assigned', true)->where('id', $lehrid)->first();
+        $stud = User::where('role', 'stud')->where('is_evaluable', true)->where('assigned', true)->where('id', $studid)->first();
 
         $lehr->assigned = false;
         $lehr->save();

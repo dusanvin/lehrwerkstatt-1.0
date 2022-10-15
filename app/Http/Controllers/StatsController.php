@@ -27,11 +27,11 @@ class StatsController extends Controller
         $stud_count = User::role('Stud')->whereNotNull('email_verified_at')->count();
 
 
-        $lehr_incomplete_form = User::role('Lehr')->whereNotNull('email_verified_at')->where('valid', false)->count();
-        $lehr_complete_form = User::role('Lehr')->where('valid', true)->count();
+        $lehr_incomplete_form = User::role('Lehr')->whereNotNull('email_verified_at')->where('is_evaluable', false)->count();
+        $lehr_complete_form = User::role('Lehr')->where('is_evaluable', true)->count();
 
-        $stud_incomplete_form = User::role('Stud')->whereNotNull('email_verified_at')->where('valid', false)->count();
-        $stud_complete_form = User::role('Stud')->where('valid', true)->count();
+        $stud_incomplete_form = User::role('Stud')->whereNotNull('email_verified_at')->where('is_evaluable', false)->count();
+        $stud_complete_form = User::role('Stud')->where('is_evaluable', true)->count();
 
 
         $lehr_grundschule = 0;
@@ -43,7 +43,7 @@ class StatsController extends Controller
         $stud_gymnasium = 0;
 
 
-        $users = User::whereNotNull('email_verified_at')->where('valid', true)->get();
+        $users = User::whereNotNull('email_verified_at')->where('is_evaluable', true)->get();
         
         $lehr_landkreise = [
             "Augsburg Stadt" => 0,

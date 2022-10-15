@@ -85,14 +85,14 @@
 
                         <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                            @if (count($matched_lehr) == 0)
-                            @elseif (count($matched_lehr) == 1)
+                            @if (count($prematched_lehr) == 0)
+                            @elseif (count($prematched_lehr) == 1)
                                 <p>Der folgende Vorschlag wurde von Ihnen übernommen. Sollten Sie den Vorschlag bestätigen,
                                     wird dieser unter <a href="route('accepted_matchings')"
                                         class="font-semibold hover:underline text-white">Paarungen</a> gelistet. Die
                                     Personen erhalten zudem eine E-Mail.</p>
-                            @elseif (count($matched_lehr) > 1)
-                                <p>Die folgenden <strong>{{ count($matched_lehr) }} Vorschläge</strong> wurden von Ihnen
+                            @elseif (count($prematched_lehr) > 1)
+                                <p>Die folgenden <strong>{{ count($prematched_lehr) }} Vorschläge</strong> wurden von Ihnen
                                     übernommen. Sollten Sie die Vorschläge bestätigen, werden diese unter <a
                                         href="route('accepted_matchings')"
                                         class="font-semibold hover:underline text-white">Paarungen</a> gelistet. Die
@@ -107,12 +107,12 @@
 
                         <tbody>
 
-                            @if (count($matched_lehr) == 0)
+                            @if (count($prematched_lehr) == 0)
                                 <p
                                     class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">
                                     Bisher wurden keine Vorschläge von Ihnen übernommen. Suchen Sie auf Basis des MSE nach
                                     Paarungen.</p>
-                            @elseif (count($matched_lehr) > 0)
+                            @elseif (count($prematched_lehr) > 0)
                                 <tr>
 
                                     <th
@@ -147,7 +147,7 @@
 
                                 </tr>
 
-                                @foreach ($matched_lehr as $index => $lehr)
+                                @foreach ($prematched_lehr as $index => $lehr)
                                     <tr class="border-t border-gray-200 bg-gray-700">
 
                                         <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
@@ -521,7 +521,7 @@
                     </table>
 
 
-                    @if (count($matched_lehr))
+                    @if (count($prematched_lehr))
                         <div class="mt-4 flex justify-end">
 
                             <a href="{{ route('notifyMatchings') }}"

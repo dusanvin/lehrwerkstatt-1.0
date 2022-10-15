@@ -8,7 +8,7 @@ use App\Models\User;
 use DB;
 use App\Notifications\MatchingProposal;
 use Carbon\Carbon;
-
+use Exception;
 use Fhaculty\Graph\Graph;
 use Graphp\Algorithms\MaxFlow;
 use Graphp\Algorithms\MaxFlow\EdmondsKarp;
@@ -386,11 +386,22 @@ class MatchingController extends Controller
 
         foreach ($unnotified_matchings as $unnotified_matching) {
 
-            $lehr = User::find($unnotified_matching->lehr_id);
-            $lehr->notify(new MatchingProposal());
+            try {
+                $lehr = User::find($unnotified_matching->lehr_id);
+                $lehr->notify(new MatchingProposal());
+            } catch(\Exception $e) {
+                $lehr->email_still_exists = false;
+                $lehr->save();
+            }
 
-            $stud = User::find($unnotified_matching->stud_id);
-            $stud->notify(new MatchingProposal());
+            try {
+                $stud = User::find($unnotified_matching->stud_id);
+                $stud->notify(new MatchingProposal());
+            } catch(\Exception $e) {
+                $stud->email_still_exists = false;
+                $stud->save();
+            }
+
 
             DB::table('lehr_stud')->where('lehr_id', $lehr->id)->where('stud_id', $stud->id)->update(['created_at' => Carbon::now(), 'is_notified' => true]);
         }
@@ -401,26 +412,19 @@ class MatchingController extends Controller
 
     public function acceptedMatchings(Request $request)
     {
-        $accepted_matchings = DB::table('lehr_stud')->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->get();
-
-        foreach ($accepted_matchings as $am) {
-            $am->lehr = User::find($am->lehr_id);
-            $am->stud = User::find($am->stud_id);
-        }
-
         $notified_matchings = DB::table('lehr_stud')->where('is_notified', true)->get();
-
         foreach ($notified_matchings as $am) {
             $am->lehr = User::find($am->lehr_id);
             $am->stud = User::find($am->stud_id);
             $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
         }
 
-        return view('accepted_matchings', ['accepted_matchings' => $accepted_matchings, 'notified_matchings' => $notified_matchings]);
+        $accepted_matchings = DB::table('lehr_stud')->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->get();
+        foreach ($accepted_matchings as $am) {
+            $am->lehr = User::find($am->lehr_id);
+            $am->stud = User::find($am->stud_id);
+        }
+        return view('accepted_matchings', ['notified_matchings' => $notified_matchings, 'accepted_matchings' => $accepted_matchings]);
     }
 
-    public function graphAlgorithm()
-    {
-        $graph = new Graph();
-    }
 }

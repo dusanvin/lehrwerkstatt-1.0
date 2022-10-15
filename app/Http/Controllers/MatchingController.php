@@ -164,7 +164,7 @@ class MatchingController extends Controller
         }
 
         $matchable_lehr = User::where('role', 'Lehr')->where('is_matchable', true)->get();
-        $matched_lehr = User::find(DB::table('lehr_stud')->pluck('lehr_id'));
+        $prematched_lehr = User::find(DB::table('lehr_stud')->pluck('lehr_id'));
 
 
 
@@ -205,7 +205,7 @@ class MatchingController extends Controller
         $prematched_graph_img = $graphviz->createImageHtml($prematched_graph);
 
 
-        return view('matchable', compact('graph_img', 'prematched_graph_img', 'max_flow', 'matched_lehr', 'matchable_lehr'));
+        return view('matchable', compact('graph_img', 'prematched_graph_img', 'max_flow', 'prematched_lehr', 'matchable_lehr'));
     }
 
 

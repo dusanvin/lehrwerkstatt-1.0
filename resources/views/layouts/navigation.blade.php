@@ -165,7 +165,7 @@
                             <div class="pl-3">
 
                                 <p class="navigation-element text-sm font-semibold">Vorschläge
-                                    ({{ count(Auth::user()->matchings) }})</p>
+                                    ({{ count(Auth::user()->matchable) ? 1 : 0 }})</p>
 
                                 <!--<p class="navigation-element text-xs">E-Mail und Passwort</p>-->
 
@@ -258,7 +258,7 @@
 
                     <!-- Statistiken -->
 
-                    <!-- Personen -->
+                    <!-- Verwaltung -->
 
                     <li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
                         @php
@@ -291,6 +291,8 @@
 
                     </li>
 
+                    <!-- Verwaltung -->
+
                     <!-- Vorschläge -->
 
                     <li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
@@ -315,41 +317,6 @@
 
                                 <p class="navigation-element text-sm font-semibold">
                                     {{ Config::get('site_vars.vorschlaege') }}</p>
-
-                                <!--<p class="navigation-element text-xs">{{ Config::get('site_vars.vorschlaegeInfo') }}</p>-->
-
-                            </div>
-
-                        </a>
-
-                    </li>
-
-                    <!-- Vorschläge -->
-
-                    <!-- Vorschläge NEU -->
-
-                    <li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
-                        @php
-                            $route_name = 'users.matchable';
-                        @endphp
-
-                        <a href="{{ route($route_name) }}"
-                            class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
-
-                            <div>
-
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5" />
-                                </svg>
-
-                            </div>
-
-                            <div class="pl-3">
-
-                                <p class="navigation-element text-sm font-semibold">
-                                    Vorschläge NEU</p>
 
                                 <!--<p class="navigation-element text-xs">{{ Config::get('site_vars.vorschlaegeInfo') }}</p>-->
 

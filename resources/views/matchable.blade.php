@@ -612,7 +612,9 @@
                                     $index = 1;
                                 @endphp
                                 @foreach ($matchable_lehr as $lehr)
+                                        
                                     @foreach ($lehr->matchable as $matchable)
+
                                         <tr
                                             class="border-t border-gray-200 bg-{{ $lehr->matching_state == 'matched' && $lehr->matched_user->id == $matchable->id ? 'green-900' : ($matchable->matching_state == 'matched' || $lehr->matching_state == 'matched' ? 'red-900' : 'gray-700') }}">
 
@@ -1004,7 +1006,9 @@
                                             <!-- Löschen -->
 
                                         </tr>
+
                                     @endforeach
+
                                 @endforeach
                             @endif
 

@@ -44,15 +44,15 @@
 
                     <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                        @if (count($assigned_matchings) == 0)
+                        @if (count($matched) == 0)
 
-                        @elseif (count($assigned_matchings) == 1)
+                        @elseif (count($matched) == 1)
 
                             <p>Der folgende Vorschlag wurden von Ihnen übernommen. Sollten Sie den Vorschlag bestätigen, wird dieser unter <a href="route('accepted_matchings')" class="font-semibold hover:underline text-white">Paarungen</a> gelistet. Die Personen erhalten zudem eine E-Mail.</p>
 
-                        @elseif (count($assigned_matchings) > 1)
+                        @elseif (count($matched) > 1)
 
-                            <p>Die folgenden <strong>{{ count($assigned_matchings) }} Vorschläge</strong> wurden von Ihnen übernommen. Sollten Sie die Vorschläge bestätigen, werden diese unter <a href="route('accepted_matchings')" class="font-semibold hover:underline text-white">Paarungen</a> gelistet. Die Personen erhalten zudem eine E-Mail.</p>
+                            <p>Die folgenden <strong>{{ count($matched) }} Vorschläge</strong> wurden von Ihnen übernommen. Sollten Sie die Vorschläge bestätigen, werden diese unter <a href="route('accepted_matchings')" class="font-semibold hover:underline text-white">Paarungen</a> gelistet. Die Personen erhalten zudem eine E-Mail.</p>
 
                         @endif
 
@@ -64,11 +64,11 @@
 
                     <tbody>
 
-                        @if (count($assigned_matchings) == 0)
+                        @if (count($matched) == 0)
 
                             <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">Bisher wurden keine Vorschläge von Ihnen übernommen. Suchen Sie auf Basis des MSE nach Paarungen.</p>
 
-                        @elseif (count($assigned_matchings) > 0)
+                        @elseif (count($matched) > 0)
 
                             <tr>
 
@@ -92,7 +92,7 @@
 
                             </tr>
 
-                            @foreach($assigned_matchings as $index => $matching)
+                            @foreach($matched as $index => $matching)
 
                             <tr class="border-t border-gray-200 bg-gray-700">
 
@@ -104,17 +104,17 @@
 
                                 <td class="px-6 py-4 whitespace-no-wrap">
 
-                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching['lehr']->vorname }} {{ $matching['lehr']->nachname }}</div>
+                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching->lehr->vorname }} {{ $matching->lehr->nachname }}</div>
 
-                                    <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching['lehr']->email }}</a>
+                                    <a href="mailto:{{  $matching->lehr->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->lehr->email }}</a>
 
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap">
 
-                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching['stud']->vorname }} {{ $matching['stud']->nachname }}</div>
+                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching->stud->vorname }} {{ $matching->stud->nachname }}</div>
 
-                                    <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching['stud']->email }}</a>
+                                    <a href="mailto:{{  $matching->lehr->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->stud->email }}</a>
 
                                 </td>
 
@@ -123,7 +123,7 @@
 
                                     <div class="text-sm leading-5 font-normal text-white select-none font-bold bg-gray-500 text-center p-1 w-12 rounded-sm">
                 
-                                        {{ $matching['mse'] }}
+                                        {{ $matching->mse }}
                                         
                                     </div>
 
@@ -131,7 +131,7 @@
 
                                 <td class="px-6 py-4 whitespace-no-wrap">
 
-                                    <div class="text-xs sm:text-sm leading-5 text-gray-400 break-words">{{ $matching['elapsed_time'] }}</div>
+                                    <div class="text-xs sm:text-sm leading-5 text-gray-400 break-words">{{ $matching->elapsed_time }}</div>
 
                                 </td>
                                 
@@ -139,7 +139,7 @@
 
                                 <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
 
-                                    <form action="{{ route('matchings.setunassigned', ['lehr' => $matching['lehr']->id, 'stud' => $matching['stud']->id]) }}" method="get">
+                                    <form action="{{ route('matchings.setunassigned', ['lehr' => $matching->lehr->id, 'stud' => $matching->stud->id]) }}" method="get">
 
                                         @csrf
 
@@ -176,7 +176,7 @@
 
                 </table>
 
-                @if (count($assigned_matchings))
+                @if (count($matched))
 
                     <div class="mt-4 flex justify-end">
 
@@ -211,15 +211,15 @@
 
                     <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                        @if (count($matchings) == 0)
+                        @if (count($strongly_recommended) == 0)
 
-                        @elseif (count($matchings) == 1)
+                        @elseif (count($strongly_recommended) == 1)
 
                             <p>Der folgende Vorschlag ist derzeit alternativlos.</p>
 
-                        @elseif (count($matchings) > 1)
+                        @elseif (count($strongly_recommended) > 1)
 
-                            <p>Die folgenden <strong>{{ count($matchings) }} Vorschläge</strong> sind derzeit alternativlos. Es ist daher ratsam, diese Paarungen durchzuführen, um alle Bewerber*innen zuzuweisen. Übernehmen Sie mittels einer Aktion einen Vorschlag.</p>
+                            <p>Die folgenden <strong>{{ count($strongly_recommended) }} Vorschläge</strong> sind derzeit alternativlos. Es ist daher ratsam, diese Paarungen durchzuführen, um alle Bewerber*innen zuzuweisen. Übernehmen Sie mittels einer Aktion einen Vorschlag.</p>
 
                         @endif
 
@@ -231,11 +231,11 @@
 
                     <tbody>
 
-                        @if (count($matchings) == 0)
+                        @if (count($strongly_recommended) == 0)
 
                             <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">Keine alternativlosen Paarungen vorhanden.</p>
 
-                        @elseif (count($matchings) > 0)
+                        @elseif (count($strongly_recommended) > 0)
 
                             <tr>
 
@@ -256,7 +256,7 @@
 
                             </tr>
 
-                            @foreach($matchings as $index => $matching)
+                            @foreach($strongly_recommended as $index => $matching)
 
                             <tr class="border-t border-gray-200 bg-gray-700">
 
@@ -268,17 +268,17 @@
 
                                 <td class="px-6 py-4 whitespace-no-wrap">
 
-                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching['lehr']->vorname }} {{ $matching['lehr']->nachname }}</div>
+                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching->lehr->vorname }} {{ $matching->lehr->nachname }}</div>
 
-                                    <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching['lehr']->email }}</a>
+                                    <a href="mailto:{{  $matching->lehr->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->lehr->email }}</a>
 
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap">
 
-                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching['stud']->vorname }} {{ $matching['stud']->nachname }}</div>
+                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $matching->stud->vorname }} {{ $matching->stud->nachname }}</div>
 
-                                    <a href="mailto:{{  $matching['lehr']->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching['stud']->email }}</a>
+                                    <a href="mailto:{{  $matching->lehr->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->stud->email }}</a>
 
                                 </td>
 
@@ -286,7 +286,7 @@
 
                                     <div class="text-sm leading-5 font-normal text-white select-none font-bold bg-gray-500 text-center p-1 w-12 rounded-sm">
                 
-                                        {{ $matching['stud']->mse }}
+                                        {{ $matching->mse }}
                                         
                                     </div>
 
@@ -296,7 +296,7 @@
 
                                 <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
 
-                                    <form action="{{ route('matchings.setassigned', ['lehr' => $matching['lehr']->id, 'stud' => $matching['stud']->id, 'mse' => $matching['stud']->mse]) }}" method="get">
+                                    <form action="{{ route('matchings.setassigned', ['lehr' => $matching->lehr->id, 'stud' => $matching->stud->id, 'mse' => $matching->mse]) }}" method="get">
 
                                         @csrf
 
@@ -351,19 +351,19 @@
 
                     <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex w-full">
 
-                        @if ($users->count() == 0)
+                        @if (count($unmatched_lehr) == 0)
 
                             <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">Keine weiteren Paarungen vorhanden.</p>
 
-                        @elseif ($users->count() >= 1)
+                        @elseif (count($unmatched_lehr) >= 1)
 
-                            @if ($users->count() == 1)
+                            @if (count($unmatched_lehr) == 1)
 
                             <p>Folgende Paarung ist möglich.</p>
 
-                            @elseif ($users->count() > 1)
+                            @elseif (count($unmatched_lehr) > 1)
 
-                                <p>Die folgenden <strong>{{ $users->count() }} Paarungen</strong> sind derzeit möglich.</p>
+                                <p>Die folgenden <strong>{{ count($unmatched_lehr) }} Paarungen</strong> sind derzeit möglich.</p>
 
                             @endif
 
@@ -379,7 +379,9 @@
 
                                     <p class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 rounded-t-lg tracking-wider uppercase font-bold">Auflistung von Lehrkräften und kompatiblen Student*innen</p>
 
-                                    @foreach($users as $index => $user)
+                                    @foreach($unmatched_lehr as $index => $lehr)
+
+                                        @if ($lehr->has_any_matching)
 
                                         <div class="border-b border-gray-200 bg-gray-700 flex">
 
@@ -393,15 +395,15 @@
 
                                                 <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64">
 
-                                                    <a href="{{ route('profile.details', ['id' => $user->id]) }}" class="text-xs sm:text-sm leading-5 font-medium text-white hover:underline break-all">
+                                                    <a href="{{ route('profile.details', ['id' => $lehr->id]) }}" class="text-xs sm:text-sm leading-5 font-medium text-white hover:underline break-all">
 
-                                                        {{ $user->vorname }} {{ $user->nachname }}
+                                                        {{ $lehr->vorname }} {{ $lehr->nachname }}
 
                                                     </a>
 
                                                 </div>
 
-                                                <a href="mailto:{{ $user->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-all">{{ $user->email }} </a>
+                                                <a href="mailto:{{ $lehr->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-all">{{ $lehr->email }} </a>
 
                                             </div>
 
@@ -409,17 +411,17 @@
 
                                                 <div class="text-xs sm:text-sm leading-5 font-medium text-white">
                             
-                                                    {{ $user->survey_data->schulart }}
+                                                    {{ $lehr->data()->schulart }}
                                                     
                                                 </div>
 
                                                 <!-- Fächer -->
 
-                                                @if(isset($user->survey_data->faecher))
+                                                @if(isset($lehr->data()->faecher))
 
                                                     <div class="text-xs sm:text-sm leading-5 font-medium text-gray-400">
                                 
-                                                        {{ $user->survey_data->faecher }}
+                                                        {{ implode(', ', $lehr->data()->faecher) }}
                                                         
                                                     </div>
 
@@ -439,13 +441,13 @@
 
                                                 <div class="text-xs sm:text-sm leading-5 font-medium text-white">
                             
-                                                    {{ $user->survey_data->postleitzahl }}
+                                                    {{ $lehr->data()->postleitzahl }}
                                                     
                                                 </div>
 
                                                 <div class="text-xs sm:text-sm leading-5 font-medium text-gray-400">
                             
-                                                    {{ $user->survey_data->ort }}
+                                                    {{ $lehr->data()->ort }}
                                                     
                                                 </div>
 
@@ -453,8 +455,11 @@
 
                                             <div class="w-full px-6 py-4 flex">
 
-                                                @foreach($user->matchings as $count=>$matching)
+                                                <!-- Alle Studenten die mit dem Lehrer gematched werden können -->
+                                                @foreach($lehr->matchable as $count=>$stud)
 
+                                                    @if ($stud->matching_state == 'unmatched')
+                                                        
                                                     <!-- MSE -->
 
                                                     <div x-data="{ modelOpen: false }" class="flex flex-wrap mr-2 mb-2">
@@ -468,7 +473,7 @@
                                                             <span>
 
                                                                 @php
-                                                                    echo $matching->vorname[0] . $matching->nachname[0]." ". "(" . $user->mses[$count] . ")";
+                                                                    echo $stud->vorname[0] . $stud->nachname[0]." ". "(" . $stud->pivot->mse . ")";
                                                                 @endphp
 
                                                             </span>
@@ -527,13 +532,13 @@
 
                                                                     <p class="mt-2">
 
-                                                                        @if ($matching->count_matchings == 1) 
+                                                                        @if (count($stud->matchable) == 1) 
 
                                                                             <p class="text-gray-400 text-sm">Kann <strong>nur mit dieser Lehrkraft</strong> gematcht werden
 
                                                                         @else 
 
-                                                                            <p class="text-gray-400 text-sm">Kann mit {{ $matching->count_matchings }} Lehrkräften gematcht werden.
+                                                                            <p class="text-gray-400 text-sm">Kann mit {{ count($stud->matchable) }} Lehrkräften gematcht werden.
 
                                                                         @endif
 
@@ -547,8 +552,8 @@
 
                                                                         <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
 
-                                                                            <p>{{ $matching->vorname }} {{ $matching->nachname }}</p>
-                                                                            <a href="mailto:{{ $matching->email }}" class="text-gray-400 hover:text-gray-100 break-words">{{ $matching->email }}</a>
+                                                                            <p>{{ $stud->vorname }} {{ $stud->nachname }}</p>
+                                                                            <a href="mailto:{{ $stud->email }}" class="text-gray-400 hover:text-gray-100 break-words">{{ $stud->email }}</a>
 
                                                                         </div>
 
@@ -562,7 +567,7 @@
 
                                                                             <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
 
-                                                                                    {{ $user->mses[$count] }}
+                                                                                    {{ $stud->pivot->mse }}
 
                                                                             </div>
 
@@ -576,43 +581,43 @@
 
                                                                                 <p>
 
-                                                                                    Feedback Lehrkraft zu Student*in [Abweichung 0 bis 5]: {{ abs($user->survey_data->feedback_an - $matching->survey_data->feedback_von) }}
+                                                                                    Feedback Lehrkraft zu Student*in [Abweichung 0 bis 5]: {{ abs($lehr->data()->feedback_an - $stud->feedback_von) }}
 
                                                                                 </p>
 
                                                                                 <p>
 
-                                                                                    Feedback Student*in zu Lehrkraft [Abweichung 0 bis 5]: {{ abs($user->survey_data->feedback_von - $matching->survey_data->feedback_an) }}
+                                                                                    Feedback Student*in zu Lehrkraft [Abweichung 0 bis 5]: {{ abs($lehr->data()->feedback_von - $stud->feedback_an) }}
 
                                                                                 </p>
 
                                                                                 <p>
 
-                                                                                    Eigenstaendigkeit [Abweichung 0 bis 5]**: {{ abs($user->survey_data->eigenstaendigkeit - $matching->survey_data->eigenstaendigkeit) }}
+                                                                                    Eigenstaendigkeit [Abweichung 0 bis 5]**: {{ abs($lehr->data()->eigenstaendigkeit - $stud->eigenstaendigkeit) }}
 
                                                                                 </p>
 
                                                                                 <p>
 
-                                                                                    Improvisation [Abweichung 0 bis 5]: {{ abs($user->survey_data->improvisation - $matching->survey_data->improvisation) }}
+                                                                                    Improvisation [Abweichung 0 bis 5]: {{ abs($lehr->data()->improvisation - $stud->improvisation) }}
 
                                                                                 </p>
 
                                                                                 <p>
 
-                                                                                    Freiraum [Abweichung 0 bis 3]: {{ abs($user->survey_data->freiraum - $matching->survey_data->freiraum) }}
+                                                                                    Freiraum [Abweichung 0 bis 3]: {{ abs($lehr->data()->freiraum - $stud->freiraum) }}
 
                                                                                 </p>
 
                                                                                 <p>
 
-                                                                                    Innovationsoffenheit [Abweichung 0 bis 5]: {{ abs($user->survey_data->innovationsoffenheit - $matching->survey_data->innovationsoffenheit) }}
+                                                                                    Innovationsoffenheit [Abweichung 0 bis 5]: {{ abs($lehr->data()->innovationsoffenheit - $stud->innovationsoffenheit) }}
 
                                                                                 </p>
 
                                                                                 <p>
 
-                                                                                    Belastbarkeit [Abweichung 0 bis 5]:** {{ abs($user->survey_data->belastbarkeit - $matching->survey_data->belastbarkeit) }}
+                                                                                    Belastbarkeit [Abweichung 0 bis 5]:** {{ abs($lehr->data()->belastbarkeit - $stud->belastbarkeit) }}
 
                                                                                 </p>
 
@@ -624,7 +629,7 @@
 
                                                                     </div>
 
-                                                                    <form action="{{ route('matchings.setassigned', ['lehr' => $user->id, 'stud' => $matching->id, 'mse' => $user->mses[$count]]) }}" method="get">
+                                                                    <form action="{{ route('matchings.setassigned', ['lehr' => $lehr->id, 'stud' => $stud->id, 'mse' => $stud->pivot->mse]) }}" method="get">
 
                                                                         @csrf
                                                                     
@@ -656,11 +661,15 @@
                                                     
                                                     <!-- MSE -->
 
+                                                    @endif
+
                                                 @endforeach
 
                                             </div>
 
                                         </div>
+
+                                        @endif
 
                                         @endforeach
 

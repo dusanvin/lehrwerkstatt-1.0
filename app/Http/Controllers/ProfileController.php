@@ -148,13 +148,8 @@ class ProfileController extends Controller
     public function matchings()
     {
         $user = auth()->user();
-        // dd($user);
-        // $matchings = [];
-        // if(true) { // soll true sein wenn email versendet
-        //     $matchings = $user->matchings;
-        // }
         
-        foreach ($user->matchings as $m) {
+        foreach ($user->matchable as $m) {
             $m->survey_data = json_decode($m->survey_data);
             if (isset($m->survey_data->faecher))
                 $m->survey_data->faecher = implode(', ', $m->survey_data->faecher);
@@ -163,40 +158,7 @@ class ProfileController extends Controller
             if (isset($m->survey_data->verkehrsmittel))
                 $m->survey_data->verkehrsmittel = implode(', ', $m->survey_data->verkehrsmittel);
         }
-        // dd($user);
-        
-        // if (lcfirst($user->role) == 'lehr') {
-        //     foreach ($user->matchings as $m) {
-        //         $m->survey_data = json_decode($m->survey_data);
-        //         if (isset($m->survey_data->faecher))
-        //             $m->survey_data->faecher = implode(', ', $m->survey_data->faecher);
-        //         if (isset($m->survey_data->landkreise))
-        //             $m->survey_data->landkreise = implode(', ', $m->survey_data->landkreise);
-        //         if (isset($m->survey_data->verkehrsmittel))
-        //             $m->survey_data->verkehrsmittel = implode(', ', $m->survey_data->verkehrsmittel);
-        //     }
-        // } elseif(lcfirst($user->role) == 'stud') {
-        //     $matching = DB::table('user_user')->where('matching_id', $user->id)->get();
-        //     $matching_id = $matching[0]->user_id;
-        //     $matching_mse = $matching[0]->mse;
-        //     $matching = User::where('id', $matching_id)->get();
-        //     // dd($user);
-        //     $user->matchings = $matching;
-        //     // dd($user);
-        //     foreach ($user->matchings as $m) {
-        //         // dd($m);
-        //         $m->survey_data = json_decode($m->survey_data);
-        //         if (isset($m->survey_data->faecher))
-        //             $m->survey_data->faecher = implode(', ', $m->survey_data->faecher);
-        //         if (isset($m->survey_data->landkreise))
-        //             $m->survey_data->landkreise = implode(', ', $m->survey_data->landkreise);
-        //         if (isset($m->survey_data->verkehrsmittel))
-        //             $m->survey_data->verkehrsmittel = implode(', ', $m->survey_data->verkehrsmittel);
-        //     }
-        // }
 
-        // dd($user);
-        // dd($matchings);
         return view('profile.matchings', compact('user'));
     }
 

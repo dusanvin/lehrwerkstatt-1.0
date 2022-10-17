@@ -165,18 +165,19 @@ class MatchingController extends Controller
             }
         }
 
-        $matchable_lehr = User::find(DB::table('lehr_stud')->pluck('lehr_id'));
-        $matched_lehr = User::find(DB::table('lehr_stud')->where('is_matched', true)->pluck('lehr_id'));
-
-
-
         $resultGraph->setAttribute('graphviz.graph.rankdir', 'LR');
         $resultGraph->setAttribute('graphviz.graph.bgcolor', 'transparent');
         // $graphviz->display($resultGraph);
         // $graphviz->setFormat('svg');
         $graph_img = $graphviz->createImageHtml($resultGraph);
-
         $matched_graph = $resultGraph->createGraphClone();
+
+
+
+
+        $matchable_lehr = User::find(DB::table('lehr_stud')->pluck('lehr_id'));
+        $matched_lehr = User::find(DB::table('lehr_stud')->where('is_matched', true)->where('is_notified', false)->pluck('lehr_id'));
+
         foreach ($matched_graph->getEdges() as $edge) {
 
             $edge->setAttribute('graphviz.dir', 'none');
@@ -228,7 +229,7 @@ class MatchingController extends Controller
         $lehr = User::find($lehrid);
         $stud = User::find($studid);
 
-        $lehr->matchable()->updateExistingPivot($stud, ['is_matched' => false]);
+        $lehr->matchable()->updateExistingPivot($stud, ['is_matched' => false, 'is_notified' => false]);
 
         return back();
     }
@@ -285,7 +286,7 @@ class MatchingController extends Controller
     public function notifyMatchings()
     {
 
-        $unnotified_matchings = DB::table('lehr_stud')->where('is_notified', false)->get();
+        $unnotified_matchings = DB::table('lehr_stud')->where('is_matched', true)->where('is_notified', false)->get();
 
         foreach ($unnotified_matchings as $unnotified_matching) {
 
@@ -316,7 +317,15 @@ class MatchingController extends Controller
 
     public function acceptedMatchings(Request $request)
     {
-        $notified_matchings = DB::table('lehr_stud')->where('is_notified', true)->get();
+        $notified_matchings = DB::table('lehr_stud')->where('is_notified', true)->where(function ($query) {
+
+                                $query->whereNull('is_accepted_lehr')->where('is_accepted_stud', true)->orWhere(function ($query) {
+                                        $query->where('is_accepted_lehr', true)->whereNull('is_accepted_stud');
+                                    })->orWhere(function ($query) {
+                                        $query->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud');
+                                    });
+                            })->get();
+
         foreach ($notified_matchings as $am) {
             $am->lehr = User::find($am->lehr_id);
             $am->stud = User::find($am->stud_id);
@@ -327,8 +336,163 @@ class MatchingController extends Controller
         foreach ($accepted_matchings as $am) {
             $am->lehr = User::find($am->lehr_id);
             $am->stud = User::find($am->stud_id);
+            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
         }
-        return view('accepted_matchings', ['notified_matchings' => $notified_matchings, 'accepted_matchings' => $accepted_matchings]);
+
+        $declined_matchings = DB::table('lehr_stud')->where(function ($query) {
+            $query->where('is_accepted_lehr', false)->orWhere('is_accepted_stud', false);
+        })->get();
+        foreach ($declined_matchings as $am) {
+            $am->lehr = User::find($am->lehr_id);
+            $am->stud = User::find($am->stud_id);
+            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
+        }
+
+        return view('accepted_matchings', compact(['notified_matchings', 'accepted_matchings', 'declined_matchings']));
+    }
+
+
+    public function matchings(Request $request) {
+
+        $graph = new Graph();
+        $source_vertex = $graph->createVertex('s');
+        $sink_vertex = $graph->createVertex('t');
+
+
+        $all_lehr = User::where('role', 'Lehr')->where('is_evaluable', true)->get();
+        $all_stud = User::where('role', 'Stud')->where('is_evaluable', true)->get();
+
+        foreach ($all_lehr as $lehr) {
+            $lehr->survey_data = json_decode($lehr->survey_data);
+
+            $lehr_vertex = $graph->createVertex($lehr->id);
+            $lehr_vertex->setAttribute('data', $lehr->survey_data);
+            $edge = $source_vertex->createEdgeTo($lehr_vertex);
+            $edge->setCapacity(1);
+        }
+
+        foreach ($all_stud as $stud) {
+            $stud->survey_data = json_decode($stud->survey_data);
+
+            $stud_vertex = $graph->createVertex($stud->id);
+            $stud_vertex->setAttribute('data', $stud->survey_data);
+            $edge = $stud_vertex->createEdgeTo($sink_vertex);
+            $edge->setCapacity(1);
+        }
+
+        foreach ($all_lehr as $lehr) {
+
+            foreach ($all_stud as $stud) {
+
+                if ($lehr->survey_data->schulart == $stud->survey_data->schulart) {
+
+                    if (in_array($lehr->survey_data->landkreis,  $stud->survey_data->landkreise)) {
+
+                        if ($lehr->survey_data->schulart == 'Grundschule') {
+
+                            $lehr_vertex = $graph->getVertex($lehr->id);
+                            $stud_vertex = $graph->getVertex($stud->id);
+                            $edge = $lehr_vertex->createEdgeTo($stud_vertex);
+                            $edge->setCapacity(1);
+
+                            $mse = $this->mse($lehr, $stud);
+                            $edge->setAttribute('graphviz.label', $mse . ', ');
+                            $lehr->matchable()->syncWithoutDetaching([$stud->id => ['mse' => $mse]]);
+
+                        } elseif (array_intersect($lehr->survey_data->faecher, $stud->survey_data->faecher)) {
+
+                            $lehr_vertex = $graph->getVertex($lehr->id);
+                            $stud_vertex = $graph->getVertex($stud->id);
+                            $edge = $lehr_vertex->createEdgeTo($stud_vertex);
+                            $edge->setCapacity(1);
+
+                            $mse = $this->mse($lehr, $stud);
+                            $lehr->matchable()->syncWithoutDetaching([$stud->id => ['mse' => $mse]]);
+
+                        }
+                    }
+                }
+            }
+        }
+
+        $ek = new EdmondsKarp($source_vertex, $sink_vertex);
+
+        $resultGraph = $ek->createGraph();
+        $source_vertex = $resultGraph->getVertex('s');
+
+        foreach ($source_vertex->getEdges() as $edge) {
+            if ($edge->getFlow() == 1) {
+                $lehr_vertex = $edge->getVertexEnd();
+
+                foreach ($lehr_vertex->getEdges() as $edge) {
+                    if ($edge->getFlow() == 1 && $edge->getVertexStart() != 's') {
+                        //recommended
+                        $stud_vertex = $edge->getVertexEnd();
+                        $lehr = User::find($lehr_vertex->getId());
+
+                        if(count($lehr_vertex->getEdgesOut()) == 1) {
+                            $has_no_alternative_lehr = true;
+                        } else $has_no_alternative_lehr = false;
+
+                        $stud = User::find($stud_vertex->getId());
+
+                        if(count($stud_vertex->getEdgesIn()) == 1) {
+                            $has_no_alternative_stud = true;
+                        } else $has_no_alternative_stud = false;
+
+                        // $lehr->matchable()->syncWithoutDetaching([$stud->id => ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr,'has_no_alternative_stud' => $has_no_alternative_stud]]);
+                        $lehr->matchable()->updateExistingPivot($stud, ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr,'has_no_alternative_stud' => $has_no_alternative_stud]);
+
+                    } else {
+                        $edge->setAttribute('graphviz.dir', 'none');
+                    }
+                }
+            } else {
+                $lehr_vertex = $edge->getVertexEnd();
+                foreach ($lehr_vertex->getEdges() as $edge) {
+                    $edge->setAttribute('graphviz.dir', 'none');
+                }
+            }
+        }
+
+        $max_flow = $ek->getFlowMax();
+
+        $matched = DB::table('lehr_stud')->where('is_matched', true)->where('is_notified', false)->get();
+        foreach ($matched as $am) {
+            $am->lehr = User::find($am->lehr_id);
+            $am->stud = User::find($am->stud_id);
+            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
+        }
+
+        $strongly_recommended = DB::table('lehr_stud')->where('is_matched', false)->where('is_notified', false)->where(function ($query) {
+            $query->where('has_no_alternative_lehr', true)->orWhere('has_no_alternative_stud', true);
+        })->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')->get();
+        foreach ($strongly_recommended as $am) {
+            $am->lehr = User::find($am->lehr_id);
+            $am->stud = User::find($am->stud_id);
+            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
+        }
+
+        $remaining_recommended = DB::table('lehr_stud')->where('is_matched', false)->where('is_notified', false)->where('recommended', true)->where('has_no_alternative_lehr', false)->where('has_no_alternative_stud', false)->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')->get();
+        foreach ($remaining_recommended as $am) {
+            $am->lehr = User::find($am->lehr_id);
+            $am->stud = User::find($am->stud_id);
+            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
+        }
+
+        $matched_ids = DB::table('lehr_stud')->where('is_matched', true)->pluck('lehr_id');
+        $unmatched_ids = DB::table('lehr_stud')->where('is_matched', false)->where('is_notified', false)->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')->distinct()->pluck('lehr_id');
+
+        $unmatched_lehr = User::find($unmatched_ids->diff($matched_ids));
+
+        // $unmatched = DB::table('lehr_stud')->where('is_matched', false)->where('is_notified', false)->get();
+        // foreach ($unmatched as $am) {
+        //     $am->lehr = User::find($am->lehr_id);
+        //     $am->stud = User::find($am->stud_id);
+        //     $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
+        // }
+
+        return view('matchings', compact('matched', 'strongly_recommended', 'remaining_recommended', 'unmatched_lehr'));
     }
 
 
@@ -336,10 +500,7 @@ class MatchingController extends Controller
 
 
 
-
-
-
-    public function matchings(Request $request)
+    public function matchingsA(Request $request)
     {
         $lehr = User::where('role', 'lehr')->where('is_evaluable', true)->where('matching_state', 'unmatched')->get();
         $stud = User::where('role', 'stud')->where('is_evaluable', true)->where('matching_state', 'unmatched')->get();

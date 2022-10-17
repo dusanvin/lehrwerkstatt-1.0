@@ -32,7 +32,7 @@
 
             <!-- Anzahl -->
 
-            @if ($user->matchings()->count() == 0)
+            @if ($user->matchable()->count() == 0)
 
             <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">
 
@@ -42,11 +42,11 @@
 
             @else
 
-            @if ($user->matchings()->count() == 1)
+            @if ($user->matchable()->count() == 1)
 
             <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
 
-                {{ $user->matchings()->count() }} Vorschlag vorhanden.
+                {{ $user->matchable()->count() }} Vorschlag vorhanden.
 
             </div>
 
@@ -54,7 +54,7 @@
 
             <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
 
-                {{ $user->matchings()->count() }} Vorschläge vorhanden.
+                {{ $user->matchable()->count() }} Vorschläge vorhanden.
 
             </div>
 
@@ -89,9 +89,11 @@
 
                     </tbody>
 
-                    @if ($user->matchings()->count())
+                    @if ($user->matchable()->count())
 
-                    @foreach($user->matchings as $index => $matching)
+                    @php
+                        $index = 0;
+                    @endphp
 
                     <tr class="border-t border-gray-200 bg-gray-700 text-sm text-gray-400">
 
@@ -103,13 +105,13 @@
 
                         <td class="px-6 py-4 whitespace-no-wrap align-top">
 
-                            <a class="flex hover:underline text-white hover:text-gray-100" href="{{ route('profile.details', ['id' => $matching->id]) }}">
+                            <a class="flex hover:underline text-white hover:text-gray-100" href="{{ route('profile.details', ['id' => $user->notified_user->id]) }}">
 
-                                {{ $matching->vorname }} {{ $matching->nachname }}
+                                {{ $user->notified_user->vorname }} {{ $user->notified_user->nachname }}
 
                             </a>
 
-                            <a href="mailto:{{  $matching->email }}" class="leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->email }}</a>
+                            <a href="mailto:{{  $user->notified_user->email }}" class="leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $user->notified_user->email }}</a>
 
                         </td>
 
@@ -117,7 +119,7 @@
 
                             <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
 
-                                {{ $matching->survey_data->schulart }}
+                                {{ $user->notified_user->data()->schulart }}
 
                             </div>
 
@@ -127,9 +129,9 @@
 
                             <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
 
-                                @if(isset($matching->survey_data->faecher))
+                                @if(isset($user->notified_user->data()->faecher))
 
-                                {{ $matching->survey_data->faecher }}
+                                {{ implode(', ', $user->notified_user->data()->faecher) }}
 
                                 @else
 
@@ -141,25 +143,25 @@
 
                         </td>
 
-                        @if(strcasecmp($matching->role, 'lehr') == 0)
+                        @if(strcasecmp($user->notified_user->role, 'lehr') == 0)
 
                         <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
 
                             <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
 
-                                {{ $matching->survey_data->postleitzahl }} {{ $matching->survey_data->ort }}
+                                {{ $user->notified_user->data()->postleitzahl }} {{ $user->notified_user->data()->ort }}
 
                             </div>
 
                         </td>
 
-                        @elseif(strcasecmp($matching->role, 'stud') == 0)
+                        @elseif(strcasecmp($user->notified_user->role, 'stud') == 0)
 
                         <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
 
                             <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
 
-                                {{ $matching->survey_data->landkreise }}
+                                {{ implode(', ', $user->notified_user->data()->landkreise) }}
 
                             </div>
 
@@ -184,7 +186,7 @@
                                 <div class="flex">
 
 
-                                        <a href="/messages/create/{{ $matching->id }}" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
+                                        <a href="/messages/create/{{ $user->notified_user->id }}" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
 
                                             Kontaktieren
 
@@ -195,27 +197,27 @@
 
                             </div>
 
-                            @if( (strcasecmp($user->role, 'lehr') == 0 && !isset($matching->pivot->is_accepted_lehr)) || (strcasecmp($user->role, 'stud') == 0 && !isset($matching->pivot->is_accepted_stud)) )
+                            @if( (strcasecmp($user->role, 'lehr') == 0 && !isset($user->notified_user->pivot->is_accepted_lehr)) || (strcasecmp($user->role, 'stud') == 0 && !isset($user->notified_user->pivot->is_accepted_stud)) )
                             <form action="{{ route('acceptMatching') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="role" value="{{ $user->role }}">
-                                <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $matching->id }}">
-                                <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $matching->id }}">
+                                <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $user->notified_user->id }}">
+                                <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $user->notified_user->id }}">
                                 <input type="submit" value="Verbindlich Zusagen">
                             </form>
                             <br>
                             <form action="{{ route('declineMatching') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="role" value="{{ $user->role }}">
-                                <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $matching->id }}">
-                                <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $matching->id }}">
+                                <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $user->notified_user->id }}">
+                                <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $user->notified_user->id }}">
                                 <input type="submit" value="Ablehnen">
                             </form>
                             @else
                                 @if (strcasecmp($user->role, 'lehr') == 0)
-                                    {{ $matching->pivot->is_accepted_lehr == 1 ? 'Zugesagt' : 'Abgelehnt' }}
+                                    {{ $user->notified_user->pivot->is_accepted_lehr == 1 ? 'Zugesagt' : 'Abgelehnt' }}
                                 @elseif (strcasecmp($user->role, 'stud') == 0)
-                                    {{ $matching->pivot->is_accepted_stud == 1 ? 'Zugesagt' : 'Abgelehnt' }}
+                                    {{ $user->notified_user->pivot->is_accepted_stud == 1 ? 'Zugesagt' : 'Abgelehnt' }}
                                 @endif
                             @endif
 
@@ -223,9 +225,6 @@
 
                     </tr>
 
-
-
-                    @endforeach
 
                     @endif
 

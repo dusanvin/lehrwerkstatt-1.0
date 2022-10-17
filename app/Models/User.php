@@ -122,6 +122,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->matchable->isNotEmpty();
     }
+    
 
     public function getMatchingStateAttribute()
     {
@@ -157,17 +158,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-    public function getAcceptedIsNullAttribute() {
-        if($this->role == 'Lehr') {
-            return $this->matchable()->whereNull('is_accepted_lehr')->exists();
-        }
-        if($this->role == 'Stud') {
-            return $this->matchable()->whereNull('is_accepted_stud')->exists();
-        }
-        else return null;
-    }
-
-
     public function hasMatchingAccepted($id) {
         if($this->role == 'Lehr') {
             return $this->matchable()->where('stud_id', $id)->where('is_accepted_lehr', true)->exists();
@@ -190,6 +180,15 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
+        // public function getAcceptedIsNullAttribute() {
+    //     if($this->role == 'Lehr') {
+    //         return $this->matchable()->whereNull('is_accepted_lehr')->exists();
+    //     }
+    //     if($this->role == 'Stud') {
+    //         return $this->matchable()->whereNull('is_accepted_stud')->exists();
+    //     }
+    //     else return null;
+    // }
 
 
     // public function getHasAcceptedAttribute() {

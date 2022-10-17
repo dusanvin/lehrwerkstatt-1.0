@@ -47,7 +47,9 @@ class FilterController extends Controller
 
     private function getUnmatchedUsers($roleName)
     {
-        $users = User::where('role', $roleName)->where('is_evaluable', true)->where('assigned', false)->get();
+        $users = User::where('role', $roleName)->where('is_evaluable', true)->get()->reject(function ($user) {
+            return $user->matching_state != 'unmatched';
+        });
         foreach ($users as $user) {
             $user->survey_data = json_decode($user->survey_data);
             // if (isset($user->survey_data->faecher))

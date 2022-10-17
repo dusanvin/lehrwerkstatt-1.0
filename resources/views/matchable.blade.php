@@ -53,7 +53,7 @@
                                 schließen ein mögliche Paarung aus.</p>
 
                         </div>
-                        {!! $prematched_graph_img !!}
+                        {!! $matched_graph_img !!}
                     </div>
 
                 </div>
@@ -85,14 +85,14 @@
 
                         <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                            @if (count($prematched_lehr) == 0)
-                            @elseif (count($prematched_lehr) == 1)
+                            @if (count($matched_lehr) == 0)
+                            @elseif (count($matched_lehr) == 1)
                                 <p>Der folgende Vorschlag wurde von Ihnen übernommen. Sollten Sie den Vorschlag bestätigen,
                                     wird dieser unter <a href="route('accepted_matchings')"
                                         class="font-semibold hover:underline text-white">Paarungen</a> gelistet. Die
                                     Personen erhalten zudem eine E-Mail.</p>
-                            @elseif (count($prematched_lehr) > 1)
-                                <p>Die folgenden <strong>{{ count($prematched_lehr) }} Vorschläge</strong> wurden von Ihnen
+                            @elseif (count($matched_lehr) > 1)
+                                <p>Die folgenden <strong>{{ count($matched_lehr) }} Vorschläge</strong> wurden von Ihnen
                                     übernommen. Sollten Sie die Vorschläge bestätigen, werden diese unter <a
                                         href="route('accepted_matchings')"
                                         class="font-semibold hover:underline text-white">Paarungen</a> gelistet. Die
@@ -107,12 +107,12 @@
 
                         <tbody>
 
-                            @if (count($prematched_lehr) == 0)
+                            @if (count($matched_lehr) == 0)
                                 <p
                                     class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">
                                     Bisher wurden keine Vorschläge von Ihnen übernommen. Suchen Sie auf Basis des MSE nach
                                     Paarungen.</p>
-                            @elseif (count($prematched_lehr) > 0)
+                            @elseif (count($matched_lehr) > 0)
                                 <tr>
 
                                     <th
@@ -147,7 +147,7 @@
 
                                 </tr>
 
-                                @foreach ($prematched_lehr as $index => $lehr)
+                                @foreach ($matched_lehr as $index => $lehr)
                                     <tr class="border-t border-gray-200 bg-gray-700">
 
                                         <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
@@ -179,26 +179,26 @@
                                         <td class="px-6 py-4 whitespace-no-wrap">
 
                                             <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                                                {{ $lehr->prematched->first()->vorname }}
-                                                {{ $lehr->prematched->first()->nachname }}
+                                                {{ $lehr->matchable()->first()->vorname }}
+                                                {{ $lehr->matchable()->first()->nachname }}
                                             </div>
 
                                             <a href="mailto:{{ $lehr->email }}"
-                                                class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $lehr->prematched->first()->email }}</a>
+                                                class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $lehr->matchable()->first()->email }}</a>
 
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-no-wrap">
                                             <div class="text-xs sm:text-sm leading-5 font-medium text-white text-center">
                                                 <p
-                                                    class="{{ isset($lehr->prematched->first()->data()->wunschtandem) ? 'bg-yellow-600 rounded-xl m-1' : '' }}">
-                                                    {{ $lehr->prematched->first()->data()->wunschtandem ?? '-' }}</p>
+                                                    class="{{ isset($lehr->matchable()->first()->data()->wunschtandem) ? 'bg-yellow-600 rounded-xl m-1' : '' }}">
+                                                    {{ $lehr->matchable()->first()->data()->wunschtandem ?? '-' }}</p>
                                                 <p
-                                                    class="{{ isset($lehr->prematched->first()->data()->wunschorte) ? 'bg-blue-500 rounded-xl m-1' : '' }}">
-                                                    {{ $lehr->prematched->first()->data()->wunschorte ?? '-' }}</p>
+                                                    class="{{ isset($lehr->matchable()->first()->data()->wunschorte) ? 'bg-blue-500 rounded-xl m-1' : '' }}">
+                                                    {{ $lehr->matchable()->first()->data()->wunschorte ?? '-' }}</p>
                                                 <p
-                                                    class="{{ isset($lehr->prematched->first()->data()->ehem_schulort) ? 'bg-red-400 rounded-xl m-1' : '' }}">
-                                                    {{ $lehr->prematched->first()->data()->ehem_schulort ?? '-' }}</p>
+                                                    class="{{ isset($lehr->matchable()->first()->data()->ehem_schulort) ? 'bg-red-400 rounded-xl m-1' : '' }}">
+                                                    {{ $lehr->matchable()->first()->data()->ehem_schulort ?? '-' }}</p>
                                             </div>
                                         </td>
 
@@ -208,7 +208,7 @@
                                             <div
                                                 class="text-sm leading-5 font-normal text-white select-none font-bold bg-gray-500 text-center p-1 w-12 rounded-sm">
 
-                                                {{ $lehr->prematched->first()->pivot->mse }}
+                                                {{ $lehr->matchable()->first()->pivot->mse }}
 
                                             </div>
 
@@ -217,7 +217,7 @@
                                         <td class="px-6 py-4 whitespace-no-wrap">
 
                                             <div class="text-xs sm:text-sm leading-5 text-gray-400 break-words">
-                                                {{ \Carbon\Carbon::parse($lehr->prematched->first()->pivot->created_at)->diffForHumans(\Carbon\Carbon::now()) }}
+                                                {{ \Carbon\Carbon::parse($lehr->matchable()->first()->pivot->created_at)->diffForHumans(\Carbon\Carbon::now()) }}
                                             </div>
 
                                         </td>
@@ -287,31 +287,31 @@
                                                                 <div
                                                                     class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
 
-                                                                    <p>{{ $lehr->prematched->first()->vorname }}
-                                                                        {{ $lehr->prematched->first()->nachname }}</p>
-                                                                    <a href="mailto:{{ $lehr->prematched->first()->email }}"
-                                                                        class="text-gray-400 hover:text-gray-100 break-words">{{ $lehr->prematched->first()->email }}</a>
+                                                                    <p>{{ $lehr->matchable()->first()->vorname }}
+                                                                        {{ $lehr->matchable()->first()->nachname }}</p>
+                                                                    <a href="mailto:{{ $lehr->matchable()->first()->email }}"
+                                                                        class="text-gray-400 hover:text-gray-100 break-words">{{ $lehr->matchable()->first()->email }}</a>
                                                                     <br>
                                                                     <br>
-                                                                    @if (!empty($lehr->prematched->first()->data()->wunschtandem))
+                                                                    @if (!empty($lehr->matchable()->first()->data()->wunschtandem))
                                                                         <p> Wunschtandem:
-                                                                            {{ $lehr->prematched->first()->data()->wunschtandem }}
+                                                                            {{ $lehr->matchable()->first()->data()->wunschtandem }}
                                                                         </p>
                                                                     @endif
-                                                                    @if (!empty($lehr->prematched->first()->data()->wunschorte))
+                                                                    @if (!empty($lehr->matchable()->first()->data()->wunschorte))
                                                                         <p> Wunschorte:
-                                                                            {{ $lehr->prematched->first()->data()->wunschorte }}
+                                                                            {{ $lehr->matchable()->first()->data()->wunschorte }}
                                                                         </p>
                                                                     @endif
-                                                                    @if (!empty($lehr->prematched->first()->data()->ehem_schulort))
+                                                                    @if (!empty($lehr->matchable()->first()->data()->ehem_schulort))
                                                                         <p> Ehem. Schulort:
-                                                                            {{ $lehr->prematched->first()->data()->ehem_schulort }}
+                                                                            {{ $lehr->matchable()->first()->data()->ehem_schulort }}
                                                                         </p>
                                                                     @endif
                                                                     <br>
-                                                                    @if (!empty($lehr->prematched->first()->data()->anmerkungen))
+                                                                    @if (!empty($lehr->matchable()->first()->data()->anmerkungen))
                                                                         <p> Anmerkungen:
-                                                                            {{ $lehr->prematched->first()->data()->anmerkungen }}
+                                                                            {{ $lehr->matchable()->first()->data()->anmerkungen }}
                                                                         </p>
                                                                     @endif
 
@@ -366,7 +366,7 @@
                                                                     <div
                                                                         class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
 
-                                                                        {{ $lehr->prematched->first()->pivot->mse }}
+                                                                        {{ $lehr->matchable()->first()->pivot->mse }}
 
                                                                     </div>
 
@@ -385,7 +385,7 @@
                                                                             Feedback Lehrkraft zu Student*in [Abweichung 0
                                                                             bis
                                                                             5]:
-                                                                            {{ abs($lehr->data()->feedback_an - $lehr->prematched->first()->data()->feedback_von) }}
+                                                                            {{ abs($lehr->data()->feedback_an - $lehr->matchable()->first()->data()->feedback_von) }}
 
                                                                         </p>
 
@@ -394,42 +394,42 @@
                                                                             Feedback Student*in zu Lehrkraft [Abweichung 0
                                                                             bis
                                                                             5]:
-                                                                            {{ abs($lehr->data()->feedback_von - $lehr->prematched->first()->data()->feedback_an) }}
+                                                                            {{ abs($lehr->data()->feedback_von - $lehr->matchable()->first()->data()->feedback_an) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Eigenstaendigkeit [Abweichung 0 bis 5]**:
-                                                                            {{ abs($lehr->data()->eigenstaendigkeit - $lehr->prematched->first()->data()->eigenstaendigkeit) }}
+                                                                            {{ abs($lehr->data()->eigenstaendigkeit - $lehr->matchable()->first()->data()->eigenstaendigkeit) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Improvisation [Abweichung 0 bis 5]:
-                                                                            {{ abs($lehr->data()->improvisation - $lehr->prematched->first()->data()->improvisation) }}
+                                                                            {{ abs($lehr->data()->improvisation - $lehr->matchable()->first()->data()->improvisation) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Freiraum [Abweichung 0 bis 3]:
-                                                                            {{ abs($lehr->data()->freiraum - $lehr->prematched->first()->data()->freiraum) }}
+                                                                            {{ abs($lehr->data()->freiraum - $lehr->matchable()->first()->data()->freiraum) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Innovationsoffenheit [Abweichung 0 bis 5]:
-                                                                            {{ abs($lehr->data()->innovationsoffenheit - $lehr->prematched->first()->data()->innovationsoffenheit) }}
+                                                                            {{ abs($lehr->data()->innovationsoffenheit - $lehr->matchable()->first()->data()->innovationsoffenheit) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Belastbarkeit [Abweichung 0 bis 5]:**
-                                                                            {{ abs($lehr->data()->belastbarkeit - $lehr->prematched->first()->data()->belastbarkeit) }}
+                                                                            {{ abs($lehr->data()->belastbarkeit - $lehr->matchable()->first()->data()->belastbarkeit) }}
 
                                                                         </p>
 
@@ -479,7 +479,7 @@
                                             class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
 
                                             <form
-                                                action="{{ route('matchings.setunassigned', ['lehr' => $lehr->id, 'stud' => $lehr->prematched->first()->id]) }}"
+                                                action="{{ route('matchings.setunassigned', ['lehr' => $lehr->id, 'stud' => $lehr->matched_user->id]) }}"
                                                 method="get">
 
                                                 @csrf
@@ -521,7 +521,7 @@
                     </table>
 
 
-                    @if (count($prematched_lehr))
+                    @if (count($matched_lehr))
                         <div class="mt-4 flex justify-end">
 
                             <a href="{{ route('notifyMatchings') }}"
@@ -614,7 +614,7 @@
                                 @foreach ($matchable_lehr as $lehr)
                                     @foreach ($lehr->matchable as $matchable)
                                         <tr
-                                            class="border-t border-gray-200 bg-{{ $lehr->assigned && $lehr->prematched->first()->id == $matchable->id ? 'green-900' : ($matchable->assigned || $lehr->assigned ? 'red-900' : 'gray-700') }}">
+                                            class="border-t border-gray-200 bg-{{ $lehr->matching_state == 'matched' && $lehr->matched_user->id == $matchable->id ? 'green-900' : ($matchable->matching_state == 'matched' || $lehr->matching_state == 'matched' ? 'red-900' : 'gray-700') }}">
 
                                             <td
                                                 class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
@@ -908,7 +908,7 @@
 
                                                                 </div>
 
-                                                                @if (!$lehr->assigned && !$matchable->assigned)
+                                                                @if ($lehr->matching_state == 'unmatched' && $matchable->matching_state == 'unmatched')
                                                                     <form
                                                                         action="{{ route('matchings.setassigned', ['lehr' => $lehr->id, 'stud' => $matchable->id, 'mse' => $matchable->pivot->mse]) }}"
                                                                         method="get">
@@ -967,7 +967,7 @@
                                             <td
                                                 class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
 
-                                                @if (!$lehr->assigned && !$matchable->assigned)
+                                                @if ($lehr->matching_state == 'unmatched' && $matchable->matching_state == 'unmatched')
                                                     <form
                                                         action="{{ route('matchings.setassigned', ['lehr' => $lehr->id, 'stud' => $matchable->id, 'mse' => $matchable->pivot->mse]) }}"
                                                         method="get">

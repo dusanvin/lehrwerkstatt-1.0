@@ -167,26 +167,40 @@ class User extends Authenticatable implements MustVerifyEmail
         else return null;
     }
 
+
+    public function hasMatchingAccepted($id) {
+        if($this->role == 'Lehr') {
+            return $this->matchable()->where('stud_id', $id)->where('is_accepted_lehr', true)->exists();
+        }
+        if($this->role == 'Stud') {
+            return $this->matchable()->where('lehr_id', $id)->where('is_accepted_stud', true)->exists();
+        }
+        else return null;
+    }
+
+
     public function hasMatchingDeclined($id) {
         if($this->role == 'Lehr') {
-            return $this->matchable()->where('stud_id', $id)->whereNull('is_accepted_lehr')->exists();
+            return $this->matchable()->where('stud_id', $id)->where('is_accepted_lehr', false)->exists();
         }
         if($this->role == 'Stud') {
-            return $this->matchable()->where('lehr_id', $id)->whereNull('is_accepted_stud')->exists();
+            return $this->matchable()->where('lehr_id', $id)->where('is_accepted_stud', false)->exists();
         }
         else return null;
     }
 
 
-    public function getHasAcceptedAttribute() {
-        if($this->role == 'Lehr') {
-            return $this->matchable()->where('is_accepted_lehr', true)->exists();
-        }
-        if($this->role == 'Stud') {
-            return $this->matchable()->where('is_accepted_stud', true)->exists();
-        }
-        else return null;
-    }
+
+
+    // public function getHasAcceptedAttribute() {
+    //     if($this->role == 'Lehr') {
+    //         return $this->matchable()->where('is_accepted_lehr', true)->exists();
+    //     }
+    //     if($this->role == 'Stud') {
+    //         return $this->matchable()->where('is_accepted_stud', true)->exists();
+    //     }
+    //     else return null;
+    // }
 
 
 

@@ -120,7 +120,7 @@
 
                             <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
 
-                                @if($matching->lehr->has_accepted == true)
+                                @if($matching->lehr->hasMatchingAccepted($matching->stud->id) == true)
 
                                     <!-- Angenommen -->
                                     <div class="has-tooltip">
@@ -130,7 +130,7 @@
                                         <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150">Angenommen</span>
                                     </div>
 
-                                @elseif(!$matching->lehr->hasMatchingDeclined($matching->stud->id))
+                                @elseif($matching->lehr->hasMatchingDeclined($matching->stud->id))
                                     
                                     <!-- Abgelehnt -->
                                     <div class="has-tooltip">
@@ -167,7 +167,7 @@
 
                             <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
 
-                                @if($matching->stud->has_accepted == true)
+                                @if($matching->stud->hasMatchingAccepted($matching->lehr->id) == true)
 
                                     <!-- Angenommen -->
                                     <div class="has-tooltip">
@@ -177,7 +177,7 @@
                                         <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150">Angenommen</span>
                                     </div>
 
-                                @elseif(!$matching->stud->hasMatchingDeclined($matching->lehr->id))
+                                @elseif($matching->stud->hasMatchingDeclined($matching->lehr->id))
                                     
                                     <!-- Abgelehnt -->
                                     <div class="has-tooltip">
@@ -355,7 +355,7 @@
             
                                         <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
             
-                                            @if($matching->lehr->has_accepted == true)
+                                            @if($matching->lehr->hasMatchingAccepted($matching->stud->id) == true)
             
                                                 <!-- Angenommen -->
                                                 <div class="has-tooltip">
@@ -365,7 +365,7 @@
                                                     <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150">Angenommen</span>
                                                 </div>
             
-                                            @elseif(!$matching->lehr->hasMatchingDeclined($matching->stud->id))
+                                            @elseif($matching->lehr->hasMatchingDeclined($matching->stud->id))
                                                 
                                                 <!-- Abgelehnt -->
                                                 <div class="has-tooltip">
@@ -402,7 +402,7 @@
             
                                         <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
             
-                                            @if($matching->stud->has_accepted == true)
+                                            @if($matching->stud->hasMatchingAccepted($matching->lehr->id) == true)
             
                                                 <!-- Angenommen -->
                                                 <div class="has-tooltip">
@@ -412,7 +412,7 @@
                                                     <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150">Angenommen</span>
                                                 </div>
             
-                                            @elseif(!$matching->stud->hasMatchingDeclined($matching->lehr->id))
+                                            @elseif($matching->stud->hasMatchingDeclined($matching->lehr->id))
                                                 
                                                 <!-- Abgelehnt -->
                                                 <div class="has-tooltip">
@@ -589,7 +589,7 @@
 
                             <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
 
-                                @if($matching->lehr->has_accepted == true)
+                                @if($matching->lehr->hasMatchingAccepted($matching->stud->id) == true)
 
                                     <!-- Angenommen -->
                                     <div class="has-tooltip">
@@ -599,7 +599,7 @@
                                         <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150">Angenommen</span>
                                     </div>
 
-                                @elseif(!$matching->lehr->hasMatchingDeclined($matching->stud->id))
+                                @elseif($matching->lehr->hasMatchingDeclined($matching->stud->id))
                                     
                                     <!-- Abgelehnt -->
                                     <div class="has-tooltip">
@@ -636,7 +636,7 @@
 
                             <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
 
-                                @if($matching->stud->has_accepted == true)
+                                @if($matching->stud->hasMatchingAccepted($matching->lehr->id) == true)
 
                                     <!-- Angenommen -->
                                     <div class="has-tooltip">
@@ -646,7 +646,7 @@
                                         <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150">Angenommen</span>
                                     </div>
 
-                                @elseif(!$matching->stud->hasMatchingDeclined($matching->lehr->id))
+                                @elseif($matching->stud->hasMatchingDeclined($matching->lehr->id))
                                     
                                     <!-- Abgelehnt -->
                                     <div class="has-tooltip">

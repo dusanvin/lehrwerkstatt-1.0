@@ -16,9 +16,46 @@
 
         <div class="px-1 md:px-8 py-1 md:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-900">
 
-            <div class="mx-auto rounded">
+            <div class="mx-auto rounded text-white">
 
                 <!-- Übernommene Vorschläge -->
+
+                Backend:
+
+                1. Tabelle - Ungeordnete Tabelle ohne Reihenfolge: 
+                <ol>
+                    <li>Maximale Anzahl an Paarungen</li>
+                </ol>
+
+                <strong>Frontend:</strong>
+
+                1. Tabelle: Wie übernommene Vorschläge vom Design (Aufteilung der Spalten her)
+
+                Button dazu: Grafik in neuem Tab anzeigen lassen!
+
+                2. Tabelle - Absteigende Ordnung des Algorithmus in dieser Reihenfolge: 
+                <ol>
+                    <li>MSE</li>
+                </ol>
+
+                Darstellung mit eigenem Ausschlussverfahren:
+                <li>Ausschluss der eigenen ehemaligen Schule</li> Textfeld
+                <li>Wunschtandem</li> DropDowns
+                <li>Wunschschule</li> DropDowns
+
+                <strong>Frontend:</strong>
+
+                2. Tabelle: Wie übernommene Vorschläge vom Design (Aufteilung der Spalten her)
+
+                3. Tabelle - Möglichkeiten: 
+                <ol>
+                    <li>Alle Möglichen Paarungen</li>
+                </ol>
+
+                <strong>Frontend:</strong>
+
+                3. Tabelle: Wie weitere Vorschläge vom Design (Aufteilung der Spalten her)
+                
 
                 <h1 class="font-semibold text-2xl text-gray-200">
 

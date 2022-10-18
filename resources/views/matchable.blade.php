@@ -816,13 +816,9 @@
 
                             @if (count($remaining_recommended) == 0)
                             @elseif (count($remaining_recommended) == 1)
-                                <p>Folgender Vorschlag wird empfohlen, da mindestens eine daran beteiligte Person mit
-                                    niemand
-                                    sonst zusammengebracht werden kann. Der MSE wurde hierbei nicht berücksichtigt.</p>
+                                <p>Der MSE wurde hierbei nicht berücksichtigt. Sie können die Visualisierung nutzen um ein möglicherweise besseren Vorschlag mit geringerem MSE ausfindig zu machen.</p>
                             @elseif (count($remaining_recommended) > 1)
-                                <p>Folgende Vorschläge werden empfohlen, da jeweils mindestens eine daran beteiligte Person
-                                    mit
-                                    niemand sonst zusammengebracht werden kann. Der MSE wurde hierbei nicht berücksichtigt.
+                                <p>Der MSE wurde hierbei nicht berücksichtigt. Sie können die Visualisierung nutzen um ein möglicherweise besseren Vorschlag mit geringerem MSE ausfindig zu machen.
                                 </p>
                             @endif
 

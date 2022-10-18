@@ -102,8 +102,6 @@ class MatchingController extends Controller
                             // $lehr->matchable()->attach($stud, ['mse' => $mse]);
                             $lehr->matchable()->syncWithoutDetaching([$stud->id => ['mse' => $mse]]);
 
-                            // User::find($lehr->id)->update(['is_matchable' => true]);
-                            // User::find($stud->id)->update(['is_matchable' => true]);
                         } elseif (array_intersect($lehr->survey_data->faecher, $stud->survey_data->faecher)) {
                             $lehr_vertex = $graph->getVertex($lehr->id);
                             $stud_vertex = $graph->getVertex($stud->id);
@@ -115,8 +113,6 @@ class MatchingController extends Controller
                             // $lehr->matchable()->attach($stud, ['mse' => $mse]);
                             $lehr->matchable()->syncWithoutDetaching([$stud->id => ['mse' => $mse]]);
 
-                            // User::find($lehr->id)->update(['is_matchable' => true]);
-                            // User::find($stud->id)->update(['is_matchable' => true]);
                         }
                     }
                 }
@@ -132,12 +128,27 @@ class MatchingController extends Controller
                 $lehr_vertex = $edge->getVertexEnd();
                 foreach ($lehr_vertex->getEdges() as $edge) {
                     if ($edge->getFlow() == 1 && $edge->getVertexStart() != 's') {
-                        $edge->setAttribute('graphviz.color', 'yellow');
+                        $edge->setAttribute('graphviz.color', 'blue');
                         $edge->setAttribute('graphviz.dir', 'both');
                         $stud_vertex = $edge->getVertexEnd();
+
                         $lehr = User::find($lehr_vertex->getId());
+
+                        if(count($lehr_vertex->getEdgesOut()) == 1) {
+                            $has_no_alternative_lehr = true;
+                            $edge->setAttribute('graphviz.color', 'yellow');
+                        } else $has_no_alternative_lehr = false;
+
                         $stud = User::find($stud_vertex->getId());
-                        $lehr->matchable()->updateExistingPivot($stud, ['recommended' => true]);
+
+                        if(count($stud_vertex->getEdgesIn()) == 1) {
+                            $has_no_alternative_stud = true;
+                            $edge->setAttribute('graphviz.color', 'yellow');
+                        } else $has_no_alternative_stud = false;
+
+                        // $lehr->matchable()->syncWithoutDetaching([$stud->id => ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr,'has_no_alternative_stud' => $has_no_alternative_stud]]);
+                        $lehr->matchable()->updateExistingPivot($stud, ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr,'has_no_alternative_stud' => $has_no_alternative_stud]);
+
                     } else {
                         $edge->setAttribute('graphviz.dir', 'none');
                     }
@@ -169,47 +180,62 @@ class MatchingController extends Controller
         $resultGraph->setAttribute('graphviz.graph.bgcolor', 'transparent');
         // $graphviz->display($resultGraph);
         // $graphviz->setFormat('svg');
+
         $graph_img = $graphviz->createImageHtml($resultGraph);
-        $matched_graph = $resultGraph->createGraphClone();
 
+        
+        // $matched_graph = $resultGraph->createGraphClone();
 
-
-
-        $matchable_lehr = User::find(DB::table('lehr_stud')->pluck('lehr_id'));
         $matched_lehr = User::find(DB::table('lehr_stud')->where('is_matched', true)->where('is_notified', false)->pluck('lehr_id'));
 
-        foreach ($matched_graph->getEdges() as $edge) {
+        // foreach ($matched_graph->getEdges() as $edge) {
 
-            $edge->setAttribute('graphviz.dir', 'none');
-            $edge_lehr_id = $edge->getVertexStart()->getId();
-            $edge_stud_id = $edge->getVertexEnd()->getId();
+        //     $edge->setAttribute('graphviz.dir', 'none');
+        //     $edge_lehr_id = $edge->getVertexStart()->getId();
+        //     $edge_stud_id = $edge->getVertexEnd()->getId();
 
-            foreach ($matchable_lehr as $lehr) {
-                if ($edge_lehr_id == $lehr->id) {
+        //     foreach ($matchable_lehr as $lehr) {
+        //         if ($edge_lehr_id == $lehr->id) {
 
-                    if ($lehr->matching_state == 'matched') {
-                        if ($lehr->matched_user->id == $edge_stud_id) {
-                            $edge->setAttribute('graphviz.color', 'green');
-                            $edge->setAttribute('graphviz.dir', 'both');
-                        } else {
-                            $edge->setAttribute('graphviz.color', 'red');
-                        }
-                    } else {
-                        if (User::find($edge_stud_id)->matching_state == 'matched') {
-                            $edge->setAttribute('graphviz.color', 'red');
-                        } else {
-                            $edge->setAttribute('graphviz.color', 'black');
-                        }
-                    }
-                }
-            }
+        //             if ($lehr->matching_state == 'matched') {
+        //                 if ($lehr->matched_user->id == $edge_stud_id) {
+        //                     $edge->setAttribute('graphviz.color', 'green');
+        //                     $edge->setAttribute('graphviz.dir', 'both');
+        //                 } else {
+        //                     $edge->setAttribute('graphviz.color', 'red');
+        //                 }
+        //             } else {
+        //                 if (User::find($edge_stud_id)->matching_state == 'matched') {
+        //                     $edge->setAttribute('graphviz.color', 'red');
+        //                 } else {
+        //                     $edge->setAttribute('graphviz.color', 'black');
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        // $matched_graph->setAttribute('graphviz.graph.rankdir', 'LR');
+        // $matched_graph->setAttribute('graphviz.graph.bgcolor', 'transparent');
+        // $matched_graph_img = $graphviz->createImageHtml($matched_graph);
+
+        $strongly_recommended = DB::table('lehr_stud')->where('is_matched', false)->where('is_notified', false)->where(function ($query) {
+            $query->where('has_no_alternative_lehr', true)->orWhere('has_no_alternative_stud', true);
+        })->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')->get();
+        foreach ($strongly_recommended as $am) {
+            $am->lehr = User::find($am->lehr_id);
+            $am->stud = User::find($am->stud_id);
+            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
         }
-        $matched_graph->setAttribute('graphviz.graph.rankdir', 'LR');
-        $matched_graph->setAttribute('graphviz.graph.bgcolor', 'transparent');
-        $matched_graph_img = $graphviz->createImageHtml($matched_graph);
+
+        $remaining_recommended = DB::table('lehr_stud')->where('is_matched', false)->where('is_notified', false)->where('recommended', true)->where('has_no_alternative_lehr', false)->where('has_no_alternative_stud', false)->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')->get();
+        foreach ($remaining_recommended as $am) {
+            $am->lehr = User::find($am->lehr_id);
+            $am->stud = User::find($am->stud_id);
+            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
+        }
 
 
-        return view('matchable', compact('graph_img', 'matched_graph_img', 'max_flow', 'matched_lehr', 'matchable_lehr'));
+        return view('matchable', compact('graph_img', 'max_flow', 'matched_lehr', 'strongly_recommended', 'remaining_recommended'));
     }
 
 

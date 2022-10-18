@@ -224,7 +224,7 @@
 
                             <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
 
-                                <form action="{{ route('matchings.setunassigned', ['lehr' => $matching->lehr->id, 'stud' => $matching->stud->id]) }}" method="get">
+                                <form action="{{ route('resetMatching', ['lehr' => $matching->lehr->id, 'stud' => $matching->stud->id]) }}" method="get">
 
                                     @csrf
 
@@ -238,7 +238,7 @@
 
                                             </svg>
 
-                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150'>Entfernen</span>
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150'>Zurücksetzen</span>
 
                                         </div>
 
@@ -459,7 +459,7 @@
             
                                         <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
             
-                                            <form action="{{ route('matchings.setunassigned', ['lehr' => $matching->lehr->id, 'stud' => $matching->stud->id]) }}" method="get">
+                                            <form action="{{ route('resetMatching', ['lehr' => $matching->lehr->id, 'stud' => $matching->stud->id]) }}" method="get">
             
                                                 @csrf
             
@@ -473,7 +473,7 @@
             
                                                         </svg>
             
-                                                        <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150'>Entfernen</span>
+                                                        <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150'>Zurücksetzen</span>
             
                                                     </div>
             
@@ -693,7 +693,7 @@
 
                             <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
 
-                                <form action="{{ route('matchings.setunassigned', ['lehr' => $matching->lehr->id, 'stud' => $matching->stud->id]) }}" method="get">
+                                <form action="{{ route('resetMatching', ['lehr' => $matching->lehr->id, 'stud' => $matching->stud->id]) }}" method="get">
 
                                     @csrf
 
@@ -707,7 +707,7 @@
 
                                             </svg>
 
-                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150'>Entfernen</span>
+                                            <span class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150'>Zurücksetzen</span>
 
                                         </div>
 

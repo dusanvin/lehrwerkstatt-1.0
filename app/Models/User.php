@@ -147,6 +147,38 @@ class User extends Authenticatable implements MustVerifyEmail
             return 'success';
     }
 
+    public function matchingState($id)
+    {
+        if($this->role == 'Lehr') {
+            if($this->matchable()->where('stud_id', $id)->where('is_matched', false)->where('is_notified', false)->exists())
+                return 'umatched';
+
+
+        } else {
+                    if ($this->matchable()->where('is_matched', true)->doesntExist()) // gibt es eine kante ausgehend von $this die verwendet wird
+            return 'unmatched';
+        if ($this->matchable()->where('is_matched', true)->where('is_notified', false)->exists())
+            return 'matched';
+        if ($this->matchable()->where('is_matched', true)->where('is_notified', true)->where(function ($query) {
+
+            $query->whereNull('is_accepted_lehr')->where('is_accepted_stud', true)->orWhere(function ($query) {
+                    $query->where('is_accepted_lehr', true)->whereNull('is_accepted_stud');
+                })->orWhere(function ($query) {
+                    $query->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud');
+                });
+            })->exists())
+                        return 'notified';
+        if ($this->matchable()->where('is_matched', true)->where('is_notified', true)->where(function ($query) {
+                $query->where('is_accepted_lehr', false)->orWhere('is_accepted_stud', false);
+            })->exists())
+                return 'declined';
+        if ($this->matchable()->where('is_matched', true)->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->exists())
+            return 'success';
+        }
+
+
+    }
+
 
     public function getMatchedUserAttribute() {
         return $this->matchable()->where('is_matched', true)->where('is_notified', false)->first();

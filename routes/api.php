@@ -123,6 +123,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/notifyMatchings', [MatchingController::class, 'notifyMatchings'])->name('notifyMatchings');
 
+        Route::get('/resetMatching/{lehr}/{stud}', [MatchingController::class, 'resetMatching'])->name('resetMatching');
+
     });
 
 

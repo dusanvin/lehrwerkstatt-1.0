@@ -167,12 +167,33 @@ class MatchingController extends Controller
         $resultGraph->getVertex('s')->destroy();
         $resultGraph->getVertex('t')->destroy();
 
-        $evaluable_users = User::where('is_evaluable', true)->get();
-        foreach ($evaluable_users as $user) {
-            if (!$user->is_matchable) {
+        // $evaluable_users = User::where('is_evaluable', true)->get();
+        // foreach ($evaluable_users as $user) {
+        //     if (!$user->is_matchable) {
+        //         if ($resultGraph->hasVertex($user->id)) {
+        //             $resultGraph->getVertex($user->id)->destroy();
+        //         }
+        //     }
+        // }
+
+        $notified_lehr = User::find(DB::table('lehr_stud')->where('is_notified', true)->pluck('lehr_id'));
+        $notified_stud = User::find(DB::table('lehr_stud')->where('is_notified', true)->pluck('stud_id'));
+
+        foreach ($notified_lehr as $user) {
                 if ($resultGraph->hasVertex($user->id)) {
                     $resultGraph->getVertex($user->id)->destroy();
                 }
+        }
+
+        foreach ($notified_stud as $user) {
+            if ($resultGraph->hasVertex($user->id)) {
+                $resultGraph->getVertex($user->id)->destroy();
+            }
+        }
+
+        foreach($resultGraph->getVertices() as $vertex) {
+            if(count($vertex->getEdges()) == 0) {
+                $vertex->destroy();
             }
         }
 
@@ -238,7 +259,7 @@ class MatchingController extends Controller
         return view('matchable', compact('graph_img', 'max_flow', 'matched_lehr', 'strongly_recommended', 'remaining_recommended'));
     }
 
-
+    //set matched
     public function setAssigned(Request $request, $lehrid, $studid)
     {
         $lehr = User::find($lehrid);
@@ -249,13 +270,13 @@ class MatchingController extends Controller
         return back();
     }
 
-
+    //set unmatched
     public function setUnassigned(Request $request, $lehrid, $studid)
     {
         $lehr = User::find($lehrid);
         $stud = User::find($studid);
 
-        $lehr->matchable()->updateExistingPivot($stud, ['is_matched' => false, 'is_notified' => false]);
+        $lehr->matchable()->updateExistingPivot($stud, ['is_matched' => false]);
 
         return back();
     }
@@ -311,8 +332,8 @@ class MatchingController extends Controller
 
     public function notifyMatchings()
     {
-
-        $unnotified_matchings = DB::table('lehr_stud')->where('is_matched', true)->where('is_notified', false)->get();
+        // nur die, die in der vorauswahl (is_matched) sind
+        $unnotified_matchings = DB::table('lehr_stud')->where('is_matched', true)->get();
 
         foreach ($unnotified_matchings as $unnotified_matching) {
 
@@ -334,9 +355,18 @@ class MatchingController extends Controller
 
 
             // DB::table('lehr_stud')->where('lehr_id', $lehr->id)->where('stud_id', $stud->id)->update(['created_at' => Carbon::now(), 'is_notified' => true]);
-            $lehr->matchable()->syncWithoutDetaching([$stud->id => ['is_notified' => true]]);
+
+            // is_matched muss nach dem folgenden aufruf false werden
+            $lehr->matchable()->syncWithoutDetaching([$stud->id => ['is_matched' => false, 'is_notified' => true]]);
         }
 
+        return back();
+    }
+
+
+    public function resetMatching($lehr_id, $stud_id) {
+        DB::table('lehr_stud')->where('lehr_id', $lehr_id)->where('stud_id', $stud_id)->update(['is_accepted_lehr' => null, 'is_accepted_stud' => null, 'is_matched' => false, 'is_notified' => false]);
+        
         return back();
     }
 

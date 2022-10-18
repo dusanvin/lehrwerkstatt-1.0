@@ -536,8 +536,11 @@ class MatchingController extends Controller
             $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
         }
 
+        // es kann lehrer geben die bei einem matching gemachted sind, aber bei anderen nicht: verhindern
         $matched_ids = DB::table('lehr_stud')->where('is_matched', true)->pluck('lehr_id');
-        $unmatched_ids = DB::table('lehr_stud')->where('is_matched', false)->where('is_notified', false)->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')->distinct()->pluck('lehr_id');
+        // $unmatched_ids = DB::table('lehr_stud')->where('is_matched', false)->where('is_notified', false)->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')->distinct()->pluck('lehr_id');
+        $unmatched_ids = DB::table('lehr_stud')->where('is_matched', false)->where('is_notified', false)->distinct()->pluck('lehr_id');
+
 
         $unmatched_lehr = User::find($unmatched_ids->diff($matched_ids));
 

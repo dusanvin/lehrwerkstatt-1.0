@@ -130,7 +130,7 @@ class User extends Authenticatable implements MustVerifyEmail
         //     return 'unmatched';
 
         if($this->matchable()->where(function ($query) {
-            $query->where('is_matched', true)->where('is_notified', true);
+            $query->where('is_matched', true)->orWhere('is_notified', true);
             })->doesntExist())
             return 'unmatched';
 

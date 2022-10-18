@@ -381,7 +381,7 @@
 
                                     @foreach($unmatched_lehr as $index => $lehr)
 
-                                        {{-- @if ($lehr->has_any_matching) --}}
+                                        @if ($lehr->has_any_matching)
 
                                         <div class="border-b border-gray-200 bg-gray-700 flex">
 
@@ -669,7 +669,7 @@
 
                                         </div>
 
-                                        {{-- @endif --}}
+                                        @endif
 
                                         @endforeach
 

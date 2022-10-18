@@ -818,7 +818,7 @@
                             @elseif (count($remaining_recommended) == 1)
                                 <p>Der MSE wurde hierbei nicht berücksichtigt. Sie können die Visualisierung nutzen um ein möglicherweise besseren Vorschlag mit geringerem MSE ausfindig zu machen.</p>
                             @elseif (count($remaining_recommended) > 1)
-                                <p>Der MSE wurde hierbei nicht berücksichtigt. Sie können die Visualisierung nutzen um ein möglicherweise besseren Vorschlag mit geringerem MSE ausfindig zu machen.
+                                <p>Der MSE wurde hierbei nicht berücksichtigt. Sie können die Visualisierung nutzen um einen möglicherweise besseren Vorschlag mit geringerem MSE ausfindig zu machen. In der folgenden Liste sind wurden die Paarungen nach diesem Wert sortiert, sodass er schnell ausgewählt werden kann.
                                 </p>
                             @endif
 

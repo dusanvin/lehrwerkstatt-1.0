@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Auth\Events\Registered;
 use Cmgmyr\Messenger\Traits\Messagable;
+use DB;
 
 use App\Notifications\CustomVerifyEmail;
 
@@ -110,6 +111,18 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
+    public function getaAttribute() {
+        if($this->role == 'Lehr') {
+            $matching = DB::table('lehr_stud')->where('lehr_id', $this->id)->where('is_matched', true)->first();
+            return User::find($matching->stud_id);
+        }
+        if($this->role == 'Stud') {
+            $matching = DB::table('lehr_stud')->where('stud_id', $this->id)->where('is_matched', true)->first();
+            return User::find($matching->lehr_id);
+        }
+    }
+
+
     public function data()
     {
         if (is_string($this->survey_data)) {
@@ -126,9 +139,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getMatchingStateAttribute()
     {   
-        // if($this->matchable()->where('is_matched', true)->doesntExist())
-        //     return 'unmatched';
-
         if($this->matchable()->where(function ($query) {
             $query->where('is_matched', true)->orWhere('is_notified', true);
             })->doesntExist())
@@ -140,10 +150,6 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($this->matchable()->where('is_notified', true)->exists())
             return 'notified';
 
-        // if ($this->matchable()->where('is_matched', true)->doesntExist()) // gibt es eine kante ausgehend von $this die verwendet wird
-        //     return 'unmatched';
-        // if ($this->matchable()->where('is_matched', true)->where('is_notified', false)->exists())
-        //     return 'matched';
         // if ($this->matchable()->where('is_matched', true)->where('is_notified', true)->where(function ($query) {
 
         //     $query->whereNull('is_accepted_lehr')->where('is_accepted_stud', true)->orWhere(function ($query) {
@@ -153,12 +159,7 @@ class User extends Authenticatable implements MustVerifyEmail
         //         });
         //     })->exists())
         //                 return 'notified';
-        // if ($this->matchable()->where('is_matched', true)->where('is_notified', true)->where(function ($query) {
-        //         $query->where('is_accepted_lehr', false)->orWhere('is_accepted_stud', false);
-        //     })->exists())
-        //         return 'declined';
-        // if ($this->matchable()->where('is_matched', true)->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->exists())
-        //     return 'success';
+
     }
 
 
@@ -193,57 +194,4 @@ class User extends Authenticatable implements MustVerifyEmail
         else return null;
     }
 
-
-        // public function getAcceptedIsNullAttribute() {
-    //     if($this->role == 'Lehr') {
-    //         return $this->matchable()->whereNull('is_accepted_lehr')->exists();
-    //     }
-    //     if($this->role == 'Stud') {
-    //         return $this->matchable()->whereNull('is_accepted_stud')->exists();
-    //     }
-    //     else return null;
-    // }
-
-
-    // public function getHasAcceptedAttribute() {
-    //     if($this->role == 'Lehr') {
-    //         return $this->matchable()->where('is_accepted_lehr', true)->exists();
-    //     }
-    //     if($this->role == 'Stud') {
-    //         return $this->matchable()->where('is_accepted_stud', true)->exists();
-    //     }
-    //     else return null;
-    // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // public function prematched()
-    // {
-    //     if ($this->role == 'Lehr') {
-    //         return $this->belongsToMany(User::class, 'lehr_stud', 'lehr_id', 'stud_id')->withPivot(['is_accepted_lehr', 'is_accepted_stud', 'is_matched', 'is_notified', 'mse', 'recommended'])->withTimestamps()->wherePivot('is_notified', false);
-    //     } elseif ($this->role == 'Stud') {
-    //         return $this->belongsToMany(User::class, 'lehr_stud', 'stud_id', 'lehr_id')->withPivot(['is_accepted_lehr', 'is_accepted_stud', 'is_matched', 'is_notified', 'mse', 'recommended'])->withTimestamps()->wherePivot('is_notified', false);
-    //     }
-        
-    // }
-
-    // public function matchings()
-    // {
-    //     // return $this->belongsToMany(User::class, 'user_user', 'user_id', 'matching_id');
-    //     if ($this->role == 'Lehr') {
-    //         return $this->belongsToMany(User::class, 'lehr_stud', 'lehr_id', 'stud_id')->withPivot(['is_accepted_lehr', 'is_accepted_stud', 'is_matched', 'is_notified', 'mse', 'recommended'])->withTimestamps()->wherePivot('is_notified', true);
-    //     } elseif ($this->role == 'Stud') {
-    //         return $this->belongsToMany(User::class, 'lehr_stud', 'stud_id', 'lehr_id')->withPivot(['is_accepted_lehr', 'is_accepted_stud', 'is_matched', 'is_notified', 'mse', 'recommended'])->withTimestamps()->wherePivot('is_notified', true);
-    //     }
-    // }
 }

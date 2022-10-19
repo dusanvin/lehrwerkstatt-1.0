@@ -184,26 +184,26 @@
                                         <td class="px-6 py-4 whitespace-no-wrap">
 
                                             <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                                                {{ $lehr->matchable()->first()->vorname }}
-                                                {{ $lehr->matchable()->first()->nachname }}
+                                                {{ $lehr->matched_user->vorname }}
+                                                {{ $lehr->matched_user->nachname }}
                                             </div>
 
                                             <a href="mailto:{{ $lehr->email }}"
-                                                class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $lehr->matchable()->first()->email }}</a>
+                                                class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $lehr->matched_user->email }}</a>
 
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-no-wrap">
                                             <div class="text-xs sm:text-sm leading-5 font-medium text-white text-center">
                                                 <p
-                                                    class="{{ isset($lehr->matchable()->first()->data()->wunschtandem)? 'bg-yellow-600 rounded-xl m-1': '' }}">
-                                                    {{ $lehr->matchable()->first()->data()->wunschtandem ?? '-' }}</p>
+                                                    class="{{ isset($lehr->matched_user->data()->wunschtandem)? 'bg-yellow-600 rounded-xl m-1': '' }}">
+                                                    {{ $lehr->matched_user->data()->wunschtandem ?? '-' }}</p>
                                                 <p
-                                                    class="{{ isset($lehr->matchable()->first()->data()->wunschorte)? 'bg-blue-500 rounded-xl m-1': '' }}">
-                                                    {{ $lehr->matchable()->first()->data()->wunschorte ?? '-' }}</p>
+                                                    class="{{ isset($lehr->matched_user->data()->wunschorte)? 'bg-blue-500 rounded-xl m-1': '' }}">
+                                                    {{ $lehr->matched_user->data()->wunschorte ?? '-' }}</p>
                                                 <p
-                                                    class="{{ isset($lehr->matchable()->first()->data()->ehem_schulort)? 'bg-red-400 rounded-xl m-1': '' }}">
-                                                    {{ $lehr->matchable()->first()->data()->ehem_schulort ?? '-' }}</p>
+                                                    class="{{ isset($lehr->matched_user->data()->ehem_schulort)? 'bg-red-400 rounded-xl m-1': '' }}">
+                                                    {{ $lehr->matched_user->data()->ehem_schulort ?? '-' }}</p>
                                             </div>
                                         </td>
 
@@ -213,7 +213,7 @@
                                             <div
                                                 class="text-sm leading-5 font-normal text-white select-none font-bold bg-gray-500 text-center p-1 w-12 rounded-sm">
 
-                                                {{ $lehr->matchable()->first()->pivot->mse }}
+                                                {{ $lehr->matched_user->pivot->mse }}
 
                                             </div>
 
@@ -222,7 +222,7 @@
                                         <td class="px-6 py-4 whitespace-no-wrap">
 
                                             <div class="text-xs sm:text-sm leading-5 text-gray-400 break-words">
-                                                {{ \Carbon\Carbon::parse($lehr->matchable()->first()->pivot->created_at)->diffForHumans(\Carbon\Carbon::now()) }}
+                                                {{ \Carbon\Carbon::parse($lehr->matched_user->pivot->created_at)->diffForHumans(\Carbon\Carbon::now()) }}
                                             </div>
 
                                         </td>
@@ -292,39 +292,39 @@
                                                                 <div
                                                                     class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
 
-                                                                    <p>{{ $lehr->matchable()->first()->vorname }}
-                                                                        {{ $lehr->matchable()->first()->nachname }}</p>
-                                                                    <a href="mailto:{{ $lehr->matchable()->first()->email }}"
-                                                                        class="text-gray-400 hover:text-gray-100 break-words">{{ $lehr->matchable()->first()->email }}</a>
+                                                                    <p>{{ $lehr->matched_user->vorname }}
+                                                                        {{ $lehr->matched_user->nachname }}</p>
+                                                                    <a href="mailto:{{ $lehr->matched_user->email }}"
+                                                                        class="text-gray-400 hover:text-gray-100 break-words">{{ $lehr->matched_user->email }}</a>
                                                                     <br>
                                                                     <br>
                                                                     @if (!empty(
-                                                                        $lehr->matchable()->first()->data()->wunschtandem
+                                                                        $lehr->matched_user->data()->wunschtandem
                                                                     ))
                                                                         <p> Wunschtandem:
-                                                                            {{ $lehr->matchable()->first()->data()->wunschtandem }}
+                                                                            {{ $lehr->matched_user->data()->wunschtandem }}
                                                                         </p>
                                                                     @endif
                                                                     @if (!empty(
-                                                                        $lehr->matchable()->first()->data()->wunschorte
+                                                                        $lehr->matched_user->data()->wunschorte
                                                                     ))
                                                                         <p> Wunschorte:
-                                                                            {{ $lehr->matchable()->first()->data()->wunschorte }}
+                                                                            {{ $lehr->matched_user->data()->wunschorte }}
                                                                         </p>
                                                                     @endif
                                                                     @if (!empty(
-                                                                        $lehr->matchable()->first()->data()->ehem_schulort
+                                                                        $lehr->matched_user->data()->ehem_schulort
                                                                     ))
                                                                         <p> Ehem. Schulort:
-                                                                            {{ $lehr->matchable()->first()->data()->ehem_schulort }}
+                                                                            {{ $lehr->matched_user->data()->ehem_schulort }}
                                                                         </p>
                                                                     @endif
                                                                     <br>
                                                                     @if (!empty(
-                                                                        $lehr->matchable()->first()->data()->anmerkungen
+                                                                        $lehr->matched_user->data()->anmerkungen
                                                                     ))
                                                                         <p> Anmerkungen:
-                                                                            {{ $lehr->matchable()->first()->data()->anmerkungen }}
+                                                                            {{ $lehr->matched_user->data()->anmerkungen }}
                                                                         </p>
                                                                     @endif
 
@@ -379,7 +379,7 @@
                                                                     <div
                                                                         class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
 
-                                                                        {{ $lehr->matchable()->first()->pivot->mse }}
+                                                                        {{ $lehr->matched_user->pivot->mse }}
 
                                                                     </div>
 
@@ -398,7 +398,7 @@
                                                                             Feedback Lehrkraft zu Student*in [Abweichung 0
                                                                             bis
                                                                             5]:
-                                                                            {{ abs($lehr->data()->feedback_an -$lehr->matchable()->first()->data()->feedback_von) }}
+                                                                            {{ abs($lehr->data()->feedback_an -$lehr->matched_user->data()->feedback_von) }}
 
                                                                         </p>
 
@@ -407,42 +407,42 @@
                                                                             Feedback Student*in zu Lehrkraft [Abweichung 0
                                                                             bis
                                                                             5]:
-                                                                            {{ abs($lehr->data()->feedback_von -$lehr->matchable()->first()->data()->feedback_an) }}
+                                                                            {{ abs($lehr->data()->feedback_von -$lehr->matched_user->data()->feedback_an) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Eigenstaendigkeit [Abweichung 0 bis 5]**:
-                                                                            {{ abs($lehr->data()->eigenstaendigkeit -$lehr->matchable()->first()->data()->eigenstaendigkeit) }}
+                                                                            {{ abs($lehr->data()->eigenstaendigkeit -$lehr->matched_user->data()->eigenstaendigkeit) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Improvisation [Abweichung 0 bis 5]:
-                                                                            {{ abs($lehr->data()->improvisation -$lehr->matchable()->first()->data()->improvisation) }}
+                                                                            {{ abs($lehr->data()->improvisation -$lehr->matched_user->data()->improvisation) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Freiraum [Abweichung 0 bis 3]:
-                                                                            {{ abs($lehr->data()->freiraum -$lehr->matchable()->first()->data()->freiraum) }}
+                                                                            {{ abs($lehr->data()->freiraum -$lehr->matched_user->data()->freiraum) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Innovationsoffenheit [Abweichung 0 bis 5]:
-                                                                            {{ abs($lehr->data()->innovationsoffenheit -$lehr->matchable()->first()->data()->innovationsoffenheit) }}
+                                                                            {{ abs($lehr->data()->innovationsoffenheit -$lehr->matched_user->data()->innovationsoffenheit) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Belastbarkeit [Abweichung 0 bis 5]:**
-                                                                            {{ abs($lehr->data()->belastbarkeit -$lehr->matchable()->first()->data()->belastbarkeit) }}
+                                                                            {{ abs($lehr->data()->belastbarkeit -$lehr->matched_user->data()->belastbarkeit) }}
 
                                                                         </p>
 
@@ -1078,7 +1078,7 @@
                                     </svg>
 
                                     <span>Visualisierung</span> <span><em class="font-bold">Jede
-                                            Kante</em> entspricht einer der derzeit möglichen Paarungen. ( Bereits möglicherweise in die vorübergehende Vorauswahl aufgenommene Paarungen werden hier weiterhin dargestellt. )</span>
+                                            Kante</em> entspricht einer der derzeit möglichen Paarungen.</span>
 
                                 </button>
 

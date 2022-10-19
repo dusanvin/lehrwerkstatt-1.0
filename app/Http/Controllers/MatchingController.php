@@ -256,7 +256,20 @@ class MatchingController extends Controller
         }
 
 
-        return view('matchable', compact('graph_img', 'max_flow', 'matched_lehr', 'strongly_recommended', 'remaining_recommended'));
+        $matched_lehr_ids = DB::table('lehr_stud')->where('is_matched', true)->orWhere('is_notified', true)->pluck('lehr_id');
+        $matched_stud_ids = DB::table('lehr_stud')->where('is_matched', true)->orWhere('is_notified', true)->pluck('stud_id');
+
+        $remaining_matches = DB::table('lehr_stud')->whereNotIn('lehr_id', $matched_lehr_ids)->whereNotIn('stud_id', $matched_stud_ids)->orderBy('mse', 'asc')->get();
+        // $unmatched_lehr = DB::table('lehr_stud')->whereIn('lehr_id', $unmatched_lehr_ids->diff($matched_lehr_ids))->get();
+
+        foreach ($remaining_matches as $am) {
+            $am->lehr = User::find($am->lehr_id);
+            $am->stud = User::find($am->stud_id);
+            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
+        }
+
+
+        return view('matchable', compact('graph_img', 'max_flow', 'matched_lehr', 'strongly_recommended', 'remaining_recommended', 'remaining_matches'));
     }
 
     //set matched

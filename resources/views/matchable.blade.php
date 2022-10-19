@@ -596,7 +596,7 @@
                                         </svg>
 
                                         <span>Visualisierung</span> <span>Die <em class="text-yellow-300">gelben
-                                                Kanten</em> entsprechen den hier aufgeführten Paarungen.</span>
+                                                Kanten</em> entsprechen den hier aufgeführten Paarungen. ( Bereits möglicherweise in die vorübergehende Vorauswahl aufgenommene Paarungen werden hier weiterhin dargestellt. )</span>
 
                                     </button>
 
@@ -838,7 +838,7 @@
                                     </svg>
 
                                     <span>Visualisierung</span> <span>Die <em class="text-blue-400">blauen
-                                            Kanten</em> entsprechen den hier aufgeführten Paarungen.</span>
+                                            Kanten</em> entsprechen den hier aufgeführten Paarungen. ( Bereits möglicherweise in die vorübergehende Vorauswahl aufgenommene Paarungen werden hier weiterhin dargestellt. )</span>
 
                                 </button>
 
@@ -1078,7 +1078,7 @@
                                     </svg>
 
                                     <span>Visualisierung</span> <span><em class="font-bold">Jede
-                                            Kante</em> entspricht einer der hier aufgeführten Paarung.</span>
+                                            Kante</em> entspricht einer der derzeit möglichen Paarungen. ( Bereits möglicherweise in die vorübergehende Vorauswahl aufgenommene Paarungen werden hier weiterhin dargestellt. )</span>
 
                                 </button>
 

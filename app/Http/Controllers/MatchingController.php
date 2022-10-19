@@ -176,16 +176,22 @@ class MatchingController extends Controller
         //     }
         // }
 
-        $notified_lehr = User::find(DB::table('lehr_stud')->where('is_notified', true)->pluck('lehr_id'));
-        $notified_stud = User::find(DB::table('lehr_stud')->where('is_notified', true)->pluck('stud_id'));
+        // $notified_lehr = User::find(DB::table('lehr_stud')->where('is_notified', true)->pluck('lehr_id'));
+        // $notified_stud = User::find(DB::table('lehr_stud')->where('is_notified', true)->pluck('stud_id'));
 
-        foreach ($notified_lehr as $user) {
+        $assigned_lehr_ids = DB::table('lehr_stud')->where('is_matched', true)->orWhere('is_notified', true)->pluck('lehr_id');
+        $assigned_stud_ids = DB::table('lehr_stud')->where('is_matched', true)->orWhere('is_notified', true)->pluck('stud_id');
+
+        $assigned_lehr = User::find($assigned_lehr_ids);
+        $assigned_stud = User::find($assigned_stud_ids);
+
+        foreach ($assigned_lehr as $user) {
                 if ($resultGraph->hasVertex($user->id)) {
                     $resultGraph->getVertex($user->id)->destroy();
                 }
         }
 
-        foreach ($notified_stud as $user) {
+        foreach ($assigned_stud as $user) {
             if ($resultGraph->hasVertex($user->id)) {
                 $resultGraph->getVertex($user->id)->destroy();
             }
@@ -240,10 +246,7 @@ class MatchingController extends Controller
         // $matched_graph_img = $graphviz->createImageHtml($matched_graph);
 
 
-        $matched_lehr_ids = DB::table('lehr_stud')->where('is_matched', true)->orWhere('is_notified', true)->pluck('lehr_id');
-        $matched_stud_ids = DB::table('lehr_stud')->where('is_matched', true)->orWhere('is_notified', true)->pluck('stud_id');
-
-        $strongly_recommended = DB::table('lehr_stud')->where('recommended', true)->whereNotIn('lehr_id', $matched_lehr_ids)->whereNotIn('stud_id', $matched_stud_ids)->where(function ($query) {
+        $strongly_recommended = DB::table('lehr_stud')->where('recommended', true)->whereNotIn('lehr_id', $assigned_lehr_ids)->whereNotIn('stud_id', $assigned_stud_ids)->where(function ($query) {
             $query->where('has_no_alternative_lehr', true)->orWhere('has_no_alternative_stud', true);
         })->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')->get();
         foreach ($strongly_recommended as $am) {
@@ -252,7 +255,7 @@ class MatchingController extends Controller
             $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
         }
 
-        $remaining_recommended = DB::table('lehr_stud')->where('recommended', true)->whereNotIn('lehr_id', $matched_lehr_ids)->whereNotIn('stud_id', $matched_stud_ids)->where('has_no_alternative_lehr', false)->where('has_no_alternative_stud', false)->get();
+        $remaining_recommended = DB::table('lehr_stud')->where('recommended', true)->whereNotIn('lehr_id', $assigned_lehr_ids)->whereNotIn('stud_id', $assigned_stud_ids)->where('has_no_alternative_lehr', false)->where('has_no_alternative_stud', false)->get();
 
         foreach ($remaining_recommended as $am) {
             $am->lehr = User::find($am->lehr_id);
@@ -263,7 +266,7 @@ class MatchingController extends Controller
 
 
 
-        $remaining_matches = DB::table('lehr_stud')->whereNotIn('lehr_id', $matched_lehr_ids)->whereNotIn('stud_id', $matched_stud_ids)->orderBy('mse', 'asc')->get();
+        $remaining_matches = DB::table('lehr_stud')->whereNotIn('lehr_id', $assigned_lehr_ids)->whereNotIn('stud_id', $assigned_stud_ids)->orderBy('mse', 'asc')->get();
 
         foreach ($remaining_matches as $am) {
             $am->lehr = User::find($am->lehr_id);

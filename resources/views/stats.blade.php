@@ -300,7 +300,7 @@
 
                                 </div>
 
-                                <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg, #141727, #3A416F);">
+                                <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#d81b60,#ec407a);">
 
                                     <canvas id="fifth"></canvas>
 
@@ -408,7 +408,7 @@
                     backgroundColor: 'rgba(255,255,255, 0.6)',
                     borderColor: "rgba(255,255,255, 0.6)",
                     tension: 0.3,
-                    pointBorderWidth: 3,
+                    pointStyle: 'line',
                     fill: false
                     },
                     {
@@ -418,10 +418,10 @@
                             {{ $stud_registrations_recent_months[$i] }},
                         @endfor
                     ],
-                    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                    borderColor: "rgba(0, 0, 0, 0.6)",
+                    backgroundColor: 'rgba(88, 28, 135, 173, 0.8)',
+                    borderColor: "rgba(88, 28, 135, 0.8)",
                     tension: 0.3,
-                    pointBorderWidth: 3,
+                    pointStyle: 'line',
                     fill: false,
                     stack: 'Stack 1',
                     },
@@ -490,7 +490,7 @@
                 datasets: [{
                     label: 'Registrierte Nutzer (laufender Monat)',
                     data: [{{ $lehr_registrations_current_month }}, {{ $stud_registrations_current_month }}],
-                    backgroundColor: ['rgba(255, 255, 255, 0.7)', 'rgba(0, 0, 0, 0.6)']
+                    backgroundColor: ['rgba(255, 255, 255, 0.7)', 'rgba(12, 74, 110, 0.6)']
                 }]
             };
 
@@ -563,8 +563,8 @@
                     {
                         label: 'Vollständig',
                         data: [{{ $lehr_complete_form }}, {{ $stud_complete_form }}],
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        borderColor: "rgba(0,0,0, 0.8)",
+                        backgroundColor: 'rgba(127, 29, 29, 1)',
+                        borderColor: 'rgba(127, 29, 29, 1)',
                         borderWidth: 2,
                         borderRadius: 2,
                         stack: 'Stack 1',
@@ -643,8 +643,8 @@
                         label: 'Studierende',
                         data: [{{ $stud_grundschule }}, {{ $stud_realschule }}, {{ $stud_gymnasium }}],
                         stack: 'Stack 1',
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        borderColor: 'rgba(0,0,0,0.8)',
+                        backgroundColor: 'rgba(131, 24, 67, 1)',
+                        borderColor: 'rgba(131, 24, 67, 1)',
                         borderWidth: 2,
                         borderRadius: 2,
                     },

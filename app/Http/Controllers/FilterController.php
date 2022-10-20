@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
+use DB;
+
 class FilterController extends Controller
 {
     private $faecher = [
@@ -47,15 +49,21 @@ class FilterController extends Controller
 
     private function getUnmatchedUsers($roleName)
     {
-        $users = User::where('role', $roleName)->where('is_evaluable', true)->get()->reject(function ($user) {
-            return $user->matching_state != 'unmatched';
-        });
-        foreach ($users as $user) {
-            $user->survey_data = json_decode($user->survey_data);
-            // if (isset($user->survey_data->faecher))
-            //     $user->survey_data->faecher = implode(', ', $user->survey_data->faecher);
+        if($roleName == 'lehr') {
+            $assigned_lehr_ids = DB::table('lehr_stud')->where('is_matched', true)->orWhere('is_notified', true)->pluck('lehr_id');
+            $unassigned = User::where('role', 'Lehr')->where('is_evaluable', true)->whereNotIn('id', $assigned_lehr_ids)->get();
         }
-        return $users;
+
+        if($roleName == 'stud') {
+            $assigned_stud_ids = DB::table('lehr_stud')->where('is_matched', true)->orWhere('is_notified', true)->pluck('stud_id');
+            $unassigned = User::where('role', 'Stud')->where('is_evaluable', true)->whereNotIn('id', $assigned_stud_ids)->get();
+        }
+
+        foreach ($unassigned as $user) {
+            $user->survey_data = json_decode($user->survey_data);
+        }
+        
+        return $unassigned;
     }
 
     private function implodeFaecher($users)

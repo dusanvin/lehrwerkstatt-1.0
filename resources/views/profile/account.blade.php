@@ -232,7 +232,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                                         <input type="file" name="image" id="file" class="mr-3 block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded hover:bg-gray-700 hover:text-white transition-colors duration-200 transform duration-150 hover:scale-105" />
 
-                                                        <button type="submit" class="bg-transparent bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm py-2 pr-4 pl-3 border border-yellow-600 hover:border-transparent focus:outline-none focus:ring ring-yellow-600 focus:border-yellow-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105">
+                                                        <button type="submit" class="bg-transparent bg-gray-600 hover:bg-gray-700 text-white font-semibold text-sm py-2 pr-4 pl-3 border border-gray-600 hover:border-transparent focus:outline-none focus:ring ring-gray-600 focus:border-gray-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105">
 
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-1">
                                                               <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
@@ -318,7 +318,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                                         <input type="file" name="image" id="file" class="mr-3 block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded hover:bg-gray-700 hover:text-white transition-colors duration-200 transform duration-150 hover:scale-105" />
 
-                                                        <button type="submit" class="bg-transparent bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm py-2 pr-4 pl-3 border border-yellow-600 hover:border-transparent focus:outline-none focus:ring ring-yellow-600 focus:border-yellow-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105">
+                                                        <button type="submit" class="bg-transparent bg-gray-600 hover:bg-gray-700 text-white font-semibold text-sm py-2 pr-4 pl-3 border border-gray-600 hover:border-transparent focus:outline-none focus:ring ring-gray-600 focus:border-gray-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105">
 
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-1">
                                                               <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
@@ -440,7 +440,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                 <div class="mt-4 inline-flex flex-wrap">
 
-                                    <a href="{{ route('profile.account') }}" class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-yellow-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105">
+                                    <a href="{{ route('profile.account') }}" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-gray-700 hover:border-transparent focus:outline-none focus:ring ring-gray-300 focus:border-gray-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                           <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -454,7 +454,7 @@ $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
 
                                 <div class="mt-4 inline-flex flex-wrap">
 
-                                    <button type="submit" class="bg-yellow-600 bg-transparent hover:bg-yellow-700 text-white font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-yellow-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105">
+                                    <button type="submit" class="bg-gray-600 bg-transparent hover:bg-gray-700 text-white font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-gray-700 hover:border-transparent focus:outline-none focus:ring ring-gray-300 focus:border-gray-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                           <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

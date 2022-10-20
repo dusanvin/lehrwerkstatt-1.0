@@ -235,7 +235,7 @@
 
                             <div class="rounded-md p-6">
 
-                                <div class="text-center">
+                                <div class="text-center mb-4">
 
                                     <h3 class="font-semibold text-lg text-white">Registrierungen
                                         {{ $current_month_name }}</h3>
@@ -244,7 +244,7 @@
 
                                 </div>
 
-                                <div class="px-0 py-0 sm:py-8">
+                                <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#029eb1,#25b1c3);">
 
                                     <canvas id="third"></canvas>
 
@@ -266,7 +266,7 @@
 
                             <div class="rounded-md p-6">
 
-                                <div class="text-center">
+                                <div class="text-center mb-4">
 
                                     <h3 class="font-semibold text-lg text-white">Bewerbungsformulare</h3>
 
@@ -274,7 +274,7 @@
 
                                 </div>
 
-                                <div class="px-0 py-0 sm:px-8 sm:py-8">
+                                <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#d22824,#da3a36);">
 
                                     <canvas id="fourth"></canvas>
 
@@ -288,11 +288,11 @@
 
                         <!-- Ausgefüllte Bewerbungen im relativen Vergleich -->
 
-                        <div class="mx-1 my-1 bg-gray-800 rounded-md ">
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md">
 
                             <div class="rounded-md p-6">
 
-                                <div class="text-center">
+                                <div class="text-center mb-4">
 
                                     <h3 class="font-semibold text-lg text-white">Schularten</h3>
 
@@ -300,7 +300,7 @@
 
                                 </div>
 
-                                <div class="px-0 py-0 sm:px-8 sm:py-8">
+                                <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg, #141727, #3A416F);">
 
                                     <canvas id="fifth"></canvas>
 
@@ -318,11 +318,11 @@
 
                         <!-- Angebotene Landkreise von Lehrkräften -->
 
-                        <div class="mx-1 my-1 rounded-md" style="background: linear-gradient(60deg,#f5700c,#ff9800);">
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md">
 
                             <div class="rounded-md p-6 ">
 
-                                <div class="text-center">
+                                <div class="text-center mb-4">
 
                                     <h3 class="font-semibold text-lg text-white">Angebotene Landkreise</h3>
 
@@ -332,7 +332,7 @@
 
                                 <div>
 
-                                    <div class="px-0 py-0 sm:py-8">
+                                    <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#f5700c,#ff9800);">
 
                                         <canvas id="sixth"></canvas>
 
@@ -348,11 +348,11 @@
 
                         <!-- Von Student*innen bevorzugte Landkreise -->
 
-                        <div class="mx-1 my-1 rounded-md" style="background: linear-gradient(60deg,#288c6c,#4ea752);">
+                        <div class="mx-1 my-1 bg-gray-800 rounded-md">
 
                             <div class="rounded-md p-6">
 
-                                <div class="text-center">
+                                <div class="text-center mb-4">
 
                                     <h3 class="font-semibold text-lg text-white">Bevorzugte Landkreise</h3>
 
@@ -360,7 +360,7 @@
 
                                 </div>
 
-                                <div class="px-0 py-0 sm:py-8">
+                                <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#288c6c,#4ea752);">
 
                                     <canvas id="seventh" class="rounded"></canvas>
 
@@ -406,21 +406,24 @@
                         @endfor
                     ],
                     backgroundColor: 'rgba(255,255,255, 0.6)',
-                    
                     borderColor: "rgba(255,255,255, 0.6)",
                     tension: 0.3,
                     pointBorderWidth: 3,
                     fill: false
                     },
                     {
-                        label: 'Studierende',
-                        data: [
-                            @for ($i = 12; $i > 0; $i--)
-                                {{ $stud_registrations_recent_months[$i] }},
-                            @endfor
-                        ],
-                        backgroundColor: 'rgba(245, 158, 11, 0.6)',
-                        stack: 'Stack 1',
+                    label: 'Studierende',
+                    data: [
+                        @for ($i = 12; $i > 0; $i--)
+                            {{ $stud_registrations_recent_months[$i] }},
+                        @endfor
+                    ],
+                    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                    borderColor: "rgba(0, 0, 0, 0.6)",
+                    tension: 0.3,
+                    pointBorderWidth: 3,
+                    fill: false,
+                    stack: 'Stack 1',
                     },
                 ]
             };
@@ -429,17 +432,29 @@
                 type: 'line',
                 data: data,
                 options: {
+                    responsive: true,
+                    labels: {
+                      color: "white",
+                    },
                     plugins: {
                         title: {
                             display: false
                         },
+                        legend: {
+                        position: 'top',
+                        labels: {
+                          color: 'rgba(255, 255, 255, 0.7)',
+                        }
+                      }
                     },
-                    responsive: true,
                     interaction: {
                         intersect: false,
                     },
                     scales: {
                         x: {
+                            ticks: {
+                              color: 'rgba(255, 255, 255, 0.7)'
+                            },
                             stacked: true,
                             grid: {
                                 color: 'rgba(255, 255, 255, 0.2)'
@@ -449,7 +464,9 @@
                             stacked: true,
                             min: 0,
                             ticks: {
-                                stepSize: 1
+                              color: 'rgba(255, 255, 255, 0.7)',
+                              stepSize: 1,
+                              beginAtZero: true
                             },
                             grid: {
                                 color: 'rgba(255, 255, 255, 0.2)'
@@ -473,7 +490,7 @@
                 datasets: [{
                     label: 'Registrierte Nutzer (laufender Monat)',
                     data: [{{ $lehr_registrations_current_month }}, {{ $stud_registrations_current_month }}],
-                    backgroundColor: ['rgba(5, 150, 105, 0.6)', 'rgba(220, 38, 38, 0.6)']
+                    backgroundColor: ['rgba(255, 255, 255, 0.7)', 'rgba(0, 0, 0, 0.6)']
                 }]
             };
 
@@ -482,12 +499,46 @@
                 data: data,
                 options: {
                     responsive: true,
+                    labels: {
+                      color: "white",
+                    },
                     plugins: {
+                        title: {
+                            display: false
+                        },
                         legend: {
-                            position: 'top',
+                        position: 'top',
+                        labels: {
+                          color: 'rgba(255, 255, 255, 0.7)',
+                        }
+                      }
+                    },
+                    interaction: {
+                        intersect: false,
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                              color: 'rgba(255, 255, 255, 0.7)'
+                            },
+                            stacked: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            }
+                        },
+                        y: {
+                            stacked: true,
+                            min: 0,
+                            ticks: {
+                              color: 'rgba(255, 255, 255, 0.7)',
+                              beginAtZero: true
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            }
                         }
                     }
-                },
+                }
             };
 
             var myChart = new Chart(
@@ -503,13 +554,19 @@
                 datasets: [{
                         label: 'Unvollständig',
                         data: [{{ $lehr_incomplete_form }}, {{ $stud_incomplete_form }}],
-                        backgroundColor: 'rgba(255,165,0, 0.9)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                        borderColor: "rgba(255,255,255, 0.6)",
+                        borderWidth: 2,
+                        borderRadius: 2,
                         stack: 'Stack 0',
                     },
                     {
                         label: 'Vollständig',
                         data: [{{ $lehr_complete_form }}, {{ $stud_complete_form }}],
-                        backgroundColor: 'rgba(14, 116, 144, 0.9)',
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        borderColor: "rgba(0,0,0, 0.8)",
+                        borderWidth: 2,
+                        borderRadius: 2,
                         stack: 'Stack 1',
                     },
                 ]
@@ -523,6 +580,16 @@
                         title: {
                             display: false
                         },
+                        legend: {
+                position: 'top',
+                labels: {
+                  color: 'rgba(255, 255, 255, 0.7)',
+                }
+              }
+                    },
+                    labels: {
+                      color: "white",  // not 'fontColor:' anymore
+                      // fontSize: 18  // not 'fontSize:' anymore
                     },
                     responsive: true,
                     interaction: {
@@ -531,12 +598,22 @@
                     scales: {
                         x: {
                             stacked: true,
+                            ticks: {
+                                color: 'rgba(255, 255, 255, 0.7)',
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            }
                         },
                         y: {
                             stacked: true,
                             min: 0,
                             ticks: {
-                                stepSize: 1
+                                stepSize: 1,
+                                color: 'rgba(255, 255, 255, 0.7)'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
                             }
                         }
                     }
@@ -556,14 +633,20 @@
                 datasets: [{
                         label: 'Lehrkräfte',
                         data: [{{ $lehr_grundschule }}, {{ $lehr_realschule }}, {{ $lehr_gymnasium }}],
-                        backgroundColor: 'rgba(126, 34, 206, 0.9)',
                         stack: 'Stack 0',
+                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                        borderColor: 'rgba(255,255,255,0.8)',
+                        borderWidth: 2,
+                        borderRadius: 2,
                     },
                     {
                         label: 'Studierende',
                         data: [{{ $stud_grundschule }}, {{ $stud_realschule }}, {{ $stud_gymnasium }}],
-                        backgroundColor: 'rgba(5, 150, 105, 0.9)',
                         stack: 'Stack 1',
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        borderColor: 'rgba(0,0,0,0.8)',
+                        borderWidth: 2,
+                        borderRadius: 2,
                     },
                 ]
             };
@@ -577,21 +660,36 @@
                             display: false
                         },
                     },
+                    labels: {
+                      color: "white",  // not 'fontColor:' anymore
+                      // fontSize: 18  // not 'fontSize:' anymore
+                    },
                     responsive: true,
                     interaction: {
                         intersect: false,
                     },
                     scales: {
-                        x: {
-                            stacked: true,
+                    x: {  // not 'xAxes: [{' anymore (not an array anymore)
+                      
+                        ticks: {
+                          color: 'rgba(255, 255, 255, 0.7)',
+                          stepSize: 1,
+                          beginAtZero: true
                         },
-                        y: {
-                            stacked: true,
-                            min: 0,
-                            ticks: {
-                                stepSize: 1
-                            }
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.2)'
                         }
+                    },
+                    y: {                 
+                        ticks: {
+                          color: 'rgba(255, 255, 255, 0.7)',
+                          stepSize: 1,
+                          beginAtZero: true
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.2)'
+                        }
+                    }
                     }
                 }
             };
@@ -703,8 +801,7 @@
                         legend: {
                             position: 'top',
                             labels: {
-                              color: 'rgba(255, 255, 255, 0.7)',  // not 'fontColor:' anymore
-                              // fontSize: 18  // not 'fontSize:' anymore
+                              color: 'rgba(255, 255, 255, 0.7)',
                             }
                           }
                     },

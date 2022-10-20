@@ -51,18 +51,18 @@ class FilterController extends Controller
     {
         if($roleName == 'lehr') {
             $assigned_lehr_ids = DB::table('lehr_stud')->where('is_matched', true)->orWhere('is_notified', true)->pluck('lehr_id');
-            $unassigned = User::where('role', 'Lehr')->where('is_evaluable', true)->whereNotIn('id', $assigned_lehr_ids)->get();
+            $unassigned = User::where('role', 'Lehr')->where('is_evaluable', true)->whereNotIn('id', $assigned_lehr_ids)->orderBy('nachname', 'asc')->get();
         }
 
         if($roleName == 'stud') {
             $assigned_stud_ids = DB::table('lehr_stud')->where('is_matched', true)->orWhere('is_notified', true)->pluck('stud_id');
-            $unassigned = User::where('role', 'Stud')->where('is_evaluable', true)->whereNotIn('id', $assigned_stud_ids)->get();
+            $unassigned = User::where('role', 'Stud')->where('is_evaluable', true)->whereNotIn('id', $assigned_stud_ids)->orderBy('nachname', 'asc')->get();
         }
 
         foreach ($unassigned as $user) {
             $user->survey_data = json_decode($user->survey_data);
         }
-        
+
         return $unassigned;
     }
 

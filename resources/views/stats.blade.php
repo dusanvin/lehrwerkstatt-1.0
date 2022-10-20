@@ -42,12 +42,15 @@
 
                         </h2>
 
-                        <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
+                        <div class="mt-1 text-sm text-gray-300 text-center sm:text-left">
 
                             Erhalten Sie Einblicke in die Nutzungsstatistiken des Portals. Momentane Statistiken sind
                             hinsichtlich der Registrierungen, Abmeldungen, Nutzenden, Zuweisungen, Studiengänge und des
                             Betreuungsverhältnisses einsehbar. Kontaktieren Sie bei technischen Anregungen und Anliegen das
-                            DigiLLab der Universität Augsburg.
+                            <a href="mailto:team@digillab.uni-augsburg.de" class="hover:underline text-yellow-500">
+                                DigiLLab der Universität Augsburg
+                            </a>
+                            .
 
                         </div>
 
@@ -208,18 +211,18 @@
 
                             <div class="rounded-md p-6">
 
-                                <div class="text-center mb-4">
-
-                                    <h3 class="font-semibold text-lg text-gray-300">Registrierungen</h3>
-
-                                    <p class="text-sm text-gray-300">Die letzten {{ count($recent_month_names) }} Monate im
-                                        Vergleich</p>
-
-                                </div>
-
                                 <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#7b1fa2,#913f9e);">
 
                                     <canvas id="second"></canvas>
+
+                                </div>
+
+                                <div class="text-left my-4">
+
+                                    <h3 class="font-semibold text-lg text-gray-300">Jährliche Registrierungen</h3>
+
+                                    <p class="text-sm text-gray-300">Die letzten {{ count($recent_month_names) }} Monate im
+                                        Vergleich</p>
 
                                 </div>
 
@@ -235,18 +238,17 @@
 
                             <div class="rounded-md p-6">
 
-                                <div class="text-center mb-4">
-
-                                    <h3 class="font-semibold text-lg text-white">Registrierungen
-                                        {{ $current_month_name }}</h3>
-
-                                    <p class="text-sm text-white">Vorkommen im laufenden Monat</p>
-
-                                </div>
-
                                 <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#029eb1,#25b1c3);">
 
                                     <canvas id="third"></canvas>
+
+                                </div>
+
+                                <div class="text-left my-4">
+
+                                    <h3 class="font-semibold text-lg text-gray-300">Monatliche Registrierungen</h3>
+
+                                    <p class="text-sm text-gray-300">Vorkommen im aktuellen Monat {{ $current_month_name }}</p>
 
                                 </div>
 
@@ -260,19 +262,11 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 pt-1 sm:pt-8 gap-1 sm:gap-4">
 
-                        <!-- Ausfüllstatus im relativen Vergleich -->
+                        <!-- Ausfüllstatus im absoluten Vergleich -->
 
                         <div class="mx-1 my-1 bg-gray-800 rounded-md ">
 
                             <div class="rounded-md p-6">
-
-                                <div class="text-center mb-4">
-
-                                    <h3 class="font-semibold text-lg text-white">Bewerbungsformulare</h3>
-
-                                    <p class="text-sm text-white">Ausfüllstatus im relativen Vergleich</p>
-
-                                </div>
 
                                 <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#d22824,#da3a36);">
 
@@ -280,25 +274,25 @@
 
                                 </div>
 
+                                <div class="text-left my-4">
+
+                                    <h3 class="font-semibold text-lg text-gray-300">Bewerbungsformulare</h3>
+
+                                    <p class="text-sm text-gray-300">Ausfüllstatus im absoluten Vergleich in Bezug auf Rollen</p>
+
+                                </div>
+
                             </div>
 
                         </div>
 
-                        <!-- Ausfüllstatus im relativen Vergleich -->
+                        <!-- Ausfüllstatus im absoluten Vergleich -->
 
-                        <!-- Ausgefüllte Bewerbungen im relativen Vergleich -->
+                        <!-- Ausgefüllte Bewerbungen im absoluten Vergleich -->
 
                         <div class="mx-1 my-1 bg-gray-800 rounded-md">
 
                             <div class="rounded-md p-6">
-
-                                <div class="text-center mb-4">
-
-                                    <h3 class="font-semibold text-lg text-white">Schularten</h3>
-
-                                    <p class="text-sm text-white">Ausgefüllte Bewerbungen im relativen Vergleich</p>
-
-                                </div>
 
                                 <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#d81b60,#ec407a);">
 
@@ -306,11 +300,19 @@
 
                                 </div>
 
+                                <div class="text-left my-4">
+
+                                    <h3 class="font-semibold text-lg text-gray-300">Bewerbungsformulare</h3>
+
+                                    <p class="text-sm text-gray-300">Ausgefüllte Bewerbungsformulare im absoluten Vergleich in Bezug auf Schulart</p>
+
+                                </div>
+
                             </div>
 
                         </div>
 
-                        <!-- Ausgefüllte Bewerbungen im relativen Vergleich -->
+                        <!-- Ausgefüllte Bewerbungen im absoluten Vergleich -->
 
                     </div>
 
@@ -322,21 +324,17 @@
 
                             <div class="rounded-md p-6 ">
 
-                                <div class="text-center mb-4">
+                                <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#f5700c,#ff9800);">
 
-                                    <h3 class="font-semibold text-lg text-white">Angebotene Landkreise</h3>
-
-                                    <p class="text-sm text-white">Landkreise (Lehrkräfte)</p>
+                                    <canvas id="sixth"></canvas>
 
                                 </div>
 
-                                <div>
+                                <div class="text-left my-4">
 
-                                    <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#f5700c,#ff9800);">
+                                    <h3 class="font-semibold text-lg text-gray-300">Angebotene Landkreise</h3>
 
-                                        <canvas id="sixth"></canvas>
-
-                                    </div>
+                                    <p class="text-sm text-gray-300">Angebotene Landkreise des Lehrkräfte</p>
 
                                 </div>
 
@@ -352,17 +350,17 @@
 
                             <div class="rounded-md p-6">
 
-                                <div class="text-center mb-4">
-
-                                    <h3 class="font-semibold text-lg text-white">Bevorzugte Landkreise</h3>
-
-                                    <p class="text-sm text-white">Landkreise (Studierende)</p>
-
-                                </div>
-
                                 <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#288c6c,#4ea752);">
 
                                     <canvas id="seventh" class="rounded"></canvas>
+
+                                </div>
+
+                                <div class="text-left my-4">
+
+                                    <h3 class="font-semibold text-lg text-gray-300">Bevorzugte Landkreise</h3>
+
+                                    <p class="text-sm text-gray-300">Bevorzugte Landkreise der Studierenden</p>
 
                                 </div>
 

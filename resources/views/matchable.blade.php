@@ -18,8 +18,7 @@
 
             <div class="mx-auto rounded text-white">
 
-                <!-- Übernommene Vorschläge -->
-
+                <!-- Übernommene Vorschläge 
                 Backend:
 
                 1. Tabelle - Ungeordnete Tabelle ohne Reihenfolge:
@@ -62,6 +61,9 @@
                     Visuelle Darstellung
 
                 </h1>
+
+                -->
+
 
 
                 <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left flex">
@@ -122,30 +124,41 @@
 
                                     <th
                                         class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
-                                        #</th>
+                                        #
+                                    </th>
 
                                     <th
                                         class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        Lehrkraft</th>
+                                        Lehrkraft
+                                    </th>
                                     <th
                                         class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        Wunschtandem, <br>Schule</th>
+                                        Wunschtandem/-ort
+                                    </th>
 
                                     <th
                                         class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        Student*in</th>
+                                        Student*in
+                                    </th>
                                     <th
                                         class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        Wunschtandem/-ort, <br>ehem. Schule</th>
+                                        Wunschtandem/-ort <br>(ehem. Schule)
+                                    </th>
 
                                     <th
                                         class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        MSE</th>
-
+                                        MSE
+                                    </th>
+                                    <!--
                                     <th
                                         class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        Übernommen</th>
+                                        Übernommen
+                                    </th>
+                                    -->
 
+                                    <th
+                                        class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
+                                    </th>
                                     <th
                                         class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
                                     </th>
@@ -164,49 +177,72 @@
                                         <td class="px-6 py-4 whitespace-no-wrap">
 
                                             <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                                                {{ $lehr->vorname }} {{ $lehr->nachname }}</div>
+                                                {{ $lehr->vorname }} {{ $lehr->nachname }}
+                                            </div>
 
                                             <a href="mailto:{{ $lehr->email }}"
-                                                class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $lehr->email }}</a>
+                                                class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $lehr->email }}
+                                            </a>
 
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-no-wrap">
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white text-center">
-                                                <p
-                                                    class="{{ isset($lehr->data()->wunschtandem) ? 'bg-yellow-600 rounded-xl m-1' : '' }}">
-                                                    {{ $lehr->data()->wunschtandem ?? '-' }}</p>
-                                                <p
-                                                    class="{{ isset($lehr->data()->ort) ? 'bg-blue-500 rounded-xl m-1' : '' }}">
-                                                    {{ $lehr->data()->ort ?? '-' }}</p>
+
+                                            <div class="text-xs sm:text-sm leading-5 text-gray-400">
+
+                                                @if ( isset($lehr->data()->wunschtandem))
+
+                                                    {{ $lehr->data()->wunschtandem }}/
+
+                                                @endif
+
+                                                @if (isset($lehr->data()->ort))
+
+                                                    {{ $lehr->data()->ort }}
+
+                                                @endif
+
                                             </div>
+
                                         </td>
+
                                         <td class="px-6 py-4 whitespace-no-wrap">
 
                                             <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                                                {{ $lehr->matched_user->vorname }}
-                                                {{ $lehr->matched_user->nachname }}
+                                                {{ $lehr->matched_user->vorname }} {{ $lehr->matched_user->nachname }}
                                             </div>
 
                                             <a href="mailto:{{ $lehr->email }}"
-                                                class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $lehr->matched_user->email }}</a>
+                                                class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $lehr->matched_user->email }}
+                                            </a>
 
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-no-wrap">
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white text-center">
-                                                <p
-                                                    class="{{ isset($lehr->matched_user->data()->wunschtandem)? 'bg-yellow-600 rounded-xl m-1': '' }}">
-                                                    {{ $lehr->matched_user->data()->wunschtandem ?? '-' }}</p>
-                                                <p
-                                                    class="{{ isset($lehr->matched_user->data()->wunschorte)? 'bg-blue-500 rounded-xl m-1': '' }}">
-                                                    {{ $lehr->matched_user->data()->wunschorte ?? '-' }}</p>
-                                                <p
-                                                    class="{{ isset($lehr->matched_user->data()->ehem_schulort)? 'bg-red-400 rounded-xl m-1': '' }}">
-                                                    {{ $lehr->matched_user->data()->ehem_schulort ?? '-' }}</p>
-                                            </div>
-                                        </td>
 
+                                            <div class="text-xs sm:text-sm leading-5 text-gray-400">
+
+                                                @if ( isset($lehr->matched_user->data()->wunschtandem))
+
+                                                    {{ $lehr->matched_user->data()->wunschtandem }}/
+
+                                                @endif
+
+                                                @if (isset($lehr->matched_user->data()->wunschorte))
+
+                                                    {{ $lehr->matched_user->data()->wunschorte }}
+
+                                                @endif
+
+                                                @if (isset($lehr->matched_user->data()->ehem_schulort))
+
+                                                    ({{ $lehr->matched_user->data()->ehem_schulort }})
+
+                                                @endif
+
+                                            </div>
+
+                                        </td>
 
                                         <td class="px-6 py-4 whitespace-no-wrap">
 
@@ -219,6 +255,8 @@
 
                                         </td>
 
+                                        <!-- 
+
                                         <td class="px-6 py-4 whitespace-no-wrap">
 
                                             <div class="text-xs sm:text-sm leading-5 text-gray-400 break-words">
@@ -226,6 +264,8 @@
                                             </div>
 
                                         </td>
+
+                                        -->
 
                                         <!-- Details -->
 
@@ -565,19 +605,30 @@
 
                         <h2 class="font-semibold text-lg text-gray-200">
 
-                            Dringend empfohlene Vorschläge um die maximale Anzahl an Paarungen erreichen zu können.
+                            Dringend empfohlene Vorschläge
 
                         </h2>
 
                         <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
                             @if (count($strongly_recommended) == 0)
+
+                                <p>Keine Vorschläge vorhanden.</p>
+
                             @elseif (count($strongly_recommended) == 1)
-                                <p>Folgender Vorschlag wird dringend empfohlen, da mindestens eine daran beteiligte Person
-                                    mit niemand sonst zusammengebracht werden kann. </p>
+
+                                <p>
+                                    Folgender Vorschlag wird dringend empfohlen, um die maximale Anzahl an Paarungen zu erreichen. Sollten Sie sich dagegen entscheiden, kann mindestens eine Person
+                                    nicht gepaart werden.
+                                </p>
+
                             @elseif (count($strongly_recommended) > 1)
-                                <p>Folgende Vorschläge werden dringend empfohlen, da jeweils mindestens eine daran
-                                    beteiligte Person mit niemand sonst zusammengebracht werden kann.</p>
+
+                                <p>
+                                    Folgende Vorschläge werden dringend empfohlen, um die maximale Anzahl an Paarungen zu erreichen.  Sollten Sie sich dagegen entscheiden, kann mindestens eine Person
+                                    nicht gepaart werden.
+                                </p>
+
                             @endif
 
                             <!-- Visualisierung -->

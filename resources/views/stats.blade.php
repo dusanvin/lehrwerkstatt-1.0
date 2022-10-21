@@ -48,9 +48,7 @@
                             hinsichtlich der Registrierungen, Abmeldungen, Nutzenden, Zuweisungen, Studiengänge und des
                             Betreuungsverhältnisses einsehbar. Kontaktieren Sie bei technischen Anregungen und Anliegen das
                             <a href="mailto:team@digillab.uni-augsburg.de" class="hover:underline text-yellow-500">
-                                DigiLLab der Universität Augsburg
-                            </a>
-                            .
+                                DigiLLab der Universität Augsburg</a>.
 
                         </div>
 

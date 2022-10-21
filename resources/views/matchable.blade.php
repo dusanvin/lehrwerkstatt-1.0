@@ -619,14 +619,14 @@
 
                                 <p>
                                     Folgender Vorschlag wird dringend empfohlen, um die maximale Anzahl an Paarungen zu erreichen. Sollten Sie sich dagegen entscheiden, kann mindestens eine Person
-                                    nicht gepaart werden.
+                                    nicht gepaart werden. Ziehen Sie notfalls die Visualisierung zu Rate. Die <em class="text-yellow-300">gelben Kanten</em> entsprechen den hier aufgeführten Paarungen.
                                 </p>
 
                             @elseif (count($strongly_recommended) > 1)
 
                                 <p>
-                                    Folgende Vorschläge werden dringend empfohlen, um die maximale Anzahl an Paarungen zu erreichen.  Sollten Sie sich dagegen entscheiden, kann mindestens eine Person
-                                    nicht gepaart werden.
+                                    Folgende Vorschläge werden dringend empfohlen, um die maximale Anzahl an Paarungen zu erreichen. Sollten Sie sich dagegen entscheiden, kann mindestens eine Person
+                                    nicht gepaart werden. Ziehen Sie notfalls die Visualisierung zu Rate. Die <em class="text-yellow-300">gelben Kanten</em> entsprechen den hier aufgeführten Paarungen.
                                 </p>
 
                             @endif
@@ -635,7 +635,7 @@
 
                             <td class="px-6 py-4 whitespace-no-wrap">
 
-                                <div x-data="{ modelOpen: false }" class="flex flex-wrap mr-2 mb-2">
+                                <div x-data="{ modelOpen: false }" class="flex flex-wrap mr-2 mb-2 mt-4">
 
                                     <button @click="modelOpen =!modelOpen"
                                         class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 hover:scale-105 transform">
@@ -646,8 +646,7 @@
                                                 d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
                                         </svg>
 
-                                        <span>Visualisierung</span> <span>Die <em class="text-yellow-300">gelben
-                                                Kanten</em> entsprechen den hier aufgeführten Paarungen.</span>
+                                        <span>Visualisierung</span>
 
                                     </button>
 

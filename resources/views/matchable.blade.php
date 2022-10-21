@@ -618,15 +618,13 @@
                             @elseif (count($strongly_recommended) == 1)
 
                                 <p>
-                                    Folgender Vorschlag wird dringend empfohlen, um die maximale Anzahl an Paarungen zu erreichen. Sollten Sie sich dagegen entscheiden, kann mindestens eine Person
-                                    nicht gepaart werden. Ziehen Sie notfalls die Visualisierung zu Rate. Die <em class="text-yellow-300">gelben Kanten</em> entsprechen den hier aufgeführten Paarungen.
+                                    Folgender Vorschlag muss übernommen werden, um die maximale Anzahl an Paarungen zu erreichen. Für die jeweiligen PartnerInnen gibt es nur ein/e PartnerIn. Sollten Sie sich dagegen entscheiden, kann mindestens eine Person nicht gepaart werden. Ziehen Sie notfalls die Visualisierung zu Rate. Die <em class="text-yellow-300">gelben Kanten</em> entsprechen den hier aufgeführten Paarungen.  Der MSE wird hierbei nicht berücksichtigt.
                                 </p>
 
                             @elseif (count($strongly_recommended) > 1)
 
                                 <p>
-                                    Folgende Vorschläge werden dringend empfohlen, um die maximale Anzahl an Paarungen zu erreichen. Sollten Sie sich dagegen entscheiden, kann mindestens eine Person
-                                    nicht gepaart werden. Ziehen Sie notfalls die Visualisierung zu Rate. Die <em class="text-yellow-300">gelben Kanten</em> entsprechen den hier aufgeführten Paarungen.
+                                    Folgende Vorschläge werden dringend empfohlen, um die maximale Anzahl an Paarungen zu erreichen. Für die jeweiligen PartnerInnen gibt es nur ein/e PartnerIn. Sollten Sie sich dagegen entscheiden, kann mindestens eine Person nicht gepaart werden. Ziehen Sie notfalls die Visualisierung zu Rate. Die <em class="text-yellow-300">gelben Kanten</em> entsprechen den hier aufgeführten Paarungen.  Der MSE wird hierbei nicht berücksichtigt.
                                 </p>
 
                             @endif
@@ -1133,7 +1131,7 @@
 
                         <h2 class="font-semibold text-lg text-gray-200">
 
-                            Empfohlene Vorschläge um die maximale Anzahl an Paarungen erreichen zu können.
+                            Empfohlene Vorschläge
 
                         </h2>
 
@@ -1146,13 +1144,13 @@
                             @elseif (count($strongly_recommended) == 1)
 
                                 <p>
-                                    Folgender Vorschlag wird empfohlen, um die maximale Anzahl an Paarungen zu erreichen. Ziehen Sie notfalls die Visualisierung zu Rate. Die <em class="text-blue-300">blauen Kanten</em> entsprechen den hier aufgeführten Paarungen.
+                                    Folgender Vorschlag wird empfohlen, um die bereits ausgewählten Paare zu ergänzen und die maximale Anzahl an Paarungen zu erreichen. Es gibt hier jedoch mehr als eine PartnerIn. Ziehen Sie notfalls die Visualisierung zu Rate. Die <em class="text-blue-300">blauen Kanten</em> entsprechen den hier aufgeführten Paarungen. Der MSE wird hierbei nicht berücksichtigt.
                                 </p>
 
                             @elseif (count($strongly_recommended) > 1)
 
                                 <p>
-                                    Folgende Vorschläge werden dringend empfohlen, um die maximale Anzahl an Paarungen zu erreichen. Ziehen Sie notfalls die Visualisierung zu Rate. Die <em class="text-blue-300">blauen Kanten</em> entsprechen den hier aufgeführten Paarungen.
+                                    Folgende Vorschläge werden empfohlen, um die bereits ausgewählten Paare zu ergänzen und die maximale Anzahl an Paarungen zu erreichen. Es gibt hier jedoch mehr als eine PartnerIn. Ziehen Sie notfalls die Visualisierung zu Rate. Die <em class="text-blue-300">blauen Kanten</em> entsprechen den hier aufgeführten Paarungen. Der MSE wird hierbei nicht berücksichtigt.
                                 </p>
 
                             @endif

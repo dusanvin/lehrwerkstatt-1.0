@@ -269,27 +269,29 @@
 
                         <!-- feste Zusage -->
 
-                        <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md">
+                        <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md mt-4">
 
                             <div class="grid justify-items-center sm:justify-items-start select-none">
             
-                                {{-- <h2 class="font-semibold text-lg text-gray-200">
+                                <h2 class="font-semibold text-lg text-gray-200">
             
-                                    Vorschläge
+                                    Zugesagte Paarungen
             
-                                </h2> --}}
+                                </h2>
             
                                 <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
             
                                     @if (count($accepted_matchings) == 0)
+
+                                        Beide PartnerInnen haben diesem Vorschlag zugestimmt. Ein Paar wurde gebildet.
             
                                     @elseif (count($accepted_matchings) == 1)
             
-                                    <p>Dem folgenden Vorschlag wurde fest zugesagt.</p>
+                                        <p>Dem folgenden Vorschlag wurde fest zugesagt.</p>
             
                                     @elseif (count($accepted_matchings) > 1)
             
-                                    <p>Den folgenden <strong>{{ count($accepted_matchings) }} Vorschlägen</strong> wurde fest zugesagt.</p>
+                                        <p>Den folgenden <strong>{{ count($accepted_matchings) }} Vorschlägen</strong> wurde fest zugesagt.</p>
             
                                     @endif
             
@@ -503,19 +505,21 @@
 
             <!-- abgelehnt -->
 
-            <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md">
+            <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md mt-4">
 
                 <div class="grid justify-items-center sm:justify-items-start select-none">
 
-                    {{-- <h2 class="font-semibold text-lg text-gray-200">
+                    <h2 class="font-semibold text-lg text-gray-200">
 
-                        Abgelehnte Vorschläge
+                        Abgelehnte Paarungen
 
-                    </h2> --}}
+                    </h2>
 
                     <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
                         @if (count($declined_matchings) == 0)
+
+                            Eine der beiden PartnerInnen hat diesen Vorschlag abgelehnt. Das Paar wurde nicht gebildet.
 
                         @elseif (count($declined_matchings) == 1)
 

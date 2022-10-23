@@ -110,17 +110,21 @@ class User extends Authenticatable implements MustVerifyEmail
         return false;
     }
 
-
-    public function getaAttribute() {
-        if($this->role == 'Lehr') {
-            $matching = DB::table('lehr_stud')->where('lehr_id', $this->id)->where('is_matched', true)->first();
-            return User::find($matching->stud_id);
-        }
-        if($this->role == 'Stud') {
-            $matching = DB::table('lehr_stud')->where('stud_id', $this->id)->where('is_matched', true)->first();
-            return User::find($matching->lehr_id);
-        }
+    public function getFullNameAttribute() {
+        return $this->vorname.' '.$this->nachname;
     }
+
+
+    // public function getaAttribute() {
+    //     if($this->role == 'Lehr') {
+    //         $matching = DB::table('lehr_stud')->where('lehr_id', $this->id)->where('is_matched', true)->first();
+    //         return User::find($matching->stud_id);
+    //     }
+    //     if($this->role == 'Stud') {
+    //         $matching = DB::table('lehr_stud')->where('stud_id', $this->id)->where('is_matched', true)->first();
+    //         return User::find($matching->lehr_id);
+    //     }
+    // }
 
 
     public function data()

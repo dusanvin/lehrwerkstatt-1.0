@@ -113,6 +113,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/matchable', [MatchingController::class, 'matchable'])->name('users.matchable');
 
+        Route::get('/matchings/preferences/{schulart?}', [MatchingController::class, 'preferences'])->name('matchings.preferences');
+
+        Route::get('/matchings/preferences/{schulart?}', [MatchingController::class, 'preferences'])->name('matchings.preferences');
+
+        Route::get('/matchings/preferences/{schulart?}', [MatchingController::class, 'preferences'])->name('matchings.preferences');
+
         Route::get('/accepted-matchings', [MatchingController::class, 'acceptedMatchings'])->name('acceptedMatchings');
 
         Route::get('/matchings/{lehr}/{stud}/{mse}', [MatchingController::class, 'setAssigned'])->name('matchings.setassigned');

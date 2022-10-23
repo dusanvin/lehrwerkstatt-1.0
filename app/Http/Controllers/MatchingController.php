@@ -45,6 +45,36 @@ class MatchingController extends Controller
     }
 
 
+    private function getAvailableLehrUsers() {
+        return User::where('role', 'Lehr')->where('is_evaluable', true)->where('is_available', true)->get();
+    }
+
+
+    private function getAvailableStudUsers() {
+        return User::where('role', 'Stud')->where('is_evaluable', true)->where('is_available', true)->get();
+    }
+
+
+    private function getAvailableUsers() {
+        return User::where('is_evaluable', true)->where('is_available', true)->get();
+    }
+
+
+    private function getAssignedLehrUsers() {
+        return User::where('role', 'Lehr')->where('is_evaluable', true)->where('is_available', false)->get();
+    }
+
+
+    private function getAssignedStudUsers() {
+        return User::where('role', 'Stud')->where('is_evaluable', true)->where('is_available', false)->get();
+    }
+
+
+    private function getAssignedUsers() {
+        return User::where('is_evaluable', true)->where('is_available', false)->get();
+    }
+
+
     public function matchable()
     {
         $graph = new Graph();
@@ -52,12 +82,13 @@ class MatchingController extends Controller
         $sink_vertex = $graph->createVertex('t');
 
 
-        $all_lehr = User::where('role', 'Lehr')->where('is_evaluable', true)->get();
-        $all_stud = User::where('role', 'Stud')->where('is_evaluable', true)->get();
+        $available_lehr = $this->getAvailableLehrUsers();
+        $available_stud = $this->getAvailableStudUsers();
 
-        // DB::table('lehr_stud_matchable')->truncate();
+        DB::table('lehr_stud')->update(['recommended' => 0]);
 
-        foreach ($all_lehr as $lehr) {
+
+        foreach ($available_lehr as $lehr) {
             $lehr->survey_data = json_decode($lehr->survey_data);
 
             $lehr_vertex = $graph->createVertex($lehr->id);
@@ -72,7 +103,7 @@ class MatchingController extends Controller
             // $lehr_vertex->setAttribute('graphviz.color', 'grey');
         }
 
-        foreach ($all_stud as $stud) {
+        foreach ($available_stud as $stud) {
             $stud->survey_data = json_decode($stud->survey_data);
 
             $stud_vertex = $graph->createVertex($stud->id);
@@ -84,9 +115,9 @@ class MatchingController extends Controller
             $stud_vertex->setAttribute('graphviz.label', $stud->vorname . ' ' . $stud->nachname);
         }
 
-        foreach ($all_lehr as $lehr) {
+        foreach ($available_lehr as $lehr) {
 
-            foreach ($all_stud as $stud) {
+            foreach ($available_stud as $stud) {
 
                 if ($lehr->survey_data->schulart == $stud->survey_data->schulart) {
 
@@ -129,22 +160,22 @@ class MatchingController extends Controller
                 $lehr_vertex = $edge->getVertexEnd();
                 foreach ($lehr_vertex->getEdges() as $edge) {
                     if ($edge->getFlow() == 1 && $edge->getVertexStart() != 's') {
-                        $edge->setAttribute('graphviz.color', 'blue');
-                        $edge->setAttribute('graphviz.dir', 'both');
+                        $edge->setAttribute('graphviz.color', 'yellow');
+                        $edge->setAttribute('graphviz.dir', 'none');
                         $stud_vertex = $edge->getVertexEnd();
 
                         $lehr = User::find($lehr_vertex->getId());
 
                         if(count($lehr_vertex->getEdgesOut()) == 1) {
                             $has_no_alternative_lehr = true;
-                            $edge->setAttribute('graphviz.color', 'yellow');
+                            // $edge->setAttribute('graphviz.color', 'yellow');
                         } else $has_no_alternative_lehr = false;
 
                         $stud = User::find($stud_vertex->getId());
 
                         if(count($stud_vertex->getEdgesIn()) == 1) {
                             $has_no_alternative_stud = true;
-                            $edge->setAttribute('graphviz.color', 'yellow');
+                            // $edge->setAttribute('graphviz.color', 'yellow');
                         } else $has_no_alternative_stud = false;
 
                         // $lehr->matchable()->syncWithoutDetaching([$stud->id => ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr,'has_no_alternative_stud' => $has_no_alternative_stud]]);
@@ -168,23 +199,9 @@ class MatchingController extends Controller
         $resultGraph->getVertex('s')->destroy();
         $resultGraph->getVertex('t')->destroy();
 
-        // $evaluable_users = User::where('is_evaluable', true)->get();
-        // foreach ($evaluable_users as $user) {
-        //     if (!$user->is_matchable) {
-        //         if ($resultGraph->hasVertex($user->id)) {
-        //             $resultGraph->getVertex($user->id)->destroy();
-        //         }
-        //     }
-        // }
 
-        // $notified_lehr = User::find(DB::table('lehr_stud')->where('is_notified', true)->pluck('lehr_id'));
-        // $notified_stud = User::find(DB::table('lehr_stud')->where('is_notified', true)->pluck('stud_id'));
-
-        $assigned_lehr_ids = DB::table('lehr_stud')->where('is_matched', true)->orWhere('is_notified', true)->pluck('lehr_id');
-        $assigned_stud_ids = DB::table('lehr_stud')->where('is_matched', true)->orWhere('is_notified', true)->pluck('stud_id');
-
-        $assigned_lehr = User::find($assigned_lehr_ids);
-        $assigned_stud = User::find($assigned_stud_ids);
+        $assigned_lehr = $this->getAssignedLehrUsers();
+        $assigned_stud = $this->getAssignedStudUsers();
 
         foreach ($assigned_lehr as $user) {
                 if ($resultGraph->hasVertex($user->id)) {
@@ -196,6 +213,19 @@ class MatchingController extends Controller
             if ($resultGraph->hasVertex($user->id)) {
                 $resultGraph->getVertex($user->id)->destroy();
             }
+        }
+
+        //ungültige paarungen mit is_notified raus
+        $notified_matchings = DB::table('lehr_stud')->where('is_notified', true)->get();
+        foreach($resultGraph->getEdges() as $edge) {
+            $lehr_vertex = $edge->getVertexStart();
+            $stud_vertex = $edge->getVertexEnd();
+            foreach($notified_matchings as $matching) {
+                if($lehr_vertex->getId() == $matching->lehr_id && $stud_vertex->getId() == $matching->stud_id) {
+                    $edge->destroy();
+                }
+            }
+
         }
 
         foreach($resultGraph->getVertices() as $vertex) {
@@ -214,7 +244,7 @@ class MatchingController extends Controller
         
         // $matched_graph = $resultGraph->createGraphClone();
 
-        $matched_lehr = User::find(DB::table('lehr_stud')->where('is_matched', true)->where('is_notified', false)->pluck('lehr_id'));
+        $matched_lehr = User::find(DB::table('lehr_stud')->where('is_matched', true)->pluck('lehr_id'));
 
         // foreach ($matched_graph->getEdges() as $edge) {
 
@@ -247,29 +277,23 @@ class MatchingController extends Controller
         // $matched_graph_img = $graphviz->createImageHtml($matched_graph);
 
 
-        $strongly_recommended = DB::table('lehr_stud')->where('recommended', true)->whereNotIn('lehr_id', $assigned_lehr_ids)->whereNotIn('stud_id', $assigned_stud_ids)->where(function ($query) {
-            $query->where('has_no_alternative_lehr', true)->orWhere('has_no_alternative_stud', true);
-        })->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')->get();
-        foreach ($strongly_recommended as $am) {
+        $recommended = DB::table('lehr_stud')->where('recommended', true)->where('is_notified', false)->whereNotIn('lehr_id', $assigned_lehr->pluck('id'))->whereNotIn('stud_id', $assigned_stud->pluck('id'))->orderBy('mse', 'asc')->get();
+        foreach ($recommended as $am) {
             $am->lehr = User::find($am->lehr_id);
             $am->stud = User::find($am->stud_id);
             $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
         }
 
-        $remaining_recommended = DB::table('lehr_stud')->where('recommended', true)->whereNotIn('lehr_id', $assigned_lehr_ids)->whereNotIn('stud_id', $assigned_stud_ids)->where('has_no_alternative_lehr', false)->where('has_no_alternative_stud', false)->get();
+        // $remaining_recommended = DB::table('lehr_stud')->where('recommended', true)->where('is_notified', false)->whereNotIn('lehr_id', $assigned_lehr->pluck('id'))->whereNotIn('stud_id', $assigned_stud->pluck('id'))->where('has_no_alternative_lehr', false)->where('has_no_alternative_stud', false)->get();
 
-        foreach ($remaining_recommended as $am) {
-            $am->lehr = User::find($am->lehr_id);
-            $am->stud = User::find($am->stud_id);
-            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
-        }
-
-        $recommended = DB::table('lehr_stud')->where('recommended', true)->whereNotIn('lehr_id', $assigned_lehr_ids)->whereNotIn('stud_id', $assigned_stud_ids)->get();
+        // foreach ($remaining_recommended as $am) {
+        //     $am->lehr = User::find($am->lehr_id);
+        //     $am->stud = User::find($am->stud_id);
+        //     $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
+        // }
 
 
-
-
-        $remaining_matches = DB::table('lehr_stud')->whereNotIn('lehr_id', $assigned_lehr_ids)->whereNotIn('stud_id', $assigned_stud_ids)->orderBy('mse', 'asc')->get();
+        $remaining_matches = DB::table('lehr_stud')->where('is_notified', false)->whereNotIn('lehr_id', $assigned_lehr->pluck('id'))->whereNotIn('stud_id', $assigned_stud->pluck('id'))->orderBy('mse', 'asc')->get();
 
         foreach ($remaining_matches as $am) {
             $am->lehr = User::find($am->lehr_id);
@@ -277,28 +301,11 @@ class MatchingController extends Controller
             $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
         }
 
-        $users_lehr = User::whereNotIn('id', $assigned_lehr_ids)->where('role', 'Lehr')->get();
-        $users_stud = User::whereNotIn('id', $assigned_lehr_ids)->where('role', 'Stud')->get();
-        $lehr_wunschtandem = $users_lehr->reject(function ($lehr, $key) {
-            !isset($lehr->data()->wunschtandem);
-        });
-        $stud_wunschtandem = $users_stud->reject(function ($stud, $key) {
-            !isset($stud->data()->wunschtandem);
-        });
-        // dd($stud_wunschtandem);
-        $stud_wunschorte = $users_stud->reject(function ($stud, $key) {
-            !isset($stud->data()->wunschorte);
-        });
-
-        
-        
-        // dd($lehr_wunschtandem);
-
-
-
-        return view('matchable', compact('graph_img', 'max_flow', 'matched_lehr', 'strongly_recommended', 'remaining_recommended', 'remaining_matches', 'lehr_wunschtandem', 'stud_wunschtandem', 'stud_wunschorte'));
+        return view('matchable', compact('graph_img', 'max_flow', 'matched_lehr', 'recommended', 'remaining_matches'));
     }
 
+
+    // updates current status of each possible matching regarding the current available users
     private function updateMatchings() {
 
         // init
@@ -307,10 +314,12 @@ class MatchingController extends Controller
         $sink_vertex = $graph->createVertex('t');
 
 
-        $all_lehr = User::where('role', 'Lehr')->where('is_evaluable', true)->get();
-        $all_stud = User::where('role', 'Stud')->where('is_evaluable', true)->get();
+        $available_lehr = $this->getAvailableLehrUsers();
+        $available_stud = $this->getAvailableStudUsers();
 
-        foreach ($all_lehr as $lehr) {
+        DB::table('lehr_stud')->update(['recommended' => 0]);
+
+        foreach ($available_lehr as $lehr) {
             $lehr->survey_data = json_decode($lehr->survey_data);
 
             $lehr_vertex = $graph->createVertex($lehr->id);
@@ -318,7 +327,7 @@ class MatchingController extends Controller
             $edge->setCapacity(1);
         }
 
-        foreach ($all_stud as $stud) {
+        foreach ($available_stud as $stud) {
             $stud->survey_data = json_decode($stud->survey_data);
 
             $stud_vertex = $graph->createVertex($stud->id);
@@ -327,9 +336,9 @@ class MatchingController extends Controller
         }
 
         // create edges
-        foreach ($all_lehr as $lehr) {
+        foreach ($available_lehr as $lehr) {
 
-            foreach ($all_stud as $stud) {
+            foreach ($available_stud as $stud) {
 
                 if ($lehr->survey_data->schulart == $stud->survey_data->schulart) {
 
@@ -409,9 +418,9 @@ class MatchingController extends Controller
         $assigned_stud_ids = LehrStud::where('is_matched', true)->orWhere('is_notified', true)->pluck('stud_id');
 
         if(isset($schulart)) {
-            $unassigned = User::where('is_evaluable', true)->where('survey_data->schulart', $schulart)->whereNotIn('id', $assigned_lehr_ids)->whereNotIn('id', $assigned_stud_ids)->get();
+            $unassigned = User::where('is_evaluable', true)->where('is_available', true)->where('survey_data->schulart', $schulart)->get();
         } else {
-            $unassigned = User::where('is_evaluable', true)->whereNotIn('id', $assigned_lehr_ids)->whereNotIn('id', $assigned_stud_ids)->get();
+            $unassigned = User::where('is_evaluable', true)->where('is_available', true)->get();
         }
         
 
@@ -426,7 +435,7 @@ class MatchingController extends Controller
         $matchings_stud_lehr_wunschtandem = LehrStud::where('is_matched', false)->where('is_notified', false)->whereIn('stud_id', $wunschtandem_stud->pluck('id'))->orderBy('stud_id', 'asc')->orderBy('mse', 'asc')->get();
 
 
-        $matched_lehr = User::find(LehrStud::where('is_matched', true)->where('is_notified', false)->pluck('lehr_id'));
+        $matched_lehr = User::find(LehrStud::where('is_matched', true)->pluck('lehr_id'));
 
         return view('matchings.preferences', compact(['schulart', 'matched_lehr', 'matchings_lehr_stud_wunschtandem', 'matchings_stud_lehr_wunschtandem']));
 
@@ -438,6 +447,12 @@ class MatchingController extends Controller
         $lehr = User::find($lehrid);
         $stud = User::find($studid);
 
+        $lehr->is_available = false;
+        $stud->is_available = false;
+
+        $lehr->save();
+        $stud->save();
+
         $lehr->matchable()->updateExistingPivot($stud, ['is_matched' => true]);
 
         return back();
@@ -448,6 +463,12 @@ class MatchingController extends Controller
     {
         $lehr = User::find($lehrid);
         $stud = User::find($studid);
+
+        $lehr->is_available = true;
+        $stud->is_available = true;
+
+        $lehr->save();
+        $stud->save();
 
         $lehr->matchable()->updateExistingPivot($stud, ['is_matched' => false]);
 
@@ -484,6 +505,13 @@ class MatchingController extends Controller
     {
         $lehr = User::find($request->input('lehrid'));
         $stud = User::find($request->input('studid'));
+
+        $lehr->is_available = true;
+        $stud->is_available = true;
+
+        $lehr->save();
+        $stud->save();
+
         // $matching = DB::table('lehr_stud')->where('lehr_id', $request->input('lehrid'))->where('stud_id', $request->input('studid'))->first();
         if ($request->input('role') == 'Lehr') {
             // DB::table('lehr_stud')->where('lehr_id', $request->input('lehrid'))->where('stud_id', $request->input('studid'))->update([
@@ -526,6 +554,11 @@ class MatchingController extends Controller
                 $stud->save();
             }
 
+            $lehr->is_available = false;
+            $stud->is_available = false;
+
+            $lehr->save();
+            $stud->save();
 
             // DB::table('lehr_stud')->where('lehr_id', $lehr->id)->where('stud_id', $stud->id)->update(['created_at' => Carbon::now(), 'is_notified' => true]);
 
@@ -538,6 +571,16 @@ class MatchingController extends Controller
 
 
     public function resetMatching($lehr_id, $stud_id) {
+
+        $lehr = User::find($lehr_id);
+        $stud = User::find($stud_id);
+
+        $lehr->is_available = true;
+        $stud->is_available = true;
+
+        $lehr->save();
+        $stud->save();
+
         DB::table('lehr_stud')->where('lehr_id', $lehr_id)->where('stud_id', $stud_id)->update(['is_accepted_lehr' => null, 'is_accepted_stud' => null, 'is_matched' => false, 'is_notified' => false]);
         
         return back();
@@ -583,108 +626,7 @@ class MatchingController extends Controller
 
     public function matchings(Request $request) {
 
-        $graph = new Graph();
-        $source_vertex = $graph->createVertex('s');
-        $sink_vertex = $graph->createVertex('t');
-
-
-        $all_lehr = User::where('role', 'Lehr')->where('is_evaluable', true)->get();
-        $all_stud = User::where('role', 'Stud')->where('is_evaluable', true)->get();
-
-        foreach ($all_lehr as $lehr) {
-            $lehr->survey_data = json_decode($lehr->survey_data);
-
-            $lehr_vertex = $graph->createVertex($lehr->id);
-            $lehr_vertex->setAttribute('data', $lehr->survey_data);
-            $edge = $source_vertex->createEdgeTo($lehr_vertex);
-            $edge->setCapacity(1);
-        }
-
-        foreach ($all_stud as $stud) {
-            $stud->survey_data = json_decode($stud->survey_data);
-
-            $stud_vertex = $graph->createVertex($stud->id);
-            $stud_vertex->setAttribute('data', $stud->survey_data);
-            $edge = $stud_vertex->createEdgeTo($sink_vertex);
-            $edge->setCapacity(1);
-        }
-
-        foreach ($all_lehr as $lehr) {
-
-            foreach ($all_stud as $stud) {
-
-                if ($lehr->survey_data->schulart == $stud->survey_data->schulart) {
-
-                    if (in_array($lehr->survey_data->landkreis,  $stud->survey_data->landkreise)) {
-
-                        if ($lehr->survey_data->schulart == 'Grundschule') {
-
-                            $lehr_vertex = $graph->getVertex($lehr->id);
-                            $stud_vertex = $graph->getVertex($stud->id);
-                            $edge = $lehr_vertex->createEdgeTo($stud_vertex);
-                            $edge->setCapacity(1);
-
-                            $mse = $this->mse($lehr, $stud);
-                            $edge->setAttribute('graphviz.label', $mse . ', ');
-                            $lehr->matchable()->syncWithoutDetaching([$stud->id => ['mse' => $mse]]);
-
-                        } elseif (array_intersect($lehr->survey_data->faecher, $stud->survey_data->faecher)) {
-
-                            $lehr_vertex = $graph->getVertex($lehr->id);
-                            $stud_vertex = $graph->getVertex($stud->id);
-                            $edge = $lehr_vertex->createEdgeTo($stud_vertex);
-                            $edge->setCapacity(1);
-
-                            $mse = $this->mse($lehr, $stud);
-                            $lehr->matchable()->syncWithoutDetaching([$stud->id => ['mse' => $mse]]);
-
-                        }
-                    }
-                }
-            }
-        }
-
-        $ek = new EdmondsKarp($source_vertex, $sink_vertex);
-
-        $resultGraph = $ek->createGraph();
-        $source_vertex = $resultGraph->getVertex('s');
-
-        foreach ($source_vertex->getEdges() as $edge) {
-            if ($edge->getFlow() == 1) {
-                $lehr_vertex = $edge->getVertexEnd();
-
-                foreach ($lehr_vertex->getEdges() as $edge) {
-                    if ($edge->getFlow() == 1 && $edge->getVertexStart() != 's') {
-                        //recommended
-                        $stud_vertex = $edge->getVertexEnd();
-                        $lehr = User::find($lehr_vertex->getId());
-
-                        if(count($lehr_vertex->getEdgesOut()) == 1) {
-                            $has_no_alternative_lehr = true;
-                        } else $has_no_alternative_lehr = false;
-
-                        $stud = User::find($stud_vertex->getId());
-
-                        if(count($stud_vertex->getEdgesIn()) == 1) {
-                            $has_no_alternative_stud = true;
-                        } else $has_no_alternative_stud = false;
-
-                        // $lehr->matchable()->syncWithoutDetaching([$stud->id => ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr,'has_no_alternative_stud' => $has_no_alternative_stud]]);
-                        $lehr->matchable()->updateExistingPivot($stud, ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr,'has_no_alternative_stud' => $has_no_alternative_stud]);
-
-                    } else {
-                        $edge->setAttribute('graphviz.dir', 'none');
-                    }
-                }
-            } else {
-                $lehr_vertex = $edge->getVertexEnd();
-                foreach ($lehr_vertex->getEdges() as $edge) {
-                    $edge->setAttribute('graphviz.dir', 'none');
-                }
-            }
-        }
-
-        $max_flow = $ek->getFlowMax();
+        $this->updateMatchings();
 
         $matched = DB::table('lehr_stud')->where('is_matched', true)->where('is_notified', false)->get();
         foreach ($matched as $am) {
@@ -728,97 +670,4 @@ class MatchingController extends Controller
     }
 
 
-
-
-
-
-    public function matchingsA(Request $request)
-    {
-        $lehr = User::where('role', 'lehr')->where('is_evaluable', true)->where('matching_state', 'unmatched')->get();
-        $stud = User::where('role', 'stud')->where('is_evaluable', true)->where('matching_state', 'unmatched')->get();
-
-        foreach ($stud as $current_stud) {
-            $current_stud->survey_data = json_decode($current_stud->survey_data);
-        }
-
-
-        foreach ($lehr as $current_lehr) {
-
-            $current_lehr->survey_data = json_decode($current_lehr->survey_data);
-            $current_lehr->matchings = [];
-
-            $matchings = [];
-
-            foreach ($stud as $current_stud) {
-
-                if ($current_lehr->survey_data->schulart == $current_stud->survey_data->schulart) {
-                    if (in_array($current_lehr->survey_data->landkreis,  $current_stud->survey_data->landkreise)) {
-                        if ($current_lehr->survey_data->schulart == 'Grundschule') {
-                            $current_stud->count_matchings += 1;
-                            $current_stud->mse = $this->mse($current_lehr, $current_stud);
-                            $matchings[] = $current_stud;
-                        } elseif (array_intersect($current_lehr->survey_data->faecher, $current_stud->survey_data->faecher)) {
-                            if (in_array($current_lehr->survey_data->landkreis,  $current_stud->survey_data->landkreise)) {
-                                $current_stud->count_matchings += 1;
-                                $current_stud->mse = $this->mse($current_lehr, $current_stud);
-                                $matchings[] = $current_stud;
-                            }
-                        }
-                    }
-                }
-            }
-
-            usort($matchings, array('App\Http\Controllers\MatchingController', 'compareMatchings'));
-
-
-            $current_lehr->matchings = $matchings;
-
-            $current_lehr->mses = [];
-            $mses = [];
-            if (count($matchings)) {
-                foreach ($matchings as $matching) {
-                    $mses[] = $matching->mse;
-                }
-                $current_lehr->mses = $mses;
-            }
-
-            if (isset($current_lehr->survey_data->faecher))
-                $current_lehr->survey_data->faecher = implode(', ', $current_lehr->survey_data->faecher);
-        }
-        // alle studenten matchen für die nur ein lehrer gefunden wurde
-        $unmatchable_lehr = [];
-        $matchings = [];
-        foreach ($lehr as $key => $current_lehr) {
-            // falls lehrkraft keine matchings
-            if (count($current_lehr->matchings) == 0) {
-                $unmatchable_lehr[] = $current_lehr;
-                $lehr->forget($key);
-            } else
-                foreach ($current_lehr->matchings as $current_stud) {
-                    if ($current_stud->count_matchings == 1) {
-                        // für diesen student gibt es genau nur diesen lehrer als matching
-                        // da bereits sortiert wird stud mit besserem mse mit der lehrkräft falls mehrere studenten nur mit dieser lehrkraft können
-
-                        $matching = [
-                            'lehr' => $current_lehr,
-                            'stud' => $current_stud
-                        ];
-                        $matchings[] = $matching;
-                        $lehr->forget($key);
-
-                        break; // nachdem der bestmöglich student daraus zugewiesen wurde abbruch
-                    }
-                }
-        }
-        $assigned_matchings = DB::table('lehr_stud')->where('is_notified', false)->get();
-        $assigned = [];
-        foreach ($assigned_matchings as $am) {
-            $assigned_lehr = User::where('role', 'lehr')->where('is_evaluable', true)->where('matching_state', 'prematched')->where('id', $am->lehr_id)->get();
-            $assigned_stud = User::where('role', 'stud')->where('is_evaluable', true)->where('matching_state', 'prematched')->where('id', $am->stud_id)->get();
-            $assigned[] = ['lehr' => $assigned_lehr[0], 'stud' => $assigned_stud[0], 'is_accepted_lehr' => $am->is_accepted_lehr, 'is_accepted_stud' => $am->is_accepted_stud, 'mse' => $am->mse, 'elapsed_time' => Carbon::parse($am->created_at)->diffForHumans(Carbon::now())];
-        }
-        // dd($assigned_matchings);
-
-        return view('matchings', ['users' => $lehr, 'matchings' => $matchings, 'assigned_matchings' => $assigned, 'unmatchable_lehr' => $unmatchable_lehr]);
-    }
 }

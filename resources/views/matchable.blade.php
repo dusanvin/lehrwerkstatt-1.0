@@ -18,51 +18,51 @@
 
             <div class="mx-auto rounded text-white">
 
-                <!-- Übernommene Vorschläge 
-                Backend:
+                <!-- Übernommene Vorschläge
+                    Backend:
 
-                1. Tabelle - Ungeordnete Tabelle ohne Reihenfolge:
-                <ol>
-                    <li>Maximale Anzahl an Paarungen</li>
-                </ol>
+                    1. Tabelle - Ungeordnete Tabelle ohne Reihenfolge:
+                    <ol>
+                        <li>Maximale Anzahl an Paarungen</li>
+                    </ol>
 
-                <strong>Frontend:</strong>
+                    <strong>Frontend:</strong>
 
-                1. Tabelle: Wie übernommene Vorschläge vom Design (Aufteilung der Spalten her)
+                    1. Tabelle: Wie übernommene Vorschläge vom Design (Aufteilung der Spalten her)
 
-                Button dazu: Grafik in neuem Tab anzeigen lassen!
+                    Button dazu: Grafik in neuem Tab anzeigen lassen!
 
-                2. Tabelle - Absteigende Ordnung des Algorithmus in dieser Reihenfolge:
-                <ol>
-                    <li>MSE</li>
-                </ol>
+                    2. Tabelle - Absteigende Ordnung des Algorithmus in dieser Reihenfolge:
+                    <ol>
+                        <li>MSE</li>
+                    </ol>
 
-                Darstellung mit eigenem Ausschlussverfahren:
-                <li>Ausschluss der eigenen ehemaligen Schule</li> Textfeld
-                <li>Wunschtandem</li> DropDowns
-                <li>Wunschschule</li> DropDowns
+                    Darstellung mit eigenem Ausschlussverfahren:
+                    <li>Ausschluss der eigenen ehemaligen Schule</li> Textfeld
+                    <li>Wunschtandem</li> DropDowns
+                    <li>Wunschschule</li> DropDowns
 
-                <strong>Frontend:</strong>
+                    <strong>Frontend:</strong>
 
-                2. Tabelle: Wie übernommene Vorschläge vom Design (Aufteilung der Spalten her)
+                    2. Tabelle: Wie übernommene Vorschläge vom Design (Aufteilung der Spalten her)
 
-                3. Tabelle - Möglichkeiten:
-                <ol>
-                    <li>Alle Möglichen Paarungen</li>
-                </ol>
+                    3. Tabelle - Möglichkeiten:
+                    <ol>
+                        <li>Alle Möglichen Paarungen</li>
+                    </ol>
 
-                <strong>Frontend:</strong>
+                    <strong>Frontend:</strong>
 
-                3. Tabelle: Wie weitere Vorschläge vom Design (Aufteilung der Spalten her)
+                    3. Tabelle: Wie weitere Vorschläge vom Design (Aufteilung der Spalten her)
 
 
-                <h1 class="font-semibold text-2xl text-gray-200">
+                    <h1 class="font-semibold text-2xl text-gray-200">
 
-                    Visuelle Darstellung
+                        Visuelle Darstellung
 
-                </h1>
+                    </h1>
 
-                -->
+                    -->
 
 
 
@@ -150,11 +150,11 @@
                                         MSE
                                     </th>
                                     <!--
-                                    <th
-                                        class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        Übernommen
-                                    </th>
-                                    -->
+                                        <th
+                                            class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                            Übernommen
+                                        </th>
+                                        -->
 
                                     <th
                                         class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
@@ -190,16 +190,12 @@
 
                                             <div class="text-xs sm:text-sm leading-5 text-gray-400">
 
-                                                @if ( isset($lehr->data()->wunschtandem))
-
+                                                @if (isset($lehr->data()->wunschtandem))
                                                     {{ $lehr->data()->wunschtandem }}/
-
                                                 @endif
 
                                                 @if (isset($lehr->data()->ort))
-
                                                     {{ $lehr->data()->ort }}
-
                                                 @endif
 
                                             </div>
@@ -222,22 +218,16 @@
 
                                             <div class="text-xs sm:text-sm leading-5 text-gray-400">
 
-                                                @if ( isset($lehr->matched_user->data()->wunschtandem))
-
+                                                @if (isset($lehr->matched_user->data()->wunschtandem))
                                                     {{ $lehr->matched_user->data()->wunschtandem }}/
-
                                                 @endif
 
                                                 @if (isset($lehr->matched_user->data()->wunschorte))
-
                                                     {{ $lehr->matched_user->data()->wunschorte }}
-
                                                 @endif
 
                                                 @if (isset($lehr->matched_user->data()->ehem_schulort))
-
                                                     ({{ $lehr->matched_user->data()->ehem_schulort }})
-
                                                 @endif
 
                                             </div>
@@ -255,17 +245,17 @@
 
                                         </td>
 
-                                        <!-- 
+                                        <!--
 
-                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            <td class="px-6 py-4 whitespace-no-wrap">
 
-                                            <div class="text-xs sm:text-sm leading-5 text-gray-400 break-words">
-                                                {{ \Carbon\Carbon::parse($lehr->matched_user->pivot->created_at)->diffForHumans(\Carbon\Carbon::now()) }}
-                                            </div>
+                                                <div class="text-xs sm:text-sm leading-5 text-gray-400 break-words">
+                                                    {{ \Carbon\Carbon::parse($lehr->matched_user->pivot->created_at)->diffForHumans(\Carbon\Carbon::now()) }}
+                                                </div>
 
-                                        </td>
+                                            </td>
 
-                                        -->
+                                            -->
 
                                         <!-- Details -->
 
@@ -338,31 +328,23 @@
                                                                         class="text-gray-400 hover:text-gray-100 break-words">{{ $lehr->matched_user->email }}</a>
                                                                     <br>
                                                                     <br>
-                                                                    @if (!empty(
-                                                                        $lehr->matched_user->data()->wunschtandem
-                                                                    ))
+                                                                    @if (!empty($lehr->matched_user->data()->wunschtandem))
                                                                         <p> Wunschtandem:
                                                                             {{ $lehr->matched_user->data()->wunschtandem }}
                                                                         </p>
                                                                     @endif
-                                                                    @if (!empty(
-                                                                        $lehr->matched_user->data()->wunschorte
-                                                                    ))
+                                                                    @if (!empty($lehr->matched_user->data()->wunschorte))
                                                                         <p> Wunschorte:
                                                                             {{ $lehr->matched_user->data()->wunschorte }}
                                                                         </p>
                                                                     @endif
-                                                                    @if (!empty(
-                                                                        $lehr->matched_user->data()->ehem_schulort
-                                                                    ))
+                                                                    @if (!empty($lehr->matched_user->data()->ehem_schulort))
                                                                         <p> Ehem. Schulort:
                                                                             {{ $lehr->matched_user->data()->ehem_schulort }}
                                                                         </p>
                                                                     @endif
                                                                     <br>
-                                                                    @if (!empty(
-                                                                        $lehr->matched_user->data()->anmerkungen
-                                                                    ))
+                                                                    @if (!empty($lehr->matched_user->data()->anmerkungen))
                                                                         <p> Anmerkungen:
                                                                             {{ $lehr->matched_user->data()->anmerkungen }}
                                                                         </p>
@@ -438,7 +420,7 @@
                                                                             Feedback Lehrkraft zu Student*in [Abweichung 0
                                                                             bis
                                                                             5]:
-                                                                            {{ abs($lehr->data()->feedback_an -$lehr->matched_user->data()->feedback_von) }}
+                                                                            {{ abs($lehr->data()->feedback_an - $lehr->matched_user->data()->feedback_von) }}
 
                                                                         </p>
 
@@ -447,42 +429,42 @@
                                                                             Feedback Student*in zu Lehrkraft [Abweichung 0
                                                                             bis
                                                                             5]:
-                                                                            {{ abs($lehr->data()->feedback_von -$lehr->matched_user->data()->feedback_an) }}
+                                                                            {{ abs($lehr->data()->feedback_von - $lehr->matched_user->data()->feedback_an) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Eigenstaendigkeit [Abweichung 0 bis 5]**:
-                                                                            {{ abs($lehr->data()->eigenstaendigkeit -$lehr->matched_user->data()->eigenstaendigkeit) }}
+                                                                            {{ abs($lehr->data()->eigenstaendigkeit - $lehr->matched_user->data()->eigenstaendigkeit) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Improvisation [Abweichung 0 bis 5]:
-                                                                            {{ abs($lehr->data()->improvisation -$lehr->matched_user->data()->improvisation) }}
+                                                                            {{ abs($lehr->data()->improvisation - $lehr->matched_user->data()->improvisation) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Freiraum [Abweichung 0 bis 3]:
-                                                                            {{ abs($lehr->data()->freiraum -$lehr->matched_user->data()->freiraum) }}
+                                                                            {{ abs($lehr->data()->freiraum - $lehr->matched_user->data()->freiraum) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Innovationsoffenheit [Abweichung 0 bis 5]:
-                                                                            {{ abs($lehr->data()->innovationsoffenheit -$lehr->matched_user->data()->innovationsoffenheit) }}
+                                                                            {{ abs($lehr->data()->innovationsoffenheit - $lehr->matched_user->data()->innovationsoffenheit) }}
 
                                                                         </p>
 
                                                                         <p>
 
                                                                             Belastbarkeit [Abweichung 0 bis 5]:**
-                                                                            {{ abs($lehr->data()->belastbarkeit -$lehr->matched_user->data()->belastbarkeit) }}
+                                                                            {{ abs($lehr->data()->belastbarkeit - $lehr->matched_user->data()->belastbarkeit) }}
 
                                                                         </p>
 
@@ -597,7 +579,7 @@
                 </div>
 
 
-                {{-- strongly recommended --}}
+                {{-- recommended --}}
 
                 <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md mt-4">
 
@@ -605,28 +587,30 @@
 
                         <h2 class="font-semibold text-lg text-gray-200">
 
-                            Dringend empfohlene Vorschläge
+                            Empfohlene Vorschläge mit denen die Anzahl der Paarungen maximiert wird.
 
                         </h2>
 
                         <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                            @if (count($strongly_recommended) == 0)
-
+                            @if (count($recommended) == 0)
                                 <p>Keine Vorschläge vorhanden.</p>
-
-                            @elseif (count($strongly_recommended) == 1)
-
+                            @elseif (count($recommended) == 1)
                                 <p>
-                                    Folgender Vorschlag muss übernommen werden, um die maximale Anzahl an Paarungen zu erreichen. Für die jeweiligen PartnerInnen gibt es nur ein/e PartnerIn. Sollten Sie sich dagegen entscheiden, kann mindestens eine Person nicht gepaart werden. Ziehen Sie notfalls die Visualisierung zu Rate. Die <em class="text-yellow-300">gelben Kanten</em> entsprechen den hier aufgeführten Paarungen.  Der MSE wird hierbei nicht berücksichtigt.
+                                    Folgender Vorschlag muss übernommen werden, um die maximale Anzahl an Paarungen zu
+                                    erreichen. Für die jeweiligen PartnerInnen gibt es nur ein/e PartnerIn. Sollten Sie sich
+                                    dagegen entscheiden, kann mindestens eine Person nicht gepaart werden. Ziehen Sie
+                                    notfalls die Visualisierung zu Rate. Die <em class="text-yellow-300">gelben Kanten</em>
+                                    entsprechen den hier aufgeführten Paarungen. Der MSE wird hierbei nicht berücksichtigt.
                                 </p>
-
-                            @elseif (count($strongly_recommended) > 1)
-
+                            @elseif (count($recommended) > 1)
                                 <p>
-                                    Folgende Vorschläge werden dringend empfohlen, um die maximale Anzahl an Paarungen zu erreichen. Für die jeweiligen PartnerInnen gibt es nur ein/e PartnerIn. Sollten Sie sich dagegen entscheiden, kann mindestens eine Person nicht gepaart werden. Ziehen Sie notfalls die Visualisierung zu Rate. Die <em class="text-yellow-300">gelben Kanten</em> entsprechen den hier aufgeführten Paarungen.  Der MSE wird hierbei nicht berücksichtigt.
+                                    Folgende Vorschläge werden dringend empfohlen, um die maximale Anzahl an Paarungen zu
+                                    erreichen. Für die jeweiligen PartnerInnen gibt es nur ein/e PartnerIn. Sollten Sie sich
+                                    dagegen entscheiden, kann mindestens eine Person nicht gepaart werden. Ziehen Sie
+                                    notfalls die Visualisierung zu Rate. Die <em class="text-yellow-300">gelben Kanten</em>
+                                    entsprechen den hier aufgeführten Paarungen. Der MSE wird hierbei nicht berücksichtigt.
                                 </p>
-
                             @endif
 
                             <!-- Visualisierung -->
@@ -722,11 +706,11 @@
 
                         <tbody>
 
-                            @if (count($strongly_recommended) == 0)
+                            @if (count($recommended) == 0)
                                 <p
                                     class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">
                                     Keine alternativlosen Paarungen vorhanden.</p>
-                            @elseif (count($strongly_recommended) > 0)
+                            @elseif (count($recommended) > 0)
                                 <tr>
 
                                     <th
@@ -757,11 +741,11 @@
                                         MSE
                                     </th>
                                     <!--
-                                    <th
-                                        class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        Übernommen
-                                    </th>
-                                    -->
+                                        <th
+                                            class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                            Übernommen
+                                        </th>
+                                        -->
 
                                     <th
                                         class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
@@ -772,7 +756,7 @@
 
                                 </tr>
 
-                                @foreach ($strongly_recommended as $index => $matching)
+                                @foreach ($recommended as $index => $matching)
                                     <tr class="border-t border-gray-200 bg-gray-700">
 
                                         <td
@@ -796,16 +780,12 @@
 
                                             <div class="text-xs sm:text-sm leading-5 text-gray-400">
 
-                                                @if ( isset($matching->lehr->data()->wunschtandem))
-
+                                                @if (isset($matching->lehr->data()->wunschtandem))
                                                     {{ $matching->lehr->data()->wunschtandem }}/
-
                                                 @endif
 
                                                 @if (isset($matching->lehr->data()->ort))
-
                                                     {{ $matching->lehr->data()->ort }}
-
                                                 @endif
 
                                             </div>
@@ -826,22 +806,16 @@
 
                                             <div class="text-xs sm:text-sm leading-5 text-gray-400">
 
-                                                @if ( isset($matching->stud->data()->wunschtandem))
-
+                                                @if (isset($matching->stud->data()->wunschtandem))
                                                     {{ $matching->stud->data()->wunschtandem }}/
-
                                                 @endif
 
-                                                @if ( isset($matching->stud->data()->wunschorte))
-
+                                                @if (isset($matching->stud->data()->wunschorte))
                                                     {{ $matching->stud->data()->wunschorte }}
-
                                                 @endif
 
-                                                 @if ( isset($matching->stud->data()->ehem_schulort))
-
+                                                @if (isset($matching->stud->data()->ehem_schulort))
                                                     ({{ $matching->stud->data()->ehem_schulort }})
-
                                                 @endif
 
                                             </div>
@@ -861,14 +835,19 @@
 
                                         </td>
 
-<td class="px-6 py-4 whitespace-no-wrap">
+                                        <td class="px-6 py-4 whitespace-no-wrap">
 
                                             <div x-data="{ modelOpen: false }" class="flex flex-wrap mr-2 mb-2">
 
-                                                <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 hover:scale-105 transform">
+                                                <button @click="modelOpen =!modelOpen"
+                                                    class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 hover:scale-105 transform">
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"></path>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6">
+                                                        </path>
                                                     </svg>
 
                                                     <span>Details</span>
@@ -877,18 +856,37 @@
 
                                                 <!-- ModelOpen -->
 
-                                                <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none;">
+                                                <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto"
+                                                    aria-labelledby="modal-title" role="dialog" aria-modal="true"
+                                                    style="display: none;">
 
-                                                    <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+                                                    <div
+                                                        class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
 
-                                                        <div @click="modelOpen = false" x-show="modelOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true" style="display: none;">
+                                                        <div @click="modelOpen = false" x-show="modelOpen"
+                                                            x-transition:enter="transition ease-out duration-300 transform"
+                                                            x-transition:enter-start="opacity-0"
+                                                            x-transition:enter-end="opacity-100"
+                                                            x-transition:leave="transition ease-in duration-200 transform"
+                                                            x-transition:leave-start="opacity-100"
+                                                            x-transition:leave-end="opacity-0"
+                                                            class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40"
+                                                            aria-hidden="true" style="display: none;">
                                                         </div>
 
                                                         <!-- ModelOpen -->
 
                                                         <!-- ModelOpen x-cloak -->
 
-                                                        <div x-show="modelOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="bg-gray-700 inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl" style="display: none;">
+                                                        <div x-show="modelOpen"
+                                                            x-transition:enter="transition ease-out duration-300 transform"
+                                                            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                                            x-transition:leave="transition ease-in duration-200 transform"
+                                                            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                                            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                            class="bg-gray-700 inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
+                                                            style="display: none;">
 
                                                             <!-- ModelOpen x-cloak -->
 
@@ -900,27 +898,32 @@
 
                                                             <div class="w-96 mt-2">
 
-                                                                <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
+                                                                <div
+                                                                    class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
 
                                                                     <p>Furman
                                                                         Johnston</p>
-                                                                    <a href="mailto:stark.jennie@example.net" class="text-gray-400 hover:text-gray-100 break-words">stark.jennie@example.net</a>
+                                                                    <a href="mailto:stark.jennie@example.net"
+                                                                        class="text-gray-400 hover:text-gray-100 break-words">stark.jennie@example.net</a>
                                                                     <br>
                                                                     <br>
-                                                                                                                                            <p> Wunschtandem:
-                                                                            Dillan Hoppe
-                                                                        </p>
-                                                                                                                                                                                                                <p> Wunschorte:
-                                                                            New Tonihaven
-                                                                        </p>
-                                                                                                                                                                                                                <p> Ehem. Schulort:
-                                                                            New Marcusfurt
-                                                                        </p>
-                                                                                                                                        <br>
-                                                                                                                                            <p> Anmerkungen:
-                                                                            Alice, 'but I haven't had a wink of sleep these three weeks!' 'I'm very sorry you've been annoyed,' said Alice, very loudly and decidedly, and there was no 'One, two, three, and away,' but they all.
-                                                                        </p>
-                                                                    
+                                                                    <p> Wunschtandem:
+                                                                        Dillan Hoppe
+                                                                    </p>
+                                                                    <p> Wunschorte:
+                                                                        New Tonihaven
+                                                                    </p>
+                                                                    <p> Ehem. Schulort:
+                                                                        New Marcusfurt
+                                                                    </p>
+                                                                    <br>
+                                                                    <p> Anmerkungen:
+                                                                        Alice, 'but I haven't had a wink of sleep these
+                                                                        three weeks!' 'I'm very sorry you've been annoyed,'
+                                                                        said Alice, very loudly and decidedly, and there was
+                                                                        no 'One, two, three, and away,' but they all.
+                                                                    </p>
+
                                                                 </div>
 
                                                             </div>
@@ -931,17 +934,19 @@
 
                                                             <div class="w-96 mt-2">
 
-                                                                <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
+                                                                <div
+                                                                    class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
 
                                                                     <p>Edwin
                                                                         Bednar</p>
-                                                                    <a href="mailto:hermiston.karianne@example.com" class="text-gray-400 hover:text-gray-100 break-words">hermiston.karianne@example.com</a>
+                                                                    <a href="mailto:hermiston.karianne@example.com"
+                                                                        class="text-gray-400 hover:text-gray-100 break-words">hermiston.karianne@example.com</a>
                                                                     <br>
                                                                     <br>
-                                                                                                                                            <p> Wunschtandem:
-                                                                            Harold Parker
-                                                                        </p>
-                                                                                                                                        <br>
+                                                                    <p> Wunschtandem:
+                                                                        Harold Parker
+                                                                    </p>
+                                                                    <br>
                                                                     <p> Name der Schule:</p>
                                                                     <p>
                                                                         Cross-group motivating framework school
@@ -965,7 +970,8 @@
 
                                                                 <div class="pb-2 w-96 mt-2">
 
-                                                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
+                                                                    <div
+                                                                        class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
 
                                                                         3.56
 
@@ -1050,7 +1056,8 @@
 
                                                             <div class="flex justify-end mt-6">
 
-                                                                <button @click="modelOpen =!modelOpen" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-green-700 rounded-md hover:bg-green-900 focus:outline-none focus:bg-green-500 focus:ring focus:ring-green-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
+                                                                <button @click="modelOpen =!modelOpen"
+                                                                    class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-green-700 rounded-md hover:bg-green-900 focus:outline-none focus:bg-green-500 focus:ring focus:ring-green-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
                                                                     <p>Schließen</p>
 
                                                                 </button>
@@ -1120,254 +1127,7 @@
 
                 </div>
 
-                {{-- strongly recommended --}}
-
-
-                {{-- remaining recommended --}}
-
-                <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md mt-4">
-
-                    <div class="grid justify-items-center sm:justify-items-start select-none">
-
-                        <h2 class="font-semibold text-lg text-gray-200">
-
-                            Empfohlene Vorschläge
-
-                        </h2>
-
-                        <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
-
-                            @if (count($strongly_recommended) == 0)
-
-                                <p>Keine Vorschläge vorhanden.</p>
-
-                            @elseif (count($strongly_recommended) == 1)
-
-                                <p>
-                                    Folgender Vorschlag wird empfohlen, um die bereits ausgewählten Paare zu ergänzen und die maximale Anzahl an Paarungen zu erreichen. Es gibt hier jedoch mehr als eine PartnerIn. Ziehen Sie notfalls die Visualisierung zu Rate. Die <em class="text-blue-300">blauen Kanten</em> entsprechen den hier aufgeführten Paarungen. Der MSE wird hierbei nicht berücksichtigt.
-                                </p>
-
-                            @elseif (count($strongly_recommended) > 1)
-
-                                <p>
-                                    Folgende Vorschläge werden empfohlen, um die bereits ausgewählten Paare zu ergänzen und die maximale Anzahl an Paarungen zu erreichen. Es gibt hier jedoch mehr als eine PartnerIn. Ziehen Sie notfalls die Visualisierung zu Rate. Die <em class="text-blue-300">blauen Kanten</em> entsprechen den hier aufgeführten Paarungen. Der MSE wird hierbei nicht berücksichtigt.
-                                </p>
-
-                            @endif
-
-                        </div>
-
-                        <!-- Visualisierung -->
-
-                        <td class="px-6 py-4 whitespace-no-wrap">
-
-                                <div x-data="{ modelOpen: false }" class="flex flex-wrap mr-2 mb-2 mt-4">
-
-                                    <button @click="modelOpen =!modelOpen"
-                                        class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 hover:scale-105 transform">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                                        </svg>
-
-                                        <span>Visualisierung</span>
-
-                                    </button>
-
-                                <!-- ModelOpen -->
-
-                                <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto"
-                                    aria-labelledby="modal-title" role="dialog" aria-modal="true">
-
-                                    <div
-                                        class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-
-                                        <div x-cloak @click="modelOpen = false" x-show="modelOpen"
-                                            x-transition:enter="transition ease-out duration-300 transform"
-                                            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                                            x-transition:leave="transition ease-in duration-200 transform"
-                                            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                                            class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40"
-                                            aria-hidden="true">
-                                        </div>
-
-                                        <!-- ModelOpen -->
-
-                                        <!-- ModelOpen x-cloak -->
-
-                                        <div x-cloak x-show="modelOpen"
-                                            x-transition:enter="transition ease-out duration-300 transform"
-                                            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                                            x-transition:leave="transition ease-in duration-200 transform"
-                                            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                                            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                            class="bg-gray-700 inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl">
-
-                                            <!-- ModelOpen x-cloak -->
-
-                                            <!-- ModelInner -->
-
-                                            <h3 class="text-xs font-medium text-white uppercase mt-4">
-                                                {!! $graph_img !!}
-                                            </h3>
-
-                                        </div>
-
-
-
-                                        <div class="flex justify-end mt-6">
-
-                                            <button @click="modelOpen =!modelOpen"
-                                                class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-green-700 rounded-md hover:bg-green-900 focus:outline-none focus:bg-green-500 focus:ring focus:ring-green-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
-                                                <p>Schließen</p>
-
-                                            </button>
-
-                                        </div>
-
-
-
-                                        <!-- ModelInner -->
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </td>
-
-                        <!-- Visualisierung -->
-
-                    </div>
-
-                    <table class="min-w-full mt-4 mb-2 mr-4 shadow-sm rounded-lg">
-
-                        <tbody>
-
-                            @if (count($remaining_recommended) == 0)
-                                <p
-                                    class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">
-                                    Keine alternativlosen Paarungen vorhanden.</p>
-                            @elseif (count($remaining_recommended) > 0)
-                                <tr>
-
-                                    <th
-                                        class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
-                                        #</th>
-
-                                    <th
-                                        class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        Lehrkraft</th>
-
-                                    <th
-                                        class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        Student*in</th>
-
-                                    <th
-                                        class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        MSE</th>
-
-                                    <th
-                                        class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
-                                    </th>
-
-                                </tr>
-
-                                @foreach ($remaining_recommended as $index => $matching)
-                                    <tr class="border-t border-gray-200 bg-gray-700">
-
-                                        <td
-                                            class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
-
-                                            {{ $index + 1 }}
-
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                                                {{ $matching->lehr->vorname }} {{ $matching->lehr->nachname }}</div>
-
-                                            <a href="mailto:{{ $matching->lehr->email }}"
-                                                class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->lehr->email }}</a>
-
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                                                {{ $matching->stud->vorname }} {{ $matching->stud->nachname }}</div>
-
-                                            <a href="mailto:{{ $matching->lehr->email }}"
-                                                class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->stud->email }}</a>
-
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap">
-
-                                            <div
-                                                class="text-sm leading-5 font-normal text-white select-none font-bold bg-gray-500 text-center p-1 w-12 rounded-sm">
-
-                                                {{ $matching->mse }}
-
-                                            </div>
-
-                                        </td>
-
-                                        <!-- Löschen -->
-
-                                        <td
-                                            class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
-
-                                            <form
-                                                action="{{ route('matchings.setassigned', ['lehr' => $matching->lehr->id, 'stud' => $matching->stud->id, 'mse' => $matching->mse]) }}"
-                                                method="get">
-
-                                                @csrf
-
-                                                <button type="submit"
-                                                    class="py-2 px-2 rounded-full text-white text-sm flex focus:outline-none bg-green-700 has-tooltip hover:bg-green-900 border-2 border-white transition ease-in-out duration-150 hover:scale-105 transform">
-
-                                                    <div class="grid justify-items-center">
-
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                            viewBox="0 0 20 20" fill="currentColor">
-
-                                                            <path fill-rule="evenodd"
-                                                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                                                clip-rule="evenodd" />
-
-                                                        </svg>
-
-                                                        <span
-                                                            class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150'>Aufnehmen</span>
-
-                                                    </div>
-
-                                                </button>
-
-                                            </form>
-
-
-                                        </td>
-
-                                        <!-- Löschen -->
-
-                                    </tr>
-                                @endforeach
-                            @endif
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-                {{-- strongly recommended --}}
+                {{-- recommended --}}
 
 
                 {{-- mse sorted --}}

@@ -50,7 +50,9 @@
 
                 <!-- Content -->
 
-                <div class="px-1 md:px-8 py-1 md:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-900">
+                <div id="tab-contents">
+
+                    <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md mt-4">
 
                     <h1>{{ $schulart ? ucfirst($schulart) : 'Alle Schularten' }}, Nutzer die ein Wunschfeld ausgefüllt
                         haben.</h1>
@@ -680,6 +682,8 @@
                         {{-- studenten wunschtandem --}}
 
                     </div>
+
+                </div>
 
                 </div>
 

@@ -142,7 +142,10 @@
                                                 class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                                 Student*in
                                             </th>
-
+                                            <th
+                                                class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                                Wunschtandem/-ort
+                                            </th>
                                             <th
                                                 class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                                 MSE
@@ -198,6 +201,26 @@
                                                     <a href="mailto:{{ $lehr->email }}"
                                                         class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $lehr->matched_user->email }}
                                                     </a>
+
+                                                </td>
+
+                                                <td class="px-6 py-4 whitespace-no-wrap">
+
+                                                    <div class="text-xs sm:text-sm leading-5 text-gray-400">
+
+                                                        @if (isset($lehr->matched_user->data()->wunschtandem))
+                                                            {{ $lehr->matched_user->data()->wunschtandem }}/<br>
+                                                        @endif
+
+                                                        @if (isset($lehr->matched_user->data()->wunschorte))
+                                                            {{ $lehr->matched_user->data()->wunschorte }}
+                                                        @endif
+
+                                                        {{-- @if (isset($lehr->matched_user->data()->ehem_schulort))
+                                                            ({{ $lehr->matched_user->data()->ehem_schulort }})
+                                                        @endif --}}
+
+                                                    </div>
 
                                                 </td>
 
@@ -664,7 +687,5 @@
         </div>
 
     </div>
-
-    <!-- Content -->
 
 @endsection

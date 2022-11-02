@@ -85,7 +85,17 @@ class MatchingController extends Controller
         $available_lehr = $this->getAvailableLehrUsers();
         $available_stud = $this->getAvailableStudUsers();
 
-        DB::table('lehr_stud')->update(['recommended' => 0]);
+        
+        DB::table('lehr_stud')->where('is_notified', false)->delete();
+
+        // user ausschließen, die nicht mehr gematched werden wollen, aber in der vorauswahl sind
+        $exclude_ids = User::where('is_evaluable', false)->where('is_available', false)->pluck('id');
+        DB::table('lehr_stud')->whereIn('lehr_id', $exclude_ids)->whereIn('stud_id', $exclude_ids)->delete();
+
+
+
+
+        DB::table('lehr_stud')->update(['recommended' => 0, 'has_no_alternative_lehr' => 0, 'has_no_alternative_stud' => 0]); // ->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')
 
 
         foreach ($available_lehr as $lehr) {
@@ -281,8 +291,12 @@ class MatchingController extends Controller
         foreach ($recommended as $am) {
             $am->lehr = User::find($am->lehr_id);
             $am->stud = User::find($am->stud_id);
-            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
+            // $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
         }
+
+        $recommended->reject(function($match, $key) {
+            return !$match->lehr->is_evaluable || !$match->stud->is_evaluable;
+        });
 
         // $remaining_recommended = DB::table('lehr_stud')->where('recommended', true)->where('is_notified', false)->whereNotIn('lehr_id', $assigned_lehr->pluck('id'))->whereNotIn('stud_id', $assigned_stud->pluck('id'))->where('has_no_alternative_lehr', false)->where('has_no_alternative_stud', false)->get();
 
@@ -298,8 +312,12 @@ class MatchingController extends Controller
         foreach ($remaining_matches as $am) {
             $am->lehr = User::find($am->lehr_id);
             $am->stud = User::find($am->stud_id);
-            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
+            // $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
         }
+
+        $remaining_matches->reject(function($match, $key) {
+            return !$match->lehr->is_evaluable || !$match->stud->is_evaluable;
+        });
 
         return view('matchable', compact('graph_img', 'max_flow', 'matched_lehr', 'recommended', 'remaining_matches'));
     }

@@ -118,6 +118,15 @@ class ProfileController extends Controller
 
         $input = $request->all();
 
+        if(!isset($input['is_evaluable'])) {
+            $input['is_evaluable'] = true;
+        }
+
+        if(!($user->role == 'Lehr' || $user->role == 'Stud')) {
+            $input['is_evaluable'] = false;
+        }
+
+
         if ($input['email'] != $user->email) {
             $user->email_verified_at = null;
             $user->sendEmailVerificationNotification();

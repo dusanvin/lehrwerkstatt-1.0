@@ -86,11 +86,13 @@ class MatchingController extends Controller
         $available_stud = $this->getAvailableStudUsers();
 
         
-        DB::table('lehr_stud')->where('is_notified', false)->delete();
+        DB::table('lehr_stud')->where('is_matched', false)->where('is_notified', false)->delete();
 
         // user ausschließen, die nicht mehr gematched werden wollen, aber in der vorauswahl sind
-        $exclude_ids = User::where('is_evaluable', false)->where('is_available', false)->pluck('id');
-        DB::table('lehr_stud')->whereIn('lehr_id', $exclude_ids)->whereIn('stud_id', $exclude_ids)->delete();
+        $exclude_ids = User::where('is_evaluable', false)->pluck('id');
+        DB::table('lehr_stud')->whereIn('lehr_id', $exclude_ids)->delete();
+        DB::table('lehr_stud')->whereIn('stud_id', $exclude_ids)->delete();
+
 
 
 

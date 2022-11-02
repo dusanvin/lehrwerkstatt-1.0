@@ -32,7 +32,7 @@
 
             <!-- Anzahl -->
 
-            @if ($user->matchable()->count() == 0)
+            @if (!isset($user->notified_user))
 
             <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">
 
@@ -42,19 +42,9 @@
 
             @else
 
-            @if ($user->matchable()->count() == 1)
-
             <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
 
-                {{ $user->matchable()->count() }} Vorschlag vorhanden.
-
-            </div>
-
-            @else
-
-            <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
-
-                {{ $user->matchable()->count() }} Vorschläge vorhanden.
+                {{ $user->notified_user()->count() }} Vorschlag vorhanden.
 
             </div>
 
@@ -62,175 +52,175 @@
 
             <!-- Anzahl -->
 
-            <div class="shadow-sm" id="angebote">
+            @if (isset($user->notified_user))
 
-                <table class="min-w-full mt-4 mb-2 mr-4 shadow-sm rounded-lg">
+                <div class="shadow-sm" id="angebote">
 
-                    <tbody>
+                    <table class="min-w-full mt-4 mb-2 mr-4 shadow-sm rounded-lg">
 
-                        <tr>
+                        <tbody>
 
-                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
-                                #</th>
+                            <tr>
 
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Partner*in</th>
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
+                                    #</th>
 
-                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Schulart</th>
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Partner*in</th>
 
-                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Fach/Fächer</th>
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Schulart</th>
 
-                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Mögliche/r Ausübungsort/e</th>
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Fach/Fächer</th>
 
-                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Erstellungsdatum</th>
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Mögliche/r Ausübungsort/e</th>
 
-                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold"></th>
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Erstellungsdatum</th>
 
-                        </tr>
+                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold"></th>
 
-                    </tbody>
+                            </tr>
 
-                    @if ($user->matchable()->count())
+                        </tbody>
 
-                    @php
-                        $index = 0;
-                    @endphp
+                        @php
+                            $index = 0;
+                        @endphp
 
-                    <tr class="border-t border-gray-200 bg-gray-700 text-sm text-gray-400">
+                        <tr class="border-t border-gray-200 bg-gray-700 text-sm text-gray-400">
 
-                        <td class="hidden sm:table-cell pl-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
+                            <td class="hidden sm:table-cell pl-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
 
-                            {{ $index+1 }}
+                                {{ $index+1 }}
 
-                        </td>
+                            </td>
 
-                        <td class="px-6 py-4 whitespace-no-wrap align-top">
+                            <td class="px-6 py-4 whitespace-no-wrap align-top">
 
-                            <a class="flex hover:underline text-white hover:text-gray-100" href="{{ route('profile.details', ['id' => $user->notified_user->id]) }}">
+                                <a class="flex hover:underline text-white hover:text-gray-100" href="{{ route('profile.details', ['id' => $user->notified_user->id]) }}">
 
-                                {{ $user->notified_user->vorname }} {{ $user->notified_user->nachname }}
+                                    {{ $user->notified_user->vorname }} {{ $user->notified_user->nachname }}
 
-                            </a>
+                                </a>
 
-                            <a href="mailto:{{  $user->notified_user->email }}" class="leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $user->notified_user->email }}</a>
+                                <a href="mailto:{{  $user->notified_user->email }}" class="leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $user->notified_user->email }}</a>
 
-                        </td>
+                            </td>
 
-                        <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
+                            <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
 
-                            <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
+                                <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
 
-                                {{ $user->notified_user->data()->schulart }}
-
-                            </div>
-
-                        </td>
-
-                        <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
-
-                            <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
-
-                                @if(isset($user->notified_user->data()->faecher))
-
-                                {{ implode(', ', $user->notified_user->data()->faecher) }}
-
-                                @else
-
-                                -
-
-                                @endif
-
-                            </div>
-
-                        </td>
-
-                        @if(strcasecmp($user->notified_user->role, 'lehr') == 0)
-
-                        <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
-
-                            <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
-
-                                {{ $user->notified_user->data()->postleitzahl }} {{ $user->notified_user->data()->ort }}
-
-                            </div>
-
-                        </td>
-
-                        @elseif(strcasecmp($user->notified_user->role, 'stud') == 0)
-
-                        <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
-
-                            <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
-
-                                {{ implode(', ', $user->notified_user->data()->landkreise) }}
-
-                            </div>
-
-                        </td>
-
-                        @endif
-
-                        <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
-
-                            <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
-
-                                {{ $user->created_at->diffForHumans() }}
-
-                            </div>
-
-                        </td>
-
-                        <td class="px-6 py-4 whitespace-no-wrap align-top">
-
-                            <div class="py-2 mx-auto rounded-md">
-
-                                <div class="flex">
-
-
-                                        <a href="/messages/create/{{ $user->notified_user->id }}" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
-
-                                            Kontaktieren
-
-                                        </a>
-
+                                    {{ $user->notified_user->data()->schulart }}
 
                                 </div>
 
-                            </div>
+                            </td>
 
-                            @if( (strcasecmp($user->role, 'lehr') == 0 && !isset($user->notified_user->pivot->is_accepted_lehr)) || (strcasecmp($user->role, 'stud') == 0 && !isset($user->notified_user->pivot->is_accepted_stud)) )
-                            <form action="{{ route('acceptMatching') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="role" value="{{ $user->role }}">
-                                <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $user->notified_user->id }}">
-                                <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $user->notified_user->id }}">
-                                <input type="submit" value="Verbindlich Zusagen">
-                            </form>
-                            <br>
-                            <form action="{{ route('declineMatching') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="role" value="{{ $user->role }}">
-                                <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $user->notified_user->id }}">
-                                <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $user->notified_user->id }}">
-                                <input type="submit" value="Ablehnen">
-                            </form>
-                            @else
-                                @if (strcasecmp($user->role, 'lehr') == 0)
-                                    {{ $user->notified_user->pivot->is_accepted_lehr == 1 ? 'Zugesagt' : 'Abgelehnt' }}
-                                @elseif (strcasecmp($user->role, 'stud') == 0)
-                                    {{ $user->notified_user->pivot->is_accepted_stud == 1 ? 'Zugesagt' : 'Abgelehnt' }}
-                                @endif
+                            <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
+
+                                <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
+
+                                    @if(isset($user->notified_user->data()->faecher))
+
+                                    {{ implode(', ', $user->notified_user->data()->faecher) }}
+
+                                    @else
+
+                                    -
+
+                                    @endif
+
+                                </div>
+
+                            </td>
+
+                            @if(strcasecmp($user->notified_user->role, 'lehr') == 0)
+
+                            <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
+
+                                <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
+
+                                    {{ $user->notified_user->data()->postleitzahl }} {{ $user->notified_user->data()->ort }}
+
+                                </div>
+
+                            </td>
+
+                            @elseif(strcasecmp($user->notified_user->role, 'stud') == 0)
+
+                            <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
+
+                                <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
+
+                                    {{ implode(', ', $user->notified_user->data()->landkreise) }}
+
+                                </div>
+
+                            </td>
+
                             @endif
 
-                        </td>
+                            <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
 
-                    </tr>
+                                <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
+
+                                    {{ $user->created_at->diffForHumans() }}
+
+                                </div>
+
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-no-wrap align-top">
+
+                                <div class="py-2 mx-auto rounded-md">
+
+                                    <div class="flex">
 
 
-                    @endif
+                                            <a href="/messages/create/{{ $user->notified_user->id }}" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
 
-                </table>
+                                                Kontaktieren
 
-            </div>
+                                            </a>
+
+
+                                    </div>
+
+                                </div>
+
+                                @if( (strcasecmp($user->role, 'lehr') == 0 && !isset($user->notified_user->pivot->is_accepted_lehr)) || (strcasecmp($user->role, 'stud') == 0 && !isset($user->notified_user->pivot->is_accepted_stud)) )
+                                <form action="{{ route('acceptMatching') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="role" value="{{ $user->role }}">
+                                    <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $user->notified_user->id }}">
+                                    <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $user->notified_user->id }}">
+                                    <input type="submit" value="Verbindlich Zusagen">
+                                </form>
+                                <br>
+                                <form action="{{ route('declineMatching') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="role" value="{{ $user->role }}">
+                                    <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $user->notified_user->id }}">
+                                    <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $user->notified_user->id }}">
+                                    <input type="submit" value="Ablehnen">
+                                </form>
+                                @else
+                                    @if (strcasecmp($user->role, 'lehr') == 0)
+                                        {{ $user->notified_user->pivot->is_accepted_lehr == 1 ? 'Zugesagt' : 'Abgelehnt' }}
+                                    @elseif (strcasecmp($user->role, 'stud') == 0)
+                                        {{ $user->notified_user->pivot->is_accepted_stud == 1 ? 'Zugesagt' : 'Abgelehnt' }}
+                                    @endif
+                                @endif
+
+                            </td>
+
+                        </tr>
+
+
+                        
+
+                    </table>
+
+                </div>
 
             @endif
 

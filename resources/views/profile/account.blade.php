@@ -509,7 +509,7 @@
                                         </svg> --}}
                                         
                                         <label class="bg-gray-700 px-2 py-2 ml-2 focus:text-gray-400">
-                                            {!! Form::checkbox('is_evaluable', 0, !$user->is_evaluable) !!} Ich möchte derzeit für zukünftige Vorschläge nicht mehr im Auswahlverfahren berücksichtigt werden.
+                                            {!! Form::checkbox('is_evaluable', 0, !$user->is_evaluable) !!} Ich möchte derzeit für zukünftige Vorschläge nicht mehr im Auswahlverfahren berücksichtigt werden. Bisherige Vorschläge sind nicht betroffen.
                                         </label>
                                         
 

@@ -349,7 +349,7 @@ function validate(survey, options) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $.post('http://127.0.0.1:8000/bewerbungsformular/registrierungscode', {code: reg_code})
+    $.post('https://hosted-024-216.rz.uni-augsburg.de/bewerbungsformular/registrierungscode', {code: reg_code})
         .then(function(data) {
             if(data > 0) {
                 console.log(data);
@@ -382,7 +382,7 @@ survey.onComplete.add(function (sender) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $.post('http://127.0.0.1:8000/bewerbungsformular', {survey: sender.data})
+    $.post('https://hosted-024-216.rz.uni-augsburg.de/bewerbungsformular', {survey: sender.data})
     .then(function() {
             console.log(sender.data);
             document.querySelector('#surveyElement').textContent = "Result JSON:\n" + JSON.stringify(sender.data, null, 3);

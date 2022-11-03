@@ -82,23 +82,28 @@ class MatchingController extends Controller
         $sink_vertex = $graph->createVertex('t');
 
 
-        $available_lehr = $this->getAvailableLehrUsers();
-        $available_stud = $this->getAvailableStudUsers();
+        // user ausschließen, die nicht mehr gematched werden wollen, aber in der vorauswahl sind
+        $exclude_ids = User::where('is_evaluable', false)->where('is_available', false)->pluck('id');
 
-        
         DB::table('lehr_stud')->where('is_matched', false)->where('is_notified', false)->delete();
 
-        // user ausschließen, die nicht mehr gematched werden wollen, aber in der vorauswahl sind
-        $exclude_ids = User::where('is_evaluable', false)->pluck('id');
+        // user deren matchings aufgehoben werden müssen wieder auf available gesetzt werden
+        $inactive_matched_users = User::where('is_evaluable', false)->where('is_available', false)->get();  // ->update(['is_available' => true]);
+        foreach($inactive_matched_users as $user) {
+            $user->is_available = true;
+            $user->save();
+            // dd($user->matched_user); // null
+            User::where('id', $user->matched_user->id)->update(['is_available' => true]);
+        }
+
         DB::table('lehr_stud')->whereIn('lehr_id', $exclude_ids)->delete();
         DB::table('lehr_stud')->whereIn('stud_id', $exclude_ids)->delete();
 
-
-
-
-
         DB::table('lehr_stud')->update(['recommended' => 0, 'has_no_alternative_lehr' => 0, 'has_no_alternative_stud' => 0]); // ->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')
 
+
+        $available_lehr = $this->getAvailableLehrUsers();
+        $available_stud = $this->getAvailableStudUsers();
 
         foreach ($available_lehr as $lehr) {
             $lehr->survey_data = json_decode($lehr->survey_data);

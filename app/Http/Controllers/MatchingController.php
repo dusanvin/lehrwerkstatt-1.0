@@ -45,32 +45,38 @@ class MatchingController extends Controller
     }
 
 
-    private function getAvailableLehrUsers() {
+    private function getAvailableLehrUsers()
+    {
         return User::where('role', 'Lehr')->where('is_evaluable', true)->where('is_available', true)->get();
     }
 
 
-    private function getAvailableStudUsers() {
+    private function getAvailableStudUsers()
+    {
         return User::where('role', 'Stud')->where('is_evaluable', true)->where('is_available', true)->get();
     }
 
 
-    private function getAvailableUsers() {
+    private function getAvailableUsers()
+    {
         return User::where('is_evaluable', true)->where('is_available', true)->get();
     }
 
 
-    private function getAssignedLehrUsers() {
+    private function getAssignedLehrUsers()
+    {
         return User::where('role', 'Lehr')->where('is_evaluable', true)->where('is_available', false)->get();
     }
 
 
-    private function getAssignedStudUsers() {
+    private function getAssignedStudUsers()
+    {
         return User::where('role', 'Stud')->where('is_evaluable', true)->where('is_available', false)->get();
     }
 
 
-    private function getAssignedUsers() {
+    private function getAssignedUsers()
+    {
         return User::where('is_evaluable', true)->where('is_available', false)->get();
     }
 
@@ -89,7 +95,7 @@ class MatchingController extends Controller
 
         // user deren matchings aufgehoben werden müssen wieder auf available gesetzt werden
         $inactive_matched_users = User::where('is_evaluable', false)->where('is_available', false)->get();  // ->update(['is_available' => true]);
-        foreach($inactive_matched_users as $user) {
+        foreach ($inactive_matched_users as $user) {
             $user->is_available = true;
             $user->save();
             // dd($user->matched_user); // null
@@ -150,7 +156,6 @@ class MatchingController extends Controller
                             $edge->setAttribute('graphviz.label', $mse . ', ');
                             // $lehr->matchable()->attach($stud, ['mse' => $mse]);
                             $lehr->matchable()->syncWithoutDetaching([$stud->id => ['mse' => $mse]]);
-
                         } elseif (array_intersect($lehr->survey_data->faecher, $stud->survey_data->faecher)) {
                             $lehr_vertex = $graph->getVertex($lehr->id);
                             $stud_vertex = $graph->getVertex($stud->id);
@@ -161,7 +166,6 @@ class MatchingController extends Controller
                             $edge->setAttribute('graphviz.label', $mse . ', ');
                             // $lehr->matchable()->attach($stud, ['mse' => $mse]);
                             $lehr->matchable()->syncWithoutDetaching([$stud->id => ['mse' => $mse]]);
-
                         }
                     }
                 }
@@ -183,21 +187,20 @@ class MatchingController extends Controller
 
                         $lehr = User::find($lehr_vertex->getId());
 
-                        if(count($lehr_vertex->getEdgesOut()) == 1) {
+                        if (count($lehr_vertex->getEdgesOut()) == 1) {
                             $has_no_alternative_lehr = true;
                             // $edge->setAttribute('graphviz.color', 'yellow');
                         } else $has_no_alternative_lehr = false;
 
                         $stud = User::find($stud_vertex->getId());
 
-                        if(count($stud_vertex->getEdgesIn()) == 1) {
+                        if (count($stud_vertex->getEdgesIn()) == 1) {
                             $has_no_alternative_stud = true;
                             // $edge->setAttribute('graphviz.color', 'yellow');
                         } else $has_no_alternative_stud = false;
 
                         // $lehr->matchable()->syncWithoutDetaching([$stud->id => ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr,'has_no_alternative_stud' => $has_no_alternative_stud]]);
-                        $lehr->matchable()->updateExistingPivot($stud, ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr,'has_no_alternative_stud' => $has_no_alternative_stud]);
-
+                        $lehr->matchable()->updateExistingPivot($stud, ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr, 'has_no_alternative_stud' => $has_no_alternative_stud]);
                     } else {
                         $edge->setAttribute('graphviz.dir', 'none');
                     }
@@ -221,9 +224,9 @@ class MatchingController extends Controller
         $assigned_stud = $this->getAssignedStudUsers();
 
         foreach ($assigned_lehr as $user) {
-                if ($resultGraph->hasVertex($user->id)) {
-                    $resultGraph->getVertex($user->id)->destroy();
-                }
+            if ($resultGraph->hasVertex($user->id)) {
+                $resultGraph->getVertex($user->id)->destroy();
+            }
         }
 
         foreach ($assigned_stud as $user) {
@@ -234,19 +237,18 @@ class MatchingController extends Controller
 
         //ungültige paarungen mit is_notified raus
         $notified_matchings = DB::table('lehr_stud')->where('is_notified', true)->get();
-        foreach($resultGraph->getEdges() as $edge) {
+        foreach ($resultGraph->getEdges() as $edge) {
             $lehr_vertex = $edge->getVertexStart();
             $stud_vertex = $edge->getVertexEnd();
-            foreach($notified_matchings as $matching) {
-                if($lehr_vertex->getId() == $matching->lehr_id && $stud_vertex->getId() == $matching->stud_id) {
+            foreach ($notified_matchings as $matching) {
+                if ($lehr_vertex->getId() == $matching->lehr_id && $stud_vertex->getId() == $matching->stud_id) {
                     $edge->destroy();
                 }
             }
-
         }
 
-        foreach($resultGraph->getVertices() as $vertex) {
-            if(count($vertex->getEdges()) == 0) {
+        foreach ($resultGraph->getVertices() as $vertex) {
+            if (count($vertex->getEdges()) == 0) {
                 $vertex->destroy();
             }
         }
@@ -258,7 +260,7 @@ class MatchingController extends Controller
 
         $graph_img = $graphviz->createImageHtml($resultGraph);
 
-        
+
         // $matched_graph = $resultGraph->createGraphClone();
 
         $matched_lehr = User::find(DB::table('lehr_stud')->where('is_matched', true)->pluck('lehr_id'));
@@ -301,7 +303,7 @@ class MatchingController extends Controller
             // $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
         }
 
-        $recommended->reject(function($match, $key) {
+        $recommended->reject(function ($match, $key) {
             return !$match->lehr->is_evaluable || !$match->stud->is_evaluable;
         });
 
@@ -322,7 +324,7 @@ class MatchingController extends Controller
             // $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
         }
 
-        $remaining_matches->reject(function($match, $key) {
+        $remaining_matches->reject(function ($match, $key) {
             return !$match->lehr->is_evaluable || !$match->stud->is_evaluable;
         });
 
@@ -331,7 +333,8 @@ class MatchingController extends Controller
 
 
     // updates current status of each possible matching regarding the current available users
-    private function updateMatchings() {
+    private function updateMatchings()
+    {
 
         // init
         $graph = new Graph();
@@ -378,7 +381,6 @@ class MatchingController extends Controller
 
                             $mse = $this->mse($lehr, $stud);
                             $lehr->matchable()->syncWithoutDetaching([$stud->id => ['mse' => $mse]]);
-
                         } elseif (array_intersect($lehr->survey_data->faecher, $stud->survey_data->faecher)) {
 
                             $lehr_vertex = $graph->getVertex($lehr->id);
@@ -388,7 +390,6 @@ class MatchingController extends Controller
 
                             $mse = $this->mse($lehr, $stud);
                             $lehr->matchable()->syncWithoutDetaching([$stud->id => ['mse' => $mse]]);
-
                         }
                     }
                 }
@@ -413,19 +414,18 @@ class MatchingController extends Controller
                         $stud_vertex = $edge->getVertexEnd();
                         $lehr = User::find($lehr_vertex->getId());
 
-                        if(count($lehr_vertex->getEdgesOut()) == 1) {
+                        if (count($lehr_vertex->getEdgesOut()) == 1) {
                             $has_no_alternative_lehr = true;
                         } else $has_no_alternative_lehr = false;
 
                         $stud = User::find($stud_vertex->getId());
 
-                        if(count($stud_vertex->getEdgesIn()) == 1) {
+                        if (count($stud_vertex->getEdgesIn()) == 1) {
                             $has_no_alternative_stud = true;
                         } else $has_no_alternative_stud = false;
 
                         // $lehr->matchable()->syncWithoutDetaching([$stud->id => ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr,'has_no_alternative_stud' => $has_no_alternative_stud]]);
-                        $lehr->matchable()->updateExistingPivot($stud, ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr,'has_no_alternative_stud' => $has_no_alternative_stud]);
-                    
+                        $lehr->matchable()->updateExistingPivot($stud, ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr, 'has_no_alternative_stud' => $has_no_alternative_stud]);
                     }
                 }
             }
@@ -435,19 +435,20 @@ class MatchingController extends Controller
     }
 
 
-    public function preferences($schulart=null) {
+    public function preferences($schulart = null)
+    {
 
         $this->updateMatchings();
 
         $assigned_lehr_ids = LehrStud::where('is_matched', true)->orWhere('is_notified', true)->pluck('lehr_id');
         $assigned_stud_ids = LehrStud::where('is_matched', true)->orWhere('is_notified', true)->pluck('stud_id');
 
-        if(isset($schulart)) {
+        if (isset($schulart)) {
             $unassigned = User::where('is_evaluable', true)->where('is_available', true)->where('survey_data->schulart', $schulart)->get();
         } else {
             $unassigned = User::where('is_evaluable', true)->where('is_available', true)->get();
         }
-        
+
 
         $wunschtandem_lehr = $unassigned->where('role', 'Lehr')->reject(function ($lehr, $key) {
             !isset($lehr->data()->wunschtandem);
@@ -463,7 +464,6 @@ class MatchingController extends Controller
         $matched_lehr = User::find(LehrStud::where('is_matched', true)->pluck('lehr_id'));
 
         return view('matchings.preferences', compact(['schulart', 'matched_lehr', 'matchings_lehr_stud_wunschtandem', 'matchings_stud_lehr_wunschtandem']));
-
     }
 
     //set matched
@@ -563,39 +563,44 @@ class MatchingController extends Controller
 
         foreach ($unnotified_matchings as $unnotified_matching) {
 
-            try {
-                $lehr = User::find($unnotified_matching->lehr_id);
-                $lehr->notify(new MatchingProposal());
-            } catch (\Exception $e) {
-                $lehr->email_still_exists = false;
-                $lehr->save();
+            $lehr = User::find($unnotified_matching->lehr_id);
+            $stud = User::find($unnotified_matching->stud_id);
+
+            if ($lehr->is_evaluable && $stud->is_evaluable) { // checks if meanwhile a user has changed his status
+                try {
+
+                    $lehr->notify(new MatchingProposal());
+                } catch (\Exception $e) {
+                    $lehr->email_still_exists = false;
+                    $lehr->save();
+                }
+
+                try {
+
+                    $stud->notify(new MatchingProposal());
+                } catch (\Exception $e) {
+                    $stud->email_still_exists = false;
+                    $stud->save();
+                }
+                // $lehr->is_available = false;
+                // $stud->is_available = false;
+
+                // $lehr->save();
+                // $stud->save();
+
+                // is_matched muss nach dem folgenden aufruf false werden
+                $lehr->matchable()->syncWithoutDetaching([$stud->id => ['is_matched' => false, 'is_notified' => true]]);
             }
-
-            try {
-                $stud = User::find($unnotified_matching->stud_id);
-                $stud->notify(new MatchingProposal());
-            } catch (\Exception $e) {
-                $stud->email_still_exists = false;
-                $stud->save();
-            }
-
-            $lehr->is_available = false;
-            $stud->is_available = false;
-
-            $lehr->save();
-            $stud->save();
 
             // DB::table('lehr_stud')->where('lehr_id', $lehr->id)->where('stud_id', $stud->id)->update(['created_at' => Carbon::now(), 'is_notified' => true]);
-
-            // is_matched muss nach dem folgenden aufruf false werden
-            $lehr->matchable()->syncWithoutDetaching([$stud->id => ['is_matched' => false, 'is_notified' => true]]);
         }
 
         return back();
     }
 
 
-    public function resetMatching($lehr_id, $stud_id) {
+    public function resetMatching($lehr_id, $stud_id)
+    {
 
         $lehr = User::find($lehr_id);
         $stud = User::find($stud_id);
@@ -607,7 +612,7 @@ class MatchingController extends Controller
         $stud->save();
 
         DB::table('lehr_stud')->where('lehr_id', $lehr_id)->where('stud_id', $stud_id)->update(['is_accepted_lehr' => null, 'is_accepted_stud' => null, 'is_matched' => false, 'is_notified' => false]);
-        
+
         return back();
     }
 
@@ -616,12 +621,12 @@ class MatchingController extends Controller
     {
         $notified_matchings = DB::table('lehr_stud')->where('is_notified', true)->where(function ($query) {
 
-                                $query->whereNull('is_accepted_lehr')->where('is_accepted_stud', true)->orWhere(function ($query) {
-                                        $query->where('is_accepted_lehr', true)->whereNull('is_accepted_stud');
-                                    })->orWhere(function ($query) {
-                                        $query->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud');
-                                    });
-                            })->get();
+            $query->whereNull('is_accepted_lehr')->where('is_accepted_stud', true)->orWhere(function ($query) {
+                $query->where('is_accepted_lehr', true)->whereNull('is_accepted_stud');
+            })->orWhere(function ($query) {
+                $query->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud');
+            });
+        })->get();
 
         foreach ($notified_matchings as $am) {
             $am->lehr = User::find($am->lehr_id);
@@ -649,7 +654,8 @@ class MatchingController extends Controller
     }
 
 
-    public function matchings(Request $request) {
+    public function matchings(Request $request)
+    {
 
         $this->updateMatchings();
 
@@ -693,6 +699,4 @@ class MatchingController extends Controller
 
         return view('matchings', compact('matched', 'strongly_recommended', 'remaining_recommended', 'unmatched_lehr'));
     }
-
-
 }

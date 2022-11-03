@@ -44,7 +44,7 @@
 
             <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
 
-                {{ $user->notified_user()->count() }} Vorschlag vorhanden.
+                Es gibt einen Vorschlag.
 
             </div>
 

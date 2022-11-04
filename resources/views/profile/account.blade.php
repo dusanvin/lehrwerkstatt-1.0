@@ -507,10 +507,14 @@
                                                 d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
                                                 clip-rule="evenodd" />
                                         </svg> --}}
-                                        
+                                        @if ($user->is_evaluable)
                                         <label class="bg-gray-700 px-2 py-2 ml-2 focus:text-gray-400">
-                                            {!! Form::checkbox('is_evaluable', 0, !$user->is_evaluable) !!} Ich möchte derzeit für zukünftige Vorschläge nicht mehr im Auswahlverfahren berücksichtigt werden. Bisherige Vorschläge sind nicht betroffen.
+                                            {!! Form::checkbox('is_evaluable', 0, false) !!} Ich möchte derzeit für zukünftige Vorschläge nicht mehr im Auswahlverfahren berücksichtigt werden. Bisherige Vorschläge sind nicht betroffen.
                                         </label>
+                                        @else
+                                            <div class="text-red-400"> Sie werden derzeit im Auswahlverfahren nicht mehr berücksichtigt. Um wieder teilzunehmen, bestätigen Sie bitte erneut Ihr Bewerbungsformular.</div>
+                                        @endif
+
                                         
 
 

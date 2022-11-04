@@ -11,11 +11,12 @@ class Details extends Component
      *
      * @return void
      */
-    public function __construct($lehr, $stud, $mse)
+    public function __construct($lehr, $stud, $mse, $text='Details')
     {
         $this->lehr = $lehr;
         $this->stud = $stud;
         $this->mse = $mse;
+        $this->text = $text;
     }
 
     /**
@@ -25,6 +26,6 @@ class Details extends Component
      */
     public function render()
     {
-        return view('components.details', ['lehr' => $this->lehr, 'stud' => $this->stud, 'mse' => $this->mse]);
+        return view('components.details', ['lehr' => $this->lehr, 'stud' => $this->stud, 'mse' => $this->mse, 'text' => $this->text]);
     }
 }

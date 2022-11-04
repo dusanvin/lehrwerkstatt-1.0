@@ -10,7 +10,7 @@
             </path>
         </svg>
 
-        <span>Details</span>
+        <span>{{ $text }}</span>
 
     </button>
 

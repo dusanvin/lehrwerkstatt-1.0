@@ -70,10 +70,12 @@
                                 <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Schulart</th>
 
                                 <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Fach/Fächer</th>
+                                
+                                @if ($user->role == 'Stud')
+                                    <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Schule</th>
+                                @endif   
 
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Mögliche/r Ausübungsort/e</th>
-
-                                <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Erstellungsdatum</th>
+                                {{-- <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">Erstellungsdatum</th> --}}
 
                                 <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold"></th>
 
@@ -133,25 +135,16 @@
 
                             </td>
 
-                            @if(strcasecmp($user->notified_user->role, 'lehr') == 0)
+                            @if(strcasecmp($user->role, 'Stud') == 0)
 
                             <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
 
                                 <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
 
-                                    {{ $user->notified_user->data()->postleitzahl }} {{ $user->notified_user->data()->ort }}
-
-                                </div>
-
-                            </td>
-
-                            @elseif(strcasecmp($user->notified_user->role, 'stud') == 0)
-
-                            <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
-
-                                <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
-
-                                    {{ implode(', ', $user->notified_user->data()->landkreise) }}
+                                    {{ $user->notified_user->data()->schulname }}<br>
+                                    {{ $user->notified_user->data()->strasse }} {{ $user->notified_user->data()->hausnummer }}<br>
+                                    {{ $user->notified_user->data()->postleitzahl }} {{ $user->notified_user->data()->ort }}<br>
+                                    {{ $user->notified_user->data()->landkreis }}
 
                                 </div>
 
@@ -159,7 +152,7 @@
 
                             @endif
 
-                            <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
+                            {{-- <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
 
                                 <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
 
@@ -167,7 +160,7 @@
 
                                 </div>
 
-                            </td>
+                            </td> --}}
 
                             <td class="px-6 py-4 whitespace-no-wrap align-top">
 
@@ -186,6 +179,8 @@
                                     </div>
 
                                 </div>
+
+                                {{-- zusagen/absagen --}}
 
                                 @if( (strcasecmp($user->role, 'lehr') == 0 && !isset($user->notified_user->pivot->is_accepted_lehr)) || (strcasecmp($user->role, 'stud') == 0 && !isset($user->notified_user->pivot->is_accepted_stud)) )
                                 <form action="{{ route('acceptMatching') }}" method="POST">
@@ -210,6 +205,8 @@
                                         {{ $user->notified_user->pivot->is_accepted_stud == 1 ? 'Zugesagt' : 'Abgelehnt' }}
                                     @endif
                                 @endif
+
+                                {{-- zusagen/absagen --}}
 
                             </td>
 

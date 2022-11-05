@@ -62,11 +62,15 @@
                 <input type=hidden value="{{ $attention }}" id="attention">
                 <input type=hidden value="{{ $jahrgang }}" id="jahrgang">
                 <input type=hidden value="{{ $host }}" id="host">
+                <input type=hidden value="{{ $datenschutz }}" id="datenschutz">
+                <input type=hidden value="{{ $teilnahmebedingungen }}" id="teilnahmebedingungen">
 
                 <script>
                     var attention = $('#attention').val();
                     var jahrgang = $('#jahrgang').val();
                     var host = $('#host').val();
+                    var datenschutz = $('#datenschutz').val();
+                    var teilnahmebedingungen = $('#teilnahmebedingungen').val();
                 </script>
 
                 @isset($user)

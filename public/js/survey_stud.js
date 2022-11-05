@@ -131,7 +131,7 @@ var json = {
             title: "Bestätigung: Datenschutz:",
             isRequired: true,
             choices: [
-                "Ich bestätige, dass ich die oben verlinkten Datenschutzhinweise sowie die datenschutzrechtliche Einwilligungserklärung zur Kenntnis genommen habe, und willige in die Verarbeitung und Speicherung meiner Daten im Rahmen der Lehr:werkstatt ein."   
+                "Ich bestätige, dass ich die verlinkten <a href='" + datenschutz + "' target='_blank' class='text-blue-400'>Datenschutzhinweise</a> sowie die datenschutzrechtliche Einwilligungserklärung zur Kenntnis genommen habe, und willige in die Verarbeitung und Speicherung meiner Daten im Rahmen der Lehr:werkstatt ein."   
             ]
         }, {
             name: "teilnahmebedingungen",
@@ -139,7 +139,7 @@ var json = {
             title: "Bestätigung: Verbindliche Teilnahmebedingungen:",
             isRequired: true,
             choices: [
-                "Ich habe die oben verlinkten verbindlichen Teilnahmebedingungen für den Jahrgang " + jahrgang + " zur Kenntnis genommen und akzeptiere sie."
+                "Ich habe die verlinkten verbindlichen <a href='" + teilnahmebedingungen + "' target='_blank' class='text-blue-400'>Teilnahmebedingungen</a> für den Jahrgang " + jahrgang + " zur Kenntnis genommen und akzeptiere sie."
             ]
         }]
     }, {

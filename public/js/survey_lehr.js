@@ -114,7 +114,7 @@ var json = {
             title: "Bestätigung: Datenschutz:",
             isRequired: true,
             choices: [
-                "Ich bestätige, dass ich die oben verlinkten Datenschutzhinweise sowie die datenschutzrechtliche Einwilligungserklärung zur Kenntnis genommen habe, und willige in die Verarbeitung und Speicherung meiner Daten im Rahmen der Lehr:werkstatt ein."   
+                "Ich bestätige, dass ich die verlinkten <a href='" + datenschutz + "' target='_blank' class='text-blue-400'>Datenschutzhinweise</a> sowie die datenschutzrechtliche Einwilligungserklärung zur Kenntnis genommen habe, und willige in die Verarbeitung und Speicherung meiner Daten im Rahmen der Lehr:werkstatt ein."   
             ]
         }, {
             name: "teilnahmebedingungen",
@@ -122,7 +122,7 @@ var json = {
             title: "Bestätigung: Verbindliche Teilnahmebedingungen:",
             isRequired: true,
             choices: [
-                "Ich habe die oben verlinkten verbindlichen Teilnahmebedingungen für den Jahrgang " + jahrgang + " zur Kenntnis genommen und akzeptiere sie."
+                "Ich habe die verlinkten verbindlichen <a href='" + teilnahmebedingungen + "' target='_blank' class='text-blue-400'>Teilnahmebedingungen</a> für den Jahrgang " + jahrgang + " zur Kenntnis genommen und akzeptiere sie."
             ]
         }]
     }, {
@@ -380,6 +380,14 @@ survey.locale = 'de';
 
 survey.showQuestionNumbers = 'off';
 // survey.showProgressBar = 'top';
+
+var converter = new showdown.Converter();
+survey.onTextMarkdown.add(function (survey, options) {
+    var md = converter.makeHtml(options.text);
+    md = md.substring(3);
+    md = md.substring(0, md.length - 4);
+    options.html = md;
+})
 
 $(function() {
     $("#surveyElement").Survey({ model: survey });

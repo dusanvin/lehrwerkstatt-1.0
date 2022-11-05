@@ -22,9 +22,9 @@ faecher = [
     "Geographie",
     "Geschichte",
     "Italienisch",
-    "Kunst",
+    "Kunst (nur Realschule)",
     "Mathematik",
-    "Musik",
+    "Musik (nur Realschule)",
     "Physik",
     "Religionslehre ev.",
     "Religionslehre kath.",
@@ -68,9 +68,9 @@ zutreffend = [
 ]
 
 freiraum = [
-    {value: 1, text: "mir eher Freiraum für eigene Ideen und Entscheidungen lässt."},
-    {value: 2, text: "mir teils Freiraum lässt, teils klare Anweisungen gibt."},
-    {value: 3, text: "mir eher klare Anweisungen gibt."}
+    {value: 1, text: "eher Freiraum für eigene Ideen und Entscheidungen möchte."},
+    {value: 2, text: "teils Freiraum, teils klare Anweisungen von mir möchte."},
+    {value: 3, text: "eher klare Anweisungen von mir möchte."}
 ]
 
 berufserfahrung = [
@@ -122,16 +122,24 @@ var json = {
             title: "Bestätigung: Verbindliche Teilnahmebedingungen:",
             isRequired: true,
             choices: [
-                "Ich habe die oben verlinkten verbindlichen Teilnahmebedingungen für den Jahrgang 2022/23 zur Kenntnis genommen und akzeptiere sie."
+                "Ich habe die oben verlinkten verbindlichen Teilnahmebedingungen für den Jahrgang " + jahrgang + " zur Kenntnis genommen und akzeptiere sie."
             ]
         }]
     }, {
         elements: [{
             name: "registrierungscode",
             type: "text",
-            title: "Registrierungscode 2022/23:",
+            title: "Registrierungscode " + jahrgang + ":",
             description: "Ihrer Schulleitung ist ein Registrierungscode zugegangen. Bitte tragen Sie den Registrierungscode in das oben stehende Feld ein.",
             isRequired: true
+        }]
+    }, {
+        elements: [{
+            name: "bereits_teilgenommen",
+            type: "dropdown",
+            title: "Ich habe bereits in einem früheren Jahrgang an der Lehr:werkstatt teilgenommen.",
+            isRequired: true,
+            choices: ["Ja", "Nein"]
         }]
     }, {
         elements: [{
@@ -168,7 +176,7 @@ var json = {
             title: "Für die Teilnahme an der Lehr:werkstatt ist die Zustimmung Ihrer Schulleitung erforderlich:",
             isRequired: true,
             choices: [
-                "Hiermit bestätige ich, dass meine Schulleitung mit meiner Teilnahme an der Lehr:werkstatt im Jahrgang 2022/23 einverstanden ist."
+                "Hiermit bestätige ich, dass meine Schulleitung mit meiner Teilnahme an der Lehr:werkstatt im Jahrgang " + jahrgang + " einverstanden ist."
             ]
         }, {
             name: "name_schul",
@@ -329,7 +337,7 @@ var json = {
             title: "Bestätigung:",
             isRequired: true,
             choices: [
-                "Mit dem Absenden des Fragebogens bewerben Sie sich verbindlich für die Lehr:werkstatt im Schuljahr 2022/23. Wir suchen eine*n Tandempartner*in für Sie und gehen davon aus, dass Sie definitv teilnehmen möchten. Bitte bestätigen Sie durch Setzen des Häkchens: Ich habe den Hinweis zur Kenntnis genommen und möchte mich verbindlich bewerben."
+                "Mit dem Absenden des Fragebogens bewerben Sie sich verbindlich für die Lehr:werkstatt im Schuljahr " + jahrgang + ". Wir suchen eine*n Tandempartner*in für Sie und gehen davon aus, dass Sie definitv teilnehmen möchten. Bitte bestätigen Sie durch Setzen des Häkchens: Ich habe den Hinweis zur Kenntnis genommen und möchte mich verbindlich bewerben."
             ]
         }]
     } 

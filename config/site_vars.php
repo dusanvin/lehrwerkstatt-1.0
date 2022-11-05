@@ -21,6 +21,11 @@ return [
     'platformName1' => 'Lehr:',
     'platformName2' => 'werkstatt',
 
+    /* maintenance */
+    'jahrgang' => '2023/24',
+
+
+
     /* welcome.blade.php*/
     'welcomeString1' => 'Finden Sie Ihre*n',
     'welcomeString2' => 'Tandempartner*in',

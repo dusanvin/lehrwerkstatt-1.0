@@ -139,7 +139,7 @@ var json = {
             title: "Bestätigung: Verbindliche Teilnahmebedingungen:",
             isRequired: true,
             choices: [
-                "Ich habe die oben verlinkten verbindlichen Teilnahmebedingungen für den Jahrgang 2022/23 zur Kenntnis genommen und akzeptiere sie."
+                "Ich habe die oben verlinkten verbindlichen Teilnahmebedingungen für den Jahrgang " + jahrgang + " zur Kenntnis genommen und akzeptiere sie."
             ]
         }]
     }, {
@@ -184,7 +184,7 @@ var json = {
         }, {
             name: "fachsemester",
             type: "dropdown",
-            title: "Ich befinde mich im Wintersemester 2022/23 in meinen für das Matching gewählten Fächern mindestens in folgendem Fachsemester:",
+            title: "Ich befinde mich im Wintersemester " + jahrgang + " in meinen für das Matching gewählten Fächern mindestens in folgendem Fachsemester:",
             isRequired: true,
             choices: fachsemester
         }, {
@@ -346,7 +346,7 @@ var json = {
             title: "Bestätigung:",
             isRequired: true,
             choices: [
-                "Mit dem Absenden des Fragebogens bewerben Sie sich verbindlich für die Lehr:werkstatt im Schuljahr 2022/23. Wir suchen eine*n Tandempartner*in für Sie und gehen davon aus, dass Sie definitv teilnehmen möchten. Bitte bestätigen Sie durch Setzen des Häkchens: Ich habe den Hinweis zur Kenntnis genommen und möchte mich verbindlich bewerben."
+                "Mit dem Absenden des Fragebogens bewerben Sie sich verbindlich für die Lehr:werkstatt im Schuljahr " + jahrgang + ". Wir suchen eine*n Tandempartner*in für Sie und gehen davon aus, dass Sie definitv teilnehmen möchten. Bitte bestätigen Sie durch Setzen des Häkchens: Ich habe den Hinweis zur Kenntnis genommen und möchte mich verbindlich bewerben."
             ]
         }]
     } 

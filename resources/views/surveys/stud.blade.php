@@ -28,10 +28,13 @@
 
             <div class="overflow-hidden sm:rounded-lg">
                 
-                @isset($attention)
-                    <input type=hidden value="{{ $attention }}" id="attention">
-                @endisset
-                <script>var attention = $('#attention').val();</script>
+                <input type=hidden value="{{ $attention }}" id="attention">
+                <input type=hidden value="{{ $jahrgang }}" id="jahrgang">
+
+                <script>
+                    var attention = $('#attention').val();
+                    var jahrgang = $('#jahrgang').val();
+                </script>
 
                 @isset($user)
                     <input type=hidden value="{{ $user }}" id="user">

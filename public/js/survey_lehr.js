@@ -204,6 +204,7 @@ var json = {
             name: "faecher",
             type: "checkbox",
             title: "Ich möchte gerne in folgenden Fächern gematcht werden:",
+            description: "Falls Sie ein nur als Erweiterungsfach studierbares Fach wählen, geben Sie bitte mindestens ein, besser zwei weitere Fächer an.",
             visibleIf: "{schulart} = 'Realschule' or {schulart} = 'Gymnasium'",
             isRequired: true,
             choices: faecher

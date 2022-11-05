@@ -114,7 +114,7 @@ var json = {
             title: "Bestätigung: Datenschutz:",
             isRequired: true,
             choices: [
-                "Ich bestätige, dass ich die verlinkten <a href='" + datenschutz + "' target='_blank' class='text-blue-400'>Datenschutzhinweise</a> sowie die datenschutzrechtliche Einwilligungserklärung zur Kenntnis genommen habe, und willige in die Verarbeitung und Speicherung meiner Daten im Rahmen der Lehr:werkstatt ein."   
+                "Ich bestätige, dass ich die verlinkten <a href='" + datenschutzhinweise + "' target='_blank' class='text-blue-400'>Datenschutzhinweise</a> sowie die <a href='" + datenschutz_einwilligung + "' target='_blank' class='text-blue-400'>datenschutzrechtliche Einwilligungserklärung</a> zur Kenntnis genommen habe, und willige in die Verarbeitung und Speicherung meiner Daten im Rahmen der Lehr:werkstatt ein."   
             ]
         }, {
             name: "teilnahmebedingungen",

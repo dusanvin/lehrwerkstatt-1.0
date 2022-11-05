@@ -24,8 +24,9 @@ return [
     /* maintenance */
     'jahrgang' => '2023/24',
     'host' => 'https://hosted-024-216.rz.uni-augsburg.de',
-    'datenschutz' => 'https://www.uni-augsburg.de/de/impressum/datenschutz/',
-    'teilnahmebedingungen' => 'https://www.uni-augsburg.de/',
+    'datenschutzhinweise' => 'https://www.uni-augsburg.de/de/impressum/datenschutz/',
+    'datenschutz_einwilligung' => 'https://www.uni-augsburg.de/',
+    'teilnahmebedingungen' => 'https://www.uni-augsburg.de/de/kontakt/',
 
 
 

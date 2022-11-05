@@ -23,6 +23,7 @@ return [
 
     /* maintenance */
     'jahrgang' => '2023/24',
+    'host' => 'https://hosted-024-216.rz.uni-augsburg.de',
 
 
 

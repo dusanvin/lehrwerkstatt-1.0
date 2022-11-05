@@ -375,7 +375,7 @@ survey.onComplete.add(function (sender) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $.post('https://hosted-024-216.rz.uni-augsburg.de/bewerbungsformular', {survey: sender.data})
+    $.post(host + '/bewerbungsformular', {survey: sender.data})
     .then(function() {
             console.log(sender.data);
     });

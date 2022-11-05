@@ -30,10 +30,12 @@
                 
                 <input type=hidden value="{{ $attention }}" id="attention">
                 <input type=hidden value="{{ $jahrgang }}" id="jahrgang">
+                <input type=hidden value="{{ $host }}" id="host">
 
                 <script>
                     var attention = $('#attention').val();
                     var jahrgang = $('#jahrgang').val();
+                    var host = $('#host').val();
                 </script>
 
                 @isset($user)

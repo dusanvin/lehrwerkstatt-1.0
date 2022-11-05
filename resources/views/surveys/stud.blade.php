@@ -17,6 +17,8 @@
     <script src="{{ asset('js/jquery.inputmask.min.js') }}"></script>
     <script src="{{ asset('js/surveyjs-widgets.min.js') }}"></script>
 
+    <script src="{{ asset('js/showdown.min.js') }}"></script>
+
     <link href="{{ asset('css/defaultV2.min.css') }}" type="text/css" rel="stylesheet" />
 </head>
 

@@ -12,8 +12,9 @@ schularten = [
 ]
 
 fachsemester = []
+
 for(i = 1; i <= 14; i++) {
-    fachsemester.push({value: i, text: `${i}. Fachsemester`});
+    fachsemester.push({value: i, text: `${i}\\. Fachsemester`});
 }
 
 faecher = [
@@ -172,6 +173,14 @@ var json = {
         }]
     }, {
         elements: [{
+            name: "pflichtpraktika",
+            type: "checkbox",
+            title: "Hinweis: Die Lehr:werkstatt kann nicht zeitgleich mit weiteren Pflichtpraktika absolviert werden.",
+            isRequired: true,
+            choices: ["Ich absolviere im Wintersemester 2023/24 und Sommersemester 2024 keine weiteren Pflichtpraktika."]
+        }]
+    }, {
+        elements: [{
             name: "schulart",
             type: "dropdown",
             title: "Für folgende Schulart studiere ich Lehramt:",
@@ -185,6 +194,7 @@ var json = {
             name: "fachsemester",
             type: "dropdown",
             title: "Ich befinde mich im Wintersemester " + jahrgang + " in meinen für das Matching gewählten Fächern mindestens in folgendem Fachsemester:",
+            description: "Hinweis für Studierende der Lehrämter an Realschulen und Gymnasien: Bitte beachten Sie, dass Sie die Fächer, in denen Sie gematcht werden möchten, im Wintersemester 2023/24 mindestens im 3. Fachsemester studieren müssen. Bei Fragen hierzu wenden Sie sich bitte an lehrwerkstatt@zlbib.uni-augsburg.de",
             isRequired: true,
             choices: fachsemester
         }, {
@@ -198,7 +208,7 @@ var json = {
         }]
     }, {
         title: "Ehemalige Schule:",
-        description: "Bitte geben Sie an, welches Gymnasium bzw. welche Realschule Sie selbst besucht haben.",
+        description: "Bitte geben Sie an, welches Gymnasium bzw. welche Realschule Sie selbst besucht haben. Ein Matching an der ehemaligen Schule soll in der Lehr:werkstatt an Realschulen und Gymnasien nach Möglichkeit vermieden werden.",
         visibleIf: "{schulart} = 'Realschule' or {schulart} = 'Gymnasium'",
         elements: [{
             name: "ehem_schulname",
@@ -229,6 +239,7 @@ var json = {
             name: "landkreise",
             type: "checkbox",
             title: "Ich kann die Lehr:werkstatt in folgenden Landkreisen ableisten (Mehrfachauswahl möglich):",
+            description: "Bitte beachten Sie: Je flexibler Sie in der Ortswahl sind, desto größer ist die Wahrscheinlichkeit, dass Sie gematcht werden können.",
             isRequired: true,
             choices: landkreise
         }]
@@ -364,6 +375,14 @@ survey.locale = 'de';
 
 survey.showQuestionNumbers = 'off';
 // survey.showProgressBar = 'top';
+
+var converter = new showdown.Converter();
+survey.onTextMarkdown.add(function (survey, options) {
+    var md = converter.makeHtml(options.text);
+    md = md.substring(3);
+    md = md.substring(0, md.length - 4);
+    options.html = md;
+})
 
 $(function() {
     $("#surveyElement").Survey({ model: survey });

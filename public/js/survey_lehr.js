@@ -24,7 +24,7 @@ faecher = [
     "Italienisch",
     "Kunst (nur Realschule)",
     "Mathematik",
-    "Musik (nur Realschule)",
+    "Musik",
     "Physik",
     "Religionslehre ev.",
     "Religionslehre kath.",

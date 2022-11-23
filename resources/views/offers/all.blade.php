@@ -354,7 +354,7 @@
                             Gefundene Angebote <a onclick="exportCSV()" id="csv_link" href="#" class="bg-blue-600">(als CSV exportieren)</a>
 
                             <script>
-                                
+
                                 var users = "{{ $users->toJson() }}";
 
                                 var users = users.split('&quot;').join('\"');
@@ -367,59 +367,68 @@
                                 function exportCSV() {
 
                                     let csv = [[
-                                        'Anrede',
-                                        'Vorname',
-                                        'Nachname',
-                                        'E-Mail',
-                                        'Telefonnummer',
-                                        'Rolle',
-                                        'Schulart',
-                                        'Fächer',
-                                        'Wunschtandem',
+                                        'Bestätigung: Datenschutz',
+                                        'Bestätigung: Verbindliche Teilnahmebedingungen',
+                                        'Registrierungscode:',                             
                                         'Bereits teilgenommen',
+                                        'Bewerbungsformular ist vollständig ausgefüllt und für das aktuelle Schuljahr ist eine Teilnahme weiterhin erwünscht',
+                                        'Die Lehrkraft steht zur Verfügung',
+                                        'Anrede',
+                                        'Nachname',
+                                        'Vorname',
+                                        'E-Mail-Adresse',
+                                        'Telefonnummer',
+                                        'Zustimmung der Schulleitung',
+                                        'Vor- und Nachname der Schulleitung',
+                                        'E-Mail-Adresse der Schulleitung',
+                                        'Schulart',
+                                        'Nur Realschule und Gymnasium: Fächer',
+                                        'Landkreis der Schule',
                                         'Name der Schule',
                                         'Straße',
                                         'Hausnummer',
                                         'Postleitzahl',
                                         'Ort',
-                                        'Landkreis',
-                                        'Name der Schulleitung',
-                                        'E-Mail der Schulleitung',
-                                        'Zustimmung',
-                                        'Feedback an',
-                                        'Feedback von',
-                                        'Eigenständigkeit',
-                                        'Improvisation',
-                                        'Freiraum',
-                                        'Innovationsoffenheit',
-                                        'Belastbarkeit',
-                                        'Berufserfahrung',
-                                        'Aufmerksam geworden',
-                                        'freue auf',
+                                        'Wunschtandem',
+                                        'Das Feedback, das ich meinem Lehr:werker bzw. meiner Lehr:werkerin gebe,',
+                                        'Ich wünsche mir von meinem Lehr:werker bzw. meiner Lehr:werkerin kritische Rückmeldungen zu meinem Unterricht',
+                                        'Mein*e Lehr:werker*in soll langsam ins selbstständige Unterrichten hineinwachsen und nicht von Anfang an Teile des Unterrichts übernehmen',
+                                        'Situationen, in denen ich improvisieren muss, versuche ich durch intensive Planung strikt zu vermeiden',
+                                        'Ich wünsche mir eine*n Lehr:werker*in, die bzw. der',
+                                        'Ich möchte lieber meine Erfahrungen an den bzw. die Lehr:werker*in weitergeben als gemeinsam mit ihm bzw. ihr Neues auszuprobieren',
+                                        'Ich wünsche mir eine*n Lehr:werker*in, die bzw. der sich das Unterrichten in schwierigen bzw. höheren Klassen zutraut',
+                                        'Ihre Berufserfahrung: Ich bin Lehrer*in seit',
+                                        'Wodurch sind Sie auf das Projekt aufmerksam geworden? (Mehrfachauswahl möglich)',
+                                        'Ich freue mich im Rahmen der Lehr:werkstatt besonders auf (Mehrfachauswahl möglich)',
+                                        // 'Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?',
                                     ]];
 
                                     users.forEach(user => {
                                         
                                         row = [
+                                            user.survey_data.datenschutz,
+                                            user.survey_data.teilnahmebedingungen,
+                                            user.survey_data.registrierungscode,
+                                            user.survey_data.bereits_teilgenommen,
+                                            user.is_evaluable ? 'Ja' : 'Nein',
+                                            user.is_available ? 'Ja' : 'Nein',
                                             user.survey_data.anrede, 
-                                            user.vorname, 
                                             user.nachname, 
+                                            user.vorname, 
                                             user.email, 
                                             user.survey_data.telefonnummer,
-                                            user.role,
+                                            user.survey_data.zustimmung_schul,
+                                            user.survey_data.name_schul,
+                                            user.survey_data.email_schul,
                                             user.survey_data.schulart,
                                             user.survey_data.faecher,
-                                            user.survey_data.wunschtandem,
-                                            user.bereits_teilgenommen,
+                                            user.survey_data.landkreis,
                                             user.survey_data.schulname,
                                             user.survey_data.strasse,
                                             user.survey_data.hausnummer,
                                             user.survey_data.postleitzahl,
                                             user.survey_data.ort,
-                                            user.survey_data.landkreis,
-                                            user.survey_data.name_schul,
-                                            user.survey_data.email_schul,
-                                            user.survey_data.zustimmung_schul,
+                                            user.survey_data.wunschtandem,
                                             _feedback[user.survey_data.feedback_an - 1].text,
                                             _feedback[user.survey_data.feedback_von- 1].text,
                                             _zutreffend[user.survey_data.eigenstaendigkeit - 1].text,
@@ -430,6 +439,7 @@
                                             _berufserfahrung[user.survey_data.berufserfahrung - 1].text,
                                             user.survey_data.aufmerksam_geworden,
                                             user.survey_data.freue_auf,
+                                            // user.survey_data.anmerkungen
                                         ]
 
                                         // console.log(row)

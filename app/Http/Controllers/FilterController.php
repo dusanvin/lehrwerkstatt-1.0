@@ -195,7 +195,7 @@ class FilterController extends Controller
             $selected_landkreise = explode(',', $request->landkreise);
             $users = $this->filterLandkreise($selected_landkreise, $users);
         }
-
+        $users = $users->values();
         return view('offers.'.$view, [
             'users' => $users,
             'schulart' => $request->schulart,

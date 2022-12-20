@@ -138,7 +138,7 @@
 
                     <input id="user_agreement" type="checkbox" name="user_agreement">
 
-                    Ich habe die <a href="#" class="hover:underline text-yellow-600">Nutzungsbedingungen</a> gelesen und erkläre mich damit einverstanden.*
+                    Ich habe die <a href="https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzrechtliche-einwilligungserklarung/" class="hover:underline text-yellow-600">Nutzungsbedingungen</a> gelesen und erkläre mich damit einverstanden.*
 
                 </div>
 
@@ -154,7 +154,7 @@
 
                     <input id="privacy_statement" type="checkbox" name="privacy_statement">
 
-                        Ich habe die <a href="#" class="hover:underline text-yellow-600">Datenschutzerklärung</a> gelesen.*
+                        Ich habe die <a href="https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzhinweise/" class="hover:underline text-yellow-600">Datenschutzerklärung</a> gelesen.*
 
                 </div>
 

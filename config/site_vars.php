@@ -60,7 +60,7 @@ return [
     'vorschlaege' => 'Vorschläge',
     'vorschlaegeInfo' => 'mögliche Tandems',
 
-    'paarungen' => 'Paarungen',
+    'paarungen' => 'Tandems',
     'paarungenInfo' => 'feste Tandems',
 
     /* MeinBereich */

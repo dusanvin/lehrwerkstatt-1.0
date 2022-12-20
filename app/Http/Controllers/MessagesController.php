@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\MessageNotification;
 use App\User;
 use Carbon\Carbon;
 use Cmgmyr\Messenger\Models\Message;
@@ -97,6 +98,11 @@ class MessagesController extends Controller
         ]);
 
         $thread->addParticipant($input['user_id']);
+
+        $user = User::find($input['user_id']);
+        $message_data = [];
+        $user->notify(new MessageNotification($message_data));
+        
 
         return redirect()->route('messages.show', $thread->id);
     }

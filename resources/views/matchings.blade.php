@@ -48,7 +48,7 @@
 
                         @elseif (count($matched) == 1)
 
-                            <p>Der folgende Vorschlag wurden von Ihnen übernommen. Sollten Sie den Vorschlag bestätigen, wird dieser unter <a href="route('accepted_matchings')" class="font-semibold hover:underline text-white">Paarungen</a> gelistet. Die Personen erhalten zudem eine E-Mail.</p>
+                            <p>Der folgende Vorschlag wurden von Ihnen übernommen. Sollten Sie den Vorschlag bestätigen, wird dieser unter <a href="route('accepted_matchings')" class="font-semibold hover:underline text-white">Tandems</a> gelistet. Die Personen erhalten zudem eine E-Mail.</p>
 
                         @elseif (count($matched) > 1)
 

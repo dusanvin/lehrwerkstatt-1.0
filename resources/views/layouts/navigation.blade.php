@@ -295,7 +295,7 @@
 
                     <!-- Vorschläge -->
 
-                    <li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+                    <!-- <li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
                         @php
                             $route_name = 'users.matchings';
                         @endphp
@@ -318,13 +318,11 @@
                                 <p class="navigation-element text-sm font-semibold">
                                     {{ Config::get('site_vars.vorschlaege') }}</p>
 
-                                <!--<p class="navigation-element text-xs">{{ Config::get('site_vars.vorschlaegeInfo') }}</p>-->
-
                             </div>
 
                         </a>
 
-                    </li>
+                    </li> -->
 
                     <!-- Vorschläge -->
 
@@ -350,7 +348,7 @@
 
                             <div class="pl-3">
 
-                                <p class="navigation-element text-sm font-semibold">Erweiterte Vorschläge</p>
+                                <p class="navigation-element text-sm font-semibold">Empfohlene Tandems</p>
 
                             </div>
 
@@ -360,7 +358,7 @@
 
                     <!-- Vorschläge NEU -->
 
-                    <!-- Paarungen -->
+                    <!-- Tandems -->
 
                     <li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
                         @php
@@ -383,7 +381,7 @@
                             <div class="pl-3">
 
                                 <p class="navigation-element text-sm font-semibold">
-                                    {{ Config::get('site_vars.paarungen') }}</p>
+                                    Tandems</p>
 
                                 <!--<p class="navigation-element text-xs">{{ Config::get('site_vars.vorschlaegeInfo') }}</p>-->
 
@@ -393,7 +391,7 @@
 
                     </li>
 
-                    <!-- Paarungen -->
+                    <!-- Tandems -->
 
                 </ul>
             @endrole

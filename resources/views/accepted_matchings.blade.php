@@ -22,13 +22,49 @@
 
             <h1 class="font-semibold text-2xl text-gray-200">
 
-                Paarungen
+                Tandems
 
             </h1>
 
-            <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left flex">
+            <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left block">
 
-                <p>Hier erhalten Sie eine Übersicht der möglichen Paarungen. Die Berechnung erfolgt auf Basis des <em>Mean Square Errors (Mittlerer quadratischer Fehler)</em> - kurz <em>MSE</em> - auf einer Skala von 0-10. Umso kleiner dieser ist, umso geringer ist die Abweichung beziehungsweise besser die Paarung. <strong>Ein großer MSE ist demnach nicht ratsam.</strong> Zu jeder Lehrkraft werden Student*innen aufgelistet, die bezüglich Schulart, Landkreis und mindestens einem Fach kompatibel sind. Sollten Sie einen Vorschlag in die Liste aufnehmen, werden beide Partner*innen aus dem Pool der Suchenden entfernt.</p>
+                <p class="block mb-4">Hier erhalten Sie eine Übersicht über die von der Moderation vorgeschlagenen und die von den Teilnehmenden zugesagten / abgelehnten Tandems. Hinweise zum Vorgehen:</p>
+                
+                <div class="text-gray-300 px-4 py-2 flex items-center rounded-full">
+
+                    <div class="px-4 py-2 flex items-center rounded-full bg-gray-500 font-semibold">1</div>
+
+                    <div class="pl-3">
+                        
+                        <p class="navigation-element text-sm"><strong>Nehmen</strong> Sie auf der Unterseite <em><a href="\matchable" class="underline hover:text-white">Empfohlene Tandems</a></em> ein Paar in die Liste der <em>Übernommenen Vorschläge</em> <strong>auf</strong>.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="text-gray-300 px-4 py-2 flex items-center rounded-full">
+
+                    <div class="px-4 py-2 flex items-center rounded-full bg-gray-500 font-semibold">2</div>
+
+                    <div class="pl-3">
+                        
+                        <p class="navigation-element text-sm"><strong>Bestätigen</strong> Sie den übernommenen Vorschlag.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="text-gray-300 px-4 py-2 flex items-center rounded-full">
+
+                    <div class="px-4 py-2 flex items-center rounded-full bg-gray-500 font-semibold">3</div>
+
+                    <div class="pl-3">
+                        
+                        <p class="navigation-element text-sm">Übernommene Vorschläge sind nun unter <em>Vorgeschlagene Tandems</em> sichtbar. Die Teilnehmenden haben daraufhin die Möglichkeit, den Vorschlägen zu- oder abzusagen.</p>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -40,7 +76,7 @@
 
                     <h2 class="font-semibold text-lg text-gray-200">
 
-                        Übernommene Vorschläge
+                        Vorgeschlagene Tandems
 
                     </h2>
 
@@ -50,7 +86,7 @@
 
                         @elseif (count($notified_matchings) == 1)
 
-                        <p>Der folgende Vorschlag wurden von Ihnen übernommen.</p>
+                        <p>Den Teilnehmenden wurden folgende Paarungen vorgeschlagen.</p>
 
                         @elseif (count($notified_matchings) > 1)
 
@@ -275,7 +311,7 @@
             
                                 <h2 class="font-semibold text-lg text-gray-200">
             
-                                    Zugesagte Paarungen
+                                    Zugesagte Tandems
             
                                 </h2>
             
@@ -283,15 +319,15 @@
             
                                     @if (count($accepted_matchings) == 0)
 
-                                        Beide PartnerInnen haben diesem Vorschlag zugestimmt. Ein Paar wurde gebildet.
+                                        Bis jetzt hat keine PartnerIn ihren Vorschlägen zugestimmt. Es ergab sich noch kein Tandem.
             
                                     @elseif (count($accepted_matchings) == 1)
             
-                                        <p>Dem folgenden Vorschlag wurde fest zugesagt.</p>
+                                        <p>Dem folgenden Vorschlag wurde fest zugesagt. Ein Tandem wurde gebildet.</p>
             
                                     @elseif (count($accepted_matchings) > 1)
             
-                                        <p>Den folgenden <strong>{{ count($accepted_matchings) }} Vorschlägen</strong> wurde fest zugesagt.</p>
+                                        <p>Den folgenden <strong>{{ count($accepted_matchings) }} Vorschlägen</strong> wurde fest zugesagt. Mehrere Tandems wurden gebildet.</p>
             
                                     @endif
             
@@ -305,7 +341,7 @@
             
                                     @if (count($accepted_matchings) == 0)
             
-                                    <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">Bisher wurden keine Vorschläge von Ihnen übernommen. Suchen Sie auf Basis des MSE nach Paarungen.</p>
+                                    <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">Bisher wurden keine Tandems gebildet.</p>
             
                                     @elseif (count($accepted_matchings) > 0)
             
@@ -511,7 +547,7 @@
 
                     <h2 class="font-semibold text-lg text-gray-200">
 
-                        Abgelehnte Paarungen
+                        Abgelehnte Tandems
 
                     </h2>
 

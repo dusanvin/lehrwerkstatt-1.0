@@ -41,9 +41,9 @@ class MatchingProposal extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Wir haben einen Vorschlag für Sie')
-                    ->line('Auf unserer Webseite können Sie mehr erfahren und Kontakt aufnehmen.')
-                    ->action('Zum Vorschlag', url('/profile/matchings'))
+                    ->subject('Lehr:werkstatt - Wir haben einen Tandemvorschlag für Sie')
+                    ->line('Herzlichen Glückwunsch! Wir haben einen Tandemvorschlag für Sie gefunden. Bitte loggen Sie sich auf unserem Matchingportal ein, um den Tandemvorschlag einzusehen und Kontakt aufzunehmen.')
+                    ->action('Zum Tandemvorschlag', url('/profile/matchings'))
                     ->line('Vielen Dank für Ihr Mitwirken!');
     }
 

@@ -52,35 +52,36 @@
 
                 <div id="tab-contents">
 
-                    <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md mt-4">
+                    <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md">
 
-                    <h1>{{ $schulart ? ucfirst($schulart) : 'Alle Schularten' }}, Nutzer die ein Wunschfeld ausgefüllt
-                        haben.</h1>
+                        <div class="mx-auto rounded text-white">
 
-                    <div class="mx-auto rounded text-white">
+                            <h1 class="font-semibold text-2xl text-gray-200">
 
+                            Wunschpaarungen für {{ $schulart ? ucfirst($schulart) : 'alle Schularten' }}
 
+                            </h1>
 
-                        <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left flex">
+                            <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                            <p>Hier erhalten Sie eine Übersicht der bisher getätigten Paarungen für die Vorauswahl. Die
-                                Berechnung
-                                erfolgt auf Basis des
-                                <em>Mean Square Errors (Mittlerer quadratischer Fehler)</em> - kurz <em>MSE</em> - auf einer
-                                Skala
-                                von 0-10. Umso kleiner dieser ist, umso geringer ist die Abweichung beziehungsweise besser
-                                die
-                                Paarung. <strong>Ein großer MSE ist demnach nicht ratsam.</strong> Zu jeder Lehrkraft werden
-                                Student*innen aufgelistet, die bezüglich Schulart, Landkreis und mindestens einem Fach
-                                kompatibel
-                                sind. Sollten Sie einen Vorschlag in die Liste aufnehmen, werden beide Partner*innen aus dem
-                                Pool
-                                der Suchenden entfernt.
-                            </p>
+                                <p>Hier erhalten Sie eine Übersicht der bisher getätigten Paarungen für die Vorauswahl. Die
+                                    Berechnung
+                                    erfolgt auf Basis des
+                                    <em>Mean Square Errors (Mittlerer quadratischer Fehler)</em> - kurz <em>MSE</em> - auf einer
+                                    Skala
+                                    von 0-10. Umso kleiner dieser ist, umso geringer ist die Abweichung beziehungsweise besser
+                                    die
+                                    Paarung. <strong>Ein großer MSE ist demnach nicht ratsam.</strong> Zu jeder Lehrkraft werden
+                                    Student*innen aufgelistet, die bezüglich Schulart, Landkreis und mindestens einem Fach
+                                    kompatibel
+                                    sind. Sollten Sie einen Vorschlag in die Liste aufnehmen, werden beide Partner*innen aus dem
+                                    Pool
+                                    der Suchenden entfernt.
+                                </p>
 
-                        </div>
+                            </div>
 
-                        <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md">
+                        <div class="bg-gray-800 py-1 md:py-8 rounded-md">
 
                             <div class="grid justify-items-center sm:justify-items-start select-none">
 
@@ -94,11 +95,7 @@
 
                                     @if (count($matched_lehr) == 0)
                                     @elseif (count($matched_lehr) == 1)
-                                        <p>Der folgende Vorschlag wurde von Ihnen übernommen. Sollten Sie den Vorschlag
-                                            bestätigen,
-                                            wird dieser unter <a href="route('accepted_matchings')"
-                                                class="font-semibold hover:underline text-white">Paarungen</a> gelistet. Die
-                                            Personen erhalten zudem eine E-Mail.</p>
+                                        <p>Der folgende Vorschlag wurde von Ihnen übernommen. Sollten Sie den Vorschlag bestätigen, wird dieser unter <a href="route('accepted_matchings')" class="font-semibold hover:underline text-white">Paarungen</a> gelistet. Die Personen erhalten zudem eine E-Mail.</p>
                                     @elseif (count($matched_lehr) > 1)
                                         <p>Die folgenden <strong>{{ count($matched_lehr) }} Vorschläge</strong> wurden von
                                             Ihnen
@@ -119,10 +116,8 @@
                                     @if (count($matched_lehr) == 0)
                                         <p
                                             class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">
-                                            Bisher wurden keine Vorschläge von Ihnen übernommen. Suchen Sie auf Basis des
-                                            MSE
-                                            nach
-                                            Paarungen.</p>
+                                            Bisher wurden keine Vorschläge von Ihnen übernommen. Suchen Sie auf Basis des MSE nach Paarungen.</p>
+
                                     @elseif (count($matched_lehr) > 0)
                                         <tr>
 
@@ -322,13 +317,13 @@
 
                         {{-- lehrer wunschtandem --}}
 
-                        <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md mt-4">
+                        <div class="bg-gray-800 rounded-md">
 
                             <div class="grid justify-items-center sm:justify-items-start select-none">
 
                                 <h2 class="font-semibold text-lg text-gray-200">
 
-                                    LehrerInnen die ein Wunschtandem angegeben haben (mögliche Paarungen)
+                                    Lehrkräfte mit Wunschtandem
 
                                 </h2>
 
@@ -502,14 +497,13 @@
 
                         {{-- studenten wunschtandem --}}
 
-                        <div class="bg-gray-800 px-1 md:px-8 py-1 md:py-8 rounded-md mt-4">
+                        <div class="bg-gray-800 py-1 md:py-8 rounded-md mt-4">
 
                             <div class="grid justify-items-center sm:justify-items-start select-none">
 
                                 <h2 class="font-semibold text-lg text-gray-200">
 
-                                    Student*innen die ein Wunschtandem und/oder einen Wunschort angegeben haben (mögliche
-                                    Paarungen)
+                                    Student*innen mit Wunschtandem / Wunschort
 
                                 </h2>
 

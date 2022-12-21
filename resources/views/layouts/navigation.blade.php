@@ -339,6 +339,39 @@
 
                     <!-- Vorschläge -->
 
+                    <!-- Wunschpaarungen -->
+
+                    <li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+                        @php
+                            $route_name = 'matchings.preferences';
+                        @endphp
+
+                        <a href="{{ route($route_name) }}"
+                            class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
+
+                            <div>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                                </svg>
+
+                            </div>
+
+                            <div class="pl-3">
+
+                                <p class="navigation-element text-sm font-semibold">
+                                    {{ Config::get('site_vars.grundschule') ?? 'Wunschpaarungen' }}</p>
+
+                                <!--<p class="navigation-element text-xs">{{ Config::get('site_vars.vorschlaegeInfo') }}</p>-->
+
+                            </div>
+
+                        </a>
+
+                    </li>
+
+                    <!-- Wunschpaarungen -->
+
                     <!-- Vorschläge NEU -->
 
                     <li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
@@ -486,42 +519,8 @@
 
                     <!-- Student*innen -->
 
-                    <!-- Wunschpaarungen -->
-
-                    <li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
-                        @php
-                            $route_name = 'matchings.preferences';
-                        @endphp
-
-                        <a href="{{ route($route_name) }}"
-                            class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
-
-                            <div>
-
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5" />
-                                </svg>
-
-                            </div>
-
-                            <div class="pl-3">
-
-                                <p class="navigation-element text-sm font-semibold">
-                                    {{ Config::get('site_vars.grundschule') ?? 'Wunschpaarungen' }}</p>
-
-                                <!--<p class="navigation-element text-xs">{{ Config::get('site_vars.vorschlaegeInfo') }}</p>-->
-
-                            </div>
-
-                        </a>
-
-                    </li>
-
-                    <!-- Wunschpaarungen -->
-
                 </ul>
+
             @endrole
 
         </div>

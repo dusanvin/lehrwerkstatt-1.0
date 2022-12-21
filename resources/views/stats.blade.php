@@ -52,6 +52,100 @@
 
                         </div>
 
+
+
+
+
+<script src="{{ asset('js/arrays_lehr.js') }}"></script>
+
+<h2 class="font-semibold text-lg text-gray-200">
+
+        Angemeldete Nutzer:innen mit mit vollständig ausgefülltem Formular, die am aktuellen Matchingverfahren teilnehmen.
+        <br>
+
+<script>
+        var lehr_grundschule = "{{ $users_lehr_grundschule->toJson() }}";
+        var lehr_grundschule = lehr_grundschule.split('&quot;').join('\"');
+        var lehr_grundschule = lehr_grundschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+        var lehr_grundschule = JSON.parse(lehr_grundschule);
+</script>
+
+<a onclick="exportLehrCSV('Grundschule')" id="csv_link_lehr_Grundschule" href="#" class="bg-blue-600">{{ $users_lehr_grundschule_count }} Lehrkräfte (Grundschule) als CSV exportieren</a>                            
+
+</h2>
+
+<h2 class="font-semibold text-lg text-gray-200">
+
+<script>
+        var lehr_realschule = "{{ $users_lehr_realschule->toJson() }}";
+        var lehr_realschule = lehr_realschule.split('&quot;').join('\"');
+        var lehr_realschule = lehr_realschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+        var lehr_realschule = JSON.parse(lehr_realschule);
+</script>
+
+<a onclick="exportLehrCSV('Realschule')" id="csv_link_lehr_Realschule" href="#" class="bg-blue-600">{{ $users_lehr_realschule_count }} Lehrkräfte (Realschule) als CSV exportieren</a>                            
+
+</h2>
+
+<h2 class="font-semibold text-lg text-gray-200">
+
+<script>
+        var lehr_gymnasium = "{{ $users_lehr_gymnasium->toJson() }}";
+        var lehr_gymnasium = lehr_gymnasium.split('&quot;').join('\"');
+        var lehr_gymnasium = lehr_gymnasium.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+        var lehr_gymnasium = JSON.parse(lehr_gymnasium);
+</script>
+
+<a onclick="exportLehrCSV('Gymnasium')" id="csv_link_lehr_Gymnasium" href="#" class="bg-blue-600">{{ $users_lehr_gymnasium_count }} Lehrkräfte (Gymnasium) als CSV exportieren</a>                            
+
+</h2>
+
+
+<script src="{{ asset('js/arrays_stud.js') }}"></script>
+
+<h2 class="font-semibold text-lg text-gray-200">
+
+<script>
+        var stud_grundschule = "{{ $users_stud_grundschule->toJson() }}";
+        console.log(stud_grundschule);
+        var stud_grundschule = stud_grundschule.split('&quot;').join('\"');
+        var stud_grundschule = stud_grundschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+        var stud_grundschule = JSON.parse(stud_grundschule);
+        console.log(stud_grundschule);
+</script>
+
+<a onclick="exportStudCSV('Grundschule')" id="csv_link_stud_Grundschule" href="#" class="bg-blue-600">{{ $users_stud_grundschule_count }} Studierende (Grundschule) als CSV exportieren</a>                            
+
+</h2>
+
+<h2 class="font-semibold text-lg text-gray-200">
+
+<script>
+        var stud_realschule = "{{ $users_stud_realschule->toJson() }}";
+        var stud_realschule = stud_realschule.split('&quot;').join('\"');
+        var stud_realschule = stud_realschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+        var stud_realschule = JSON.parse(stud_realschule);
+</script>
+
+<a onclick="exportStudCSV('Realschule')" id="csv_link_stud_Realschule" href="#" class="bg-blue-600">{{ $users_stud_realschule_count }} Studierende (Realschule) als CSV exportieren</a>                            
+
+</h2>
+
+<h2 class="font-semibold text-lg text-gray-200">
+
+<script>
+        var stud_gymnasium = "{{ $users_stud_gymnasium->toJson() }}";
+        var stud_gymnasium = stud_gymnasium.split('&quot;').join('\"');
+        var stud_gymnasium = stud_gymnasium.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+        var stud_gymnasium = JSON.parse(stud_gymnasium);
+</script>
+
+<a onclick="exportStudCSV('Gymnasium')" id="csv_link_stud_Gymnasium" href="#" class="bg-blue-600">{{ $users_stud_gymnasium_count }} Studierende (Gymnasium) als CSV exportieren</a>                            
+
+</h2>
+
+
+
                     </div>
 
 

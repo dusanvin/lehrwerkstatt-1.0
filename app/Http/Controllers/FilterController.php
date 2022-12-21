@@ -195,7 +195,7 @@ class FilterController extends Controller
             $selected_landkreise = explode(',', $request->landkreise);
             $users = $this->filterLandkreise($selected_landkreise, $users);
         }
-        $users = $users->values();
+        $users = $users->values(); // reset keys
         return view('offers.'.$view, [
             'users' => $users,
             'schulart' => $request->schulart,
@@ -237,4 +237,78 @@ class FilterController extends Controller
             'selected_landkreise' => $selected_landkreise,
         ]);
     }
+
+
+    static function getAllLehr($schulart=null) {
+        $users = User::where('role', 'Lehr')->where('is_evaluable', true)->orderBy('nachname', 'asc')->get();
+
+        foreach ($users as $user) {
+            $user->survey_data = json_decode($user->survey_data);
+        }
+
+        if ($schulart == 'Grundschule') {
+            $users = $users->reject(function ($user, $key) {
+                return $user->survey_data->schulart != 'Grundschule';
+            });
+        } elseif ($schulart == 'Realschule') {
+            $users = $users->reject(function ($user, $key) {
+                return $user->survey_data->schulart != 'Realschule';
+            });
+        } elseif ($schulart == 'Gymnasium') {
+            $users = $users->reject(function ($user, $key) {
+                return $user->survey_data->schulart != 'Gymnasium';
+            });
+        }
+
+        foreach ($users as $user) {
+            if (isset($user->survey_data->faecher))
+                $user->survey_data->faecher = implode(', ', $user->survey_data->faecher);
+        }
+
+        $users = $users->values();
+        return $users;
+    }
+
+
+    static function getAllStud($schulart=null) {
+        $users = User::where('role', 'Stud')->where('is_evaluable', true)->orderBy('nachname', 'asc')->get();
+
+        foreach ($users as $user) {
+            $user->survey_data = json_decode($user->survey_data);
+        }
+
+        if ($schulart == 'Grundschule') {
+            $users = $users->reject(function ($user, $key) {
+                return $user->survey_data->schulart != 'Grundschule';
+            });
+        } elseif ($schulart == 'Realschule') {
+            $users = $users->reject(function ($user, $key) {
+                return $user->survey_data->schulart != 'Realschule';
+            });
+        } elseif ($schulart == 'Gymnasium') {
+            $users = $users->reject(function ($user, $key) {
+                return $user->survey_data->schulart != 'Gymnasium';
+            });
+        }
+
+        foreach ($users as $user) {
+            if (isset($user->survey_data->faecher))
+                $user->survey_data->faecher = implode(', ', $user->survey_data->faecher);
+        }
+
+        foreach ($users as $user) {
+            if (isset($user->survey_data->landkreise))
+                $user->survey_data->landkreise = implode(', ', $user->survey_data->landkreise);
+        }
+
+        foreach ($users as $user) {
+            if (isset($user->survey_data->anmerkungen))
+                $user->survey_data->anmerkungen = str_replace('"', "'", $user->survey_data->anmerkungen);
+        }
+
+        $users = $users->values();
+        return $users;
+
+    }
+
 }

@@ -177,7 +177,7 @@ var json = {
             type: "checkbox",
             title: "Hinweis: Die Lehr:werkstatt kann nicht zeitgleich mit weiteren Pflichtpraktika absolviert werden.",
             isRequired: true,
-            choices: ["Ich absolviere im Wintersemester 2023/24 und Sommersemester 2024 keine weiteren Pflichtpraktika."]
+            choices: ["Ich absolviere im Wintersemester " + jahrgang + " und im folgenden Sommersemester keine weiteren Pflichtpraktika."]
         }]
     }, {
         elements: [{

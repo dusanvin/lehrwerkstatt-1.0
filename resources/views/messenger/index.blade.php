@@ -28,7 +28,7 @@
 
                         <p class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                            Gespräche zum Informationsaustausch. Schreiben Sie einer Person, wenn Ihnen ein Angebot oder ein Bedarf zusagt.
+                            Gespräche zum Informationsaustausch. Sie können Ihren Tandemvorschlag über die Nachrichtenfunktion oder per E-Mail kontaktieren. Zudem erhalten Sie eine E-Mail-Benachrichtigung, wenn Sie über das System kontaktiert wurden.
 
                         </p>                            
 

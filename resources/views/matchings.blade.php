@@ -28,7 +28,49 @@
 
             <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                <p>Hier erhalten Sie eine Übersicht der möglichen Paarungen. Die Berechnung erfolgt auf Basis des <em>Mean Square Errors (Mittlerer quadratischer Fehler)</em> - kurz <em>MSE</em> - auf einer Skala von 0-10. Umso kleiner dieser ist, umso geringer ist die Abweichung beziehungsweise besser die Paarung. <strong>Ein großer MSE ist demnach nicht ratsam.</strong> Zu jeder Lehrkraft werden Student*innen aufgelistet, die bezüglich Schulart, Landkreis und mindestens einem Fach kompatibel sind. Sollten Sie einen Vorschlag in die Liste aufnehmen, werden beide Partner*innen aus dem Pool der Suchenden entfernt.</p>
+                <p></p>
+
+                <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left block">
+
+                <p class="block mb-4">Hier erhalten Sie eine Übersicht der möglichen Paarungen. Die Berechnung erfolgt auf Basis des <em>Mean Square Errors (Mittlerer quadratischer Fehler)</em> - kurz <em>MSE</em> - auf einer Skala von 0-10. Umso kleiner dieser ist, umso geringer ist die Abweichung beziehungsweise besser die Paarung. <strong>Ein großer MSE ist demnach nicht ratsam.</strong> Zu jeder Lehrkraft werden Student*innen aufgelistet, die bezüglich Schulart, Landkreis und mindestens einem Fach kompatibel sind. Sollten Sie einen Vorschlag in die Liste aufnehmen, werden beide Partner*innen aus dem Pool der Suchenden entfernt.</p>
+                
+                <div class="text-gray-300 px-4 py-2 flex items-center rounded-full">
+
+                    <div class="px-4 py-2 flex items-center rounded-full bg-gray-500 font-semibold">1</div>
+
+                    <div class="pl-3">
+                        
+                        <p class="navigation-element text-sm"><strong>Nehmen</strong> Sie auf der Unterseite <em><a href="\matchable" class="underline hover:text-white">Empfohlene Tandems</a></em> ein Paar in die Liste der <em>Übernommenen Vorschläge</em> <strong>auf</strong>.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="text-gray-300 px-4 py-2 flex items-center rounded-full">
+
+                    <div class="px-4 py-2 flex items-center rounded-full bg-gray-500 font-semibold">2</div>
+
+                    <div class="pl-3">
+                        
+                        <p class="navigation-element text-sm"><strong>Bestätigen</strong> Sie den übernommenen Vorschlag.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="text-gray-300 px-4 py-2 flex items-center rounded-full">
+
+                    <div class="px-4 py-2 flex items-center rounded-full bg-gray-500 font-semibold">3</div>
+
+                    <div class="pl-3">
+                        
+                        <p class="navigation-element text-sm">Übernommene Vorschläge sind nun unter <em>Vorgeschlagene Tandems</em> sichtbar. Die Teilnehmenden haben daraufhin die Möglichkeit, den Vorschlägen zu- oder abzusagen.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
 
             </div>
 

@@ -20,13 +20,45 @@
 
             <h1 class="font-semibold text-2xl text-gray-200">
 
-                Vorschläge
+                Tandemvorschläge
 
             </h1>
 
             <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                <p>Hier erhalten Sie eine Übersicht möglicher Paarungen. Die Berechnung erfolgt auf Basis der größten Übereinstimmungen. Sollte Ihnen ein Angebot zusagen, besuchen Sie das Profil Ihrer Partnerin oder Ihres Partners und <strong>kontaktieren Sie diese/diesen über das plattforminterne Nachrichtensystem</strong>. Nehmen Sie alternativ <strong>Kontakt per E-Mail</strong> auf.</p>
+                <p</p>
+
+            </div>
+
+            <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left block">
+
+                <p class="block mb-4">Kurz nach der jeweiligen Matchingrunde (Termine siehe <a href="https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/" class="underline hover:text-white">Webseite</a>), teilen wir Ihnen hier Ihren Tandemvorschlag mit - insofern ein Match gebildet werden konnte. Sie erhalten eine E-Mail-Benachrichtigung, sobald dieser einsehbar ist.</p>
+                
+                <div class="text-gray-300 px-4 py-2 flex items-center rounded-full">
+
+                    <div class="px-4 py-2 flex items-center rounded-full bg-gray-500 font-semibold">1</div>
+
+                    <div class="pl-3">
+                        
+                        <p class="navigation-element text-sm">Bitte <strong>kontaktieren</strong> Sie dann Ihre*n potentielle*n Tandempartner*in für ein Kennenlernen.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="text-gray-300 px-4 py-2 flex items-center rounded-full">
+
+                    <div class="px-4 py-2 flex items-center rounded-full bg-gray-500 font-semibold">2</div>
+
+                    <div class="pl-3">
+                        
+                        <p class="navigation-element text-sm">Nach dem Kennenlernen bitten wir Sie, das Tandem per Klick auf den entsprechenden Button zu <strong>bestätigen</strong> oder <strong>abzulehnen</strong>.</p>
+
+                    </div>
+
+                </div>
+
+                <p class="block my-4">Mit der Bestätigung sagen Sie der Zusammenarbeit in diesem Tandem im Rahmen der <em>Lehr:werkstatt</em> verbindlich zu.</p>
 
             </div>
 
@@ -34,7 +66,7 @@
 
             @if (!isset($user->notified_user))
 
-            <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">
+            <p class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md font-semibold">
 
                 Keine Vorschläge vorhanden.
 
@@ -42,7 +74,7 @@
 
             @else
 
-            <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left">
+            <div class="uppercase text-gray-400 pb-1 sm:pb-2 select-none text-sm text-left font-semibold">
 
                 Es gibt einen Vorschlag.
 
@@ -169,7 +201,7 @@
                                     <div class="flex">
 
 
-                                            <a href="/messages/create/{{ $user->notified_user->id }}" class="bg-transparent bg-purple-600 hover:bg-purple-800 text-white text-xs font-semibold py-2 px-4 tracking-wide border border-purple-600 hover:border-transparent rounded focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 flex items-center transition ease-in-out duration-150 disabled:opacity-25">
+                                            <a href="/messages/create/{{ $user->notified_user->id }}" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm hover:text-white py-2 px-4 border border-purple-700 hover:border-transparent focus:outline-none focus:ring ring-purple-300 focus:border-purple-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform cursor-pointer">
 
                                                 Kontaktieren
 
@@ -188,21 +220,20 @@
                                     <input type="hidden" name="role" value="{{ $user->role }}">
                                     <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $user->notified_user->id }}">
                                     <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $user->notified_user->id }}">
-                                    <input type="submit" value="Verbindlich Zusagen">
+                                    <input type="submit" value="Bestätigen" class="bg-green-600 hover:bg-green-700 text-white font-semibold text-sm hover:text-white py-2 px-4 border border-green-700 hover:border-transparent focus:outline-none focus:ring ring-green-300 focus:border-green-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform cursor-pointer mt-4">
                                 </form>
-                                <br>
                                 <form action="{{ route('declineMatching') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="role" value="{{ $user->role }}">
                                     <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $user->notified_user->id }}">
                                     <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $user->notified_user->id }}">
-                                    <input type="submit" value="Ablehnen">
+                                    <input type="submit" value="Ablehnen" class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm hover:text-white py-2 px-4 border border-yellow-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform cursor-pointer mt-2">
                                 </form>
                                 @else
                                     @if (strcasecmp($user->role, 'lehr') == 0)
-                                        {{ $user->notified_user->pivot->is_accepted_lehr == 1 ? 'Zugesagt' : 'Abgelehnt' }}
+                                        {{ $user->notified_user->pivot->is_accepted_lehr == 1 ? 'Sie haben den Tandemvorschlag bestätigt.' : 'Sie haben den Tandemvorschlag abgelehnt.' }}
                                     @elseif (strcasecmp($user->role, 'stud') == 0)
-                                        {{ $user->notified_user->pivot->is_accepted_stud == 1 ? 'Zugesagt' : 'Abgelehnt' }}
+                                        {{ $user->notified_user->pivot->is_accepted_stud == 1 ? 'Sie haben den Tandemvorschlag bestätigt.' : 'Sie haben den Tandemvorschlag abgelehnt.' }}
                                     @endif
                                 @endif
 

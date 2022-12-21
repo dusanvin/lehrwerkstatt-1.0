@@ -18,53 +18,11 @@
 
             <div class="mx-auto rounded text-white">
 
-                <!-- Übernommene Vorschläge
-                    Backend:
+                <h1 class="font-semibold text-2xl text-gray-200">
 
-                    1. Tabelle - Ungeordnete Tabelle ohne Reihenfolge:
-                    <ol>
-                        <li>Maximale Anzahl an Paarungen</li>
-                    </ol>
+                    Tandemvorschläge
 
-                    <strong>Frontend:</strong>
-
-                    1. Tabelle: Wie übernommene Vorschläge vom Design (Aufteilung der Spalten her)
-
-                    Button dazu: Grafik in neuem Tab anzeigen lassen!
-
-                    2. Tabelle - Absteigende Ordnung des Algorithmus in dieser Reihenfolge:
-                    <ol>
-                        <li>MSE</li>
-                    </ol>
-
-                    Darstellung mit eigenem Ausschlussverfahren:
-                    <li>Ausschluss der eigenen ehemaligen Schule</li> Textfeld
-                    <li>Wunschtandem</li> DropDowns
-                    <li>Wunschschule</li> DropDowns
-
-                    <strong>Frontend:</strong>
-
-                    2. Tabelle: Wie übernommene Vorschläge vom Design (Aufteilung der Spalten her)
-
-                    3. Tabelle - Möglichkeiten:
-                    <ol>
-                        <li>Alle Möglichen Paarungen</li>
-                    </ol>
-
-                    <strong>Frontend:</strong>
-
-                    3. Tabelle: Wie weitere Vorschläge vom Design (Aufteilung der Spalten her)
-
-
-                    <h1 class="font-semibold text-2xl text-gray-200">
-
-                        Visuelle Darstellung
-
-                    </h1>
-
-                    -->
-
-
+                </h1>
 
                 <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left flex">
 
@@ -95,14 +53,14 @@
                             @if (count($matched_lehr) == 0)
                             @elseif (count($matched_lehr) == 1)
                                 <p>Der folgende Vorschlag wurde von Ihnen übernommen. Sollten Sie den Vorschlag bestätigen,
-                                    wird dieser unter <a href="route('accepted_matchings')"
-                                        class="font-semibold hover:underline text-white">Paarungen</a> gelistet. Die
+                                    wird dieser unter <a href="{{ route('acceptedMatchings') }}"
+                                        class="underline hover:text-white italic">Tandems</a> gelistet. Die
                                     Personen erhalten zudem eine E-Mail.</p>
                             @elseif (count($matched_lehr) > 1)
                                 <p>Die folgenden <strong>{{ count($matched_lehr) }} Vorschläge</strong> wurden von Ihnen
                                     übernommen. Sollten Sie die Vorschläge bestätigen, werden diese unter <a
-                                        href="route('accepted_matchings')"
-                                        class="font-semibold hover:underline text-white">Paarungen</a> gelistet. Die
+                                        href="{{ route('acceptedMatchings') }}"
+                                        class="underline hover:text-white italic">Tandems</a> gelistet. Die
                                     Personen erhalten zudem eine E-Mail.</p>
                             @endif
 

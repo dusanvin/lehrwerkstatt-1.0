@@ -36,7 +36,7 @@
 
                     <div class="pl-3">
                         
-                        <p class="navigation-element text-sm"><strong>Nehmen</strong> Sie auf der Unterseite <em><a href="\matchable" class="underline hover:text-white">Empfohlene Tandems</a></em> ein Paar in die Liste der <em>Übernommenen Vorschläge</em> <strong>auf</strong>.</p>
+                        <p class="navigation-element text-sm"><strong>Nehmen</strong> Sie auf der Unterseite <em><a href="\matchable" class="underline hover:text-white">Tandemvorschläge</a></em> ein Paar in die Liste der <em>Übernommenen Vorschläge</em> <strong>auf</strong>.</p>
 
                     </div>
 

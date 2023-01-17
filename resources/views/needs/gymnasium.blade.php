@@ -988,25 +988,11 @@
 
                                                     <!-- Aufmerksam geworden -->
 
-                                                    <!-- Anmerkungen -->
-
-                                                    <div class="w-full mt-3 text-sm text-gray-200">
-
-                                                        <p class="mb-1">Anmerkungen</p>
-
-                                                        <span class="text-gray-400">{{ $user->survey_data->anmerkungen }}</span>
-
-                                                    </div>
-
-                                                    <!-- Anmerkungen -->
-
                                                 </div>
-
-
 
                                             </div>
 
-                                                <!-- ModelInner -->
+                                            <!-- ModelInner -->
 
                                             </div>
 

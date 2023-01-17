@@ -130,7 +130,7 @@ var json = {
             name: "registrierungscode",
             type: "text",
             title: "Registrierungscode " + jahrgang + ":",
-            description: "Ihrer Schulleitung ist ein Registrierungscode zugegangen. Bitte tragen Sie den Registrierungscode in das oben stehende Feld ein.",
+            description: "Das Bewerbungsformular kann nur mit korrektem Registrierungscode abgeschickt werden. Der Registrierungscode ist Ihrer Schulleitung zugegangen. Bitte tragen Sie den Registrierungscode in das oben stehende Feld ein. Bitte wenden Sie sich bei Fragen an: lehrwerkstatt@zlbib.uni-augsburg.de",
             isRequired: true
         }]
     }, {

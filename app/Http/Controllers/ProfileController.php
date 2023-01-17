@@ -93,7 +93,7 @@ class ProfileController extends Controller
             }
         } else {
             if (strcasecmp($user->role, 'Lehr') == 0 || strcasecmp($user->role, 'Stud') == 0) {
-                $attention = 'Zum aktuellen Jahrgang '.config('site_vars.jahrgang').' liegt uns keine Bewerbung vor. Wir bitten Sie, sich kurz Zeit zu nehmen und das Bewerbungsformular auszufüllen.';
+                $attention = 'Zum aktuellen Jahrgang '.config('site_vars.jahrgang').' liegt uns keine Bewerbung vor. Wir bitten Sie, sich kurz Zeit zu nehmen und das Bewerbungsformular auszufüllen. Das Bewerbungsformular kann nur mit korrektem Registrierungscode abgeschickt werden. Der Registrierungscode ist Ihrer Schulleitung zugegangen. Bitte wenden Sie sich bei Fragen an: lehrwerkstatt@zlbib.uni-augsburg.de';
                 return view('surveys.' . lcfirst($user->role), ['attention' => $attention, 'jahrgang' => config('site_vars.jahrgang'), 'host' => config('site_vars.host'), 'datenschutzhinweise' => config('site_vars.datenschutzhinweise'), 'datenschutz_einwilligung' => config('site_vars.datenschutz_einwilligung'), 'teilnahmebedingungen' => config('site_vars.teilnahmebedingungen'), 'user' => $user]);
             } else {
                 return view('surveys.admin_mod', ['attention' => 'Bitte vervollständigen Sie die Daten.', 'jahrgang' => config('site_vars.jahrgang'), 'host' => config('site_vars.host'), 'datenschutzhinweise' => config('site_vars.datenschutzhinweise'), 'datenschutz_einwilligung' => config('site_vars.datenschutz_einwilligung'), 'teilnahmebedingungen' => config('site_vars.teilnahmebedingungen'), 'user' => $user]);

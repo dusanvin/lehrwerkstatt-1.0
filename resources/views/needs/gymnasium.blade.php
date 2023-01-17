@@ -535,7 +535,7 @@
 
                                             <p class="mt-4 text-gray-400 text-sm">
 
-                                                Sehen Sie sich das Angebot #{{ $user->id }} genauer an. Sollten Rückfragen auftreten, scheuen Sie sich nicht davor, die Lehrkraft zu kontaktieren.
+                                                Sehen Sie sich das Angebot #{{ $user->id }} genauer an. Sollten Rückfragen auftreten, scheuen Sie sich nicht davor, die Person zu kontaktieren.
 
                                             </p>
                                                         

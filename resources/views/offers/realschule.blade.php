@@ -905,7 +905,7 @@
 
                                                 </div>
 
-                                                <p class="text-gray-400 text-xs mt-2 mb-4">Sollte Ihnen der Bedarf zusagen, scheuen Sie sich nicht davor, die Lehrkraft zu kontaktieren</p>
+                                                <p class="text-gray-400 text-xs mt-2 mb-4">Sollte Ihnen der Bedarf zusagen, scheuen Sie sich nicht davor, die Person zu kontaktieren</p>
 
                                             </div>
 

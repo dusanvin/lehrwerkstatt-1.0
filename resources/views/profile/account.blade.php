@@ -48,6 +48,8 @@
         $valErfahrung = Config::get('site_vars.meinBereichErfahrungPlaceholder');
         $valTreffen = Config::get('site_vars.meinBereichTreffenPlaceholder');
         $valGruesse = Config::get('site_vars.meinBereichGruessePlaceholder');
+
+
         
     @endphp
 
@@ -564,12 +566,26 @@
 
                                 <!-- Zurück oder Bestätigen -->
 
-                                {!! Form::close() !!}
+                                <h2 class="font-semibold text-lg text-gray-200 sm:text-left text-center mt-8">
 
+                                    Accountlöschung
+
+                                </h2>
+
+                                <div class="mt-1 text-sm text-gray-300 text-center sm:text-left">
+
+                                Möchten Sie Ihre Accountlöschung beantragen? Schreiben Sie einfach eine informelle E-Mail an:
+
+                                <a href="mailto:lehrwerkstatt@zlbib.uni-augsburg.de" class="hover:underline text-yellow-500">
+
+                                    lehrwerkstatt@zlbib.uni-augsburg.de
+                                </a>
 
                             </div>
 
+                                {!! Form::close() !!}
 
+                            </div>
 
                         </div>
 

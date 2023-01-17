@@ -55,22 +55,22 @@
 
 
 
-
-<script src="{{ asset('js/arrays_lehr.js') }}"></script>
-
 <h2 class="font-semibold text-lg text-gray-200">
 
         Angemeldete Nutzer:innen mit mit vollständig ausgefülltem Formular, die am aktuellen Matchingverfahren teilnehmen.
         <br>
 
-<script>
-        var lehr_grundschule = "{{ $users_lehr_grundschule->toJson() }}";
-        var lehr_grundschule = lehr_grundschule.split('&quot;').join('\"');
-        var lehr_grundschule = lehr_grundschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
-        var lehr_grundschule = JSON.parse(lehr_grundschule);
-</script>
 
-<a onclick="exportLehrCSV('Grundschule')" id="csv_link_lehr_Grundschule" href="#" class="bg-blue-600">{{ $users_lehr_grundschule_count }} Lehrkräfte (Grundschule) als CSV exportieren</a>                            
+
+
+
+
+    <script src="{{ asset('js/arrays_lehr.js') }}"></script>
+
+    
+
+
+
 
 </h2>
 
@@ -292,6 +292,239 @@
                         <!-- Studierende -->
 
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- Aktuelles Verfahren -->
+
+                    <script src="{{ asset('js/arrays_lehr.js') }}"></script>
+
+                    <div class="flex flex-wrap px-4 pt-4 pb-1 mx-1 mt-0 sm:mt-6 bg-gray-800 rounded-md">
+
+                        <!-- Alle Nutzenden -->
+
+                        <div class="flex-1 my-2 mx-4">
+
+                            <div class="grid justify-items-center">
+
+                                <div class="py-4 px-4 grid justify-items-center rounded-md">
+
+                                    <h3 class="text-3xl leading-6 font-medium text-gray-200">
+
+                                        {{ $users_lehr_grundschule_count }}
+
+                                    </h3>
+
+                                    <div class="mt-4 text-sm text-gray-400">
+
+                                        <p class="text-center">Lehrkräfte (Grundschule)</p>
+
+                                        <div class="flex justify-center">
+
+                                            <script>
+                                                var lehr_grundschule = "{{ $users_lehr_grundschule->toJson() }}";
+                                                var lehr_grundschule = lehr_grundschule.split('&quot;').join('\"');
+                                                var lehr_grundschule = lehr_grundschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                var lehr_grundschule = JSON.parse(lehr_grundschule);
+                                            </script>
+
+                                            <a onclick="exportLehrCSV('Grundschule')" id="csv_link_lehr_Grundschule" href="#" class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm hover:text-white py-1 pr-1 pl-1 border border-yellow-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform has-tooltip mt-2">
+
+                                                <p>CSV</p>
+
+                                                <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Alle Nutzenden -->
+
+                        <!-- Administrierende -->
+
+                        <div class="flex-1 my-2 mx-4">
+
+                            <div class="grid justify-items-center">
+
+                                <div class="py-4 px-4 grid justify-items-center rounded-md">
+
+                                    <h3 class="text-3xl leading-6 font-medium text-gray-200">
+
+                                        {{ $admin_count }}
+
+                                    </h3>
+
+                                    <div class="mt-4 text-sm text-gray-400">
+
+                                        Administrierende
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Administrierende -->
+
+                        <!-- Moderierende -->
+
+                        <div class="flex-1 my-2 mx-4">
+
+                            <div class="grid justify-items-center">
+
+                                <div class="py-4 px-4 grid justify-items-center rounded-md">
+
+                                    <h3 class="text-3xl leading-6 font-medium text-gray-200">
+
+                                        {{ $mod_count }}
+
+                                    </h3>
+
+                                    <div class="mt-4 text-sm text-gray-400">
+
+                                        Moderierende
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Moderierende -->
+
+                        <!-- Lehrkräfte -->
+
+                        <div class="flex-1 my-2 mx-4">
+
+                            <div class="grid justify-items-center">
+
+                                <div class="py-4 px-4 grid justify-items-center rounded-md">
+
+                                    <h3 class="text-3xl leading-6 font-medium text-gray-200">
+
+                                        {{ $lehr_count }}
+
+                                    </h3>
+
+                                    <div class="mt-4 text-sm text-gray-400">
+
+                                        Lehrkräfte
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Lehrkräfte -->
+
+                        <!-- Studierende -->
+
+                        <div class="flex-1 my-2 mx-4">
+
+                            <div class="grid justify-items-center">
+
+                                <div class="py-4 px-4 grid justify-items-center rounded-md text-gray-200">
+
+                                    <h3 class="text-3xl leading-6 font-medium">
+
+                                        {{ $stud_count }}
+
+                                    </h3>
+
+                                    <div class="mt-4 text-sm text-gray-400">
+
+                                        Studierende
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Studierende -->
+
+                    </div>
+
+                    <!-- Aktuelles Verfahren -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     <!-- Diagramme -->
 

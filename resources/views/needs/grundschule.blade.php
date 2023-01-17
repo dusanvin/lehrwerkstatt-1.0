@@ -148,57 +148,7 @@
 
                                         </div>
 
-                                        <!-- Gebiete -->
-
-                                        <!-- Fächer -->
-
-                                        <div class="text-sm text-gray-500 text-light mt-3 ml-6">
-
-                                            <p class="py-3 text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">Fächer</p>
-
-                                            <script>
-                                                var faecher = [];
-
-                                                function addToSelection(fach, checked) {
-                                                    console.log(fach, checked);
-                                                    if (checked) {
-                                                        faecher.push(fach);
-                                                    } else {
-                                                        let i = faecher.indexOf(fach);
-                                                        faecher.splice(i, 1);
-                                                    }
-                                                    console.log(faecher);
-                                                    document.getElementById('faecher').value = faecher;
-                                                }
-                                            </script>
-
-                                            <input name="faecher" id="faecher" type=hidden value="" />
-
-                                            <div class="flex relative flex-wrap">
-
-                                                <ul class="list-group">
-                                                    @foreach($faecher as $fach)
-
-                                                    <li class="list-group-item mb-1">
-                                                        <input class="form-check-input me-1 bg-gray-800 mr-1" type="checkbox" value="{{ $fach }}" id="{{ $fach }}" onclick="addToSelection(this.value, this.checked)">
-                                                        <span class="text-gray-300">{{ $fach }}</span>
-                                                    </li>
-                                                    @endforeach
-                                                </ul>
-
-                                            </div>
-
-                                            <script>
-                                                @if(isset($selected_faecher))
-                                                @foreach($selected_faecher as $fach)
-                                                document.getElementById("{{ $fach }}").click();
-                                                @endforeach
-                                                @endif
-                                            </script>
-
-                                        </div>
-
-                                        <!-- Fächer -->     
+                                        <!-- Gebiete -->  
 
                                     </div>
 

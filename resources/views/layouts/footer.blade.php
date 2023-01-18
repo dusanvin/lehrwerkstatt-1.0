@@ -111,7 +111,7 @@
 
                     <li>
 
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://digillab.zlbib.uni-augsburg.de/impressum/" target="_blank">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/impressum/" target="_blank">
 
                             Impressum
 
@@ -121,7 +121,7 @@
 
                     <li>
 
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/impressum/datenschutz/" target="_blank">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzhinweise/" target="_blank">
 
                             Datenschutz
                         </a>
@@ -148,39 +148,9 @@
 
                     <li>
 
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="/about" target="_blank">
-
-                            Näheres zum <em>digi:match</em>
-
-                        </a>
-
-                    </li>
-
-                    <li>
-
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-bold" href="/faq" target="_blank">
-
-                            FAQ zum <em>digi:match</em>
-
-                        </a>
-
-                    </li>
-
-                    <li>
-
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="{{ $mail_to_digillab }}">
+                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="mailto:lehrwerkstatt@zlbib.uni-augsburg.de">
 
                             Kontakt
-
-                        </a>
-
-                    </li>
-
-                    <li>
-
-                        <a class="text-gray-500 hover:text-gray-800 transition-colors duration-200 font-normal" href="/log" target="_blank">
-
-                            Log
 
                         </a>
 

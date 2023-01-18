@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Cmgmyr\Messenger\Models\Message;
 use Cmgmyr\Messenger\Models\Participant;
 use Cmgmyr\Messenger\Models\Thread;
+use Error;
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -101,7 +103,13 @@ class MessagesController extends Controller
 
         $user = User::find($input['user_id']);
         $message_data = [];
-        $user->notify(new MessageNotification($message_data));
+        try {
+            $user->notify(new MessageNotification($message_data));
+        }
+        catch(Exception $e) {
+            // ungültige email, SwiftTransportException
+        } 
+       
         
 
         return redirect()->route('messages.show', $thread->id);

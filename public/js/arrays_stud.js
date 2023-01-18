@@ -28,7 +28,7 @@ function exportStudCSV(schulart) {
         'Bestätigung: Verbindliche Teilnahmebedingungen',    
         'Bereits teilgenommen',
         'Bewerbungsformular ist vollständig ausgefüllt und für das aktuelle Schuljahr ist eine Teilnahme weiterhin erwünscht',
-        'Der Student/Die Studentin wurde noch für kein Matching vorgeschlagen',
+        'Der Student/Die Studentin befindet sich in keiner Vorauswahl und steht zur Verfügung',
         'Anrede',
         'Nachname',
         'Vorname',

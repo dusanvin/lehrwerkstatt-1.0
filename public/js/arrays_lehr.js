@@ -36,7 +36,7 @@ function exportCSV() {
         'Registrierungscode:',                             
         'Bereits teilgenommen',
         'Bewerbungsformular ist vollständig ausgefüllt und für das aktuelle Schuljahr ist eine Teilnahme weiterhin erwünscht',
-        'Die Lehrkraft wurde noch für kein Matching vorgeschlagen',
+        'Die Lehrkraft befindet sich in keiner Vorauswahl und steht zur Verfügung',
         'Anrede',
         'Nachname',
         'Vorname',

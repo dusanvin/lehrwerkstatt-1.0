@@ -126,9 +126,12 @@ class MatchingController extends Controller
 
         // is_matched bedeutet user ist in der vorauswahl, find gibt user objekte zurück
         $matched_lehr = User::find(DB::table('lehr_stud')->where('is_matched', true)->pluck('lehr_id'));
-        $matched_lehr = $matched_lehr->filter(function ($lehr, $key) use($schulart) {
-            return strtolower($lehr->data()->schulart) == strtolower($schulart);
-        });
+        if(!is_null($schulart)) {
+            $matched_lehr = $matched_lehr->filter(function ($lehr, $key) use($schulart) {
+                return strtolower($lehr->data()->schulart) == strtolower($schulart);
+            });
+        }
+
 
         $available_lehr = $this->getAvailableLehrUsers($schulart);
         $available_stud = $this->getAvailableStudUsers($schulart);

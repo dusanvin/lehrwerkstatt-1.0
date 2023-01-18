@@ -339,7 +339,7 @@
 
                     <!-- Vorschläge -->
 
-                    <!-- Wunschpaarungen -->
+                    <!-- Wunschtandems -->
 
                     <li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
                         @php
@@ -360,7 +360,7 @@
                             <div class="pl-3">
 
                                 <p class="navigation-element text-sm font-semibold">
-                                    {{ Config::get('site_vars.grundschule') ?? 'Wunschpaarungen' }}</p>
+                                    {{ Config::get('site_vars.grundschule') ?? 'Wunschtandems' }}</p>
 
                                 <!--<p class="navigation-element text-xs">{{ Config::get('site_vars.vorschlaegeInfo') }}</p>-->
 
@@ -370,7 +370,7 @@
 
                     </li>
 
-                    <!-- Wunschpaarungen -->
+                    <!-- Wunschtandems -->
 
                     <!-- Vorschläge NEU -->
 

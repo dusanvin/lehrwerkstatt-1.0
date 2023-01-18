@@ -45,15 +45,23 @@ class MatchingController extends Controller
     }
 
 
-    private function getAvailableLehrUsers()
+    private function getAvailableLehrUsers($schulart = null)
     {
-        return User::where('role', 'Lehr')->where('is_evaluable', true)->where('is_available', true)->get();
+        if(is_null($schulart)) {
+            return User::where('role', 'Lehr')->where('is_evaluable', true)->where('is_available', true)->get();
+        } else {
+            return User::where('role', 'Lehr')->where('is_evaluable', true)->where('is_available', true)->where('survey_data->schulart', $schulart)->get();
+        }
     }
 
 
-    private function getAvailableStudUsers()
+    private function getAvailableStudUsers($schulart = null)
     {
-        return User::where('role', 'Stud')->where('is_evaluable', true)->where('is_available', true)->get();
+        if(is_null($schulart)) {
+            return User::where('role', 'Stud')->where('is_evaluable', true)->where('is_available', true)->get();
+        } else {
+            return User::where('role', 'Stud')->where('is_evaluable', true)->where('is_available', true)->where('survey_data->schulart', $schulart)->get();
+        }
     }
 
 
@@ -89,11 +97,18 @@ class MatchingController extends Controller
 
 
         // user ausschließen, die nicht mehr gematched werden wollen, aber in der vorauswahl sind
+        // diese haben is_evaluable == false gesetzt
         $exclude_ids = User::where('is_evaluable', false)->where('is_available', false)->pluck('id');
 
+        // einträge der betreffende user in der lehr_stud tabelle löschen
+        // is_matched == false und is_notified == false, da noch keine notifikations-email gesendet wurde
+        //  ( = unbestätigte vorauswahl)
         DB::table('lehr_stud')->where('is_matched', false)->where('is_notified', false)->delete();
 
         // user deren matchings aufgehoben werden müssen wieder auf available gesetzt werden
+        // ein user der nicht mehr zur verfügung steht (weil er gematched wurde), aber dennoch unvöllständige daten hat oder inaktiv ist
+        // muss wieder auf available gesetzt werden
+        // user mit is_evaluable == false sollen grundsätzlich den status is_available == true haben
         $inactive_matched_users = User::where('is_evaluable', false)->where('is_available', false)->get();  // ->update(['is_available' => true]);
         foreach ($inactive_matched_users as $user) {
             $user->is_available = true;
@@ -102,14 +117,16 @@ class MatchingController extends Controller
             User::where('id', $user->matched_user->id)->update(['is_available' => true]);
         }
 
+        // einträge mit inaktiv gewordenen nutzern aus lehr_stud löschen
         DB::table('lehr_stud')->whereIn('lehr_id', $exclude_ids)->delete();
         DB::table('lehr_stud')->whereIn('stud_id', $exclude_ids)->delete();
 
+        // werte resetten, werden in der funktion später neu berechnet
         DB::table('lehr_stud')->update(['recommended' => 0, 'has_no_alternative_lehr' => 0, 'has_no_alternative_stud' => 0]); // ->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')
 
 
-        $available_lehr = $this->getAvailableLehrUsers();
-        $available_stud = $this->getAvailableStudUsers();
+        $available_lehr = $this->getAvailableLehrUsers($schulart);
+        $available_stud = $this->getAvailableStudUsers($schulart);
 
         foreach ($available_lehr as $lehr) {
             $lehr->survey_data = json_decode($lehr->survey_data);
@@ -327,26 +344,7 @@ class MatchingController extends Controller
         $remaining_matches->reject(function ($match, $key) {
             return !$match->lehr->is_evaluable || !$match->stud->is_evaluable;
         });
-
-        if (!is_null($schulart)) {
-            $schulart = strtolower($schulart);
-            if($schulart == 'grundschule') {
-                $remaining_matches->reject(function ($match, $key) {
-                    return strtolower($match->lehr->data()->schulart) != 'grundschule' || strtolower($match->stud->data()->schulart) != 'grundschule';
-                });
-            }
-            if($schulart == 'realschule') {
-                $remaining_matches->reject(function ($match, $key) {
-                    return strtolower($match->lehr->data()->schulart) != 'realschule' || strtolower($match->stud->data()->schulart) != 'realschule';
-                });
-            }
-            if($schulart == 'gymnasium') {
-                $remaining_matches->reject(function ($match, $key) {
-                    return strtolower($match->lehr->data()->schulart) != 'gymnasium' || strtolower($match->stud->data()->schulart) != 'gymnasium';
-                });
-            }
-
-        }
+        
 
         return view('matchable', compact('schulart', 'graph_img', 'max_flow', 'matched_lehr', 'recommended', 'remaining_matches'));
     }

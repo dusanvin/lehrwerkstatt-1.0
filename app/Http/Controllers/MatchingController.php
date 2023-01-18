@@ -81,7 +81,7 @@ class MatchingController extends Controller
     }
 
 
-    public function matchable()
+    public function matchable($schulart = null)
     {
         $graph = new Graph();
         $source_vertex = $graph->createVertex('s');
@@ -328,7 +328,27 @@ class MatchingController extends Controller
             return !$match->lehr->is_evaluable || !$match->stud->is_evaluable;
         });
 
-        return view('matchable', compact('graph_img', 'max_flow', 'matched_lehr', 'recommended', 'remaining_matches'));
+        if (!is_null($schulart)) {
+            $schulart = strtolower($schulart);
+            if($schulart == 'grundschule') {
+                $remaining_matches->reject(function ($match, $key) {
+                    return strtolower($match->lehr->data()->schulart) != 'grundschule' || strtolower($match->stud->data()->schulart) != 'grundschule';
+                });
+            }
+            if($schulart == 'realschule') {
+                $remaining_matches->reject(function ($match, $key) {
+                    return strtolower($match->lehr->data()->schulart) != 'realschule' || strtolower($match->stud->data()->schulart) != 'realschule';
+                });
+            }
+            if($schulart == 'gymnasium') {
+                $remaining_matches->reject(function ($match, $key) {
+                    return strtolower($match->lehr->data()->schulart) != 'gymnasium' || strtolower($match->stud->data()->schulart) != 'gymnasium';
+                });
+            }
+
+        }
+
+        return view('matchable', compact('schulart', 'graph_img', 'max_flow', 'matched_lehr', 'recommended', 'remaining_matches'));
     }
 
 

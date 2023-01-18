@@ -15,6 +15,8 @@
             }
         </style>
 
+        <script src="{{ asset('js/arrays_lehr.js') }}"></script>
+        <script src="{{ asset('js/arrays_stud.js') }}"></script>
 
     </head>
 
@@ -52,102 +54,7 @@
 
                         </div>
 
-
-
-
-<h2 class="font-semibold text-lg text-gray-200">
-
-        Angemeldete Nutzer:innen mit mit vollständig ausgefülltem Formular, die am aktuellen Matchingverfahren teilnehmen.
-        <br>
-
-
-
-
-
-
-    <script src="{{ asset('js/arrays_lehr.js') }}"></script>
-
-    
-
-
-
-
-</h2>
-
-<h2 class="font-semibold text-lg text-gray-200">
-
-<script>
-        var lehr_realschule = "{{ $users_lehr_realschule->toJson() }}";
-        var lehr_realschule = lehr_realschule.split('&quot;').join('\"');
-        var lehr_realschule = lehr_realschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
-        var lehr_realschule = JSON.parse(lehr_realschule);
-</script>
-
-<a onclick="exportLehrCSV('Realschule')" id="csv_link_lehr_Realschule" href="#" class="bg-blue-600">{{ $users_lehr_realschule_count }} Lehrkräfte (Realschule) als CSV exportieren</a>                            
-
-</h2>
-
-<h2 class="font-semibold text-lg text-gray-200">
-
-<script>
-        var lehr_gymnasium = "{{ $users_lehr_gymnasium->toJson() }}";
-        var lehr_gymnasium = lehr_gymnasium.split('&quot;').join('\"');
-        var lehr_gymnasium = lehr_gymnasium.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
-        var lehr_gymnasium = JSON.parse(lehr_gymnasium);
-</script>
-
-<a onclick="exportLehrCSV('Gymnasium')" id="csv_link_lehr_Gymnasium" href="#" class="bg-blue-600">{{ $users_lehr_gymnasium_count }} Lehrkräfte (Gymnasium) als CSV exportieren</a>                            
-
-</h2>
-
-
-<script src="{{ asset('js/arrays_stud.js') }}"></script>
-
-<h2 class="font-semibold text-lg text-gray-200">
-
-<script>
-        var stud_grundschule = "{{ $users_stud_grundschule->toJson() }}";
-        console.log(stud_grundschule);
-        var stud_grundschule = stud_grundschule.split('&quot;').join('\"');
-        var stud_grundschule = stud_grundschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
-        var stud_grundschule = JSON.parse(stud_grundschule);
-        console.log(stud_grundschule);
-</script>
-
-<a onclick="exportStudCSV('Grundschule')" id="csv_link_stud_Grundschule" href="#" class="bg-blue-600">{{ $users_stud_grundschule_count }} Studierende (Grundschule) als CSV exportieren</a>                            
-
-</h2>
-
-<h2 class="font-semibold text-lg text-gray-200">
-
-<script>
-        var stud_realschule = "{{ $users_stud_realschule->toJson() }}";
-        var stud_realschule = stud_realschule.split('&quot;').join('\"');
-        var stud_realschule = stud_realschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
-        var stud_realschule = JSON.parse(stud_realschule);
-</script>
-
-<a onclick="exportStudCSV('Realschule')" id="csv_link_stud_Realschule" href="#" class="bg-blue-600">{{ $users_stud_realschule_count }} Studierende (Realschule) als CSV exportieren</a>                            
-
-</h2>
-
-<h2 class="font-semibold text-lg text-gray-200">
-
-<script>
-        var stud_gymnasium = "{{ $users_stud_gymnasium->toJson() }}";
-        var stud_gymnasium = stud_gymnasium.split('&quot;').join('\"');
-        var stud_gymnasium = stud_gymnasium.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
-        var stud_gymnasium = JSON.parse(stud_gymnasium);
-</script>
-
-<a onclick="exportStudCSV('Gymnasium')" id="csv_link_stud_Gymnasium" href="#" class="bg-blue-600">{{ $users_stud_gymnasium_count }} Studierende (Gymnasium) als CSV exportieren</a>                            
-
-</h2>
-
-
-
                     </div>
-
 
                     <div class="flex flex-wrap px-4 pt-4 pb-1 mx-1 mt-0 sm:mt-6 bg-gray-800 rounded-md">
 
@@ -293,239 +200,6 @@
 
                     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <!-- Aktuelles Verfahren -->
-
-                    <script src="{{ asset('js/arrays_lehr.js') }}"></script>
-
-                    <div class="flex flex-wrap px-4 pt-4 pb-1 mx-1 mt-0 sm:mt-6 bg-gray-800 rounded-md">
-
-                        <!-- Alle Nutzenden -->
-
-                        <div class="flex-1 my-2 mx-4">
-
-                            <div class="grid justify-items-center">
-
-                                <div class="py-4 px-4 grid justify-items-center rounded-md">
-
-                                    <h3 class="text-3xl leading-6 font-medium text-gray-200">
-
-                                        {{ $users_lehr_grundschule_count }}
-
-                                    </h3>
-
-                                    <div class="mt-4 text-sm text-gray-400">
-
-                                        <p class="text-center">Lehrkräfte (Grundschule)</p>
-
-                                        <div class="flex justify-center">
-
-                                            <script>
-                                                var lehr_grundschule = "{{ $users_lehr_grundschule->toJson() }}";
-                                                var lehr_grundschule = lehr_grundschule.split('&quot;').join('\"');
-                                                var lehr_grundschule = lehr_grundschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
-                                                var lehr_grundschule = JSON.parse(lehr_grundschule);
-                                            </script>
-
-                                            <a onclick="exportLehrCSV('Grundschule')" id="csv_link_lehr_Grundschule" href="#" class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm hover:text-white py-1 pr-1 pl-1 border border-yellow-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform has-tooltip mt-2">
-
-                                                <p>CSV</p>
-
-                                                <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Alle Nutzenden -->
-
-                        <!-- Administrierende -->
-
-                        <div class="flex-1 my-2 mx-4">
-
-                            <div class="grid justify-items-center">
-
-                                <div class="py-4 px-4 grid justify-items-center rounded-md">
-
-                                    <h3 class="text-3xl leading-6 font-medium text-gray-200">
-
-                                        {{ $admin_count }}
-
-                                    </h3>
-
-                                    <div class="mt-4 text-sm text-gray-400">
-
-                                        Administrierende
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Administrierende -->
-
-                        <!-- Moderierende -->
-
-                        <div class="flex-1 my-2 mx-4">
-
-                            <div class="grid justify-items-center">
-
-                                <div class="py-4 px-4 grid justify-items-center rounded-md">
-
-                                    <h3 class="text-3xl leading-6 font-medium text-gray-200">
-
-                                        {{ $mod_count }}
-
-                                    </h3>
-
-                                    <div class="mt-4 text-sm text-gray-400">
-
-                                        Moderierende
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Moderierende -->
-
-                        <!-- Lehrkräfte -->
-
-                        <div class="flex-1 my-2 mx-4">
-
-                            <div class="grid justify-items-center">
-
-                                <div class="py-4 px-4 grid justify-items-center rounded-md">
-
-                                    <h3 class="text-3xl leading-6 font-medium text-gray-200">
-
-                                        {{ $lehr_count }}
-
-                                    </h3>
-
-                                    <div class="mt-4 text-sm text-gray-400">
-
-                                        Lehrkräfte
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Lehrkräfte -->
-
-                        <!-- Studierende -->
-
-                        <div class="flex-1 my-2 mx-4">
-
-                            <div class="grid justify-items-center">
-
-                                <div class="py-4 px-4 grid justify-items-center rounded-md text-gray-200">
-
-                                    <h3 class="text-3xl leading-6 font-medium">
-
-                                        {{ $stud_count }}
-
-                                    </h3>
-
-                                    <div class="mt-4 text-sm text-gray-400">
-
-                                        Studierende
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Studierende -->
-
-                    </div>
-
-                    <!-- Aktuelles Verfahren -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <!-- Diagramme -->
 
                     <div class="grid grid-cols-1 md:grid-cols-2 pt-1 sm:pt-8 gap-1 sm:gap-4">
@@ -593,7 +267,7 @@
 
                             <div class="rounded-md p-6">
 
-                                <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#d22824,#da3a36);">
+                                <div class="px-0 py-0 sm:p-8 rounded" style="background-image: linear-gradient(195deg,#42424a 0%,#191919 100%);">
 
                                     <canvas id="fourth"></canvas>
 
@@ -697,6 +371,444 @@
 
                     </div>
 
+                    <!-- Infos -->
+
+                    <!-- Aktuelles Verfahren -->
+
+                    <script src="{{ asset('js/arrays_lehr.js') }}"></script>
+
+                    <div class="grid grid-cols-1 pt-1 sm:pt-8 gap-1 sm:gap-4">
+
+                        <div class="mx-1 px-6 my-1 bg-gray-800 rounded-md pb-10">
+
+                            <!-- Alle Nutzenden -->
+
+                            <div class="text-left my-4">
+
+                                <h3 class="font-semibold text-lg text-gray-300">Angemeldete Nutzende</h3>
+
+                                <p class="text-sm text-gray-300">Vollständig ausgefüllte Formulare in aktuellem Matchingverfahren</p>
+
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-1 sm:gap-4">
+
+                                <div class="min-w-full mr-4 shadow-sm">
+
+                                    <p class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 rounded-t-lg tracking-wider uppercase font-bold">Auflistung der relevanten Lehrkräfte</p>
+
+                                    <!-- Lehramt: Grundschule -->
+
+                                    <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
+
+                                        <div class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
+
+                                            {{ $users_lehr_grundschule_count }}
+
+                                        </div>
+
+                                        <div class="px-6 py-4">
+
+                                            <div class="text-xs sm:text-sm leading-5 text-white">
+
+                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
+
+                                                    Lehrkräfte
+
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="hidden sm:table-cell px-6 py-4">
+
+                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+                        
+                                                Grundschule
+                                                
+                                            </div>
+
+                                        </div>
+
+                                        <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
+
+                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
+                        
+                                                <script>
+                                                    var lehr_grundschule = "{{ $users_lehr_grundschule->toJson() }}";
+                                                    var lehr_grundschule = lehr_grundschule.split('&quot;').join('\"');
+                                                    var lehr_grundschule = lehr_grundschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                    var lehr_grundschule = JSON.parse(lehr_grundschule);
+                                                </script>
+
+                                                <a onclick="exportLehrCSV('Grundschule')" id="csv_link_lehr_Grundschule" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
+                                                    </svg>
+
+                                                    <p class="">CSV</p>
+
+                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
+
+                                                </a>
+                                                
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Lehramt: Grundschule -->
+
+                                    <!-- Lehramt: Realschule -->
+
+                                    <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
+
+                                        <div class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
+
+                                            <script>
+                                                var lehr_realschule = "{{ $users_lehr_realschule->toJson() }}";
+                                                var lehr_realschule = lehr_realschule.split('&quot;').join('\"');
+                                                var lehr_realschule = lehr_realschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                var lehr_realschule = JSON.parse(lehr_realschule);
+                                            </script>
+
+                                            {{ $users_lehr_realschule_count }}
+
+                                        </div>
+
+                                        <div class="px-6 py-4">
+
+                                            <div class="text-xs sm:text-sm leading-5 text-white">
+
+                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
+
+                                                    Lehrkräfte
+
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="hidden sm:table-cell px-6 py-4">
+
+                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+                        
+                                                Realschule
+                                                
+                                            </div>
+
+                                        </div>
+
+                                        <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
+
+                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
+
+                                                <a onclick="exportLehrCSV('Realschule')" id="csv_link_lehr_Realschule" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
+                                                    </svg>
+
+                                                    <p class="">CSV</p>
+
+                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
+
+                                                </a>
+                                                
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Lehramt: Realschule -->                                
+
+                                    <!-- Lehramt: Gymnasium -->
+
+                                    <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
+
+                                        <div class="w-1/8 hidden sm:table-cell text-sm text-right pl-6 py-4 text-gray-100">
+
+                                            <script>
+                                                    var lehr_gymnasium = "{{ $users_lehr_gymnasium->toJson() }}";
+                                                    var lehr_gymnasium = lehr_gymnasium.split('&quot;').join('\"');
+                                                    var lehr_gymnasium = lehr_gymnasium.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                    var lehr_gymnasium = JSON.parse(lehr_gymnasium);
+                                            </script>
+
+                                            {{ $users_lehr_gymnasium_count }}
+
+                                        </div>
+
+                                        <div class="px-6 py-4">
+
+                                            <div class="text-xs sm:text-sm leading-5 text-white">
+
+                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
+
+                                                    Lehrkräfte
+
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="hidden sm:table-cell px-6 py-4">
+
+                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+                        
+                                                Gymnasium
+                                                
+                                            </div>
+
+                                        </div>
+
+                                        <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
+
+                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
+
+                                                <a onclick="exportLehrCSV('Gymnasium')" id="csv_link_lehr_Gymnasium" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
+                                                    </svg>
+
+                                                    <p class="">CSV</p>
+
+                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
+
+                                                </a>
+                                                
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Lehramt: Realschule -->
+
+                                </div>
+
+                                <div class="min-w-full mr-4 shadow-sm">
+
+                                    <p class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 rounded-t-lg tracking-wider uppercase font-bold">Auflistung der relevanten Lehrkräfte</p>
+
+                                    <!-- Lehramt: Grundschule -->
+
+                                    <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
+
+                                        <div class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
+
+                                            {{ $users_stud_grundschule_count }}
+
+                                        </div>
+
+                                        <div class="px-6 py-4">
+
+                                            <div class="text-xs sm:text-sm leading-5 text-white">
+
+                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
+
+                                                    Studierende
+
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="hidden sm:table-cell px-6 py-4">
+
+                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+                        
+                                                Grundschule
+                                                
+                                            </div>
+
+                                        </div>
+
+                                        <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
+
+                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
+                        
+                                                <script>
+                                                        var stud_grundschule = "{{ $users_stud_grundschule->toJson() }}";
+                                                        console.log(stud_grundschule);
+                                                        var stud_grundschule = stud_grundschule.split('&quot;').join('\"');
+                                                        var stud_grundschule = stud_grundschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                        var stud_grundschule = JSON.parse(stud_grundschule);
+                                                        console.log(stud_grundschule);
+                                                </script>
+
+                                                <a onclick="exportStudCSV('Grundschule')" id="csv_link_stud_Grundschule" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
+                                                    </svg>
+
+                                                    <p class="">CSV</p>
+
+                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
+
+                                                </a>
+                                                
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Lehramt: Grundschule -->
+
+                                    <!-- Lehramt: Realschule -->
+
+                                    <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
+
+                                        <div class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
+
+                                            <script>
+                                                var stud_realschule = "{{ $users_stud_realschule->toJson() }}";
+                                                var stud_realschule = stud_realschule.split('&quot;').join('\"');
+                                                var stud_realschule = stud_realschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                var stud_realschule = JSON.parse(stud_realschule);
+                                            </script>
+
+                                            {{ $users_stud_realschule_count }}
+
+                                        </div>
+
+                                        <div class="px-6 py-4">
+
+                                            <div class="text-xs sm:text-sm leading-5 text-white">
+
+                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
+
+                                                    Studierende
+
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="hidden sm:table-cell px-6 py-4">
+
+                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+                        
+                                                Realschule
+                                                
+                                            </div>
+
+                                        </div>
+
+                                        <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
+
+                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
+
+                                                <a onclick="exportStudCSV('Realschule')" id="csv_link_stud_Realschule" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
+                                                    </svg>
+
+                                                    <p class="">CSV</p>
+
+                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
+
+                                                </a>
+                                                
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Lehramt: Realschule -->                                
+
+                                    <!-- Lehramt: Gymnasium -->
+
+                                    <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
+
+                                        <div class="w-1/8 hidden sm:table-cell text-sm text-right pl-6 py-4 text-gray-100">
+
+                                            <script>
+                                                var stud_gymnasium = "{{ $users_stud_gymnasium->toJson() }}";
+                                                var stud_gymnasium = stud_gymnasium.split('&quot;').join('\"');
+                                                var stud_gymnasium = stud_gymnasium.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                var stud_gymnasium = JSON.parse(stud_gymnasium);
+                                            </script>
+
+                                            {{ $users_stud_gymnasium_count }}
+
+                                        </div>
+
+                                        <div class="px-6 py-4">
+
+                                            <div class="text-xs sm:text-sm leading-5 text-white">
+
+                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
+
+                                                    Studierende
+
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="hidden sm:table-cell px-6 py-4">
+
+                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+                        
+                                                Gymnasium
+                                                
+                                            </div>
+
+                                        </div>
+
+                                        <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
+
+                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
+
+                                                <a onclick="exportStudCSV('Gymnasium')" id="csv_link_stud_Gymnasium" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
+                                                    </svg>
+
+                                                    <p class="">CSV</p>
+
+                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
+
+                                                </a>
+                                                
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Lehramt: Realschule -->
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                    </div>
+
+                    <!-- Aktuelles Verfahren -->
+
                 </div>
 
             </div>
@@ -707,9 +819,9 @@
 
         <!-- Resources -->
 
-        <!-- Resources -->
-
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <!-- Resources -->
 
         <script type="text/javascript">
 
@@ -886,8 +998,8 @@
                     {
                         label: 'Vollständig',
                         data: [{{ $lehr_complete_form }}, {{ $stud_complete_form }}],
-                        backgroundColor: 'rgba(127, 29, 29, 1)',
-                        borderColor: 'rgba(127, 29, 29, 1)',
+                        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                        borderColor: 'rgba(0, 0, 0, 0.7)',
                         borderWidth: 2,
                         borderRadius: 2,
                         stack: 'Stack 1',

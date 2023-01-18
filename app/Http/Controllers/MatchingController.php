@@ -124,6 +124,11 @@ class MatchingController extends Controller
         // werte resetten, werden in der funktion später neu berechnet
         DB::table('lehr_stud')->update(['recommended' => 0, 'has_no_alternative_lehr' => 0, 'has_no_alternative_stud' => 0]); // ->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')
 
+        // is_matched bedeutet user ist in der vorauswahl, find gibt user objekte zurück
+        $matched_lehr = User::find(DB::table('lehr_stud')->where('is_matched', true)->pluck('lehr_id'));
+        $matched_lehr = $matched_lehr->filter(function ($lehr, $key) use($schulart) {
+            return strtolower($lehr->data()->schulart) == strtolower($schulart);
+        });
 
         $available_lehr = $this->getAvailableLehrUsers($schulart);
         $available_stud = $this->getAvailableStudUsers($schulart);
@@ -280,8 +285,6 @@ class MatchingController extends Controller
 
         // $matched_graph = $resultGraph->createGraphClone();
 
-        $matched_lehr = User::find(DB::table('lehr_stud')->where('is_matched', true)->pluck('lehr_id'));
-
         // foreach ($matched_graph->getEdges() as $edge) {
 
         //     $edge->setAttribute('graphviz.dir', 'none');
@@ -344,7 +347,7 @@ class MatchingController extends Controller
         $remaining_matches->reject(function ($match, $key) {
             return !$match->lehr->is_evaluable || !$match->stud->is_evaluable;
         });
-        
+
 
         return view('matchable', compact('schulart', 'graph_img', 'max_flow', 'matched_lehr', 'recommended', 'remaining_matches'));
     }

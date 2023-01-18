@@ -298,7 +298,7 @@
                     @if (count($matched_lehr))
                         <div class="mt-4 flex justify-end">
 
-                            <a href="{{ route('notifyMatchings') }}"
+                            <a href="{{ route('notifyMatchings', ['schulart' => $schulart]) }}"
                                 class="bg-green-600 hover:bg-green-700 text-white font-semibold text-sm hover:text-white py-2 pr-4 pl-3 border border-green-700 hover:border-transparent focus:outline-none focus:ring ring-green-300 focus:border-green-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform">
 
 

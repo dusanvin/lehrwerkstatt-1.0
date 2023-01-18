@@ -577,7 +577,7 @@ class MatchingController extends Controller
     }
 
 
-    public function notifyMatchings()
+    public function notifyMatchings($schulart = null)
     {
         // nur die, die in der vorauswahl (is_matched) sind
         $unnotified_matchings = DB::table('lehr_stud')->where('is_matched', true)->get();
@@ -587,7 +587,13 @@ class MatchingController extends Controller
             $lehr = User::find($unnotified_matching->lehr_id);
             $stud = User::find($unnotified_matching->stud_id);
 
-            if ($lehr->is_evaluable && $stud->is_evaluable) { // checks if meanwhile a user has changed his status
+
+            $notify = true;
+            if(!is_null($schulart)) {
+                $notify = lcfirst($lehr->data()->schulart) == lcfirst($schulart);
+            };
+
+            if ($lehr->is_evaluable && $stud->is_evaluable && $notify) { // checks if meanwhile a user has changed his status
                 try {
 
                     $lehr->notify(new MatchingProposal());

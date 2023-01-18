@@ -119,13 +119,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // Tandemvorschläge
         Route::get('/matchable/{schulart?}', [MatchingController::class, 'matchable'])->name('users.matchable');
-        Route::get('/matchable/{schulart?}', [MatchingController::class, 'matchable'])->name('users.matchable');
-        Route::get('/matchable/{schulart?}', [MatchingController::class, 'matchable'])->name('users.matchable');
+        // Route::get('/matchable/{schulart?}', [MatchingController::class, 'matchable'])->name('users.matchable');
+        // Route::get('/matchable/{schulart?}', [MatchingController::class, 'matchable'])->name('users.matchable');
 
         // Wunschtandems
         Route::get('/matchings/preferences/{schulart?}', [MatchingController::class, 'preferences'])->name('matchings.preferences');
-        Route::get('/matchings/preferences/{schulart?}', [MatchingController::class, 'preferences'])->name('matchings.preferences');
-        Route::get('/matchings/preferences/{schulart?}', [MatchingController::class, 'preferences'])->name('matchings.preferences');
+        // Route::get('/matchings/preferences/{schulart?}', [MatchingController::class, 'preferences'])->name('matchings.preferences');
+        // Route::get('/matchings/preferences/{schulart?}', [MatchingController::class, 'preferences'])->name('matchings.preferences');
 
         Route::get('/accepted-matchings', [MatchingController::class, 'acceptedMatchings'])->name('acceptedMatchings');
 
@@ -135,7 +135,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::post('/addMatching', [MatchingController::class, 'addMatching'])->name('users.addMatching');
 
-        Route::get('/notifyMatchings', [MatchingController::class, 'notifyMatchings'])->name('notifyMatchings');
+        Route::get('/notifyMatchings/{schulart?}', [MatchingController::class, 'notifyMatchings'])->name('notifyMatchings');
 
         Route::get('/resetMatching/{lehr}/{stud}', [MatchingController::class, 'resetMatching'])->name('resetMatching');
 

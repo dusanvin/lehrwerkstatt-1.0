@@ -110,24 +110,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('users.stud');
 
         Route::get('/matchings', [MatchingController::class, 'matchings'])->name('users.matchings');
-        // Route::get('/matchings/{schulart?}', [MatchingController::class, 'matchings'])->name('users.matchings');
-        // Route::get('/matchings/{schulart?}', [MatchingController::class, 'matchings'])->name('users.matchings');
-        // Route::get('/matchings/{schulart?}', [MatchingController::class, 'matchings'])->name('users.matchings');
 
-
-        // Route::get('/matchable', [MatchingController::class, 'matchable'])->name('users.matchable');
+        
+        // Wunschtandems
+        Route::get('/matchings/preferences/{schulart?}', [MatchingController::class, 'preferences'])->name('matchings.preferences');
 
         // Tandemvorschläge
         Route::get('/matchable/{schulart?}', [MatchingController::class, 'matchable'])->name('users.matchable');
-        // Route::get('/matchable/{schulart?}', [MatchingController::class, 'matchable'])->name('users.matchable');
-        // Route::get('/matchable/{schulart?}', [MatchingController::class, 'matchable'])->name('users.matchable');
 
-        // Wunschtandems
-        Route::get('/matchings/preferences/{schulart?}', [MatchingController::class, 'preferences'])->name('matchings.preferences');
-        // Route::get('/matchings/preferences/{schulart?}', [MatchingController::class, 'preferences'])->name('matchings.preferences');
-        // Route::get('/matchings/preferences/{schulart?}', [MatchingController::class, 'preferences'])->name('matchings.preferences');
+        // Tandems
+        Route::get('/accepted-matchings/{schulart?}', [MatchingController::class, 'acceptedMatchings'])->name('acceptedMatchings');
 
-        Route::get('/accepted-matchings', [MatchingController::class, 'acceptedMatchings'])->name('acceptedMatchings');
 
         Route::get('/matchings/{lehr}/{stud}/{mse}', [MatchingController::class, 'setAssigned'])->name('matchings.setassigned');
 

@@ -18,6 +18,39 @@
 
         <div class="mx-auto rounded">
 
+                            <!-- Tabs -->
+
+                            <ul id="tabs" class="inline-flex w-full">
+
+                                @php
+                                    $selected = 'border-gray-700  bg-gray-800 border-b-4 -mb-px opacity-100';
+                                    $not_selected = 'opacity-50 bg-gray-800 border-gray-800 hover:bg-gray-600';
+                                @endphp 
+
+                                <li
+                                    class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t {{ isset($schulart) ? $not_selected : $selected }}">
+                                    <a href="{{ route('acceptedMatchings') }}">Alle Schularten</a>
+                                </li>
+
+                                <li
+                                    class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t {{ isset($schulart) && $schulart == 'grundschule' ? $selected : $not_selected }}">
+                                    <a href="{{ route('acceptedMatchings', ['schulart' => 'grundschule']) }}">Grundschule</a>
+                                </li>
+
+                                <li
+                                    class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t {{ isset($schulart) && $schulart == 'realschule' ? $selected : $not_selected }}">
+                                    <a href="{{ route('acceptedMatchings', ['schulart' => 'realschule']) }}">Realschule</a>
+                                </li>
+
+                                <li
+                                    class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t {{ isset($schulart) && $schulart == 'gymnasium' ? $selected : $not_selected }}">
+                                    <a href="{{ route('acceptedMatchings', ['schulart' => 'gymnasium']) }}">Gymnasium</a>
+                                </li>
+
+                            </ul>
+
+                            <!-- Tabs -->
+
             <!-- Übernommene Vorschläge -->
 
             <h1 class="font-semibold text-2xl text-gray-200">

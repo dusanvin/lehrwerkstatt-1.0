@@ -649,6 +649,32 @@ class MatchingController extends Controller
 
     public function acceptedMatchings(Request $request, $schulart = null)
     {
+
+        function filter_schulart($matchings, $schulart) {
+            $lehr = User::find($matchings->pluck('lehr_id'));
+            if(!is_null($schulart)) {
+                $lehr = $lehr->reject(function ($lehr, $key) use ($schulart) {
+                    return lcfirst($lehr->data()->schulart) != lcfirst($schulart);     
+                });
+            }
+    
+            $stud = User::find($matchings->pluck('stud_id'));
+            if(!is_null($schulart)) {
+                $stud = $stud->reject(function ($stud, $key) use ($schulart) {
+                    return lcfirst($stud->data()->schulart) != lcfirst($schulart);
+                });
+            }
+    
+            // nur lehrer und studenten der entsprechenden schulart 
+            $matchings = $matchings->filter(function ($m, $key) use ($lehr, $stud) {
+                // dd($lehr);
+                return $lehr->contains($m->lehr_id) || $stud->contains($m->stud_id);
+            });
+            $matchings = $matchings->values();
+
+            return $matchings;
+        }
+
         // unentschieden
         $notified_matchings = DB::table('lehr_stud')->where('is_notified', true)->where(function ($query) {
             $query->whereNull('is_accepted_lehr')->where('is_accepted_stud', true)->orWhere(function ($query) {
@@ -657,28 +683,8 @@ class MatchingController extends Controller
                 $query->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud');
             });
         })->get();
-
-        $lehr = User::find($notified_matchings->pluck('lehr_id'));
-        if(!is_null($schulart)) {
-            $lehr = $lehr->reject(function ($lehr, $key) use ($schulart) {
-                return lcfirst($lehr->data()->schulart) != lcfirst($schulart);     
-            });
-        }
-
-        $stud = User::find($notified_matchings->pluck('stud_id'));
-        if(!is_null($schulart)) {
-            $stud = $stud->reject(function ($stud, $key) use ($schulart) {
-                return lcfirst($stud->data()->schulart) != lcfirst($schulart);
-            });
-        }
-
-        // nur lehrer und studenten der entsprechenden schulart 
-        $notified_matchings = $notified_matchings->filter(function ($m, $key) use ($lehr, $stud) {
-            // dd($lehr);
-            return $lehr->contains($m->lehr_id) || $stud->contains($m->stud_id);
-        });
-        $notified_matchings = $notified_matchings->values();
-
+        
+        $notified_matchings = filter_schulart($notified_matchings, $schulart);
 
         foreach ($notified_matchings as $am) {
             $am->lehr = User::find($am->lehr_id);
@@ -688,6 +694,9 @@ class MatchingController extends Controller
 
         //  akzeptiert
         $accepted_matchings = DB::table('lehr_stud')->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->get();
+
+        $accepted_matchings = filter_schulart($accepted_matchings, $schulart);
+
         foreach ($accepted_matchings as $am) {
             $am->lehr = User::find($am->lehr_id);
             $am->stud = User::find($am->stud_id);
@@ -698,6 +707,9 @@ class MatchingController extends Controller
         $declined_matchings = DB::table('lehr_stud')->where(function ($query) {
             $query->where('is_accepted_lehr', false)->orWhere('is_accepted_stud', false);
         })->get();
+
+        $declined_matchings = filter_schulart($declined_matchings, $schulart);
+
         foreach ($declined_matchings as $am) {
             $am->lehr = User::find($am->lehr_id);
             $am->stud = User::find($am->stud_id);

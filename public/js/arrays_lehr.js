@@ -123,21 +123,23 @@ function exportCSV() {
 
 function exportLehrCSV(schulart) {
 
-    let csv = [[
-        'Bestätigung: Datenschutz',
-        'Bestätigung: Verbindliche Teilnahmebedingungen',
-        'Registrierungscode:',                             
-        'Bereits teilgenommen',
-        'Bewerbungsformular ist vollständig ausgefüllt und für das aktuelle Schuljahr ist eine Teilnahme weiterhin erwünscht',
-        'Die Lehrkraft wurde noch für kein Matching vorgeschlagen',
+    let csv = [
+        
+    [
+        'Liste aller Lehrkräfte mit vollständigem Bewerbungsformular, die im aktuellen Matchingverfahren teilnehmen und einen Vorschlag erwarten.'
+    ],
+        
+    [
+        // 'Bewerbungsformular ist vollständig ausgefüllt und für das aktuelle Schuljahr ist eine Teilnahme weiterhin erwünscht',
+        // 'Die Lehrkraft wurde noch für kein Matching vorgeschlagen',
         'Anrede',
         'Nachname',
         'Vorname',
         'E-Mail-Adresse',
         'Telefonnummer',
-        'Zustimmung der Schulleitung',
-        'Vor- und Nachname der Schulleitung',
-        'E-Mail-Adresse der Schulleitung',
+
+        'Wunschtandem',
+
         'Schulart',
         'Nur Realschule und Gymnasium: Fächer',
         'Landkreis der Schule',
@@ -146,7 +148,16 @@ function exportLehrCSV(schulart) {
         'Hausnummer',
         'Postleitzahl',
         'Ort',
-        'Wunschtandem',
+
+        'Zustimmung der Schulleitung',
+        'Vor- und Nachname der Schulleitung',
+        'E-Mail-Adresse der Schulleitung',
+
+        'Bereits teilgenommen',
+        'Registrierungscode:',
+        'Bestätigung: Datenschutz',
+        'Bestätigung: Verbindliche Teilnahmebedingungen',
+
         'Das Feedback, das ich meinem Lehr:werker bzw. meiner Lehr:werkerin gebe,',
         'Ich wünsche mir von meinem Lehr:werker bzw. meiner Lehr:werkerin kritische Rückmeldungen zu meinem Unterricht',
         'Mein*e Lehr:werker*in soll langsam ins selbstständige Unterrichten hineinwachsen und nicht von Anfang an Teile des Unterrichts übernehmen',
@@ -163,20 +174,17 @@ function exportLehrCSV(schulart) {
     window['lehr_' + schulart.toLowerCase()].forEach(user => {
         
         row = [
-            user.survey_data.datenschutz,
-            user.survey_data.teilnahmebedingungen,
-            user.survey_data.registrierungscode,
-            user.survey_data.bereits_teilgenommen,
-            user.is_evaluable ? 'Ja' : 'Nein',
-            user.is_available ? 'Ja' : 'Nein',
+            // user.is_evaluable ? 'Ja' : 'Nein',
+            // user.is_available ? 'Ja' : 'Nein',
+
             user.survey_data.anrede, 
             user.nachname, 
             user.vorname, 
             user.email, 
             user.survey_data.telefonnummer,
-            user.survey_data.zustimmung_schul,
-            user.survey_data.name_schul,
-            user.survey_data.email_schul,
+
+            user.survey_data.wunschtandem,
+
             user.survey_data.schulart,
             user.survey_data.faecher,
             user.survey_data.landkreis,
@@ -185,7 +193,16 @@ function exportLehrCSV(schulart) {
             user.survey_data.hausnummer,
             user.survey_data.postleitzahl,
             user.survey_data.ort,
-            user.survey_data.wunschtandem,
+
+            user.survey_data.zustimmung_schul,
+            user.survey_data.name_schul,
+            user.survey_data.email_schul,
+
+            user.survey_data.bereits_teilgenommen,
+            user.survey_data.registrierungscode,
+            user.survey_data.datenschutz,
+            user.survey_data.teilnahmebedingungen,
+
             _feedback[user.survey_data.feedback_an - 1].text,
             _feedback[user.survey_data.feedback_von- 1].text,
             _zutreffend[user.survey_data.eigenstaendigkeit - 1].text,

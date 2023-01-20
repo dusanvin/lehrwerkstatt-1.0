@@ -23,17 +23,25 @@ _freiraum = [
 
 function exportStudCSV(schulart) {
 
-    let csv = [[
-        'Bestätigung: Datenschutz',
-        'Bestätigung: Verbindliche Teilnahmebedingungen',    
-        'Bereits teilgenommen',
-        'Bewerbungsformular ist vollständig ausgefüllt und für das aktuelle Schuljahr ist eine Teilnahme weiterhin erwünscht',
-        'Der Student/Die Studentin befindet sich in keiner Vorauswahl und steht zur Verfügung',
+    let csv = [
+
+        [
+            'Liste aller Studierenden mit vollständigem Bewerbungsformular, die im aktuellen Matchingverfahren teilnehmen und einen Vorschlag erwarten.'
+        ],
+        
+        [
+        // 'Bewerbungsformular ist vollständig ausgefüllt und für das aktuelle Schuljahr ist eine Teilnahme weiterhin erwünscht',
+        // 'Der Student/Die Studentin befindet sich in keiner Vorauswahl und steht zur Verfügung',
+
         'Anrede',
         'Nachname',
         'Vorname',
         'Universitäre E-Mail-Adresse',
         'Telefonnummer',
+
+        'Optional: Name des Wunschtandempartners bzw. der Wunschtandempartnerin',
+        'Optional: Wunschort/e',
+
         'Pflichtpraktika',
         'Schulart', 
         'Ich befinde mich im Wintersemester 2023/24 in meinen für das Matching gewählten Fächern mindestens in folgendem Fachsemester:',
@@ -43,8 +51,11 @@ function exportStudCSV(schulart) {
         'Nur Grundschule: Studieren Sie das Didaktikfach ev./kath. Religionslehre?',
         'Ich kann die Lehr:werkstatt in folgenden Landkreisen ableisten (Mehrfachauswahl möglich)',
         'Bitte geben Sie an, welche Verkehrsmittel Ihnen zur Verfügung stehen (Mehrfachauswahl möglich)',
-        'Optional: Wunschort/e',
-        'Optional: Name des Wunschtandempartners bzw. der Wunschtandempartnerin',
+        
+        'Bereits teilgenommen',
+        'Bestätigung: Datenschutz',
+        'Bestätigung: Verbindliche Teilnahmebedingungen',    
+
         'Das Feedback, das mir mein*e Lehr:mentor*in gibt, sollte',
         'Beim Feedback, das ich meinem Lehr:mentor bzw. meiner Lehr:mentorin gebe, sage ich ganz direkt, was ich von seinem bzw. ihrem Unterricht halte',
         'Ich möchte langsam ins selbstständige Unterrichten hineinwachsen und nicht von Anfang an Teile des Unterrichts übernehmen',
@@ -61,16 +72,18 @@ function exportStudCSV(schulart) {
     window['stud_' + schulart.toLowerCase()].forEach(user => {
         
         row = [
-            user.survey_data.datenschutz,
-            user.survey_data.teilnahmebedingungen,
-            user.survey_data.bereits_teilgenommen,
-            user.is_evaluable ? 'Ja' : 'Nein',
-            user.is_available ? 'Ja' : 'Nein',
+            // user.is_evaluable ? 'Ja' : 'Nein',
+            // user.is_available ? 'Ja' : 'Nein',
+
             user.survey_data.anrede, 
             user.nachname, 
             user.vorname, 
             user.email, 
             user.survey_data.telefonnummer,
+
+            user.survey_data.wunschtandem,
+            user.survey_data.wunschorte,
+
             user.survey_data.pflichtpraktika,
             user.survey_data.schulart,
             user.survey_data.fachsemester,
@@ -80,8 +93,10 @@ function exportStudCSV(schulart) {
             user.survey_data.religionslehre,
             user.survey_data.landkreise,
             user.survey_data.verkehrsmittel,
-            user.survey_data.wunschorte,
-            user.survey_data.wunschtandem,
+
+            user.survey_data.bereits_teilgenommen,
+            user.survey_data.datenschutz,
+            user.survey_data.teilnahmebedingungen,
 
             _feedback[user.survey_data.feedback_an - 1].text,
             _feedback[user.survey_data.feedback_von- 1].text,

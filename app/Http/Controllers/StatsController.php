@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FilterController;
 use App\Models\User;
-use App\Models\Offer;
-use App\Models\Need;
+use App\Models\LehrStud;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -20,6 +19,7 @@ class StatsController extends Controller
     public function index()
     {
 
+        // all users where is_evaluable == true, wird für csv benötigt
         $users_lehr_grundschule = FilterController::getAllLehr('Grundschule');
         $users_lehr_realschule = FilterController::getAllLehr('Realschule');
         $users_lehr_gymnasium = FilterController::getAllLehr('Gymnasium');
@@ -28,6 +28,23 @@ class StatsController extends Controller
         $users_stud_realschule = FilterController::getAllStud('Realschule');
         $users_stud_gymnasium = FilterController::getAllStud('Gymnasium');
 
+        // nutzer die vorschlag erhalten haben
+        $accepted_matchings = LehrStud::with('lehr_id', 'stud_id')->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->get();
+        // dd($accepted_matchings);
+        $notified_matchings = LehrStud::with('lehr_id', 'stud_id')->where('is_notified', true)->where(function ($query) {
+            $query->whereNull('is_accepted_lehr')->where('is_accepted_stud', true)->orWhere(function ($query) {
+                $query->where('is_accepted_lehr', true)->whereNull('is_accepted_stud');
+            })->orWhere(function ($query) {
+                $query->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud');
+            });
+        })->get();
+        // dd($notified_matchings);
+
+        $declined_matchings = LehrStud::where(function ($query) {
+            $query->where('is_accepted_lehr', false)->orWhere('is_accepted_stud', false);
+        })->get();
+
+        // get counts of evaluable users
         $users_lehr_grundschule_count = $users_lehr_grundschule->count();
         $users_lehr_realschule_count = $users_lehr_realschule->count();
         $users_lehr_gymnasium_count = $users_lehr_gymnasium->count();
@@ -35,6 +52,7 @@ class StatsController extends Controller
         $users_stud_realschule_count = $users_stud_realschule->count();
         $users_stud_gymnasium_count = $users_stud_gymnasium->count();
 
+        // get count of users with verified email
         $user_count = DB::table('users')->whereNotNull('email_verified_at')->count();
 
         $admin_count = User::role('Admin')->whereNotNull('email_verified_at')->count();

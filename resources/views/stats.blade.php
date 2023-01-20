@@ -375,8 +375,6 @@
 
                     <!-- Aktuelles Verfahren -->
 
-                    <script src="{{ asset('js/arrays_lehr.js') }}"></script>
-
                     <div class="grid grid-cols-1 pt-1 sm:pt-8 gap-1 sm:gap-4">
 
                         <div class="mx-1 px-6 my-1 bg-gray-800 rounded-md pb-10">

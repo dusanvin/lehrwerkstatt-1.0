@@ -28,9 +28,9 @@ class StatsController extends Controller
         $users_stud_realschule = FilterController::getAllStud('Realschule');
         $users_stud_gymnasium = FilterController::getAllStud('Gymnasium');
 
-        // nutzer die vorschlag erhalten haben
+        // nutzer die vorschlag erhalten haben, aufgeteilt bzgl des status
         $accepted_matchings = LehrStud::with('lehr_id', 'stud_id')->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->get();
-        // dd($accepted_matchings);
+
         $notified_matchings = LehrStud::with('lehr_id', 'stud_id')->where('is_notified', true)->where(function ($query) {
             $query->whereNull('is_accepted_lehr')->where('is_accepted_stud', true)->orWhere(function ($query) {
                 $query->where('is_accepted_lehr', true)->whereNull('is_accepted_stud');
@@ -38,9 +38,9 @@ class StatsController extends Controller
                 $query->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud');
             });
         })->get();
-        // dd($notified_matchings);
 
-        $declined_matchings = LehrStud::where(function ($query) {
+
+        $declined_matchings = LehrStud::with('lehr_id', 'stud_id')->where(function ($query) {
             $query->where('is_accepted_lehr', false)->orWhere('is_accepted_stud', false);
         })->get();
 
@@ -276,6 +276,9 @@ class StatsController extends Controller
                 'users_stud_grundschule_count',
                 'users_stud_realschule_count',
                 'users_stud_gymnasium_count',
+                'accepted_matchings',
+                'notified_matchings',
+                'declined_matchings',
             )
         );
     }

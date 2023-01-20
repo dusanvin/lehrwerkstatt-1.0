@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\LehrStud;
 
 use DB;
 
@@ -238,9 +239,18 @@ class FilterController extends Controller
         ]);
     }
 
-
+    // für csv export, alle lehrkräfte, die zur auswahl stehen
     static function getAllLehr($schulart=null) {
         $users = User::where('role', 'Lehr')->where('is_evaluable', true)->orderBy('nachname', 'asc')->get();
+
+        // es müssen alle ids entfernt werden, die ausstehende oder akzeptierte vorschläge haben
+        // müssen aktuell hier nicht mehr berücksichtigt werden und werden separat aufgelistet in anderer csv
+        $lehr_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('lehr_id');
+        $stud_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('stud_id');
+
+        $users = $users->reject(function ($user) use ($lehr_ids_to_remove, $stud_ids_to_remove) {
+            return $lehr_ids_to_remove->contains($user->id) || $stud_ids_to_remove->contains($user->id);
+        });
 
         foreach ($users as $user) {
             $user->survey_data = json_decode($user->survey_data);
@@ -270,8 +280,19 @@ class FilterController extends Controller
     }
 
 
+    // für csv export, alle studenten, die zu auswahl stehen
     static function getAllStud($schulart=null) {
         $users = User::where('role', 'Stud')->where('is_evaluable', true)->orderBy('nachname', 'asc')->get();
+
+        // es müssen alle ids entfernt werden, die ausstehende oder akzeptierte vorschläge haben
+        // müssen aktuell hier nicht mehr berücksichtigt werden und werden separat aufgelistet in anderer csv
+        $lehr_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('lehr_id');
+        $stud_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('stud_id');
+
+        $users = $users->reject(function ($user) use ($lehr_ids_to_remove, $stud_ids_to_remove) {
+            return $lehr_ids_to_remove->contains($user->id) || $stud_ids_to_remove->contains($user->id);
+        });
+
 
         foreach ($users as $user) {
             $user->survey_data = json_decode($user->survey_data);

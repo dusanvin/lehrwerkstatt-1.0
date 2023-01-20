@@ -25,10 +25,12 @@ class StatsController extends Controller
         $users_lehr_grundschule = FilterController::getAllLehr('Grundschule');
         $users_lehr_realschule = FilterController::getAllLehr('Realschule');
         $users_lehr_gymnasium = FilterController::getAllLehr('Gymnasium');
+        $users_all_lehr = FilterController::getAllLehr();
 
         $users_stud_grundschule = FilterController::getAllStud('Grundschule');
         $users_stud_realschule = FilterController::getAllStud('Realschule');
         $users_stud_gymnasium = FilterController::getAllStud('Gymnasium');
+        $users_all_stud = FilterController::getAllStud();
 
         // nutzer die vorschlag erhalten haben, aufgeteilt bzgl des status
         $accepted_matchings = LehrStud::with('lehr_id', 'stud_id')->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->get();
@@ -46,13 +48,16 @@ class StatsController extends Controller
             $query->where('is_accepted_lehr', false)->orWhere('is_accepted_stud', false);
         })->get();
 
-        // get counts of evaluable users
+        // get counts of users
         $users_lehr_grundschule_count = $users_lehr_grundschule->count();
         $users_lehr_realschule_count = $users_lehr_realschule->count();
         $users_lehr_gymnasium_count = $users_lehr_gymnasium->count();
+        $users_all_lehr_count = $users_all_lehr->count();
+
         $users_stud_grundschule_count = $users_stud_grundschule->count();
         $users_stud_realschule_count = $users_stud_realschule->count();
         $users_stud_gymnasium_count = $users_stud_gymnasium->count();
+        $users_all_stud_count = $users_all_stud->count();
 
         // get count of users with verified email
         $user_count = DB::table('users')->whereNotNull('email_verified_at')->count();
@@ -269,15 +274,19 @@ class StatsController extends Controller
                 'users_lehr_grundschule',
                 'users_lehr_realschule',
                 'users_lehr_gymnasium',
+                'users_all_lehr',
                 'users_stud_grundschule',
                 'users_stud_realschule',
                 'users_stud_gymnasium',
+                'users_all_stud',
                 'users_lehr_grundschule_count',
                 'users_lehr_realschule_count',
                 'users_lehr_gymnasium_count',
+                'users_all_lehr_count',
                 'users_stud_grundschule_count',
                 'users_stud_realschule_count',
                 'users_stud_gymnasium_count',
+                'users_all_stud_count',
                 'accepted_matchings',
                 'notified_matchings',
                 'declined_matchings',

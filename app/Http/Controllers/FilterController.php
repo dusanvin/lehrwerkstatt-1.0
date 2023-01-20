@@ -241,33 +241,43 @@ class FilterController extends Controller
 
     // für csv export, alle lehrkräfte, die zur auswahl stehen
     static function getAllLehr($schulart=null) {
-        $users = User::where('role', 'Lehr')->where('is_evaluable', true)->orderBy('nachname', 'asc')->get();
 
-        // es müssen alle ids entfernt werden, die ausstehende oder akzeptierte vorschläge haben
-        // müssen aktuell hier nicht mehr berücksichtigt werden und werden separat aufgelistet in anderer csv
-        $lehr_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('lehr_id');
-        $stud_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('stud_id');
+        if(is_null($schulart)) {
+            $users = User::where('role', 'Lehr')->where('email_verified_at', '!=', null)->orderByRaw('FIELD(JSON_UNQUOTE(JSON_EXTRACT(survey_data, "$.schulart")), "Grundschule", "Realschule", "Gymnasium")')->orderBy('nachname', 'asc')->get();
 
-        $users = $users->reject(function ($user) use ($lehr_ids_to_remove, $stud_ids_to_remove) {
-            return $lehr_ids_to_remove->contains($user->id) || $stud_ids_to_remove->contains($user->id);
-        });
+            foreach ($users as $user) {
+                $user->survey_data = json_decode($user->survey_data);
+            }
+            
+        } else {
+            $users = User::where('role', 'Lehr')->where('is_evaluable', true)->orderBy('nachname', 'asc')->get();
 
-        foreach ($users as $user) {
-            $user->survey_data = json_decode($user->survey_data);
-        }
-
-        if ($schulart == 'Grundschule') {
-            $users = $users->reject(function ($user, $key) {
-                return $user->survey_data->schulart != 'Grundschule';
+            // es müssen alle ids entfernt werden, die ausstehende oder akzeptierte vorschläge haben
+            // müssen aktuell hier nicht mehr berücksichtigt werden und werden separat aufgelistet in anderer csv
+            $lehr_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('lehr_id');
+            $stud_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('stud_id');
+    
+            $users = $users->reject(function ($user) use ($lehr_ids_to_remove, $stud_ids_to_remove) {
+                return $lehr_ids_to_remove->contains($user->id) || $stud_ids_to_remove->contains($user->id);
             });
-        } elseif ($schulart == 'Realschule') {
-            $users = $users->reject(function ($user, $key) {
-                return $user->survey_data->schulart != 'Realschule';
-            });
-        } elseif ($schulart == 'Gymnasium') {
-            $users = $users->reject(function ($user, $key) {
-                return $user->survey_data->schulart != 'Gymnasium';
-            });
+    
+            foreach ($users as $user) {
+                $user->survey_data = json_decode($user->survey_data);
+            }
+    
+            if ($schulart == 'Grundschule') {
+                $users = $users->reject(function ($user, $key) {
+                    return $user->survey_data->schulart != 'Grundschule';
+                });
+            } elseif ($schulart == 'Realschule') {
+                $users = $users->reject(function ($user, $key) {
+                    return $user->survey_data->schulart != 'Realschule';
+                });
+            } elseif ($schulart == 'Gymnasium') {
+                $users = $users->reject(function ($user, $key) {
+                    return $user->survey_data->schulart != 'Gymnasium';
+                });
+            }
         }
 
         foreach ($users as $user) {
@@ -282,36 +292,46 @@ class FilterController extends Controller
 
     // für csv export, alle studenten, die zu auswahl stehen
     static function getAllStud($schulart=null) {
-        $users = User::where('role', 'Stud')->where('is_evaluable', true)->orderBy('nachname', 'asc')->get();
+        if(is_null($schulart)) {
+            $users = User::where('role', 'Stud')->where('email_verified_at', '!=', null)->orderByRaw('FIELD(JSON_UNQUOTE(JSON_EXTRACT(survey_data, "$.schulart")), "Grundschule", "Realschule", "Gymnasium")')->orderBy('nachname', 'asc')->get();
 
-        // es müssen alle ids entfernt werden, die ausstehende oder akzeptierte vorschläge haben
-        // müssen aktuell hier nicht mehr berücksichtigt werden und werden separat aufgelistet in anderer csv
-        $lehr_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('lehr_id');
-        $stud_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('stud_id');
+            foreach ($users as $user) {
+                $user->survey_data = json_decode($user->survey_data);
+            }
+            
+        } else {
+            $users = User::where('role', 'Stud')->where('is_evaluable', true)->orderBy('nachname', 'asc')->get();
 
-        $users = $users->reject(function ($user) use ($lehr_ids_to_remove, $stud_ids_to_remove) {
-            return $lehr_ids_to_remove->contains($user->id) || $stud_ids_to_remove->contains($user->id);
-        });
-
-
-        foreach ($users as $user) {
-            $user->survey_data = json_decode($user->survey_data);
+            // es müssen alle ids entfernt werden, die ausstehende oder akzeptierte vorschläge haben
+            // müssen aktuell hier nicht mehr berücksichtigt werden und werden separat aufgelistet in anderer csv
+            $lehr_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('lehr_id');
+            $stud_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('stud_id');
+    
+            $users = $users->reject(function ($user) use ($lehr_ids_to_remove, $stud_ids_to_remove) {
+                return $lehr_ids_to_remove->contains($user->id) || $stud_ids_to_remove->contains($user->id);
+            });
+    
+    
+            foreach ($users as $user) {
+                $user->survey_data = json_decode($user->survey_data);
+            }
+    
+            if ($schulart == 'Grundschule') {
+                $users = $users->reject(function ($user, $key) {
+                    return $user->survey_data->schulart != 'Grundschule';
+                });
+            } elseif ($schulart == 'Realschule') {
+                $users = $users->reject(function ($user, $key) {
+                    return $user->survey_data->schulart != 'Realschule';
+                });
+            } elseif ($schulart == 'Gymnasium') {
+                $users = $users->reject(function ($user, $key) {
+                    return $user->survey_data->schulart != 'Gymnasium';
+                });
+            }
+    
         }
-
-        if ($schulart == 'Grundschule') {
-            $users = $users->reject(function ($user, $key) {
-                return $user->survey_data->schulart != 'Grundschule';
-            });
-        } elseif ($schulart == 'Realschule') {
-            $users = $users->reject(function ($user, $key) {
-                return $user->survey_data->schulart != 'Realschule';
-            });
-        } elseif ($schulart == 'Gymnasium') {
-            $users = $users->reject(function ($user, $key) {
-                return $user->survey_data->schulart != 'Gymnasium';
-            });
-        }
-
+        
         foreach ($users as $user) {
             if (isset($user->survey_data->faecher))
                 $user->survey_data->faecher = implode(', ', $user->survey_data->faecher);

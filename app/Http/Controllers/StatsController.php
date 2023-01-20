@@ -62,10 +62,15 @@ class StatsController extends Controller
         // get count of users with verified email
         $user_count = DB::table('users')->whereNotNull('email_verified_at')->count();
 
-        $admin_count = User::role('Admin')->whereNotNull('email_verified_at')->count();
-        $mod_count = User::role('Moderierende')->whereNotNull('email_verified_at')->count();
-        $lehr_count = User::role('Lehr')->whereNotNull('email_verified_at')->count();
-        $stud_count = User::role('Stud')->whereNotNull('email_verified_at')->count();
+        // $admin_count = User::role('Admin')->whereNotNull('email_verified_at')->count();
+        // $mod_count = User::role('Moderierende')->whereNotNull('email_verified_at')->count();
+        // $lehr_count = User::role('Lehr')->whereNotNull('email_verified_at')->count();
+        // $stud_count = User::role('Stud')->whereNotNull('email_verified_at')->count();
+
+        $admin_count = User::where('role', 'Admin')->whereNotNull('email_verified_at')->count();
+        $mod_count = User::where('role', 'Moderierende')->whereNotNull('email_verified_at')->count();
+        $lehr_count = User::where('role', 'Lehr')->whereNotNull('email_verified_at')->count();
+        $stud_count = User::where('role', 'Stud')->whereNotNull('email_verified_at')->count();
 
 
         $lehr_incomplete_form = User::role('Lehr')->whereNotNull('email_verified_at')->where('is_evaluable', false)->count();

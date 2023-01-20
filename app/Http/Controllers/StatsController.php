@@ -19,7 +19,9 @@ class StatsController extends Controller
     public function index()
     {
 
-        // all users where is_evaluable == true, wird für csv benötigt
+        // alle neutzer mit is_evaluable == true
+        // und die keinen vorschlag erhalten haben, der ausstehend ist oder akzeptiert wurde
+        // wird für csv benötigt
         $users_lehr_grundschule = FilterController::getAllLehr('Grundschule');
         $users_lehr_realschule = FilterController::getAllLehr('Realschule');
         $users_lehr_gymnasium = FilterController::getAllLehr('Gymnasium');

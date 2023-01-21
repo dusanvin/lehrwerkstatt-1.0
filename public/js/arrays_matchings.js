@@ -42,6 +42,8 @@ function exportMatchingsCSV() {
         [
             'Liste aller Matchings nach Status aufgelistet. (L): Spalte nur für Lehrkräfte, (S): Spalte nur für Studenten'
         ],
+
+        [],
             
         [
             'Matchingnummer',
@@ -101,10 +103,26 @@ function exportMatchingsCSV() {
             'Wodurch sind Sie auf das Projekt aufmerksam geworden? (Mehrfachauswahl möglich)',
             'Ich freue mich im Rahmen der Lehr:werkstatt besonders auf (Mehrfachauswahl möglich)',
 
-        ]];
+        ],
+
+        [],
+
+        ['Angenommene Matchings'],
     
+    ];
     
+    index = 0;
     window['matchings'].forEach(user => {
+
+        if(index == window['accepted_matchings_count']*2) {
+            csv.push([]);
+            csv.push(['Ausstehende Matchings']);
+        }
+        if(index == (window['accepted_matchings_count'] + window['notified_matchings_count'])*2) {
+            csv.push([]);
+            csv.push(['Abgelehnte Matchings']);
+        }
+
         if(user.role == 'Lehr') {
             if(user.survey_data) {
                 row = [
@@ -165,6 +183,7 @@ function exportMatchingsCSV() {
                     user.survey_data.freue_auf,
                 ];
                 csv.push(row);
+                index++;
             }
         } else if(user.role == 'Stud') {
             if(user.survey_data) {
@@ -227,6 +246,7 @@ function exportMatchingsCSV() {
                     user.survey_data.freue_auf,
                 ];
                 csv.push(row);
+                index++;
             }
         }
     });

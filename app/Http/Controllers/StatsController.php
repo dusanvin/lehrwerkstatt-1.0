@@ -32,6 +32,17 @@ class StatsController extends Controller
         $users_stud_gymnasium = FilterController::getAllStud('Gymnasium');
         $users_all_stud = FilterController::getAllStud();
 
+        // get counts of users
+        $users_lehr_grundschule_count = $users_lehr_grundschule->count();
+        $users_lehr_realschule_count = $users_lehr_realschule->count();
+        $users_lehr_gymnasium_count = $users_lehr_gymnasium->count();
+        $users_all_lehr_count = $users_all_lehr->count();
+
+        $users_stud_grundschule_count = $users_stud_grundschule->count();
+        $users_stud_realschule_count = $users_stud_realschule->count();
+        $users_stud_gymnasium_count = $users_stud_gymnasium->count();
+        $users_all_stud_count = $users_all_stud->count();
+
         // nutzer die vorschlag erhalten haben, aufgeteilt bzgl des status
         $accepted_matchings = LehrStud::with('lehr_id', 'stud_id')->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->get();
 
@@ -43,21 +54,140 @@ class StatsController extends Controller
             });
         })->get();
 
-
         $declined_matchings = LehrStud::with('lehr_id', 'stud_id')->where(function ($query) {
             $query->where('is_accepted_lehr', false)->orWhere('is_accepted_stud', false);
         })->get();
 
-        // get counts of users
-        $users_lehr_grundschule_count = $users_lehr_grundschule->count();
-        $users_lehr_realschule_count = $users_lehr_realschule->count();
-        $users_lehr_gymnasium_count = $users_lehr_gymnasium->count();
-        $users_all_lehr_count = $users_all_lehr->count();
 
-        $users_stud_grundschule_count = $users_stud_grundschule->count();
-        $users_stud_realschule_count = $users_stud_realschule->count();
-        $users_stud_gymnasium_count = $users_stud_gymnasium->count();
-        $users_all_stud_count = $users_all_stud->count();
+        $matchings = [];
+
+        foreach($accepted_matchings as $matching) {
+            $lehr = $matching->lehr;
+            $lehr->survey_data = json_decode($lehr->survey_data);
+            if (isset($lehr->survey_data->faecher)) {
+                $lehr->survey_data->faecher = implode(', ', $lehr->survey_data->faecher);
+            }
+            $lehr['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
+
+            $stud = $matching->stud;
+            $stud->survey_data = json_decode($stud->survey_data);
+            if (isset($stud->survey_data->faecher)) {
+                $stud->survey_data->faecher = implode(', ', $stud->survey_data->faecher);
+            }
+            if (isset($stud->survey_data->landkreise)) {
+                $stud->survey_data->landkreise = implode(', ', $stud->survey_data->landkreise);
+            }
+            if (isset($stud->survey_data->anmerkungen)) {
+                $stud->survey_data->anmerkungen = str_replace('"', '', $stud->survey_data->anmerkungen);
+                $stud->survey_data->anmerkungen = str_replace("'", '', $stud->survey_data->anmerkungen);
+            }
+            
+            $stud['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
+            if(is_null($matching->is_accepted_lehr)) {
+                $lehr['matching_status'] = 'ausstehend';
+            } elseif(empty($matching->is_accepted_lehr)) {
+                $lehr['matching_status'] = 'abgelehnt';
+            } else {
+                $lehr['matching_status'] = 'akzeptiert';
+            }
+            if(is_null($matching->is_accepted_stud)) {
+                $stud['matching_status'] = 'ausstehend';
+            } elseif(empty($matching->is_accepted_stud)) {
+                $stud['matching_status'] = 'abgelehnt';
+            } else {
+                $stud['matching_status'] = 'akzeptiert';
+            }
+            $matchings[] = $lehr;
+            $matchings[] = $stud;
+        }
+
+        foreach($notified_matchings as $matching) {
+            $lehr = $matching->lehr;
+            $lehr->survey_data = json_decode($lehr->survey_data);
+            if (isset($lehr->survey_data->faecher)) {
+                $lehr->survey_data->faecher = implode(', ', $lehr->survey_data->faecher);
+            }
+            $lehr['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
+
+            $stud = $matching->stud;
+            $stud->survey_data = json_decode($stud->survey_data);
+            if (isset($stud->survey_data->faecher)) {
+                $stud->survey_data->faecher = implode(', ', $stud->survey_data->faecher);
+            }
+            if (isset($stud->survey_data->landkreise)) {
+                $stud->survey_data->landkreise = implode(', ', $stud->survey_data->landkreise);
+            }
+            if (isset($stud->survey_data->anmerkungen)) {
+                $stud->survey_data->anmerkungen = str_replace('"', '', $stud->survey_data->anmerkungen);
+                $stud->survey_data->anmerkungen = str_replace("'", '', $stud->survey_data->anmerkungen);
+            }
+            
+            $stud['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
+            if(is_null($matching->is_accepted_lehr)) {
+                $lehr['matching_status'] = 'ausstehend';
+            } elseif(empty($matching->is_accepted_lehr)) {
+                $lehr['matching_status'] = 'abgelehnt';
+            } else {
+                $lehr['matching_status'] = 'akzeptiert';
+            }
+            if(is_null($matching->is_accepted_stud)) {
+                $stud['matching_status'] = 'ausstehend';
+            } elseif(empty($matching->is_accepted_stud)) {
+                $stud['matching_status'] = 'abgelehnt';
+            } else {
+                $stud['matching_status'] = 'akzeptiert';
+            }
+            $matchings[] = $lehr;
+            $matchings[] = $stud;
+        }
+
+        foreach($declined_matchings as $matching) {
+            $lehr = $matching->lehr;
+            $lehr->survey_data = json_decode($lehr->survey_data);
+            if (isset($lehr->survey_data->faecher)) {
+                $lehr->survey_data->faecher = implode(', ', $lehr->survey_data->faecher);
+            }
+            $lehr['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
+
+            $stud = $matching->stud;
+            $stud->survey_data = json_decode($stud->survey_data);
+            if (isset($stud->survey_data->faecher)) {
+                $stud->survey_data->faecher = implode(', ', $stud->survey_data->faecher);
+            }
+            if (isset($stud->survey_data->landkreise)) {
+                $stud->survey_data->landkreise = implode(', ', $stud->survey_data->landkreise);
+            }
+            if (isset($stud->survey_data->anmerkungen)) {
+                $stud->survey_data->anmerkungen = str_replace('"', '', $stud->survey_data->anmerkungen);
+                $stud->survey_data->anmerkungen = str_replace("'", '', $stud->survey_data->anmerkungen);
+            }
+            
+            $stud['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
+            if(is_null($matching->is_accepted_lehr)) {
+                $lehr['matching_status'] = 'ausstehend';
+            } elseif(empty($matching->is_accepted_lehr)) {
+                $lehr['matching_status'] = 'abgelehnt';
+            } else {
+                $lehr['matching_status'] = 'akzeptiert';
+            }
+            if(is_null($matching->is_accepted_stud)) {
+                $stud['matching_status'] = 'ausstehend';
+            } elseif(empty($matching->is_accepted_stud)) {
+                $stud['matching_status'] = 'abgelehnt';
+            } else {
+                $stud['matching_status'] = 'akzeptiert';
+            }
+            $matchings[] = $lehr;
+            $matchings[] = $stud;
+        }
+
+        $matchings = collect($matchings);
+
+        $accepted_matchings_count = $accepted_matchings->count();
+        $notified_matchings_count = $notified_matchings->count();
+        $declined_matchings_count = $declined_matchings->count();
+
+
 
         // get count of users with verified email
         $user_count = DB::table('users')->whereNotNull('email_verified_at')->count();
@@ -276,6 +406,7 @@ class StatsController extends Controller
                 'stud_gymnasium',
                 'lehr_landkreise',
                 'stud_landkreise',
+
                 'users_lehr_grundschule',
                 'users_lehr_realschule',
                 'users_lehr_gymnasium',
@@ -292,9 +423,15 @@ class StatsController extends Controller
                 'users_stud_realschule_count',
                 'users_stud_gymnasium_count',
                 'users_all_stud_count',
+
                 'accepted_matchings',
                 'notified_matchings',
                 'declined_matchings',
+                'matchings',
+                'accepted_matchings_count',
+                'notified_matchings_count',
+                'declined_matchings_count',
+
             )
         );
     }

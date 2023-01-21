@@ -153,31 +153,23 @@
 
                                 <td class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap select-none">
 
-                                    @if(!empty($user->getRoleNames()))
-
-                                        @foreach($user->getRoleNames() as $v)
-
-                                            @if ($v == 'Admin')
+                                            @if (ucfirst($user->role) == 'Admin')
 
                                                 <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-red-600 rounded-full">Administration</label>
 
-                                            @elseif ($v == 'Moderierende')
+                                            @elseif (ucfirst($user->role) == 'Moderierende')
 
                                                 <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-pink-600 rounded-full">Moderation</label>
 
-                                            @elseif ($v == 'Helfende')
+                                            @elseif (ucfirst($user->role) == 'Stud')
 
                                                 <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-indigo-600 rounded-full">Hilfe</label>
 
-                                            @elseif ($v == 'Lehrende')
+                                            @elseif (ucfirst($user->role) == 'Lehr')
 
                                                 <label class="inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-medium leading-none text-white bg-yellow-600 rounded-full">Lehre</label>
 
                                             @endif
-
-                                        @endforeach
-
-                                    @endif
 
                                 </td>
 

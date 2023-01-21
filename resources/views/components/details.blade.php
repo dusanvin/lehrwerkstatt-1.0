@@ -93,6 +93,9 @@
                         <p> Wunschtandem:
                             {{ $lehr->data()->wunschtandem ?? '-' }}
                         </p>
+                        <p> Bereits teilgenommen:
+                            {{ $lehr->data()->bereits_teilgenommen ?? '-' }}
+                        </p>
                         <br>
                         <p> Name der Schule:</p>
                         <p>

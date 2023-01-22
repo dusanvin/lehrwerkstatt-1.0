@@ -487,6 +487,12 @@ class MatchingController extends Controller
 
         $matched_lehr = User::find(LehrStud::where('is_matched', true)->pluck('lehr_id'));
 
+        if(!is_null($schulart)) {
+            $matched_lehr = $matched_lehr->filter(function ($lehr, $key) use($schulart) {
+                return strtolower($lehr->data()->schulart) == strtolower($schulart);
+            });
+        }
+
         return view('matchings.preferences', compact(['schulart', 'matched_lehr', 'matchings_lehr_stud_wunschtandem', 'matchings_stud_lehr_wunschtandem']));
     }
 

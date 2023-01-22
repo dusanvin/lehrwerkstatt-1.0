@@ -375,6 +375,7 @@ const survey = new Survey.Model(json);
 if(typeof data !== 'undefined') {
     survey.data = data;
     survey.questionsOnPageMode = 'singlePage';
+    survey.completedHtml = '<p style="color:white">Vielen Dank für Ihre Teilnahme. Ihre Daten wurden erfolgreich gespeichert.<p>';
 }
 survey.locale = 'de';
 

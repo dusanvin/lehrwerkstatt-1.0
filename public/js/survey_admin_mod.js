@@ -47,6 +47,8 @@ const survey = new Survey.Model(json);
 survey.questionsOnPageMode = 'singlePage';
 if(typeof data !== 'undefined') {
     survey.data = data;
+    survey.completedHtml = '<p style="color:white">Ihre Daten wurden erfolgreich aktualisiert.<p>';
+
 }
 survey.locale = 'de';
 
@@ -65,6 +67,6 @@ survey.onComplete.add(function (sender) {
     });
     $.post(host + '/bewerbungsformular', {survey: sender.data})
     .then(function() {
-            console.log(sender.data);
+            // console.log(sender.data);
     });
     });

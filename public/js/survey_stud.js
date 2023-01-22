@@ -396,6 +396,6 @@ survey.onComplete.add(function (sender) {
     });
     $.post(host + '/bewerbungsformular', {survey: sender.data})
     .then(function() {
-            console.log(sender.data);
+            // console.log(sender.data);
     });
     });

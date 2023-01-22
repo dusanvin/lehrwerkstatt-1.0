@@ -401,8 +401,7 @@ survey.onComplete.add(function (sender) {
     });
     $.post(host + '/bewerbungsformular', {survey: sender.data})
     .then(function() {
-            console.log(sender.data);
-            document.querySelector('#surveyElement').textContent = "Result JSON:\n" + JSON.stringify(sender.data, null, 3);
+            // console.log(sender.data);
     });
     });
 

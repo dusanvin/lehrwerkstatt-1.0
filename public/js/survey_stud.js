@@ -124,26 +124,30 @@ verkehrsmittel = [
 
 var json = {
     title: "Bewerbungsformular Studierende",
-    pages: [{
+    pages: [
+        
+    //     {
+    //     elements: [{
+    //         name: "datenschutz",
+    //         type: "checkbox",
+    //         title: "Bestätigung: Datenschutz:",
+    //         isRequired: true,
+    //         choices: [
+    //             "Ich bestätige, dass ich die verlinkten <a href='https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzhinweise/' target='_blank' class='text-blue-400'>Datenschutzhinweise</a> sowie die <a href='https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzrechtliche-einwilligungserklarung/' target='_blank' class='text-blue-400'>datenschutzrechtliche Einwilligungserklärung</a> zur Kenntnis genommen habe, und willige in die Verarbeitung und Speicherung meiner Daten im Rahmen der Lehr:werkstatt ein."   
+    //         ]
+    //     }, {
+    //         name: "teilnahmebedingungen",
+    //         type: "checkbox",
+    //         title: "Bestätigung: Verbindliche Teilnahmebedingungen:",
+    //         isRequired: true,
+    //         choices: [
+    //             "Ich habe die verlinkten verbindlichen <a href='https://digillab.uni-augsburg.de/wp-content/uploads/2023/01/Verbindliche_TN-Bedingungen_UniA_2023.pdf' target='_blank' class='text-blue-400'>Teilnahmebedingungen</a> für den Jahrgang " + jahrgang + " zur Kenntnis genommen und akzeptiere sie."
+    //         ]
+    //     }]
+    // }, 
+    
+    {
         description: attention,
-        elements: [{
-            name: "datenschutz",
-            type: "checkbox",
-            title: "Bestätigung: Datenschutz:",
-            isRequired: true,
-            choices: [
-                "Ich bestätige, dass ich die verlinkten <a href='https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzhinweise/' target='_blank' class='text-blue-400'>Datenschutzhinweise</a> sowie die <a href='https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzrechtliche-einwilligungserklarung/' target='_blank' class='text-blue-400'>datenschutzrechtliche Einwilligungserklärung</a> zur Kenntnis genommen habe, und willige in die Verarbeitung und Speicherung meiner Daten im Rahmen der Lehr:werkstatt ein."   
-            ]
-        }, {
-            name: "teilnahmebedingungen",
-            type: "checkbox",
-            title: "Bestätigung: Verbindliche Teilnahmebedingungen:",
-            isRequired: true,
-            choices: [
-                "Ich habe die verlinkten verbindlichen <a href='https://digillab.uni-augsburg.de/wp-content/uploads/2023/01/Verbindliche_TN-Bedingungen_UniA_2023.pdf' target='_blank' class='text-blue-400'>Teilnahmebedingungen</a> für den Jahrgang " + jahrgang + " zur Kenntnis genommen und akzeptiere sie."
-            ]
-        }]
-    }, {
         elements: [{
             name: "anrede",
             type: "dropdown",

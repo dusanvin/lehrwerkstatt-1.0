@@ -154,7 +154,7 @@
 
                     <input id="privacy_statement" type="checkbox" name="privacy_statement">
 
-                        Ich habe die <a href="https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzrechtliche-einwilligungserklarung/" class="hover:underline text-yellow-600">Datenschutzerklärung</a> gelesen.*
+                        Ich bestätige, dass ich die verlinkten <a href="https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzhinweise/" class="hover:underline text-yellow-600">Datenschutzhinweise</a> sowie die <a href="https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzrechtliche-einwilligungserklarung/" class="hover:underline text-yellow-600">datenschutzrechtliche Einwilligungserklärung</a> zur Kenntnis genommen habe, und willige in die Verarbeitung und Speicherung meiner Daten im Rahmen der Lehr:werkstatt ein.*
 
                 </div>
 

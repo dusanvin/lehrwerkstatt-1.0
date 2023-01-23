@@ -85,7 +85,7 @@ aufmerksam_geworden = [
     "Universität",
     "Direktorat",
     "Kollegium",
-    "Empfehlung durch ehemalige*n Projektteilnehmer*in",
+    "Empfehlung durch ehemalige\\*n Projektteilnehmer\\*in",
     "Medien",
     "Sonstiges"
 ]
@@ -101,7 +101,7 @@ freue_auf = [
     "die Weiterbildung im Rahmen der Kompetenzworkshops.",
     "die kontinuierliche Zusammenarbeit über ein ganzes Schuljahr hinweg.",
     "die individuellere Förderung meiner Schüler*innen.",
-    "die Unterstützung durch meine*n Lehr:werker*in und eine mögliche Entlastung im alltäglichen Schulleben."
+    "die Unterstützung durch meine\\*n Lehr:werker\\*in und eine mögliche Entlastung im alltäglichen Schulleben."
 ]
 
 var json = {
@@ -257,7 +257,7 @@ var json = {
             name: "wunschtandem",
             type: "text",
             title: "Name des Wunschtandempartners bzw. der Wunschtandempartnerin:",
-            description: "Falls Sie bereits eine*n Studierende*n kennen, mit dem/der Sie gerne im Tandem arbeiten möchten, nennen Sie uns bitte den Namen der Person. Bitte füllen Sie auch in diesem Fall das Bewerbungsformular vollständig aus."
+            description: "Falls Sie bereits eine\\*n Studierende\\*n kennen, mit dem/der Sie gerne im Tandem arbeiten möchten, nennen Sie uns bitte den Namen der Person. Bitte füllen Sie auch in diesem Fall das Bewerbungsformular vollständig aus."
         }]
     }, {
         elements: [{
@@ -279,7 +279,7 @@ var json = {
         elements: [{
             name: "eigenstaendigkeit",
             type: "dropdown",
-            title: "Mein*e Lehr:werker*in soll langsam ins selbstständige Unterrichten hineinwachsen und nicht von Anfang an Teile des Unterrichts übernehmen:",
+            title: "Mein\\*e Lehr:werker\\*in soll langsam ins selbstständige Unterrichten hineinwachsen und nicht von Anfang an Teile des Unterrichts übernehmen:",
             isRequired: true,
             choices: zutreffend
         }]
@@ -295,7 +295,7 @@ var json = {
         elements: [{
             name: "freiraum",
             type: "dropdown",
-            title: "Ich wünsche mir eine*n Lehr:werker*in, die bzw. der:",
+            title: "Ich wünsche mir eine\\*n Lehr:werker\\*in, die bzw. der:",
             isRequired: true,
             choices: freiraum
         }]
@@ -311,7 +311,7 @@ var json = {
         elements: [{
             name: "belastbarkeit",
             type: "dropdown",
-            title: "Ich wünsche mir eine*n Lehr:werker*in, die bzw. der sich das Unterrichten in schwierigen bzw. höheren Klassen zutraut:",
+            title: "Ich wünsche mir eine\\*n Lehr:werker\\*in, die bzw. der sich das Unterrichten in schwierigen bzw. höheren Klassen zutraut:",
             isRequired: true,
             choices: zutreffend
         }]
@@ -344,7 +344,7 @@ var json = {
             title: "Bestätigung:",
             isRequired: true,
             choices: [
-                "Mit dem Absenden des Fragebogens bewerben Sie sich verbindlich für die Lehr:werkstatt im Schuljahr " + jahrgang + ". Wir suchen eine*n Tandempartner*in für Sie und gehen davon aus, dass Sie definitv teilnehmen möchten. Bitte bestätigen Sie durch Setzen des Häkchens: Ich habe den Hinweis zur Kenntnis genommen und möchte mich verbindlich bewerben."
+                "Mit dem Absenden des Fragebogens bewerben Sie sich verbindlich für die Lehr:werkstatt im Schuljahr " + jahrgang + ". Wir suchen eine\\*n Tandempartner\\*in für Sie und gehen davon aus, dass Sie definitv teilnehmen möchten. Bitte bestätigen Sie durch Setzen des Häkchens: Ich habe den Hinweis zur Kenntnis genommen und möchte mich verbindlich bewerben."
             ]
         }]
     } 

@@ -92,7 +92,7 @@ aufmerksam_geworden = [
     "Dozent*in an der Universität",
     "Mailing der Universität",
     "Kommiliton*innen",
-    "Empfehlung durch ehemalige*n Projektteilnehmer*in",
+    "Empfehlung durch ehemalige\\*n Projektteilnehmer\\*in",
     "Informationsveranstaltung",
     "Medien",
     "Sonstiges"
@@ -105,7 +105,7 @@ freue_auf = [
     "an Kompetenzworkshops teilzunehmen, in denen ich praxisnahes Wissen für meinen Einsatz in der Schule erwerbe.",
     "meine Praktikumserfahrungen in der Begleitveranstaltung zu reflektieren.",
     "andere Lehr:werker*innen kennenzulernen und mich mit ihnen auszutauschen.",
-    "Feedback zu meinem Unterricht und meiner Eignung als Lehrkraft zu erhalten, aber auch Rückmeldungen an meine*n Lehr:mentor*in zu geben.",
+    "Feedback zu meinem Unterricht und meiner Eignung als Lehrkraft zu erhalten, aber auch Rückmeldungen an meine\\*n Lehr:mentor\\*in zu geben.",
     "meinen Berufswunsch unter Realbedingungen zu reflektieren und darauf basierende eine fundierte Berufsentscheidung treffen zu können.",
     "kontinuierlich über ein Schuljahr hinweg zu entdecken, was es heißt Lehrer*in zu sein.",
     "verschiedene Klassen und Jahrgangsstufen über einen längeren Zeitraum kennenzulernen.",
@@ -274,7 +274,7 @@ var json = {
         elements: [{
             name: "feedback_von",
             type: "dropdown",
-            title: "Das Feedback, das mir mein*e Lehr:mentor*in geben sollte,:",
+            title: "Das Feedback, das mir mein\\*e Lehr:mentor\\*in geben sollte,:",
             isRequired: true,
             choices: feedback
         }]
@@ -306,7 +306,7 @@ var json = {
         elements: [{
             name: "freiraum",
             type: "dropdown",
-            title: "Ich wünsche mir eine*n Lehr:mentor*in, die bzw. der:",
+            title: "Ich wünsche mir eine\\*n Lehr:mentor\\*in, die bzw. der:",
             isRequired: true,
             choices: freiraum
         }]
@@ -361,7 +361,7 @@ var json = {
             title: "Bestätigung:",
             isRequired: true,
             choices: [
-                "Mit dem Absenden des Fragebogens bewerben Sie sich verbindlich für die Lehr:werkstatt im Schuljahr " + jahrgang + ". Wir suchen eine*n Tandempartner*in für Sie und gehen davon aus, dass Sie definitv teilnehmen möchten. Bitte bestätigen Sie durch Setzen des Häkchens: Ich habe den Hinweis zur Kenntnis genommen und möchte mich verbindlich bewerben."
+                "Mit dem Absenden des Fragebogens bewerben Sie sich verbindlich für die Lehr:werkstatt im Schuljahr " + jahrgang + ". Wir suchen eine\\*n Tandempartner\\*in für Sie und gehen davon aus, dass Sie definitv teilnehmen möchten. Bitte bestätigen Sie durch Setzen des Häkchens: Ich habe den Hinweis zur Kenntnis genommen und möchte mich verbindlich bewerben."
             ]
         }]
     } 

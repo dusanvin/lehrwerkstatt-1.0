@@ -219,7 +219,7 @@ function exportAllStudCSV() {
                 user.nachname, 
                 user.vorname, 
                 user.email, 
-                user.survey_data.telefonnummer,
+                '', // user.survey_data.telefonnummer,
 
                 'Nein',
 

@@ -49,7 +49,9 @@ class RegisteredUserController extends Controller
                     ->symbols()
                     ->mixedCase()
                     ->letters(),
-            ]
+            ],
+            'user_agreement' => 'accepted',
+            'privacy_statement' => 'accepted'
         ]);
 
         $role = $request->input('role');

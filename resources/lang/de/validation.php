@@ -108,7 +108,7 @@ return [
             'accepted' => ':attribute müssen akzeptiert werden.',
         ],
         'privacy_statement' => [
-            'accepted' => ':attribute muss gelesen und zur Kenntnis genommen worden sein.',
+            'accepted' => 'Die :attribute müssen gelesen und zur Kenntnis genommen worden sein.',
         ],
     ],
 
@@ -131,7 +131,7 @@ return [
         'name' => 'Name',
         'role' => 'Rolle',
         'user_agreement' => 'Nutzungsbedingungen',
-        'privacy_statement' => 'Datenschutzerklärung',
+        'privacy_statement' => 'Datenschutzhinweise und die datenschutzrechtliche Einwilligungserklärung',
         'confirm-password' => 'Passwortbestätigung',
         'vorname' => 'Vorname',
         'nachname' => 'Nachname',

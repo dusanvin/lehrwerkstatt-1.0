@@ -54,7 +54,7 @@ function exportStudCSV(schulart) {
         
         'Bereits teilgenommen',
         'Bestätigung: Verbindliche Teilnahmebedingungen',    
-        'Bestätigung: Datenschutz',
+        'Bestätigung: Datenschutzhinweise und datenschutzrechtliche Einwilligungserklärung',
 
         'Das Feedback, das mir mein*e Lehr:mentor*in gibt, sollte',
         'Beim Feedback, das ich meinem Lehr:mentor bzw. meiner Lehr:mentorin gebe, sage ich ganz direkt, was ich von seinem bzw. ihrem Unterricht halte',
@@ -157,7 +157,7 @@ function exportAllStudCSV() {
         
         'Bereits teilgenommen',
         'Bestätigung: Verbindliche Teilnahmebedingungen',    
-        'Bestätigung: Datenschutz',
+        'Bestätigung: Datenschutzhinweise und datenschutzrechtliche Einwilligungserklärung',
 
         'Das Feedback, das mir mein*e Lehr:mentor*in gibt, sollte',
         'Beim Feedback, das ich meinem Lehr:mentor bzw. meiner Lehr:mentorin gebe, sage ich ganz direkt, was ich von seinem bzw. ihrem Unterricht halte',

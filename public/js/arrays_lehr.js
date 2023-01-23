@@ -32,7 +32,7 @@ function exportCSV() {
 
     let csv = [[
         'Bestätigung: Verbindliche Teilnahmebedingungen',
-        'Bestätigung: Datenschutz',
+        'Bestätigung: Datenschutzhinweise und datenschutzrechtliche Einwilligungserklärung',
         'Registrierungscode:',                             
         'Bereits teilgenommen',
         'Bewerbungsformular ist vollständig ausgefüllt und für das aktuelle Schuljahr ist eine Teilnahme weiterhin erwünscht',
@@ -156,7 +156,7 @@ function exportLehrCSV(schulart) {
         'Bereits teilgenommen',
         'Registrierungscode:',
         'Bestätigung: Verbindliche Teilnahmebedingungen',
-        'Bestätigung: Datenschutz',
+        'Bestätigung: Datenschutzhinweise und datenschutzrechtliche Einwilligungserklärung',
 
         'Das Feedback, das ich meinem Lehr:werker bzw. meiner Lehr:werkerin gebe,',
         'Ich wünsche mir von meinem Lehr:werker bzw. meiner Lehr:werkerin kritische Rückmeldungen zu meinem Unterricht',
@@ -264,7 +264,7 @@ function exportAllLehrCSV() {
         'Bereits teilgenommen',
         'Registrierungscode:',
         'Bestätigung: Verbindliche Teilnahmebedingungen',
-        'Bestätigung: Datenschutz',
+        'Bestätigung: Datenschutzhinweise und datenschutzrechtliche Einwilligungserklärung',
 
         'Das Feedback, das ich meinem Lehr:werker bzw. meiner Lehr:werkerin gebe,',
         'Ich wünsche mir von meinem Lehr:werker bzw. meiner Lehr:werkerin kritische Rückmeldungen zu meinem Unterricht',

@@ -71,8 +71,8 @@ class RegisteredUserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'role' => $role,
-                'nutzungsbedingungen' => $request->input('nutzungsbedingungen'),
-                'datenschutz' => $request->input('datenschutz')
+                'nutzungsbedingungen' => true,
+                'datenschutz' => true
             ]);
             $user->assignRole($role);
         }

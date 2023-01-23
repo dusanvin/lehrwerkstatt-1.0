@@ -14,8 +14,8 @@ class AddNutzungsbedingungenDatenschutzToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('nutzungsbedingungen')->default(false);
-            $table->text('datenschutz')->default(false);
+            $table->boolean('nutzungsbedingungen')->default(false);
+            $table->boolean('datenschutz')->default(false);
         });
     }
 

@@ -90,8 +90,8 @@ function exportMatchingsCSV() {
             '(S) Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?',
     
             'Bereits teilgenommen',
-            'Bestätigung: Datenschutz',
             'Bestätigung: Verbindliche Teilnahmebedingungen',
+            'Bestätigung: Datenschutz',
     
             'Das Feedback, das ich meinem Lehr:werker bzw. meiner Lehr:werkerin gebe / Das Feedback, das mir mein*e Lehr:mentor*in gibt, sollte,',
             'Ich wünsche mir von meinem Lehr:werker bzw. meiner Lehr:werkerin kritische Rückmeldungen zu meinem Unterricht / Beim Feedback, das ich meinem Lehr:mentor bzw. meiner Lehr:mentorin gebe, sage ich ganz direkt, was ich von seinem bzw. ihrem Unterricht halte',
@@ -169,8 +169,8 @@ function exportMatchingsCSV() {
                     '',
     
                     user.survey_data.bereits_teilgenommen,
-                    user.survey_data.datenschutz,
-                    user.survey_data.teilnahmebedingungen,
+                    user.nutzungsbedingungen,
+                    user.datenschutz,
         
                     _feedback[user.survey_data.feedback_an - 1].text,
                     _feedback[user.survey_data.feedback_von- 1].text,
@@ -232,8 +232,8 @@ function exportMatchingsCSV() {
                     user.survey_data.anmerkungen,
     
                     user.survey_data.bereits_teilgenommen,
-                    user.survey_data.datenschutz,
-                    user.survey_data.teilnahmebedingungen,
+                    user.nutzungsbedingungen,
+                    user.datenschutz,
         
                     _feedback[user.survey_data.feedback_an - 1].text,
                     _feedback[user.survey_data.feedback_von- 1].text,

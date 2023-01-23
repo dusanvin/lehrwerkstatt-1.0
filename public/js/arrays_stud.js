@@ -53,8 +53,8 @@ function exportStudCSV(schulart) {
         'Bitte geben Sie an, welche Verkehrsmittel Ihnen zur Verfügung stehen (Mehrfachauswahl möglich)',
         
         'Bereits teilgenommen',
-        'Bestätigung: Datenschutz',
         'Bestätigung: Verbindliche Teilnahmebedingungen',    
+        'Bestätigung: Datenschutz',
 
         'Das Feedback, das mir mein*e Lehr:mentor*in gibt, sollte',
         'Beim Feedback, das ich meinem Lehr:mentor bzw. meiner Lehr:mentorin gebe, sage ich ganz direkt, was ich von seinem bzw. ihrem Unterricht halte',
@@ -95,8 +95,8 @@ function exportStudCSV(schulart) {
             user.survey_data.verkehrsmittel,
 
             user.survey_data.bereits_teilgenommen,
-            user.survey_data.datenschutz,
-            user.survey_data.teilnahmebedingungen,
+            user.nutzungsbedingungen,
+            user.datenschutz,
 
             _feedback[user.survey_data.feedback_an - 1].text,
             _feedback[user.survey_data.feedback_von- 1].text,
@@ -156,8 +156,8 @@ function exportAllStudCSV() {
         'Bitte geben Sie an, welche Verkehrsmittel Ihnen zur Verfügung stehen (Mehrfachauswahl möglich)',
         
         'Bereits teilgenommen',
-        'Bestätigung: Datenschutz',
         'Bestätigung: Verbindliche Teilnahmebedingungen',    
+        'Bestätigung: Datenschutz',
 
         'Das Feedback, das mir mein*e Lehr:mentor*in gibt, sollte',
         'Beim Feedback, das ich meinem Lehr:mentor bzw. meiner Lehr:mentorin gebe, sage ich ganz direkt, was ich von seinem bzw. ihrem Unterricht halte',
@@ -198,8 +198,8 @@ function exportAllStudCSV() {
                 user.survey_data.verkehrsmittel,
 
                 user.survey_data.bereits_teilgenommen,
-                user.survey_data.datenschutz,
-                user.survey_data.teilnahmebedingungen,
+                user.nutzungsbedingungen,
+                user.datenschutz,
 
                 _feedback[user.survey_data.feedback_an - 1].text,
                 _feedback[user.survey_data.feedback_von- 1].text,
@@ -223,34 +223,34 @@ function exportAllStudCSV() {
 
                 'Nein',
 
-                // user.survey_data.wunschtandem,
-                // user.survey_data.wunschorte,
+                '', // user.survey_data.wunschtandem,
+                '', // user.survey_data.wunschorte,
 
-                // user.survey_data.pflichtpraktika,
-                // user.survey_data.schulart,
-                // user.survey_data.fachsemester,
-                // user.survey_data.faecher,
-                // user.survey_data.ehem_schulname,
-                // user.survey_data.ehem_schulort,
-                // user.survey_data.religionslehre,
-                // user.survey_data.landkreise,
-                // user.survey_data.verkehrsmittel,
+                '', // user.survey_data.pflichtpraktika,
+                '', // user.survey_data.schulart,
+                '', // user.survey_data.fachsemester,
+                '', // user.survey_data.faecher,
+                '', // user.survey_data.ehem_schulname,
+                '', // user.survey_data.ehem_schulort,
+                '', // user.survey_data.religionslehre,
+                '', // user.survey_data.landkreise,
+                '', // user.survey_data.verkehrsmittel,
 
-                // user.survey_data.bereits_teilgenommen,
-                // user.survey_data.datenschutz,
-                // user.survey_data.teilnahmebedingungen,
+                '', // user.survey_data.bereits_teilgenommen,
+                user.nutzungsbedingungen,
+                user.datenschutz,
 
-                // _feedback[user.survey_data.feedback_an - 1].text,
-                // _feedback[user.survey_data.feedback_von- 1].text,
-                // _zutreffend[user.survey_data.eigenstaendigkeit - 1].text,
-                // _zutreffend[user.survey_data.improvisation - 1].text,
-                // _freiraum[user.survey_data.freiraum - 1].text,
-                // _zutreffend[user.survey_data.innovationsoffenheit - 1].text,
-                // _zutreffend[user.survey_data.belastbarkeit - 1].text,
-                // user.survey_data.praktika,
-                // user.survey_data.aufmerksam_geworden,
-                // user.survey_data.freue_auf,
-                // user.survey_data.anmerkungen
+                '', // _feedback[user.survey_data.feedback_an - 1].text,
+                '', // _feedback[user.survey_data.feedback_von- 1].text,
+                '', // _zutreffend[user.survey_data.eigenstaendigkeit - 1].text,
+                '', // _zutreffend[user.survey_data.improvisation - 1].text,
+                '', // _freiraum[user.survey_data.freiraum - 1].text,
+                '', // _zutreffend[user.survey_data.innovationsoffenheit - 1].text,
+                '', // _zutreffend[user.survey_data.belastbarkeit - 1].text,
+                '', // user.survey_data.praktika,
+                '', // user.survey_data.aufmerksam_geworden,
+                '', // user.survey_data.freue_auf,
+                '', // user.survey_data.anmerkungen
             ]
         }
 

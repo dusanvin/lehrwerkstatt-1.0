@@ -134,7 +134,7 @@
 
             <div class="mt-4">
 
-                <div class="block text-sm text-gray-700">
+                <div id="element_nutzungsbedingungen" class="block text-sm text-gray-700">
 
                     <input id="user_agreement" type="checkbox" name="user_agreement">
 
@@ -150,7 +150,7 @@
 
             <div class="mt-4">
 
-                <div class="block text-sm text-gray-700">
+                <div id="element_datenschutz" class="block text-sm text-gray-700">
 
                     <input id="privacy_statement" type="checkbox" name="privacy_statement">
 
@@ -161,6 +161,20 @@
             </div>
 
             <!-- Datenschutzerklärung -->
+
+            <input type=hidden id="in_nutzungsbedingungen" name="nutzungsbedingungen">
+            <input type=hidden id="in_datenschutz" name="datenschutz">
+
+            <script>
+                element_nutzungsbedingungen = document.getElementById('element_nutzungsbedingungen');
+                in_nutzungsbedingungen = document.getElementById('in_nutzungsbedingungen');
+                in_nutzungsbedingungen.value = element_nutzungsbedingungen.innerHTML;
+
+                element_datenschutz = document.getElementById('element_datenschutz');
+                in_datenschutz = document.getElementById('in_datenschutz');
+                in_datenschutz.value = element_datenschutz.innerHTML;
+            </script>
+
 
             <!-- Hinweis -->
 

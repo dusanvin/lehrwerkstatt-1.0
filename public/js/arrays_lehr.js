@@ -31,8 +31,8 @@ _berufserfahrung = [
 function exportCSV() {
 
     let csv = [[
-        'Bestätigung: Datenschutz',
         'Bestätigung: Verbindliche Teilnahmebedingungen',
+        'Bestätigung: Datenschutz',
         'Registrierungscode:',                             
         'Bereits teilgenommen',
         'Bewerbungsformular ist vollständig ausgefüllt und für das aktuelle Schuljahr ist eine Teilnahme weiterhin erwünscht',
@@ -70,8 +70,8 @@ function exportCSV() {
     users.forEach(user => {
         
         row = [
-            user.survey_data.datenschutz,
-            user.survey_data.teilnahmebedingungen,
+            user.nutzungsbedingungen,
+            user.datenschutz,
             user.survey_data.registrierungscode,
             user.survey_data.bereits_teilgenommen,
             user.is_evaluable ? 'Ja' : 'Nein',
@@ -155,8 +155,8 @@ function exportLehrCSV(schulart) {
 
         'Bereits teilgenommen',
         'Registrierungscode:',
-        'Bestätigung: Datenschutz',
         'Bestätigung: Verbindliche Teilnahmebedingungen',
+        'Bestätigung: Datenschutz',
 
         'Das Feedback, das ich meinem Lehr:werker bzw. meiner Lehr:werkerin gebe,',
         'Ich wünsche mir von meinem Lehr:werker bzw. meiner Lehr:werkerin kritische Rückmeldungen zu meinem Unterricht',
@@ -200,8 +200,8 @@ function exportLehrCSV(schulart) {
 
             user.survey_data.bereits_teilgenommen,
             user.survey_data.registrierungscode,
-            user.survey_data.datenschutz,
-            user.survey_data.teilnahmebedingungen,
+            user.nutzungsbedingungen,
+            user.datenschutz,
 
             _feedback[user.survey_data.feedback_an - 1].text,
             _feedback[user.survey_data.feedback_von- 1].text,
@@ -263,8 +263,8 @@ function exportAllLehrCSV() {
 
         'Bereits teilgenommen',
         'Registrierungscode:',
-        'Bestätigung: Datenschutz',
         'Bestätigung: Verbindliche Teilnahmebedingungen',
+        'Bestätigung: Datenschutz',
 
         'Das Feedback, das ich meinem Lehr:werker bzw. meiner Lehr:werkerin gebe,',
         'Ich wünsche mir von meinem Lehr:werker bzw. meiner Lehr:werkerin kritische Rückmeldungen zu meinem Unterricht',
@@ -308,8 +308,8 @@ function exportAllLehrCSV() {
     
                 user.survey_data.bereits_teilgenommen,
                 user.survey_data.registrierungscode,
-                user.survey_data.datenschutz,
-                user.survey_data.teilnahmebedingungen,
+                user.nutzungsbedingungen,
+                user.datenschutz,
     
                 _feedback[user.survey_data.feedback_an - 1].text,
                 _feedback[user.survey_data.feedback_von- 1].text,
@@ -332,36 +332,36 @@ function exportAllLehrCSV() {
     
                 'Nein',
     
-                // user.survey_data.wunschtandem,
+                '', // user.survey_data.wunschtandem,
     
-                // user.survey_data.schulart,
-                // user.survey_data.faecher,
-                // user.survey_data.landkreis,
-                // user.survey_data.schulname,
-                // user.survey_data.strasse,
-                // user.survey_data.hausnummer,
-                // user.survey_data.postleitzahl,
-                // user.survey_data.ort,
+                '', // user.survey_data.schulart,
+                '', // user.survey_data.faecher,
+                '', // user.survey_data.landkreis,
+                '', // user.survey_data.schulname,
+                '', // user.survey_data.strasse,
+                '', // user.survey_data.hausnummer,
+                '', // user.survey_data.postleitzahl,
+                '', // user.survey_data.ort,
     
-                // user.survey_data.zustimmung_schul,
-                // user.survey_data.name_schul,
-                // user.survey_data.email_schul,
+                '', // user.survey_data.zustimmung_schul,
+                '', // user.survey_data.name_schul,
+                '', // user.survey_data.email_schul,
     
-                // user.survey_data.bereits_teilgenommen,
-                // user.survey_data.registrierungscode,
-                // user.survey_data.datenschutz,
-                // user.survey_data.teilnahmebedingungen,
+                '', // user.survey_data.bereits_teilgenommen,
+                '', // user.survey_data.registrierungscode,
+                user.nutzungsbedingungen,
+                user.datenschutz,
     
-                // _feedback[user.survey_data.feedback_an - 1].text,
-                // _feedback[user.survey_data.feedback_von- 1].text,
-                // _zutreffend[user.survey_data.eigenstaendigkeit - 1].text,
-                // _zutreffend[user.survey_data.improvisation - 1].text,
-                // _freiraum[user.survey_data.freiraum - 1].text,
-                // _zutreffend[user.survey_data.innovationsoffenheit - 1].text,
-                // _zutreffend[user.survey_data.belastbarkeit - 1].text,
-                // _berufserfahrung[user.survey_data.berufserfahrung - 1].text,
-                // user.survey_data.aufmerksam_geworden,
-                // user.survey_data.freue_auf,
+                '', // _feedback[user.survey_data.feedback_an - 1].text,
+                '', // _feedback[user.survey_data.feedback_von- 1].text,
+                '', // _zutreffend[user.survey_data.eigenstaendigkeit - 1].text,
+                '', // _zutreffend[user.survey_data.improvisation - 1].text,
+                '', // _freiraum[user.survey_data.freiraum - 1].text,
+                '', // _zutreffend[user.survey_data.innovationsoffenheit - 1].text,
+                '', // _zutreffend[user.survey_data.belastbarkeit - 1].text,
+                '', // _berufserfahrung[user.survey_data.berufserfahrung - 1].text,
+                '', // user.survey_data.aufmerksam_geworden,
+                '', // user.survey_data.freue_auf,
             ]
         }
 

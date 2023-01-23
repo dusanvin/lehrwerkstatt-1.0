@@ -33,6 +33,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'is_evaluable',
         'assigned',
         'last_login_at',
+        'nutzungsbedingungen',
+        'datenschutz'
     ];
 
     /**

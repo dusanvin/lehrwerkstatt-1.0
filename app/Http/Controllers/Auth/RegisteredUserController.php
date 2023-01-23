@@ -54,6 +54,9 @@ class RegisteredUserController extends Controller
             'privacy_statement' => 'accepted'
         ]);
 
+
+
+
         $role = $request->input('role');
         if (in_array($role, ['Lehr', 'Stud'])) {
             if ($role == 'Lehr') {
@@ -67,7 +70,9 @@ class RegisteredUserController extends Controller
             $user = User::create([
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'role' => $role
+                'role' => $role,
+                'nutzungsbedingungen' => $request->input('nutzungsbedingungen'),
+                'datenschutz' => $request->input('datenschutz')
             ]);
             $user->assignRole($role);
         }

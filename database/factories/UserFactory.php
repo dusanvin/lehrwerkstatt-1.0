@@ -89,6 +89,7 @@ class UserFactory extends Factory
             'nachname' => $this->faker->lastName,
             'telefonnummer' => $this->faker->randomNumber(5, true),
             'wunschtandem' => $this->faker->firstName.' '.$this->faker->lastName,
+            'bereits_teilgenommen' => $this->faker->randomElement(['Ja', 'Nein']),
 
             'eigenstaendigkeit' => $this->faker->randomElement($zutreffend),
             'improvisation' => $this->faker->randomElement($zutreffend),

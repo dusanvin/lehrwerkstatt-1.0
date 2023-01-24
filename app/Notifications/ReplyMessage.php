@@ -42,7 +42,7 @@ class ReplyMessage extends Notification
     {
         return (new MailMessage)
                     ->subject('Lehr:werkstatt - Sie haben eine neue Nachricht!')
-                    ->line('Jemand hat Ihnen eine Antwort geschrieben! Um diese zu lesen loggen Sie sich bitte auf unserem Matchingportal ein.')
+                    ->line('Jemand hat Ihnen eine Antwort geschrieben! Um diese zu lesen, loggen Sie sich bitte auf unserem Matchingportal ein.')
                     ->action('Zur Nachricht', url('/profile/messages'))
                     ->line('Vielen Dank für Ihr Mitwirken!');
     }

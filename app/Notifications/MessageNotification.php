@@ -43,7 +43,7 @@ class MessageNotification extends Notification
     {
         return (new MailMessage)
                     ->subject('Sie haben eine neue Nachricht!')
-                    ->line('Auf unserer Webseite können Sie mehr erfahren.')
+                    ->line('Sie haben eine neue Nachricht auf unserem Matchingportal erhalten. Auf unserer Webseite können Sie mehr erfahren.')
                     ->action('Zur Nachricht', url('/profile/matchings'));
                     // ->line('Vielen Dank für Ihr Mitwirken!');
     }

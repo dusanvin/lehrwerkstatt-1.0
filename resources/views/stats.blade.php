@@ -437,7 +437,7 @@
                                                 <script>
                                                     var lehr_grundschule = "{{ $users_lehr_grundschule->toJson() }}";
                                                     var lehr_grundschule = lehr_grundschule.split('&quot;').join('\"');
-                                                    var lehr_grundschule = lehr_grundschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                    var lehr_grundschule = lehr_grundschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
                                                     var lehr_grundschule = JSON.parse(lehr_grundschule);
                                                 </script>
 
@@ -470,7 +470,7 @@
                                             <script>
                                                 var lehr_realschule = "{{ $users_lehr_realschule->toJson() }}";
                                                 var lehr_realschule = lehr_realschule.split('&quot;').join('\"');
-                                                var lehr_realschule = lehr_realschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                var lehr_realschule = lehr_realschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
                                                 var lehr_realschule = JSON.parse(lehr_realschule);
                                             </script>
 
@@ -535,7 +535,7 @@
                                             <script>
                                                     var lehr_gymnasium = "{{ $users_lehr_gymnasium->toJson() }}";
                                                     var lehr_gymnasium = lehr_gymnasium.split('&quot;').join('\"');
-                                                    var lehr_gymnasium = lehr_gymnasium.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                    var lehr_gymnasium = lehr_gymnasium.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
                                                     var lehr_gymnasium = JSON.parse(lehr_gymnasium);
                                             </script>
 
@@ -638,7 +638,7 @@
                                                 <script>
                                                         var stud_grundschule = "{{ $users_stud_grundschule->toJson() }}";
                                                         var stud_grundschule = stud_grundschule.split('&quot;').join('\"');
-                                                        var stud_grundschule = stud_grundschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                        var stud_grundschule = stud_grundschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
                                                         var stud_grundschule = JSON.parse(stud_grundschule);
                                                 </script>
 
@@ -671,7 +671,7 @@
                                             <script>
                                                 var stud_realschule = "{{ $users_stud_realschule->toJson() }}";
                                                 var stud_realschule = stud_realschule.split('&quot;').join('\"');
-                                                var stud_realschule = stud_realschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                var stud_realschule = stud_realschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
                                                 var stud_realschule = JSON.parse(stud_realschule);
                                             </script>
 
@@ -736,7 +736,7 @@
                                             <script>
                                                 var stud_gymnasium = "{{ $users_stud_gymnasium->toJson() }}";
                                                 var stud_gymnasium = stud_gymnasium.split('&quot;').join('\"');
-                                                var stud_gymnasium = stud_gymnasium.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                var stud_gymnasium = stud_gymnasium.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
                                                 var stud_gymnasium = JSON.parse(stud_gymnasium);
                                             </script>
 
@@ -855,7 +855,8 @@
                                                 <script>
                                                     var matchings = "{{ $matchings->toJson() }}";
                                                     var matchings = matchings.split('&quot;').join('\"');
-                                                    var matchings = matchings.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                    var matchings = matchings.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
+                                                    // var matchings = matchings.replaceAll("\\", "");
                                                     var matchings = JSON.parse(matchings);
                                                     console.log(matchings);
 
@@ -935,7 +936,7 @@
                                                 <script>
                                                     var all_lehr = "{{ $users_all_lehr->toJson() }}";
                                                     var all_lehr = all_lehr.split('&quot;').join('\"');
-                                                    var all_lehr = all_lehr.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                    var all_lehr = all_lehr.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
                                                     var all_lehr = JSON.parse(all_lehr);
                                                 </script>
 
@@ -994,7 +995,7 @@
                                                 <script>
                                                         var all_stud = "{{ $users_all_stud->toJson() }}";
                                                         var all_stud = all_stud.split('&quot;').join('\"');
-                                                        var all_stud = all_stud.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>");
+                                                        var all_stud = all_stud.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
                                                         var all_stud = JSON.parse(all_stud);
                                                 </script>
 

@@ -118,7 +118,8 @@ function exportMatchingsCSV() {
             csv.push([]);
             csv.push(['Ausstehende Matchings']);
         }
-        if(index == (window['accepted_matchings_count'] + window['notified_matchings_count'])*2) {
+
+        if(index == (parseInt(window['accepted_matchings_count']) + parseInt(window['notified_matchings_count']))*2) {
             csv.push([]);
             csv.push(['Abgelehnte Matchings']);
         }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Notifications\MessageNotification;
+use App\Notifications\ReplyMessage;
 use App\User;
 use Carbon\Carbon;
 use Cmgmyr\Messenger\Models\Message;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+
 
 class MessagesController extends Controller
 {
@@ -143,7 +145,21 @@ class MessagesController extends Controller
         $participant->last_read = new Carbon;
         $participant->save();
 
+        $user_ids = $thread->participantsUserIds();
+        foreach($user_ids as $user_id) {
+            if($user_id != Auth::id()) {
+                try {
+                    $user = User::find($user_id);
+                    $user->notify(new ReplyMessage());
+                }
+                catch(Exception $e) {
+                    // ungültige email, SwiftTransportException
+                } 
+            }
+        }
+
         // Recipients
+        // hier tut sich nichts wenn man auf bereits begonnenen gesprächsverlauf antwortet
         if (Request::has('recipients')) {
             $thread->addParticipant(Request::input('recipients'));
         }

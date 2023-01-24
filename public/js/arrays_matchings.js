@@ -92,6 +92,7 @@ function exportMatchingsCSV() {
             'Bereits teilgenommen',
             'Bestätigung: Verbindliche Teilnahmebedingungen',
             'Bestätigung: Datenschutzhinweise und datenschutzrechtliche Einwilligungserklärung',
+            'Bestätigung: Teilnahmebedingungen',
     
             'Das Feedback, das ich meinem Lehr:werker bzw. meiner Lehr:werkerin gebe / Das Feedback, das mir mein*e Lehr:mentor*in gibt, sollte,',
             'Ich wünsche mir von meinem Lehr:werker bzw. meiner Lehr:werkerin kritische Rückmeldungen zu meinem Unterricht / Beim Feedback, das ich meinem Lehr:mentor bzw. meiner Lehr:mentorin gebe, sage ich ganz direkt, was ich von seinem bzw. ihrem Unterricht halte',
@@ -172,6 +173,7 @@ function exportMatchingsCSV() {
                     user.survey_data.bereits_teilgenommen,
                     user.nutzungsbedingungen,
                     user.datenschutz,
+                    user.survey_data.teilnahmebedingungen,
         
                     _feedback[user.survey_data.feedback_an - 1].text,
                     _feedback[user.survey_data.feedback_von- 1].text,
@@ -235,6 +237,7 @@ function exportMatchingsCSV() {
                     user.survey_data.bereits_teilgenommen,
                     user.nutzungsbedingungen,
                     user.datenschutz,
+                    user.survey_data.teilnahmebedingungen,
         
                     _feedback[user.survey_data.feedback_an - 1].text,
                     _feedback[user.survey_data.feedback_von- 1].text,

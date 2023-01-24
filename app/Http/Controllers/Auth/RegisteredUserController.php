@@ -50,7 +50,7 @@ class RegisteredUserController extends Controller
                     ->mixedCase()
                     ->letters(),
             ],
-            'user_agreement' => 'accepted',
+            // 'user_agreement' => 'accepted',
             'privacy_statement' => 'accepted'
         ]);
 
@@ -71,7 +71,7 @@ class RegisteredUserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'role' => $role,
-                'nutzungsbedingungen' => true,
+                // 'nutzungsbedingungen' => true,
                 'datenschutz' => true
             ]);
             $user->assignRole($role);

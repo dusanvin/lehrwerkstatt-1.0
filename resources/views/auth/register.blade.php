@@ -132,7 +132,7 @@
 
             <!-- Nutzungsbedingungen -->
 
-            <div class="mt-4">
+            <!-- <div class="mt-4">
 
                 <div class="block text-sm text-gray-700">
 
@@ -142,7 +142,7 @@
 
                 </div>
 
-            </div>
+            </div> -->
 
             <!-- Nutzungsbedingungen -->
 

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\LehrStud;
 use DB;
 use App\Notifications\MatchingProposal;
+use App\Notifications\MatchingSuccess;
 use Carbon\Carbon;
 use Exception;
 use Fhaculty\Graph\Graph;
@@ -550,6 +551,25 @@ class MatchingController extends Controller
             // ]);
             // $stud->matchable()->updateExistingPivot($stud, ['is_accepted_stud' => true]);
             $stud->matchable()->syncWithoutDetaching([$lehr->id => ['is_accepted_stud' => true]]);
+        }
+
+        $matching = LehrStud::where('lehr_id', $lehr->id)->where('stud_id', $stud->id)->first();
+        if($matching->is_accepted_lehr && $matching->is_accepted_stud) {
+            try {
+
+                $lehr->notify(new MatchingSuccess());
+            } catch (\Exception $e) {
+                $lehr->email_still_exists = false;
+                $lehr->save();
+            }
+
+            try {
+
+                $stud->notify(new MatchingSuccess());
+            } catch (\Exception $e) {
+                $stud->email_still_exists = false;
+                $stud->save();
+            }
         }
 
         return back();

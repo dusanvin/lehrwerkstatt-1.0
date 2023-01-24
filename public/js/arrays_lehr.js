@@ -33,6 +33,7 @@ function exportCSV() {
     let csv = [[
         'Bestätigung: Verbindliche Teilnahmebedingungen',
         'Bestätigung: Datenschutzhinweise und datenschutzrechtliche Einwilligungserklärung',
+        'Bestätigung: Teilnahmebedingungen',
         'Registrierungscode:',                             
         'Bereits teilgenommen',
         'Bewerbungsformular ist vollständig ausgefüllt und für das aktuelle Schuljahr ist eine Teilnahme weiterhin erwünscht',
@@ -72,6 +73,7 @@ function exportCSV() {
         row = [
             user.nutzungsbedingungen,
             user.datenschutz,
+            user.survey_data.teilnahmebedingungen,
             user.survey_data.registrierungscode,
             user.survey_data.bereits_teilgenommen,
             user.is_evaluable ? 'Ja' : 'Nein',
@@ -157,6 +159,7 @@ function exportLehrCSV(schulart) {
         'Registrierungscode:',
         'Bestätigung: Verbindliche Teilnahmebedingungen',
         'Bestätigung: Datenschutzhinweise und datenschutzrechtliche Einwilligungserklärung',
+        'Bestätigung: Teilnahmebedingungen',
 
         'Das Feedback, das ich meinem Lehr:werker bzw. meiner Lehr:werkerin gebe,',
         'Ich wünsche mir von meinem Lehr:werker bzw. meiner Lehr:werkerin kritische Rückmeldungen zu meinem Unterricht',
@@ -202,6 +205,7 @@ function exportLehrCSV(schulart) {
             user.survey_data.registrierungscode,
             user.nutzungsbedingungen,
             user.datenschutz,
+            user.survey_data.teilnahmebedingungen,
 
             _feedback[user.survey_data.feedback_an - 1].text,
             _feedback[user.survey_data.feedback_von- 1].text,
@@ -265,6 +269,7 @@ function exportAllLehrCSV() {
         'Registrierungscode:',
         'Bestätigung: Verbindliche Teilnahmebedingungen',
         'Bestätigung: Datenschutzhinweise und datenschutzrechtliche Einwilligungserklärung',
+        'Bestätigung: Teilnahmebedingungen',
 
         'Das Feedback, das ich meinem Lehr:werker bzw. meiner Lehr:werkerin gebe,',
         'Ich wünsche mir von meinem Lehr:werker bzw. meiner Lehr:werkerin kritische Rückmeldungen zu meinem Unterricht',
@@ -310,6 +315,7 @@ function exportAllLehrCSV() {
                 user.survey_data.registrierungscode,
                 user.nutzungsbedingungen,
                 user.datenschutz,
+                user.survey_data.teilnahmebedingungen,
     
                 _feedback[user.survey_data.feedback_an - 1].text,
                 _feedback[user.survey_data.feedback_von- 1].text,
@@ -351,6 +357,7 @@ function exportAllLehrCSV() {
                 '', // user.survey_data.registrierungscode,
                 user.nutzungsbedingungen,
                 user.datenschutz,
+                '', // user.survey_data.teilnahmebedingungen,
     
                 '', // _feedback[user.survey_data.feedback_an - 1].text,
                 '', // _feedback[user.survey_data.feedback_von- 1].text,

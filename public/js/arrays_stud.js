@@ -55,6 +55,7 @@ function exportStudCSV(schulart) {
         'Bereits teilgenommen',
         'Bestätigung: Verbindliche Teilnahmebedingungen',    
         'Bestätigung: Datenschutzhinweise und datenschutzrechtliche Einwilligungserklärung',
+        'Bestätigung: Teilnahmebedingungen',
 
         'Das Feedback, das mir mein*e Lehr:mentor*in gibt, sollte',
         'Beim Feedback, das ich meinem Lehr:mentor bzw. meiner Lehr:mentorin gebe, sage ich ganz direkt, was ich von seinem bzw. ihrem Unterricht halte',
@@ -97,6 +98,7 @@ function exportStudCSV(schulart) {
             user.survey_data.bereits_teilgenommen,
             user.nutzungsbedingungen,
             user.datenschutz,
+            user.survey_data.teilnahmebedingungen,
 
             _feedback[user.survey_data.feedback_an - 1].text,
             _feedback[user.survey_data.feedback_von- 1].text,
@@ -158,6 +160,7 @@ function exportAllStudCSV() {
         'Bereits teilgenommen',
         'Bestätigung: Verbindliche Teilnahmebedingungen',    
         'Bestätigung: Datenschutzhinweise und datenschutzrechtliche Einwilligungserklärung',
+        'Bestätigung: Teilnahmebedingungen',
 
         'Das Feedback, das mir mein*e Lehr:mentor*in gibt, sollte',
         'Beim Feedback, das ich meinem Lehr:mentor bzw. meiner Lehr:mentorin gebe, sage ich ganz direkt, was ich von seinem bzw. ihrem Unterricht halte',
@@ -200,6 +203,7 @@ function exportAllStudCSV() {
                 user.survey_data.bereits_teilgenommen,
                 user.nutzungsbedingungen,
                 user.datenschutz,
+                user.survey_data.teilnahmebedingungen,
 
                 _feedback[user.survey_data.feedback_an - 1].text,
                 _feedback[user.survey_data.feedback_von- 1].text,
@@ -239,6 +243,7 @@ function exportAllStudCSV() {
                 '', // user.survey_data.bereits_teilgenommen,
                 user.nutzungsbedingungen,
                 user.datenschutz,
+                '', // user.survey_data.teilnahmebedingungen,
 
                 '', // _feedback[user.survey_data.feedback_an - 1].text,
                 '', // _feedback[user.survey_data.feedback_von- 1].text,

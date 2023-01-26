@@ -132,6 +132,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/resetMatching/{lehr}/{stud}', [MatchingController::class, 'resetMatching'])->name('resetMatching');
 
+        Route::get('/profile/details/{id}', [ProfileController::class, 'show'])
+        ->name('profile.details');
+
     });
 
 
@@ -140,8 +143,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     /* Profilbereich */
     Route::group(['middleware' => ['role:Admin|Moderierende|Lehr|Stud']], function () {
 
-        Route::get('/profile/details/{id}', [ProfileController::class, 'show'])
-            ->name('profile.details');
+        // Route::get('/profile/details/{id}', [ProfileController::class, 'show'])
+        //     ->name('profile.details');
 
         Route::get('/profile/edit', [ProfileController::class, 'edit'])
             ->name('profile.edit');

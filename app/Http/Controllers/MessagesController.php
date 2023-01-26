@@ -120,6 +120,10 @@ class MessagesController extends Controller
 
     public function update($id)
     {
+        if(empty(Request::input('message'))) {
+            return back();
+        }
+        
         try {
             $thread = Thread::findOrFail($id);
         } catch (ModelNotFoundException $e) {

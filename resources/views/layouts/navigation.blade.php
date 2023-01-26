@@ -208,7 +208,8 @@
                         <div class="pl-3">
 
                             <p class="navigation-element text-sm font-semibold">
-                                {{ Config::get('site_vars.nachrichten') }}</p>
+                                {{ Config::get('site_vars.nachrichten') }}
+                                ({{ Auth::user()->unread_messages }})</p>
 
                             <!--<p class="navigation-element text-xs">{{ Config::get('site_vars.nachrichtenInfo') }}</p>-->
 

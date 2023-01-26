@@ -12,6 +12,7 @@ use Cmgmyr\Messenger\Traits\Messagable;
 use DB;
 
 use App\Notifications\CustomVerifyEmail;
+use Cmgmyr\Messenger\Models\Thread;
 
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -176,6 +177,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getNotifiedUserAttribute() {
         return $this->matchable()->where('is_notified', true)->first();
+    }
+
+    public function getUnreadMessagesAttribute() {
+        $threads = Thread::forUser($this->id)
+            ->latest('updated_at')
+            ->simplePaginate(5);
+        $count = 0;
+        foreach($threads as $thread) {
+            $count += $thread->userUnreadMessagesCount($this->id);
+        }
+        return $count;
     }
 
 

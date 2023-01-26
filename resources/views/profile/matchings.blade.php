@@ -129,7 +129,7 @@
 
                             <td class="px-6 py-4 whitespace-no-wrap align-top">
 
-                                <a class="flex hover:underline text-white hover:text-gray-100" href="{{ route('profile.details', ['id' => $user->notified_user->id]) }}">
+                                <a class="flex text-white hover:text-gray-100">
 
                                     {{ $user->notified_user->vorname }} {{ $user->notified_user->nachname }}
 

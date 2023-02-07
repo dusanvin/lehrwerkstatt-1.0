@@ -126,7 +126,7 @@ var json = {
             title: "Bestätigung: Verbindliche Teilnahmebedingungen:",
             isRequired: true,
             choices: [
-                "Ich habe die verlinkten verbindlichen <a href='https://digillab.uni-augsburg.de/wp-content/uploads/2023/01/Verbindliche_TN-Bedingungen_UniA_2023.pdf' target='_blank' class='text-blue-400'>Teilnahmebedingungen</a> für den Jahrgang " + jahrgang + " zur Kenntnis genommen und akzeptiere sie."
+                "Ich habe die verlinkten verbindlichen <a href='https://digillab.uni-augsburg.de/wp-content/uploads/2023/02/Verbindliche_TN-Bedingungen_UniA_2023.pdf' target='_blank' class='text-blue-400'>Teilnahmebedingungen</a> für den Jahrgang " + jahrgang + " zur Kenntnis genommen und akzeptiere sie."
             ]
         }]
     }, 

@@ -26,7 +26,7 @@
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal">
 
-                            ALPHA-Version 0.1: 06/2022
+                            Version 1.0: 02/2023
 
                         </p>
 

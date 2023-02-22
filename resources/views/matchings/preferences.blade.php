@@ -570,7 +570,7 @@
                                                     class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
 
                                                     {{ $index + 1 }}
-
+                                                    
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-no-wrap">
@@ -587,10 +587,10 @@
                                                 <td class="px-6 py-4 whitespace-no-wrap">
 
                                                     <div class="text-xs sm:text-sm leading-5 text-gray-400">
-                                                        {{ $matching->stud->data()->wunschtandem ?? '' }}
-                                                        /<br>
+                                                        @if(isset($matching->stud->data()->wunschtandem))
+                                                            {{ $matching->stud->data()->wunschtandem }} /<br>
+                                                        @endif                                                        
                                                         {{ $matching->stud->data()->wunschorte ?? '' }}
-
                                                     </div>
 
                                                 </td>

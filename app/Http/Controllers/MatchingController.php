@@ -462,7 +462,6 @@ class MatchingController extends Controller
 
     public function preferences($schulart = null)
     {
-
         $this->updateMatchings();
 
         $assigned_lehr_ids = LehrStud::where('is_matched', true)->orWhere('is_notified', true)->pluck('lehr_id');
@@ -476,12 +475,12 @@ class MatchingController extends Controller
 
 
         $wunschtandem_lehr = $unassigned->where('role', 'Lehr')->reject(function ($lehr, $key) {
-            !isset($lehr->data()->wunschtandem);
+            return !isset($lehr->data()->wunschtandem);
         });
         $matchings_lehr_stud_wunschtandem = LehrStud::where('is_matched', false)->where('is_notified', false)->whereIn('lehr_id', $wunschtandem_lehr->pluck('id'))->orderBy('lehr_id', 'asc')->orderBy('mse', 'asc')->get();
 
         $wunschtandem_stud = $unassigned->where('role', 'Stud')->reject(function ($stud, $key) {
-            !(isset($stud->data()->wunschtandem) || isset($stud->data()->wunschorte));
+            return !(isset($stud->data()->wunschtandem) || isset($stud->data()->wunschorte));
         });
         $matchings_stud_lehr_wunschtandem = LehrStud::where('is_matched', false)->where('is_notified', false)->whereIn('stud_id', $wunschtandem_stud->pluck('id'))->orderBy('stud_id', 'asc')->orderBy('mse', 'asc')->get();
 

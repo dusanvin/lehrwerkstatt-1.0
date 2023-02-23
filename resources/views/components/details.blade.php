@@ -107,6 +107,10 @@
                         <p> Landkreis:
                             {{ $lehr->data()->landkreis ?? '-' }}
                         </p>
+                        <br>
+                        <p> Anmerkungen:
+                            {{ $lehr->data()->anmerkungen ?? '-' }}
+                        </p>
 
                     </div>
 

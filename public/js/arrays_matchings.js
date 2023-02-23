@@ -87,7 +87,6 @@ function exportMatchingsCSV() {
             '(S) Ich kann die Lehr:werkstatt in folgenden Landkreisen ableisten (Mehrfachauswahl möglich)',
             '(S) Bitte geben Sie an, welche Verkehrsmittel Ihnen zur Verfügung stehen (Mehrfachauswahl möglich)',
             '(S) Welche(s) der folgenden Praktika haben Sie im Rahmen Ihres Lehramtsstudiums bereits absolviert?',
-            '(S) Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?',
     
             'Bereits teilgenommen',
             'Bestätigung: Verbindliche Teilnahmebedingungen',
@@ -103,6 +102,7 @@ function exportMatchingsCSV() {
             'Ich wünsche mir eine*n Lehr:werker*in, die bzw. der sich das Unterrichten in schwierigen bzw. höheren Klassen zutraut / Ich traue mir zu, mit meinem Lehr:mentor bzw. meiner Lehr:mentorin in „schwierigen“ oder höheren Klassen zu unterrichten.',
             'Wodurch sind Sie auf das Projekt aufmerksam geworden? (Mehrfachauswahl möglich)',
             'Ich freue mich im Rahmen der Lehr:werkstatt besonders auf (Mehrfachauswahl möglich)',
+            'Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?',
 
         ],
 
@@ -158,8 +158,7 @@ function exportMatchingsCSV() {
                     user.survey_data.registrierungscode,
                     _berufserfahrung[user.survey_data.berufserfahrung - 1].text,
     
-                    // nur studenten, 10 spalten freilassen
-                    '',
+                    // nur studenten, 9 spalten freilassen
                     '',
                     '',
                     '',
@@ -184,6 +183,7 @@ function exportMatchingsCSV() {
                     _zutreffend[user.survey_data.belastbarkeit - 1].text,
                     user.survey_data.aufmerksam_geworden,
                     user.survey_data.freue_auf,
+                    user.survey_data.anmerkungen,
                 ];
                 csv.push(row);
                 index++;
@@ -232,7 +232,6 @@ function exportMatchingsCSV() {
                     user.survey_data.landkreise,
                     user.survey_data.verkehrsmittel,
                     user.survey_data.praktika,
-                    user.survey_data.anmerkungen,
     
                     user.survey_data.bereits_teilgenommen,
                     user.nutzungsbedingungen,
@@ -248,6 +247,7 @@ function exportMatchingsCSV() {
                     _zutreffend[user.survey_data.belastbarkeit - 1].text,
                     user.survey_data.aufmerksam_geworden,
                     user.survey_data.freue_auf,
+                    user.survey_data.anmerkungen,
                 ];
                 csv.push(row);
                 index++;

@@ -339,6 +339,12 @@ var json = {
         }]
     }, {
         elements: [{
+            name: "anmerkungen",
+            type: "text",
+            title: "Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?:"
+        }]
+    }, {
+        elements: [{
             name: "bestaetigung",
             type: "checkbox",
             title: "Bestätigung:",

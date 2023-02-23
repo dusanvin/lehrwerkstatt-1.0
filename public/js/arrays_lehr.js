@@ -65,7 +65,7 @@ function exportCSV() {
         'Ihre Berufserfahrung: Ich bin Lehrer*in seit',
         'Wodurch sind Sie auf das Projekt aufmerksam geworden? (Mehrfachauswahl möglich)',
         'Ich freue mich im Rahmen der Lehr:werkstatt besonders auf (Mehrfachauswahl möglich)',
-        // 'Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?',
+        'Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?',
     ]];
 
     users.forEach(user => {
@@ -105,7 +105,7 @@ function exportCSV() {
             _berufserfahrung[user.survey_data.berufserfahrung - 1].text,
             user.survey_data.aufmerksam_geworden,
             user.survey_data.freue_auf,
-            // user.survey_data.anmerkungen
+            user.survey_data.anmerkungen,
         ]
 
         csv.push(row);
@@ -171,7 +171,7 @@ function exportLehrCSV(schulart) {
         'Ihre Berufserfahrung: Ich bin Lehrer*in seit',
         'Wodurch sind Sie auf das Projekt aufmerksam geworden? (Mehrfachauswahl möglich)',
         'Ich freue mich im Rahmen der Lehr:werkstatt besonders auf (Mehrfachauswahl möglich)',
-        // 'Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?',
+        'Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?',
     ]];
 
     window['lehr_' + schulart.toLowerCase()].forEach(user => {
@@ -217,6 +217,7 @@ function exportLehrCSV(schulart) {
             _berufserfahrung[user.survey_data.berufserfahrung - 1].text,
             user.survey_data.aufmerksam_geworden,
             user.survey_data.freue_auf,
+            user.survey_data.anmerkungen,
         ]
 
         csv.push(row);
@@ -281,7 +282,7 @@ function exportAllLehrCSV() {
         'Ihre Berufserfahrung: Ich bin Lehrer*in seit',
         'Wodurch sind Sie auf das Projekt aufmerksam geworden? (Mehrfachauswahl möglich)',
         'Ich freue mich im Rahmen der Lehr:werkstatt besonders auf (Mehrfachauswahl möglich)',
-        // 'Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?',
+        'Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?',
     ]];
 
     window['all_lehr'].forEach(user => {
@@ -327,6 +328,7 @@ function exportAllLehrCSV() {
                 _berufserfahrung[user.survey_data.berufserfahrung - 1].text,
                 user.survey_data.aufmerksam_geworden,
                 user.survey_data.freue_auf,
+                user.survey_data.anmerkungen,
             ]
         } else {
             row = [
@@ -369,6 +371,7 @@ function exportAllLehrCSV() {
                 '', // _berufserfahrung[user.survey_data.berufserfahrung - 1].text,
                 '', // user.survey_data.aufmerksam_geworden,
                 '', // user.survey_data.freue_auf,
+                '', // user.survey_data.anmerkungen,
             ]
         }
 

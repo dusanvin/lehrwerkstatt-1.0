@@ -55,7 +55,7 @@
                     <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
 
                         <p>{{ $stud->vorname }} {{ $stud->nachname }}</p>
-                        <a href="mailto:stark.jennie@example.net"
+                        <a href="mailto:{{ $stud->email }}"
                             class="text-gray-400 hover:text-gray-100 break-words">{{ $stud->email }}</a>
                         <br>
                         <br>
@@ -86,8 +86,8 @@
                     <div class="text-xs sm:text-sm leading-5 font-medium text-white w-64 text-gray-400">
 
                         <p>{{ $lehr->vorname }} {{ $lehr->nachname }}</p>
-                        <a href="mailto:hermiston.karianne@example.com"
-                            class="text-gray-400 hover:text-gray-100 break-words">hermiston.karianne@example.com</a>
+                        <a href="mailto:{{ $lehr->email }}"
+                            class="text-gray-400 hover:text-gray-100 break-words">{{ $lehr->email }}</a>
                         <br>
                         <br>
                         <p> Wunschtandem:

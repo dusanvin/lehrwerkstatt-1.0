@@ -199,7 +199,7 @@
                                                 {{ $lehr->matched_user->vorname }} {{ $lehr->matched_user->nachname }}
                                             </div>
 
-                                            <a href="mailto:{{ $lehr->email }}"
+                                            <a href="mailto:{{ $lehr->matched_user->email }}"
                                                 class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $lehr->matched_user->email }}
                                             </a>
 

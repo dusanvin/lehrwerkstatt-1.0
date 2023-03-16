@@ -536,7 +536,7 @@
                                             <div class="text-xs sm:text-sm leading-5 font-medium text-white">
                                                 {{ $matching->stud->vorname }} {{ $matching->stud->nachname }}</div>
 
-                                            <a href="mailto:{{ $matching->lehr->email }}"
+                                            <a href="mailto:{{ $matching->stud->email }}"
                                                 class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->stud->email }}</a>
 
                                         </td>
@@ -809,7 +809,7 @@
                                             <div class="text-xs sm:text-sm leading-5 font-medium text-white">
                                                 {{ $matching->stud->vorname }} {{ $matching->stud->nachname }}</div>
 
-                                            <a href="mailto:{{ $matching->lehr->email }}"
+                                            <a href="mailto:{{ $matching->stud->email }}"
                                                 class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->stud->email }}</a>
 
                                         </td>

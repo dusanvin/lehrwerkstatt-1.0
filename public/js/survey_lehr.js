@@ -412,10 +412,13 @@ survey.onComplete.add(function (sender) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    if(sender.data.anmerkungen) {
+        survey.setValue('anmerkungen', sender.data.anmerkungen.replaceAll('"', "'"));
+    }
     $.post(host + '/bewerbungsformular', {survey: sender.data})
     .then(function() {
-            // console.log(sender.data);
+            // console.log(sender.data.anmerkungen);
     });
-    });
+});
 
 survey.onServerValidateQuestions.add(validate);

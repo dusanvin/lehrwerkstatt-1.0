@@ -90,6 +90,7 @@ class MatchingController extends Controller
     }
 
 
+    // HAUPTFUNKTION (bei Klick auf Tandemvorschläge, View: matchable.blade.php)
     public function matchable($schulart = null)
     {
         $graph = new Graph();
@@ -146,7 +147,7 @@ class MatchingController extends Controller
             $edge->setCapacity(1);
 
             // $lehr_vertex->setAttribute('graphviz.shape', 'box');
-            $lehr_vertex->setAttribute('graphviz.label', $lehr->vorname . ' ' . $lehr->nachname);
+            // $lehr_vertex->setAttribute('graphviz.label', $lehr->vorname . ' ' . $lehr->nachname); X
             // $lehr_vertex->setAttribute('graphviz.fontname', 'arial');
             // $lehr_vertex->setAttribute('graphviz.fontcolor', 'white');
             // $lehr_vertex->setAttribute('graphviz.color', 'grey');
@@ -161,7 +162,7 @@ class MatchingController extends Controller
             $edge->setCapacity(1);
 
             // $stud_vertex->setAttribute('graphviz.shape', 'box');
-            $stud_vertex->setAttribute('graphviz.label', $stud->vorname . ' ' . $stud->nachname);
+            // $stud_vertex->setAttribute('graphviz.label', $stud->vorname . ' ' . $stud->nachname); X
         }
 
         foreach ($available_lehr as $lehr) {
@@ -179,7 +180,7 @@ class MatchingController extends Controller
                             $edge->setCapacity(1);
 
                             $mse = $this->mse($lehr, $stud);
-                            $edge->setAttribute('graphviz.label', $mse . ', ');
+                            // $edge->setAttribute('graphviz.label', $mse . ', '); X
                             // $lehr->matchable()->attach($stud, ['mse' => $mse]);
                             $lehr->matchable()->syncWithoutDetaching([$stud->id => ['mse' => $mse]]);
                         } elseif (array_intersect($lehr->survey_data->faecher, $stud->survey_data->faecher)) {
@@ -189,7 +190,7 @@ class MatchingController extends Controller
                             $edge->setCapacity(1);
 
                             $mse = $this->mse($lehr, $stud);
-                            $edge->setAttribute('graphviz.label', $mse . ', ');
+                            // $edge->setAttribute('graphviz.label', $mse . ', '); X
                             // $lehr->matchable()->attach($stud, ['mse' => $mse]);
                             $lehr->matchable()->syncWithoutDetaching([$stud->id => ['mse' => $mse]]);
                         }
@@ -207,8 +208,8 @@ class MatchingController extends Controller
                 $lehr_vertex = $edge->getVertexEnd();
                 foreach ($lehr_vertex->getEdges() as $edge) {
                     if ($edge->getFlow() == 1 && $edge->getVertexStart() != 's') {
-                        $edge->setAttribute('graphviz.color', 'yellow');
-                        $edge->setAttribute('graphviz.dir', 'none');
+                        // $edge->setAttribute('graphviz.color', 'yellow'); X
+                        // $edge->setAttribute('graphviz.dir', 'none'); X
                         $stud_vertex = $edge->getVertexEnd();
 
                         $lehr = User::find($lehr_vertex->getId());
@@ -228,19 +229,20 @@ class MatchingController extends Controller
                         // $lehr->matchable()->syncWithoutDetaching([$stud->id => ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr,'has_no_alternative_stud' => $has_no_alternative_stud]]);
                         $lehr->matchable()->updateExistingPivot($stud, ['recommended' => true, 'has_no_alternative_lehr' => $has_no_alternative_lehr, 'has_no_alternative_stud' => $has_no_alternative_stud]);
                     } else {
-                        $edge->setAttribute('graphviz.dir', 'none');
+                        // $edge->setAttribute('graphviz.dir', 'none'); X
                     }
                 }
-            } else {
-                $lehr_vertex = $edge->getVertexEnd();
-                foreach ($lehr_vertex->getEdges() as $edge) {
-                    $edge->setAttribute('graphviz.dir', 'none');
-                }
-            }
+            } 
+            // else {
+            //     $lehr_vertex = $edge->getVertexEnd();
+            //     foreach ($lehr_vertex->getEdges() as $edge) {
+            //         // $edge->setAttribute('graphviz.dir', 'none'); X
+            //     }
+            // }
         }
 
         $max_flow = $ek->getFlowMax();
-        $graphviz = new GraphViz();
+        // $graphviz = new GraphViz(); X
 
         $resultGraph->getVertex('s')->destroy();
         $resultGraph->getVertex('t')->destroy();
@@ -279,12 +281,12 @@ class MatchingController extends Controller
             }
         }
 
-        $resultGraph->setAttribute('graphviz.graph.rankdir', 'LR');
-        $resultGraph->setAttribute('graphviz.graph.bgcolor', 'transparent');
+        // $resultGraph->setAttribute('graphviz.graph.rankdir', 'LR'); X
+        // $resultGraph->setAttribute('graphviz.graph.bgcolor', 'transparent'); X
         // $graphviz->display($resultGraph);
         // $graphviz->setFormat('svg');
 
-        $graph_img = $graphviz->createImageHtml($resultGraph);
+        // $graph_img = $graphviz->createImageHtml($resultGraph); X
 
 
         // $matched_graph = $resultGraph->createGraphClone();
@@ -353,7 +355,8 @@ class MatchingController extends Controller
         });
 
 
-        return view('matchable', compact('schulart', 'graph_img', 'max_flow', 'matched_lehr', 'recommended', 'remaining_matches'));
+        // return view('matchable', compact('schulart', 'graph_img', 'max_flow', 'matched_lehr', 'recommended', 'remaining_matches'));
+        return view('matchable', compact('schulart', 'max_flow', 'matched_lehr', 'recommended', 'remaining_matches'));
     }
 
 

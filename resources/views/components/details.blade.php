@@ -59,6 +59,14 @@
                             class="text-gray-400 hover:text-gray-100 break-words">{{ $stud->email }}</a>
                         <br>
                         <br>
+
+                        @if ($stud->data()->schulart != 'Grundschule')
+                        <p> Fächerauswahl:<br>
+                            {{ isset($stud->data()->faecher) ? implode(', ', $stud->data()->faecher) : '-' }}
+                        </p>
+                        <br>
+                        @endif
+
                         <p> Wunschtandem:
                             {{ $stud->data()->wunschtandem ?? '-' }}
                         </p>
@@ -90,6 +98,14 @@
                             class="text-gray-400 hover:text-gray-100 break-words">{{ $lehr->email }}</a>
                         <br>
                         <br>
+
+                        @if ($lehr->data()->schulart != 'Grundschule')
+                        <p> Angebotene Fächer:<br>
+                            {{ isset($lehr->data()->faecher) ? implode(', ', $lehr->data()->faecher) : '-' }}
+                        </p>
+                        <br>
+                        @endif
+
                         <p> Wunschtandem:
                             {{ $lehr->data()->wunschtandem ?? '-' }}
                         </p>

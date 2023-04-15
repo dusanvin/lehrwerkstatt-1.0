@@ -183,6 +183,26 @@ class MatchingController extends Controller
                             // $edge->setAttribute('graphviz.label', $mse . ', '); X
                             // $lehr->matchable()->attach($stud, ['mse' => $mse]);
                             $lehr->matchable()->syncWithoutDetaching([$stud->id => ['mse' => $mse]]);
+
+                        } elseif ($lehr->survey_data->schulart == 'Realschule') {
+                            if (in_array('Kunst', $stud->survey_data->faecher)) {
+                                array_push($stud->survey_data->faecher, 'Kunst (nur Realschule)');
+                            };
+                            if (in_array('Musik', $stud->survey_data->faecher)) {
+                                array_push($stud->survey_data->faecher, 'Musik (nur Realschule)');
+                            }
+                            if (array_intersect($lehr->survey_data->faecher, $stud->survey_data->faecher)) {
+                                $lehr_vertex = $graph->getVertex($lehr->id);
+                                $stud_vertex = $graph->getVertex($stud->id);
+                                $edge = $lehr_vertex->createEdgeTo($stud_vertex);
+                                $edge->setCapacity(1);
+    
+                                $mse = $this->mse($lehr, $stud);
+                                // $edge->setAttribute('graphviz.label', $mse . ', '); X
+                                // $lehr->matchable()->attach($stud, ['mse' => $mse]);
+                                $lehr->matchable()->syncWithoutDetaching([$stud->id => ['mse' => $mse]]);
+                            };
+
                         } elseif (array_intersect($lehr->survey_data->faecher, $stud->survey_data->faecher)) {
                             $lehr_vertex = $graph->getVertex($lehr->id);
                             $stud_vertex = $graph->getVertex($stud->id);

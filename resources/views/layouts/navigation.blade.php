@@ -347,7 +347,7 @@
                             $route_name = 'matchings.preferences';
                         @endphp
 
-                        <a href="{{ route($route_name) }}"
+                        <a href="{{ route($route_name, ['schulart' => 'gymnasium']) }}"
                             class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
                             <div>
@@ -380,7 +380,7 @@
                             $route_name = 'users.matchable';
                         @endphp
 
-                        <a href="{{ route($route_name) }}"
+                        <a href="{{ route($route_name, ['schulart' => 'gymnasium']) }}"
                             class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
                             <div>

@@ -177,7 +177,7 @@
                             <p>
 
                                 Eigenstaendigkeit [Abweichung 0 bis 5]**:
-                                {{ abs($lehr->eigenstaendigkeit - $stud->data()->eigenstaendigkeit) }}
+                                {{ abs($lehr->data()->eigenstaendigkeit - $stud->data()->eigenstaendigkeit) }}
 
                             </p>
 

@@ -200,7 +200,7 @@ var json = {
             name: "fachsemester",
             type: "dropdown",
             title: "Ich befinde mich im Wintersemester " + jahrgang + " in meinen für das Matching gewählten Fächern mindestens in folgendem Fachsemester:",
-            description: "Hinweis für Studierende der Lehrämter an Realschulen und Gymnasien: Bitte beachten Sie, dass Sie die Fächer, in denen Sie gematcht werden möchten, im Wintersemester 2023/24 mindestens im 3. Fachsemester studieren müssen. Bei Fragen hierzu wenden Sie sich bitte an lehrwerkstatt@zlbib.uni-augsburg.de",
+            description: "Hinweis für Studierende der Lehrämter an Realschulen und Gymnasien: Bitte beachten Sie, dass Sie die Fächer, in denen Sie gematcht werden möchten, im Wintersemester " + jahrgang + " mindestens im 3. Fachsemester studieren müssen. Bei Fragen hierzu wenden Sie sich bitte an lehrwerkstatt@zlbib.uni-augsburg.de",
             isRequired: true,
             choices: fachsemester
         }, {

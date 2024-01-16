@@ -96,7 +96,6 @@
                             @role('Lehr|Stud')
                                 <p class="navigation-element text-sm font-semibold">Bewerbungsformular</p>
                             @endrole
-                            <!--<p class="navigation-element text-xs">Jahrgang 2022/2023</p>-->
 
                         </div>
 

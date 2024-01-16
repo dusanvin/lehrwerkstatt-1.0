@@ -22,7 +22,7 @@ return [
     'platformName2' => 'werkstatt',
 
     /* maintenance */
-    'jahrgang' => '2023/24',
+    'jahrgang' => '2024/25',
     // 'host' => 'https://hosted-024-216.rz.uni-augsburg.de',
     'host' => 'https://lehrwerkstatt.digillab.uni-augsburg.de',
     'datenschutzhinweise' => 'https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzhinweise/',

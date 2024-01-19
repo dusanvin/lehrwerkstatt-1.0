@@ -27,7 +27,7 @@ return [
     'host' => 'https://lehrwerkstatt.digillab.uni-augsburg.de',
     'datenschutzhinweise' => 'https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzhinweise/',
     'datenschutz_einwilligung' => 'https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzrechtliche-einwilligungserklarung/',
-    'teilnahmebedingungen' => 'https://digillab.uni-augsburg.de/wp-content/uploads/2023/02/Verbindliche_TN-Bedingungen_UniA_2023.pdf',
+    'teilnahmebedingungen' => 'https://lehrwerkstatt.digillab.uni-augsburg.de/Verbindliche_TN-Bedingungen_UniA_2024.pdf',
 
 
 

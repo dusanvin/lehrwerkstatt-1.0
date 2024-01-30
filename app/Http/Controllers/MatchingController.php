@@ -97,36 +97,37 @@ class MatchingController extends Controller
         $source_vertex = $graph->createVertex('s');
         $sink_vertex = $graph->createVertex('t');
 
+        // IS_EVALUABLE: 0 bzw. false heißt, Nutzer möchte derzeit nicht teilnehmen am Matchingprozess
+        // IS_AVAILABLE: 0 bzw. false, wenn Nutzer in Vorauswahl aufgenommen wurde (oder wenn Formular nicht vollständig ausgefüllt)
+        // is_matched bedeutet user ist in der vorauswahl
+        // $variable kann im return statement als 'variable' zurückgegeben werden
 
-        // user ausschließen, die nicht mehr gematched werden wollen, aber in der vorauswahl sind
-        // diese haben is_evaluable == false gesetzt
+
+        // is_evaluable == false AND is_available == false, nicht mehr zu berücksichtigende Nutzer
         $exclude_ids = User::where('is_evaluable', false)->where('is_available', false)->pluck('id');
 
-        // einträge der betreffende user in der lehr_stud tabelle löschen
-        // is_matched == false und is_notified == false, da noch keine notifikations-email gesendet wurde
-        //  ( = unbestätigte vorauswahl)
+        // löschen: Nutzer, die nicht in der Vorauswahl sind oder einen Vorschlag erhalten haben.
         DB::table('lehr_stud')->where('is_matched', false)->where('is_notified', false)->delete();
 
-        // user deren matchings aufgehoben werden müssen wieder auf available gesetzt werden
-        // ein user der nicht mehr zur verfügung steht (weil er gematched wurde), aber dennoch unvöllständige daten hat oder inaktiv ist
-        // muss wieder auf available gesetzt werden
-        // user mit is_evaluable == false sollen grundsätzlich den status is_available == true haben
-        $inactive_matched_users = User::where('is_evaluable', false)->where('is_available', false)->get();  // ->update(['is_available' => true]);
+        // Nutzer, die in der Vorauswahl sind, sich aber währenddessen auf inaktiv gesetzt haben.
+        // Bei den betroffenen Nutzern der aufgelösten Vorauswahl is_available=true setzen. 
+        $inactive_matched_users = User::where('is_evaluable', false)->where('is_available', false)->get();
         foreach ($inactive_matched_users as $user) {
             $user->is_available = true;
             $user->save();
-            // dd($user->matched_user); // null
-            User::where('id', $user->matched_user->id)->update(['is_available' => true]);
+            if(isset($user->matched_user)) {
+                User::where('id', $user->matched_user->id)->update(['is_available' => true]);
+            }
         }
 
-        // einträge mit inaktiv gewordenen nutzern aus lehr_stud löschen
+        // Einträge mit inaktiv gewordenen Nutzern aus lehr_stud löschen
         DB::table('lehr_stud')->whereIn('lehr_id', $exclude_ids)->delete();
         DB::table('lehr_stud')->whereIn('stud_id', $exclude_ids)->delete();
 
         // werte resetten, werden in der funktion später neu berechnet
         DB::table('lehr_stud')->update(['recommended' => 0, 'has_no_alternative_lehr' => 0, 'has_no_alternative_stud' => 0]); // ->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud')
 
-        // is_matched bedeutet user ist in der vorauswahl, find gibt user objekte zurück
+        // Lehrer, die in der Vorauswahl sind nach Schulart filtern
         $matched_lehr = User::find(DB::table('lehr_stud')->where('is_matched', true)->pluck('lehr_id'));
         if(!is_null($schulart)) {
             $matched_lehr = $matched_lehr->filter(function ($lehr, $key) use($schulart) {
@@ -134,7 +135,7 @@ class MatchingController extends Controller
             });
         }
 
-
+        // Nutzer die zur Verfügung stehen
         $available_lehr = $this->getAvailableLehrUsers($schulart);
         $available_stud = $this->getAvailableStudUsers($schulart);
 

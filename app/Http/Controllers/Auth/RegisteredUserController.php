@@ -55,8 +55,6 @@ class RegisteredUserController extends Controller
         ]);
 
 
-
-
         $role = $request->input('role');
         if (in_array($role, ['Lehr', 'Stud'])) {
             if ($role == 'Lehr') {
@@ -67,6 +65,10 @@ class RegisteredUserController extends Controller
                 $request->validate(['email' => ['required', 'regex:/^.+@(student.uni-augsburg|uni-a)\.de$/', 'max:255']]);
             }
 
+            $user = User::where('email', $request->email)->whereNull('email_verified_at')->first(); // null if not exist
+            if($user) {
+                $user->delete();
+            }
             $user = User::create([
                 'email' => $request->email,
                 'password' => Hash::make($request->password),

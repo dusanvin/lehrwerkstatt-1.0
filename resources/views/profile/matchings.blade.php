@@ -215,6 +215,7 @@
                                 {{-- zusagen/absagen --}}
 
                                 @if( (strcasecmp($user->role, 'lehr') == 0 && !isset($user->notified_user->pivot->is_accepted_lehr)) || (strcasecmp($user->role, 'stud') == 0 && !isset($user->notified_user->pivot->is_accepted_stud)) )
+                                
                                 <form action="{{ route('acceptMatching') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="role" value="{{ $user->role }}">
@@ -222,13 +223,37 @@
                                     <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $user->notified_user->id }}">
                                     <input type="submit" value="Bestätigen" class="bg-green-600 hover:bg-green-700 text-white font-semibold text-sm hover:text-white py-2 px-4 border border-green-700 hover:border-transparent focus:outline-none focus:ring ring-green-300 focus:border-green-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform cursor-pointer mt-4">
                                 </form>
-                                <form action="{{ route('declineMatching') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="role" value="{{ $user->role }}">
-                                    <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $user->notified_user->id }}">
-                                    <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $user->notified_user->id }}">
-                                    <input type="submit" value="Ablehnen" class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm hover:text-white py-2 px-4 border border-yellow-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform cursor-pointer mt-2">
+                                
+
+                                    <dialog id="textModal" class="rounded">
+                                        <div>Bitte teilen Sie uns Ihren Grund mit, weswegen sie den Vorschlag ablehnen:</div>
+
+                                        <script>
+                                            const modal = document.getElementById("textModal");
+        
+                                            function openDialog() {
+                                                modal.style.display = "block";
+                                            }
+        
+                                            function closeDialog() {
+                                                modal.style.display = "none";
+                                            }
+                                        </script>
+
+                                        <form action="{{ route('declineMatching') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="role" value="{{ $user->role }}">
+                                            <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $user->notified_user->id }}">
+                                            <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $user->notified_user->id }}">
+                                            <textarea name="text" rows="1" cols="70"></textarea>
+                                            <button type="submit" onclick="closeDialog()" formmethod="dialog" style="position:absolute; top:0; right:1%;">&times;</button>
+                                            <input type="submit" value="Absenden" style="right:0;" class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm hover:text-white py-2 px-4 border border-yellow-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform cursor-pointer mt-2">
+                                        </form> 
+                                    </dialog>
                                 </form>
+
+                                <button onclick="openDialog()" class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm hover:text-white py-2 px-4 border border-yellow-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform cursor-pointer mt-2">Ablehnen</button>
+                                
                                 @else
                                     @if (strcasecmp($user->role, 'lehr') == 0)
                                         {{ $user->notified_user->pivot->is_accepted_lehr == 1 ? 'Sie haben den Tandemvorschlag bestätigt.' : 'Sie haben den Tandemvorschlag abgelehnt.' }}
@@ -236,6 +261,9 @@
                                         {{ $user->notified_user->pivot->is_accepted_stud == 1 ? 'Sie haben den Tandemvorschlag bestätigt.' : 'Sie haben den Tandemvorschlag abgelehnt.' }}
                                     @endif
                                 @endif
+
+
+
 
                                 {{-- zusagen/absagen --}}
 

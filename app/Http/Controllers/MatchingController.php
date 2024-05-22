@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\LehrStud;
+use App\Models\DeclinedMatching;
 use DB;
 use App\Notifications\MatchingProposal;
 use App\Notifications\MatchingSuccess;
@@ -624,6 +625,13 @@ class MatchingController extends Controller
             // ]);
             $stud->matchable()->syncWithoutDetaching([$lehr->id => ['is_accepted_stud' => false]]);
         }
+        
+        DeclinedMatching::create([
+            'lehr_id' => $request->input('lehrid'),
+            'stud_id' => $request->input('studid'),
+            'role' => $request->input('role'),
+            'text' => $request->input('text')
+        ]);
 
         return back();
     }

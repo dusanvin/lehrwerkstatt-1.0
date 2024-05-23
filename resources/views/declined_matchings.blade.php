@@ -43,7 +43,7 @@
                         <tr>
 
                             <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
-                                Abgelehnt vo</th>
+                                Abgelehnt von</th>
 
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                 Rolle</th>

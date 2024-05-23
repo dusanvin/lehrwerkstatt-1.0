@@ -653,11 +653,13 @@ class MatchingController extends Controller
             // ]);
             $stud->matchable()->syncWithoutDetaching([$lehr->id => ['is_accepted_stud' => false]]);
         }
-        
+
+        $lehr->survey_data = json_decode($lehr->survey_data);
         DeclinedMatching::create([
             'lehr_id' => $request->input('lehrid'),
             'stud_id' => $request->input('studid'),
             'role' => $request->input('role'),
+            'schulart' => $lehr->survey_data->schulart,
             'text' => $request->input('text')
         ]);
 
@@ -790,16 +792,13 @@ class MatchingController extends Controller
             $lehr = User::find($declined->lehr_id);
             $stud = User::find($declined->stud_id);
 
-            $lehr->survey_data = json_decode($lehr->survey_data);
-            $stud->survey_data = json_decode($stud->survey_data);
-
             $role = ucfirst($declined->role);
             if($role == 'Lehr') {
                 $d = [
                     "$lehr->vorname $lehr->nachname",
                     $lehr->email,
                     $role,
-                    $lehr->survey_data->schulart,
+                    $declined->schulart,
                     $declined->text,
                     "$stud->vorname $stud->nachname",
                     $stud->email
@@ -809,7 +808,7 @@ class MatchingController extends Controller
                     "$stud->vorname $stud->nachname",
                     $stud->email,
                     $role,
-                    $stud->survey_data->schulart,
+                    $declined->schulart,
                     $declined->text,
                     "$lehr->vorname $lehr->nachname",
                     $lehr->email

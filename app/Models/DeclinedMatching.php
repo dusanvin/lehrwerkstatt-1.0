@@ -13,6 +13,7 @@ class DeclinedMatching extends Model
         'lehr_id',
         'stud_id',
         'role',
+        'schulart',
         'text'
     ];
 }

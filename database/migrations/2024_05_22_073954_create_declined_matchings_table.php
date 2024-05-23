@@ -19,6 +19,7 @@ class CreateDeclinedMatchingsTable extends Migration
             $table->unsignedBigInteger('lehr_id');
             $table->unsignedBigInteger('stud_id');
             $table->string('role');
+            $table->string('schulart');
             $table->text('text')->nullable();
         });
     }

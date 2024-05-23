@@ -19,8 +19,35 @@ use Graphp\Algorithms\MaxFlow\EdmondsKarp;
 use Graphp\GraphViz\GraphViz;
 use Illuminate\Auth\Notifications\VerifyEmail;
 
+
 class MatchingController extends Controller
 {
+
+    private function filter_schulart($matchings, $schulart) {
+        $lehr = User::find($matchings->pluck('lehr_id'));
+        if(!is_null($schulart)) {
+            $lehr = $lehr->reject(function ($lehr, $key) use ($schulart) {
+                return lcfirst($lehr->data()->schulart) != lcfirst($schulart);     
+            });
+        }
+
+        $stud = User::find($matchings->pluck('stud_id'));
+        if(!is_null($schulart)) {
+            $stud = $stud->reject(function ($stud, $key) use ($schulart) {
+                return lcfirst($stud->data()->schulart) != lcfirst($schulart);
+            });
+        }
+
+        // nur lehrer und studenten der entsprechenden schulart 
+        $matchings = $matchings->filter(function ($m, $key) use ($lehr, $stud) {
+            // dd($lehr);
+            return $lehr->contains($m->lehr_id) || $stud->contains($m->stud_id);
+        });
+        $matchings = $matchings->values();
+
+        return $matchings;
+    }
+
 
     private function mse($lehr, $stud)
     {
@@ -34,6 +61,7 @@ class MatchingController extends Controller
         $sum += (($lehr->survey_data->belastbarkeit - $stud->survey_data->belastbarkeit) ** 2) * 2;
         return number_format($sum / 9.0, 2);
     }
+
 
     public function compareMatchings($matching1, $matching2)
     {
@@ -707,31 +735,6 @@ class MatchingController extends Controller
     public function acceptedMatchings(Request $request, $schulart = null)
     {
 
-        function filter_schulart($matchings, $schulart) {
-            $lehr = User::find($matchings->pluck('lehr_id'));
-            if(!is_null($schulart)) {
-                $lehr = $lehr->reject(function ($lehr, $key) use ($schulart) {
-                    return lcfirst($lehr->data()->schulart) != lcfirst($schulart);     
-                });
-            }
-    
-            $stud = User::find($matchings->pluck('stud_id'));
-            if(!is_null($schulart)) {
-                $stud = $stud->reject(function ($stud, $key) use ($schulart) {
-                    return lcfirst($stud->data()->schulart) != lcfirst($schulart);
-                });
-            }
-    
-            // nur lehrer und studenten der entsprechenden schulart 
-            $matchings = $matchings->filter(function ($m, $key) use ($lehr, $stud) {
-                // dd($lehr);
-                return $lehr->contains($m->lehr_id) || $stud->contains($m->stud_id);
-            });
-            $matchings = $matchings->values();
-
-            return $matchings;
-        }
-
         // unentschieden
         $notified_matchings = DB::table('lehr_stud')->where('is_notified', true)->where(function ($query) {
             $query->whereNull('is_accepted_lehr')->where('is_accepted_stud', true)->orWhere(function ($query) {
@@ -741,7 +744,7 @@ class MatchingController extends Controller
             });
         })->get();
         
-        $notified_matchings = filter_schulart($notified_matchings, $schulart);
+        $notified_matchings = $this->filter_schulart($notified_matchings, $schulart);
 
         foreach ($notified_matchings as $am) {
             $am->lehr = User::find($am->lehr_id);
@@ -752,7 +755,7 @@ class MatchingController extends Controller
         //  akzeptiert
         $accepted_matchings = DB::table('lehr_stud')->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->get();
 
-        $accepted_matchings = filter_schulart($accepted_matchings, $schulart);
+        $accepted_matchings = $this->filter_schulart($accepted_matchings, $schulart);
 
         foreach ($accepted_matchings as $am) {
             $am->lehr = User::find($am->lehr_id);
@@ -765,7 +768,7 @@ class MatchingController extends Controller
             $query->where('is_accepted_lehr', false)->orWhere('is_accepted_stud', false);
         })->get();
 
-        $declined_matchings = filter_schulart($declined_matchings, $schulart);
+        $declined_matchings = $this->filter_schulart($declined_matchings, $schulart);
 
         foreach ($declined_matchings as $am) {
             $am->lehr = User::find($am->lehr_id);
@@ -775,6 +778,49 @@ class MatchingController extends Controller
 
         return view('accepted_matchings', compact(['schulart', 'notified_matchings', 'accepted_matchings', 'declined_matchings']));
     }
+
+    public function declinedMatchings(Request $request, $schulart = null)
+    {
+
+        // Abgelehnt von | Rolle | Schulart | Text | Vorgeschlagen
+        $all = DeclinedMatching::all();
+        $declined_matchings = [];
+        foreach(DeclinedMatching::all() as $declined) {
+
+            $lehr = User::find($declined->lehr_id);
+            $stud = User::find($declined->stud_id);
+
+            $lehr->survey_data = json_decode($lehr->survey_data);
+            $stud->survey_data = json_decode($stud->survey_data);
+
+            $role = ucfirst($declined->role);
+            if($role == 'Lehr') {
+                $d = [
+                    "$lehr->vorname $lehr->nachname",
+                    $lehr->email,
+                    $role,
+                    $lehr->survey_data->schulart,
+                    $declined->text,
+                    "$stud->vorname $stud->nachname",
+                    $stud->email
+                ];
+            } elseif($role == 'Stud') {
+                $d = [
+                    "$stud->vorname $stud->nachname",
+                    $stud->email,
+                    $role,
+                    $stud->survey_data->schulart,
+                    $declined->text,
+                    "$lehr->vorname $lehr->nachname",
+                    $lehr->email
+                ];
+            }
+            $declined_matchings[] = $d;
+        }
+
+        return view('declined_matchings', compact(['declined_matchings']));
+    }
+
 
 
     public function matchings(Request $request)

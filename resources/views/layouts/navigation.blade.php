@@ -439,6 +439,42 @@
 
                     <!-- Tandems -->
 
+
+                    <!-- Abgelehnte Tandems -->
+
+                    <li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
+                        @php
+                            $route_name = 'declinedMatchings';
+                        @endphp
+
+                        <a href="{{ route($route_name) }}"
+                            class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
+
+                            <div>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+                                </svg>
+
+                            </div>
+
+                            <div class="pl-3">
+
+                                <p class="navigation-element text-sm font-semibold">
+                                    Abgelehnte Tandems</p>
+
+                                <!--<p class="navigation-element text-xs">{{ Config::get('site_vars.vorschlaegeInfo') }}</p>-->
+
+                            </div>
+
+                        </a>
+
+                    </li>
+
+                    <!-- Abgelehnte Tandems -->
+
                 </ul>
             @endrole
 

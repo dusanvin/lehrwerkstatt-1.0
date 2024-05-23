@@ -120,6 +120,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // Tandems
         Route::get('/accepted-matchings/{schulart?}', [MatchingController::class, 'acceptedMatchings'])->name('acceptedMatchings');
+        Route::get('/declined-matchings/{schulart?}', [MatchingController::class, 'declinedMatchings'])->name('declinedMatchings');
 
 
         Route::get('/matchings/{lehr}/{stud}/{mse}', [MatchingController::class, 'setAssigned'])->name('matchings.setassigned');

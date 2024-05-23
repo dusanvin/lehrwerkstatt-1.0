@@ -18,4 +18,3 @@ Homestead.json
 
 public/js/*.min.js
 public/img
-resources/views/profile/edit.blade.php

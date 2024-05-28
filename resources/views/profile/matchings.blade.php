@@ -224,34 +224,42 @@
                                     <input type="submit" value="Bestätigen" class="bg-green-600 hover:bg-green-700 text-white font-semibold text-sm hover:text-white py-2 px-4 border border-green-700 hover:border-transparent focus:outline-none focus:ring ring-green-300 focus:border-green-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform cursor-pointer mt-4">
                                 </form>
                                 
-                                /* Start des Dialogs */
-                                    <dialog id="textModal" class="rounded">
-                                        <div>Bitte teilen Sie uns Ihren Grund mit, weswegen sie den Vorschlag ablehnen:</div>
+<!-- Start des Dialogs -->
+<div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden"></div>
 
-                                        <script>
-                                            const modal = document.getElementById("textModal");
-        
-                                            function openDialog() {
-                                                modal.style.display = "block";
-                                            }
-        
-                                            function closeDialog() {
-                                                modal.style.display = "none";
-                                            }
-                                        </script>
+<dialog id="textModal" class="rounded fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <h3 class="text-base font-semibold leading-6 text-gray-900 mb-1" id="modal-title">Vorschlag ablehnen</h3>
+    <p class="mb-4 text-sm text-gray-500">Bitte teilen Sie uns mit, weshalb Sie den Vorschlag ablehnen, um zukünftige Paarungen passgenauer zu gestalten.</p>
 
-                                        <form action="{{ route('declineMatching') }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="role" value="{{ $user->role }}">
-                                            <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $user->notified_user->id }}">
-                                            <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $user->notified_user->id }}">
-                                            <textarea name="text" rows="1" cols="70"></textarea>
-                                            <button type="submit" onclick="closeDialog()" formmethod="dialog" style="position:absolute; top:0; right:1%;">&times;</button>
-                                            <input type="submit" value="Absenden" style="right:0;" class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm hover:text-white py-2 px-4 border border-yellow-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform cursor-pointer mt-2">
-                                        </form> 
-                                    </dialog>
+    <script>
+        const modal = document.getElementById("textModal");
+        const overlay = document.getElementById("modalOverlay");
 
-                                /* Ende des Dialogs */
+        function openDialog() {
+            modal.showModal();
+            overlay.classList.remove("hidden");
+        }
+
+        function closeDialog() {
+            modal.close();
+            overlay.classList.add("hidden");
+        }
+    </script>
+
+    <form action="{{ route('declineMatching') }}" method="POST">
+        @csrf
+        <input type="hidden" name="role" value="{{ $user->role }}">
+        <input type="hidden" name="lehrid" value="{{ $user->role == 'Lehr' ? $user->id : $user->notified_user->id }}">
+        <input type="hidden" name="studid" value="{{ $user->role == 'Stud' ? $user->id : $user->notified_user->id }}">
+        <textarea name="text" rows="2" cols="110" class="text-sm"></textarea>
+        <button type="button" onclick="closeDialog()" style="position:absolute; top:0; right:1%;">&times;</button>
+        <input type="submit" value="Absenden" class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm hover:text-white py-2 px-4 border border-yellow-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 cursor-pointer mt-2">
+    </form>
+</dialog>
+<!-- Ende des Dialogs -->
+
+                                
+
 
                                 </form>
 

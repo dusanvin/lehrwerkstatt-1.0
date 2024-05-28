@@ -224,7 +224,7 @@
                                     <input type="submit" value="Bestätigen" class="bg-green-600 hover:bg-green-700 text-white font-semibold text-sm hover:text-white py-2 px-4 border border-green-700 hover:border-transparent focus:outline-none focus:ring ring-green-300 focus:border-green-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform cursor-pointer mt-4">
                                 </form>
                                 
-
+                                /* Start des Dialogs */
                                     <dialog id="textModal" class="rounded">
                                         <div>Bitte teilen Sie uns Ihren Grund mit, weswegen sie den Vorschlag ablehnen:</div>
 
@@ -250,6 +250,9 @@
                                             <input type="submit" value="Absenden" style="right:0;" class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm hover:text-white py-2 px-4 border border-yellow-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform cursor-pointer mt-2">
                                         </form> 
                                     </dialog>
+
+                                /* Ende des Dialogs */
+
                                 </form>
 
                                 <button onclick="openDialog()" class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold text-sm hover:text-white py-2 px-4 border border-yellow-700 hover:border-transparent focus:outline-none focus:ring ring-yellow-300 focus:border-yellow-300 rounded flex items-center transition-colors duration-200 transform duration-150 hover:scale-105 transform cursor-pointer mt-2">Ablehnen</button>

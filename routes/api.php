@@ -111,6 +111,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/matchings', [MatchingController::class, 'matchings'])->name('users.matchings');
 
+        Route::get('/mode', function() {
+            return dd(config('app.debug'));
+        });
+
         
         // Wunschtandems
         Route::get('/matchings/preferences/{schulart?}', [MatchingController::class, 'preferences'])->name('matchings.preferences');

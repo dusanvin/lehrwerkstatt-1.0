@@ -50,8 +50,7 @@ class resetLehrwerkstatt extends Command
         $year = $this->choice('Für welchen Jahrgang ist die neue Runde?', [$current, $next]);
         $code = $this->ask('Wie soll das Kennwort lauten?');
 
-        $this->info($year);
-        $this->info($code);
+
 
         $file = base_path('/config/site_vars.php');
         $config = file_get_contents($file);
@@ -80,7 +79,11 @@ class resetLehrwerkstatt extends Command
         // DB::table('messenger_participants')->truncate();
         // DB::table('messenger_threads')->truncate();
 
+        $this->info('Jahrgang:'.$year);
+        $this->info('Kennwort:'.$code);
         $this->call('config:cache');
+
+        $this->line('Die Lehr:werkstatt wurde aktualisiert.');
 
     }
     

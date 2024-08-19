@@ -44,7 +44,7 @@ function exportStudCSV(schulart) {
 
         'Pflichtpraktika',
         'Schulart', 
-        'Ich befinde mich im Wintersemester 2024/25 in meinen für das Matching gewählten Fächern mindestens in folgendem Fachsemester:',
+        'Ich befinde mich im Wintersemester ' + jahrgang + 'in meinen für das Matching gewählten Fächern mindestens in folgendem Fachsemester:',
         'Nur Realschule und Gymnasium: Fächer',
         'Nur Realschule und Gymnasium: Ehemalige Schule',
         'Nur Realschule und Gymnasium: Ehemaliger Schulort',
@@ -149,7 +149,7 @@ function exportAllStudCSV() {
 
         'Pflichtpraktika',
         'Schulart', 
-        'Ich befinde mich im Wintersemester 2024/25 in meinen für das Matching gewählten Fächern mindestens in folgendem Fachsemester:',
+        'Ich befinde mich im Wintersemester' + jahrgang + 'in meinen für das Matching gewählten Fächern mindestens in folgendem Fachsemester:',
         'Nur Realschule und Gymnasium: Fächer',
         'Nur Realschule und Gymnasium: Ehemalige Schule',
         'Nur Realschule und Gymnasium: Ehemaliger Schulort',

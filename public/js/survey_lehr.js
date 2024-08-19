@@ -126,7 +126,7 @@ var json = {
             title: "Bestätigung: Verbindliche Teilnahmebedingungen:",
             isRequired: true,
             choices: [
-                "Ich habe die verlinkten verbindlichen <a href='https://lehrwerkstatt.digillab.uni-augsburg.de/Verbindliche_TN-Bedingungen_UniA_2024.pdf' target='_blank' class='text-blue-400'>Teilnahmebedingungen</a> für den Jahrgang " + jahrgang + " zur Kenntnis genommen und akzeptiere sie."
+                "Ich habe die verlinkten verbindlichen <a href='" + teilnahmebedingungen + "' target='_blank' class='text-blue-400'>Teilnahmebedingungen</a> für den Jahrgang " + jahrgang + " zur Kenntnis genommen und akzeptiere sie."
             ]
         }]
     }, 

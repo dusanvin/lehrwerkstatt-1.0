@@ -80,7 +80,7 @@ function exportMatchingsCSV() {
             // nur studenten
             '(S) Wunschorte', 
             '(S) Pflichtpraktika',
-            '(S) Ich befinde mich im Wintersemester 2024/25 in meinen für das Matching gewählten Fächern mindestens in folgendem Fachsemester:',
+            '(S) Ich befinde mich im Wintersemester' + jahrgang + 'in meinen für das Matching gewählten Fächern mindestens in folgendem Fachsemester:',
             '(S) Nur Realschule und Gymnasium: Ehemalige Schule',
             '(S) Nur Realschule und Gymnasium: Ehemaliger Schulort',
             '(S) Nur Grundschule: Studieren Sie das Didaktikfach ev./kath. Religionslehre?',

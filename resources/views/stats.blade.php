@@ -15,6 +15,15 @@
             }
         </style>
 
+        
+
+        <script>
+            var jahrgang = @json(config(site_vars.jahrgang));
+            var teilnahmebedingungen = @json(config(site_vars.teilnahmebedingungen));
+            console.log(jahrgang);
+            console.log(teilnahmebedingungen);
+        </script>
+
         <script src="{{ asset('js/arrays_lehr.js') }}"></script>
         <script src="{{ asset('js/arrays_stud.js') }}"></script>
         <script src="{{ asset('js/arrays_matchings.js') }}"></script>

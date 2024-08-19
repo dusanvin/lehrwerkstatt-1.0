@@ -84,7 +84,7 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->survey_data) {
+        if ($user->survey_data) {  // Hauptformular wurde bereits ausgefüllt
             if (strcasecmp($user->role, 'Lehr') == 0 || strcasecmp($user->role, 'Stud') == 0) {
                 $attention = 'Die Bewerbung für den aktuellen Jahrgang '.config('site_vars.jahrgang').' liegt uns vor. Sie können Angaben korrigieren, während Sie das Formular durchgehen. Bitte beachten Sie, dass Pflichtfelder weiterhin ausgefüllt sein und Änderungen anschließend bestätigt werden müssen, bevor diese wirksam werden können.';
                 return view('surveys.' . lcfirst($user->role), ['attention' => $attention, 'jahrgang' => config('site_vars.jahrgang'), 'host' => config('site_vars.host'), 'datenschutzhinweise' => config('site_vars.datenschutzhinweise'), 'datenschutz_einwilligung' => config('site_vars.datenschutz_einwilligung'), 'teilnahmebedingungen' => config('site_vars.teilnahmebedingungen'), 'user' => $user]);

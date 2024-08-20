@@ -79,6 +79,25 @@ class resetLehrwerkstatt extends Command
         // DB::table('messenger_participants')->truncate();
         // DB::table('messenger_threads')->truncate();
 
+
+        // // Löscht Bilder von gelöschten Accounts
+        $filenames1 = DB::table('image_files')
+            ->join('users', 'image_files.user_id', '=', 'users.id')
+            ->pluck('image_files.filename')
+            ->map(function ($filename) {
+                return str_replace('user/', '', $filename);
+            })->toArray();
+
+        $filenames2 = array_diff(scandir('storage/app/user'), array('.', '..'));
+
+        $files = array_diff($filenames2, $filenames1);
+
+        foreach ($files as $file) {
+            unlink('storage/app/user/'.$file);
+            $this->info($file.' '.'deleted');
+        }
+
+
         $this->info('Jahrgang:'.$year);
         $this->info('Kennwort:'.$code);
         $this->call('config:cache');

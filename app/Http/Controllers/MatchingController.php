@@ -793,25 +793,25 @@ class MatchingController extends Controller
             $stud = User::find($declined->stud_id);
 
             $role = ucfirst($declined->role);
-            if($role == 'Lehr' && isset($stud) && isset($stud->vorname) && isset($stud->nachname)) {
+            if($role == 'Lehr') {
                 $d = [
-                    "$lehr->vorname $lehr->nachname",
+                    isset($lehr) ? "$lehr->vorname $lehr->nachname" : "Account nicht mehr vorhanden.",
                     $lehr->email,
                     $role,
                     $declined->schulart,
                     $declined->text,
-                    "$stud->vorname $stud->nachname",
-                    $stud->email
+                    isset($stud) ? "$stud->vorname $stud->nachname" : "Account nicht mehr vorhanden.",
+                    isset($stud->email) ? $stud->email : null
                 ];
-            } elseif($role == 'Stud' && isset($lehr) && isset($lehr->vorname) && isset($lehr->nachname)) {
+            } elseif($role == 'Stud') {
                 $d = [
-                    "$stud->vorname $stud->nachname",
+                    isset($stud) ? "$stud->vorname $stud->nachname" : "Account nicht mehr vorhanden.",
                     $stud->email,
                     $role,
                     $declined->schulart,
                     $declined->text,
-                    "$lehr->vorname $lehr->nachname",
-                    $lehr->email
+                    isset($lehr) ? "$lehr->vorname $lehr->nachname" : "Account nicht mehr vorhanden.",
+                    isset($lehr->email) ? $lehr->email : null
                 ];
             }
             $declined_matchings[] = $d;

@@ -793,7 +793,7 @@ class MatchingController extends Controller
             $stud = User::find($declined->stud_id);
 
             $role = ucfirst($declined->role);
-            if($role == 'Lehr') {
+            if($role == 'Lehr' && isset($stud) && isset($stud->vorname) && isset($stud->nachname)) {
                 $d = [
                     "$lehr->vorname $lehr->nachname",
                     $lehr->email,
@@ -803,7 +803,7 @@ class MatchingController extends Controller
                     "$stud->vorname $stud->nachname",
                     $stud->email
                 ];
-            } elseif($role == 'Stud') {
+            } elseif($role == 'Stud' && isset($lehr) && isset($lehr->vorname) && isset($lehr->nachname)) {
                 $d = [
                     "$stud->vorname $stud->nachname",
                     $stud->email,

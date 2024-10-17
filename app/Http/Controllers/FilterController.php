@@ -48,6 +48,13 @@ class FilterController extends Controller
         "Unterallgäu"
     ];
 
+    private $schularten = [
+        "Grundschule",
+        "Realschule",
+        "Gymnasium",
+        "Gesamtschule"
+    ];
+
     private function getUnmatchedUsers($roleName)
     {
         if($roleName == 'lehr') {
@@ -84,20 +91,12 @@ class FilterController extends Controller
         return $users;
     }
 
-    private function filterSchule($request, $users)
+    private function filterSchule($schulart, $users)
     {
-        if ($request->schulart != 'Beliebig') {
-            if ($request->schulart == 'Grundschule') {
+        foreach ($schularten as $s) {
+            if ($schulart == $s) {
                 $users = $users->reject(function ($user, $key) {
-                    return $user->survey_data->schulart != 'Grundschule';
-                });
-            } elseif ($request->schulart == 'Realschule') {
-                $users = $users->reject(function ($user, $key) {
-                    return $user->survey_data->schulart != 'Realschule';
-                });
-            } elseif ($request->schulart == 'Gymnasium') {
-                $users = $users->reject(function ($user, $key) {
-                    return $user->survey_data->schulart != 'Gymnasium';
+                    return $user->survey_data->schulart != $s;
                 });
             }
         }
@@ -146,8 +145,7 @@ class FilterController extends Controller
         $users = $this->getUnmatchedUsers('lehr');
         if(!empty($schulart)) {
             $view = $schulart;
-            $request->schulart = $schulart;
-            $users = $this->filterSchule($request, $users);
+            $users = $this->filterSchule($schulart, $users);
         }
         $this->implodeFaecher($users);
         return view('offers.'.$view, [
@@ -165,8 +163,7 @@ class FilterController extends Controller
         $users = $this->getUnmatchedUsers('stud');
         if(!empty($schulart)) {
             $view = $schulart;
-            $request->schulart = $schulart;
-            $users = $this->filterSchule($request, $users);
+            $users = $this->filterSchule($schulart, $users);
         }
         $users = $this->implodeFaecher($users);
         $users = $this->implodeLandkreise($users);
@@ -180,9 +177,9 @@ class FilterController extends Controller
 
     public function filteredLehr(Request $request, $schulart=null)
     {
-        $view = $schulart == null ? 'all': $schulart;
+        $view = $schulart ?? 'all';
         $users = $this->getUnmatchedUsers('lehr');
-        $users = $this->filterSchule($request, $users);
+        $users = $this->filterSchule($schulart, $users);  // TODO: check if $request->schulart necessary
 
         $selected_faecher = [];
         if ($request->faecher) {
@@ -211,9 +208,9 @@ class FilterController extends Controller
 
     public function filteredStud(Request $request, $schulart=null)
     {
-        $view = $schulart == null ? 'all': $schulart;
+        $view = $schulart ?? 'all';
         $users = $this->getUnmatchedUsers('stud');
-        $users = $this->filterSchule($request, $users);
+        $users = $this->filterSchule($schulart, $users);  // TODO: check if $request->schulart necessary
 
         $selected_faecher = [];
         if ($request->faecher) {
@@ -240,10 +237,13 @@ class FilterController extends Controller
     }
 
     // für csv export, alle lehrkräfte, die zur auswahl stehen
-    static function getAllLehr($schulart=null) {
+    static function get
+    AllLehr($schulart=null) {
 
         if(is_null($schulart)) {
-            $users = User::where('role', 'Lehr')->where('email_verified_at', '!=', null)->orderByRaw('FIELD(JSON_UNQUOTE(JSON_EXTRACT(survey_data, "$.schulart")), "Grundschule", "Realschule", "Gymnasium")')->orderBy('nachname', 'asc')->get();
+            $users = User::where('role', 'Lehr')->where('email_verified_at', '!=', null)->orderByRaw('FIELD(JSON_UNQUOTE(JSON_EXTRACT(survey_data, "$.schulart")), ' .
+                '"' . implode('", "', $this->schularten) . '"' 
+            . ')')->orderBy('nachname', 'asc')->get();
 
             foreach ($users as $user) {
                 $user->survey_data = json_decode($user->survey_data);
@@ -265,18 +265,12 @@ class FilterController extends Controller
                 $user->survey_data = json_decode($user->survey_data);
             }
     
-            if ($schulart == 'Grundschule') {
-                $users = $users->reject(function ($user, $key) {
-                    return $user->survey_data->schulart != 'Grundschule';
-                });
-            } elseif ($schulart == 'Realschule') {
-                $users = $users->reject(function ($user, $key) {
-                    return $user->survey_data->schulart != 'Realschule';
-                });
-            } elseif ($schulart == 'Gymnasium') {
-                $users = $users->reject(function ($user, $key) {
-                    return $user->survey_data->schulart != 'Gymnasium';
-                });
+            foreach ($schularten as $s) {
+                if ($schulart == $s) {
+                    $users = $users->reject(function ($user, $key) {
+                        return $user->survey_data->schulart != $s;
+                    });
+                }
             }
         }
 
@@ -293,7 +287,10 @@ class FilterController extends Controller
     // für csv export, alle studenten, die zu auswahl stehen
     static function getAllStud($schulart=null) {
         if(is_null($schulart)) {
-            $users = User::where('role', 'Stud')->where('email_verified_at', '!=', null)->orderByRaw('FIELD(JSON_UNQUOTE(JSON_EXTRACT(survey_data, "$.schulart")), "Grundschule", "Realschule", "Gymnasium")')->orderBy('nachname', 'asc')->get();
+            
+            $users = User::where('role', 'Stud')->where('email_verified_at', '!=', null)->orderByRaw('FIELD(JSON_UNQUOTE(JSON_EXTRACT(survey_data, "$.schulart")), ' .
+                '"' . implode('", "', $this->schularten) . '"' 
+            . ')')->orderBy('nachname', 'asc')->get();
 
             foreach ($users as $user) {
                 $user->survey_data = json_decode($user->survey_data);
@@ -315,19 +312,13 @@ class FilterController extends Controller
             foreach ($users as $user) {
                 $user->survey_data = json_decode($user->survey_data);
             }
-    
-            if ($schulart == 'Grundschule') {
-                $users = $users->reject(function ($user, $key) {
-                    return $user->survey_data->schulart != 'Grundschule';
-                });
-            } elseif ($schulart == 'Realschule') {
-                $users = $users->reject(function ($user, $key) {
-                    return $user->survey_data->schulart != 'Realschule';
-                });
-            } elseif ($schulart == 'Gymnasium') {
-                $users = $users->reject(function ($user, $key) {
-                    return $user->survey_data->schulart != 'Gymnasium';
-                });
+
+            foreach ($schularten as $s) {
+                if ($schulart == $s) {
+                    $users = $users->reject(function ($user, $key) {
+                        return $user->survey_data->schulart != $s;
+                    });
+                }
             }
     
         }

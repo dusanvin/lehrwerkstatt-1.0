@@ -237,8 +237,7 @@ class FilterController extends Controller
     }
 
     // für csv export, alle lehrkräfte, die zur auswahl stehen
-    static function get
-    AllLehr($schulart=null) {
+    static function getAllLehr($schulart=null) {
 
         if(is_null($schulart)) {
             $users = User::where('role', 'Lehr')->where('email_verified_at', '!=', null)->orderByRaw('FIELD(JSON_UNQUOTE(JSON_EXTRACT(survey_data, "$.schulart")), ' .

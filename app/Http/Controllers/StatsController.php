@@ -63,14 +63,12 @@ class StatsController extends Controller
 
         foreach($accepted_matchings as $matching) {
             $lehr = $matching->lehr;
-            $lehr->survey_data = json_decode($lehr->survey_data);
             if (isset($lehr->survey_data->faecher)) {
                 $lehr->survey_data->faecher = implode(', ', $lehr->survey_data->faecher);
             }
             $lehr['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
 
             $stud = $matching->stud;
-            $stud->survey_data = json_decode($stud->survey_data);
             if (isset($stud->survey_data->faecher)) {
                 $stud->survey_data->faecher = implode(', ', $stud->survey_data->faecher);
             }
@@ -103,14 +101,12 @@ class StatsController extends Controller
 
         foreach($notified_matchings as $matching) {
             $lehr = $matching->lehr;
-            $lehr->survey_data = json_decode($lehr->survey_data);
             if (isset($lehr->survey_data->faecher)) {
                 $lehr->survey_data->faecher = implode(', ', $lehr->survey_data->faecher);
             }
             $lehr['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
 
             $stud = $matching->stud;
-            $stud->survey_data = json_decode($stud->survey_data);
             if (isset($stud->survey_data->faecher)) {
                 $stud->survey_data->faecher = implode(', ', $stud->survey_data->faecher);
             }
@@ -143,14 +139,12 @@ class StatsController extends Controller
 
         foreach($declined_matchings as $matching) {
             $lehr = $matching->lehr;
-            $lehr->survey_data = json_decode($lehr->survey_data);
             if (isset($lehr->survey_data->faecher)) {
                 $lehr->survey_data->faecher = implode(', ', $lehr->survey_data->faecher);
             }
             $lehr['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
 
             $stud = $matching->stud;
-            $stud->survey_data = json_decode($stud->survey_data);
             if (isset($stud->survey_data->faecher)) {
                 $stud->survey_data->faecher = implode(', ', $stud->survey_data->faecher);
             }
@@ -254,7 +248,6 @@ class StatsController extends Controller
             "Unterallgäu" => 0
         ];
         foreach($users as $user) {
-            $user->survey_data = json_decode($user->survey_data);
             if($user->role == 'Lehr') {
                 switch($user->survey_data->landkreis) {
                     case "Augsburg Stadt":

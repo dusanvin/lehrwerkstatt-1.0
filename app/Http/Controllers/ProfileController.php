@@ -56,7 +56,6 @@ class ProfileController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $user->survey_data = json_decode($user->survey_data);
         if (isset($user->survey_data->faecher))
             $user->survey_data->faecher = implode(', ', $user->survey_data->faecher);
         if (isset($user->survey_data->landkreise))
@@ -121,17 +120,6 @@ class ProfileController extends Controller
 
         $input = $request->all();
 
-
-        // if(!isset($input['is_evaluable'])) {
-        //     $input['is_evaluable'] = true;
-        // }
-
-
-        if(!($user->role == 'Lehr' || $user->role == 'Stud')) {
-            $input['is_evaluable'] = false;
-        }
-
-
         if ($input['email'] != $user->email) {
             $user->email_verified_at = null;
             $user->sendEmailVerificationNotification();
@@ -152,10 +140,14 @@ class ProfileController extends Controller
             $input = Arr::except($input, array('password'));
         }
 
+        // if checkbox is checked in account.blade.php: $input['is_evaluable'] == 0
         $user->update($input);
+        // if user was in a match dependencies have to be resolved
+        if (isset($input['is_evaluable'])) {  // only true if checked
+            $user->excludeFromMatching();
+        }
 
         session()->flash('success', 'true');
-
         return redirect()->route('profile.account');
     }
 
@@ -164,7 +156,6 @@ class ProfileController extends Controller
         $user = auth()->user();
         
         foreach ($user->matchable as $m) {
-            $m->survey_data = json_decode($m->survey_data);
             if (isset($m->survey_data->faecher))
                 $m->survey_data->faecher = implode(', ', $m->survey_data->faecher);
             if (isset($m->survey_data->landkreise))
@@ -175,54 +166,6 @@ class ProfileController extends Controller
 
         return view('profile.matchings', compact('user'));
     }
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function update(Request $request, $id)
-    // {
-    //     $id = auth()->id();
-    //     $user = User::find($id);
-
-    //     $this->validate($request, [
-    //         'vorname' => 'filled|max:255',
-    //         'nachname' => 'filled|max:255',
-    //         'email' => 'email|unique:users,email,' . $id,
-    //         'password' => 'same:confirm-password',
-    //     ]);
-
-    //     $input = $request->all();
-
-    //     if($input['email'] != $user->email) {
-    //         $user->email_verified_at = null;
-    //         $user->sendEmailVerificationNotification();
-    //     }
-
-    //     if (isset($input['password'])) {
-    //         $this->validate($request, [
-    //             'password' => [Password::min(10)
-    // 			->numbers()
-    // 			->symbols()
-    // 			->mixedCase()
-    // 			->letters(),
-    // 		    ]
-    //         ]);
-    //         $input['password'] = Hash::make($input['password']);
-    //     } else {
-    //         $input = Arr::except($input, array('password'));
-    //     }
-
-    //     $user->update($input);
-
-    //     session()->flash('success', 'true');
-
-    //     return redirect()->route('profile.edit');
-    // }
 
     /**
      * Remove the specified resource from storage.

@@ -52,48 +52,17 @@ class FilterController extends Controller
         "Grundschule",
         "Realschule",
         "Gymnasium",
-        "Gesamtschule"
+        "Mittelschule"
     ];
 
-    private function getUnmatchedUsers($roleName)
+    private function getAvailableUsers($roleName)
     {
-        if($roleName == 'lehr') {
-            $assigned_lehr_ids = DB::table('lehr_stud')->where('is_matched', true)->orWhere('is_notified', true)->pluck('lehr_id');
-            $unassigned = User::where('role', 'Lehr')->where('is_evaluable', true)->whereNotIn('id', $assigned_lehr_ids)->orderBy('nachname', 'asc')->get();
-        }
-
-        if($roleName == 'stud') {
-            $assigned_stud_ids = DB::table('lehr_stud')->where('is_matched', true)->orWhere('is_notified', true)->pluck('stud_id');
-            $unassigned = User::where('role', 'Stud')->where('is_evaluable', true)->whereNotIn('id', $assigned_stud_ids)->orderBy('nachname', 'asc')->get();
-        }
-
-        foreach ($unassigned as $user) {
-            $user->survey_data = json_decode($user->survey_data);
-        }
-
-        return $unassigned;
-    }
-
-    private function implodeFaecher($users)
-    {
-        foreach ($users as $user) {
-            if (isset($user->survey_data->faecher))
-                $user->survey_data->faecher = implode(', ', $user->survey_data->faecher);
-        }
-        return $users;
-    }
-
-    private function implodeLandkreise($users) {
-        foreach ($users as $user) {
-            if (isset($user->survey_data->landkreise))
-                $user->survey_data->landkreise = implode(', ', $user->survey_data->landkreise);
-        }
-        return $users;
+        return User::where('role', ucfirst($roleName))->where('is_evaluable', true)->where('is_available', true)->orderBy('nachname', 'asc')->get();
     }
 
     private function filterSchule($schulart, $users)
     {
-        foreach ($this->schularten as $s) {
+        foreach (self::$schularten as $s) {
             if ($schulart == $s) {
                 $users = $users->reject(function ($user, $key) use ($s) {
                     return $user->survey_data->schulart != $s;
@@ -139,46 +108,48 @@ class FilterController extends Controller
     }
 
 
+    // View: Lehrkräfte
     public function lehr(Request $request, $schulart=null)
     {
         $view = 'all';
-        $users = $this->getUnmatchedUsers('lehr');
+        $users = $this->getAvailableUsers('lehr');
         if(!empty($schulart)) {
             $view = $schulart;
             $users = $this->filterSchule($schulart, $users);
         }
-        $this->implodeFaecher($users);
+
         return view('offers.'.$view, [
             'users' => $users,
-            'faecher' => $this->faecher,
-            'landkreise' => $this->landkreise,
+            'faecher' => FilterController::$faecher,
+            'landkreise' => FilterController::$landkreise,
+            'schulart' => $schulart,
+        ]);
+    }
+
+    // View: Studenten 
+    public function stud(Request $request, $schulart=null)
+    {
+        $view = 'all';
+        $users = $this->getAvailableUsers('stud');
+        if(!empty($schulart)) {
+            $view = $schulart;
+            $users = $this->filterSchule($schulart, $users);
+        }
+
+        return view('needs.'.$view, [
+            'users' => $users,
+            'faecher' => FilterController::$faecher,
+            'landkreise' => FilterController::$landkreise,
             'schulart' => $schulart,
         ]);
     }
 
 
-    public function stud(Request $request, $schulart=null)
-    {
-        $view = 'all';
-        $users = $this->getUnmatchedUsers('stud');
-        if(!empty($schulart)) {
-            $view = $schulart;
-            $users = $this->filterSchule($schulart, $users);
-        }
-        $users = $this->implodeFaecher($users);
-        $users = $this->implodeLandkreise($users);
-        return view('needs.'.$view, [
-            'users' => $users,
-            'faecher' => $this->faecher,
-            'landkreise' => $this->landkreise
-        ]);
-    }
-
-
+    // View:
     public function filteredLehr(Request $request, $schulart=null)
     {
         $view = $schulart ?? 'all';
-        $users = $this->getUnmatchedUsers('lehr');
+        $users = $this->getAvailableUsers('lehr');
         $users = $this->filterSchule($schulart, $users);  // TODO: check if $request->schulart necessary
 
         $selected_faecher = [];
@@ -186,14 +157,15 @@ class FilterController extends Controller
             $selected_faecher = explode(',', $request->faecher);
             $users = $this->filterFaecher($selected_faecher, $users);
         }
-        $users = $this->implodeFaecher($users);
 
         $selected_landkreise = [];
         if ($request->landkreise) {
             $selected_landkreise = explode(',', $request->landkreise);
             $users = $this->filterLandkreise($selected_landkreise, $users);
         }
-        $users = $users->values(); // reset keys
+
+        $users = $users->values(); // resets keys of the collection to sequential keys starting from 0
+
         return view('offers.'.$view, [
             'users' => $users,
             'schulart' => $request->schulart,
@@ -201,15 +173,14 @@ class FilterController extends Controller
             'selected_faecher' => $selected_faecher,
             'landkreise' => $this->landkreise,
             'selected_landkreise' => $selected_landkreise,
-            // 'berufserfahrung' => $request->berufserfahrung,
         ]);
     }
 
-
+    // View:
     public function filteredStud(Request $request, $schulart=null)
     {
         $view = $schulart ?? 'all';
-        $users = $this->getUnmatchedUsers('stud');
+        $users = $this->getAvailableUsers('stud');
         $users = $this->filterSchule($schulart, $users);  // TODO: check if $request->schulart necessary
 
         $selected_faecher = [];
@@ -217,14 +188,14 @@ class FilterController extends Controller
             $selected_faecher = explode(',', $request->faecher);
             $users = $this->filterFaecher($selected_faecher, $users);
         }
-        $users = $this->implodeFaecher($users);
         
         $selected_landkreise = [];
         if ($request->landkreise) {
             $selected_landkreise = explode(',', $request->landkreise);
             $users = $this->filterLandkreise($selected_landkreise, $users);
         }
-        $users = $this->implodeLandkreise($users);
+
+        // $users = $users->values(); TODO: why not here?
 
         return view('needs.'.$view, [
             'users' => $users,
@@ -243,10 +214,6 @@ class FilterController extends Controller
             $users = User::where('role', 'Lehr')->where('email_verified_at', '!=', null)->orderByRaw('FIELD(JSON_UNQUOTE(JSON_EXTRACT(survey_data, "$.schulart")), ' .
                 '"' . implode('", "', self::$schularten) . '"' 
             . ')')->orderBy('nachname', 'asc')->get();
-
-            foreach ($users as $user) {
-                $user->survey_data = json_decode($user->survey_data);
-            }
             
         } else {
             $users = User::where('role', 'Lehr')->where('is_evaluable', true)->orderBy('nachname', 'asc')->get();
@@ -260,10 +227,6 @@ class FilterController extends Controller
                 return $lehr_ids_to_remove->contains($user->id) || $stud_ids_to_remove->contains($user->id);
             });
     
-            foreach ($users as $user) {
-                $user->survey_data = json_decode($user->survey_data);
-            }
-    
             foreach (self::$schularten as $s) {
                 if ($schulart == $s) {
                     $users = $users->reject(function ($user, $key) use ($s) {
@@ -271,11 +234,6 @@ class FilterController extends Controller
                     });
                 }
             }
-        }
-
-        foreach ($users as $user) {
-            if (isset($user->survey_data->faecher))
-                $user->survey_data->faecher = implode(', ', $user->survey_data->faecher);
         }
 
         $users = $users->values();
@@ -290,10 +248,6 @@ class FilterController extends Controller
             $users = User::where('role', 'Stud')->where('email_verified_at', '!=', null)->orderByRaw('FIELD(JSON_UNQUOTE(JSON_EXTRACT(survey_data, "$.schulart")), ' .
                 '"' . implode('", "', self::$schularten) . '"' 
             . ')')->orderBy('nachname', 'asc')->get();
-
-            foreach ($users as $user) {
-                $user->survey_data = json_decode($user->survey_data);
-            }
             
         } else {
             $users = User::where('role', 'Stud')->where('is_evaluable', true)->orderBy('nachname', 'asc')->get();
@@ -306,11 +260,6 @@ class FilterController extends Controller
             $users = $users->reject(function ($user) use ($lehr_ids_to_remove, $stud_ids_to_remove) {
                 return $lehr_ids_to_remove->contains($user->id) || $stud_ids_to_remove->contains($user->id);
             });
-    
-    
-            foreach ($users as $user) {
-                $user->survey_data = json_decode($user->survey_data);
-            }
 
             foreach (self::$schularten as $s) {
                 if ($schulart == $s) {
@@ -320,16 +269,6 @@ class FilterController extends Controller
                 }
             }
     
-        }
-        
-        foreach ($users as $user) {
-            if (isset($user->survey_data->faecher))
-                $user->survey_data->faecher = implode(', ', $user->survey_data->faecher);
-        }
-
-        foreach ($users as $user) {
-            if (isset($user->survey_data->landkreise))
-                $user->survey_data->landkreise = implode(', ', $user->survey_data->landkreise);
         }
 
         foreach ($users as $user) {

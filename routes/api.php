@@ -109,8 +109,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/angebote/stud/{schulart?}', [FilterController::class, 'filteredStud'])
             ->name('users.stud');
 
-        Route::get('/matchings', [MatchingController::class, 'matchings'])->name('users.matchings');
-
         Route::get('/mode', function() {
             return dd(config('app.debug'));
         });

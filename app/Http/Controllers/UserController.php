@@ -77,7 +77,6 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $user->survey_data = json_decode($user->survey_data);
         return view('users.show', compact('user'));
     }
 
@@ -85,7 +84,6 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $user->survey_data = json_decode($user->survey_data);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
 
@@ -125,12 +123,8 @@ class UserController extends Controller
         $user->save();
 
         if (!empty($user->survey_data)) {
-            $user->survey_data = json_decode($user->survey_data);
-            // dd($user->survey_data);
             $user->survey_data->vorname = $input['vorname'];
             $user->survey_data->nachname = $input['nachname'];
-            $user->survey_data = json_encode($user->survey_data);
-            // dd($user->survey_data);
             $user->save();
         }
 

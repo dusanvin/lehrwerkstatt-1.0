@@ -182,7 +182,7 @@
 
                                                     <div class="text-xs sm:text-sm leading-5 text-gray-400">
 
-                                                        {{ $lehr->data()->wunschtandem ?? '' }}
+                                                        {{ $lehr->survey_data->wunschtandem ?? '' }}
 
                                                     </div>
 
@@ -205,16 +205,16 @@
 
                                                     <div class="text-xs sm:text-sm leading-5 text-gray-400">
 
-                                                        @if (isset($lehr->matched_user->data()->wunschtandem))
-                                                            {{ $lehr->matched_user->data()->wunschtandem }}/<br>
+                                                        @if (isset($lehr->matched_user->survey_data->wunschtandem))
+                                                            {{ $lehr->matched_user->survey_data->wunschtandem }}/<br>
                                                         @endif
 
-                                                        @if (isset($lehr->matched_user->data()->wunschorte))
-                                                            {{ $lehr->matched_user->data()->wunschorte }}
+                                                        @if (isset($lehr->matched_user->survey_data->wunschorte))
+                                                            {{ $lehr->matched_user->survey_data->wunschorte }}
                                                         @endif
 
-                                                        {{-- @if (isset($lehr->matched_user->data()->ehem_schulort))
-                                                            ({{ $lehr->matched_user->data()->ehem_schulort }})
+                                                        {{-- @if (isset($lehr->matched_user->survey_data->ehem_schulort))
+                                                            ({{ $lehr->matched_user->survey_data->ehem_schulort }})
                                                         @endif --}}
 
                                                     </div>
@@ -408,7 +408,7 @@
 
                                                     <div class="text-xs sm:text-sm leading-5 text-gray-400">
 
-                                                        {{ $matching->lehr->data()->wunschtandem ?? '' }}
+                                                        {{ $matching->lehr->survey_data->wunschtandem ?? '' }}
 
                                                     </div>
 
@@ -587,10 +587,10 @@
                                                 <td class="px-6 py-4 whitespace-no-wrap">
 
                                                     <div class="text-xs sm:text-sm leading-5 text-gray-400">
-                                                        @if(isset($matching->stud->data()->wunschtandem))
-                                                            {{ $matching->stud->data()->wunschtandem }} /<br>
+                                                        @if(isset($matching->stud->survey_data->wunschtandem))
+                                                            {{ $matching->stud->survey_data->wunschtandem }} /<br>
                                                         @endif                                                        
-                                                        {{ $matching->stud->data()->wunschorte ?? '' }}
+                                                        {{ $matching->stud->survey_data->wunschorte ?? '' }}
                                                     </div>
 
                                                 </td>

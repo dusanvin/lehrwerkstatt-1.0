@@ -418,25 +418,17 @@
 
                                     <div class="text-xs sm:text-sm leading-5 font-medium text-white">
 
-                                        {{ $user->survey_data->schulart }}
+                                            {{ $user->survey_data->schulart }}
 
                                     </div>
 
                                     <!-- Fächer -->
 
-                                    @if (isset($user->survey_data->faecher))
-                                        <div class="text-xs sm:text-sm leading-5 text-gray-400">
+                                    <div class="text-xs sm:text-sm leading-5 text-gray-400">
 
-                                            {{ $user->survey_data->faecher }}
+                                        {{ $user->faecher_as_string }}
 
-                                        </div>
-                                    @else
-                                        <div class="text-xs sm:text-sm leading-5 text-gray-400">
-
-                                            Keine Fächer angegeben
-
-                                        </div>
-                                    @endif
+                                    </div>
 
                                 </div>
 

@@ -90,7 +90,7 @@
                                     @if(isset($user->survey_data->faecher))
                                     <li class="py-3">
                                         <div class="text-xs leading-4 text-gray-200">Fächer</div>
-                                        <div class="text-gray-400 text-xs break-all">{{ $user->survey_data->faecher }}</div>
+                                        <div class="text-gray-400 text-xs break-all">{{ $user->faecher_as_string }}</div>
                                     </li>
                                     @endif
                                     @foreach($user->getRoleNames() as $v)

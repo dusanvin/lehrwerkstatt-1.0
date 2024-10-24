@@ -320,23 +320,11 @@
 
                             <!-- Fächer -->
 
-                            @if(isset($user->survey_data->faecher))
-
                                 <div class="text-xs sm:text-sm leading-5 text-gray-400">
             
-                                    {{ $user->survey_data->faecher }}
+                                   {{ $user->faecher_as_string }}
                                     
                                 </div>
-
-                            @else
-
-                                <div class="text-xs sm:text-sm leading-5 text-gray-400">
-        
-                                    Keine Fächer angegeben
-                                    
-                                </div>
-
-                            @endif
 
                         </div>
 
@@ -344,7 +332,7 @@
 
                             <div class="text-xs sm:text-sm leading-5 text-gray-400">
         
-                                {{ $user->survey_data->landkreise }}
+                               {{ $user->landkreise_as_string }}
                                 
                             </div>
 

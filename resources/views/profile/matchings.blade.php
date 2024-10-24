@@ -143,7 +143,7 @@
 
                                 <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
 
-                                    {{ $user->notified_user->data()->schulart }}
+                                    {{ $user->notified_user->survey_data->schulart }}
 
                                 </div>
 
@@ -153,9 +153,9 @@
 
                                 <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
 
-                                    @if(isset($user->notified_user->data()->faecher))
+                                    @if(isset($user->notified_user->survey_data->faecher))
 
-                                    {{ implode(', ', $user->notified_user->data()->faecher) }}
+                                    {{ implode(', ', $user->notified_user->survey_data->faecher) }}
 
                                     @else
 
@@ -173,10 +173,10 @@
 
                                 <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
 
-                                    {{ $user->notified_user->data()->schulname }}<br>
-                                    {{ $user->notified_user->data()->strasse }} {{ $user->notified_user->data()->hausnummer }}<br>
-                                    {{ $user->notified_user->data()->postleitzahl }} {{ $user->notified_user->data()->ort }}<br>
-                                    {{ $user->notified_user->data()->landkreis }}
+                                    {{ $user->notified_user->survey_data->schulname }}<br>
+                                    {{ $user->notified_user->survey_data->strasse }} {{ $user->notified_user->survey_data->hausnummer }}<br>
+                                    {{ $user->notified_user->survey_data->postleitzahl }} {{ $user->notified_user->survey_data->ort }}<br>
+                                    {{ $user->notified_user->survey_data->landkreis }}
 
                                 </div>
 

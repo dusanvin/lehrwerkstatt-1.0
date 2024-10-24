@@ -47,7 +47,7 @@
                 <!-- ModelInner -->
 
                 <h3 class="text-xs font-medium text-white uppercase mt-4">
-                    Student*in ({{ $stud->data()->schulart }})
+                    Student*in ({{ $stud->survey_data->schulart }})
                 </h3>
 
                 <div class="w-96 mt-2">
@@ -60,25 +60,25 @@
                         <br>
                         <br>
 
-                        @if ($stud->data()->schulart != 'Grundschule')
+                        @if ($stud->survey_data->schulart != 'Grundschule')
                         <p> Fächerauswahl:<br>
-                            {{ isset($stud->data()->faecher) ? implode(', ', $stud->data()->faecher) : '-' }}
+                            {{ isset($stud->survey_data->faecher) ? implode(', ', $stud->survey_data->faecher) : '-' }}
                         </p>
                         <br>
                         @endif
 
                         <p> Wunschtandem:
-                            {{ $stud->data()->wunschtandem ?? '-' }}
+                            {{ $stud->survey_data->wunschtandem ?? '-' }}
                         </p>
                         <p> Wunschorte:
-                            {{ $stud->data()->wunschorte ?? '-' }}
+                            {{ $stud->survey_data->wunschorte ?? '-' }}
                         </p>
                         <p> Ehem. Schulort:
-                            {{ $stud->data()->ehem_schulort ?? '-' }}
+                            {{ $stud->survey_data->ehem_schulort ?? '-' }}
                         </p>
                         <br>
                         <p> Anmerkungen:
-                            {{ $stud->data()->anmerkungen ?? '-' }}
+                            {{ $stud->survey_data->anmerkungen ?? '-' }}
                         </p>
 
                     </div>
@@ -86,7 +86,7 @@
                 </div>
 
                 <h3 class="text-xs font-medium text-white uppercase mt-4">
-                    Lehrer*in ({{ $lehr->data()->schulart }})
+                    Lehrer*in ({{ $lehr->survey_data->schulart }})
                 </h3>
 
                 <div class="w-96 mt-2">
@@ -99,33 +99,33 @@
                         <br>
                         <br>
 
-                        @if ($lehr->data()->schulart != 'Grundschule')
+                        @if ($lehr->survey_data->schulart != 'Grundschule')
                         <p> Angebotene Fächer:<br>
-                            {{ isset($lehr->data()->faecher) ? implode(', ', $lehr->data()->faecher) : '-' }}
+                            {{ isset($lehr->survey_data->faecher) ? implode(', ', $lehr->survey_data->faecher) : '-' }}
                         </p>
                         <br>
                         @endif
 
                         <p> Wunschtandem:
-                            {{ $lehr->data()->wunschtandem ?? '-' }}
+                            {{ $lehr->survey_data->wunschtandem ?? '-' }}
                         </p>
                         <p> Bereits teilgenommen:
-                            {{ $lehr->data()->bereits_teilgenommen ?? '-' }}
+                            {{ $lehr->survey_data->bereits_teilgenommen ?? '-' }}
                         </p>
                         <br>
                         <p> Name der Schule:</p>
                         <p>
-                            {{ $lehr->data()->schulname ?? '-' }}
+                            {{ $lehr->survey_data->schulname ?? '-' }}
                         </p>
                         <p> Ort:
-                            {{ $lehr->data()->ort ?? '-' }}
+                            {{ $lehr->survey_data->ort ?? '-' }}
                         </p>
                         <p> Landkreis:
-                            {{ $lehr->data()->landkreis ?? '-' }}
+                            {{ $lehr->survey_data->landkreis ?? '-' }}
                         </p>
                         <br>
                         <p> Anmerkungen:
-                            {{ $lehr->data()->anmerkungen ?? '-' }}
+                            {{ $lehr->survey_data->anmerkungen ?? '-' }}
                         </p>
 
                     </div>
@@ -161,7 +161,7 @@
                                 Feedback Lehrkraft zu Student*in [Abweichung 0
                                 bis
                                 5]:
-                                {{ abs($lehr->data()->feedback_an - $stud->data()->feedback_von) }}
+                                {{ abs($lehr->survey_data->feedback_an - $stud->survey_data->feedback_von) }}
 
                             </p>
 
@@ -170,42 +170,42 @@
                                 Feedback Student*in zu Lehrkraft [Abweichung 0
                                 bis
                                 5]:
-                                {{ abs($lehr->data()->feedback_von - $stud->data()->feedback_an) }}
+                                {{ abs($lehr->survey_data->feedback_von - $stud->survey_data->feedback_an) }}
 
                             </p>
 
                             <p>
 
                                 Eigenstaendigkeit [Abweichung 0 bis 5]**:
-                                {{ abs($lehr->data()->eigenstaendigkeit - $stud->data()->eigenstaendigkeit) }}
+                                {{ abs($lehr->survey_data->eigenstaendigkeit - $stud->survey_data->eigenstaendigkeit) }}
 
                             </p>
 
                             <p>
 
                                 Improvisation [Abweichung 0 bis 5]:
-                                {{ abs($lehr->data()->improvisation - $stud->data()->improvisation) }}
+                                {{ abs($lehr->survey_data->improvisation - $stud->survey_data->improvisation) }}
 
                             </p>
 
                             <p>
 
                                 Freiraum [Abweichung 0 bis 3]:
-                                {{ abs($lehr->data()->freiraum - $stud->data()->freiraum) }}
+                                {{ abs($lehr->survey_data->freiraum - $stud->survey_data->freiraum) }}
 
                             </p>
 
                             <p>
 
                                 Innovationsoffenheit [Abweichung 0 bis 5]:
-                                {{ abs($lehr->data()->innovationsoffenheit - $stud->data()->innovationsoffenheit) }}
+                                {{ abs($lehr->survey_data->innovationsoffenheit - $stud->survey_data->innovationsoffenheit) }}
 
                             </p>
 
                             <p>
 
                                 Belastbarkeit [Abweichung 0 bis 5]:**
-                                {{ abs($lehr->data()->belastbarkeit - $stud->data()->belastbarkeit) }}
+                                {{ abs($lehr->survey_data->belastbarkeit - $stud->survey_data->belastbarkeit) }}
 
                             </p>
 

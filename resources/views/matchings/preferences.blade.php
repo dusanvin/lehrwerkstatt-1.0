@@ -14,39 +14,12 @@
 
         <div class="px-1 md:px-8 py-1 md:py-8 text-gray-700 w-screen sm:rounded-r-lg bg-gray-900">
             <div class="mx-auto rounded">
-                <!-- Tabs -->
 
-                <ul id="tabs" class="inline-flex w-full">
+                <!-- Schularten -->
 
-                    @php
-                        $selected = 'border-gray-700  bg-gray-800 border-b-4 -mb-px opacity-100';
-                        $not_selected = 'opacity-50 bg-gray-800 border-gray-800 hover:bg-gray-600';
-                    @endphp
+                @include('layouts.schularten', ['routeName' => 'matchings.preferences', 'schulart' => $schulart])
 
-                    <li
-                        class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t {{ isset($schulart) ? $not_selected : $selected }}">
-                        <a href="{{ route('matchings.preferences') }}">Alle Schularten</a>
-                    </li>
-
-                    <li
-                        class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t {{ isset($schulart) && $schulart == 'grundschule' ? $selected : $not_selected }}">
-                        <a href="{{ route('matchings.preferences', ['schulart' => 'grundschule']) }}">Grundschule</a>
-                    </li>
-
-                    <li
-                        class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t {{ isset($schulart) && $schulart == 'realschule' ? $selected : $not_selected }}">
-                        <a href="{{ route('matchings.preferences', ['schulart' => 'realschule']) }}">Realschule</a>
-                    </li>
-
-                    <li
-                        class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t {{ isset($schulart) && $schulart == 'gymnasium' ? $selected : $not_selected }}">
-                        <a href="{{ route('matchings.preferences', ['schulart' => 'gymnasium']) }}">Gymnasium</a>
-                    </li>
-
-                </ul>
-
-                <!-- Tabs -->
-
+                <!-- Schularten -->
 
                 <!-- Content -->
 
@@ -58,7 +31,7 @@
 
                             <h1 class="font-semibold text-2xl text-gray-200">
 
-                            Wunschpaarungen für {{ $schulart ? ucfirst($schulart) : 'alle Schularten' }}
+                            Wunschpaarungen für {{ $schulart ?? 'alle Schularten' }}
 
                             </h1>
 

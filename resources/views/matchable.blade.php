@@ -18,38 +18,11 @@
 
             <div class="mx-auto rounded text-white">
 
-                                <!-- Tabs -->
+                <!-- Schularten -->
 
-                                <ul id="tabs" class="inline-flex w-full">
+                @include('layouts.schularten', ['routeName' => 'users.matchable', 'schulart' => $schulart])
 
-                                    @php
-                                        $selected = 'border-gray-700  bg-gray-800 border-b-4 -mb-px opacity-100';
-                                        $not_selected = 'opacity-50 bg-gray-800 border-gray-800 hover:bg-gray-600';
-                                    @endphp
-
-                                    <li
-                                        class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t {{ isset($schulart) ? $not_selected : $selected }}">
-                                        <a href="{{ route('users.matchable') }}">Alle Schularten</a>
-                                    </li>
-
-                                    <li
-                                        class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t {{ isset($schulart) && $schulart == 'grundschule' ? $selected : $not_selected }}">
-                                        <a href="{{ route('users.matchable', ['schulart' => 'grundschule']) }}">Grundschule</a>
-                                    </li>
-
-                                    <li
-                                        class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t {{ isset($schulart) && $schulart == 'realschule' ? $selected : $not_selected }}">
-                                        <a href="{{ route('users.matchable', ['schulart' => 'realschule']) }}">Realschule</a>
-                                    </li>
-
-                                    <li
-                                        class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t {{ isset($schulart) && $schulart == 'gymnasium' ? $selected : $not_selected }}">
-                                        <a href="{{ route('users.matchable', ['schulart' => 'gymnasium']) }}">Gymnasium</a>
-                                    </li>
-
-                                </ul>
-
-                                <!-- Tabs -->
+                <!-- Schularten -->
 
                 <h1 class="font-semibold text-2xl text-gray-200">
 
@@ -77,7 +50,7 @@
 
                         <h2 class="font-semibold text-lg text-gray-200">
 
-                            Vorauswahl für {{ $schulart ? ucfirst($schulart) : 'alle Schularten' }}
+                            Vorauswahl für {{ $schulart ?? 'alle Schularten' }}
 
                         </h2>
 
@@ -338,9 +311,7 @@
                                 <p>
                                     Folgender Vorschlag muss übernommen werden, um die maximale Anzahl an Paarungen zu
                                     erreichen. Für die jeweiligen PartnerInnen gibt es nur ein/e PartnerIn. Sollten Sie sich
-                                    dagegen entscheiden, kann mindestens eine Person nicht gepaart werden. Ziehen Sie
-                                    notfalls die Visualisierung zu Rate. Die <em class="text-yellow-300">gelben Kanten</em>
-                                    entsprechen den hier aufgeführten Paarungen. Der MSE wird hierbei nicht berücksichtigt.
+                                    dagegen entscheiden, kann mindestens eine Person nicht gepaart werden.
                                 </p>
                             @elseif (count($recommended) > 1)
                                 <p>

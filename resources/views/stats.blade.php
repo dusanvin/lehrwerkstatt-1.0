@@ -15,7 +15,7 @@
             }
         </style>
 
-        
+
 
         <script>
             var jahrgang = @json(config('site_vars.jahrgang'));
@@ -218,7 +218,8 @@
 
                             <div class="rounded-md p-6">
 
-                                <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#7b1fa2,#913f9e);">
+                                <div class="px-0 py-0 sm:p-8 rounded"
+                                    style="background: linear-gradient(60deg,#7b1fa2,#913f9e);">
 
                                     <canvas id="second"></canvas>
 
@@ -245,7 +246,8 @@
 
                             <div class="rounded-md p-6">
 
-                                <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#029eb1,#25b1c3);">
+                                <div class="px-0 py-0 sm:p-8 rounded"
+                                    style="background: linear-gradient(60deg,#029eb1,#25b1c3);">
 
                                     <canvas id="third"></canvas>
 
@@ -255,7 +257,8 @@
 
                                     <h3 class="font-semibold text-lg text-gray-300">Monatliche Registrierungen</h3>
 
-                                    <p class="text-sm text-gray-300">Vorkommen im aktuellen Monat {{ $current_month_name }}</p>
+                                    <p class="text-sm text-gray-300">Vorkommen im aktuellen Monat {{ $current_month_name }}
+                                    </p>
 
                                 </div>
 
@@ -275,7 +278,8 @@
 
                             <div class="rounded-md p-6">
 
-                                <div class="px-0 py-0 sm:p-8 rounded" style="background-image: linear-gradient(195deg,#42424a 0%,#191919 100%);">
+                                <div class="px-0 py-0 sm:p-8 rounded"
+                                    style="background-image: linear-gradient(195deg,#42424a 0%,#191919 100%);">
 
                                     <canvas id="fourth"></canvas>
 
@@ -285,7 +289,8 @@
 
                                     <h3 class="font-semibold text-lg text-gray-300">Bewerbungsformulare</h3>
 
-                                    <p class="text-sm text-gray-300">Ausfüllstatus im absoluten Vergleich in Bezug auf Rollen</p>
+                                    <p class="text-sm text-gray-300">Ausfüllstatus im absoluten Vergleich in Bezug auf
+                                        Rollen</p>
 
                                 </div>
 
@@ -301,7 +306,8 @@
 
                             <div class="rounded-md p-6">
 
-                                <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#d81b60,#ec407a);">
+                                <div class="px-0 py-0 sm:p-8 rounded"
+                                    style="background: linear-gradient(60deg,#d81b60,#ec407a);">
 
                                     <canvas id="fifth"></canvas>
 
@@ -311,7 +317,8 @@
 
                                     <h3 class="font-semibold text-lg text-gray-300">Bewerbungsformulare</h3>
 
-                                    <p class="text-sm text-gray-300">Ausgefüllte Bewerbungsformulare im absoluten Vergleich in Bezug auf Schulart</p>
+                                    <p class="text-sm text-gray-300">Ausgefüllte Bewerbungsformulare im absoluten Vergleich
+                                        in Bezug auf Schulart</p>
 
                                 </div>
 
@@ -331,7 +338,8 @@
 
                             <div class="rounded-md p-6 ">
 
-                                <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#f5700c,#ff9800);">
+                                <div class="px-0 py-0 sm:p-8 rounded"
+                                    style="background: linear-gradient(60deg,#f5700c,#ff9800);">
 
                                     <canvas id="sixth"></canvas>
 
@@ -357,7 +365,8 @@
 
                             <div class="rounded-md p-6">
 
-                                <div class="px-0 py-0 sm:p-8 rounded" style="background: linear-gradient(60deg,#288c6c,#4ea752);">
+                                <div class="px-0 py-0 sm:p-8 rounded"
+                                    style="background: linear-gradient(60deg,#288c6c,#4ea752);">
 
                                     <canvas id="seventh" class="rounded"></canvas>
 
@@ -391,415 +400,108 @@
 
                             <div class="text-left my-4">
 
-                                <h3 class="font-semibold text-lg text-gray-300">Am aktuellen Matchingverfahren teilnehmende Nutzende</h3>
-
-                                <!-- <p class="text-sm text-gray-300">Vollständig ausgefüllte Formulare in aktuellem Matchingverfahren</p> -->
+                                <h3 class="font-semibold text-lg text-gray-300">Am aktuellen Matchingverfahren mit ausgefülltem Formular teilnehmende
+                                    Nutzende</h3>
 
                             </div>
 
                             <div class="grid grid-cols-2 gap-1 sm:gap-4">
 
-                                <div class="min-w-full mr-4 shadow-sm">
+                                @foreach ($available_users as $role => $schularten)
+                                    <div class="min-w-full mr-4 shadow-sm">
 
-                                    <p class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 rounded-t-lg tracking-wider uppercase font-bold">Auflistung der unvermittelten Lehrkräfte</p>
+                                        <p
+                                            class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 rounded-t-lg tracking-wider uppercase font-bold">
+                                            Auflistung der unvermittelten
+                                            @if ($role == 'Lehr')
+                                                Lehrkräfte
+                                            @elseif ($role == 'Stud')
+                                                Studierende
+                                            @endif
+                                        </p>
 
-                                    <!-- Lehramt: Grundschule -->
+                                        @foreach ($schularten as $schulart => $users)
+                                            <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
 
-                                    <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
+                                                <div
+                                                    class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
 
-                                        <div class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
+                                                    {{ $users->count() }}
 
-                                            {{ $users_lehr_grundschule_count }}
+                                                </div>
 
-                                        </div>
+                                                <div class="px-6 py-4">
 
-                                        <div class="px-6 py-4">
+                                                    <div class="text-xs sm:text-sm leading-5 text-white">
 
-                                            <div class="text-xs sm:text-sm leading-5 text-white">
+                                                        <p class="text-xs sm:text-sm leading-5 text-gray-400">
 
-                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
+                                                            @if ($role == 'Lehr')
+                                                                Lehrkräfte
+                                                            @elseif ($role == 'Stud')
+                                                                Studierende
+                                                            @endif
 
-                                                    Lehrkräfte
+                                                        </p>
 
-                                                </p>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="hidden sm:table-cell px-6 py-4">
+
+                                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+
+                                                        {{ $schulart }}
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
+
+                                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
+
+                                                        @php
+                                                            $varName = 'available'.$role.$schulart;
+                                                        @endphp
+
+                                                        <script>
+                                                            var {{ $varName }} = "{{ $users->toJson() }}";
+                                                            var {{ $varName }} = {{ $varName }}.split('&quot;').join('\"');
+                                                            var {{ $varName }} = {{ $varName }}.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
+                                                            var {{ $varName }} = JSON.parse({{ $varName }});
+                                                        </script>
+
+                                                        <a onclick="export{{ $role }}CSV('{{ $varName }}')"
+                                                            id="{{ $varName }}" href="#"
+                                                            class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
+
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                                stroke="currentColor" class="w-6 h-6">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z">
+                                                                </path>
+                                                            </svg>
+
+                                                            <p class="">CSV</p>
+
+                                                            <span
+                                                                class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal"
+                                                                style="font-size: 12px;">Exportieren</span>
+
+                                                        </a>
+
+                                                    </div>
+
+                                                </div>
 
                                             </div>
-
-                                        </div>
-
-                                        <div class="hidden sm:table-cell px-6 py-4">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                        
-                                                Grundschule
-                                                
-                                            </div>
-
-                                        </div>
-
-                                        <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
-                        
-                                                <script>
-                                                    var lehr_grundschule = "{{ $users_lehr_grundschule->toJson() }}";
-                                                    var lehr_grundschule = lehr_grundschule.split('&quot;').join('\"');
-                                                    var lehr_grundschule = lehr_grundschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
-                                                    var lehr_grundschule = JSON.parse(lehr_grundschule);
-                                                </script>
-
-                                                <a onclick="exportLehrCSV('Grundschule')" id="csv_link_lehr_Grundschule" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
-                                                    </svg>
-
-                                                    <p class="">CSV</p>
-
-                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
-
-                                                </a>
-                                                
-                                            </div>
-
-                                        </div>
+                                        @endforeach
 
                                     </div>
-
-                                    <!-- Lehramt: Grundschule -->
-
-                                    <!-- Lehramt: Realschule -->
-
-                                    <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
-
-                                        <div class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
-
-                                            <script>
-                                                var lehr_realschule = "{{ $users_lehr_realschule->toJson() }}";
-                                                var lehr_realschule = lehr_realschule.split('&quot;').join('\"');
-                                                var lehr_realschule = lehr_realschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
-                                                var lehr_realschule = JSON.parse(lehr_realschule);
-                                            </script>
-
-                                            {{ $users_lehr_realschule_count }}
-
-                                        </div>
-
-                                        <div class="px-6 py-4">
-
-                                            <div class="text-xs sm:text-sm leading-5 text-white">
-
-                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
-
-                                                    Lehrkräfte
-
-                                                </p>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="hidden sm:table-cell px-6 py-4">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                        
-                                                Realschule
-                                                
-                                            </div>
-
-                                        </div>
-
-                                        <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
-
-                                                <a onclick="exportLehrCSV('Realschule')" id="csv_link_lehr_Realschule" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
-                                                    </svg>
-
-                                                    <p class="">CSV</p>
-
-                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
-
-                                                </a>
-                                                
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Lehramt: Realschule -->                                
-
-                                    <!-- Lehramt: Gymnasium -->
-
-                                    <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
-
-                                        <div class="w-1/8 hidden sm:table-cell text-sm text-right pl-6 py-4 text-gray-100">
-
-                                            <script>
-                                                    var lehr_gymnasium = "{{ $users_lehr_gymnasium->toJson() }}";
-                                                    var lehr_gymnasium = lehr_gymnasium.split('&quot;').join('\"');
-                                                    var lehr_gymnasium = lehr_gymnasium.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
-                                                    var lehr_gymnasium = JSON.parse(lehr_gymnasium);
-                                            </script>
-
-                                            {{ $users_lehr_gymnasium_count }}
-
-                                        </div>
-
-                                        <div class="px-6 py-4">
-
-                                            <div class="text-xs sm:text-sm leading-5 text-white">
-
-                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
-
-                                                    Lehrkräfte
-
-                                                </p>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="hidden sm:table-cell px-6 py-4">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                        
-                                                Gymnasium
-                                                
-                                            </div>
-
-                                        </div>
-
-                                        <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
-
-                                                <a onclick="exportLehrCSV('Gymnasium')" id="csv_link_lehr_Gymnasium" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
-                                                    </svg>
-
-                                                    <p class="">CSV</p>
-
-                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
-
-                                                </a>
-                                                
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Lehramt: Realschule -->
-
-                                </div>
-
-                                <div class="min-w-full mr-4 shadow-sm">
-
-                                    <p class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 rounded-t-lg tracking-wider uppercase font-bold">Auflistung der unvermittelten Studierenden</p>
-
-                                    <!-- Lehramt: Grundschule -->
-
-                                    <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
-
-                                        <div class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
-
-                                            {{ $users_stud_grundschule_count }}
-
-                                        </div>
-
-                                        <div class="px-6 py-4">
-
-                                            <div class="text-xs sm:text-sm leading-5 text-white">
-
-                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
-
-                                                    Studierende
-
-                                                </p>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="hidden sm:table-cell px-6 py-4">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                        
-                                                Grundschule
-                                                
-                                            </div>
-
-                                        </div>
-
-                                        <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
-                        
-                                                <script>
-                                                        var stud_grundschule = "{{ $users_stud_grundschule->toJson() }}";
-                                                        var stud_grundschule = stud_grundschule.split('&quot;').join('\"');
-                                                        var stud_grundschule = stud_grundschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
-                                                        var stud_grundschule = JSON.parse(stud_grundschule);
-                                                </script>
-
-                                                <a onclick="exportStudCSV('Grundschule')" id="csv_link_stud_Grundschule" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
-                                                    </svg>
-
-                                                    <p class="">CSV</p>
-
-                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
-
-                                                </a>
-                                                
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Lehramt: Grundschule -->
-
-                                    <!-- Lehramt: Realschule -->
-
-                                    <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
-
-                                        <div class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
-
-                                            <script>
-                                                var stud_realschule = "{{ $users_stud_realschule->toJson() }}";
-                                                var stud_realschule = stud_realschule.split('&quot;').join('\"');
-                                                var stud_realschule = stud_realschule.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
-                                                var stud_realschule = JSON.parse(stud_realschule);
-                                            </script>
-
-                                            {{ $users_stud_realschule_count }}
-
-                                        </div>
-
-                                        <div class="px-6 py-4">
-
-                                            <div class="text-xs sm:text-sm leading-5 text-white">
-
-                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
-
-                                                    Studierende
-
-                                                </p>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="hidden sm:table-cell px-6 py-4">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                        
-                                                Realschule
-                                                
-                                            </div>
-
-                                        </div>
-
-                                        <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
-
-                                                <a onclick="exportStudCSV('Realschule')" id="csv_link_stud_Realschule" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
-                                                    </svg>
-
-                                                    <p class="">CSV</p>
-
-                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
-
-                                                </a>
-                                                
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Lehramt: Realschule -->                                
-
-                                    <!-- Lehramt: Gymnasium -->
-
-                                    <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
-
-                                        <div class="w-1/8 hidden sm:table-cell text-sm text-right pl-6 py-4 text-gray-100">
-
-                                            <script>
-                                                var stud_gymnasium = "{{ $users_stud_gymnasium->toJson() }}";
-                                                var stud_gymnasium = stud_gymnasium.split('&quot;').join('\"');
-                                                var stud_gymnasium = stud_gymnasium.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
-                                                var stud_gymnasium = JSON.parse(stud_gymnasium);
-                                            </script>
-
-                                            {{ $users_stud_gymnasium_count }}
-
-                                        </div>
-
-                                        <div class="px-6 py-4">
-
-                                            <div class="text-xs sm:text-sm leading-5 text-white">
-
-                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
-
-                                                    Studierende
-
-                                                </p>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="hidden sm:table-cell px-6 py-4">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                        
-                                                Gymnasium
-                                                
-                                            </div>
-
-                                        </div>
-
-                                        <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
-
-                                                <a onclick="exportStudCSV('Gymnasium')" id="csv_link_stud_Gymnasium" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
-                                                    </svg>
-
-                                                    <p class="">CSV</p>
-
-                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
-
-                                                </a>
-                                                
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Lehramt: Realschule -->
-
-                                </div>
+                                @endforeach
 
                             </div>
 
@@ -823,19 +525,22 @@
 
                                     <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
 
-                                        <div class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
+                                        <div
+                                            class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
 
                                             {{ $accepted_matchings_count }} zustande gekommen
 
                                         </div>
 
-                                        <div class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
+                                        <div
+                                            class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
 
                                             {{ $notified_matchings_count }} unentschieden
 
                                         </div>
 
-                                        <div class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
+                                        <div
+                                            class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
 
                                             {{ $declined_matchings_count }} abgelehnt
 
@@ -843,26 +548,27 @@
 
                                         <!-- <div class="px-6 py-4">
 
-                                            <div class="text-xs sm:text-sm leading-5 text-white">
+                                                <div class="text-xs sm:text-sm leading-5 text-white">
 
-                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
+                                                    <p class="text-xs sm:text-sm leading-5 text-gray-400">
 
-                                                    Lehrkräfte
+                                                        Lehrkräfte
 
-                                                </p>
+                                                    </p>
 
-                                            </div>
+                                                </div>
 
-                                        </div> -->
+                                            </div> -->
 
                                         <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
 
                                             <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
-                        
+
                                                 <script>
                                                     var matchings = "{{ $matchings->toJson() }}";
                                                     var matchings = matchings.split('&quot;').join('\"');
-                                                    var matchings = matchings.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
+                                                    var matchings = matchings.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll(
+                                                        "\\", "");
                                                     // var matchings = matchings.replaceAll("\\", "");
                                                     var matchings = JSON.parse(matchings);
                                                     console.log(matchings);
@@ -872,18 +578,25 @@
                                                     var declined_matchings_count = "{{ $declined_matchings_count }}";
                                                 </script>
 
-                                                <a onclick="exportMatchingsCSV()" id="csv_link_matchings" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
+                                                <a onclick="exportMatchingsCSV()" id="csv_link_matchings" href="#"
+                                                    class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z">
+                                                        </path>
                                                     </svg>
 
                                                     <p class="">CSV</p>
 
-                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
+                                                    <span
+                                                        class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal"
+                                                        style="font-size: 12px;">Exportieren</span>
 
                                                 </a>
-                                                
+
                                             </div>
 
                                         </div>
@@ -910,123 +623,80 @@
 
                             <div class="grid grid-cols-2 gap-1 sm:gap-4">
 
-                                <div class="min-w-full mr-4 shadow-sm">
+                                @foreach ($registered_users as $role => $users)
+                                    <div class="min-w-full mr-4 shadow-sm">
 
-                                    <!-- Lehrkräfte -->
+                                        <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
 
-                                    <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
+                                            <div
+                                                class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
 
-                                        <div class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
-
-                                            {{ $users_all_lehr_count }}
-
-                                        </div>
-
-                                        <div class="px-6 py-4">
-
-                                            <div class="text-xs sm:text-sm leading-5 text-white">
-
-                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
-
-                                                    Lehrkräfte
-
-                                                </p>
+                                                {{ $users->count() }}
 
                                             </div>
 
-                                        </div>
+                                            <div class="px-6 py-4">
 
-                                        <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
+                                                <div class="text-xs sm:text-sm leading-5 text-white">
 
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
-                        
-                                                <script>
-                                                    var all_lehr = "{{ $users_all_lehr->toJson() }}";
-                                                    var all_lehr = all_lehr.split('&quot;').join('\"');
-                                                    var all_lehr = all_lehr.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
-                                                    var all_lehr = JSON.parse(all_lehr);
-                                                </script>
+                                                    <p class="text-xs sm:text-sm leading-5 text-gray-400">
 
-                                                <a onclick="exportLehrCSV()" id="csv_link_all_lehr" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
+                                                        @if ($role == 'Lehr')
+                                                            Lehrkräfte
+                                                        @elseif ($role == 'Stud')
+                                                            Studierende
+                                                        @endif
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
-                                                    </svg>
+                                                    </p>
 
-                                                    <p class="">CSV</p>
-
-                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
-
-                                                </a>
-                                                
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Lehrkräfte -->
-
-                                </div>
-
-                                <div class="min-w-full mr-4 shadow-sm">
-
-                                    <!-- Studierende -->
-
-                                    <div class="border-b border-gray-200 bg-gray-700 flex justify-evenly">
-
-                                        <div class="w-1/8 hidden sm:table-cell text-sm text-center pl-6 py-4 text-gray-100">
-
-                                            {{ $users_all_stud_count }}
-
-                                        </div>
-
-                                        <div class="px-6 py-4">
-
-                                            <div class="text-xs sm:text-sm leading-5 text-white">
-
-                                                <p class="text-xs sm:text-sm leading-5 text-gray-400">
-
-                                                    Studierende
-
-                                                </p>
+                                                </div>
 
                                             </div>
 
-                                        </div>
+                                            <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
 
-                                        <div class="hidden sm:table-cell px-6 py-4 grid justify-items-end">
+                                                <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
 
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white flex">
-                        
-                                                <script>
-                                                        var all_stud = "{{ $users_all_stud->toJson() }}";
-                                                        var all_stud = all_stud.split('&quot;').join('\"');
-                                                        var all_stud = all_stud.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
-                                                        var all_stud = JSON.parse(all_stud);
-                                                </script>
+                                                    @php
+                                                        $varName = 'registered'.$role;
+                                                    @endphp
 
-                                                <a onclick="exportStudCSV()" id="csv_link_all_stud" href="#" class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
+                                                    <script>
+                                                        var {{ $varName }} = "{{ $users->toJson() }}";
+                                                        var {{ $varName }} = {{ $varName }}.split('&quot;').join('\"');
+                                                        var {{ $varName }} = {{ $varName }}.replaceAll("&#039;", "\'").replaceAll("&lt;", "\<").replaceAll("&gt;", "\>").replaceAll("\\", "");
+                                                        var {{ $varName }} = JSON.parse({{ $varName }});
+                                                    </script>
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"></path>
-                                                    </svg>
+                                                    <a onclick="export{{ $role }}CSV('{{ $varName }}')"
+                                                        id="{{ $varName }}" href="#"
+                                                        class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9 transform duration-150 hover:scale-105 transition-colors">
 
-                                                    <p class="">CSV</p>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                            class="w-6 h-6">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z">
+                                                            </path>
+                                                        </svg>
 
-                                                    <span class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal" style="font-size: 12px;">Exportieren</span>
+                                                        <p class="">CSV</p>
 
-                                                </a>
-                                                
+                                                        <span
+                                                            class="tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-20 -ml-6 text-xs font-normal"
+                                                            style="font-size: 12px;">Exportieren</span>
+
+                                                    </a>
+
+                                                </div>
+
                                             </div>
 
                                         </div>
 
                                     </div>
 
-                                    <!-- Studierende -->
-
-                                </div>
+                                @endforeach
 
                             </div>
 
@@ -1036,15 +706,15 @@
 
                 </div>
 
-                    </div>
-
-                    <!-- Aktuelles Verfahren -->
-
-                </div>
-
             </div>
 
-            <!-- Diagramme -->
+            <!-- Aktuelles Verfahren -->
+
+        </div>
+
+        </div>
+
+        <!-- Diagramme -->
 
         </div>
 
@@ -1055,7 +725,6 @@
         <!-- Resources -->
 
         <script type="text/javascript">
-
             // SECOND
 
             data = {
@@ -1065,31 +734,31 @@
                     @endfor
                 ],
                 datasets: [{
-                    label: 'Lehrkräfte',
-                    data: [
-                        @for ($i = 12; $i > 0; $i--)
-                            {{ $lehr_registrations_recent_months[$i] }},
-                        @endfor
-                    ],
-                    backgroundColor: 'rgba(255,255,255, 0.6)',
-                    borderColor: "rgba(255,255,255, 0.6)",
-                    tension: 0.3,
-                    pointStyle: 'line',
-                    fill: false
+                        label: 'Lehrkräfte',
+                        data: [
+                            @for ($i = 12; $i > 0; $i--)
+                                {{ $lehr_registrations_recent_months[$i] }},
+                            @endfor
+                        ],
+                        backgroundColor: 'rgba(255,255,255, 0.6)',
+                        borderColor: "rgba(255,255,255, 0.6)",
+                        tension: 0.3,
+                        pointStyle: 'line',
+                        fill: false
                     },
                     {
-                    label: 'Studierende',
-                    data: [
-                        @for ($i = 12; $i > 0; $i--)
-                            {{ $stud_registrations_recent_months[$i] }},
-                        @endfor
-                    ],
-                    backgroundColor: 'rgba(88, 28, 135, 173, 0.8)',
-                    borderColor: "rgba(88, 28, 135, 0.8)",
-                    tension: 0.3,
-                    pointStyle: 'line',
-                    fill: false,
-                    stack: 'Stack 1',
+                        label: 'Studierende',
+                        data: [
+                            @for ($i = 12; $i > 0; $i--)
+                                {{ $stud_registrations_recent_months[$i] }},
+                            @endfor
+                        ],
+                        backgroundColor: 'rgba(88, 28, 135, 173, 0.8)',
+                        borderColor: "rgba(88, 28, 135, 0.8)",
+                        tension: 0.3,
+                        pointStyle: 'line',
+                        fill: false,
+                        stack: 'Stack 1',
                     },
                 ]
             };
@@ -1100,18 +769,18 @@
                 options: {
                     responsive: true,
                     labels: {
-                      color: "white",
+                        color: "white",
                     },
                     plugins: {
                         title: {
                             display: false
                         },
                         legend: {
-                        position: 'top',
-                        labels: {
-                          color: 'rgba(255, 255, 255, 0.7)',
+                            position: 'top',
+                            labels: {
+                                color: 'rgba(255, 255, 255, 0.7)',
+                            }
                         }
-                      }
                     },
                     interaction: {
                         intersect: false,
@@ -1119,7 +788,7 @@
                     scales: {
                         x: {
                             ticks: {
-                              color: 'rgba(255, 255, 255, 0.7)'
+                                color: 'rgba(255, 255, 255, 0.7)'
                             },
                             stacked: true,
                             grid: {
@@ -1130,9 +799,9 @@
                             stacked: true,
                             min: 0,
                             ticks: {
-                              color: 'rgba(255, 255, 255, 0.7)',
-                              stepSize: 1,
-                              beginAtZero: true
+                                color: 'rgba(255, 255, 255, 0.7)',
+                                stepSize: 1,
+                                beginAtZero: true
                             },
                             grid: {
                                 color: 'rgba(255, 255, 255, 0.2)'
@@ -1166,18 +835,18 @@
                 options: {
                     responsive: true,
                     labels: {
-                      color: "white",
+                        color: "white",
                     },
                     plugins: {
                         title: {
                             display: false
                         },
                         legend: {
-                        position: 'top',
-                        labels: {
-                          color: 'rgba(255, 255, 255, 0.7)',
+                            position: 'top',
+                            labels: {
+                                color: 'rgba(255, 255, 255, 0.7)',
+                            }
                         }
-                      }
                     },
                     interaction: {
                         intersect: false,
@@ -1185,7 +854,7 @@
                     scales: {
                         x: {
                             ticks: {
-                              color: 'rgba(255, 255, 255, 0.7)'
+                                color: 'rgba(255, 255, 255, 0.7)'
                             },
                             stacked: true,
                             grid: {
@@ -1196,8 +865,8 @@
                             stacked: true,
                             min: 0,
                             ticks: {
-                              color: 'rgba(255, 255, 255, 0.7)',
-                              beginAtZero: true
+                                color: 'rgba(255, 255, 255, 0.7)',
+                                beginAtZero: true
                             },
                             grid: {
                                 color: 'rgba(255, 255, 255, 0.2)'
@@ -1247,15 +916,15 @@
                             display: false
                         },
                         legend: {
-                position: 'top',
-                labels: {
-                  color: 'rgba(255, 255, 255, 0.7)',
-                }
-              }
+                            position: 'top',
+                            labels: {
+                                color: 'rgba(255, 255, 255, 0.7)',
+                            }
+                        }
                     },
                     labels: {
-                      color: "white",  // not 'fontColor:' anymore
-                      // fontSize: 18  // not 'fontSize:' anymore
+                        color: "white", // not 'fontColor:' anymore
+                        // fontSize: 18  // not 'fontSize:' anymore
                     },
                     responsive: true,
                     interaction: {
@@ -1327,35 +996,35 @@
                         },
                     },
                     labels: {
-                      color: "white",  // not 'fontColor:' anymore
-                      // fontSize: 18  // not 'fontSize:' anymore
+                        color: "white", // not 'fontColor:' anymore
+                        // fontSize: 18  // not 'fontSize:' anymore
                     },
                     responsive: true,
                     interaction: {
                         intersect: false,
                     },
                     scales: {
-                    x: {  // not 'xAxes: [{' anymore (not an array anymore)
-                      
-                        ticks: {
-                          color: 'rgba(255, 255, 255, 0.7)',
-                          stepSize: 1,
-                          beginAtZero: true
+                        x: { // not 'xAxes: [{' anymore (not an array anymore)
+
+                            ticks: {
+                                color: 'rgba(255, 255, 255, 0.7)',
+                                stepSize: 1,
+                                beginAtZero: true
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            }
                         },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.2)'
+                        y: {
+                            ticks: {
+                                color: 'rgba(255, 255, 255, 0.7)',
+                                stepSize: 1,
+                                beginAtZero: true
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            }
                         }
-                    },
-                    y: {                 
-                        ticks: {
-                          color: 'rgba(255, 255, 255, 0.7)',
-                          stepSize: 1,
-                          beginAtZero: true
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.2)'
-                        }
-                    }
                     }
                 }
             };
@@ -1375,18 +1044,17 @@
                     @endforeach
                 ],
                 datasets: [{
-                        label: 'Lehrkräfte',
-                        data: [
-                            @foreach ($lehr_landkreise as $lehr_landkreis)
-                                {{ $lehr_landkreis }},
-                            @endforeach
-                        ],
-                        backgroundColor: 'rgba(255,255,255,0.8)',
-                        borderColor: 'rgba(255,255,255,0.8)',
-                        borderWidth: 2,
-                        borderRadius: 2,
-                    },
-                ]
+                    label: 'Lehrkräfte',
+                    data: [
+                        @foreach ($lehr_landkreise as $lehr_landkreis)
+                            {{ $lehr_landkreis }},
+                        @endforeach
+                    ],
+                    backgroundColor: 'rgba(255,255,255,0.8)',
+                    borderColor: 'rgba(255,255,255,0.8)',
+                    borderWidth: 2,
+                    borderRadius: 2,
+                }, ]
             };
 
             config = {
@@ -1398,34 +1066,34 @@
                         legend: {
                             position: 'top',
                             labels: {
-                              color: "white",  // not 'fontColor:' anymore
-                              // fontSize: 18  // not 'fontSize:' anymore
+                                color: "white", // not 'fontColor:' anymore
+                                // fontSize: 18  // not 'fontSize:' anymore
                             }
-                          }
+                        }
                     },
                     scales: {
-                      y: {  // not 'yAxes: [{' anymore (not an array anymore)
-                        ticks: {
-                          color: "white", // not 'fontColor:' anymore
-                          // fontSize: 18,
-                          stepSize: 1,
-                          beginAtZero: true
+                        y: { // not 'yAxes: [{' anymore (not an array anymore)
+                            ticks: {
+                                color: "white", // not 'fontColor:' anymore
+                                // fontSize: 18,
+                                stepSize: 1,
+                                beginAtZero: true
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            }
                         },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.2)'
+                        x: { // not 'xAxes: [{' anymore (not an array anymore)
+                            ticks: {
+                                color: "white",
+                                barThickness: 2,
+                                stepSize: 1,
+                                beginAtZero: true
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            }
                         }
-                      },
-                      x: {  // not 'xAxes: [{' anymore (not an array anymore)
-                        ticks: {
-                          color: "white",
-                          barThickness: 2,
-                          stepSize: 1,
-                          beginAtZero: true
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.2)'
-                        }
-                      }
                     }
                 }
             };
@@ -1444,18 +1112,17 @@
                     @endforeach
                 ],
                 datasets: [{
-                        label: 'Studierende',
-                        data: [
-                            @foreach ($stud_landkreise as $stud_landkreis)
-                                {{ $stud_landkreis }},
-                            @endforeach
-                        ],
-                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                        borderColor: 'rgba(255,255,255,0.8)',
-                        borderWidth: 2,
-                        borderRadius: 2,
-                    }
-                ]
+                    label: 'Studierende',
+                    data: [
+                        @foreach ($stud_landkreise as $stud_landkreis)
+                            {{ $stud_landkreis }},
+                        @endforeach
+                    ],
+                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                    borderColor: 'rgba(255,255,255,0.8)',
+                    borderWidth: 2,
+                    borderRadius: 2,
+                }]
             };
 
             config = {
@@ -1467,32 +1134,32 @@
                         legend: {
                             position: 'top',
                             labels: {
-                              color: 'rgba(255, 255, 255, 0.7)',
+                                color: 'rgba(255, 255, 255, 0.7)',
                             }
-                          }
+                        }
                     },
                     scales: {
-                      y: {  // not 'yAxes: [{' anymore (not an array anymore)
-                        ticks: {
-                          color: 'rgba(255, 255, 255, 0.7)',
-                          stepSize: 1,
-                          beginAtZero: true
+                        y: { // not 'yAxes: [{' anymore (not an array anymore)
+                            ticks: {
+                                color: 'rgba(255, 255, 255, 0.7)',
+                                stepSize: 1,
+                                beginAtZero: true
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            }
                         },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.2)'
+                        x: { // not 'xAxes: [{' anymore (not an array anymore)
+
+                            ticks: {
+                                color: 'rgba(255, 255, 255, 0.7)',
+                                stepSize: 1,
+                                beginAtZero: true
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            }
                         }
-                      },
-                      x: {  // not 'xAxes: [{' anymore (not an array anymore)
-                      
-                        ticks: {
-                          color: 'rgba(255, 255, 255, 0.7)',
-                          stepSize: 1,
-                          beginAtZero: true
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.2)'
-                        }
-                      }
                     }
                 }
             };
@@ -1501,8 +1168,6 @@
                 document.getElementById('seventh'),
                 config
             );
-
-
         </script>
 
     </body>

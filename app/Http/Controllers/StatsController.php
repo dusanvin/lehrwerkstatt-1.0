@@ -18,30 +18,25 @@ class StatsController extends Controller
 	
     public function index()
     {
+        $registered_users = [
+            'Lehr' => FilterController::getRegisteredUsers('Lehr'),
+            'Stud' => FilterController::getRegisteredUsers('Stud'),
+        ];
 
-        // alle neutzer mit is_evaluable == true
-        // und die keinen vorschlag erhalten haben, der ausstehend ist oder akzeptiert wurde
-        // wird für csv benötigt
-        $users_lehr_grundschule = FilterController::getAllLehr('Grundschule');
-        $users_lehr_realschule = FilterController::getAllLehr('Realschule');
-        $users_lehr_gymnasium = FilterController::getAllLehr('Gymnasium');
-        $users_all_lehr = FilterController::getAllLehr();
-
-        $users_stud_grundschule = FilterController::getAllStud('Grundschule');
-        $users_stud_realschule = FilterController::getAllStud('Realschule');
-        $users_stud_gymnasium = FilterController::getAllStud('Gymnasium');
-        $users_all_stud = FilterController::getAllStud();
-
-        // get counts of users
-        $users_lehr_grundschule_count = $users_lehr_grundschule->count();
-        $users_lehr_realschule_count = $users_lehr_realschule->count();
-        $users_lehr_gymnasium_count = $users_lehr_gymnasium->count();
-        $users_all_lehr_count = $users_all_lehr->count();
-
-        $users_stud_grundschule_count = $users_stud_grundschule->count();
-        $users_stud_realschule_count = $users_stud_realschule->count();
-        $users_stud_gymnasium_count = $users_stud_gymnasium->count();
-        $users_all_stud_count = $users_all_stud->count();
+        $available_users = [
+            'Lehr' => [
+                'Grundschule' => FilterController::getAvailableUsers('Lehr', 'Grundschule'),
+                'Realschule' => FilterController::getAvailableUsers('Lehr', 'Realschule'),
+                'Gymnasium' => FilterController::getAvailableUsers('Lehr', 'Gymnasium'),
+                'Mittelschule' => FilterController::getAvailableUsers('Lehr', 'Mittelschule'),
+            ],
+            'Stud' => [
+                'Grundschule' => FilterController::getAvailableUsers('Stud', 'Grundschule'),
+                'Realschule' => FilterController::getAvailableUsers('Stud', 'Realschule'),
+                'Gymnasium' => FilterController::getAvailableUsers('Stud', 'Gymnasium'),
+                'Mittelschule' => FilterController::getAvailableUsers('Stud', 'Mittelschule'),
+            ]
+        ];
 
         // nutzer die vorschlag erhalten haben, aufgeteilt bzgl des status
         $accepted_matchings = LehrStud::with('lehr_id', 'stud_id')->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->get();
@@ -63,22 +58,9 @@ class StatsController extends Controller
 
         foreach($accepted_matchings as $matching) {
             $lehr = $matching->lehr;
-            if (isset($lehr->survey_data->faecher)) {
-                $lehr->survey_data->faecher = implode(', ', $lehr->survey_data->faecher);
-            }
             $lehr['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
 
             $stud = $matching->stud;
-            if (isset($stud->survey_data->faecher)) {
-                $stud->survey_data->faecher = implode(', ', $stud->survey_data->faecher);
-            }
-            if (isset($stud->survey_data->landkreise)) {
-                $stud->survey_data->landkreise = implode(', ', $stud->survey_data->landkreise);
-            }
-            if (isset($stud->survey_data->anmerkungen)) {
-                $stud->survey_data->anmerkungen = str_replace('"', '', $stud->survey_data->anmerkungen);
-                $stud->survey_data->anmerkungen = str_replace("'", '', $stud->survey_data->anmerkungen);
-            }
             
             $stud['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
             if(is_null($matching->is_accepted_lehr)) {
@@ -101,22 +83,9 @@ class StatsController extends Controller
 
         foreach($notified_matchings as $matching) {
             $lehr = $matching->lehr;
-            if (isset($lehr->survey_data->faecher)) {
-                $lehr->survey_data->faecher = implode(', ', $lehr->survey_data->faecher);
-            }
             $lehr['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
 
             $stud = $matching->stud;
-            if (isset($stud->survey_data->faecher)) {
-                $stud->survey_data->faecher = implode(', ', $stud->survey_data->faecher);
-            }
-            if (isset($stud->survey_data->landkreise)) {
-                $stud->survey_data->landkreise = implode(', ', $stud->survey_data->landkreise);
-            }
-            if (isset($stud->survey_data->anmerkungen)) {
-                $stud->survey_data->anmerkungen = str_replace('"', '', $stud->survey_data->anmerkungen);
-                $stud->survey_data->anmerkungen = str_replace("'", '', $stud->survey_data->anmerkungen);
-            }
             
             $stud['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
             if(is_null($matching->is_accepted_lehr)) {
@@ -139,22 +108,9 @@ class StatsController extends Controller
 
         foreach($declined_matchings as $matching) {
             $lehr = $matching->lehr;
-            if (isset($lehr->survey_data->faecher)) {
-                $lehr->survey_data->faecher = implode(', ', $lehr->survey_data->faecher);
-            }
             $lehr['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
 
             $stud = $matching->stud;
-            if (isset($stud->survey_data->faecher)) {
-                $stud->survey_data->faecher = implode(', ', $stud->survey_data->faecher);
-            }
-            if (isset($stud->survey_data->landkreise)) {
-                $stud->survey_data->landkreise = implode(', ', $stud->survey_data->landkreise);
-            }
-            if (isset($stud->survey_data->anmerkungen)) {
-                $stud->survey_data->anmerkungen = str_replace('"', '', $stud->survey_data->anmerkungen);
-                $stud->survey_data->anmerkungen = str_replace("'", '', $stud->survey_data->anmerkungen);
-            }
             
             $stud['matchingnummer'] = $matching->lehr_id.$matching->stud_id;
             if(is_null($matching->is_accepted_lehr)) {
@@ -185,11 +141,6 @@ class StatsController extends Controller
 
         // get count of users with verified email
         $user_count = DB::table('users')->whereNotNull('email_verified_at')->count();
-
-        // $admin_count = User::role('Admin')->whereNotNull('email_verified_at')->count();
-        // $mod_count = User::role('Moderierende')->whereNotNull('email_verified_at')->count();
-        // $lehr_count = User::role('Lehr')->whereNotNull('email_verified_at')->count();
-        // $stud_count = User::role('Stud')->whereNotNull('email_verified_at')->count();
 
         $admin_count = User::where('role', 'Admin')->whereNotNull('email_verified_at')->count();
         $mod_count = User::where('role', 'Moderierende')->whereNotNull('email_verified_at')->count();
@@ -391,31 +342,16 @@ class StatsController extends Controller
                 'lehr_complete_form',
                 'stud_incomplete_form',
                 'stud_complete_form',
+
                 'lehr_grundschule',
                 'lehr_realschule',
                 'lehr_gymnasium',
                 'stud_grundschule',
                 'stud_realschule',
                 'stud_gymnasium',
+
                 'lehr_landkreise',
                 'stud_landkreise',
-
-                'users_lehr_grundschule',
-                'users_lehr_realschule',
-                'users_lehr_gymnasium',
-                'users_all_lehr',
-                'users_stud_grundschule',
-                'users_stud_realschule',
-                'users_stud_gymnasium',
-                'users_all_stud',
-                'users_lehr_grundschule_count',
-                'users_lehr_realschule_count',
-                'users_lehr_gymnasium_count',
-                'users_all_lehr_count',
-                'users_stud_grundschule_count',
-                'users_stud_realschule_count',
-                'users_stud_gymnasium_count',
-                'users_all_stud_count',
 
                 'accepted_matchings',
                 'notified_matchings',
@@ -424,6 +360,9 @@ class StatsController extends Controller
                 'accepted_matchings_count',
                 'notified_matchings_count',
                 'declined_matchings_count',
+
+                'registered_users',
+                'available_users'
 
             )
         );

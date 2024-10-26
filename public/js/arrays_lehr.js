@@ -34,13 +34,9 @@ function escapeForCSV(value) {
     return value;
 }
 
-function exportLehrCSV(schulart=null) {
+function exportLehrCSV(varName) {
 
     let csv = [
-        
-    [
-        schulart ? `"Liste aller Lehrkräfte mit vollständigem Bewerbungsformular, die im aktuellen Matchingverfahren teilnehmen und einen Vorschlag erwarten."` : `"Liste aller registrierter Lehrkräfte nach Schulart sortiert."`
-    ],
         
     [
         `"Anrede"`,
@@ -85,9 +81,7 @@ function exportLehrCSV(schulart=null) {
         `"Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?"`,
     ]];
 
-    let lehr = schulart ? 'lehr_' + schulart.toLowerCase() : 'all_lehr';
-
-    window[lehr].forEach(user => {
+    window[varName].forEach(user => {
         
         row = [
             `"${escapeForCSV(user?.survey_data?.anrede ?? '')}"`, 
@@ -140,9 +134,8 @@ function exportLehrCSV(schulart=null) {
     file = new Blob([_file], {type: 'text/csv;charset=utf-8'})
 
     url = URL.createObjectURL(file);
-    csv_link = document.getElementById(schulart ? 'csv_link_lehr_' + schulart : 'csv_link_all_lehr');
+    csv_link = document.getElementById(varName);
     csv_link.setAttribute('href', url);
-    fileName = 'Lehrkräfte' + (schulart ?? 'AlleSchularten') + '.csv';
-    csv_link.setAttribute('download', fileName);
+    csv_link.setAttribute('download',  varName + '.csv');
 
 }

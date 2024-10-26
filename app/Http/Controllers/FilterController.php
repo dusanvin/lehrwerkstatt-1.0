@@ -55,21 +55,27 @@ class FilterController extends Controller
         "Mittelschule"
     ];
 
-    private function getAvailableUsers($roleName)
-    {
-        return User::where('role', ucfirst($roleName))->where('is_evaluable', true)->where('is_available', true)->orderBy('nachname', 'asc')->get();
+    // für csv export
+    static function getRegisteredUsers($roleName, $schulart=null) {
+        $users = User::where('role', ucfirst($roleName))
+            ->where('email_verified_at', '!=', null)
+            ->when($schulart, function ($query, $schulart) {
+                return $query->where('survey_data->schulart', $schulart);
+            })
+            ->orderBy('nachname', 'asc')->get();
+
+        return $users;
     }
 
-    private function filterSchule($schulart, $users)
+    static function getAvailableUsers($roleName, $schulart=null)
     {
-        foreach (self::$schularten as $s) {
-            if ($schulart == $s) {
-                $users = $users->reject(function ($user, $key) use ($s) {
-                    return $user->survey_data->schulart != $s;
-                });
-            }
-        }
-        return $users;
+        return User::where('role', ucfirst($roleName))
+            ->where('is_evaluable', true)->where('is_available', true)
+            ->when($schulart, function ($query, $schulart) {
+                return $query->where('survey_data->schulart', $schulart);
+            })
+            ->orderBy('nachname', 'asc')
+            ->get();
     }
 
     private function filterFaecher($selected_faecher, $users)
@@ -111,12 +117,8 @@ class FilterController extends Controller
     // View: Lehrkräfte
     public function lehr(Request $request, $schulart=null)
     {
-        $view = 'all';
-        $users = $this->getAvailableUsers('lehr');
-        if(!empty($schulart)) {
-            $view = $schulart;
-            $users = $this->filterSchule($schulart, $users);
-        }
+        $view = $schulart ?? 'all';
+        $users = $this->getAvailableUsers('lehr', $schulart);
 
         return view('offers.'.$view, [
             'users' => $users,
@@ -129,12 +131,8 @@ class FilterController extends Controller
     // View: Studenten 
     public function stud(Request $request, $schulart=null)
     {
-        $view = 'all';
-        $users = $this->getAvailableUsers('stud');
-        if(!empty($schulart)) {
-            $view = $schulart;
-            $users = $this->filterSchule($schulart, $users);
-        }
+        $view = $schulart ?? 'all';
+        $users = $this->getAvailableUsers('stud', $schulart);
 
         return view('needs.'.$view, [
             'users' => $users,
@@ -145,12 +143,11 @@ class FilterController extends Controller
     }
 
 
-    // View:
+    // View: 
     public function filteredLehr(Request $request, $schulart=null)
     {
         $view = $schulart ?? 'all';
-        $users = $this->getAvailableUsers('lehr');
-        $users = $this->filterSchule($schulart, $users);  // TODO: check if $request->schulart necessary
+        $users = $this->getAvailableUsers('Lehr', $schulart);
 
         $selected_faecher = [];
         if ($request->faecher) {
@@ -164,7 +161,7 @@ class FilterController extends Controller
             $users = $this->filterLandkreise($selected_landkreise, $users);
         }
 
-        $users = $users->values(); // resets keys of the collection to sequential keys starting from 0
+        $users = $users->values();  // resets keys of the collection to sequential keys starting from 0
 
         return view('offers.'.$view, [
             'users' => $users,
@@ -180,8 +177,7 @@ class FilterController extends Controller
     public function filteredStud(Request $request, $schulart=null)
     {
         $view = $schulart ?? 'all';
-        $users = $this->getAvailableUsers('stud');
-        $users = $this->filterSchule($schulart, $users);  // TODO: check if $request->schulart necessary
+        $users = $this->getAvailableUsers('Stud', $schulart);
 
         $selected_faecher = [];
         if ($request->faecher) {
@@ -195,7 +191,7 @@ class FilterController extends Controller
             $users = $this->filterLandkreise($selected_landkreise, $users);
         }
 
-        // $users = $users->values(); TODO: why not here?
+        $users = $users->values();  // resets keys of the collection to sequential keys starting from 0
 
         return view('needs.'.$view, [
             'users' => $users,
@@ -205,80 +201,6 @@ class FilterController extends Controller
             'landkreise' => $this->landkreise,
             'selected_landkreise' => $selected_landkreise,
         ]);
-    }
-
-    // für csv export, alle lehrkräfte, die zur auswahl stehen
-    static function getAllLehr($schulart=null) {
-
-        if(is_null($schulart)) {
-            $users = User::where('role', 'Lehr')->where('email_verified_at', '!=', null)->orderByRaw('FIELD(JSON_UNQUOTE(JSON_EXTRACT(survey_data, "$.schulart")), ' .
-                '"' . implode('", "', self::$schularten) . '"' 
-            . ')')->orderBy('nachname', 'asc')->get();
-            
-        } else {
-            $users = User::where('role', 'Lehr')->where('is_evaluable', true)->orderBy('nachname', 'asc')->get();
-
-            // es müssen alle ids entfernt werden, die ausstehende oder akzeptierte vorschläge haben
-            // müssen aktuell hier nicht mehr berücksichtigt werden und werden separat aufgelistet in anderer csv
-            $lehr_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('lehr_id');
-            $stud_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('stud_id');
-    
-            $users = $users->reject(function ($user) use ($lehr_ids_to_remove, $stud_ids_to_remove) {
-                return $lehr_ids_to_remove->contains($user->id) || $stud_ids_to_remove->contains($user->id);
-            });
-    
-            foreach (self::$schularten as $s) {
-                if ($schulart == $s) {
-                    $users = $users->reject(function ($user, $key) use ($s) {
-                        return $user->survey_data->schulart != $s;
-                    });
-                }
-            }
-        }
-
-        $users = $users->values();
-        return $users;
-    }
-
-
-    // für csv export, alle studenten, die zu auswahl stehen
-    static function getAllStud($schulart=null) {
-        if(is_null($schulart)) {
-            
-            $users = User::where('role', 'Stud')->where('email_verified_at', '!=', null)->orderByRaw('FIELD(JSON_UNQUOTE(JSON_EXTRACT(survey_data, "$.schulart")), ' .
-                '"' . implode('", "', self::$schularten) . '"' 
-            . ')')->orderBy('nachname', 'asc')->get();
-            
-        } else {
-            $users = User::where('role', 'Stud')->where('is_evaluable', true)->orderBy('nachname', 'asc')->get();
-
-            // es müssen alle ids entfernt werden, die ausstehende oder akzeptierte vorschläge haben
-            // müssen aktuell hier nicht mehr berücksichtigt werden und werden separat aufgelistet in anderer csv
-            $lehr_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('lehr_id');
-            $stud_ids_to_remove = LehrStud::where('is_accepted_lehr', '!=', false)->orWhere('is_accepted_stud', '!=', false)->pluck('stud_id');
-    
-            $users = $users->reject(function ($user) use ($lehr_ids_to_remove, $stud_ids_to_remove) {
-                return $lehr_ids_to_remove->contains($user->id) || $stud_ids_to_remove->contains($user->id);
-            });
-
-            foreach (self::$schularten as $s) {
-                if ($schulart == $s) {
-                    $users = $users->reject(function ($user, $key) use ($s) {
-                        return $user->survey_data->schulart != $s;
-                    });
-                }
-            }
-    
-        }
-
-        foreach ($users as $user) {
-            if (isset($user->survey_data->anmerkungen))
-                $user->survey_data->anmerkungen = str_replace('"', "'", $user->survey_data->anmerkungen);
-        }
-
-        $users = $users->values();
-        return $users;
-
     }
 
 }

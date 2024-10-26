@@ -28,13 +28,9 @@ function escapeForCSV(value) {
 }
 
 
-function exportStudCSV(schulart=null) {
+function exportStudCSV(varName) {
 
     let csv = [
-
-        [
-            schulart ? `"Liste aller Studierenden mit vollständigem Bewerbungsformular, die im aktuellen Matchingverfahren teilnehmen und einen Vorschlag erwarten."` : `"Liste aller registrierten Studierenden nach Schulart sortiert."`
-        ],
         
         [
         `"Anrede"`,
@@ -76,9 +72,7 @@ function exportStudCSV(schulart=null) {
         `"Haben Sie sonstige Anmerkungen zu Ihrer Bewerbung?"`,
     ]];
 
-    let stud = schulart ? 'stud_' + schulart.toLowerCase() : 'all_stud';
-
-    window[stud].forEach(user => {
+    window[varName].forEach(user => {
         
         row = [
             `"${escapeForCSV(user?.survey_data?.anrede ?? '')}"`,  
@@ -128,9 +122,8 @@ function exportStudCSV(schulart=null) {
     file = new Blob([_file], {type: 'text/csv;charset=utf-8'})
 
     url = URL.createObjectURL(file);
-    csv_link = document.getElementById(schulart ? 'csv_link_stud_' + schulart : 'csv_link_all_stud');
+    csv_link = document.getElementById(varName);
     csv_link.setAttribute('href', url);
-    fileName = 'Studierende' + (schulart ?? 'AlleSchularten') + '.csv';
-    csv_link.setAttribute('download', fileName);
+    csv_link.setAttribute('download', varName + '.csv');
 
 }

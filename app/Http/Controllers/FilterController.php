@@ -166,9 +166,9 @@ class FilterController extends Controller
         return view('offers.'.$view, [
             'users' => $users,
             'schulart' => $request->schulart,
-            'faecher' => $this->faecher,
+            'faecher' => FilterController::$faecher,
             'selected_faecher' => $selected_faecher,
-            'landkreise' => $this->landkreise,
+            'landkreise' => FilterController::$landkreise,
             'selected_landkreise' => $selected_landkreise,
         ]);
     }
@@ -196,9 +196,9 @@ class FilterController extends Controller
         return view('needs.'.$view, [
             'users' => $users,
             'schulart' => $request->schulart,
-            'faecher' => $this->faecher,
+            'faecher' => FilterController::$faecher,
             'selected_faecher' => $selected_faecher,
-            'landkreise' => $this->landkreise,
+            'landkreise' => FilterController::$landkreise,
             'selected_landkreise' => $selected_landkreise,
         ]);
     }

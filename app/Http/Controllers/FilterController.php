@@ -48,13 +48,6 @@ class FilterController extends Controller
         "Unterallgäu"
     ];
 
-    private static $schularten = [
-        "Grundschule",
-        "Realschule",
-        "Gymnasium",
-        "Mittelschule"
-    ];
-
     // für csv export
     static function getRegisteredUsers($roleName, $schulart=null) {
         $users = User::where('role', ucfirst($roleName))
@@ -67,15 +60,29 @@ class FilterController extends Controller
         return $users;
     }
 
-    static function getAvailableUsers($roleName, $schulart=null)
+    static function getAvailableUsers($schulart = null, $role = null)
     {
-        return User::where('role', ucfirst($roleName))
-            ->where('is_evaluable', true)->where('is_available', true)
-            ->when($schulart, function ($query, $schulart) {
-                return $query->where('survey_data->schulart', $schulart);
-            })
-            ->orderBy('nachname', 'asc')
-            ->get();
+        return User::where('is_evaluable', true)->where('is_available', true)
+        ->when($schulart, function($query, $schulart) {
+            return $query->where('survey_data->schulart', $schulart);
+        })
+        ->when($role, function($query, $role) {
+            return $query->where('role', $role);
+        })
+        ->orderBy('nachname', 'asc')
+        ->get();
+    }
+
+    static function getAssignedUsers($schulart = null, $role = null)
+    {
+        return User::where('is_evaluable', true)->where('is_available', false)
+        ->when($schulart, function($query, $schulart) {
+            return $query->where('survey_data->schulart', $schulart);
+        })
+        ->when($role, function($query, $role) {
+            return $query->where('role', $role);
+        })
+        ->get();
     }
 
     private function filterFaecher($selected_faecher, $users)
@@ -118,7 +125,7 @@ class FilterController extends Controller
     public function lehr(Request $request, $schulart=null)
     {
         $view = $schulart ?? 'all';
-        $users = $this->getAvailableUsers('lehr', $schulart);
+        $users = $this->getAvailableUsers($schulart, 'Lehr');
 
         return view('offers.'.$view, [
             'users' => $users,
@@ -132,7 +139,7 @@ class FilterController extends Controller
     public function stud(Request $request, $schulart=null)
     {
         $view = $schulart ?? 'all';
-        $users = $this->getAvailableUsers('stud', $schulart);
+        $users = $this->getAvailableUsers($schulart, 'Stud');
 
         return view('needs.'.$view, [
             'users' => $users,
@@ -147,7 +154,7 @@ class FilterController extends Controller
     public function filteredLehr(Request $request, $schulart=null)
     {
         $view = $schulart ?? 'all';
-        $users = $this->getAvailableUsers('Lehr', $schulart);
+        $users = $this->getAvailableUsers($schulart, 'Lehr');
 
         $selected_faecher = [];
         if ($request->faecher) {
@@ -177,7 +184,7 @@ class FilterController extends Controller
     public function filteredStud(Request $request, $schulart=null)
     {
         $view = $schulart ?? 'all';
-        $users = $this->getAvailableUsers('Stud', $schulart);
+        $users = $this->getAvailableUsers($schulart, 'Stud');
 
         $selected_faecher = [];
         if ($request->faecher) {

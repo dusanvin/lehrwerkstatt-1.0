@@ -39,9 +39,9 @@ class StatsController extends Controller
         ];
 
         // nutzer die vorschlag erhalten haben, aufgeteilt bzgl des status
-        $accepted_matchings = LehrStud::with('lehr_id', 'stud_id')->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->get();
+        $accepted_matchings = LehrStud::with(['lehr', 'stud'])->where('is_accepted_lehr', true)->where('is_accepted_stud', true)->get();
 
-        $notified_matchings = LehrStud::with('lehr_id', 'stud_id')->where('is_notified', true)->where(function ($query) {
+        $notified_matchings = LehrStud::with(['lehr', 'stud'])->where('is_notified', true)->where(function ($query) {
             $query->whereNull('is_accepted_lehr')->where('is_accepted_stud', true)->orWhere(function ($query) {
                 $query->where('is_accepted_lehr', true)->whereNull('is_accepted_stud');
             })->orWhere(function ($query) {
@@ -49,7 +49,7 @@ class StatsController extends Controller
             });
         })->get();
 
-        $declined_matchings = LehrStud::with('lehr_id', 'stud_id')->where(function ($query) {
+        $declined_matchings = LehrStud::with(['lehr', 'stud'])->where(function ($query) {
             $query->where('is_accepted_lehr', false)->orWhere('is_accepted_stud', false);
         })->get();
 

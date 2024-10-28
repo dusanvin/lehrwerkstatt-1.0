@@ -128,7 +128,7 @@
                                 <dd
                                     class="mt-1 text-sm text-gray-500 text-white sm:mt-0 sm:col-span-2 flex items-center border-b-2">
 
-                                    {{ $user->created_at->DiffForHumans() }}
+                                    {{ $user->created_at->diffForHumans() }}
 
                                 </dd>
 

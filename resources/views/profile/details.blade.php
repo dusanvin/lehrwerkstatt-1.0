@@ -73,7 +73,7 @@
 
                                     <li class="py-3">
                                         <div class="text-xs leading-4 text-gray-200">Registrierung</div>
-                                        <div class="text-gray-400 text-xs">{{ $user->created_at->DiffForHumans() }}</div>
+                                        <div class="text-gray-400 text-xs">{{ $user->created_at->diffForHumans() }}</div>
                                     </li>
 
                                     <li class="py-3">

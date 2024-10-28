@@ -171,7 +171,7 @@
                             <div class="pl-3">
 
                                 <p class="navigation-element text-sm font-semibold">Tandemvorschläge
-                                    ({{ isset(Auth::user()->notified_user) ? 1 : 0 }})</p>
+                                    ({{ Auth::user()->notified_user ? 1 : 0 }})</p>
 
                                 <!--<p class="navigation-element text-xs">E-Mail und Passwort</p>-->
 

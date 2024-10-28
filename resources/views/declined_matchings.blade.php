@@ -43,19 +43,19 @@
                         <tr>
 
                             <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
+                                Lehrkraft</th>
+
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                Studentin</th>
+
+                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                 Abgelehnt von</th>
 
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                Rolle</th>
-
-                            <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                 Schulart</th>
 
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                Begründung</th>
-
                             <th class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
-                                Vorgeschlagen</th>
+                                Begründung</th>
 
                         </tr>
 
@@ -64,31 +64,37 @@
                         <tr class="border-t border-gray-200 bg-gray-700">
 
                             <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $declined_matching[0] }}</div>
-                                <a href="mailto:{{ $declined_matching[1] }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $declined_matching[1] }}</a>
+                                @if ($declined_matching->lehr)
+                                <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $declined_matching->lehr->full_name }}</div>
+                                <a href="mailto:{{ $declined_matching->lehr->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $declined_matching->lehr->email }}</a>
+                                @else
+                                    <span class="text-xs sm:text-sm leading-5 text-gray-400">Account gelöscht</span>
+                                @endif
+                            </td>
+
+                            <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
+                                @if ($declined_matching->stud)
+                                <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $declined_matching->stud->full_name }}</div>
+                                <a href="mailto:{{ $declined_matching->stud->email }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $declined_matching->stud->email }}</a>
+                                @else
+                                    <span class="text-xs sm:text-sm leading-5 text-gray-400">Account gelöscht</span>
+                                @endif
                             </td>
 
                             <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
 
-                                {{ $declined_matching[2] }}
+                                {{ $declined_matching->role }}
 
                             </td>
 
                             <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
 
-                                {{ $declined_matching[3] }}
+                                {{ $declined_matching->schulart }}
 
                             </td>
 
-                            <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
-
-                                {{ $declined_matching[4] }}
-
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="text-xs sm:text-sm leading-5 font-medium text-white">{{ $declined_matching[5] }}</div>
-                                <a href="mailto:{{ $declined_matching[6] }}" class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $declined_matching[6] }}</a>
+                            <td class="px-6 py-4 whitespace-no-wrap text-white">
+                                {{ $declined_matching->text }}
                             </td>
 
                         </tr>

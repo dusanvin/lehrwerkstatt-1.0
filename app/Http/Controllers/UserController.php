@@ -18,7 +18,10 @@ class UserController extends Controller
     // Verwaltung
     public function index(Request $request)
     {
-        $data = User::orderBy('id', 'DESC')->paginate(20);
+        $data = User::orderByRaw('CASE WHEN nachname IS NULL THEN 1 ELSE 0 END')
+            ->orderBy('nachname', 'asc')
+            ->orderBy('vorname', 'asc')
+            ->paginate(20);
 
         return view('users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 20);

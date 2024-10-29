@@ -18,61 +18,12 @@ class UserController extends Controller
     // Verwaltung
     public function index(Request $request)
     {
-        $data = User::orderBy('id', 'DESC')->simplePaginate(50);
+        $data = User::orderBy('id', 'DESC')->paginate(20);
 
         return view('users.index', compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 20);
     }
 
-    // public function create()
-
-    // {
-
-    //     $roles = Role::pluck('name', 'name')->all();
-    //     return view('users.create', compact('roles'));
-    // }
-
-    // public function store(Request $request)
-
-    // {
-
-    //     $this->validate($request, [
-    //         'vorname' => 'required',
-    //         'nachname' => 'required',
-    //         'email' => 'required|email|unique:users,email',
-    //         'password' => 'required|same:confirm-password'
-    //     ]);
-
-    //     $input = $request->all();
-    //     $input['password'] = Hash::make($input['password']);
-
-    //     $user = User::create($input);
-
-    //     $role = $request->input('roles');
-    //     $role_id = 0;
-    //     if ($role[0] == 'Admin') {
-    //         $role_id = 7;
-    //     }
-    //     if ($role[0] == 'Helfende') {
-    //         $role_id = 4;
-    //     }
-    //     if ($role[0] == 'Lehrende') {
-    //         $role_id = 5;
-    //     }
-    //     if ($role[0] == 'Moderierende') {
-    //         $role_id = 3;
-    //     }
-
-    //     DB::insert('insert into model_has_roles (role_id, model_type, model_id) values (?, ?, ?)', [$role_id, 'App\Models\User', $user->id]);
-
-    //     event(new Registered($user));
-
-    //     $user->timestamps = false;
-    //     $user->last_login_at = now();
-
-    //     return redirect()->route('users.index')
-    //         ->with('success', 'Person erfolgreich erstellt.');
-    // }
 
     public function show($id)
     {
@@ -113,10 +64,11 @@ class UserController extends Controller
 
         $user->vorname = $input['vorname'];
         $user->nachname = $input['nachname'];
-        $user->role = $input['roles'][0];
         if (isset($input['password']))
             $user->password = $input['password'];
-
+    
+        // nutzer soll genau 1 rolle haben
+        $user->role = $input['roles'][0];
         DB::table('model_has_roles')->where('model_id', $id)->delete();
         $user->assignRole($request->input('roles')[0]);
 

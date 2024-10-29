@@ -8,7 +8,8 @@ Survey.StylesManager.applyTheme("defaultV2");
 schularten = [
     "Grundschule",
     "Realschule",
-    "Gymnasium"
+    "Gymnasium",
+    "Mittelschule"
 ]
 
 fachsemester = []
@@ -191,11 +192,7 @@ var json = {
             type: "dropdown",
             title: "Für folgende Schulart studiere ich Lehramt:",
             isRequired: true,
-            choices: [
-                "Grundschule",
-                "Realschule",
-                "Gymnasium"
-            ]
+            choices: schularten
         }, {
             name: "fachsemester",
             type: "dropdown",
@@ -259,19 +256,31 @@ var json = {
             choices: verkehrsmittel
         }]
     }, {
+        title: "Wunschtandem",
+        description: "Falls Sie bereits eine Lehrkraft kennen, mit der Sie gerne im Tandem arbeiten möchten, nennen Sie uns bitte Name und Schule der Person. Bitte füllen Sie auch in diesem Fall das Bewerbungsformular vollständig aus. <br><br> <span class='text-yellow-400'>Wichtig:</span> Bitte tragen Sie in die Felder Vorname und Nachname ausschließlich den Vornamen bzw. Nachnamen ein. Zusätze wie 'Dr.', 'zu' oder 'von' sind nicht erforderlich.",
         elements: [{
+            name: "nachname_wunschtandem",
+            type: "text",
+            title: "Angaben bezüglich des Wunschtandempartners bzw. der Wunschtandempartnerin: <br><br> Nachname:"
+        }, {
+            name: "vorname_wunschtandem",
+            type: "text",
+            title: "Vorname:"
+        }, {
+            name: "schule_wunschtandem",
+            type: "text",
+            title: "Name der Schule:"
+        }, {
+            name: "schulort_wunschtandem",
+            type: "text",
+            title: "Schulort:"
+        }, {
             name: "wunschorte",
             type: "text",
-            title: "Wunschort/e:",
+            title: "Hier können Sie weitere in Frage kommende Wunschorte angeben:",
             description: "Bitte beachten Sie: Wunschorte können nur in Ausnahmefällen berücksichtigt werden."
-        }]
-    }, {
-        elements: [{
-            name: "wunschtandem",
-            type: "text",
-            title: "Name des Wunschtandempartners bzw. der Wunschtandempartnerin:",
-            description: "Falls Sie bereits eine Lehrkraft kennen, mit der Sie gerne im Tandem arbeiten möchten, nennen Sie uns bitte Name und Schule der Person. Bitte füllen Sie auch in diesem Fall das Bewerbungsformular vollständig aus."
-        }]
+        }
+    ]
     }, {
         elements: [{
             name: "feedback_von",

@@ -57,14 +57,6 @@ class MatchingController extends Controller
             ->get();
     }
 
-    private function filterSchulart($matchings, $schulart) {
-        $matchings = $matchings->filter(function ($matching) use ($schulart) {
-            return lcfirst($matching->lehr->survey_data->schulart) === lcfirst($schulart);
-        });
-        $matchings = $matchings->values();
-        return $matchings;
-    }
-
     private function updateMatchings($schulart = null) 
     {
         // verbleibende mögliche und nicht vergebene Matchings werden nach einer getätigten Auswahl gelöscht,
@@ -74,6 +66,10 @@ class MatchingController extends Controller
         // bei verbleibenden matchings recommended auf false setzen
         // bleiben unverändert, da diese zwischen assigned nutzern bestehen und im folgenden ausschließlich beziehungen zwischen available nutzern 
         LehrStud::query()->update(['recommended' => 0]);
+
+        // matchings die bereits abgelehnt wurden, bleiben erhalten da is_notified==true
+        $declined_matchings = LehrStud::where('is_accepted_lehr', false)->orWhere('is_accepted_stud', false)->get();
+
 
         $graph = new Graph();
         $source_vertex = $graph->createVertex('s');
@@ -103,6 +99,19 @@ class MatchingController extends Controller
         foreach ($available_lehr as $lehr) {
 
             foreach ($available_stud as $stud) {
+
+                // abgelehnte matchings nicht mehr berechnen
+                $decline = false;
+                foreach($declined_matchings as $declined_matching) {
+                    if ($declined_matching->lehr_id == $lehr->id && $declined_matching->stud_id == $stud->id) {
+                        $decline = true;
+                    }
+                }
+
+                if ($decline) {
+                    continue;
+                }
+
 
                 if ($lehr->survey_data->schulart == $stud->survey_data->schulart) {
 

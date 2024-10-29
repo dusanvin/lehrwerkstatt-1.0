@@ -61,12 +61,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     /* Bewerbungsformular */
 
-    // Lehrkräfte
     Route::group(['middleware' => ['role:Lehr']], function () {
-
-        Route::get('/bewerbungsformular/lehr', function() {
-            return view('surveys.lehr');
-        })->name('surveys.lehr');
 
         Route::post('/bewerbungsformular/registrierungscode', function(Request $request) {
             $codes = DB::table('registration_codes')->where('code', $request->code)->get();
@@ -75,14 +70,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
  
     });
 
-    // Studenten
-    Route::group(['middleware' => ['role:Stud']], function () {
-
-        Route::get('/bewerbungsformular/stud', function() {
-            return view('surveys.stud');
-        })->name('surveys.stud');
-
-    });
 
     // Alle Nutzer
     Route::group(['middleware' => ['role:Admin|Moderierende|Lehr|Stud']], function () {

@@ -5,6 +5,13 @@ window.addEventListener("beforeunload", function(event) {
 
 Survey.StylesManager.applyTheme("defaultV2");
 
+schularten = [
+    "Grundschule",
+    "Realschule",
+    "Gymnasium",
+    "Mittelschule"
+]
+
 
 var json = {
     // title: "Moderation und Administration",
@@ -36,7 +43,13 @@ var json = {
             inputFormat: "9{*}",
             title: "Ihre Telefonnummer:",
             // isRequired: true
-        }]
+        }, {
+            name: "schulart",
+            type: "dropdown",
+            title: "Welche Schulart verwalten Sie?",
+            isRequired: true,
+            choices: schularten
+        },]
     } 
         
     ]

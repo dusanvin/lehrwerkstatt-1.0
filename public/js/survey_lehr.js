@@ -10,7 +10,8 @@ Survey.StylesManager.ThemeCss[".sd-header__text h3"] = "color: var(--primary, #f
 schularten = [
     "Grundschule",
     "Realschule",
-    "Gymnasium"
+    "Gymnasium",
+    "Mittelschule"
 ]
 
 faecher = [
@@ -201,11 +202,7 @@ var json = {
             type: "dropdown",
             title: "An folgender Schulart bin ich tätig:",
             isRequired: true,
-            choices: [
-                "Grundschule",
-                "Realschule",
-                "Gymnasium"
-            ]
+            choices: schularten
         }, {
             name: "faecher",
             type: "checkbox",
@@ -253,11 +250,16 @@ var json = {
             isRequired: true
         }]
     }, {
+        title: "Wunschtandem",
+        description: "Falls Sie bereits eine\\*n Studierende\\*n kennen, mit dem/der Sie gerne im Tandem arbeiten möchten, nennen Sie uns bitte den Namen der Person. Bitte füllen Sie auch in diesem Fall das Bewerbungsformular vollständig aus. <br><br> <span class='text-yellow-400'>Wichtig:</span> Bitte tragen Sie in die Felder Vorname und Nachname ausschließlich den Vornamen bzw. Nachnamen ein. Zusätze wie 'B.Sc.', 'zu' oder 'von' sind nicht erforderlich.",
         elements: [{
-            name: "wunschtandem",
+            name: "nachname_wunschtandem",
             type: "text",
-            title: "Name des Wunschtandempartners bzw. der Wunschtandempartnerin:",
-            description: "Falls Sie bereits eine\\*n Studierende\\*n kennen, mit dem/der Sie gerne im Tandem arbeiten möchten, nennen Sie uns bitte den Namen der Person. Bitte füllen Sie auch in diesem Fall das Bewerbungsformular vollständig aus."
+            title: "Angaben bezüglich des Wunschtandempartners bzw. der Wunschtandempartnerin: <br><br> Nachname:"
+        }, {
+            name: "vorname_wunschtandem",
+            type: "text",
+            title: "Vorname:"
         }]
     }, {
         elements: [{

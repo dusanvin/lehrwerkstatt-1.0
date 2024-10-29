@@ -82,25 +82,26 @@ class ProfileController extends Controller
     public function edit()
     {
         $user = auth()->user();
-
-        if ($user->survey_data) {  // Hauptformular wurde bereits ausgefüllt
-            if (strcasecmp($user->role, 'Lehr') == 0 || strcasecmp($user->role, 'Stud') == 0) {
+        if ($user->role == 'Lehr' || $user->role == 'Stud') {
+            if ($user->survey_data->bestaetigung ?? false) {
                 $attention = 'Die Bewerbung für den aktuellen Jahrgang '.config('site_vars.jahrgang').' liegt uns vor. Sie können Angaben korrigieren, während Sie das Formular durchgehen. Bitte beachten Sie, dass Pflichtfelder weiterhin ausgefüllt sein und Änderungen anschließend bestätigt werden müssen, bevor diese wirksam werden können.';
-                return view('surveys.' . lcfirst($user->role), ['attention' => $attention, 'jahrgang' => config('site_vars.jahrgang'), 'host' => config('site_vars.host'), 'datenschutzhinweise' => config('site_vars.datenschutzhinweise'), 'datenschutz_einwilligung' => config('site_vars.datenschutz_einwilligung'), 'teilnahmebedingungen' => config('site_vars.teilnahmebedingungen'), 'user' => $user]);
             } else {
-                return view('surveys.admin_mod', ['attention' => 'Hier können Sie Ihre Daten korrigieren.', 'jahrgang' => config('site_vars.jahrgang'), 'host' => config('site_vars.host'), 'datenschutzhinweise' => config('site_vars.datenschutzhinweise'), 'datenschutz_einwilligung' => config('site_vars.datenschutz_einwilligung'), 'teilnahmebedingungen' => config('site_vars.teilnahmebedingungen'), 'user' => $user]);
+                $attention = 'Zum aktuellen Jahrgang '.config('site_vars.jahrgang').' liegt uns keine vollständige Bewerbung vor. Bitte füllen Sie das Bewerbungsformular vollständig aus und klicken Sie am Ende auf "Abschließen", um am Bewerbungsverfahren '.config('site_vars.jahrgang').' teilzunehmen. <br> <br> Falls Sie das Formular im Bewerbungsverfahren für diesen Jahrgang '.config('site_vars.jahrgang').' bereits ausgefüllt haben, ist ein Großteil Ihrer Daten noch gespeichert. Bitte ergänzen Sie die fehlenden Daten und Haken und klicken Sie auf "Abschließen", um das Formular erneut einzureichen.';
             }
-        } else {
-            if (strcasecmp($user->role, 'Lehr') == 0) {
-                $attention = 'Zum aktuellen Jahrgang '.config('site_vars.jahrgang').' liegt uns keine Bewerbung vor. Bitte füllen Sie das Bewerbungsformular vollständig aus und klicken Sie am Ende auf "Abschließen", um am Bewerbungsverfahren '.config('site_vars.jahrgang').' teilzunehmen. <br> <br> Falls Sie das Formular im Bewerbungsverfahren für den Jahrgang '.config('site_vars.jahrgang').' bereits ausgefüllt haben, ist ein Großteil Ihrer Daten noch gespeichert. Bitte ergänzen Sie die fehlenden Daten und Haken und klicken Sie auf "Abschließen", um das Formular erneut einzureichen.';
-                return view('surveys.' . lcfirst($user->role), ['attention' => $attention, 'jahrgang' => config('site_vars.jahrgang'), 'host' => config('site_vars.host'), 'datenschutzhinweise' => config('site_vars.datenschutzhinweise'), 'datenschutz_einwilligung' => config('site_vars.datenschutz_einwilligung'), 'teilnahmebedingungen' => config('site_vars.teilnahmebedingungen'), 'user' => $user]);
-            } elseif (strcasecmp($user->role, 'Stud') == 0) {
-                $attention = 'Zum aktuellen Jahrgang '.config('site_vars.jahrgang').' liegt uns keine Bewerbung vor. Bitte füllen Sie das Bewerbungsformular vollständig aus und klicken Sie am Ende auf "Abschließen", um am Bewerbungsverfahren '.config('site_vars.jahrgang').' teilzunehmen.';
-                return view('surveys.' . lcfirst($user->role), ['attention' => $attention, 'jahrgang' => config('site_vars.jahrgang'), 'host' => config('site_vars.host'), 'datenschutzhinweise' => config('site_vars.datenschutzhinweise'), 'datenschutz_einwilligung' => config('site_vars.datenschutz_einwilligung'), 'teilnahmebedingungen' => config('site_vars.teilnahmebedingungen'), 'user' => $user]);
+        } elseif ($user->role == 'Moderierende') {
+            if ($user->survey_data ?? false) {
+                $attention = 'Bitte vervollständigen Sie die Daten.';
+            } elseif ($user->survey_data->schulart ?? false) {
+                $attention = 'Bitte vervollständigen Sie die Daten und geben eine Schulart an.';
             } else {
-                return view('surveys.admin_mod', ['attention' => 'Bitte vervollständigen Sie die Daten.', 'jahrgang' => config('site_vars.jahrgang'), 'host' => config('site_vars.host'), 'datenschutzhinweise' => config('site_vars.datenschutzhinweise'), 'datenschutz_einwilligung' => config('site_vars.datenschutz_einwilligung'), 'teilnahmebedingungen' => config('site_vars.teilnahmebedingungen'), 'user' => $user]);
+                $attention = 'Hier können Sie Ihre Daten korrigieren.';
             }
+        } elseif ($user->role == 'Admin') {
+                $attention = $user->survey_data ? 'Bitte vervollständigen Sie die Daten.' : 'Hier können Sie Ihre Daten korrigieren.';
         }
+
+        return view('surveys.' . lcfirst($user->role), ['attention' => $attention, 'user' => $user]);
+
     }
 
     public function account()

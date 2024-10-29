@@ -60,31 +60,18 @@
             <div class="overflow-hidden sm:rounded-lg">
                 
                 <input type=hidden value="{{ $attention }}" id="attention">
-                <input type=hidden value="{{ $jahrgang }}" id="jahrgang">
-                <input type=hidden value="{{ $host }}" id="host">
-                <input type=hidden value="{{ $datenschutzhinweise }}" id="datenschutzhinweise">
-                <input type=hidden value="{{ $datenschutz_einwilligung }}" id="datenschutz_einwilligung">
-                <input type=hidden value="{{ $teilnahmebedingungen }}" id="teilnahmebedingungen">
+                <input type=hidden value="{{ config('site_vars.host') }}" id="host">
 
                 <script>
                     var attention = $('#attention').val();
-                    var jahrgang = $('#jahrgang').val();
                     var host = $('#host').val();
-                    var datenschutzhinweise = $('#datenschutzhinweise').val();
-                    var datenschutz_einwilligung = $('#datenschutz_einwilligung').val();
-                    var teilnahmebedingungen = $('#teilnahmebedingungen').val();
                 </script>
 
                 @isset($user)
                     <input type=hidden value="{{ $user }}" id="user">
                     <script>
                         var user = JSON.parse($('#user').val());
-                        var data = JSON.parse(user.survey_data);
-                        if(!data) {
-                            data = new Object();
-                        }
-                        data.vorname = user.vorname;
-                        data.nachname = user.nachname;
+                        var data = user.survey_data;
                     </script>
                 @endisset
 

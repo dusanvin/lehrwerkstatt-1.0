@@ -17,18 +17,12 @@
     <script src="{{ asset('js/jquery.inputmask.min.js') }}"></script>
     <script src="{{ asset('js/surveyjs-widgets.min.js') }}"></script>
 
-    <script src="{{ asset('js/showdown.min.js') }}"></script>
-
     <link href="{{ asset('css/defaultV2.min.css') }}" type="text/css" rel="stylesheet" />
-
     <style>
         /* .sd-title {
             display: none !important;
         } */
         .sd-body {
-            background-color: rgb(31 41 55) !important;
-        }
-        .sd-container-modern__title {
             background-color: rgb(31 41 55) !important;
         }
         .sd-panel {
@@ -66,19 +60,11 @@
             <div class="overflow-hidden sm:rounded-lg">
                 
                 <input type=hidden value="{{ $attention }}" id="attention">
-                <input type=hidden value="{{ config('site_vars.jahrgang') }}" id="jahrgang">
                 <input type=hidden value="{{ config('site_vars.host') }}" id="host">
-                <input type=hidden value="{{ config('site_vars.datenschutzhinweise') }}" id="datenschutzhinweise">
-                <input type=hidden value="{{ config('site_vars.datenschutz_einwilligung') }}" id="datenschutz_einwilligung">
-                <input type=hidden value="{{ config('site_vars.teilnahmebedingungen') }}" id="teilnahmebedingungen">
 
                 <script>
                     var attention = $('#attention').val();
-                    var jahrgang = $('#jahrgang').val();
                     var host = $('#host').val();
-                    var datenschutzhinweise = $('#datenschutzhinweise').val();
-                    var datenschutz_einwilligung = $('#datenschutz_einwilligung').val();
-                    var teilnahmebedingungen = $('#teilnahmebedingungen').val();
                 </script>
 
                 @isset($user)
@@ -90,8 +76,8 @@
                 @endisset
 
                 <div id="surveyElement"></div>
-                <script src="{{ asset('js/survey_stud.js') }}"></script>
-
+                <script src="{{ asset('js/survey_admin_mod.js') }}"></script>
+                
             </div>
 
         </div>

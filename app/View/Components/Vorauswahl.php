@@ -4,19 +4,19 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Details extends Component
+class Vorauswahl extends Component
 {
+
+    public $matchings;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($lehr, $stud, $mse, $text='Weitere Details')
+    public function __construct($matchings)
     {
-        $this->lehr = $lehr;
-        $this->stud = $stud;
-        $this->mse = $mse;
-        $this->text = $text;
+        $this->matchings = $matchings;
     }
 
     /**
@@ -26,6 +26,6 @@ class Details extends Component
      */
     public function render()
     {
-        return view('components.details', ['lehr' => $this->lehr, 'stud' => $this->stud, 'mse' => $this->mse, 'text' => $this->text]);
+        return view('components.vorauswahl');
     }
 }

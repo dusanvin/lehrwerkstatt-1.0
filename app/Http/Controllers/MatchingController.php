@@ -218,7 +218,18 @@ class MatchingController extends Controller
         $this->updateMatchings($schulart);
 
         // view: vorauswahl
-        $matched_lehr = $this->getMatchedLehr($schulart);
+        $matched_users = LehrStud::with(['lehr', 'stud'])
+            ->where('is_matched', true)->where('is_notified', false)
+            ->when($schulart, function ($query, $schulart) {
+                $query->whereHas('lehr', function ($q) use ($schulart) {
+                    $q->where(function ($query) use ($schulart) {
+                        $query->where('survey_data->schulart', $schulart);
+                    });
+                });
+            })
+            ->orderBy('lehr_id', 'asc')
+            ->orderBy('mse', 'asc')
+            ->get();
         
 
         $assigned_lehr = FilterController::getAssignedUsers($schulart, 'Lehr');
@@ -236,7 +247,11 @@ class MatchingController extends Controller
             ->orderBy('mse', 'asc')
             ->get();
 
-        return view('matchable', compact('schulart', 'matched_lehr', 'recommended', 'remaining_matches'));
+        return view('matchable', compact('schulart', 'matched_users', 'recommended', 'remaining_matches'));
+    }
+
+    public function calculateLevenshteinDistance($string1, $string2) {
+
     }
 
     // View: Nav->Wunschtandems
@@ -245,26 +260,121 @@ class MatchingController extends Controller
         $this->updateMatchings();
 
         // view: vorauswahl
-        $matched_lehr = $this->getMatchedLehr($schulart);  
+        $matched_users = LehrStud::with(['lehr', 'stud'])
+            ->where('is_matched', true)->where('is_notified', false)
+            ->when($schulart, function ($query, $schulart) {
+                $query->whereHas('lehr', function ($q) use ($schulart) {
+                    $q->where(function ($query) use ($schulart) {
+                        $query->where('survey_data->schulart', $schulart);
+                    });
+                });
+            })
+            ->orderBy('lehr_id', 'asc')
+            ->orderBy('mse', 'asc')
+            ->get();
 
 
-        $available_lehr = FilterController::getAvailableUsers($schulart, 'Lehr');
-        $available_stud = FilterController::getAvailableUsers($schulart, 'Stud');
+        $matchings_lehr_with_wunschtandem = LehrStud::with(['lehr', 'stud'])
+            ->where('is_matched', false)->where('is_notified', false)
+            ->when($schulart, function ($query, $schulart) {
+                $query->whereHas('lehr', function ($q) use ($schulart) {
+                    $q->where(function ($query) use ($schulart) {
+                        $query->where('survey_data->schulart', $schulart);
+                    });
+                });
+            })
+            ->whereHas('lehr', function($query) {
+                $query->whereNotNull('survey_data->vorname_wunschtandem')
+                    ->orWhereNotNull('survey_data->nachname_wunschtandem');
+            })
+            ->orderBy('lehr_id', 'asc')
+            ->orderBy('mse', 'asc')
+            ->get();
 
-        $wunschtandem_lehr = $available_lehr->reject(function ($lehr, $key) {
-            return !isset($lehr->survey_data->wunschtandem);
+        $filtered_matchings_lehr_with_wunschtandem = $matchings_lehr_with_wunschtandem->filter(function ($matching) {
+
+            $distance_vorname = 0;
+            $distance_nachname = 0;
+
+            $denominator = 0;  
+
+            $lehr_vorname_wunschtandem = $matching->lehr->survey_data->vorname_wunschtandem ?? false;
+            if ($lehr_vorname_wunschtandem) {
+                $denominator++;
+                $distance_vorname = levenshtein($lehr_vorname_wunschtandem, $matching->stud->vorname);
+            }
+            $lehr_nachname_wunschtandem = $matching->lehr->survey_data->nachname_wunschtandem ?? false;
+            if ($lehr_nachname_wunschtandem) {
+                $denominator++;
+                $distance_nachname = levenshtein($lehr_nachname_wunschtandem, $matching->stud->nachname);
+            }
+
+            // denominator >= 1
+            return ($distance_vorname + $distance_nachname) / $denominator < 4;
+
         });
-        $matchings_lehr_stud_wunschtandem = LehrStud::where('is_matched', false)->where('is_notified', false)
-            ->whereIn('lehr_id', $wunschtandem_lehr->pluck('id'))->orderBy('lehr_id', 'asc')->orderBy('mse', 'asc')->get();
 
-        $wunschtandem_stud = $available_stud->reject(function ($stud, $key) {
-            return !(isset($stud->survey_data->wunschtandem) || isset($stud->survey_data->wunschorte));
+
+        $matchings_stud_with_wunschtandem = LehrStud::with(['lehr', 'stud'])
+            ->where('is_matched', false)->where('is_notified', false)
+            ->when($schulart, function ($query, $schulart) {
+                $query->whereHas('lehr', function ($q) use ($schulart) {
+                    $q->where(function ($query) use ($schulart) {
+                        $query->where('survey_data->schulart', $schulart);
+                    });
+                });
+            })
+            ->whereHas('stud', function($query) {
+                $query->whereNotNull('survey_data->vorname_wunschtandem')
+                    ->orWhereNotNull('survey_data->nachname_wunschtandem');
+            })
+            ->orderBy('stud_id', 'asc')
+            ->orderBy('mse', 'asc')
+            ->get();
+
+        $filtered_matchings_stud_with_wunschtandem = $matchings_stud_with_wunschtandem->filter(function ($matching) {
+
+            $distance_vorname = 0;
+            $distance_nachname = 0;
+
+            $denominator = 0;  
+
+            $stud_vorname_wunschtandem = $matching->stud->survey_data->vorname_wunschtandem ?? false;
+            if ($stud_vorname_wunschtandem) {
+                $denominator++;
+                $distance_vorname = levenshtein($stud_vorname_wunschtandem, $matching->stud->vorname);
+            }
+            $stud_nachname_wunschtandem = $matching->stud->survey_data->nachname_wunschtandem ?? false;
+            if ($stud_nachname_wunschtandem) {
+                $denominator++;
+                $distance_nachname = levenshtein($stud_nachname_wunschtandem, $matching->stud->nachname);
+            }
+
+            // denominator >= 1
+            return ($distance_vorname + $distance_nachname) / $denominator < 4;
+
         });
-        $matchings_stud_lehr_wunschtandem = LehrStud::where('is_matched', false)->where('is_notified', false)
-            ->whereIn('stud_id', $wunschtandem_stud->pluck('id'))->orderBy('stud_id', 'asc')->orderBy('mse', 'asc')->get();
+
+        // TODO: separat studenten auflisten, die wunschorte angegeben haben
+        // bei student orte anzeigen, bei lehrer ort anzeigen
+        $matchings_stud_with_wunschorte = LehrStud::with(['lehr', 'stud'])
+            ->where('is_matched', false)->where('is_notified', false)
+            ->when($schulart, function ($query, $schulart) {
+                $query->whereHas('lehr', function ($q) use ($schulart) {
+                    $q->where(function ($query) use ($schulart) {
+                        $query->where('survey_data->schulart', $schulart);
+                    });
+                });
+            })
+            ->whereHas('stud', function($query) {
+                $query->whereNotNull('survey_data->wunschorte');
+            })
+            ->orderBy('stud_id', 'asc')
+            ->orderBy('mse', 'asc')
+            ->get();
 
 
-        return view('matchings.preferences', compact(['schulart', 'matched_lehr', 'matchings_lehr_stud_wunschtandem', 'matchings_stud_lehr_wunschtandem']));
+        return view('matchings.preferences', compact(['schulart', 'matched_users', 'matchings_lehr_with_wunschtandem', 'filtered_matchings_lehr_with_wunschtandem', 'matchings_stud_with_wunschtandem', 'filtered_matchings_stud_with_wunschtandem', 'matchings_stud_with_wunschorte']));
     }
 
 
@@ -289,32 +399,33 @@ class MatchingController extends Controller
     public function notifyMatchings($schulart = null)
     {
         // nur die, die in der vorauswahl (is_matched) sind
-        $unnotified_matchings = LehrStud::where('is_matched', true)->get();
+        $unnotified_matchings = LehrStud::with(['lehr', 'stud'])
+            ->where('is_matched', true)
+            ->when($schulart, function ($query, $schulart) {
+                $query->whereHas('lehr', function ($q) use ($schulart) {
+                    $q->where(function ($query) use ($schulart) {
+                        $query->where('survey_data->schulart', $schulart);
+                    });
+                });
+            })
+            ->get();
 
         foreach ($unnotified_matchings as $unnotified_matching) {
-
-            $lehr = User::find($unnotified_matching->lehr_id);
-            $stud = User::find($unnotified_matching->stud_id);
-
-            if (lcfirst($lehr->survey_data->schulart) == lcfirst($schulart)) {
                 try {
-                    $lehr->notify(new MatchingProposal());
+                    $unnotified_matching->lehr->notify(new MatchingProposal());
                 } catch (\Exception $e) {
-                    $lehr->email_still_exists = false;
-                    $lehr->save();
+                    $unnotified_matching->lehr->update(['email_still_exists' => false]);
                 }
 
                 try {
-                    $stud->notify(new MatchingProposal());
+                    $unnotified_matching->stud->notify(new MatchingProposal());
                 } catch (\Exception $e) {
-                    $stud->email_still_exists = false;
-                    $stud->save();
+                    $unnotified_matching->stud->update(['email_still_exists' => false]);
                 }
 
                 // von vorauswahl zu fest vorgeschlagen
-                $lehr->matchable()->syncWithoutDetaching([$stud->id => ['is_matched' => false, 'is_notified' => true]]);
-            }
-
+                LehrStud::where('lehr_id', $unnotified_matching->lehr_id)->where('stud_id', $unnotified_matching->stud_id)
+                    ->update(['is_matched' => false, 'is_notified' => true]);
         }
 
         return back();

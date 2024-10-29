@@ -56,14 +56,14 @@
 
                         <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                            @if (count($matched_lehr) == 0)
-                            @elseif (count($matched_lehr) == 1)
+                            @if (count($matched_users) == 0)
+                            @elseif (count($matched_users) == 1)
                                 <p>Der folgende Vorschlag wurde von Ihnen übernommen. Sollten Sie den Vorschlag bestätigen,
                                     wird dieser unter <a href="{{ route('acceptedMatchings') }}"
                                         class="underline hover:text-white italic">Tandems</a> gelistet. Die
                                     Personen erhalten zudem eine E-Mail.</p>
-                            @elseif (count($matched_lehr) > 1)
-                                <p>Die folgenden <strong>{{ count($matched_lehr) }} Vorschläge</strong> wurden von Ihnen
+                            @elseif (count($matched_users) > 1)
+                                <p>Die folgenden <strong>{{ count($matched_users) }} Vorschläge</strong> wurden von Ihnen
                                     übernommen. Sollten Sie die Vorschläge bestätigen, werden diese unter <a
                                         href="{{ route('acceptedMatchings') }}"
                                         class="underline hover:text-white italic">Tandems</a> gelistet. Die
@@ -74,201 +74,10 @@
 
                     </div>
 
-                    <table class="min-w-full mt-4 mb-2 mr-4 shadow-sm rounded-lg">
+                    <x-vorauswahl :matchings="$matched_users" />
 
-                        <tbody>
 
-                            @if (count($matched_lehr) == 0)
-                                <p
-                                    class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">
-                                    Bisher wurden keine Vorschläge von Ihnen übernommen. Suchen Sie auf Basis des MSE nach
-                                    Paarungen.</p>
-                            @elseif (count($matched_lehr) > 0)
-                                <tr>
-
-                                    <th
-                                        class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
-                                        #
-                                    </th>
-
-                                    <th
-                                        class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        Lehrkraft
-                                    </th>
-                                    <th
-                                        class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        Wunschtandem/-ort
-                                    </th>
-
-                                    <th
-                                        class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        Student*in
-                                    </th>
-                                    <th
-                                        class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        Wunschtandem/-ort <br>(ehem. Schulort)
-                                    </th>
-
-                                    <th
-                                        class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                        MSE
-                                    </th>
-                                    <!--
-                                        <th
-                                            class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                            Übernommen
-                                        </th>
-                                        -->
-
-                                    <th
-                                        class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
-                                    </th>
-                                    <th
-                                        class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
-                                    </th>
-
-                                </tr>
-
-                                @foreach ($matched_lehr as $index => $lehr)
-                                    <tr class="border-t border-gray-200 bg-gray-700">
-
-                                        <td class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
-
-                                            {{ $index + 1 }}
-
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                                                {{ $lehr->vorname }} {{ $lehr->nachname }}
-                                            </div>
-
-                                            <a href="mailto:{{ $lehr->email }}"
-                                                class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $lehr->email }}
-                                            </a>
-
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap">
-
-                                            <div class="text-xs sm:text-sm leading-5 text-gray-400">
-
-                                                @if (isset($lehr->survey_data->wunschtandem))
-                                                    {{ $lehr->survey_data->wunschtandem }}/
-                                                @endif
-
-                                                @if (isset($lehr->survey_data->ort))
-                                                    {{ $lehr->survey_data->ort }}
-                                                @endif
-
-                                            </div>
-
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap">
-
-                                            <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                                                {{ $lehr->matched_user->vorname }} {{ $lehr->matched_user->nachname }}
-                                            </div>
-
-                                            <a href="mailto:{{ $lehr->matched_user->email }}"
-                                                class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $lehr->matched_user->email }}
-                                            </a>
-
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap">
-
-                                            <div class="text-xs sm:text-sm leading-5 text-gray-400">
-
-                                                @if (isset($lehr->matched_user->survey_data->wunschtandem))
-                                                    {{ $lehr->matched_user->survey_data->wunschtandem }}/
-                                                @endif
-
-                                                @if (isset($lehr->matched_user->survey_data->wunschorte))
-                                                    {{ $lehr->matched_user->survey_data->wunschorte }}
-                                                @endif
-
-                                                @if (isset($lehr->matched_user->survey_data->ehem_schulort))
-                                                    ({{ $lehr->matched_user->survey_data->ehem_schulort }})
-                                                @endif
-
-                                            </div>
-
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap">
-
-                                            <div
-                                                class="text-sm leading-5 font-normal text-white select-none font-bold bg-gray-500 text-center p-1 w-12 rounded-sm">
-
-                                                {{ $lehr->matched_user->pivot->mse }}
-
-                                            </div>
-
-                                        </td>
-
-                                        <!-- Details -->
-
-                                        <td class="px-6 py-4 whitespace-no-wrap">
-
-                                            <x-details :lehr="$lehr" :stud="$lehr->matched_user" :mse="$lehr->matched_user->mse">
-                                            </x-details>
-
-                                        </td>
-
-                                        <!-- Details -->
-
-                                        <!-- Löschen -->
-
-                                        <td
-                                            class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
-
-                                            <form
-                                                action="{{ route('matchings.setunassigned', ['lehr' => $lehr->id, 'stud' => $lehr->matched_user->id]) }}"
-                                                method="get">
-
-                                                @csrf
-
-                                                <button type="submit"
-                                                    class="py-2 px-2 rounded-full text-white text-sm flex focus:outline-none bg-yellow-700 has-tooltip hover:bg-yellow-900 border-2 border-white transition ease-in-out duration-150 hover:scale-105 transform">
-
-                                                    <div class="grid justify-items-center">
-
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                            viewBox="0 0 20 20" fill="currentColor">
-
-                                                            <path fill-rule="evenodd"
-                                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                                                clip-rule="evenodd" />
-
-                                                        </svg>
-
-                                                        <span
-                                                            class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150'>Entfernen</span>
-
-                                                    </div>
-
-                                                </button>
-
-                                            </form>
-
-
-                                        </td>
-
-                                        <!-- Löschen -->
-
-                                    </tr>
-                                @endforeach
-                            @endif
-
-                        </tbody>
-
-                    </table>
-
-
-                    @if (count($matched_lehr))
+                    @if (count($matched_users))
                         <div class="mt-4 flex justify-end">
 
                             <a href="{{ route('notifyMatchings', ['schulart' => $schulart]) }}"
@@ -405,8 +214,8 @@
 
                                             <div class="text-xs sm:text-sm leading-5 text-gray-400">
 
-                                                @if (isset($matching->lehr->survey_data->wunschtandem))
-                                                    {{ $matching->lehr->survey_data->wunschtandem }}/
+                                                @if (isset($matching->lehr->wunschtandem))
+                                                    {{ $matching->lehr->wunschtandem }}/
                                                 @endif
 
                                                 @if (isset($matching->lehr->survey_data->ort))
@@ -431,8 +240,8 @@
 
                                             <div class="text-xs sm:text-sm leading-5 text-gray-400">
 
-                                                @if (isset($matching->stud->survey_data->wunschtandem))
-                                                    {{ $matching->stud->survey_data->wunschtandem }}/
+                                                @if (isset($matching->stud->wunschtandem))
+                                                    {{ $matching->stud->wunschtandem }}/
                                                 @endif
 
                                                 @if (isset($matching->stud->survey_data->wunschorte))

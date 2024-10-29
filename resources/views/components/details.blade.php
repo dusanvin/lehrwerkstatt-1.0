@@ -68,7 +68,7 @@
                         @endif
 
                         <p> Wunschtandem:
-                            {{ $stud->survey_data->wunschtandem ?? '-' }}
+                            {{ $stud->wunschtandem ?? '-' }}
                         </p>
                         <p> Wunschorte:
                             {{ $stud->survey_data->wunschorte ?? '-' }}
@@ -107,7 +107,7 @@
                         @endif
 
                         <p> Wunschtandem:
-                            {{ $lehr->survey_data->wunschtandem ?? '-' }}
+                            {{ $lehr->wunschtandem ?? '-' }}
                         </p>
                         <p> Bereits teilgenommen:
                             {{ $lehr->survey_data->bereits_teilgenommen ?? '-' }}

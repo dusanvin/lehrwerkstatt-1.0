@@ -193,7 +193,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getWunschtandemAttribute() {
         $survey_data = $this->survey_data;
-        return ($survey_data->vorname_wunschtandem ?? '').' '.($survey_data->nachname_wunschtandem ?? '');
+        $wunschtandem = trim(($survey_data->vorname_wunschtandem ?? '').' '.($survey_data->nachname_wunschtandem ?? ''));
+        return $wunschtandem ?: null;
     }
 
 }

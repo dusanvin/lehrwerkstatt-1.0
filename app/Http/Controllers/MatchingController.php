@@ -50,8 +50,8 @@ class MatchingController extends Controller
     private function getMatchedLehr($schulart) {
         // Lehrer, die in der Vorauswahl sind nach Schulart filtern
         return User::whereIn('id', LehrStud::where('is_matched', true)->pluck('lehr_id'))
-            ->when($schulart, function($query, $schulart) {
-                return $query->where('survey_data->schulart', $schulart);
+            ->when($schulart, function ($query, $schulart) {
+                return $query->where('lehr.survey_data->schulart', $schulart);
             })
             ->orderBy('nachname', 'asc')
             ->get();
@@ -404,7 +404,8 @@ class MatchingController extends Controller
     {
 
         // unentschiedene Matchings
-        $notified_matchings = LehrStud::where('is_notified', true)
+        $notified_matchings = LehrStud::with(['lehr', 'stud'])
+            ->where('is_notified', true)
             ->where(function ($query) { 
                 $query->whereNull('is_accepted_lehr')->where('is_accepted_stud', true)
                       ->orWhere(function ($query) {
@@ -413,36 +414,35 @@ class MatchingController extends Controller
                       ->orWhere(function ($query) {
                         $query->whereNull('is_accepted_lehr')->whereNull('is_accepted_stud');
                         });
-            })->get();
-        $notified_matchings = $this->filterSchulart($notified_matchings, $schulart);
-
-        foreach ($notified_matchings as $am) {
-            $am->lehr = User::find($am->lehr_id);
-            $am->stud = User::find($am->stud_id);
-            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
-        }
+            })
+            ->when($schulart, function ($query, $schulart) {
+                $query->whereHas('lehr.survey_data', function ($q) use ($schulart) {
+                    $q->where('schulart', $schulart);
+                });
+            })
+            ->get();
 
         // akzeptierte Matchings
-        $accepted_matchings = LehrStud::where('is_accepted_lehr', true)->where('is_accepted_stud', true)->get();
-        $accepted_matchings = $this->filterSchulart($accepted_matchings, $schulart);
-
-        foreach ($accepted_matchings as $am) {
-            $am->lehr = User::find($am->lehr_id);
-            $am->stud = User::find($am->stud_id);
-            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
-        }
+        $accepted_matchings = LehrStud::with(['lehr', 'stud'])
+            ->where('is_accepted_lehr', true)->where('is_accepted_stud', true)
+            ->when($schulart, function ($query, $schulart) {
+                $query->whereHas('lehr.survey_data', function ($q) use ($schulart) {
+                    $q->where('schulart', $schulart);
+                });
+            })
+            ->get();
 
         // abgelehnte Matchings
-        $declined_matchings = LehrStud::where(function ($query) {
-            $query->where('is_accepted_lehr', false)->orWhere('is_accepted_stud', false);
-        })->get();
-        $declined_matchings = $this->filterSchulart($declined_matchings, $schulart);
-
-        foreach ($declined_matchings as $am) {
-            $am->lehr = User::find($am->lehr_id);
-            $am->stud = User::find($am->stud_id);
-            $am->elapsed_time = Carbon::parse($am->created_at)->diffForHumans(Carbon::now());
-        }
+        $declined_matchings = LehrStud::with(['lehr', 'stud'])
+            ->where(function ($query) {
+                $query->where('is_accepted_lehr', false)->orWhere('is_accepted_stud', false);
+            })
+            ->when($schulart, function ($query, $schulart) {
+                $query->whereHas('lehr.survey_data', function ($q) use ($schulart) {
+                    $q->where('schulart', $schulart);
+                });
+            })
+            ->get();
 
         return view('accepted_matchings', compact(['schulart', 'notified_matchings', 'accepted_matchings', 'declined_matchings']));
     }

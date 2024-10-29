@@ -342,12 +342,12 @@ class MatchingController extends Controller
             $stud_vorname_wunschtandem = $matching->stud->survey_data->vorname_wunschtandem ?? false;
             if ($stud_vorname_wunschtandem) {
                 $denominator++;
-                $distance_vorname = levenshtein($stud_vorname_wunschtandem, $matching->stud->vorname);
+                $distance_vorname = levenshtein($stud_vorname_wunschtandem, $matching->lehr->vorname);
             }
             $stud_nachname_wunschtandem = $matching->stud->survey_data->nachname_wunschtandem ?? false;
             if ($stud_nachname_wunschtandem) {
                 $denominator++;
-                $distance_nachname = levenshtein($stud_nachname_wunschtandem, $matching->stud->nachname);
+                $distance_nachname = levenshtein($stud_nachname_wunschtandem, $matching->lehr->nachname);
             }
 
             // denominator >= 1
@@ -355,8 +355,6 @@ class MatchingController extends Controller
 
         });
 
-        // TODO: separat studenten auflisten, die wunschorte angegeben haben
-        // bei student orte anzeigen, bei lehrer ort anzeigen
         $matchings_stud_with_wunschorte = LehrStud::with(['lehr', 'stud'])
             ->where('is_matched', false)->where('is_notified', false)
             ->when($schulart, function ($query, $schulart) {
@@ -373,8 +371,7 @@ class MatchingController extends Controller
             ->orderBy('mse', 'asc')
             ->get();
 
-
-        return view('matchings.preferences', compact(['schulart', 'matched_users', 'matchings_lehr_with_wunschtandem', 'filtered_matchings_lehr_with_wunschtandem', 'matchings_stud_with_wunschtandem', 'filtered_matchings_stud_with_wunschtandem', 'matchings_stud_with_wunschorte']));
+        return view('matchings.preferences', compact(['schulart', 'matched_users', 'filtered_matchings_lehr_with_wunschtandem', 'filtered_matchings_stud_with_wunschtandem', 'matchings_stud_with_wunschorte']));
     }
 
 

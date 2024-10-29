@@ -5,7 +5,7 @@
         @if (count($matchings) == 0)
             <p
                 class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">
-                Bisher wurden keine Vorschläge von Ihnen übernommen. Suchen Sie auf Basis des MSE nach Paarungen.</p>
+                {{ $text }}</p>
 
         @elseif (count($matchings) > 0)
             <tr>
@@ -18,6 +18,10 @@
                 <th
                     class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                     Lehrkraft
+                </th>
+                <th
+                    class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                    Schule/Ort/Landkreis
                 </th>
 
                 <th
@@ -67,6 +71,16 @@
 
                     <td class="px-6 py-4 whitespace-no-wrap">
 
+                        <div class="text-xs sm:text-sm leading-5 text-gray-400">
+                                <div>{{ $matching->lehr->survey_data->schulname }}</div>
+                                <div>{{ $matching->lehr->survey_data->postleitzahl }} {{ $matching->lehr->survey_data->ort }}</div>
+                                <div>{{ $matching->lehr->survey_data->landkreis }}</div>
+                        </div>
+
+                    </td>
+
+                    <td class="px-6 py-4 whitespace-no-wrap">
+
                         <div class="text-xs sm:text-sm leading-5 font-medium text-white">
                             {{ $matching->stud->vorname }}
                             {{ $matching->stud->nachname }}
@@ -75,6 +89,8 @@
                         <a href="mailto:{{ $matching->stud->email }}"
                             class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->stud->email }}
                         </a>
+
+                        <div class="text-xs sm:text-sm leading-5 text-gray-400">ehem. Schulort: {{ $matching->stud->survey_data->ehem_schulort ?? '-' }}</div>
 
                     </td>
 
@@ -92,9 +108,6 @@
                             @if ($matching->stud->survey_data->schulort_wunschtandem ?? false)
                                 <div>{{ $matching->stud->survey_data->schulort_wunschtandem }}</div>
                             @endif
-                            @if ($matching->stud->survey_data->ehem_schulort ?? false)
-                                <div>ehem. Schulort: {{ $matching->stud->survey_data->ehem_schulort }}</div>
-                             @endif
                         </div>
 
                     </td>
@@ -122,7 +135,41 @@
 
                     <!-- Details -->
 
-                    <!-- Löschen -->
+                    @if ($assign)
+                    <td
+                        class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
+
+                        <form
+                            action="{{ route('matchings.setassigned', ['lehr' => $matching->lehr->id, 'stud' => $matching->stud->id]) }}"
+                            method="get">
+
+                            @csrf
+
+                            <button type="submit"
+                                class="py-2 px-2 rounded-full text-white text-sm flex focus:outline-none bg-green-700 has-tooltip hover:bg-green-900 border-2 border-white transition ease-in-out duration-150 hover:scale-105 transform">
+
+                                <div class="grid justify-items-center">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                        viewBox="0 0 20 20" fill="currentColor">
+
+                                        <path fill-rule="evenodd"
+                                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                            clip-rule="evenodd" />
+
+                                    </svg>
+
+                                    <span
+                                        class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150'>Aufnehmen</span>
+
+                                </div>
+
+                            </button>
+
+                        </form>
+                    </td>
+
+                    @else
 
                     <td
                         class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
@@ -156,10 +203,8 @@
 
                         </form>
 
-
                     </td>
-
-                    <!-- Löschen -->
+                    @endif
 
                 </tr>
             @endforeach

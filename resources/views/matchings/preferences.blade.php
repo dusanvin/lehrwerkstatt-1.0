@@ -83,7 +83,7 @@
 
 
 
-                            <x-vorauswahl :matchings="$matched_users" />
+                            <x-auswahl :matchings="$matched_users" :text="'Bisher wurden keine Vorschläge von Ihnen übernommen. Suchen Sie auf Basis des MSE nach Paarungen.'" :assign="false"/>
 
                             @if (count($matched_users))
                                 <div class="mt-4 flex justify-end">
@@ -116,21 +116,21 @@
 
                                 <h2 class="font-semibold text-lg text-gray-200">
 
-                                    Lehrkräfte mit Wunschtandem
+                                    Lehrkräfte mit passenden Wunschtandems durch Namensüberprüfung ermittelt
 
                                 </h2>
 
                                 <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                                    @if (count($matchings_lehr_with_wunschtandem) == 0)
-                                        <p>Keine Vorschläge vorhanden.</p>
-                                    @elseif (count($matchings_lehr_with_wunschtandem) == 1)
+                                    <p>Falls in seltenen Fällen eine Namensüberprüfung nicht funktioniert haben sollte, werden weiterhin alle möglichen Paarungen nach MSE sortiert unter Tandemvorschläge gelistet.</p>
+
+                                    @if (count($filtered_matchings_lehr_with_wunschtandem) == 1)
                                         <p>
-                                            Es gibt einen Vorschlag.
+                                            <br>Es gibt einen Vorschlag.
                                         </p>
-                                    @elseif (count($matchings_lehr_with_wunschtandem) > 1)
+                                    @elseif (count($filtered_matchings_lehr_with_wunschtandem) > 1)
                                         <p>
-                                            Es gibt {{ count($matchings_lehr_with_wunschtandem) }} Vorschläge.
+                                            <br>Es gibt {{ count($filtered_matchings_lehr_with_wunschtandem) }} Vorschläge.
                                         </p>
                                     @endif
 
@@ -138,157 +138,14 @@
 
                             </div>
 
-                            <table class="min-w-full mt-4 mb-2 mr-4 shadow-sm rounded-lg">
-
-                                <tbody>
-
-                                    @if (count($matchings_lehr_with_wunschtandem) > 0)
-                                        <tr>
-
-                                            <th
-                                                class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
-                                                #
-                                            </th>
-
-                                            <th
-                                                class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                                Lehrkraft
-                                            </th>
-                                            <th
-                                                class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                                Wunschtandem
-                                            </th>
-
-                                            <th
-                                                class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                                Student*in
-                                            </th>
-                                            <th
-                                                class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                                MSE
-                                            </th>
-                                            <th
-                                                class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
-                                            </th>
-                                            <th
-                                                class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
-                                            </th>
-
-                                        </tr>
-
-                                        @foreach ($matchings_lehr_with_wunschtandem as $index => $matching)
-                                            <tr class="border-t border-gray-200 bg-gray-700">
-
-                                                <td
-                                                    class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
-
-                                                    {{ $index + 1 }}
-
-                                                </td>
-
-                                                <td class="px-6 py-4 whitespace-no-wrap">
-
-                                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                                                        {{ $matching->lehr->vorname }} {{ $matching->lehr->nachname }}
-                                                    </div>
-
-                                                    <a href="mailto:{{ $matching->lehr->email }}"
-                                                        class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->lehr->email }}</a>
-
-                                                </td>
-
-                                                <td class="px-6 py-4 whitespace-no-wrap">
-
-                                                    <div class="text-xs sm:text-sm leading-5 text-gray-400">
-
-                                                        {{ $matching->lehr->wunschtandem ?? '' }}
-
-                                                    </div>
-
-                                                </td>
-
-                                                <td class="px-6 py-4 whitespace-no-wrap">
-
-                                                    <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                                                        {{ $matching->stud->vorname }} {{ $matching->stud->nachname }}
-                                                    </div>
-
-                                                    <a href="mailto:{{ $matching->stud->email }}"
-                                                        class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->stud->email }}</a>
-
-                                                </td>
-
-                                                <td class="px-6 py-4 whitespace-no-wrap">
-
-                                                    <div
-                                                        class="text-sm leading-5 font-normal text-white select-none font-bold bg-gray-500 text-center p-1 w-12 rounded-sm">
-
-                                                        {{ $matching->mse }}
-
-                                                    </div>
-
-                                                </td>
-
-                                                <td class="px-6 py-4 whitespace-no-wrap">
-
-                                                    <x-details :lehr="$matching->lehr" :stud="$matching->stud" :mse="$matching->mse">
-                                                    </x-details>
-
-                                                </td>
-
-                                                <!-- Löschen -->
-
-                                                <td
-                                                    class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
-
-                                                    <form
-                                                        action="{{ route('matchings.setassigned', ['lehr' => $matching->lehr->id, 'stud' => $matching->stud->id]) }}"
-                                                        method="get">
-
-                                                        @csrf
-
-                                                        <button type="submit"
-                                                            class="py-2 px-2 rounded-full text-white text-sm flex focus:outline-none bg-green-700 has-tooltip hover:bg-green-900 border-2 border-white transition ease-in-out duration-150 hover:scale-105 transform">
-
-                                                            <div class="grid justify-items-center">
-
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                                    viewBox="0 0 20 20" fill="currentColor">
-
-                                                                    <path fill-rule="evenodd"
-                                                                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                                                        clip-rule="evenodd" />
-
-                                                                </svg>
-
-                                                                <span
-                                                                    class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150'>Aufnehmen</span>
-
-                                                            </div>
-
-                                                        </button>
-
-                                                    </form>
-
-
-                                                </td>
-
-                                                <!-- Löschen -->
-
-                                            </tr>
-                                        @endforeach
-                                    @endif
-
-                                </tbody>
-
-                            </table>
+                            <x-auswahl :matchings="$filtered_matchings_lehr_with_wunschtandem" :text="'Für Lehrkräfte konnten keine passenden Wunschtandems ermittelt werden.'" :assign="true"/>
 
                         </div>
 
                         {{-- lehrer wunschtandem --}}
 
 
-                        {{-- studenten wunschtandem --}}
+                        {{-- studierende wunschtandem --}}
 
                         <div class="bg-gray-800 py-1 md:py-8 rounded-md mt-4">
 
@@ -296,21 +153,21 @@
 
                                 <h2 class="font-semibold text-lg text-gray-200">
 
-                                    Student*innen mit Wunschtandem / Wunschort
+                                    Studierende mit passenden Wunschtandems durch Namensüberprüfung ermittelt
 
                                 </h2>
 
                                 <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                                    @if (count($matchings_stud_with_wunschtandem) == 0)
-                                        <p>Keine Vorschläge vorhanden.</p>
-                                    @elseif (count($matchings_stud_with_wunschtandem) == 1)
+                                    <p>Falls in seltenen Fällen eine Namensüberprüfung nicht funktioniert haben sollte, werden weiterhin alle möglichen Paarungen nach MSE sortiert unter Tandemvorschläge gelistet.</p>
+
+                                    @if (count($filtered_matchings_stud_with_wunschtandem) == 1)
                                         <p>
-                                            Es gibt einen Vorschlag.
+                                            <br>Es gibt einen Vorschlag.
                                         </p>
-                                    @elseif (count($matchings_stud_with_wunschtandem) > 1)
+                                    @elseif (count($filtered_matchings_stud_with_wunschtandem) > 1)
                                         <p>
-                                            Es gibt {{ count($matchings_stud_with_wunschtandem) }} Vorschläge.
+                                            <br>Es gibt {{ count($filtered_matchings_stud_with_wunschtandem) }} Vorschläge.
                                         </p>
                                     @endif
 
@@ -321,28 +178,38 @@
                             <table class="min-w-full mt-4 mb-2 mr-4 shadow-sm rounded-lg">
 
                                 <tbody>
-
-                                    @if (count($matchings_stud_with_wunschtandem) > 0)
+                            
+                                    @if (count($filtered_matchings_stud_with_wunschtandem) == 0)
+                                        <p
+                                            class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">
+                                            Für Studierende konnten keine passenden Wunschtandems ermittelt werden.</p>
+                            
+                                    @elseif (count($filtered_matchings_stud_with_wunschtandem) > 0)
                                         <tr>
-
+                            
                                             <th
                                                 class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
                                                 #
                                             </th>
 
                                             <th
-                                                class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                                class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                                 Student*in
                                             </th>
                                             <th
-                                                class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                                class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                                 Wunschtandem/Schule/Ort
                                             </th>
-
+                            
                                             <th
-                                                class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                                class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                                 Lehrkraft
                                             </th>
+                                            <th
+                                                class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                                Schule/Ort/Landkreis
+                                            </th>
+                            
                                             <th
                                                 class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
                                                 MSE
@@ -353,32 +220,36 @@
                                             <th
                                                 class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
                                             </th>
-
+                            
                                         </tr>
-
-                                        @foreach ($matchings_stud_with_wunschtandem as $index => $matching)
+                            
+                                        @foreach ($filtered_matchings_stud_with_wunschtandem as $index => $matching)
                                             <tr class="border-t border-gray-200 bg-gray-700">
-
+                            
                                                 <td
                                                     class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
-
+                            
                                                     {{ $index + 1 }}
-                                                    
+                            
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-no-wrap">
-
+                            
                                                     <div class="text-xs sm:text-sm leading-5 font-medium text-white">
-                                                        {{ $matching->stud->vorname }} {{ $matching->stud->nachname }}
+                                                        {{ $matching->stud->vorname }}
+                                                        {{ $matching->stud->nachname }}
                                                     </div>
-
+                            
                                                     <a href="mailto:{{ $matching->stud->email }}"
-                                                        class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->stud->email }}</a>
-
+                                                        class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->stud->email }}
+                                                    </a>
+                            
+                                                    <div class="text-xs sm:text-sm leading-5 text-gray-400">ehem. Schulort: {{ $matching->stud->survey_data->ehem_schulort ?? '-' }}</div>
+                            
                                                 </td>
-
+                            
                                                 <td class="px-6 py-4 whitespace-no-wrap">
-
+                            
                                                     <div class="text-xs sm:text-sm leading-5 text-gray-400">
                                                         @if ($matching->stud->wunschtandem ?? false)
                                                             <div>{{ $matching->stud->wunschtandem }}</div>
@@ -391,94 +262,307 @@
                                                         @if ($matching->stud->survey_data->schulort_wunschtandem ?? false)
                                                             <div>{{ $matching->stud->survey_data->schulort_wunschtandem }}</div>
                                                         @endif
-                                                        @if ($matching->stud->survey_data->ehem_schulort ?? false)
-                                                            <div>ehem. Schulort: {{ $matching->stud->survey_data->ehem_schulort }}</div>
-                                                         @endif
                                                     </div>
-
+                            
                                                 </td>
-
+                            
                                                 <td class="px-6 py-4 whitespace-no-wrap">
-
+                            
                                                     <div class="text-xs sm:text-sm leading-5 font-medium text-white">
                                                         {{ $matching->lehr->vorname }} {{ $matching->lehr->nachname }}
                                                     </div>
-
+                            
                                                     <a href="mailto:{{ $matching->lehr->email }}"
-                                                        class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->lehr->email }}</a>
-                                                    
+                                                        class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->lehr->email }}
+                                                    </a>
+                            
                                                     <div class="text-xs sm:text-sm leading-5 text-gray-400 break-words">Wunschtandem: {{ $matching->lehr->wunschtandem ?: '-' }}</div>
-
+                            
                                                 </td>
-
+                            
                                                 <td class="px-6 py-4 whitespace-no-wrap">
-
+                            
+                                                    <div class="text-xs sm:text-sm leading-5 text-gray-400">
+                                                            <div>{{ $matching->lehr->survey_data->schulname }}</div>
+                                                            <div>{{ $matching->lehr->survey_data->postleitzahl }} {{ $matching->lehr->survey_data->ort }}</div>
+                                                            <div>{{ $matching->lehr->survey_data->landkreis }}</div>
+                                                    </div>
+                            
+                                                </td>
+                            
+                                                <td class="px-6 py-4 whitespace-no-wrap">
+                            
                                                     <div
                                                         class="text-sm leading-5 font-normal text-white select-none font-bold bg-gray-500 text-center p-1 w-12 rounded-sm">
-
+                            
                                                         {{ $matching->mse }}
-
+                            
                                                     </div>
-
+                            
                                                 </td>
-
+                            
+                            
+                                                <!-- Details -->
+                            
                                                 <td class="px-6 py-4 whitespace-no-wrap">
-
+                            
                                                     <x-details :lehr="$matching->lehr" :stud="$matching->stud" :mse="$matching->mse">
                                                     </x-details>
-
+                            
                                                 </td>
-
-                                                <!-- Löschen -->
-
+                            
+                                                <!-- Details -->
+                            
                                                 <td
                                                     class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
-
+                            
                                                     <form
                                                         action="{{ route('matchings.setassigned', ['lehr' => $matching->lehr->id, 'stud' => $matching->stud->id]) }}"
                                                         method="get">
-
+                            
                                                         @csrf
-
+                            
                                                         <button type="submit"
                                                             class="py-2 px-2 rounded-full text-white text-sm flex focus:outline-none bg-green-700 has-tooltip hover:bg-green-900 border-2 border-white transition ease-in-out duration-150 hover:scale-105 transform">
-
+                            
                                                             <div class="grid justify-items-center">
-
+                            
                                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                                     viewBox="0 0 20 20" fill="currentColor">
-
+                            
                                                                     <path fill-rule="evenodd"
                                                                         d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                                                         clip-rule="evenodd" />
-
+                            
                                                                 </svg>
-
+                            
                                                                 <span
                                                                     class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150'>Aufnehmen</span>
-
+                            
                                                             </div>
-
+                            
                                                         </button>
-
+                            
                                                     </form>
-
-
                                                 </td>
-
-                                                <!-- Löschen -->
-
+                            
                                             </tr>
                                         @endforeach
                                     @endif
-
+                            
                                 </tbody>
-
+                            
                             </table>
+                            
 
                         </div>
 
-                        {{-- studenten wunschtandem --}}
+                        {{-- studierende wunschtandem --}}
+
+
+                        {{-- studierende wunschorte --}}
+
+                        <div class="bg-gray-800 rounded-md">
+
+                            <div class="grid justify-items-center sm:justify-items-start select-none">
+
+                                <h2 class="font-semibold text-lg text-gray-200">
+
+                                    Auflistung möglicher Paarungen mit Studierenden, die Wunschorte angegeben haben.
+
+                                </h2>
+
+                                <div class="mt-1 text-sm text-gray-300 grid text-center sm:text-left flex">
+
+                                    @if (count($matchings_stud_with_wunschorte) == 1)
+                                        <p>
+                                            <br>Es gibt einen Vorschlag.
+                                        </p>
+                                    @elseif (count($matchings_stud_with_wunschorte) > 1)
+                                        <p>
+                                            <br>Es gibt {{ count($matchings_stud_with_wunschorte) }} Vorschläge.
+                                        </p>
+                                    @endif
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <table class="min-w-full mt-4 mb-2 mr-4 shadow-sm rounded-lg">
+
+                            <tbody>
+                        
+                                @if (count($matchings_stud_with_wunschorte) == 0)
+                                    <p
+                                        class="px-6 py-3 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider mt-4 rounded-md">
+                                        "Es gibt keine Studierenden, die Wunschorte angegeben haben."</p>
+                        
+                                @elseif (count($matchings_stud_with_wunschorte) > 0)
+                                    <tr>
+                        
+                                        <th
+                                            class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
+                                            #
+                                        </th>
+
+                                        <th
+                                            class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                            Student*in
+                                        </th>
+                                        <th
+                                            class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                            Wunschorte/Landkreise
+                                        </th>
+                        
+                                        <th
+                                            class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                            Lehrkraft
+                                        </th>
+                                        <th
+                                            class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                            Schule/Ort/Landkreis
+                                        </th>
+                        
+                                        <th
+                                            class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
+                                            MSE
+                                        </th>
+                                        <th
+                                            class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
+                                        </th>
+                                        <th
+                                            class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-right text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tr-md font-bold">
+                                        </th>
+                        
+                                    </tr>
+                        
+                                    @foreach ($matchings_stud_with_wunschorte as $index => $matching)
+                                        <tr class="border-t border-gray-200 bg-gray-700">
+                        
+                                            <td
+                                                class="hidden sm:table-cell text-sm pl-6 py-4 whitespace-no-wrap text-gray-100">
+                        
+                                                {{ $index + 1 }}
+                        
+                                            </td>
+
+                                            <td class="px-6 py-4 whitespace-no-wrap">
+                        
+                                                <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+                                                    {{ $matching->stud->vorname }}
+                                                    {{ $matching->stud->nachname }}
+                                                </div>
+                        
+                                                <a href="mailto:{{ $matching->stud->email }}"
+                                                    class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->stud->email }}
+                                                </a>
+                        
+                                                <div class="text-xs sm:text-sm leading-5 text-gray-400">ehem. Schulort: {{ $matching->stud->survey_data->ehem_schulort ?? '-' }}</div>
+                        
+                                            </td>
+                        
+                                            <td class="px-6 py-4 whitespace-no-wrap">
+                        
+                                                <div class="text-xs sm:text-sm leading-5 text-gray-400">
+                                                        <div>{{ $matching->stud->survey_data->wunschorte }}</div>
+                                                        <br>
+                                                        <div>{{ $matching->stud->landkreise_as_string }}</div>
+                                                </div>
+                        
+                                            </td>
+                        
+                                            <td class="px-6 py-4 whitespace-no-wrap">
+                        
+                                                <div class="text-xs sm:text-sm leading-5 font-medium text-white">
+                                                    {{ $matching->lehr->vorname }} {{ $matching->lehr->nachname }}
+                                                </div>
+                        
+                                                <a href="mailto:{{ $matching->lehr->email }}"
+                                                    class="text-xs sm:text-sm leading-5 text-gray-400 hover:text-gray-100 break-words">{{ $matching->lehr->email }}
+                                                </a>
+                        
+                                                <div class="text-xs sm:text-sm leading-5 text-gray-400 break-words">Wunschtandem: {{ $matching->lehr->wunschtandem ?: '-' }}</div>
+                        
+                                            </td>
+                        
+                                            <td class="px-6 py-4 whitespace-no-wrap">
+                        
+                                                <div class="text-xs sm:text-sm leading-5 text-gray-400">
+                                                        <div>{{ $matching->lehr->survey_data->schulname }}</div>
+                                                        <div>{{ $matching->lehr->survey_data->postleitzahl }} {{ $matching->lehr->survey_data->ort }}</div>
+                                                        <div>{{ $matching->lehr->survey_data->landkreis }}</div>
+                                                </div>
+                        
+                                            </td>
+                        
+                                            <td class="px-6 py-4 whitespace-no-wrap">
+                        
+                                                <div
+                                                    class="text-sm leading-5 font-normal text-white select-none font-bold bg-gray-500 text-center p-1 w-12 rounded-sm">
+                        
+                                                    {{ $matching->mse }}
+                        
+                                                </div>
+                        
+                                            </td>
+                        
+                        
+                                            <!-- Details -->
+                        
+                                            <td class="px-6 py-4 whitespace-no-wrap">
+                        
+                                                <x-details :lehr="$matching->lehr" :stud="$matching->stud" :mse="$matching->mse">
+                                                </x-details>
+                        
+                                            </td>
+                        
+                                            <!-- Details -->
+                        
+                                            <td
+                                                class="hidden sm:table-cell px-6 py-4 whitespace-no-wrap float-right text-sm leading-5 font-medium">
+                        
+                                                <form
+                                                    action="{{ route('matchings.setassigned', ['lehr' => $matching->lehr->id, 'stud' => $matching->stud->id]) }}"
+                                                    method="get">
+                        
+                                                    @csrf
+                        
+                                                    <button type="submit"
+                                                        class="py-2 px-2 rounded-full text-white text-sm flex focus:outline-none bg-green-700 has-tooltip hover:bg-green-900 border-2 border-white transition ease-in-out duration-150 hover:scale-105 transform">
+                        
+                                                        <div class="grid justify-items-center">
+                        
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                viewBox="0 0 20 20" fill="currentColor">
+                        
+                                                                <path fill-rule="evenodd"
+                                                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                                    clip-rule="evenodd" />
+                        
+                                                            </svg>
+                        
+                                                            <span
+                                                                class='tooltip rounded p-1 px-2 bg-gray-900 text-white -mt-10 text-xs transition ease-in-out duration-150'>Aufnehmen</span>
+                        
+                                                        </div>
+                        
+                                                    </button>
+                        
+                                                </form>
+                                            </td>
+                        
+                                        </tr>
+                                    @endforeach
+                                @endif
+                        
+                            </tbody>
+                        
+                        </table>
+                        
+
+                        {{-- studierende wunschorte --}}
 
                     </div>
 

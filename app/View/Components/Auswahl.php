@@ -4,19 +4,23 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Vorauswahl extends Component
+class Auswahl extends Component
 {
 
     public $matchings;
+    public $text;
+    public $assign;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($matchings)
+    public function __construct($matchings, $text, $assign)
     {
         $this->matchings = $matchings;
+        $this->text = $text;
+        $this->assign = $assign;
     }
 
     /**
@@ -26,6 +30,6 @@ class Vorauswahl extends Component
      */
     public function render()
     {
-        return view('components.vorauswahl');
+        return view('components.auswahl');
     }
 }

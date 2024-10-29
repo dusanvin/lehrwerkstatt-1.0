@@ -50,8 +50,8 @@ class MatchingController extends Controller
     private function getMatchedLehr($schulart) {
         // Lehrer, die in der Vorauswahl sind nach Schulart filtern
         return User::whereIn('id', LehrStud::where('is_matched', true)->pluck('lehr_id'))
-            ->when($schulart, function ($query, $schulart) {
-                return $query->where('lehr.survey_data->schulart', $schulart);
+            ->when($schulart, function($query, $schulart) {
+                return $query->where('survey_data->schulart', $schulart);
             })
             ->orderBy('nachname', 'asc')
             ->get();
@@ -416,8 +416,10 @@ class MatchingController extends Controller
                         });
             })
             ->when($schulart, function ($query, $schulart) {
-                $query->whereHas('lehr.survey_data', function ($q) use ($schulart) {
-                    $q->where('schulart', $schulart);
+                $query->whereHas('lehr', function ($q) use ($schulart) {
+                    $q->where(function ($query) use ($schulart) {
+                        $query->where('survey_data->schulart', $schulart);
+                    });
                 });
             })
             ->get();
@@ -426,8 +428,10 @@ class MatchingController extends Controller
         $accepted_matchings = LehrStud::with(['lehr', 'stud'])
             ->where('is_accepted_lehr', true)->where('is_accepted_stud', true)
             ->when($schulart, function ($query, $schulart) {
-                $query->whereHas('lehr.survey_data', function ($q) use ($schulart) {
-                    $q->where('schulart', $schulart);
+                $query->whereHas('lehr', function ($q) use ($schulart) {
+                    $q->where(function ($query) use ($schulart) {
+                        $query->where('survey_data->schulart', $schulart);
+                    });
                 });
             })
             ->get();
@@ -438,8 +442,10 @@ class MatchingController extends Controller
                 $query->where('is_accepted_lehr', false)->orWhere('is_accepted_stud', false);
             })
             ->when($schulart, function ($query, $schulart) {
-                $query->whereHas('lehr.survey_data', function ($q) use ($schulart) {
-                    $q->where('schulart', $schulart);
+                $query->whereHas('lehr', function ($q) use ($schulart) {
+                    $q->where(function ($query) use ($schulart) {
+                        $query->where('survey_data->schulart', $schulart);
+                    });
                 });
             })
             ->get();

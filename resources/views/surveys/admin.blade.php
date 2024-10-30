@@ -76,7 +76,7 @@
                 @endisset
 
                 <div id="surveyElement"></div>
-                <script src="{{ asset('js/survey_admin_mod.js') }}"></script>
+                <script src="{{ asset('js/survey_admin.js') }}"></script>
                 
             </div>
 

@@ -26,7 +26,7 @@
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal">
 
-                            Version 1.0: 02/2023
+                            Version 1.1: 10/2024
 
                         </p>
 
@@ -38,7 +38,7 @@
 
                         <p class="text-gray-500 transition-colors duration-200 font-normal mt-2 mr-2">
 
-                            <em>{{ Config::get('site_vars.platformName1') }}{{ Config::get('site_vars.platformName2') }}</em> von <strong>Vincent Dusanek</strong> und <strong>Norman Szabo</strong> für <strong>DigiLLab</strong>, 2022. MIT-Lizenz.
+                            <em>{{ Config::get('site_vars.platformName1') }}{{ Config::get('site_vars.platformName2') }}</em> von <strong>Vincent Dusanek</strong> und <strong>Norman Szabo</strong> für <strong>DigiLLab</strong>, 2024. MIT-Lizenz.
 
                         </p>
 

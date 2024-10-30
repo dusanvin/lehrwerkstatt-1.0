@@ -89,15 +89,15 @@ class ProfileController extends Controller
                 $attention = 'Zum aktuellen Jahrgang '.config('site_vars.jahrgang').' liegt uns keine vollständige Bewerbung vor. Bitte füllen Sie das Bewerbungsformular vollständig aus und klicken Sie am Ende auf "Abschließen", um am Bewerbungsverfahren '.config('site_vars.jahrgang').' teilzunehmen. <br> <br> Falls Sie das Formular im Bewerbungsverfahren für diesen Jahrgang '.config('site_vars.jahrgang').' bereits ausgefüllt haben, ist ein Großteil Ihrer Daten noch gespeichert. Bitte ergänzen Sie die fehlenden Daten und Haken und klicken Sie auf "Abschließen", um das Formular erneut einzureichen.';
             }
         } elseif ($user->role == 'Moderierende') {
-            if ($user->survey_data ?? false) {
+            if (!isset($user->survey_data)) {
                 $attention = 'Bitte vervollständigen Sie die Daten.';
-            } elseif ($user->survey_data->schulart ?? false) {
+            } elseif (!isset($user->survey_data->schulart)) {
                 $attention = 'Bitte vervollständigen Sie die Daten und geben eine Schulart an.';
             } else {
                 $attention = 'Hier können Sie Ihre Daten korrigieren.';
             }
         } elseif ($user->role == 'Admin') {
-                $attention = $user->survey_data ? 'Bitte vervollständigen Sie die Daten.' : 'Hier können Sie Ihre Daten korrigieren.';
+                $attention = $user->survey_data ? 'Hier können Sie Ihre Daten korrigieren.' : 'Bitte vervollständigen Sie die Daten.';
         }
 
         return view('surveys.' . lcfirst($user->role), ['attention' => $attention, 'user' => $user]);

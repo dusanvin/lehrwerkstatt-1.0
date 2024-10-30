@@ -14,7 +14,7 @@ schularten = [
 
 
 var json = {
-    // title: "Moderation und Administration",
+    
     pages: [{
         description: attention,
         elements: [{
@@ -43,13 +43,7 @@ var json = {
             inputFormat: "9{*}",
             title: "Ihre Telefonnummer:",
             // isRequired: true
-        }, {
-            name: "schulart",
-            type: "dropdown",
-            title: "Welche Schulart verwalten Sie?",
-            isRequired: true,
-            choices: schularten
-        },]
+        }]
     } 
         
     ]

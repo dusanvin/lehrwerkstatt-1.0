@@ -305,9 +305,13 @@
                     <li class="ml-2 mr-2 my-1 rounded-l-lg rounded-r-lg">
                         @php
                             $route_name = 'matchings.preferences';
+                            $schulart = 'Gymnasium';
+                            if (Auth::user()->role === 'Moderierende' && isset(Auth::user()->survey_data->schulart)) {
+                                $schulart = Auth::user()->survey_data->schulart;
+                            }
                         @endphp
 
-                        <a href="{{ route($route_name, ['schulart' => Auth::user()->role === 'Moderierende' ? Auth::user()->survey_data->schulart : 'Gymnasium']) }}"
+                        <a href="{{ route($route_name, ['schulart' => $schulart]) }}"
                             class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
                             <div>
@@ -340,7 +344,7 @@
                             $route_name = 'users.matchable';
                         @endphp
 
-                        <a href="{{ route($route_name, ['schulart' => Auth::user()->role === 'Moderierende' ? Auth::user()->survey_data->schulart : 'Gymnasium']) }}"
+                        <a href="{{ route($route_name, ['schulart' => $schulart]) }}"
                             class="text-gray-300 hover:text-white px-4 py-2 flex items-center rounded-l-md rounded-r-md transition-colors duration-200 transform duration-150 hover:scale-105 @if (Request::routeIs($route_name)) { text-yellow-400 } @endif">
 
                             <div>

@@ -124,36 +124,19 @@ class FilterController extends Controller
     // View: Lehrkräfte
     public function lehr(Request $request, $schulart=null)
     {
-        $view = $schulart ?? 'all';
         $users = $this->getAvailableUsers($schulart, 'Lehr');
 
-        return view('offers.'.$view, [
+        return view('offers.all', [
             'users' => $users,
+            'schulart' => $schulart,
             'faecher' => FilterController::$faecher,
             'landkreise' => FilterController::$landkreise,
-            'schulart' => $schulart,
         ]);
     }
-
-    // View: Studenten 
-    public function stud(Request $request, $schulart=null)
-    {
-        $view = $schulart ?? 'all';
-        $users = $this->getAvailableUsers($schulart, 'Stud');
-
-        return view('needs.'.$view, [
-            'users' => $users,
-            'faecher' => FilterController::$faecher,
-            'landkreise' => FilterController::$landkreise,
-            'schulart' => $schulart,
-        ]);
-    }
-
 
     // View: 
     public function filteredLehr(Request $request, $schulart=null)
     {
-        $view = $schulart ?? 'all';
         $users = $this->getAvailableUsers($schulart, 'Lehr');
 
         $selected_faecher = [];
@@ -170,20 +153,34 @@ class FilterController extends Controller
 
         $users = $users->values();  // resets keys of the collection to sequential keys starting from 0
 
-        return view('offers.'.$view, [
+        return view('offers.all', [
             'users' => $users,
             'schulart' => $request->schulart,
-            'faecher' => FilterController::$faecher,
+            'selected_schulart' => $request->selected_schulart,
             'selected_faecher' => $selected_faecher,
-            'landkreise' => FilterController::$landkreise,
             'selected_landkreise' => $selected_landkreise,
+            'faecher' => FilterController::$faecher,
+            'landkreise' => FilterController::$landkreise,
+        ]);
+    }
+
+
+    // View: Studenten 
+    public function stud(Request $request, $schulart=null)
+    {
+        $users = $this->getAvailableUsers($schulart, 'Stud');
+
+        return view('needs.all', [
+            'users' => $users,
+            'schulart' => $schulart,
+            'faecher' => FilterController::$faecher,
+            'landkreise' => FilterController::$landkreise,
         ]);
     }
 
     // View:
     public function filteredStud(Request $request, $schulart=null)
     {
-        $view = $schulart ?? 'all';
         $users = $this->getAvailableUsers($schulart, 'Stud');
 
         $selected_faecher = [];
@@ -200,13 +197,14 @@ class FilterController extends Controller
 
         $users = $users->values();  // resets keys of the collection to sequential keys starting from 0
 
-        return view('needs.'.$view, [
+        return view('needs.all', [
             'users' => $users,
             'schulart' => $request->schulart,
-            'faecher' => FilterController::$faecher,
+            'selected_schulart' => $request->selected_schulart,
             'selected_faecher' => $selected_faecher,
-            'landkreise' => FilterController::$landkreise,
             'selected_landkreise' => $selected_landkreise,
+            'faecher' => FilterController::$faecher,
+            'landkreise' => FilterController::$landkreise,
         ]);
     }
 

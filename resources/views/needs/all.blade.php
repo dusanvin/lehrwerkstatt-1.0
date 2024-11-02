@@ -17,33 +17,11 @@
 
             <div class="mx-auto rounded">
 
-                <!-- Tabs -->
+                <!-- Schularten -->
 
-                <ul id="tabs" class="inline-flex w-full">
+                @include('layouts.schularten', ['routeName' => 'users.stud', 'schulart' => $schulart])
 
-                    <li
-                        class="px-4 py-2 -mb-px font-medium text-xs sm:text-sm text-gray-200 border-b-2 border-gray-700 rounded-t opacity-50 bg-gray-800 border-b-4 -mb-px opacity-100">
-                        <a href="{{ route('users.stud') }}">Alle Schularten</a>
-                    </li>
-
-                    <li
-                        class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t opacity-50 bg-gray-800 border-gray-800 hover:bg-gray-600">
-                        <a href="{{ route('users.stud', ['schulart' => 'grundschule']) }}">Grundschule</a>
-                    </li>
-
-                    <li
-                        class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t opacity-50 bg-gray-800 border-gray-800 hover:bg-gray-600">
-                        <a href="{{ route('users.stud', ['schulart' => 'realschule']) }}">Realschule</a>
-                    </li>
-
-                    <li
-                        class="px-4 py-2 font-medium text-xs sm:text-sm text-gray-200 rounded-t opacity-50 bg-gray-800 border-gray-800 hover:bg-gray-600">
-                        <a href="{{ route('users.stud', ['schulart' => 'gymnasium']) }}">Gymnasium</a>
-                    </li>
-
-                </ul>
-
-                <!-- Tabs -->
+                <!-- Schularten -->
 
                 <!-- Tab Contents -->
 
@@ -69,15 +47,15 @@
 
                             <h1 class="font-semibold text-2xl text-gray-200 text-center sm:text-left">
 
-                                Angebote
+                                Angebote von Studierenden mit vollständig ausgefülltem Formular
 
                             </h1>
 
                             <div class="mt-1 mb-6 text-sm text-gray-300 grid text-center sm:text-left flex">
 
-                                <p>Hier erhalten Sie eine Übersicht zu den <span class="font-semibold">momentan aktiven
-                                        Angeboten</span>. Die Darstellung erfolgt in Abhängigkeit Ihrer Suchkriterien.
-                                    Sollten keine Kriterien ausgewählt werden, erfolgt keine Filterung.</p>
+                                <p>Hier erhalten Sie eine Übersicht über die <span class="font-semibold">derzeit zu vermittelnden
+                                        Studierenden</span>. Je nach Schulart können unterschiedliche Suchkriterien verwendet werden.
+                                    Sollten keine Schulart ausgewählt sein, kann lediglich nach Gebieten gefiltert werden.</p>
 
                             </div>
 
@@ -90,9 +68,7 @@
 
                                         <p>
 
-                                            Suchen Sie nach <span class="font-semibold">aktiven Angeboten</span>. Filtern
-                                            Sie diese bei Bedarf nach Schulart, Einsatzgebieten und Fächern. Fächer sind bei
-                                            der Schulart <em>Grundschule</em> irrelevant.
+                                            <span class="font-semibold">Filterkriterien hier auswählen</span>
 
                                         </p>
 
@@ -111,55 +87,11 @@
                                     <div x-ref="tab" :style="handleToggle()"
                                         class="overflow-hidden max-h-0 duration-500 transition-all px-6">
 
-                                        <form id="search" action="{{ route('users.stud') }}" method="post">
+                                        <form id="search" action="{{ route('users.stud', ['schulart' => $schulart]) }}" method="post">
 
                                             @csrf
 
                                             <div class="flex flex-wrap mb-6">
-
-                                                <!-- Schulart -->
-
-                                                <div class="text-sm text-gray-500 text-light mt-3 mr-6">
-
-                                                    <p
-                                                        class="py-3 text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                                        Schulart</p>
-
-                                                    <!--<p class="text-xs text-gray-500 mt-1 mb-3">Ändern Sie, welche Schule Sie bevorzugen.</p> -->
-
-                                                    <div>
-
-                                                        <label for="schulart"
-                                                            class="sr-only flex items-center">schulart</label>
-
-                                                        <select name="schulart" id="schulart"
-                                                            class="text-gray-300 text-xs py-1 pl-2 pr-8 rounded-sm bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent @error('schulart') border-red-500 @enderror">
-                                                            <option>Beliebig</option>
-                                                            <option>Grundschule</option>
-                                                            <option>Realschule</option>
-                                                            <option>Gymnasium</option>
-                                                        </select>
-
-                                                        <script>
-                                                            var schulart_select = document.getElementById("schulart");
-                                                            @if (isset($schulart))
-                                                                schulart_select.value = "{{ $schulart }}";
-                                                            @endif
-                                                        </script>
-
-                                                        @error('schulart')
-                                                            <div class="text-red-500 mt-2 text-sm">
-
-                                                                {{ 'Bitte legen Sie fest, welche Schule Sie bevorzugen.' }}
-
-                                                            </div>
-                                                        @enderror
-
-                                                    </div>
-
-                                                </div>
-
-                                                <!-- Schulart -->
 
                                                 <!-- Gebiete -->
 
@@ -167,20 +99,18 @@
 
                                                     <p
                                                         class="py-3 text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold">
-                                                        Einsatzgebiete</p>
+                                                        Gebiete</p>
 
                                                     <script>
                                                         var landkreise = [];
 
                                                         function addLandkreisToSelection(landkreis, checked) {
-                                                            console.log(landkreis, checked);
                                                             if (checked) {
                                                                 landkreise.push(landkreis);
                                                             } else {
                                                                 let i = landkreise.indexOf(landkreis);
                                                                 landkreise.splice(i, 1);
                                                             }
-                                                            console.log(landkreise);
                                                             document.getElementById('landkreise').value = landkreise;
                                                         }
                                                     </script>
@@ -207,7 +137,6 @@
                                                         @if (isset($selected_landkreise))
                                                             @foreach ($selected_landkreise as $landkreis)
                                                                 document.getElementById("{{ $landkreis }}").click();
-                                                                console.log("{{ $landkreis }}");
                                                             @endforeach
                                                         @endif
                                                     </script>
@@ -218,6 +147,7 @@
 
                                                 <!-- Fächer -->
 
+                                                @if (in_array($schulart, ['Realschule', 'Gymnasium']))
                                                 <div class="text-sm text-gray-500 text-light mt-3 ml-6">
 
                                                     <p
@@ -228,14 +158,12 @@
                                                         var faecher = [];
 
                                                         function addToSelection(fach, checked) {
-                                                            console.log(fach, checked);
                                                             if (checked) {
                                                                 faecher.push(fach);
                                                             } else {
                                                                 let i = faecher.indexOf(fach);
                                                                 faecher.splice(i, 1);
                                                             }
-                                                            console.log(faecher);
                                                             document.getElementById('faecher').value = faecher;
                                                         }
                                                     </script>
@@ -267,6 +195,7 @@
                                                     </script>
 
                                                 </div>
+                                                @endif
 
                                                 <!-- Fächer -->
 
@@ -349,7 +278,7 @@
 
                         <h2 class="font-semibold text-lg text-gray-200">
 
-                            Gefundene Angebote
+                            Studierende
 
                         </h2>
 
@@ -389,12 +318,6 @@
 
                         @foreach ($users as $user)
                             <div class="border-b border-gray-200 bg-gray-700 flex">
-
-                                <div class="hidden sm:table-cell text-sm pl-6 py-4 text-gray-100 w-1/8">
-
-                                    {{ $user->created_at->diffForHumans() }}
-
-                                </div>
 
                                 <div class="px-6 py-4 w-1/4">
 
@@ -446,7 +369,11 @@
 
                                     <!-- MSE -->
 
-                                    <div x-data="{ modelOpen: false }" class="flex flex-wrap mr-2 mb-2">
+                                    <style>
+                                        [x-cloak] { display: none; }
+                                    </style>
+
+                                    <div x-data="{ modelOpen: false }" x-cloak class="flex flex-wrap mr-2 mb-2">
 
                                         <button @click="modelOpen =!modelOpen"
                                             class="text-sm flex items-center justify-center px-3 py-2 space-x-2 text-white transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 max-h-9">

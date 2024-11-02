@@ -6,9 +6,9 @@
 
         $schularten = [
             'Grundschule',
+            'Mittelschule',
             'Realschule',
             'Gymnasium',
-            'Mittelschule',
         ];
     @endphp
 

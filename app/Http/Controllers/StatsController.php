@@ -25,16 +25,16 @@ class StatsController extends Controller
 
         $available_users = [
             'Lehr' => [
-                'Grundschule' => FilterController::getAvailableUsers('Lehr', 'Grundschule'),
-                'Realschule' => FilterController::getAvailableUsers('Lehr', 'Realschule'),
-                'Gymnasium' => FilterController::getAvailableUsers('Lehr', 'Gymnasium'),
-                'Mittelschule' => FilterController::getAvailableUsers('Lehr', 'Mittelschule'),
+                'Grundschule' => FilterController::getAvailableUsers('Grundschule', 'Lehr'),
+                'Realschule' => FilterController::getAvailableUsers('Realschule', 'Lehr'),
+                'Gymnasium' => FilterController::getAvailableUsers('Gymnasium', 'Lehr'),
+                'Mittelschule' => FilterController::getAvailableUsers('Mittelschule', 'Lehr'),
             ],
             'Stud' => [
-                'Grundschule' => FilterController::getAvailableUsers('Stud', 'Grundschule'),
-                'Realschule' => FilterController::getAvailableUsers('Stud', 'Realschule'),
-                'Gymnasium' => FilterController::getAvailableUsers('Stud', 'Gymnasium'),
-                'Mittelschule' => FilterController::getAvailableUsers('Stud', 'Mittelschule'),
+                'Grundschule' => FilterController::getAvailableUsers('Grundschule', 'Stud'),
+                'Realschule' => FilterController::getAvailableUsers('Realschule', 'Stud'),
+                'Gymnasium' => FilterController::getAvailableUsers('Gymnasium', 'Stud'),
+                'Mittelschule' => FilterController::getAvailableUsers('Mittelschule', 'Stud'),
             ]
         ];
 

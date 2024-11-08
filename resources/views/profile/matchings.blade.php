@@ -101,7 +101,7 @@
 
                                     <th
                                         class="hidden sm:table-cell px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider rounded-tl-md font-bold">
-                                        #</th>
+                                        </th>
 
                                     <th
                                         class="px-6 py-3 border-b border-gray-200 bg-gray-700 text-left text-xs leading-4 font-medium text-gray-400 uppercase tracking-wider font-bold hidden sm:table-cell ">
@@ -129,20 +129,22 @@
 
                             </tbody>
 
-                            @php
-                                $index = 0;
-                            @endphp
-
                             <tr class="border-t border-gray-200 bg-gray-700 text-sm text-gray-400">
 
                                 <td
-                                    class="hidden sm:table-cell pl-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
+                                    class="pl-6 py-4 whitespace-no-wrap align-top sm:table-cell">
 
-                                    {{ $index + 1 }}
+                                    @if (isset($user->unresolved_matching->image->filename))
+                                        <img src="{{ url('images/show/' . $user->unresolved_matching->id) }}"
+                                                            class="w-28 h-28 rounded-md object-cover border-gray-200">
+                                    @else
+                                        <img src="https://daz-buddies.digillab.uni-augsburg.de/img/avatar.jpg"
+                                                            class="w-28 h-28 rounded-md object-cover border-gray-200">
+                                    @endif
 
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap align-top">
+                                <td class="px-6 py-4 whitespace-no-wrap align-top sm:table-cell">
 
                                     <a class="flex text-white hover:text-gray-100">
 
@@ -155,7 +157,7 @@
 
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
+                                <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell">
 
                                     <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
 
@@ -165,7 +167,7 @@
 
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
+                                <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell">
 
                                     <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm">
 
@@ -176,7 +178,7 @@
                                 </td>
 
                                 @if (strcasecmp($user->role, 'Stud') == 0)
-                                    <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell ">
+                                    <td class="px-6 py-4 whitespace-no-wrap align-top hidden sm:table-cell">
 
                                         <div class="leading-5 font-normal select-none p-1 w-12 rounded-sm w-full">
 

@@ -72,7 +72,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getFaecherAsStringAttribute()
     {
-        if (isset($surveyData->faecher) && is_array($surveyData->faecher)) {
+        if (isset($this->survey_data->faecher) && is_array($this->survey_data->faecher)) {
             return implode(', ', $this->survey_data->faecher);
         }
         else return '-';

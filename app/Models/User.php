@@ -9,7 +9,6 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Auth\Events\Registered;
 use Cmgmyr\Messenger\Traits\Messagable;
-use DB;
 use App\Models\LehrStud;
 
 use App\Notifications\CustomVerifyEmail;
@@ -76,7 +75,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if (isset($surveyData->faecher) && is_array($surveyData->faecher)) {
             return implode(', ', $this->survey_data->faecher);
         }
-        else return 'Keine Fächer angegeben';
+        else return '-';
     }
 
     public function getLandkreiseAsStringAttribute()
@@ -136,16 +135,19 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getFullNameAttribute() {
         return $this->vorname.' '.$this->nachname;
     }
-    
 
-    // access with $user->matched_user, matchingpartner aus der vorauswahl
-    public function getMatchedUserAttribute() {
-        return $this->matchable()->where('is_matched', true)->first();
-    }
-
-    // access with $user->notified_user, fest vorgeschlagener matchingpartner
-    public function getNotifiedUserAttribute() {
-        return $this->matchable()->where('is_notified', true)->first();
+    // access with $user->unresolved_matching, ausstehendes Matching
+    public function getUnresolvedMatchingAttribute() {
+        return $this->matchable()->where('is_notified', true)
+        ->where(function ($query) {
+            $query->whereNull('is_accepted_lehr')
+                  ->orWhere('is_accepted_lehr', true);
+        })
+        ->where(function ($query) {
+            $query->whereNull('is_accepted_stud')
+                  ->orWhere('is_accepted_stud', true);
+        })
+        ->first();
     }
 
     // wenn nutzer nicht mehr teilnehmen möchte

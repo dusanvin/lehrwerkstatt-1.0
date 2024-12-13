@@ -156,10 +156,12 @@ class StatsController extends Controller
 
 
         $lehr_grundschule = 0;
+        $lehr_mittelschule = 0;
         $lehr_realschule = 0;
         $lehr_gymnasium = 0;
 
         $stud_grundschule = 0;
+        $stud_mittelschule = 0;
         $stud_realschule = 0;
         $stud_gymnasium = 0;
 
@@ -246,6 +248,8 @@ class StatsController extends Controller
                 }
                 if($user->survey_data->schulart == 'Grundschule') {
                     $lehr_grundschule++;
+                } elseif($user->survey_data->schulart == 'Mittelschule') {
+                    $lehr_mittelschule++;
                 } elseif($user->survey_data->schulart == 'Realschule') {
                     $lehr_realschule++;
                 } elseif($user->survey_data->schulart == 'Gymnasium') {
@@ -300,6 +304,8 @@ class StatsController extends Controller
                 }
                 if($user->survey_data->schulart == 'Grundschule') {
                     $stud_grundschule++;
+                } elseif($user->survey_data->schulart == 'Mittelschule') {
+                    $stud_mittelschule++;
                 } elseif($user->survey_data->schulart == 'Realschule') {
                     $stud_realschule++;
                 } elseif($user->survey_data->schulart == 'Gymnasium') {
@@ -344,9 +350,12 @@ class StatsController extends Controller
                 'stud_complete_form',
 
                 'lehr_grundschule',
+                'lehr_mittelschule',
                 'lehr_realschule',
                 'lehr_gymnasium',
+
                 'stud_grundschule',
+                'stud_mittelschule',
                 'stud_realschule',
                 'stud_gymnasium',
 

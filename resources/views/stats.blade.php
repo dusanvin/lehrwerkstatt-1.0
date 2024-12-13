@@ -964,10 +964,10 @@
             // FIFTH
 
             data = {
-                labels: ['Grundschule', 'Realschule', 'Gymnasium'],
+                labels: ['Grundschule', 'Mittelschule', 'Realschule', 'Gymnasium'],
                 datasets: [{
                         label: 'Lehrkräfte',
-                        data: [{{ $lehr_grundschule }}, {{ $lehr_realschule }}, {{ $lehr_gymnasium }}],
+                        data: [{{ $lehr_grundschule }}, {{$lehr_mittelschule}}, {{ $lehr_realschule }}, {{ $lehr_gymnasium }}],
                         stack: 'Stack 0',
                         backgroundColor: 'rgba(255, 255, 255, 0.8)',
                         borderColor: 'rgba(255,255,255,0.8)',
@@ -976,7 +976,7 @@
                     },
                     {
                         label: 'Studierende',
-                        data: [{{ $stud_grundschule }}, {{ $stud_realschule }}, {{ $stud_gymnasium }}],
+                        data: [{{ $stud_grundschule }}, {{$stud_mittelschule}}, {{ $stud_realschule }}, {{ $stud_gymnasium }}],
                         stack: 'Stack 1',
                         backgroundColor: 'rgba(131, 24, 67, 1)',
                         borderColor: 'rgba(131, 24, 67, 1)',

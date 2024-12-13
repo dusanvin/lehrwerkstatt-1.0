@@ -405,6 +405,13 @@ if(typeof data !== 'undefined') {
     survey.data = data;
     survey.questionsOnPageMode = 'singlePage';
     survey.completedHtml = '<p style="color:white">Vielen Dank für Ihre Teilnahme. Ihre Daten wurden erfolgreich gespeichert.<p>';
+
+    const landkreiseQuestion = survey.getQuestionByName("landkreise");
+    if (data.schulart === "Mittelschule") {
+        landkreiseQuestion.choices = landkreise_mittelschule;
+    } else {
+        landkreiseQuestion.choices = landkreise;
+    }
 }
 survey.locale = 'de';
 

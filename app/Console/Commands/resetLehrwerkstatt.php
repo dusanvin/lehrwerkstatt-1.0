@@ -44,41 +44,42 @@ class resetLehrwerkstatt extends Command
         
         $this->error('Abbruch mit [strg+c]');
 
-            
+        // berechnet Auswahl: dieser bzw. nächster Jahrgang
         $current = Carbon::now()->year.'/'.substr(Carbon::now()->year + 1, -2);
         $next = (Carbon::now()->year + 1).'/'.substr((Carbon::now()->year + 2), -2);
         $year = $this->choice('Für welchen Jahrgang ist die neue Runde?', [$current, $next]);
-        $code = $this->ask('Wie soll das Kennwort lauten?');
 
-
-
+        // config auslesen und bisherigen jahrgang string mit neuem ausgewähltem ersetzen
         $file = base_path('/config/site_vars.php');
         $config = file_get_contents($file);
-
         $pattern = "/(['\"]jahrgang['\"]\s*=>\s*)(['\"][^'\"]*['\"])/";
-
         $newConfig = preg_replace($pattern, "$1'$year'", $config);
         file_put_contents($file, $newConfig);
 
-        // DB::table('registration_codes')->truncate();
-        // DB::table('registration_codes')->insert(['code' => $code]);
+        $code = $this->ask('Wie soll das Kennwort lauten?');
+        DB::table('registration_codes')->truncate();  // alte codes löschen
+        DB::table('registration_codes')->insert(['code' => $code]);  // neuen code hinzu
         
-        // // Daten der letztjährigen Student*innen löschen 
-        // DB::table('users')->where('role', 'stud')->delete();
+        // Daten der letztjährigen Student*innen löschen, 
+        // auch möglich: nur bereits gematchte
+        DB::table('users')->where('role', 'stud')->delete();
 
-        // // Neu auszufüllende Felder zurücksetzen
-        // DB::table('users')->where('role', 'lehr')->update(['is_evaluable' => 0]);
-        // DB::table('users')->update(['survey_data->teilnahmebedingungen', '']);
-        // DB::table('users')->update(['survey_data->registrierungscode', '']);
-        // DB::table('users')->update(['survey_data->zustimmung_schul', '']);
-        // DB::table('users')->update(['survey_data->bestaetigung', '']);
-        // DB::statement("UPDATE users SET survey_data = json_remove(survey_data, '$.wunschtandem')");
+        // Neu auszufüllende Felder zurücksetzen
+        DB::table('users')->where('role', 'lehr')->update(['is_evaluable' => 0]);
+        DB::table('users')->update([
+            'survey_data' => DB::raw("JSON_SET(survey_data, 
+                '$.teilnahmebedingungen', '',
+                '$.registrierungscode', '',
+                '$.zustimmung_schul', '',
+                '$.bestaetigung', ''
+            )")
+        ]);
+        DB::statement("UPDATE users SET survey_data = json_remove(survey_data, '$.wunschtandem')");
         
         // // Löschen der bisherigen Nachrichten
-        // DB::table('messenger_messages')->truncate();
-        // DB::table('messenger_participants')->truncate();
-        // DB::table('messenger_threads')->truncate();
-
+        DB::table('messenger_messages')->truncate();
+        DB::table('messenger_participants')->truncate();
+        DB::table('messenger_threads')->truncate();
 
         // // Löscht Bilder von gelöschten Accounts
         $filenames1 = DB::table('image_files')
@@ -100,7 +101,7 @@ class resetLehrwerkstatt extends Command
 
         $this->info('Jahrgang:'.$year);
         $this->info('Kennwort:'.$code);
-        $this->call('config:cache');
+        $this->call('config:cache');  // neue werte laden
 
         $this->line('Die Lehr:werkstatt wurde aktualisiert.');
 

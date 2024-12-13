@@ -22,11 +22,11 @@ return [
     'platformName2' => 'werkstatt',
 
     /* maintenance */
-    'jahrgang' => '2024/25',
+    'jahrgang' => '2025/26',
     'host' => 'https://lehrwerkstatt.digillab.uni-augsburg.de',
     'datenschutzhinweise' => 'https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzhinweise/',
     'datenschutz_einwilligung' => 'https://www.uni-augsburg.de/de/forschung/einrichtungen/institute/zlbib/lehrwerkstatt/datenschutzrechtliche-einwilligungserklarung/',
-    'teilnahmebedingungen' => 'https://lehrwerkstatt.digillab.uni-augsburg.de/Verbindliche_TN-Bedingungen_UniA_2024.pdf',
+    'teilnahmebedingungen' => 'https://lehrwerkstatt.digillab.uni-augsburg.de/Verbindliche_TN-Bedingungen_UniA_2025.pdf',
 
 
 

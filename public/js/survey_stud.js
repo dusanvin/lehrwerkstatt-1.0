@@ -7,9 +7,9 @@ Survey.StylesManager.applyTheme("defaultV2");
 
 schularten = [
     "Grundschule",
+    "Mittelschule",
     "Realschule",
-    "Gymnasium",
-    "Mittelschule"
+    "Gymnasium"
 ]
 
 fachsemester = []
@@ -54,6 +54,11 @@ landkreise = [
     "Oberallgäu",
     "Ostallgäu",
     "Unterallgäu"
+]
+
+landkreise_mittelschule = [
+    "Augsburg Stadt",
+    "Augsburg Land"
 ]
 
 feedback = [
@@ -197,7 +202,7 @@ var json = {
             name: "fachsemester",
             type: "dropdown",
             title: "Ich befinde mich im Wintersemester " + jahrgang + " in meinen für das Matching gewählten Fächern mindestens in folgendem Fachsemester:",
-            description: "Hinweis für Studierende der Lehrämter an Realschulen und Gymnasien: Bitte beachten Sie, dass Sie die Fächer, in denen Sie gematcht werden möchten, im Wintersemester " + jahrgang + " mindestens im 3. Fachsemester studieren müssen. Bei Fragen hierzu wenden Sie sich bitte an lehrwerkstatt@zlbib.uni-augsburg.de",
+            description: "Hinweis für Studierende der Lehrämter an Mittelschulen, Realschulen und Gymnasien: Bitte beachten Sie, dass Sie die Fächer, in denen Sie gematcht werden möchten, im Wintersemester " + jahrgang + " mindestens im 3. Fachsemester studieren müssen. Bei Fragen hierzu wenden Sie sich bitte an lehrwerkstatt@zlbib.uni-augsburg.de",
             isRequired: true,
             choices: fachsemester
         }, {
@@ -238,6 +243,7 @@ var json = {
             ]
         }]
     }, {
+        visibleIf: "{schulart} != null",
         elements: [{
             name: "landkreise",
             type: "checkbox",
@@ -382,6 +388,19 @@ var json = {
 
 
 const survey = new Survey.Model(json);
+
+survey.onValueChanged.add(function (sender, options) {
+    if (options.name === "schulart") {
+        const landkreiseQuestion = sender.getQuestionByName("landkreise");
+        if (options.value === "Mittelschule") {
+            landkreiseQuestion.choices = landkreise_mittelschule;
+        } else {
+            landkreiseQuestion.choices = landkreise;
+        }
+    }
+});
+
+
 if(typeof data !== 'undefined') {
     survey.data = data;
     survey.questionsOnPageMode = 'singlePage';

@@ -9,9 +9,9 @@ Survey.StylesManager.ThemeCss[".sd-header__text h3"] = "color: var(--primary, #f
 
 schularten = [
     "Grundschule",
+    "Mittelschule",
     "Realschule",
-    "Gymnasium",
-    "Mittelschule"
+    "Gymnasium"
 ]
 
 faecher = [
@@ -50,6 +50,11 @@ landkreise = [
     "Oberallgäu",
     "Ostallgäu",
     "Unterallgäu"
+]
+
+landkreise_mittelschule = [
+    "Augsburg Stadt",
+    "Augsburg Land"
 ]
 
 feedback = [
@@ -213,6 +218,7 @@ var json = {
             choices: faecher
         }]
     }, {
+        visibleIf: "{schulart} != null",
         elements: [{
             name: "landkreis",
             type: "dropdown",
@@ -386,6 +392,18 @@ function validate(survey, options) {
 }
 
 const survey = new Survey.Model(json);
+
+survey.onValueChanged.add(function (sender, options) {
+    if (options.name === "schulart") {
+        const landkreiseQuestion = sender.getQuestionByName("landkreise");
+        if (options.value === "Mittelschule") {
+            landkreiseQuestion.choices = landkreise_mittelschule;
+        } else {
+            landkreiseQuestion.choices = landkreise;
+        }
+    }
+});
+
 if(typeof data !== 'undefined') {
     survey.data = data;
     survey.questionsOnPageMode = 'singlePage';

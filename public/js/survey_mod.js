@@ -7,9 +7,9 @@ Survey.StylesManager.applyTheme("defaultV2");
 
 schularten = [
     "Grundschule",
+    "Mittelschule",
     "Realschule",
-    "Gymnasium",
-    "Mittelschule"
+    "Gymnasium"
 ]
 
 

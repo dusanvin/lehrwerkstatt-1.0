@@ -86,7 +86,7 @@ class ProfileController extends Controller
             if ($user->survey_data->bestaetigung ?? false) {
                 $attention = 'Die Bewerbung für den aktuellen Jahrgang '.config('site_vars.jahrgang').' liegt uns vor. Sie können Angaben korrigieren, während Sie das Formular durchgehen. Bitte beachten Sie, dass Pflichtfelder weiterhin ausgefüllt sein und Änderungen anschließend bestätigt werden müssen, bevor diese wirksam werden können.';
             } else {
-                $attention = 'Zum aktuellen Jahrgang '.config('site_vars.jahrgang').' liegt uns keine vollständige Bewerbung vor. Bitte füllen Sie das Bewerbungsformular vollständig aus und klicken Sie am Ende auf "Abschließen", um am Bewerbungsverfahren '.config('site_vars.jahrgang').' teilzunehmen. <br> <br> Falls Sie das Formular im Bewerbungsverfahren für diesen Jahrgang '.config('site_vars.jahrgang').' bereits ausgefüllt haben, ist ein Großteil Ihrer Daten noch gespeichert. Bitte ergänzen Sie die fehlenden Daten und Haken und klicken Sie auf "Abschließen", um das Formular erneut einzureichen.';
+                $attention = 'Zum aktuellen Jahrgang '.config('site_vars.jahrgang').' liegt uns keine vollständige Bewerbung vor. Bitte füllen Sie das Bewerbungsformular vollständig aus und klicken Sie am Ende auf "Abschließen", um am Bewerbungsverfahren '.config('site_vars.jahrgang').' teilzunehmen. <br> <br> Falls Sie das Formular bereits ausgefüllt haben, ist ein Großteil Ihrer Daten noch gespeichert. Bitte ergänzen Sie die fehlenden Daten und Haken und klicken Sie auf "Abschließen", um das Formular erneut einzureichen.';
             }
         } elseif ($user->role == 'Moderierende') {
             if (!isset($user->survey_data)) {

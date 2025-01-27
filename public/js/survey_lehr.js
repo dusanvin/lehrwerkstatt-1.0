@@ -393,16 +393,16 @@ function validate(survey, options) {
 
 const survey = new Survey.Model(json);
 
-survey.onValueChanged.add(function (sender, options) {
-    if (options.name === "schulart") {
-        const landkreiseQuestion = sender.getQuestionByName("landkreis");
-        if (options.value === "Mittelschule") {
-            landkreiseQuestion.choices = landkreise_mittelschule;
-        } else {
-            landkreiseQuestion.choices = landkreise;
-        }
-    }
-});
+// survey.onValueChanged.add(function (sender, options) {
+//     if (options.name === "schulart") {
+//         const landkreiseQuestion = sender.getQuestionByName("landkreis");
+//         if (options.value === "Mittelschule") {
+//             landkreiseQuestion.choices = landkreise_mittelschule;
+//         } else {
+//             landkreiseQuestion.choices = landkreise;
+//         }
+//     }
+// });
 
 
 if(typeof data !== 'undefined') {
@@ -410,12 +410,12 @@ if(typeof data !== 'undefined') {
     survey.questionsOnPageMode = 'singlePage';
     survey.completedHtml = '<p style="color:white">Vielen Dank für Ihre Teilnahme. Ihre Daten wurden erfolgreich gespeichert.<p>';
 
-    const landkreiseQuestion = survey.getQuestionByName("landkreis");
-    if (data.schulart === "Mittelschule") {
-        landkreiseQuestion.choices = landkreise_mittelschule;
-    } else {
-        landkreiseQuestion.choices = landkreise;
-    }
+    // const landkreiseQuestion = survey.getQuestionByName("landkreis");
+    // if (data.schulart === "Mittelschule") {
+    //     landkreiseQuestion.choices = landkreise_mittelschule;
+    // } else {
+    //     landkreiseQuestion.choices = landkreise;
+    // }
 }
 survey.locale = 'de';
 

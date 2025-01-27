@@ -66,6 +66,8 @@ class resetLehrwerkstatt extends Command
 
         // Neu auszufüllende Felder zurücksetzen
         DB::table('users')->where('role', 'lehr')->update(['is_evaluable' => 0]);
+        DB::table('users')->where('role', 'lehr')->update(['is_available' => 1]);
+        
         DB::table('users')->update([
             'survey_data' => DB::raw("JSON_SET(survey_data, 
                 '$.teilnahmebedingungen', '',

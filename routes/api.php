@@ -84,12 +84,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Adminbereich
     Route::group(['middleware' => ['role:Admin|Moderierende']], function () {
 
+        // Lehrkräfte
         Route::get('/angebote/lehr/{schulart?}', [FilterController::class, 'lehr'])
             ->name('users.lehr');
 
         Route::post('/angebote/lehr/{schulart?}', [FilterController::class, 'filteredLehr'])
             ->name('users.lehr');
 
+        // Student*innen
         Route::get('/angebote/stud/{schulart?}', [FilterController::class, 'stud'])
             ->name('users.stud');
 

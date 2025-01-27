@@ -153,15 +153,16 @@ class User extends Authenticatable implements MustVerifyEmail
     // wenn nutzer nicht mehr teilnehmen möchte
     public function excludeFromMatching() {
         // einträge in denen user enthalten ist, können gelöscht werden
-        LehrStud::where('lehr_id', $user->id)->orWhere('stud_id', $user->id)->delete();
+        LehrStud::where('lehr_id', $this->id)->orWhere('stud_id', $this->id)->delete();
 
-        if (!$user->is_available) {
-            $user->matched_user->update(['is_available' => true]);  // saves change
+        // falls nutzer in einem tandem ist, muss der entsprechende partner auch wieder verfügbar gemacht werden
+        if (!$this->is_available) {
+            $this->matched_user->update(['is_available' => true]);  // saves change
         }
 
-        $user->is_evaluable = false;
-        $user->is_available = true;
-        $user->save();
+        $this->is_evaluable = false;
+        $this->is_available = true;
+        $this->save();
     }
 
     // access with $user->unread_messages, Nav: Anzahl ungelesener Nachrichten

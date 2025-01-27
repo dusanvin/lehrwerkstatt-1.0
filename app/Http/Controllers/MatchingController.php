@@ -466,15 +466,15 @@ class MatchingController extends Controller
         $lehr = User::find($request->input('lehrid'));
         $stud = User::find($request->input('studid'));
 
-        // dissolve matching
-        // TODO: nutzer können wieder nach is_available = true gematched werden! wie verhindern?
-        // evtl bei jedem nutzer eine liste anlegen, mit nutzer mit denen er nicht gematched werden möchte, die er selber resetten kann?
+
+        // TODO: das gleiche und bereits abgelehnte tandem kann wieder gematched werden, wie verhindern?
+        // was wenn nutzer doch gematched werden wollen?
         $lehr->is_available = true;
         $stud->is_available = true;
         $lehr->save();
         $stud->save();
 
-        // einträge werden nicht gelöscht, wegen is_notified == true
+        // einträge werden in updateMatchings() nicht gelöscht wegen is_notified == true
         if ($request->input('role') == 'Lehr') {
             $lehr->matchable()->syncWithoutDetaching([$stud->id => ['is_accepted_lehr' => false]]);
         }
@@ -494,22 +494,21 @@ class MatchingController extends Controller
         return back();
     }
 
-    // TODO: email an betroffene nutzer senden, im view abgelehnte matchings entfernen da es einen eigenen view gibt oder im view durch declined matchings model ersetzen!
-    // was wenn nutzer doch gematched werden wollen?
-    // wie merken das in zukunft user nicht mehr gematched werden?
+    // Moderation löst einen bereits versendeten Vorschlag auf
     public function resetMatching($lehr_id, $stud_id)
     {
+        // TODO: email an betroffene nutzer senden
         $lehr = User::find($lehr_id);
         $stud = User::find($stud_id);
 
-        // TODO: nutzer können wieder nach is_available = true gematched werden! wie verhindern?
-        // evtl bei jedem nutzer eine liste anlegen, mit nutzer mit denen er nicht gematched werden möchte, die er selber resetten kann?
+        // TODO: das gleiche und bereits abgelehnte tandem kann wieder gematched werden, wie verhindern?
+        // was wenn nutzer doch gematched werden wollen?
         $lehr->is_available = true;
         $stud->is_available = true;
         $lehr->save();
         $stud->save();
 
-        // is_notified == true verhindert löschung in updateMatchings(), eintrag hier einfach löschen
+        // einträge werden in updateMatchings() nicht gelöscht wegen is_notified == true, deswegen hier gezielt entfernen
         LehrStud::where('lehr_id', $lehr_id)->where('stud_id', $stud_id)->delete();
 
         return back();

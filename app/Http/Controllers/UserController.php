@@ -107,8 +107,12 @@ class UserController extends Controller
         $user->nachname = $request->survey['nachname'];
         // unset($request->survey['nachname']);
         $user->survey_data = $request->survey;
-        $user->is_evaluable = true;
-        $user->is_available = true;
+
+        
+        if (!$user->is_evaluable) {
+            $user->is_evaluable = true;
+            $user->is_available = true;
+        }
 
         $user->save();
     }

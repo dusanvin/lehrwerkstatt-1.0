@@ -115,7 +115,7 @@ class ProfileController extends Controller
         $user = User::find($id);
 
         $this->validate($request, [
-            'email' => 'email|unique:users,email,' . $id,
+            'email' => 'email:rfc,dns|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
         ]);
 

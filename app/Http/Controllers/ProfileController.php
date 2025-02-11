@@ -122,7 +122,17 @@ class ProfileController extends Controller
         $input = $request->all();
 
         if ($input['email'] != $user->email) {
+            if ($user->role == 'Lehr') {
+                $request->validate(['email' => 'required|max:255']);
+            }
+            if ($user->role == 'Stud') {
+                $this->validate($request, [
+                    'email' => ['required', 'regex:/^.+@(student.uni-augsburg|uni-a)\.de$/', 'max:255']
+                ]);
+            }
             $user->email_verified_at = null;
+            $user->email = $input['email'];
+            $user->save();
             $user->sendEmailVerificationNotification();
         }
 

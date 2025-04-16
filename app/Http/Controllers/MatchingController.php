@@ -299,11 +299,17 @@ class MatchingController extends Controller
             $denominator = 0;  
 
             $lehr_vorname_wunschtandem = $matching->lehr->survey_data->vorname_wunschtandem ?? false;
+            if ($lehr_vorname_wunschtandem === false || trim($lehr_vorname_wunschtandem) === '' || trim($lehr_vorname_wunschtandem) === '-') {
+                return false;
+            }
             if ($lehr_vorname_wunschtandem) {
                 $denominator++;
                 $distance_vorname = levenshtein($lehr_vorname_wunschtandem, $matching->stud->vorname);
             }
             $lehr_nachname_wunschtandem = $matching->lehr->survey_data->nachname_wunschtandem ?? false;
+            if ($lehr_nachname_wunschtandem === false || trim($lehr_nachname_wunschtandem) === '' || trim($lehr_nachname_wunschtandem) === '-') {
+                return false;
+            }
             if ($lehr_nachname_wunschtandem) {
                 $denominator++;
                 $distance_nachname = levenshtein($lehr_nachname_wunschtandem, $matching->stud->nachname);
@@ -340,11 +346,17 @@ class MatchingController extends Controller
             $denominator = 0;  
 
             $stud_vorname_wunschtandem = $matching->stud->survey_data->vorname_wunschtandem ?? false;
+            if ($stud_vorname_wunschtandem === false || trim($stud_vorname_wunschtandem) === '' || trim($stud_vorname_wunschtandem) === '-') {
+                return false;
+            }
             if ($stud_vorname_wunschtandem) {
                 $denominator++;
                 $distance_vorname = levenshtein($stud_vorname_wunschtandem, $matching->lehr->vorname);
             }
             $stud_nachname_wunschtandem = $matching->stud->survey_data->nachname_wunschtandem ?? false;
+            if ($stud_nachname_wunschtandem === false || trim($stud_nachname_wunschtandem) === '' || trim($stud_nachname_wunschtandem) === '-') {
+                return false;
+            }
             if ($stud_nachname_wunschtandem) {
                 $denominator++;
                 $distance_nachname = levenshtein($stud_nachname_wunschtandem, $matching->lehr->nachname);

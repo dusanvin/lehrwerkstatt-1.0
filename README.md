@@ -1,4 +1,4 @@
-Lehr:werkstatt ist eine Plattform, die Studierenden und Lehrkräften dabei hilft, eine/n Tandempartner/in im Rahmen des Projekts Lehr:werkstatt zu finden und Praktika zu vermitteln.
+Lehr:werkstatt ist eine Plattform, die Studierenden und Lehrkräften dabei hilft, eine/n Tandempartner/in im Rahmen des Projekts Lehr:werkstatt zu finden und Praktika zu vermitteln. Matchinprozess basiert auf dem Konzept der mittleren quadratischen Abweichung.
 
     Backend: Laravel (PHP)
     Frontend: Tailwind (CSS) + Heroicons
